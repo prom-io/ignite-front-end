@@ -149,9 +149,15 @@
     color: #1C1C1C
     text-align: center
   img
-
+.main-content-container
+  // width: 100% !important
 .main-content
   max-width: 100% !important
+  width: 100% !important
+.right-content
+  @media (min-width: 960px)
+    flex-basis: 100% !important
+    max-width: 100% !important
 
 .create-status-form
   border-radius: 0 !important
@@ -179,6 +185,9 @@
   flex-wrap: wrap
   align-items: flex-start
   justify-self: start
+.avatar-mini
+  height: 35px !important
+  width: 35px !important
 .status-list-body-container
   padding-left: 66px !important
 .status-list-bottom-container

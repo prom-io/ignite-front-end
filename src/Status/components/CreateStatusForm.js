@@ -50,7 +50,7 @@ const _CreateStatusForm = ({
                 padding: "25px 15px 25px 15px"
             }}>
                 <Grid item xs={1}>
-                    <Avatar src={currentUserAvatar}/>
+                    <Avatar src={currentUserAvatar} className="avatar-mini"/>
                 </Grid>
                 <Grid item xs={11}>
                     <TextField placeholder="What's on your mind?"

@@ -6,7 +6,9 @@ import {Link} from "mobx-router";
 import {Routes} from "../../routes";
 
 const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) => (
-    <CardHeader avatar={<Avatar src={avatar}/>}
+    <CardHeader avatar={
+                    <Avatar src={avatar} className="avatar-mini"/>
+                }
                 title={
                     <div style={{display: "flex"}} className="status-header">
                         <Link store={routerStore}

@@ -14,7 +14,7 @@ const routerStore = {
 startRouter(Routes, routerStore);
 
 ReactDOM.render(
-    <Provider store={routerStore} {...store}>
+    <Provider store={routerStore} {...store} className="root">
         <App/>
     </Provider>,
     document.getElementById('root')

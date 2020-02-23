@@ -1,6 +1,7 @@
 import React from "react";
 import {Grid, makeStyles, Typography} from "@material-ui/core";
 import BinanceBanner from "../images/binance-banner.jpg";
+import UserCard from '../components/UserCard'
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
@@ -14,7 +15,10 @@ export const PrometeusDescription = () => {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className="description-container">
+            <Grid  className="user_profile_container">
+                <UserCard isLogin={true} />
+            </Grid>
             <Grid item xs={12}>
                 <Typography variant="body2">
                     Try <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">{PrometeusNetwork}</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.

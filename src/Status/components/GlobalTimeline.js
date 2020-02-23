@@ -9,6 +9,12 @@ const useStyles = makeStyles(() => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    paddingCorective: {
+        paddingBottom: "0 !important" 
+    },
+    statusListBorderCorrective: {
+        paddingTop: "0 !important",
     }
 }));
 
@@ -27,11 +33,11 @@ const _GlobalTimeline = ({
         : (
             <Grid container spacing={2}>
                 {currentUser && (
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.paddingCorective}>
                         <CreateStatusForm/>
                     </Grid>
                 )}
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.statusListBorderCorrective}>
                     <StatusList statuses={statuses}
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                                 pending={pending}

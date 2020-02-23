@@ -20,10 +20,11 @@ const _AppBar = ({currentActiveRoute, routerStore}) => {
     return (
         <Fragment>
             <MuiAppBar variant="outlined"
-                       className={classes.appBar}
+                       className="app-bar"
                        position="fixed"
             >
-                <Toolbar>
+            <div className="header-logo"></div>
+                <Toolbar className="tool-bar">
                     <div style={{flexGrow: 1}}>
                         <AppBarLink text="Home"
                                     targetView={Routes.home}

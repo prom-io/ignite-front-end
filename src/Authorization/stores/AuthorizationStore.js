@@ -21,5 +21,11 @@ export class AuthorizationStore {
             axiosInstance.get("/api/v1/accounts/current")
                 .then(({data}) => this.currentUser = data);
         }
+    };
+
+    @action
+    doLogout = () => {
+        this.currentUser = undefined;
+        localStorage.removeItem("accessToken");
     }
 }

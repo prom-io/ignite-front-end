@@ -32,6 +32,10 @@ export class LoginStore {
             axiosInstance.post("/api/v3/auth/login", {...this.loginForm})
                 .then(({data}) => {
                     this.authorizationStore.setAccessToken(data.access_token);
+                    this.loginForm = {
+                        username: "",
+                        password: ""
+                    };
                 })
         }
     }

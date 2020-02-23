@@ -3,6 +3,8 @@ import {inject} from "mobx-react";
 import {AppBar as MuiAppBar, makeStyles, Toolbar} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
 import {AppBarLink} from "./AppBarLink";
+import {UserAppBarMenu} from "./UserAppBarMenu";
+import {AppBarSearchTextField} from "./AppBarSearchTextField";
 import {Routes} from "../../routes";
 
 const useStyles = makeStyles(theme => ({
@@ -22,13 +24,17 @@ const _AppBar = ({currentActiveRoute, routerStore}) => {
                        position="fixed"
             >
                 <Toolbar>
-                    <AppBarLink text="Home"
-                                targetView={Routes.home}
-                                active={currentActiveRoute === "home"}
-                                icon={<HomeIcon/>}
-                                routerStore={routerStore}
-                                viewParameters={{}}
-                    />
+                    <div style={{flexGrow: 1}}>
+                        <AppBarLink text="Home"
+                                    targetView={Routes.home}
+                                    active={currentActiveRoute === "home"}
+                                    icon={<HomeIcon/>}
+                                    routerStore={routerStore}
+                                    viewParameters={{}}
+                        />
+                    </div>
+                    <AppBarSearchTextField/>
+                    <UserAppBarMenu/>
                 </Toolbar>
             </MuiAppBar>
             <Toolbar/>

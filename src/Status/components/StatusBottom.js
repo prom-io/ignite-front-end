@@ -9,7 +9,7 @@ export const StatusBottom = ({
     statusId,
     favouritesCount
 }) => (
-    <CardActions>
+    <CardActions  className="status-list-bottom-container">
         <Checkbox icon={<FavoriteBorderIcon/>}
                   checkedIcon={<FavoriteIcon color="primary"/>}
                   checked={favourited}

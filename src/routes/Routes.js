@@ -17,6 +17,10 @@ export const Routes = {
         },
         onExit: () => {
             store.userProfile.reset();
+        },
+        onParamsChange: (route, params) => {
+            store.userProfile.reset();
+            store.userProfile.fetchUserByUsername(params.username);
         }
     })
 };

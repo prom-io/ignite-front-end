@@ -18,9 +18,6 @@ export class UserProfileStore {
     error = undefined;
 
     @observable
-    relationShips = undefined;
-
-    @observable
     activeTab = "posts";
 
     authorizationStore = undefined;
@@ -106,6 +103,7 @@ export class UserProfileStore {
         this.user = undefined;
         this.pending = false;
         this.error = undefined;
+        this.activeTab = "posts";
         this.userFollowingStore.reset();
         this.userFollowersStore.reset();
     }

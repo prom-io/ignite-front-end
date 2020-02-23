@@ -83,8 +83,7 @@ const _CreateStatusForm = ({
                         )}
                     </Grid>
                     <Grid item xs={12} className="create-status-form-button-container">
-                        {pending && <CircularProgress size={15}/>}
-                        {inputFocused && (
+                        {(inputFocused || content.length > 0) && (
                             <Button variant="contained"
                                     color="primary"
                                     disableElevation
@@ -92,6 +91,7 @@ const _CreateStatusForm = ({
                                     onClick={createStatus}
                                     disabled={pending}
                             >
+                                {pending && <CircularProgress size={15}/>}
                                 Send
                             </Button>
                         )}

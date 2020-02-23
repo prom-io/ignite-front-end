@@ -6,21 +6,22 @@ import {LoginForm} from "../Authorization/components";
 import {Layout} from "../Layout";
 import {GlobalTimeline} from "../Status/components";
 import {PrometeusDescription} from "../PrometeusDescription";
+import '../styles/App.sass'
 
 const _HomePage = ({currentUser}) => (
-    <Grid container>
+    <Grid container >
         <Grid item xs={12}>
-            <AppBar currentActiveRoute="home"/>
+            <AppBar currentActiveRoute="home" />
         </Grid>
         <Grid item xs={12}>
             <Layout>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} className="content-container">
                     <Hidden mdDown>
-                        <Grid item md={3}>
+                        <Grid item md={3} className="left-container">
                             <PrometeusDescription/>
                         </Grid>
                     </Hidden>
-                    <Grid item lg={9} xs={12}>
+                    <Grid item lg={9} xs={12} className="right-content-container">
                         <Grid container spacing={2}>
                             {!currentUser && (
                                 <Grid item xs={12}>

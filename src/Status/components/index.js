@@ -6,3 +6,4 @@ export * from "./StatusList";
 export * from "./StatusListItem";
 export * from "./CreateStatusForm";
 export * from "./UserProfileTimeline";
+export * from "./HomeTimeline";

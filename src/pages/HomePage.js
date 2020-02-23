@@ -4,7 +4,7 @@ import {Grid, Hidden} from "@material-ui/core";
 import {AppBar} from "../AppBar/components";
 import {LoginForm} from "../Authorization/components";
 import {Layout} from "../Layout";
-import {GlobalTimeline} from "../Status/components";
+import {GlobalTimeline, HomeTimeline} from "../Status/components";
 import {PrometeusDescription} from "../PrometeusDescription";
 import '../styles/App.sass'
 
@@ -29,7 +29,7 @@ const _HomePage = ({currentUser}) => (
                                 </Grid>
                             )}
                             <Grid item xs={12} md={9} className="main-content">
-                                <GlobalTimeline/>
+                                {currentUser ? <HomeTimeline/> : <GlobalTimeline/>}
                             </Grid>
                         </Grid>
                     </Grid>

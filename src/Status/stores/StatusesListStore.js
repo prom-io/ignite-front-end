@@ -84,5 +84,11 @@ export class StatusesListStore {
     setBaseUrl = baseUrl => {
         this.baseUrl = baseUrl;
         this.statuses = [];
+    };
+
+    @action
+    reset = () => {
+        this.statuses = [];
+        this.pending = false;
     }
 }

@@ -12,14 +12,13 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _UserProfileTimeline = ({
+const _HomeTimeline= ({
     statuses,
     favouriteStatus,
     unfavouriteStatus,
     fetchStatuses,
     pending,
-    currentUser,
-    profileOwnerId
+    currentUser
 }) => {
     const classes = useStyles();
 
@@ -27,11 +26,9 @@ const _UserProfileTimeline = ({
         ? <CircularProgress size={20} className={classes.centered}/>
         : (
             <Grid container spacing={2}>
-                {currentUser && currentUser.id === profileOwnerId && (
-                    <Grid item xs={12}>
-                        <CreateStatusForm/>
-                    </Grid>
-                )}
+                <Grid item xs={12}>
+                    <CreateStatusForm/>
+                </Grid>
                 <Grid item xs={12}>
                     <StatusList statuses={statuses}
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
@@ -43,14 +40,13 @@ const _UserProfileTimeline = ({
         )
 };
 
-const mapMobxToProps = ({userProfileTimeline, authorization}) => ({
-    statuses: userProfileTimeline.statuses,
-    favouriteStatus: userProfileTimeline.favouriteStatus,
-    unfavouriteStatus: userProfileTimeline.unfavouriteStatus,
-    pending: userProfileTimeline.pending,
-    fetchStatuses: userProfileTimeline.fetchStatuses,
+const mapMobxToProps = ({homeTimeline, authorization}) => ({
+    statuses: homeTimeline.statuses,
+    favouriteStatus: homeTimeline.favouriteStatus,
+    unfavouriteStatus: homeTimeline.unfavouriteStatus,
+    pending: homeTimeline.pending,
+    fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser
 });
 
-export const UserProfileTimeline = inject(mapMobxToProps)(observer(_UserProfileTimeline));
-
+export const HomeTimeline= inject(mapMobxToProps)(observer(_HomeTimeline));

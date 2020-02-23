@@ -7,7 +7,15 @@ export const Routes = {
     home: new Route({
         path: "/",
         component: <HomePage/>,
-        beforeEnter: () => store.globalTimeline.fetchStatuses()
+        beforeEnter: () => {
+            store.timelineSwitcher.setSwitchOnUserChange(true);
+            store.timelineSwitcher.selectedTimeline.reset();
+            store.timelineSwitcher.selectedTimeline.fetchStatuses();
+        },
+        onExit: () => {
+            store.timelineSwitcher.setSwitchOnUserChange(false);
+            store.timelineSwitcher.selectedTimeline.reset();
+        }
     }),
     userProfile: new Route({
         path: "/:username",

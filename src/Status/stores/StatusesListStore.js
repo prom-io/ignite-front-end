@@ -1,23 +1,47 @@
-import {action, observable, reaction} from "mobx";
+import {action, computed, observable, reaction} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
-export class GlobalTimelineStore {
+export class StatusesListStore {
     @observable
     statuses = [];
 
     @observable
     pending = false;
 
-    authorizationStore = undefined;
+    @observable
+    baseUrl = undefined;
 
-    constructor(authorizationStore) {
+    authorizationStore = undefined;
+    createStatusStore = undefined;
+
+    @computed
+    get createdStatus() {
+        return this.createStatusStore.createdStatus;
+    }
+
+    constructor(authorizationStore, createStatusStore, baseUrl) {
         this.authorizationStore = authorizationStore;
+        this.createStatusStore = createStatusStore;
+        this.baseUrl = baseUrl;
 
         reaction(
             () => this.authorizationStore.accessToken,
             () => {
                 this.statuses = [];
                 this.fetchStatuses();
+            }
+        );
+
+        reaction(
+            () => this.createdStatus,
+            status => {
+                if (status) {
+                    console.log(status);
+                    this.statuses = [
+                        status,
+                        ...this.statuses
+                    ]
+                }
             }
         )
     }
@@ -26,15 +50,17 @@ export class GlobalTimelineStore {
     fetchStatuses = () => {
         this.pending = true;
 
-        if (this.statuses.length !== 0) {
-            const maxId = this.statuses[this.statuses.length - 1].id;
-            axiosInstance.get(`/api/v1/timelines/global?max_id=${maxId}`)
-                .then(({data}) => this.statuses.push(...data))
-                .finally(() => this.pending = false);
-        } else {
-            axiosInstance.get(`/api/v1/timelines/global`)
-                .then(({data}) => this.statuses.push(...data))
-                .finally(() => this.pending = false)
+        if (this.baseUrl) {
+            if (this.statuses.length !== 0) {
+                const maxId = this.statuses[this.statuses.length - 1].id;
+                axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
+                    .then(({data}) => this.statuses.push(...data))
+                    .finally(() => this.pending = false);
+            } else {
+                axiosInstance.get(`${this.baseUrl}`)
+                    .then(({data}) => this.statuses.push(...data))
+                    .finally(() => this.pending = false)
+            }
         }
     };
 
@@ -52,5 +78,11 @@ export class GlobalTimelineStore {
             axiosInstance.post(`/api/v1/statuses/${id}/unfavourite`)
                 .then(({data}) => this.statuses = this.statuses.map(status => status.id === id ? data : status));
         }
+    };
+
+    @action
+    setBaseUrl = baseUrl => {
+        this.baseUrl = baseUrl;
+        this.statuses = [];
     }
 }

@@ -1,7 +1,10 @@
-import rewireMobx from "react-app-rewire-mobx";
+const {
+    override,
+    disableEsLint,
+    addDecoratorsLegacy
+} = require("customize-cra");
 
-export default (config, env) => {
-    config = rewireMobx(config, env);
-
-    return config;
-}
+module.exports = override(
+    addDecoratorsLegacy(),
+    disableEsLint()
+);

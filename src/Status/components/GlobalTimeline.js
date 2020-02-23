@@ -48,7 +48,7 @@ const mapMobxToProps = ({globalTimeline, authorization}) => ({
     unfavouriteStatus: globalTimeline.unfavouriteStatus,
     pending: globalTimeline.pending,
     fetchStatuses: globalTimeline.fetchStatuses,
-    currentUser: authorization
+    currentUser: authorization.currentUser
 });
 
 export const GlobalTimeline = inject(mapMobxToProps)(observer(_GlobalTimeline));

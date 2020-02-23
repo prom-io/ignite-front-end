@@ -52,27 +52,13 @@ export class UserProfileStore {
         this.username = username;
 
         axiosInstance.get(`/api/v1/account_by_username/${username}`)
-            .then(({data}) => {
-                this.user = data;
-                this.fetchRelationships();
-            })
+            .then(({data}) => this.user = data)
             .catch(error => this.error = error)
             .finally(() => this.fetchingUser = false)
     };
 
     @action
-    fetchRelationships = () => {
-        if (this.user && this.authorizationStore.accessToken) {
-            this.fetchingRelationships = true;
-            axiosInstance.get(`/api/v1/relationship?id[]=${this.user.id}`)
-                .then(({data}) => this.relationShips = data)
-                .finally(() => this.fetchingRelationships = false)
-        }
-    };
-
-    @action
     setActiveTab = tab => {
-        console.log(`Setting active tab ${tab}`)
         this.activeTab = tab;
 
         switch (this.activeTab) {
@@ -99,13 +85,19 @@ export class UserProfileStore {
     @action
     followUser = () => {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/follow`)
-            .then(({data}) => this.relationShips = data);
+            .then(() => {
+                this.user.followers_count = this.user.followers_count + 1;
+                this.user.following = true;
+            });
     };
 
     @action
     unfollowUser = () => {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/unfollow`)
-            .then(({data}) => this.relationShips = data);
+            .then(() => {
+                this.user.followers_count = this.user.followers_count - 1;
+                this.user.following = false;
+            });
     };
 
     @action

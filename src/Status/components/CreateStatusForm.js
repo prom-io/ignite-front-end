@@ -19,14 +19,15 @@ const useStyles = makeStyles(() => ({
     remainingCharactersCounter: {
         background: "#FBF7F6",
         justifyContent: "space-between",
-        padding: 10
+        padding: "7px 10px"
     },
     createStatusButtonWrapper: {
         paddingTop: 15
     },
     createStatusButton: {
         borderRadius: 30,
-        float: "right"
+        float: "right",
+        width: "114px",
     }
 }));
 
@@ -49,7 +50,7 @@ const _CreateStatusForm = ({
                 padding: "25px 15px 25px 15px"
             }}>
                 <Grid item xs={1}>
-                    <Avatar src={currentUserAvatar} classname=""/>
+                    <Avatar src={currentUserAvatar}/>
                 </Grid>
                 <Grid item xs={11}>
                     <TextField placeholder="What's on your mind?"
@@ -63,9 +64,14 @@ const _CreateStatusForm = ({
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
-                               className="create-status-counter"
+                               className="create-status-form-textfield"
                     />
-                    <Grid item xs={12}>
+                    
+                </Grid>
+            </Grid>
+            <CardActions style={{display: "flex"}}>
+                <Grid container justify="flex-end">
+                    <Grid item xs={12} className="create-status-form-counter-container">
                         {(inputFocused || content.length > 0) && (
                             <div className={classes.remainingCharactersCounter}>
                                 <Typography variant="body1"
@@ -76,11 +82,7 @@ const _CreateStatusForm = ({
                             </div>
                         )}
                     </Grid>
-                </Grid>
-            </Grid>
-            <CardActions style={{display: "flex"}}>
-                <Grid container justify="space-between">
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className="create-status-form-button-container">
                         {pending && <CircularProgress size={15}/>}
                         {inputFocused && (
                             <Button variant="contained"
@@ -90,7 +92,7 @@ const _CreateStatusForm = ({
                                     onClick={createStatus}
                                     disabled={pending}
                             >
-                                Publish
+                                Send
                             </Button>
                         )}
                     </Grid>

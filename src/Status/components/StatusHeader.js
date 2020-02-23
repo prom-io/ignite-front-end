@@ -8,7 +8,7 @@ import {Routes} from "../../routes";
 const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) => (
     <CardHeader avatar={<Avatar src={avatar}/>}
                 title={
-                    <div style={{display: "flex"}}>
+                    <div style={{display: "flex"}} className="status-header">
                         <Link store={routerStore}
                               view={Routes.userProfile}
                               params={{username}}
@@ -23,7 +23,6 @@ const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) 
                         </Link>
                         <Typography variant="body1"
                                     color="textSecondary"
-                                    style={{marginLeft: 10}}
                         >
                             {prettyDate.format(new Date(createdAt))}
                         </Typography>

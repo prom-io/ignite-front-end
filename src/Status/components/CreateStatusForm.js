@@ -14,10 +14,10 @@ import {
 
 const useStyles = makeStyles(() => ({
     createStatusFormCard: {
-        background: "#FBF7F6"
+        background: "#F1EBE8"
     },
     remainingCharactersCounter: {
-        background: "#ebebeb",
+        background: "#FBF7F6",
         justifyContent: "space-between",
         padding: 10
     },
@@ -44,12 +44,12 @@ const _CreateStatusForm = ({
     const [inputFocused, setInputFocused] = useState(false);
 
     return (
-        <Card className={classes.createStatusFormCard}>
+        <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container style={{
                 padding: "25px 15px 25px 15px"
             }}>
                 <Grid item xs={1}>
-                    <Avatar src={currentUserAvatar}/>
+                    <Avatar src={currentUserAvatar} classname=""/>
                 </Grid>
                 <Grid item xs={11}>
                     <TextField placeholder="What's on your mind?"
@@ -63,6 +63,7 @@ const _CreateStatusForm = ({
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
+                               className="create-status-counter"
                     />
                     <Grid item xs={12}>
                         {(inputFocused || content.length > 0) && (

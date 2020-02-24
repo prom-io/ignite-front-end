@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Grid, makeStyles, CircularProgress, Hidden} from "@material-ui/core";
+import {CircularProgress, Grid, makeStyles} from "@material-ui/core";
 import {UserProfileHeader} from "./UserProfileHeader";
 import {UserFollowersList} from "./UserFollowersList";
 import {UserFollowingList} from "./UserFollowingList";
@@ -30,8 +30,6 @@ const _UserProfileContainer = ({
     const classes = useStyles();
 
     let tabContent;
-
-    console.log(activeTab);
 
     switch (activeTab) {
         case "posts":

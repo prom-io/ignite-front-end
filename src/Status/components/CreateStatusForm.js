@@ -81,29 +81,25 @@ const _CreateStatusForm = ({
                 </Grid>
                 <Grid container justify="flex-end">
                     <Grid item xs={12} className="create-status-form-counter-container">
-                        {(inputFocused || content.length > 0) && (
-                            <div className={classes.remainingCharactersCounter}>
-                                <Typography variant="body1"
-                                            color="textSecondary"
-                                >
-                                    {charactersRemaining}
-                                </Typography>
-                            </div>
-                        )}
+                        <div className={classes.remainingCharactersCounter}>
+                            <Typography variant="body1"
+                                        color="textSecondary"
+                            >
+                                {charactersRemaining}
+                            </Typography>
+                        </div>
                     </Grid>
                     <Grid item xs={12} className="create-status-form-button-container">
-                        {(inputFocused || content.length > 0) && (
-                            <Button variant="contained"
-                                    color="primary"
-                                    disableElevation
-                                    className={classes.createStatusButton}
-                                    onClick={createStatus}
-                                    disabled={pending}
-                            >
-                                {pending && <CircularProgress size={15}/>}
-                                Send
-                            </Button>
-                        )}
+                        <Button variant="contained"
+                                color="primary"
+                                disableElevation
+                                className={classes.createStatusButton}
+                                onClick={createStatus}
+                                disabled={pending || content.length === 0}
+                        >
+                            {pending && <CircularProgress size={15}/>}
+                            Send
+                        </Button>
                     </Grid>
                 </Grid>
             </CardActions>

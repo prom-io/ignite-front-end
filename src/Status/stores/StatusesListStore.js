@@ -81,6 +81,42 @@ export class StatusesListStore {
     };
 
     @action
+    followStatusAuthor = id => {
+        if (this.authorizationStore.accessToken) {
+            const authorId = this.statuses.filter(status => status.id === id)
+                .map(status => status.account.id)
+                .reduce(authorId => authorId);
+            axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
+                .then(() => {
+                    this.statuses = this.statuses.map(status => {
+                        if (status.account.id === authorId) {
+                            status.account.following = true;
+                        }
+                        return status;
+                    })
+                });
+        }
+    };
+
+    @action
+    unfollowStatusAuthor = id => {
+        if (this.authorizationStore.accessToken) {
+            const authorId = this.statuses.filter(status => status.id === id)
+                .map(status => status.account.id)
+                .reduce(authorId => authorId);
+            axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`)
+                .then(() => {
+                    this.statuses = this.statuses.map(status => {
+                        if (status.account.id === authorId) {
+                            status.account.following = false;
+                        }
+                        return status;
+                    })
+                });
+        }
+    };
+
+    @action
     setBaseUrl = baseUrl => {
         this.baseUrl = baseUrl;
         this.statuses = [];

@@ -3,12 +3,23 @@ import {inject} from "mobx-react";
 import {CardHeader, Typography, Avatar} from "@material-ui/core";
 import prettyDate from "pretty-date";
 import {Link} from "mobx-router";
+import {StatusMenu} from "./StatusMenu";
 import {Routes} from "../../routes";
 
-const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) => (
-    <CardHeader avatar={
-                    <Avatar src={avatar} className="avatar-mini"/>
-                }
+const _StatusHeader = ({
+    username,
+    displayName,
+    avatar,
+    createdAt,
+    displayMenu,
+    currentUserFollowsAuthor,
+    currentUserIsAuthor,
+    statusId,
+    onFollowRequest,
+    onUnfollowRequest,
+    routerStore
+}) => (
+    <CardHeader avatar={<Avatar src={avatar} className="avatar-mini"/>}
                 title={
                     <div style={{display: "flex"}} className="status-header">
                         <Link store={routerStore}
@@ -31,6 +42,12 @@ const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) 
                     </div>
                 }
                 subheader={`@${lineBreak(username)}`}
+                action={displayMenu && <StatusMenu onUnfollowRequest={onUnfollowRequest}
+                                                   onFollowRequest={onFollowRequest}
+                                                   statusId={statusId}
+                                                   currentUserFollowsAuthor={currentUserFollowsAuthor}
+                                                   currentUserIsAuthor={currentUserIsAuthor}
+                />}
     />
 );
 

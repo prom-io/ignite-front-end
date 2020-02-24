@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect} from "react";
 import {Card, Divider} from "@material-ui/core";
-import _ from "lodash";
 import {StatusListItem} from "./StatusListItem";
 
 export const StatusList = ({
@@ -9,6 +8,10 @@ export const StatusList = ({
     pending,
     hasNewStatuses,
     onShowNewStatusesClick,
+    currentUser,
+    displayMenu,
+    onFollowRequest,
+    onUnfollowRequest,
     onNextPageRequest
 }) => {
     let trackScrolling = () => {
@@ -31,10 +34,14 @@ export const StatusList = ({
                 <Fragment key={status.id}>
                     <StatusListItem status={status}
                                     onFavouriteStatusChange={onFavouriteClick}
+                                    onFollowRequest={onFollowRequest}
+                                    onUnfollowRequest={onUnfollowRequest}
+                                    displayMenu={displayMenu}
+                                    currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     />
                     <Divider/>
                 </Fragment>
             ))}
         </Card>
     );
-}
+};

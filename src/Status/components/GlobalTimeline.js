@@ -22,6 +22,8 @@ const _GlobalTimeline = ({
     statuses,
     favouriteStatus,
     unfavouriteStatus,
+    followStatusAuthor,
+    unfollowStatusAuthor,
     fetchStatuses,
     pending,
     currentUser
@@ -42,6 +44,10 @@ const _GlobalTimeline = ({
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                                 pending={pending}
                                 onNextPageRequest={fetchStatuses}
+                                onUnfollowRequest={followStatusAuthor}
+                                onFollowRequest={unfollowStatusAuthor}
+                                displayMenu={Boolean(currentUser)}
+                                currentUser={currentUser}
                     />
                 </Grid>
             </Grid>
@@ -52,6 +58,8 @@ const mapMobxToProps = ({globalTimeline, authorization}) => ({
     statuses: globalTimeline.statuses,
     favouriteStatus: globalTimeline.favouriteStatus,
     unfavouriteStatus: globalTimeline.unfavouriteStatus,
+    followStatusAuthor: globalTimeline.followStatusAuthor,
+    unfollowStatusAuthir: globalTimeline.unfollowStatusAuthor,
     pending: globalTimeline.pending,
     fetchStatuses: globalTimeline.fetchStatuses,
     currentUser: authorization.currentUser

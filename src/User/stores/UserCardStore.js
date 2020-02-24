@@ -30,5 +30,5 @@ export class UserCardStore {
     @action
     setDisplayMode = displayMode => {
         this.displayMode = displayMode;
-    }
+    };
 }

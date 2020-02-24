@@ -14,6 +14,9 @@ export class StatusesListStore {
     authorizationStore = undefined;
     createStatusStore = undefined;
 
+    statusAuthorSubscriptionListeners = [];
+    statusAuthorUnsubscriptionListeners = [];
+
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
@@ -91,9 +94,12 @@ export class StatusesListStore {
                     this.statuses = this.statuses.map(status => {
                         if (status.account.id === authorId) {
                             status.account.following = true;
+                            this.statusAuthorSubscriptionListeners.forEach(statusAuthorSubscriptionListener => {
+                                statusAuthorSubscriptionListener.subscribeToStatusAuthor(status.account.id, status.id);
+                            })
                         }
                         return status;
-                    })
+                    });
                 });
         }
     };
@@ -110,6 +116,9 @@ export class StatusesListStore {
                         if (status.account.id === authorId) {
                             status.account.following = false;
                         }
+                        this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
+                            statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(status.account.id, status.id);
+                        });
                         return status;
                     })
                 });
@@ -126,5 +135,21 @@ export class StatusesListStore {
     reset = () => {
         this.statuses = [];
         this.pending = false;
+    };
+
+    addStatusAuthorSubscriptionListener = statusAuthorSubscriptionListener => {
+        this.statusAuthorSubscriptionListeners.push(statusAuthorSubscriptionListener);
+    };
+
+    addStatusAuthorUnsubscriptionListener = statusAuthorUnsubscriptionListener => {
+        this.statusAuthorUnsubscriptionListeners.push(statusAuthorUnsubscriptionListener);
+    };
+
+    removeStatusAuthorSubscriptionListener = listenerId => {
+        this.statusAuthorSubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(listener => listener.id !== listenerId);
+    };
+
+    removeStatusAuthorUnsubscriptionListener = listenerId => {
+        this.statusAuthorUnsubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(listener => listener.id !== listenerId);
     }
 }

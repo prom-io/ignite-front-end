@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "customize-cra": "^0.9.1",
     "date-fns": "^2.9.0",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",

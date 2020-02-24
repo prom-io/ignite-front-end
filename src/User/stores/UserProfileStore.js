@@ -40,17 +40,6 @@ export class UserProfileStore {
                 }
             }
         );
-
-        reaction(
-            () => this.user.following,
-            following => {
-                if (following) {
-                    this.user.followers_count += 1;
-                } else {
-                    this.user.followers_count -= 1;
-                }
-            }
-        )
     }
 
     @action
@@ -95,6 +84,7 @@ export class UserProfileStore {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/follow`)
             .then(() => {
                 this.user.following = true;
+                this.user.followers_count += 1;
                 this.userStatusesStore.followStatusAuthorByAuthorId(this.user.id);
             });
     };
@@ -104,6 +94,7 @@ export class UserProfileStore {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/unfollow`)
             .then(() => {
                 this.user.following = false;
+                this.user.followers_count -= 1;
                 this.userStatusesStore.unfollowStatusAuthorByAuthorId(this.user.id);
             });
     };

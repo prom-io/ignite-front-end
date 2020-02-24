@@ -20,7 +20,6 @@ import {SadIcon} from "../../icons/SadIcon";
 import {EmbedIcon} from "../../icons/EmbedIcon";
 
 export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest}) => {
-    console.log(currentUserIsAuthor);
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 

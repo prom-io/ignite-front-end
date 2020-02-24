@@ -39,6 +39,17 @@ export class UserProfileStore {
                     this.userStatusesStore.fetchStatuses();
                 }
             }
+        );
+
+        reaction(
+            () => this.user.following,
+            following => {
+                if (following) {
+                    this.user.followers_count += 1;
+                } else {
+                    this.user.followers_count -= 1;
+                }
+            }
         )
     }
 
@@ -83,8 +94,8 @@ export class UserProfileStore {
     followUser = () => {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/follow`)
             .then(() => {
-                this.user.followers_count = this.user.followers_count + 1;
                 this.user.following = true;
+                this.userStatusesStore.followStatusAuthorByAuthorId(this.user.id);
             });
     };
 
@@ -92,9 +103,30 @@ export class UserProfileStore {
     unfollowUser = () => {
         axiosInstance.post(`/api/v1/accounts/${this.user.username}/unfollow`)
             .then(() => {
-                this.user.followers_count = this.user.followers_count - 1;
                 this.user.following = false;
+                this.userStatusesStore.unfollowStatusAuthorByAuthorId(this.user.id);
             });
+    };
+
+    @action
+    setFollowersCount = followersCount => {
+        if (this.user) {
+            this.user.followers_count = followersCount;
+        }
+    };
+
+    @action
+    setStatusesCount = statusesCount => {
+        if (this.user) {
+            this.user.statuses_count = statusesCount
+        }
+    };
+
+    @action
+    setFollowedByCurrentUser = followedByCurrentUser => {
+        if (this.user) {
+            this.user.following = followedByCurrentUser;
+        }
     };
 
     @action

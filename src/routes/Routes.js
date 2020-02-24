@@ -24,9 +24,23 @@ export const Routes = {
         beforeEnter: (route, params) => {
             store.userCard.setDisplayMode("userByAddress");
             store.userProfile.fetchUserByUsername(params.username);
+            store.userProfileTimeline.addStatusAuthorSubscriptionListener({
+                id: "userProfileAuthorSubscriptionListener",
+                subscribeToStatusAuthor: () => {
+                    store.userProfile.setFollowedByCurrentUser(true);
+                }
+            });
+            store.userProfileTimeline.addStatusAuthorUnsubscriptionListener({
+                id: "userProfileAuthorUnsubscriptionListener",
+                unsubscribeFromStatusAuthor: () => {
+                    store.userProfile.setFollowedByCurrentUser(false);
+                }
+            })
         },
         onExit: () => {
             store.userProfile.reset();
+            store.userProfileTimeline.removeStatusAuthorSubscriptionListener("userProfileAuthorSubscriptionListener");
+            store.userProfileTimeline.removeStatusAuthorUnsubscriptionListener("userProfileAuthorUnsubscriptionListener");
         },
         onParamsChange: (route, params) => {
             store.userProfile.reset();

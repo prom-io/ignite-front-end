@@ -32,5 +32,26 @@ export class AuthorizationStore {
     doLogout = () => {
         this.currentUser = undefined;
         localStorage.removeItem("accessToken");
+    };
+
+    @action
+    setStatusesCount = statuses => {
+        if (this.currentUser) {
+            this.currentUser.statuses_count = statuses;
+        }
+    };
+
+    @action
+    setFollowersCount = followersCount => {
+        if (this.currentUser) {
+            this.currentUser.followers_count = followersCount;
+        }
+    };
+
+    @action
+    setFollowsCount = followsCount => {
+        if (this.currentUser) {
+            this.currentUser.follows_count = followsCount;
+        }
     }
 }

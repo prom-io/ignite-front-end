@@ -105,6 +105,16 @@ export class StatusesListStore {
     };
 
     @action
+    followStatusAuthorByAuthorId = authorId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.account.id === authorId) {
+                status.account.following = true;
+            }
+            return status;
+        })
+    };
+
+    @action
     unfollowStatusAuthor = id => {
         if (this.authorizationStore.accessToken) {
             const authorId = this.statuses.filter(status => status.id === id)
@@ -123,6 +133,16 @@ export class StatusesListStore {
                     })
                 });
         }
+    };
+
+    @action
+    unfollowStatusAuthorByAuthorId = authorId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.account.id === authorId) {
+                status.account.following = false;
+            }
+            return status;
+        })
     };
 
     @action

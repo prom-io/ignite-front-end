@@ -84,9 +84,17 @@ export class StatusesListStore {
     followStatusAuthor = id => {
         if (this.authorizationStore.accessToken) {
             const authorId = this.statuses.filter(status => status.id === id)
-                .map(status => status.account.id);
+                .map(status => status.account.id)
+                .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
-                .then(() => this.statuses = this.statuses.map(status => status.id === id ? status.account.following = true : status));
+                .then(() => {
+                    this.statuses = this.statuses.map(status => {
+                        if (status.account.id === authorId) {
+                            status.account.following = true;
+                        }
+                        return status;
+                    })
+                });
         }
     };
 
@@ -94,9 +102,17 @@ export class StatusesListStore {
     unfollowStatusAuthor = id => {
         if (this.authorizationStore.accessToken) {
             const authorId = this.statuses.filter(status => status.id === id)
-                .map(status => status.account.id);
+                .map(status => status.account.id)
+                .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`)
-                .then(() => this.statuses = this.statuses.map(status => status.id === id ? status.account.following = false : status));
+                .then(() => {
+                    this.statuses = this.statuses.map(status => {
+                        if (status.account.id === authorId) {
+                            status.account.following = false;
+                        }
+                        return status;
+                    })
+                });
         }
     };
 

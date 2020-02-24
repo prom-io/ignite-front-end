@@ -12,7 +12,7 @@ const _StatusHeader = ({
     avatar,
     createdAt,
     displayMenu,
-    currentUserFollowAuthor,
+    currentUserFollowsAuthor,
     currentUserIsAuthor,
     statusId,
     onFollowRequest,
@@ -42,10 +42,10 @@ const _StatusHeader = ({
                     </div>
                 }
                 subheader={`@${lineBreak(username)}`}
-                action={displayMenu && <StatusMenu onUnfollowRequest={onFollowRequest}
-                                                   onFollowRequest={onUnfollowRequest}
+                action={displayMenu && <StatusMenu onUnfollowRequest={onUnfollowRequest}
+                                                   onFollowRequest={onFollowRequest}
                                                    statusId={statusId}
-                                                   currentUserFollowsAuthor={currentUserFollowAuthor}
+                                                   currentUserFollowsAuthor={currentUserFollowsAuthor}
                                                    currentUserIsAuthor={currentUserIsAuthor}
                 />}
     />

@@ -12,10 +12,10 @@ export class UserFollowingStore {
     error = undefined;
 
     @action
-    fetchFollowing = username => {
+    fetchFollowing = id => {
         this.pending = true;
 
-        axiosInstance.get(`/api/v1/accounts/${username}/following`)
+        axiosInstance.get(`/api/v1/accounts/${id}/following`)
             .then(({data}) => this.following = data)
             .catch(error => this.error = error)
             .finally(() => this.pending = false)

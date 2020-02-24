@@ -7,7 +7,7 @@ const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
   isLogin: Boolean(userCard.user),
   src: userCard.user && userCard.user.avatar,
   username: userCard.user && userCard.user.username,
-  address: userCard.user && userCard.user.username,
+  displayName: userCard.user && userCard.user.display_name,
   followers: userCard.user && userCard.user.followers_count,
   posts: userCard.user && userCard.user.statuses_count,
   follow: userCard.user && userCard.user.follows_count
@@ -18,7 +18,7 @@ class UserComponent extends React.Component {
     super(props)
   }
   render () {
-    const {isLogin, src, username, address, posts, followers, follow} = this.props;
+    const {isLogin, src, username, displayName, posts, followers, follow} = this.props;
 
     if (isLogin) {
       return (
@@ -29,7 +29,7 @@ class UserComponent extends React.Component {
           <div className="user-card-bottom user-card-content-box">
             <div className="user-card-username">
               <h4>{lineBreak(username)}</h4>
-              <p>{lineBreak(address) }</p>
+              <p>{lineBreak(displayName) }</p>
             </div>
             <div className="user-card-statistic">
               <div>

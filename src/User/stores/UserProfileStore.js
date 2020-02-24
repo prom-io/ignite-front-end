@@ -66,12 +66,12 @@ export class UserProfileStore {
                 break;
             case "followers":
                 if (this.user && this.user.followers !== 0) {
-                    this.userFollowersStore.fetchUserFollowers(this.username);
+                    this.userFollowersStore.fetchUserFollowers(this.user.id);
                 }
                 break;
             case "following":
                 if (this.user && this.user.following !== 0) {
-                    this.userFollowingStore.fetchFollowing(this.username);
+                    this.userFollowingStore.fetchFollowing(this.user.id);
                 }
                 break;
             default:

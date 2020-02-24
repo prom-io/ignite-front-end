@@ -50,33 +50,35 @@ export const UserProfileHeader = ({
     }
 
     return (
-        <Grid container className={classes.userProfileHeader}>
-            <Grid item xs={3}>
+        <Grid container  className="user-profile-header-content">
+            <Grid className="user-profile-header-content-top">
                 <Grid container>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className="justify-content-center">
                         <UserProfileAvatar avatarUrl={avatar}/>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item xs={6} style={{display: "flex", padding: 10}} alignContent="space-between">
-                <UserProfileTab active={activeTab === "posts"}
-                                header={statuses}
-                                subheader="Posts"
-                                onSelectActive={() => onTabSelected("posts")}
-                />
-                <UserProfileTab active={activeTab === "followers"}
-                                header={followers}
-                                subheader="Followers"
-                                onSelectActive={() => onTabSelected("followers")}
-                />
-                <UserProfileTab active={activeTab === "following"}
-                                header={following}
-                                subheader="Following"
-                                onSelectActive={() => onTabSelected("following")}
-                />
-            </Grid>
-            <Grid item xs={3}>
-                {followButton}
+            <Grid className="user-profile-header-content-bottom">
+                <Grid style={{display: "flex", padding: 10}} className="user-profile-header-content-bottom-follows">
+                    <UserProfileTab active={activeTab === "posts"}
+                                    header={statuses}
+                                    subheader="Posts"
+                                    onSelectActive={() => onTabSelected("posts")}
+                    />
+                    <UserProfileTab active={activeTab === "followers"}
+                                    header={followers}
+                                    subheader="Followers"
+                                    onSelectActive={() => onTabSelected("followers")}
+                    />
+                    <UserProfileTab active={activeTab === "following"}
+                                    header={following}
+                                    subheader="Following"
+                                    onSelectActive={() => onTabSelected("following")}
+                    />
+                </Grid>
+                <Grid  className="user-profile-header-content-bottom-follow-button">
+                    {followButton}
+                </Grid>
             </Grid>
         </Grid>
     )

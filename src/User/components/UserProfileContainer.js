@@ -55,8 +55,8 @@ const _UserProfileContainer = ({
     }
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
+        <Grid container spacing={2} className="user-profile-container">
+            <Grid item xs={12} className="user-profile-header">
                 <UserProfileHeader followers={user.followers_count}
                                    following={user.follows_count}
                                    avatar={user.avatar}
@@ -70,15 +70,13 @@ const _UserProfileContainer = ({
                                    currentUser={currentUser}
                 />
             </Grid>
-            <Hidden smDown>
-                <Grid item md={3}>
+            <Grid item xs={12} md={7} className="user-profile-content-container">
+                <Grid className="user-profile-info">
                     <UserProfileInfo createdAt={new Date(user.created_at)}
                                      username={user.username}
                                      displayName={user.display_name}
                     />
                 </Grid>
-            </Hidden>
-            <Grid item xs={12} md={7}>
                 {tabContent}
             </Grid>
         </Grid>

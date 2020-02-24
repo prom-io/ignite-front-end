@@ -1,4 +1,4 @@
-import {observable, action, reaction, computed} from "mobx";
+import {action, computed, observable} from "mobx";
 
 export class UserCardStore {
     // can be either "currentUser" or "userByAddress"
@@ -9,14 +9,14 @@ export class UserCardStore {
     get user() {
         return this.displayMode === "currentUser"
             ? this.authorizationStore.currentUser
-            : this.userProfileStore.currentUser;
+            : this.userProfileStore.user;
     }
 
     @computed
     get userIsLoading() {
         return this.displayMode === "currentUser"
             ? this.authorizationStore.fetchingCurrentUser
-            : this.authorizationStore.fetchingUser
+            : this.userProfileStore.fetchingUser
     }
 
     authorizationStore = undefined;

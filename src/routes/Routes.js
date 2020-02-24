@@ -8,6 +8,7 @@ export const Routes = {
         path: "/",
         component: <HomePage/>,
         beforeEnter: () => {
+            store.userCard.setDisplayMode("currentUser");
             store.timelineSwitcher.setSwitchOnUserChange(true);
             store.timelineSwitcher.selectedTimeline.reset();
             store.timelineSwitcher.selectedTimeline.fetchStatuses();
@@ -21,6 +22,7 @@ export const Routes = {
         path: "/:username",
         component: <UserProfilePage/>,
         beforeEnter: (route, params) => {
+            store.userCard.setDisplayMode("userByAddress");
             store.userProfile.fetchUserByUsername(params.username);
         },
         onExit: () => {

@@ -39,6 +39,7 @@ const _HomeTimeline= ({
                                 onFollowRequest={followStatusAuthor}
                                 onUnfollowRequest={unfollowStatusAuthor}
                                 currentUser={currentUser}
+                                displayMenu={Boolean(currentUser)}
                     />
                 </Grid>
             </Grid>

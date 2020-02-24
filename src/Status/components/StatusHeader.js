@@ -19,7 +19,7 @@ const _StatusHeader = ({
     onUnfollowRequest,
     routerStore
 }) => (
-    <CardHeader avatar={<Avatar src={avatar}/>}
+    <CardHeader avatar={<Avatar src={avatar} className="avatar-mini"/>}
                 title={
                     <div style={{display: "flex"}} className="status-header">
                         <Link store={routerStore}
@@ -31,7 +31,7 @@ const _StatusHeader = ({
                               }}
                         >
                             <Typography>
-                                <strong>{displayName}</strong>
+                                <strong>{lineBreak(displayName)}</strong>
                             </Typography>
                         </Link>
                         <Typography variant="body1"
@@ -41,7 +41,7 @@ const _StatusHeader = ({
                         </Typography>
                     </div>
                 }
-                subheader={`@${username}`}
+                subheader={`@${lineBreak(username)}`}
                 action={displayMenu && <StatusMenu onUnfollowRequest={onFollowRequest}
                                                    onFollowRequest={onUnfollowRequest}
                                                    statusId={statusId}
@@ -50,6 +50,8 @@ const _StatusHeader = ({
                 />}
     />
 );
+
+const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
 const mapMobxToProps = ({store}) => ({
     routerStore: store

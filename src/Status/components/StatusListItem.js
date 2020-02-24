@@ -7,7 +7,7 @@ export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusCh
     <Fragment>
         <StatusHeader username={status.account.username}
                       displayName={status.account.display_name}
-                      avatar={status.account.avatar || "http://localhost:3000/avatars/original/missing.png"}
+                      avatar={status.account.avatar}
                       createdAt={status.created_at}
                       statusId={status.id}
                       displayMenu={displayMenu}

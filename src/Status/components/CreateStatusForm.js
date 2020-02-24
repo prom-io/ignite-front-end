@@ -50,7 +50,7 @@ const _CreateStatusForm = ({
                 padding: "25px 15px 25px 15px"
             }}>
                 <Grid item xs={1}>
-                    <Avatar src={currentUserAvatar}/>
+                    <Avatar src={currentUserAvatar} className="avatar-mini"/>
                 </Grid>
                 <Grid item xs={11}>
                     <TextField placeholder="What's on your mind?"
@@ -66,10 +66,19 @@ const _CreateStatusForm = ({
                                value={content}
                                className="create-status-form-textfield"
                     />
-                    
                 </Grid>
             </Grid>
             <CardActions style={{display: "flex"}}>
+                <Grid container justify="flex-start">
+                    {(inputFocused || content.length > 0) && (
+                        <div className="create-status-form-pic">
+                            <img src="/pic.png" />
+                            <img src="/pic_gif.png" />
+                            <img src="/pic_list.png" />
+                            <img src="/pic_smile.png" />
+                        </div>
+                    )}
+                </Grid>
                 <Grid container justify="flex-end">
                     <Grid item xs={12} className="create-status-form-counter-container">
                         {(inputFocused || content.length > 0) && (

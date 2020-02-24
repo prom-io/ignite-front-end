@@ -22,13 +22,13 @@ const _HomePage = ({currentUser}) => (
                         </Grid>
                     </Hidden>
                     <Grid item lg={9} xs={12} className="right-content-container">
-                        <Grid container spacing={2} className="main-content">
+                        <Grid container spacing={2}>
                             {!currentUser && (
                                 <Grid item xs={12}>
                                     <LoginForm/>
                                 </Grid>
                             )}
-                            <Grid item xs={12} md={9} className="main-content">
+                            <Grid item xs={12} md={9} className="right-content">
                                 {currentUser ? <HomeTimeline/> : <GlobalTimeline/>}
                             </Grid>
                         </Grid>

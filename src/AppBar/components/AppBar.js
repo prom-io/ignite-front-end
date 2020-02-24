@@ -14,6 +14,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const setIcon = (source) => <img src={source}/>;
+
 const _AppBar = ({currentActiveRoute, routerStore}) => {
     const classes = useStyles();
 
@@ -25,7 +27,7 @@ const _AppBar = ({currentActiveRoute, routerStore}) => {
             >
             <div className="header-logo"></div>
                 <Toolbar className="tool-bar">
-                    <div style={{flexGrow: 1}}>
+                    <div style={{flexGrow: 1}} className="tool-bar_list">
                         <AppBarLink text="Home"
                                     targetView={Routes.home}
                                     active={currentActiveRoute === "home"}
@@ -33,8 +35,30 @@ const _AppBar = ({currentActiveRoute, routerStore}) => {
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
+                        <AppBarLink text="Notifications"
+                                    targetView={Routes.notifications}
+                                    active={currentActiveRoute === "notifications"}
+                                    icon={currentActiveRoute ===  "notifications" ? setIcon('./notifications_active.png') : setIcon('./notifications.png')}
+                                    routerStore={routerStore}
+                                    viewParameters={{}}
+                        />
+                        <AppBarLink text="Chat"
+                                    targetView={Routes.chat}
+                                    active={currentActiveRoute === "chat"}
+                                    icon={currentActiveRoute ===  "chat" ? setIcon('./user-card-chat_active.png') : setIcon('./user-card-chat.png')}
+                                    routerStore={routerStore}
+                                    viewParameters={{}}
+                        />
+                        <AppBarLink text="Trends"
+                                    targetView={Routes.trends}
+                                    active={currentActiveRoute === "trends"}
+                                    icon={currentActiveRoute ===  "trends" ? setIcon('./trends_active.png') : setIcon('./trends.png')}
+                                    routerStore={routerStore}
+                                    viewParameters={{}}
+                        />
                     </div>
-                    <AppBarSearchTextField/>
+                    {/* <AppBarSearchTextField/> */}
+                    <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
                     <UserAppBarMenu/>
                 </Toolbar>
             </MuiAppBar>

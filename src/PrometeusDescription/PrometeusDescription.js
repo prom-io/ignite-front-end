@@ -1,5 +1,4 @@
 import React from "react";
-import { observer } from "mobx-react"
 import {Grid, makeStyles, Typography} from "@material-ui/core";
 import BinanceBanner from "../images/binance-banner.jpg";
 import UserCard from '../components/UserCard'

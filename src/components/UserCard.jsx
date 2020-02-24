@@ -17,7 +17,6 @@ class UserComponent extends React.Component {
   constructor(props) {
     super(props)
   }
-
   render () {
     const {isLogin, src, username, address, posts, followers, follow} = this.props;
 

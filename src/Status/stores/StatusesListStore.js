@@ -94,12 +94,12 @@ export class StatusesListStore {
                     this.statuses = this.statuses.map(status => {
                         if (status.account.id === authorId) {
                             status.account.following = true;
-                            this.statusAuthorSubscriptionListeners.forEach(statusAuthorSubscriptionListener => {
-                                statusAuthorSubscriptionListener.subscribeToStatusAuthor(status.account.id, status.id);
-                            })
                         }
                         return status;
                     });
+                    this.statusAuthorSubscriptionListeners.forEach(statusAuthorSubscriptionListener => {
+                        statusAuthorSubscriptionListener.subscribeToStatusAuthor(authorId, undefined);
+                    })
                 });
         }
     };
@@ -126,11 +126,11 @@ export class StatusesListStore {
                         if (status.account.id === authorId) {
                             status.account.following = false;
                         }
-                        this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
-                            statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(status.account.id, status.id);
-                        });
                         return status;
-                    })
+                    });
+                    this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
+                        statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(authorId);
+                    });
                 });
         }
     };

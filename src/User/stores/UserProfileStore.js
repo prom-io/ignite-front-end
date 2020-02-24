@@ -117,6 +117,12 @@ export class UserProfileStore {
     setFollowedByCurrentUser = followedByCurrentUser => {
         if (this.user) {
             this.user.following = followedByCurrentUser;
+
+            if (followedByCurrentUser) {
+                this.user.followers_count += 1;
+            } else {
+                this.user.followers_count -= 1;
+            }
         }
     };
 

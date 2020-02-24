@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {
     Avatar,
@@ -10,7 +10,8 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper
+    Popper,
+    Grid
 } from "@material-ui/core";
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
@@ -55,67 +56,70 @@ const _UserAppBarMenu = ({currentUser, routerStore}) => {
     }
 
     return (
-        <Fragment>
-            <IconButton ref={anchorRef}
-                        aria-controls={open ? 'menu-list-grow' : undefined}
-                        aria-haspopup="true"
-                        onClick={handleToggle}
-            >
-                <Avatar src={currentUser.avatar}/>
-            </IconButton>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                        {...TransitionProps}
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                    >
-                        <Paper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                    <Link view={Routes.userProfile}
-                                          params={{username: currentUser.username}}
-                                          store={routerStore}
-                                          style={{
-                                              textDecoration: "none",
-                                              color: "inherit"
-                                          }}
-                                    >
-                                        <MenuItem onClick={handleClose}>
+        <Grid >
+            <Grid className="user-app-bar-menu">
+                <IconButton ref={anchorRef}
+                            aria-controls={open ? 'menu-list-grow' : undefined}
+                            aria-haspopup="true"
+                            onClick={handleToggle}
+                            className="user-app-bar-menu-button"
+                >
+                    <Avatar src={currentUser.avatar}/>
+                </IconButton>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                    {({ TransitionProps, placement }) => (
+                        <Grow
+                            {...TransitionProps}
+                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                        >
+                            <Paper>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                        <Link view={Routes.userProfile}
+                                            params={{username: currentUser.username}}
+                                            store={routerStore}
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "inherit"
+                                            }}
+                                        >
+                                            <MenuItem onClick={handleClose}>
+                                                <ListItemText>
+                                                    Profile
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Link>
+                                        <Divider/>
+                                        <MenuItem disabled>
                                             <ListItemText>
-                                                Profile
+                                                Muted users
                                             </ListItemText>
                                         </MenuItem>
-                                    </Link>
-                                    <Divider/>
-                                    <MenuItem disabled>
-                                        <ListItemText>
-                                            Muted users
-                                        </ListItemText>
-                                    </MenuItem>
-                                    <MenuItem disabled>
-                                        <ListItemText>
-                                            Blocked users
-                                        </ListItemText>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        <ListItemText>
-                                            Terms and policies
-                                        </ListItemText>
-                                    </MenuItem>
-                                    <MenuItem disabled>
-                                        <ListItemText>
-                                            Help center
-                                        </ListItemText>
-                                    </MenuItem>
-                                    <Divider/>
-                                    <LogoutMenuItem onClick={handleClose}/>
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
-                    </Grow>
-                )}
-            </Popper>
-        </Fragment>
+                                        <MenuItem disabled>
+                                            <ListItemText>
+                                                Blocked users
+                                            </ListItemText>
+                                        </MenuItem>
+                                        <MenuItem onClick={handleClose}>
+                                            <ListItemText>
+                                                Terms and policies
+                                            </ListItemText>
+                                        </MenuItem>
+                                        <MenuItem disabled>
+                                            <ListItemText>
+                                                Help center
+                                            </ListItemText>
+                                        </MenuItem>
+                                        <Divider/>
+                                        <LogoutMenuItem onClick={handleClose}/>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Grow>
+                    )}
+                </Popper>
+            </Grid>
+        </Grid>
     )
 };
 

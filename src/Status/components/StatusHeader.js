@@ -20,7 +20,7 @@ const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) 
                               }}
                         >
                             <Typography>
-                                <strong>{displayName}</strong>
+                                <strong>{lineBreak(displayName)}</strong>
                             </Typography>
                         </Link>
                         <Typography variant="body1"
@@ -30,9 +30,11 @@ const _StatusHeader = ({username, displayName, avatar, createdAt, routerStore}) 
                         </Typography>
                     </div>
                 }
-                subheader={`@${username}`}
+                subheader={`@${lineBreak(username)}`}
     />
 );
+
+const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
 const mapMobxToProps = ({store}) => ({
     routerStore: store

@@ -26,11 +26,56 @@
   align-items: center
   max-height: 49px
   padding: 0 40px
+  bottom: 0 !important
+  top: auto !important
+  @media (min-width: 670px)
+    top: 0 !important
+    bottom: auto !important
 .tool-bar
   width: 100%
   max-height: 49px
   min-height: 40px !important
-
+.tool-bar_list
+  display: flex
+  justify-content: space-around
+  @media (min-width: 670px)
+    justify-content: flex-start
+.nav-bar-link
+  display: none !important
+  @media (min-width: 670px)
+    display: block !important
+.app-bar-search-field
+  display: none !important
+  @media (min-width: 960px)
+    display: block !important
+    width: 250px
+    height: 34px
+    background: #FBF7F6
+    border: 1px solid #F1EBE8 !important
+    box-sizing: border-box
+    border-radius: 4px
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 300
+    font-size: 15px
+    line-height: 18px
+    color: #A2A2A2
+    padding-left: 13px
+.user-app-bar-menu
+  position: fixed !important
+  left: auto !important
+  height: 50px
+  top: 0 !important
+  left: 0 !important
+  width: 100%
+  background-color: #FEFDFD !important
+  border-bottom: 1px solid #F1EBE8 !important
+  @media (min-width: 670px)
+    position: relative !important
+    background: none !important
+    border: none !important
+.user-app-bar-menu-button
+  padding: 4px !important
 .header-logo
   width: 32px
   height: 38px
@@ -40,10 +85,12 @@
   background-position: center
   box-sizing: border-box
 .content-container
-  width: 100% !important
-  justify-content: center !important
+  @media (min-width: 670px)
+    width: 100% !important
+    justify-content: center !important
 .right-content-container
-  max-width: 600px !important
+  @media (min-width: 670px)
+    max-width: 600px !important
   
 
 .left-container
@@ -176,6 +223,16 @@
   max-width: 50px !important
 .create-status-form-button-container
   max-width: 116px !important
+.create-status-form-pic
+  width: 108px
+  height: 20px
+  display: flex
+  justify-content: space-between
+  cursor: pointer
+  img
+    width: 20px
+    height: 20px
+
 
 .status-list-card
   border-radius: 0px !important

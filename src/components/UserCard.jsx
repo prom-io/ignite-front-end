@@ -1,18 +1,22 @@
 import React from "react";
+import { observer } from "mobx-react";
+
+const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
 
+@observer
 class UserComponent extends React.Component {
   constructor(props) {
     super(props)
     this.isLogin = props.isLogin
     this.src = props.src || '/default_user.png'
     this.username = props.username || 'Username'
-    this.addres = props.addres || `0x93E0b9BE0637D1aEf\n3440D8eA94ee52E8F935bE9`
+    this.addres = props.addres|| `0x93E0b9BE0637D1aEf3440D8eA94ee52E8F935bE9`
     this.posts = props.posts || 0
     this.followers = props.followers || 0
     this.follow = props.follow || 0
-
   }
+
   render () {
     if (this.isLogin) {
       return (
@@ -23,7 +27,7 @@ class UserComponent extends React.Component {
           <div className="user-card-bottom user-card-content-box">
             <div className="user-card-username">
             <h4>{this.username}</h4>
-            <p>{this.addres}</p>
+            <p>{lineBreak(this.addres) }</p>
             </div>
             <div className="user-card-statistic">
               <div>

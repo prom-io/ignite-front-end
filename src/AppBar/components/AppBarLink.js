@@ -6,12 +6,14 @@ const useStyles = makeStyles(theme => ({
     appBarLink: {
         textDecoration: "none",
         display: "flex",
-        color: theme.palette.text.primary
+        color: theme.palette.text.primary,
+        marginRight: "20px"
     },
     appBarLinkActive: {
         textDecoration: "none",
         display: "flex",
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
+        marginRight: "20px"
     },
     appBarLinkTextContainer: {
         display: "flex",
@@ -30,7 +32,7 @@ export const AppBarLink = ({routerStore, targetView, viewParameters, active, ico
         >
             <div color="inherit" className={classes.appBarLinkTextContainer}>
                 {icon}
-                <Typography variant="body1">
+                <Typography variant="body1" style={{ paddingLeft: "8px" }} className="nav-bar-link">
                     {text}
                 </Typography>
             </div>

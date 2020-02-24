@@ -21,7 +21,7 @@ const _StatusHeader = ({
 }) => (
     <CardHeader avatar={<Avatar src={avatar} className="avatar-mini"/>}
                 title={
-                    <div style={{display: "flex"}} className="status-header">
+                    <div className="status-header">
                         <Link store={routerStore}
                               view={Routes.userProfile}
                               params={{username}}

@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import {AuthorizationStore, LoginStore} from "../Authorization/stores";
 import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore} from "../Status/stores";
-import {UserProfileStore, UserFollowersStore, UserFollowingStore} from "../User/stores";
+import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 
 const authorization = new AuthorizationStore();
@@ -16,6 +16,7 @@ const userProfile = new UserProfileStore(authorization, userProfileTimeline, use
 const signUp = new SignUpStore(authorization, new Web3());
 const homeTimeline = new StatusesListStore(authorization, createStatus, "/api/v1/timelines/home");
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
+const userCard = new UserCardStore(authorization, userProfile);
 
 export const store = {
     authorization,
@@ -29,5 +30,6 @@ export const store = {
     userProfileTimeline,
     signUp,
     homeTimeline,
-    timelineSwitcher
+    timelineSwitcher,
+    userCard
 };

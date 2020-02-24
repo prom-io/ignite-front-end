@@ -4,13 +4,15 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
     userProfileHeaderAvatar: {
         display: "block",
-        position: "absolute",
         border: "none",
         left: 25,
-        top: -150,
+        top: 0,
         borderRadius: "50%",
-        height: 200,
-        width: 200
+        height: 94,
+        width: 94,
+        backgroundRepeat: "no-repeat",
+        backgroundsize: "auto",
+        backgroundPosition: "center"
     }
 }));
 

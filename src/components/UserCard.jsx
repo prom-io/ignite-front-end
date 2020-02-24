@@ -1,41 +1,48 @@
 import React from "react";
 
+import {inject, observer} from "mobx-react";
+
 const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
+@inject(({userCard}) => ({
+  isLogin: Boolean(userCard.user),
+  src: userCard.user && userCard.user.avatar,
+  username: userCard.user && userCard.user.username,
+  address: userCard.user && userCard.user.username,
+  followers: userCard.user && userCard.user.followers_count,
+  posts: userCard.user && userCard.user.statuses_count,
+  follow: userCard.user && userCard.user.follows_count
+}))
+@observer
 class UserComponent extends React.Component {
   constructor(props) {
     super(props)
-    this.isLogin = props.isLogin
-    this.src = props.src || '/default_user.png'
-    this.username = props.username || 'Username'
-    this.addres = props.addres|| `0x93E0b9BE0637D1aEf3440D8eA94ee52E8F935bE9`
-    this.posts = props.posts || 0
-    this.followers = props.followers || 0
-    this.follow = props.follow || 0
   }
   render () {
-    if (this.isLogin) {
+    const {isLogin, src, username, address, posts, followers, follow} = this.props;
+
+    if (isLogin) {
       return (
         <div className="user-profile-card">
           <div className="user-card-top user-card-content-box">
-            <img src={this.src} alt=""/>
+            <img src={src} alt=""/>
           </div>
           <div className="user-card-bottom user-card-content-box">
             <div className="user-card-username">
-            <h4>{this.username}</h4>
-            <p>{lineBreak(this.addres) }</p>
+              <h4>{lineBreak(username)}</h4>
+              <p>{lineBreak(address) }</p>
             </div>
             <div className="user-card-statistic">
               <div>
-                <p>{this.posts}</p>
+                <p>{posts}</p>
                 <h5>Posts</h5>
               </div>
               <div>
-                <p>{this.followers}</p>
+                <p>{followers}</p>
                 <h5>Followers</h5>
               </div>
               <div>
-                <p>{this.follow}</p>
+                <p>{follow}</p>
                 <h5>Follow</h5>
               </div>
             </div>

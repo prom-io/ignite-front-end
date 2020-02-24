@@ -1,10 +1,7 @@
 import React from "react";
-import { observer } from "mobx-react";
 
 const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
-
-@observer
 class UserComponent extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +13,6 @@ class UserComponent extends React.Component {
     this.followers = props.followers || 0
     this.follow = props.follow || 0
   }
-
   render () {
     if (this.isLogin) {
       return (

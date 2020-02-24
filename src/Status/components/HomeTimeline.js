@@ -16,6 +16,8 @@ const _HomeTimeline= ({
     statuses,
     favouriteStatus,
     unfavouriteStatus,
+    followStatusAuthor,
+    unfollowStatusAuthor,
     fetchStatuses,
     pending,
     currentUser
@@ -34,6 +36,9 @@ const _HomeTimeline= ({
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                                 pending={pending}
                                 onNextPageRequest={fetchStatuses}
+                                onFollowRequest={followStatusAuthor}
+                                onUnfollowRequest={unfollowStatusAuthor}
+                                currentUser={currentUser}
                     />
                 </Grid>
             </Grid>
@@ -44,6 +49,8 @@ const mapMobxToProps = ({homeTimeline, authorization}) => ({
     statuses: homeTimeline.statuses,
     favouriteStatus: homeTimeline.favouriteStatus,
     unfavouriteStatus: homeTimeline.unfavouriteStatus,
+    followStatusAuthor: homeTimeline.followStatusAuthor,
+    unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,
     pending: homeTimeline.pending,
     fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser

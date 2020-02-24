@@ -1,6 +1,7 @@
 import React from "react";
-import {makeStyles, Typography} from "@material-ui/core";
+import {AppBar as MuiAppBar, makeStyles, Typography} from "@material-ui/core";
 import {Link} from "mobx-router";
+import {BlockIcon} from "../../icons/BlockIcon";
 
 const useStyles = makeStyles(theme => ({
     appBarLink: {

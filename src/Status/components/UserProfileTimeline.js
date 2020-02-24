@@ -16,6 +16,8 @@ const _UserProfileTimeline = ({
     statuses,
     favouriteStatus,
     unfavouriteStatus,
+    followStatusAuthor,
+    unfollowStatusAuthor,
     fetchStatuses,
     pending,
     currentUser,
@@ -37,19 +39,26 @@ const _UserProfileTimeline = ({
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                                 pending={pending}
                                 onNextPageRequest={fetchStatuses}
+                                onFollowRequest={followStatusAuthor}
+                                onUnfollowRequest={unfollowStatusAuthor}
+                                displayMenu={Boolean(currentUser)}
+                                currentUser={currentUser}
                     />
                 </Grid>
             </Grid>
         )
 };
 
-const mapMobxToProps = ({userProfileTimeline, authorization}) => ({
+const mapMobxToProps = ({userProfileTimeline, userProfile, authorization}) => ({
     statuses: userProfileTimeline.statuses,
     favouriteStatus: userProfileTimeline.favouriteStatus,
     unfavouriteStatus: userProfileTimeline.unfavouriteStatus,
+    followStatusAuthor: userProfileTimeline.followStatusAuthor,
+    unfollowStatusAuthor: userProfileTimeline.unfollowStatusAuthor,
     pending: userProfileTimeline.pending,
     fetchStatuses: userProfileTimeline.fetchStatuses,
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
+    profileOwnerId: userProfile.user && userProfile.user.id
 });
 
 export const UserProfileTimeline = inject(mapMobxToProps)(observer(_UserProfileTimeline));

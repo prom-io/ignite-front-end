@@ -3,6 +3,7 @@
 
 body
   margin: 0 !important
+  overflow-x: hidden;
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2
   max-width: 100% !important
   margin: 0 !important
@@ -68,6 +69,8 @@ p
     align-items: center
     min-width: 35px
     height: 35px
+    &:hover
+      background-color: #FF5C01 !important
 .tool-bar_list
   display: flex
   justify-content: space-around
@@ -250,7 +253,8 @@ p
     max-width: 94px
 // .user-card-bottom
 .paddingBottomRoot
-  padding-bottom: 120px
+  @media screen and ( max-width: 960px )
+    padding-bottom: 120px
 .user-card-username
   display: flex
   flex-direction: column
@@ -431,6 +435,7 @@ p
   padding-left: 65px !important
 .status-list-bottom-container
   padding-left: 65px !important
+  padding-bottom: 15px !important
 .status-list-bottom-box
   cursor: pointer
   width: 45px

@@ -10,12 +10,17 @@ import {
     OpenCreateStatusDialogButton,
     OpenCreateStatusDialogFloatingActionButton
 } from "../../Status/components";
+import {ExpandDrawerButton} from "./ExpandDrawerButton";
+import {NavigationalDrawer} from "./NavigationalDrawer";
 
 const setIcon = (source) => <img src={source}/>;
 
 const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
     return (
         <Fragment>
+            <Hidden mdUp>
+                {currentUser ? <ExpandDrawerButton/> : <div></div>}
+            </Hidden>
             <MuiAppBar variant="outlined"
                        className="app-bar"
                        position="fixed"
@@ -54,7 +59,9 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
                     </div>
                     {/* <AppBarSearchTextField/> */}
                     <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
-                    <UserAppBarMenu/>
+                    <Hidden smDown>
+                        <UserAppBarMenu/>
+                    </Hidden>
                     {currentUser ? (
                         <Hidden smDown>
                             <OpenCreateStatusDialogButton/>
@@ -72,6 +79,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
                     : <div></div>
                 }
             </Hidden>
+            <NavigationalDrawer/>
             <CreateStatusDialog/>
         </Fragment>
     )

@@ -186,7 +186,7 @@ p
     margin-right: 25px !important
     padding: 0
 
-.right-container
+// .right-container
 
 
 .description-container
@@ -210,14 +210,23 @@ p
 .user_profile_container
   width: 272px
   height: 300px
-  padding: 0 8px
+  padding: 8px
+  @media screen and ( max-width: 960px)
+    max-width: 600px
+    width: 100%
+    & .user-profile-card
+      max-width: 600px
+      width: 100%
+    
 
 .user-profile-card
   background: $user-card-bg
   border: 1px solid #F1EBE8
   box-sizing: border-box
   width: 256px
-  height: 300px
+  min-height: 300px
+  height: auto
+  padding-bottom: 15px
   border-radius: 4px
   display: flex
   flex-wrap: wrap
@@ -226,18 +235,23 @@ p
   margin-top: -8px
 .user-card-content-box
   width: 100%
-  height: 50%
   // border: 1px solid red
   // box-sizing: border-box
+.user-card-bottom
+  padding-top: 20px
 .user-card-top
+  padding-top: 40px
   display: flex
   justify-content: center
   align-items: center
   img
     max-width: 94px
-.user-card-bottom
+// .user-card-bottom
 
 .user-card-username
+  display: flex
+  flex-direction: column
+  align-items: center
   h4
     font-family: Museo Sans Cyrl
     font-style: normal
@@ -264,6 +278,10 @@ p
     width: 33%
     // border: 1px solid yellow
     text-align: center
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
   h5
     margin: 5px 0
     font-family: Museo Sans Cyrl
@@ -280,6 +298,7 @@ p
     font-size: 16px
     line-height: 19px
     text-align: center
+    margin-bottom: 0
 .user-card-notauth-box
   height: 100%
   width: 100%
@@ -459,17 +478,26 @@ p
 
 .user-profile-header
   max-width: 256px !important
-  height: 300px !important
+  height: 320px !important
   padding: 0 !important
   background: #FBF7F6
   border: 1px solid #F1EBE8
   box-sizing: border-box
   border-radius: 4px
-  margin-right: 28px !important
+  @media screen and( max-width: 960px )
+    margin-right: 0 !important
+    max-width: 600px !important
+    height: 320px !important
+    margin-bottom: 20px !important
 
 .user-profile-header-content
   max-width: 256px !important
   height: 300px !important
+  @media ( max-width: 960px )
+    &.another-user
+      width: 100% !important
+      max-width: 100% !important
+      
 .user-profile-header-content-top
   width: 100%
   // height: 50%
@@ -503,20 +531,27 @@ p
   width: 100% !important
   padding: 0 !important
   margin-bottom: 70px !important
-  @media (min-width: 922px)
-    max-width: 600px !important
+  margin-left: 30px !important
+  max-width: 600px !important
+  @media (max-width: 960px)
+    margin-left: 0px !important
 .user-profile-info
   padding-left: 6px
   margin-bottom: 8px
+  &:first-child
+    margin-bottom: 10px !important
+  &:nth-child(2)
+    margin-bottom: 6px !important
 .user-profile-info-text
   text-align: center
   @media (min-width: 922px)
     text-align: left
 
 .static-page-container
-  width: 100%
+  width: auto
   min-height: 50rem
   padding: 50px 15px
+  max-width: 100%
   display: flex
   justify-content: center
   flex-wrap: wrap
@@ -559,6 +594,8 @@ p
     text-align: center
     color: #1C1C1C
 .static-page
+  display: flex
+  flex-direction: column
   // min-height: 100%
   // position: relative
 .static-page-footer
@@ -566,18 +603,21 @@ p
   left: 0
   display: flex
   border-top: 1px solid #E5E5E5
-  width: 100%
-  height: 146px
-  flex-wrap: wrap
-  margin-bottom: 40px
-  @media (min-width: 670px)
-    // position: absolute
-    // margin-bottom: 1px
+  width: auto
+  padding: 0 20px
+  height: 50px
+  justify-content: space-between
+  @media (max-width: 960px)
     justify-content: space-between
     margin: 0
-    height: 58px
+    margin-bottom: 50px
+    min-height: 100px
+    height: 100%
+    max-height: auto
+    padding: 0px 30px
+    width: auto
+    flex-direction: column-reverse
   div
-    width: 100%
     display: flex
     font-family: Museo Sans Cyrl
     font-style: normal
@@ -585,25 +625,26 @@ p
     font-size: 15px
     line-height: 23px
     color: #A2A2A2
-    @media (min-width: 700px)
-      width: 40%
+    justify-content: flex-start
+    width: 100%
+    @media (min-width: 960px)
       justify-content: flex-start
-    &:last-child
-      justify-content: flex-start
-      @media (min-width: 700px)
-        justify-content: flex-end
+   
     ul
       display: flex
       width: 100%
       padding: 0
       flex-wrap: wrap
-      @media (min-width: 700px)
+      @media (max-width: 960px)
+        flex-wrap: wrap
+        flex-direction: column
+      @media (min-width: 960px)
         padding: 0 0 0 40px
         justify-content: flex-end
         flex-wrap: nowrap
       li
         margin-left: 27px
-        @media (min-width: 700px)
+        @media (min-width: 960px)
           margin-left: 27px
           list-style: disc
           cursor: pointer
@@ -612,7 +653,7 @@ p
           text-decoration: underline
       li:first-child
         list-style: disc
-        @media (min-width: 700px)
+        @media (min-width: 960px)
           list-style: none
 .static-page-link
   text-decoration: none

@@ -27,8 +27,10 @@ class UserComponent extends React.Component {
           <div className="user-card-top user-card-content-box">
             <Avatar src={src}
                     style={{
-                      width: 60,
-                      height: 60
+                      width: 90,
+                      height: 90,
+                      minWidth: 90,
+                      minHeight: 90
                     }}
             />
           </div>

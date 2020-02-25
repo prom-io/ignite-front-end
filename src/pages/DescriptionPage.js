@@ -1,8 +1,10 @@
 import React from "react";
 import {Grid, Typography, makeStyles} from "@material-ui/core";
+import {Routes} from "../routes";
 import {DescriptionLinks} from "../components/DescriptionLinks";
 import BinanceBanner from "../images/binance-banner.jpg";
-import {AppBar} from "../AppBar/components";
+import {inject} from "mobx-react";
+import {Link} from "mobx-router";
 
 
 const useStyles = makeStyles(theme => ({
@@ -15,7 +17,7 @@ const pageHeight = document.documentElement.clientHeight
 console.log(pageHeight)
 
 
-export const DescriptionPage = () => {
+const _DescriptionPage = ({routerStore}) => {
   const classes = useStyles();
 
   const Prometeus = '{Prometeus}';
@@ -25,9 +27,11 @@ export const DescriptionPage = () => {
 
   return(
     <div className="static-page" style={{ minHeight: pageHeight}}>
-      <Grid item xs={12}>
-          <AppBar currentActiveRoute="notifications" isDescriptionPage={true}/>
-      </Grid>
+        <div className="arrow-go-home">
+          <Link view={Routes.home} store={routerStore} >
+            <img src="./arrow-go-back.png"/>
+          </Link>
+        </div>
       <Grid container spacing={2} className="description-container">
             <Grid item xs={12}>
                 <Typography variant="body2">
@@ -53,4 +57,10 @@ export const DescriptionPage = () => {
     </div>
   )
 }
+
+const mapMobxToProps = ({store}) => ({
+  routerStore: store
+});
+
+export const DescriptionPage = inject(mapMobxToProps)(_DescriptionPage);
 

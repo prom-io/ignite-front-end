@@ -74,7 +74,6 @@ const _UserAppBarMenu = ({currentUser, routerStore}) => {
                         >
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
-                                    
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Link view={Routes.userProfile}
                                             params={{username: currentUser.username}}

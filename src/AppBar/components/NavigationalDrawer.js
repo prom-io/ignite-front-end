@@ -34,7 +34,7 @@ const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded, routerStore}) =
                              }
                          }}
         >
-            <Link view={Routes.home}
+            <Link view={Routes.description}
                   store={routerStore}
                   className={classes.importantInfoLink}
             >

@@ -8,42 +8,49 @@ const _DrawerUserInfo = ({currentUser}) => {
     if (!currentUser) {
         return null;
     }
-
+    console.log('ollololollol')
     return (
-        <Fragment>
-            <Avatar src={currentUser.avatar}
-                    style={{
-                        width: 48,
-                        height: 48
-                    }}
-            />
-            <Typography variant="body1">
-                <strong>{lineBreak(currentUser.username)}</strong>
-            </Typography>
-            <Typography variant="body2"
-                        color="textSecondary"
-            >
-                {lineBreak(currentUser.display_name)}
-            </Typography>
-            <div style={{
-                display: "flex"
-            }}>
-                <Typography variant="body1">
-                    <strong>{currentUser.followers_count}</strong>
-                </Typography>
-                <Typography variant="body2"
-                            color="textSecondary"
-                >
-                    Followers
-                </Typography>
-                <Typography variant="body1">
-                    <strong>{currentUser.follows_count}</strong>
-                </Typography>
-                <Typography variant="body2"
-                            color="textSecondary"
-                >
-                    Follows
-                </Typography>
+        <Fragment >
+            <div className="sidebar-menu-user-wrapper">
+                <Avatar src={currentUser.avatar}
+                className="sidebar-menu-user-avatar"
+                />
+                <div className="sidebar-menu-user-info">
+
+                    <Typography variant="body1" className="sidebar-menu-user-info-name">
+                        <strong>{lineBreak(currentUser.username)}</strong>
+                    </Typography>
+                    <Typography variant="body2"
+                                color="textSecondary"
+                                className="sidebar-menu-user-info-id"
+                    >
+                        {lineBreak(currentUser.display_name)}
+                    </Typography>
+                </div>
+                <div className="sidebar-menu-user-info-count">
+                    <div className="sidebar-menu-user-info-count-item">
+                    <Typography variant="body1">
+                        <strong>{currentUser.followers_count}</strong>
+                    </Typography>
+                    <Typography variant="body2"
+                                color="textSecondary"
+                    >
+                        Followers
+                    </Typography>
+                    </div>
+                    <div className="sidebar-menu-user-info-count-item">
+                    <Typography variant="body1">
+                        <strong>{currentUser.follows_count}</strong>
+                    </Typography>
+                    <Typography variant="body2"
+                                color="textSecondary"
+                    >
+                        Follows
+                    </Typography>
+                    </div>
+                   
+                  
+                </div>
             </div>
         </Fragment>
     );

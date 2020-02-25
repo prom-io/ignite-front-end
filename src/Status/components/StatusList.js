@@ -32,7 +32,7 @@ export const StatusList = ({
     });
 
     return (
-        <Card id="statusList" className="status-list-card paddingBottomRoot">
+        <div id="statusList" className="status-list-card paddingBottomRoot">
             {statuses.map(status => (
                 <Fragment key={status.id}>
                     <StatusListItem status={status}
@@ -43,9 +43,8 @@ export const StatusList = ({
                                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                                     statusLikePending={statusLikePendingMap[status.id]}
                     />
-                    <Divider/>
                 </Fragment>
             ))}
-        </Card>
+        </div>
     );
 };

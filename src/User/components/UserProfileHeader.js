@@ -1,14 +1,7 @@
 import React from "react";
-import {createStyles, makeStyles, Grid, Button} from "@material-ui/core";
+import {Button, Grid} from "@material-ui/core";
 import {UserProfileAvatar} from "./UserProfileAvatar";
 import {UserProfileTab} from "./UserProfileTab";
-
-const useStyles = makeStyles(() => ({
-    userProfileHeader: {
-        top: -290,
-        position: "sticky"
-    }
-}));
 
 export const UserProfileHeader = ({
     avatar,
@@ -23,22 +16,19 @@ export const UserProfileHeader = ({
     username,
     currentUser
 }) => {
-    const classes = useStyles();
-
     let followButton = null;
 
     if (currentUser && currentUser.username !== username) {
         followButton = currentUserFollows
             ? (
                 <Grid  className="user-profile-header-content-bottom-follow-button">
-                <Button variant="contained"
-                        color="primary"
-                        onClick={() => onUnfollowRequest(username)}
-                        disableElevation
-                >
-                    Unfollow
-                </Button>
-
+                    <Button variant="contained"
+                            color="primary"
+                            onClick={() => onUnfollowRequest(username)}
+                            disableElevation
+                    >
+                        Unfollow
+                    </Button>
                 </Grid>
             )
             : (

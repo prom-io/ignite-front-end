@@ -40,7 +40,7 @@ const _DrawerMenu = ({
     }
 
     return (
-        <MenuList>
+        <MenuList >
             <Link view={Routes.userProfile}
                   params={{username: currentUser.username}}
                   store={routerStore}

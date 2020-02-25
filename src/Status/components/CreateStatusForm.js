@@ -38,7 +38,8 @@ const _CreateStatusForm = ({
     pending,
     currentUserAvatar,
     setContent,
-    createStatus
+    createStatus,
+    hideSendButton = false
 }) => {
     const classes = useStyles();
 
@@ -88,10 +89,9 @@ const _CreateStatusForm = ({
                             </div>
                     </Grid>
                     <Grid item xs={12} className="create-status-form-button-container">
-                        {/* {(inputFocused || content.length > 0) && ( */}
+                        {!hideSendButton && (
                             <Button variant="contained"
                                     color="primary"
-                                    
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
                                     disabled={!(content.length > 0)}
@@ -99,7 +99,7 @@ const _CreateStatusForm = ({
                                 {pending && <CircularProgress size={15}/>}
                                 Send
                             </Button>
-                        {/* )} */}
+                        )}
                     </Grid>
                 </Grid>
             </CardActions>

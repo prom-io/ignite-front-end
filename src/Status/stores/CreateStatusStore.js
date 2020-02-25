@@ -49,6 +49,7 @@ export class CreateStatusStore {
                 .then(({data}) => {
                     this.createdStatus = data;
                     this.setContent("");
+                    this.createStatusDialogOpen = false;
                 })
                 .catch(error => this.submissionError = error)
                 .finally(() => this.pending = false)

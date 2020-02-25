@@ -1,11 +1,11 @@
 import React, {Fragment} from "react";
-import {inject} from "mobx-react";
-import {AppBar as MuiAppBar, makeStyles, Toolbar} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
+import {AppBar as MuiAppBar, makeStyles, Toolbar, Hidden} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
-import {AppBarSearchTextField} from "./AppBarSearchTextField";
 import {Routes} from "../../routes";
+import {CreateStatusDialog, OpenCreateStatusDialogButton, OpenCreateStatusDialogFloatingActionButton} from "../../Status/components";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
 
 const setIcon = (source) => <img src={source}/>;
 
-const _AppBar = ({currentActiveRoute, routerStore}) => {
-    const classes = useStyles();
+const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
+    console.log(Boolean(currentUser));
 
     return (
         <Fragment>
@@ -60,15 +60,31 @@ const _AppBar = ({currentActiveRoute, routerStore}) => {
                     {/* <AppBarSearchTextField/> */}
                     <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
                     <UserAppBarMenu/>
+                    {currentUser ? (
+                        <Hidden smDown>
+                            <OpenCreateStatusDialogButton/>
+                        </Hidden>
+                    )
+                        : <div></div>
+                    }
                 </Toolbar>
             </MuiAppBar>
             <Toolbar/>
+            <Hidden mdUp>
+                {currentUser ? (
+                    <OpenCreateStatusDialogFloatingActionButton/>
+                )
+                    : <div></div>
+                }
+            </Hidden>
+            <CreateStatusDialog/>
         </Fragment>
     )
 };
 
-const mapMobxToProps = ({store}) => ({
-    routerStore: store
+const mapMobxToProps = ({store, authorization}) => ({
+    routerStore: store,
+    currentUser: authorization.currentUser
 });
 
-export const AppBar = inject(mapMobxToProps)(_AppBar);
+export const AppBar = inject(mapMobxToProps)(observer(_AppBar));

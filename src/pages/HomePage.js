@@ -16,15 +16,15 @@ const _HomePage = ({currentUser}) => (
         <Grid item xs={12}>
             <Layout>
                 <Grid container spacing={2} className="content-container">
-                    <Hidden mdDown>
+                    {/* <Hidden mdDown> */}
                         <Grid item md={3} className="left-container">
                             <PrometeusDescription/>
                         </Grid>
-                    </Hidden>
+                    {/* </Hidden> */}
                     <Grid item lg={9} xs={12} className="right-content-container">
                         <Grid container spacing={2}>
                             {!currentUser && (
-                                <Grid item xs={12}>
+                                <Grid item xs={12}  className="login-form-container">
                                     <LoginForm/>
                                 </Grid>
                             )}

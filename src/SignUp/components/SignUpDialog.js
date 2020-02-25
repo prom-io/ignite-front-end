@@ -19,7 +19,14 @@ const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
-        display: "table"
+        display: "table",
+        fontFamily: "Museo Sans Cyrl",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "20px",
+        lineHeight: "24px",
+        textAlign: "center",
+        color: "#1C1C1C",
     },
     signUpButton: {
         maxWidth: 374,
@@ -27,7 +34,12 @@ const useStyles = makeStyles(() => ({
         borderRadius: 30,
         marginLeft: "auto",
         marginRight: "auto",
-        display: "table"
+        display: "table",
+        height: "40px",
+        fontFamily: "Museo Sans Cyrl",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "15px",
     },
     loginButton: {
         maxWidth: 374,
@@ -64,6 +76,8 @@ const _SignUpDialog = ({
         setShowSnackbar(false);
     }
 
+    const Talk = '{Talk}'
+
     return (
         <Dialog open={signUpDialogOpen}
                 fullScreen={fullScreen}
@@ -73,6 +87,9 @@ const _SignUpDialog = ({
         >
             <DialogContent>
                 <div className={classes.signUpFormFields}>
+                    <div className="sign-in-logo">
+                        <img src="./logo.png" />
+                    </div>
                     <Typography variant="h6"
                                 className={classes.centered}
                     >
@@ -104,7 +121,7 @@ const _SignUpDialog = ({
                            variant="contained"
                    >
                        {pending && <CircularProgress size={15} color="primary"/>}
-                       Sign up
+                       Sign up for Prometeus {Talk}
                    </Button>
                     <Button disabled={pending}
                             onClick={() => setSignUpDialogOpen(false)}

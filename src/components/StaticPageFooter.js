@@ -2,7 +2,6 @@ import React from 'react';
 import {inject} from "mobx-react";
 import {Routes} from "../routes";
 import {StaticPageLinks} from './StaticPageLinks';
-import { TableFooter } from '@material-ui/core';
 
 
 const _StaticPageFooter = ({routerStore}) => {

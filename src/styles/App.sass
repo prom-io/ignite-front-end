@@ -33,8 +33,8 @@
   @media (min-width: 670px)
     display: block
 
-
-
+p
+  font-family: Museo Sans Cyrl
 
 
 .app-bar
@@ -102,28 +102,52 @@
   background-position: center
   box-sizing: border-box
 .content-container
-  @media (min-width: 670px)
+  @media (min-width: 952px)
     width: 100% !important
     justify-content: center !important
 .right-content-container
-  @media (min-width: 670px)
+  max-width: auto !important
+  padding: 0 !important
+  @media (min-width: 952px)
     max-width: 600px !important
   
 
 .left-container
-  max-width: 272px !important
-  margin-right: 25px !important
-  padding: 0
+  display: flex
+  justify-content: center !important
+  max-width: auto !important
+  width: 100%
+  @media (min-width: 952px)
+    display: block
+    max-width: 272px !important
+    margin-right: 25px !important
+    padding: 0
 
 .right-container
 
 
 .description-container
-  max-width: 272px !important
+  display: flex
+  justify-content: center !important
+  max-width: auto !important
+  width: 100%
+  @media (min-width: 952px)
+    max-width: 272px !important
+    margin-right: 25px !important
+    padding: 0
+  p
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 300
+    font-size: 12px
+    line-height: 23px
+    color: #1C1C1C
+    span
+      color: #FF5C01
 .user_profile_container
   width: 272px
   height: 300px
-  padding: 8px
+  padding: 0 8px
 
 .user-profile-card
   background: $user-card-bg
@@ -136,6 +160,7 @@
   flex-wrap: wrap
   justify-content: center
   align-items: flex-start
+  margin-top: -8px
 .user-card-content-box
   width: 100%
   height: 50%
@@ -215,15 +240,62 @@
     color: #1C1C1C
     text-align: center
   img
+.description-image-container
+  display: flex
+  justify-content: center
+
+.description-links
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  flex-wrap: wrap
+  div
+    width: 100%
+    display: flex
+    justify-content: flex-start
+    flex-wrap: wrap
+    align-items: flex-start
+    p
+      font-family: Museo Sans Cyrl
+      font-style: normal
+      font-weight: 300
+      font-size: 15px
+      line-height: 23px
+      color: #A2A2A2
+  div:first-child
+    border-top: 1px solid #F1EBE8
+    ul
+      width: auto
+      padding: 10px
+      li
+        width: auto
+    p
+      cursor: pointer
+      margin: 8px 4px
+      &:hover
+        text-decoration: underline
+  
+
+
+
 .main-content-container
   // width: 100% !important
 .main-content
   max-width: 100% !important
   width: 100% !important
 .right-content
+  padding: 0 !important
   @media (min-width: 960px)
     flex-basis: 100% !important
     max-width: 100% !important
+
+.login-form-container
+  padding: 0 !important
+  background: #FBF7F6 !important
+  border: 1px solid #F1EBE8 !important
+  box-sizing: border-box !important
+  border-radius: 4px 4px 0px 0px
+  height: 300px
 
 .create-status-form
   border-radius: 0 !important
@@ -268,6 +340,18 @@
   padding-left: 66px !important
 .status-list-bottom-container
   padding-left: 55px !important
+.status-list-bottom-box
+  cursor: pointer
+  width: 45px
+  height: 20px
+  display: flex
+  justify-content: flex-start
+  img
+    padding: 0
+    margin-right: 6px
+  span
+    padding: 0
+    margin-right: 6px
 
 .status-menu-active
   z-index: 10 !important
@@ -319,7 +403,11 @@
   justify-content: center !important
 
 .user-profile-content-container
-  max-width: 600px !important
+  max-width: auto !important
+  width: 100% !important
+  padding: 0 !important
+  @media (min-width: 922px)
+    max-width: 600px !important
 .user-profile-info
   padding-left: 6px
   margin-bottom: 8px
@@ -420,3 +508,9 @@
   color: #A2A2A2
   &:hover
     text-decoration: underline
+
+.sign-in-logo
+  width: 100%
+  display: flex
+  justify-content: center
+  margin-bottom: 24px

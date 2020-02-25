@@ -9,17 +9,34 @@ const useStyles = makeStyles(() => ({
     },
     loginButton: {
         maxWidth: 374,
-        marginTop: 20,
         borderRadius: 30,
         marginLeft: "auto",
         marginRight: "auto",
-        display: "table"
+        display: "table",
+        height: "40px",
+        fontFamily: "Museo Sans Cyrl",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "15px",
+        lineHeight: "18px",
+        textAlign: "center",
+        color: "##FFFFFF",
+        marginTop: "24px"
+        
     },
     signUpButton: {
         maxWidth: 374,
         marginLeft: "auto",
         marginRight: "auto",
-        display: "table"
+        display: "table",
+        fontFamily: "Museo Sans Cyrl",
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: "15px",
+        lineHeight: "18px",
+        textAlign: "center",
+        color: "#FF5C01",
+        marginTop: "24px"
     }
 }));
 
@@ -39,13 +56,14 @@ const _LoginForm = ({
        <Fragment>
            <Card className={classes.loginCard}>
                <CardContent>
-                   <TextField label="Wallet address"
+                   <TextField label="Wallet number"
                               value={loginForm.username}
                               onChange={event => setFormValue("username", event.target.value)}
                               fullWidth
                               margin="dense"
+                              className="input-default"
                    />
-                   <TextField label="Wallet private key"
+                   <TextField label="Password"
                               value={loginForm.password}
                               onChange={event => setFormValue("password", event.target.value)}
                               fullWidth

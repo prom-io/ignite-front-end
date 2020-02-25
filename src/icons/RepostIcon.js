@@ -12,5 +12,4 @@ export const RepostIcon = () => (
         </clipPath>
         </defs>
   </svg>
-  
 );

@@ -211,6 +211,8 @@ p
   width: 272px
   height: 300px
   padding: 8px
+  display: flex
+  flex-direction: column
   @media screen and ( max-width: 960px)
     max-width: 600px
     width: 100%
@@ -240,10 +242,9 @@ p
 .user-card-bottom
   padding-top: 20px
 .user-card-top
-  padding-top: 40px
   display: flex
   justify-content: center
-  align-items: center
+  padding-top: 30px
   img
     max-width: 94px
 // .user-card-bottom
@@ -303,12 +304,13 @@ p
   height: 100%
   width: 100%
   display: flex
-  justify-content: center
-  flex-wrap: wrap
+  justify-content: space-between
+  flex-direction: column
   align-items: center
 .user-card-notauth
   width: 100%
   display: flex
+  padding-top: 20px
   flex-wrap: wrap
   justify-content: center
   cursor: pointer
@@ -373,8 +375,8 @@ p
 
 .login-form-container
   padding: 0 !important
-  background: #FBF7F6 !important
-  border: 1px solid #F1EBE8 !important
+  // background: #FBF7F6 !important
+  // border: 1px solid #F1EBE8 !important
   box-sizing: border-box !important
   border-radius: 4px 4px 0px 0px
   height: 300px

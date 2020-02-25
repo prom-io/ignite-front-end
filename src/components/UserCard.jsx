@@ -1,5 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
+import {Avatar} from "@material-ui/core";
 
 const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
@@ -24,7 +25,7 @@ class UserComponent extends React.Component {
       return (
         <div className="user-profile-card">
           <div className="user-card-top user-card-content-box">
-            <img src={src} alt=""/>
+            <Avatar src={src}/>
           </div>
           <div className="user-card-bottom user-card-content-box">
             <div className="user-card-username">

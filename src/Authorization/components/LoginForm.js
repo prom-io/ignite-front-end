@@ -56,8 +56,10 @@ const _LoginForm = ({
                            color="primary"
                            variant="contained"
                            onClick={doLogin}
+                           disabled={pending}
                            fullWidth
                    >
+                       {pending && <CircularProgress size={14} color="primary"/>}
                        Login
                    </Button>
                    <Button variant="text"
@@ -65,6 +67,7 @@ const _LoginForm = ({
                            fullWidth
                            className={classes.signUpButton}
                            onClick={() => setSignUpDialogOpen(true)}
+                           disabled={pending}
                    >
                        Sign up for Prometeus {Talk}
                    </Button>

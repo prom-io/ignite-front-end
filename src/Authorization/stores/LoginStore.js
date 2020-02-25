@@ -37,6 +37,7 @@ export class LoginStore {
                         password: ""
                     };
                 })
+                .finally(() => this.pending = false);
         }
     }
 }

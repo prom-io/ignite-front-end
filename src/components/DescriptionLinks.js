@@ -2,6 +2,7 @@ import React from "react";
 import {inject} from "mobx-react";
 import {Routes} from "../routes";
 import {StaticPageLinks} from './StaticPageLinks';
+import {LogoutMenuItem} from "../Authorization/components";
 
 const _DescriptionLinks= ({routerStore}) => {
 
@@ -11,7 +12,7 @@ const _DescriptionLinks= ({routerStore}) => {
     termsOfService : "Terms of Service",
     privacyPolicy: "Privacy Policy"
   }
-  
+  const handleClose = () => null
 
 
   return (
@@ -35,7 +36,7 @@ const _DescriptionLinks= ({routerStore}) => {
         </p>
         <p>&bull;</p>
         <p>Help Center</p>
-        <p>Logout</p>
+        <LogoutMenuItem onClick={handleClose} isMenuItem={true}/>
       </div>
       <div><p>© 2020 {Prometeus} Team</p></div>
     </div>

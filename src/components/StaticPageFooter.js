@@ -2,6 +2,7 @@ import React from 'react';
 import {inject} from "mobx-react";
 import {Routes} from "../routes";
 import {StaticPageLinks} from './StaticPageLinks';
+import {LogoutMenuItem} from "../Authorization/components";
 
 
 const _StaticPageFooter = ({routerStore}) => {
@@ -12,6 +13,8 @@ const _StaticPageFooter = ({routerStore}) => {
     termsOfService : "Terms of Service",
     privacyPolicy: "Privacy Policy"
   }
+
+  const handleClose = () => null
   
 
 
@@ -36,7 +39,7 @@ const _StaticPageFooter = ({routerStore}) => {
             />
           </li>
           <li>Help Center</li>
-          <li>Logout</li>
+          <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/>
         </ul>
       </div>
     </div>

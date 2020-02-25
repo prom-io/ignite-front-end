@@ -117,6 +117,14 @@ const _SignUpDialog = ({
                               margin="dense"
                               type="password"
                    />
+                   <TextField label="Username"
+                              value={signUpForm.username}
+                              onChange={event => setFormValue("username", event.target.value)}
+                              error={Boolean(signUpFormErrors.username)}
+                              helperText={signUpFormErrors.userStatusesStore && signUpFormErrors.username}
+                              fullWidth
+                              margin="dense"
+                   />
                    <Button onClick={signUp}
                            fullWidth
                            className={classes.signUpButton}

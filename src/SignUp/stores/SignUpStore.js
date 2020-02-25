@@ -6,13 +6,15 @@ export class SignUpStore {
     @observable
     signUpForm = {
         address: "",
-        privateKey: ""
+        privateKey: "",
+        username: undefined
     };
 
     @observable
     signUpFormErrors = {
         address: undefined,
-        privateKey: undefined
+        privateKey: undefined,
+        username: undefined
     };
 
     @observable

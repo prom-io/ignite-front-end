@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Dialog, DialogTitle, DialogContent, Button, IconButton, makeStyles, CircularProgress} from "@material-ui/core";
+import {Dialog, DialogTitle, DialogContent, Button, IconButton, makeStyles, CircularProgress, withMobileDialog} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import {CreateStatusForm} from "./CreateStatusForm";
 
@@ -17,17 +17,20 @@ const _CreateStatusDialog = ({
     setCreateStatusDialogOpen,
     content,
     pending,
-    createStatus
+    createStatus,
+    fullScreen
 }) => {
     const classes = useStyles();
 
     return (
         <Dialog open={createStatusDialogOpen}
                 onClose={() => setCreateStatusDialogOpen(false)}
-                fullScreen
+                fullScreen={fullScreen}
                 style={{
                     zIndex: 15000000000
                 }}
+                fullWidth
+                maxWidth="md"
         >
             <DialogTitle>
                 <IconButton onClick={() => setCreateStatusDialogOpen(false)}
@@ -60,4 +63,6 @@ const mapMobxToProps = ({createStatus}) => ({
     createStatus: createStatus.createStatus
 });
 
-export const CreateStatusDialog = inject(mapMobxToProps)(observer(_CreateStatusDialog));
+export const CreateStatusDialog = withMobileDialog()(
+    inject(mapMobxToProps)(observer(_CreateStatusDialog))
+);

@@ -64,7 +64,7 @@ export const StatusBottom = ({
                 <Typography variant="body1" color={"textSecondary"}>
                     0
                 </Typography>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
                     <ClickAwayListener onClickAway={handleClose}>
                         <div className="status-list-bottom-box-modal" onClick={handleClose}>
                             <div className="status-modal-box-item" onClick={handleClose}>
@@ -89,7 +89,7 @@ export const StatusBottom = ({
                 <Typography variant="body1" color={"textSecondary"}>
                     0
                 </Typography>
-                    <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition disablePortal>
+                    <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
                         <ClickAwayListener onClickAway={handleClose2}>
                             <div className="status-list-bottom-box-modal" onClick={handleClose2}>
                                 <div className="status-modal-box-item" onClick={handleClose2}>

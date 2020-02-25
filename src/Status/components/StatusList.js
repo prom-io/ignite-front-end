@@ -29,7 +29,7 @@ export const StatusList = ({
     });
 
     return (
-        <Card id="statusList" className="status-list-card border">
+        <Card id="statusList" className="status-list-card">
             {statuses.map(status => (
                 <Fragment key={status.id}>
                     <StatusListItem status={status}

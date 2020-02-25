@@ -8,6 +8,9 @@ export class TimelinesSwitcherStore {
     @observable
     switchOnUserChange = false;
 
+    @observable
+    currentTimeline = "global";
+
     @computed
     get currentUser() {
         return this.authorizationStore.currentUser;
@@ -15,7 +18,7 @@ export class TimelinesSwitcherStore {
 
     @computed
     get selectedTimeline() {
-        return this.currentUser ? this.homeTimelineStore : this.globalTimeLineStore;
+        return this.currentTimeline === "home" ? this.homeTimelineStore : this.globalTimeLineStore;
     }
 
     constructor(globalTimelineStore, homeTimelineStore, authorizationStore) {
@@ -27,14 +30,15 @@ export class TimelinesSwitcherStore {
             () => this.currentUser,
             currentUser => {
                 if (this.switchOnUserChange) {
-                    if (currentUser) {
+                    if (currentUser && currentUser.follows_count !== 0) {
                         this.homeTimelineStore.reset();
                         this.homeTimelineStore.fetchStatuses();
-                        this.globalTimeLineStore.reset();
+                        this.setCurrentTimeline("home");
                     } else {
                         this.globalTimeLineStore.reset();
                         this.globalTimeLineStore.fetchStatuses();
                         this.homeTimelineStore.reset();
+                        this.setCurrentTimeline("global");
                     }
                 }
             }
@@ -44,5 +48,10 @@ export class TimelinesSwitcherStore {
     @action
     setSwitchOnUserChange = switchOnUserChange => {
         this.switchOnUserChange = switchOnUserChange;
+    }
+
+    @action
+    setCurrentTimeline = currentTimeline => {
+        this.currentTimeline = currentTimeline;
     }
 }

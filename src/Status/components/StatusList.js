@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect} from "react";
 import {Card, Divider} from "@material-ui/core";
+import _ from "lodash";
 import {StatusListItem} from "./StatusListItem";
 
 export const StatusList = ({
@@ -16,12 +17,13 @@ export const StatusList = ({
     onNextPageRequest
 }) => {
     let trackScrolling = () => {
-        const element = document.body;
+        const element = document.getElementById("statusList");
 
         if (element.getBoundingClientRect().bottom <= window.innerHeight) {
             onNextPageRequest();
         }
     };
+
 
     useEffect(() =>{
         document.addEventListener("scroll", trackScrolling);
@@ -30,7 +32,7 @@ export const StatusList = ({
     });
 
     return (
-        <Card id="statusList" className="status-list-card paddingBottomRoot">
+        <div id="statusList" className="status-list-card paddingBottomRoot">
             {statuses.map(status => (
                 <Fragment key={status.id}>
                     <StatusListItem status={status}
@@ -41,9 +43,8 @@ export const StatusList = ({
                                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                                     statusLikePending={statusLikePendingMap[status.id]}
                     />
-                    <Divider/>
                 </Fragment>
             ))}
-        </Card>
+        </div>
     );
 };

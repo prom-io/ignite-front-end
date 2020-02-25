@@ -8,7 +8,7 @@ import {GlobalTimeline, HomeTimeline} from "../Status/components";
 import {PrometeusDescription} from "../PrometeusDescription";
 import '../styles/App.sass'
 
-const _HomePage = ({currentUser}) => (
+const _HomePage = ({currentUser, homepageTimeline}) => (
     <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="home" />
@@ -29,7 +29,7 @@ const _HomePage = ({currentUser}) => (
                                 </Grid>
                             )}
                             <Grid item xs={12} md={9} className="right-content">
-                                {currentUser ? <HomeTimeline/> : <GlobalTimeline/>}
+                                {homepageTimeline === "home" ? <HomeTimeline/> : <GlobalTimeline/>}
                             </Grid>
                         </Grid>
                     </Grid>
@@ -39,8 +39,9 @@ const _HomePage = ({currentUser}) => (
     </Grid>
 );
 
-const mapMobxToProps = ({authorization}) => ({
-    currentUser: authorization.currentUser
+const mapMobxToProps = ({authorization, timelineSwitcher}) => ({
+    currentUser: authorization.currentUser,
+    homepageTimeline: timelineSwitcher.currentTimeline
 });
 
 export const HomePage = inject(mapMobxToProps)(observer(_HomePage));

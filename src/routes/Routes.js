@@ -10,7 +10,6 @@ export const Routes = {
         beforeEnter: () => {
             store.userCard.setDisplayMode("currentUser");
             store.timelineSwitcher.setSwitchOnUserChange(true);
-            store.timelineSwitcher.selectedTimeline.reset();
             store.timelineSwitcher.selectedTimeline.fetchStatuses();
         },
         onExit: () => {

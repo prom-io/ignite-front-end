@@ -55,7 +55,7 @@ export const StatusBottom = ({
     return (
         <CardActions  className="status-list-bottom-container">
             <div className="status-list-bottom-box">
-                <img src="./status-buttons-comments.png" ref={anchorRef} onClick={handleToggle}/>
+                <img src="./status-buttons-comments.png"/>
                 <Typography variant="body1" color={"textSecondary"}>
                     0
                 </Typography>

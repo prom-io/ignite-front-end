@@ -71,7 +71,9 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
                     }
                 </Toolbar>
             </MuiAppBar>
-            <Toolbar/>
+            <Hidden smDown>
+                <Toolbar/>
+            </Hidden>
             <Hidden mdUp>
                 {currentUser ? (
                     <OpenCreateStatusDialogFloatingActionButton/>

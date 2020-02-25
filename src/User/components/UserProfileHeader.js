@@ -30,6 +30,7 @@ export const UserProfileHeader = ({
     if (currentUser && currentUser.username !== username) {
         followButton = currentUserFollows
             ? (
+                <Grid  className="user-profile-header-content-bottom-follow-button">
                 <Button variant="contained"
                         color="primary"
                         onClick={() => onUnfollowRequest(username)}
@@ -37,15 +38,20 @@ export const UserProfileHeader = ({
                 >
                     Unfollow
                 </Button>
+
+                </Grid>
             )
             : (
-                <Button variant="contained"
-                        color="primary"
-                        onClick={() => onFollowRequest(username)}
-                        disableElevation
-                >
-                    Follow
-                </Button>
+                <Grid  className="user-profile-header-content-bottom-follow-button">
+                    <Button variant="contained"
+                            color="primary"
+                            onClick={() => onFollowRequest(username)}
+                            disableElevation
+                    >
+                        Follow
+                    </Button>
+
+                </Grid>
             )
     }
 
@@ -76,9 +82,8 @@ export const UserProfileHeader = ({
                                     onSelectActive={() => onTabSelected("following")}
                     />
                 </Grid>
-                <Grid  className="user-profile-header-content-bottom-follow-button">
+                
                     {followButton}
-                </Grid>
             </Grid>
         </Grid>
     )

@@ -11,6 +11,9 @@ export class StatusesListStore {
     @observable
     baseUrl = undefined;
 
+    @observable
+    statusLikePendingMap = {};
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
@@ -70,16 +73,32 @@ export class StatusesListStore {
     @action
     favouriteStatus = id => {
         if (this.authorizationStore.accessToken) {
+            this.statusLikePendingMap = {
+                ...this.statusLikePendingMap,
+                [id]: true
+            };
             axiosInstance.post(`/api/v1/statuses/${id}/favourite`)
-                .then(({data}) => this.statuses = this.statuses.map(status => status.id === id ? data : status));
+                .then(({data}) => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => status.id === id ? data : status);
+                })
+                .finally(() => this.statusLikePendingMap[id] = false);
         }
     };
 
     @action
     unfavouriteStatus = id => {
         if (this.authorizationStore.accessToken) {
+            this.statusLikePendingMap = {
+                ...this.statusLikePendingMap,
+                [id]: true
+            };
             axiosInstance.post(`/api/v1/statuses/${id}/unfavourite`)
-                .then(({data}) => this.statuses = this.statuses.map(status => status.id === id ? data : status));
+                .then(({data}) => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => status.id === id ? data : status);
+                })
+                .finally(() => this.statusLikePendingMap[id] = false);
         }
     };
 

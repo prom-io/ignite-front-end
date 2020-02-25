@@ -8,6 +8,7 @@ export const StatusList = ({
     pending,
     hasNewStatuses,
     onShowNewStatusesClick,
+    statusLikePendingMap,
     currentUser,
     displayMenu,
     onFollowRequest,
@@ -38,6 +39,7 @@ export const StatusList = ({
                                     onUnfollowRequest={onUnfollowRequest}
                                     displayMenu={displayMenu}
                                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
+                                    statusLikePending={statusLikePendingMap[status.id]}
                     />
                     <Divider/>
                 </Fragment>

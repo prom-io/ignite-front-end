@@ -3,7 +3,7 @@ import {StatusHeader} from "./StatusHeader";
 import {StatusBottom} from "./StatusBottom";
 import {StatusBody} from "./StatusBody";
 
-export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusChange, displayMenu, onFollowRequest, onUnfollowRequest}) => (
+export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusChange, displayMenu, onFollowRequest, onUnfollowRequest, statusLikePending}) => (
     <Fragment>
         <StatusHeader username={status.account.username}
                       displayName={status.account.display_name}
@@ -21,6 +21,7 @@ export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusCh
                       favourited={status.favourited}
                       statusId={status.id}
                       favouritesCount={status.favourite_count}
+                      statusLikePending={statusLikePending}
         />
     </Fragment>
 );

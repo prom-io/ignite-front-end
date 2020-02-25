@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
 
 const _HomeTimeline= ({
     statuses,
+    statusLikePendingMap,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
@@ -40,6 +41,7 @@ const _HomeTimeline= ({
                                 onUnfollowRequest={unfollowStatusAuthor}
                                 currentUser={currentUser}
                                 displayMenu={Boolean(currentUser)}
+                                statusLikePendingMap={statusLikePendingMap}
                     />
                 </Grid>
             </Grid>
@@ -48,6 +50,7 @@ const _HomeTimeline= ({
 
 const mapMobxToProps = ({homeTimeline, authorization}) => ({
     statuses: homeTimeline.statuses,
+    statusLikePendingMap: homeTimeline.statusLikePendingMap,
     favouriteStatus: homeTimeline.favouriteStatus,
     unfavouriteStatus: homeTimeline.unfavouriteStatus,
     followStatusAuthor: homeTimeline.followStatusAuthor,

@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
 
 const _UserProfileTimeline = ({
     statuses,
+    statusLikePendingMap,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
@@ -43,6 +44,7 @@ const _UserProfileTimeline = ({
                                 onUnfollowRequest={unfollowStatusAuthor}
                                 displayMenu={Boolean(currentUser)}
                                 currentUser={currentUser}
+                                statusLikePendingMap={statusLikePendingMap}
                     />
                 </Grid>
             </Grid>
@@ -51,6 +53,7 @@ const _UserProfileTimeline = ({
 
 const mapMobxToProps = ({userProfileTimeline, userProfile, authorization}) => ({
     statuses: userProfileTimeline.statuses,
+    statusLikePendingMap: userProfileTimeline.statusLikePendingMap,
     favouriteStatus: userProfileTimeline.favouriteStatus,
     unfavouriteStatus: userProfileTimeline.unfavouriteStatus,
     followStatusAuthor: userProfileTimeline.followStatusAuthor,

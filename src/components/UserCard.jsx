@@ -25,7 +25,12 @@ class UserComponent extends React.Component {
       return (
         <div className="user-profile-card">
           <div className="user-card-top user-card-content-box">
-            <Avatar src={src}/>
+            <Avatar src={src}
+                    style={{
+                      width: 60,
+                      height: 60
+                    }}
+            />
           </div>
           <div className="user-card-bottom user-card-content-box">
             <div className="user-card-username">

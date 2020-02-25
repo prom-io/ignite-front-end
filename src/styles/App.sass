@@ -52,7 +52,15 @@ p
 .tool-bar
   width: 100%
   max-height: 49px
-  min-height: 40px !important
+  min-height: 49px !important
+  & > button
+    padding: 5px;
+    display: flex
+    margin: auto 0 auto 30px !important;
+    justify-self: center
+    align-items: center
+    min-width: 35px
+    height: 35px
 .tool-bar_list
   display: flex
   justify-content: space-around
@@ -76,30 +84,36 @@ p
     font-style: normal
     font-weight: 300
     font-size: 15px
+    margin-right: 30px !important
     line-height: 18px
     color: #A2A2A2
     padding-left: 13px
 .user-app-bar-menu
   position: fixed !important
   left: auto !important
-  height: 50px
+  min-height: 50px
+  max-height: 50px
   top: 0 !important
   left: 0 !important
   width: 100%
-  background-color: #FEFDFD !important
+  display: flex
+  align-items: center
+  padding: 0 15px
+  background-color: #FFFFFf!important
   border-bottom: 1px solid #F1EBE8 !important
-  .MuiPaper-elevation1
-    background-color: #FBF7F6 !important
-    width: 70vw
-    height: 100vh
-  & > div
-    transform: translate3d(0px, 0px, 0px) !important
   @media (min-width: 670px)
     position: relative !important
     background: none !important
     border: none !important
 .user-app-bar-menu-button
-  padding: 4px !important
+  padding: 0!important
+  & > MuiAvatar-root
+    min-width: 35px
+    max-width: 35px
+    height: 35px
+    overflow: hidden
+    & img
+      object-fit: cover
 .header-logo
   width: 32px
   height: 38px
@@ -340,27 +354,45 @@ p
   flex-wrap: wrap
   align-items: flex-start
   justify-self: start
+  & > a
+    margin-right: 10px
+    @media screen and ( max-width: 465px )
+      margin-right: 0
+      
 .avatar-mini
   height: 35px !important
   width: 35px !important
 .status-list-body-container
-  padding-left: 66px !important
+  padding-left: 65px !important
 .status-list-bottom-container
-  padding-left: 55px !important
+  padding-left: 65px !important
 .status-list-bottom-box
   cursor: pointer
   width: 45px
   height: 20px
+  position: relative
   display: flex
   justify-content: space-around
   align-items: center
-  margin-left: 15px !important
+  margin-left: 20px !important
+  &:first-child
+    margin-left: 0 !important
   img
     padding: 0
     margin-right: 6px
   span
     padding: 0
     margin-right: 6px
+.status-list-bottom-box-modal
+  position: absolute
+  width: 196px
+  height: 102px
+  background: #FEFDFD
+  box-shadow: 0px 0px 10px rgba(28, 28, 28, 0.2)
+  border-radius: 4px
+  top: 0
+  left: 0
+  z-index: 2
 
 .status-menu-active
   z-index: 10 !important
@@ -428,7 +460,7 @@ p
 .static-page-container
   width: 100%
   min-height: 50rem
-  padding-top: 50px
+  padding: 50px 15px
   display: flex
   justify-content: center
   flex-wrap: wrap

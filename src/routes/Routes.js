@@ -1,6 +1,6 @@
 import React from "react";
 import {Route} from "mobx-router";
-import {HomePage, UserProfilePage, NotificationsPage, ChatPage, TrendsPage, TermsAndPolicesPage} from "../pages";
+import {HomePage, UserProfilePage, NotificationsPage, ChatPage, TrendsPage, TermsAndPolicesPage, DescriptionPage} from "../pages";
 import {store} from "../store";
 
 export const Routes = {
@@ -76,6 +76,15 @@ export const Routes = {
     terms: new Route({
         path: "/terms-and-policy",
         component: <TermsAndPolicesPage/>,
+        beforeEnter: () => {
+
+        },
+        onExit: () => {
+        }
+    }),
+    description: new Route({
+        path: "/description",
+        component: <DescriptionPage/>,
         beforeEnter: () => {
 
         },

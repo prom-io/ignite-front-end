@@ -4,3 +4,4 @@ export * from "./NotificationsPage";
 export * from "./ChatPage";
 export * from "./TrendsPage";
 export * from "./TermsAndPolicesPage";
+export * from "./DescriptionPage";

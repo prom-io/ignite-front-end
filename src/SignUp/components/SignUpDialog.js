@@ -86,7 +86,12 @@ const _SignUpDialog = ({
                 onClose={() => setSignUpDialogOpen(false)}
         >
             <DialogContent>
-                <div className={classes.signUpFormFields}>
+                <div className={classes.signUpFormFields}
+                    style={{
+                        "padding":"30px"
+                    }
+                    }
+                >
                     <div className="sign-in-logo">
                         <img src="./logo.png" />
                     </div>

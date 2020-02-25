@@ -17,35 +17,6 @@ export const Routes = {
             store.timelineSwitcher.selectedTimeline.reset();
         }
     }),
-    userProfile: new Route({
-        path: "/:username",
-        component: <UserProfilePage/>,
-        beforeEnter: (route, params) => {
-            store.userCard.setDisplayMode("userByAddress");
-            store.userProfile.fetchUserByUsername(params.username);
-            store.userProfileTimeline.addStatusAuthorSubscriptionListener({
-                id: "userProfileAuthorSubscriptionListener",
-                subscribeToStatusAuthor: () => {
-                    store.userProfile.setFollowedByCurrentUser(true);
-                }
-            });
-            store.userProfileTimeline.addStatusAuthorUnsubscriptionListener({
-                id: "userProfileAuthorUnsubscriptionListener",
-                unsubscribeFromStatusAuthor: () => {
-                    store.userProfile.setFollowedByCurrentUser(false);
-                }
-            })
-        },
-        onExit: () => {
-            store.userProfile.reset();
-            store.userProfileTimeline.removeStatusAuthorSubscriptionListener("userProfileAuthorSubscriptionListener");
-            store.userProfileTimeline.removeStatusAuthorUnsubscriptionListener("userProfileAuthorUnsubscriptionListener");
-        },
-        onParamsChange: (route, params) => {
-            store.userProfile.reset();
-            store.userProfile.fetchUserByUsername(params.username);
-        }
-    }),
     notifications: new Route({
         path: "/notifications",
         component: <NotificationsPage/>,
@@ -90,5 +61,34 @@ export const Routes = {
         },
         onExit: () => {
         }
-    })
+    }),
+    userProfile: new Route({
+        path: "/:username",
+        component: <UserProfilePage/>,
+        beforeEnter: (route, params) => {
+            store.userCard.setDisplayMode("userByAddress");
+            store.userProfile.fetchUserByUsername(params.username);
+            store.userProfileTimeline.addStatusAuthorSubscriptionListener({
+                id: "userProfileAuthorSubscriptionListener",
+                subscribeToStatusAuthor: () => {
+                    store.userProfile.setFollowedByCurrentUser(true);
+                }
+            });
+            store.userProfileTimeline.addStatusAuthorUnsubscriptionListener({
+                id: "userProfileAuthorUnsubscriptionListener",
+                unsubscribeFromStatusAuthor: () => {
+                    store.userProfile.setFollowedByCurrentUser(false);
+                }
+            })
+        },
+        onExit: () => {
+            store.userProfile.reset();
+            store.userProfileTimeline.removeStatusAuthorSubscriptionListener("userProfileAuthorSubscriptionListener");
+            store.userProfileTimeline.removeStatusAuthorUnsubscriptionListener("userProfileAuthorUnsubscriptionListener");
+        },
+        onParamsChange: (route, params) => {
+            store.userProfile.reset();
+            store.userProfile.fetchUserByUsername(params.username);
+        }
+    }),
 };

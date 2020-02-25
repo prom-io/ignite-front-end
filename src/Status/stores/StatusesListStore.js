@@ -1,4 +1,5 @@
 import {action, computed, observable, reaction} from "mobx";
+import _ from "lodash";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class StatusesListStore {
@@ -30,6 +31,8 @@ export class StatusesListStore {
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
 
+        this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
+
         reaction(
             () => this.authorizationStore.accessToken,
             () => {
@@ -57,6 +60,7 @@ export class StatusesListStore {
         this.pending = true;
 
         if (this.baseUrl) {
+            this.allowedToMakeRequest = false;
             if (this.statuses.length !== 0) {
                 const maxId = this.statuses[this.statuses.length - 1].id;
                 axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)

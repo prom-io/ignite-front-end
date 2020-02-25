@@ -1,5 +1,6 @@
 import React, {Fragment, useEffect} from "react";
 import {Card, Divider} from "@material-ui/core";
+import _ from "lodash";
 import {StatusListItem} from "./StatusListItem";
 
 export const StatusList = ({
@@ -16,12 +17,13 @@ export const StatusList = ({
     onNextPageRequest
 }) => {
     let trackScrolling = () => {
-        const element = document.body;
+        const element = document.getElementById("statusList");
 
         if (element.getBoundingClientRect().bottom <= window.innerHeight) {
             onNextPageRequest();
         }
     };
+
 
     useEffect(() =>{
         document.addEventListener("scroll", trackScrolling);

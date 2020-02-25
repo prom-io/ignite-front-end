@@ -1,8 +1,11 @@
 @import './vars'
 @import './fonts'
 
-
-
+body
+  margin: 0 !important
+.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2
+  max-width: 100% !important
+  margin: 0 !important
 #root
   // padding: 0 30px
   // width: 100%
@@ -30,7 +33,7 @@
 
 .header-logo
   display: none
-  @media (min-width: 670px)
+  @media (min-width: 960px)
     display: block
 
 p
@@ -45,14 +48,18 @@ p
   padding: 0 40px
   bottom: 0 !important
   top: auto !important
-  @media (min-width: 670px)
+  @media (min-width: 960px)
     top: 0 !important
     bottom: auto !important
     background-color: $main-bg !important
+  @media (max-width: 960px)
+    padding: 0
 .tool-bar
   width: 100%
   max-height: 49px
   min-height: 49px !important
+  @media (max-width: 960px)
+    padding: 0 !important
   & > button
     padding: 5px;
     display: flex
@@ -64,11 +71,11 @@ p
 .tool-bar_list
   display: flex
   justify-content: space-around
-  @media (min-width: 670px)
+  @media (min-width: 960px)
     justify-content: flex-start
 .nav-bar-link
   display: none !important
-  @media (min-width: 670px)
+  @media (min-width: 960px)
     display: block !important
 .app-bar-search-field
   display: none !important

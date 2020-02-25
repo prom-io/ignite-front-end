@@ -1,25 +1,20 @@
-
-import React, {Fragment, useEffect, useRef, useState} from "react";
-import {CardActions, Checkbox, CircularProgress, Typography} from "@material-ui/core";
+import React, {useRef, useState} from "react";
+import {
+    CardActions,
+    Checkbox,
+    CircularProgress,
+    ClickAwayListener,
+    IconButton,
+    Popper,
+    Typography
+} from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
-import { RepostIcon } from "../../icons/RepostIcon";
-import { PenIcon } from "../../icons/PenIcon";
-import {
-    ClickAwayListener,
-    Grow,
-    IconButton,
-    ListItemIcon,
-    ListItemText,
-    MenuItem,
-    MenuList,
-    Paper,
-    Popper
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
+import {RepostIcon} from "../../icons/RepostIcon";
+import {PenIcon} from "../../icons/PenIcon";
+import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 
 export const StatusBottom = ({
     favourited,
@@ -64,50 +59,32 @@ export const StatusBottom = ({
                 <Typography variant="body1" color={"textSecondary"}>
                     0
                 </Typography>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
-                    <ClickAwayListener onClickAway={handleClose}>
-                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
-                            <div className="status-modal-box-item" onClick={handleClose}>
-                            <LetterIcon />
-                            <Typography variant="body1" color={"textSecondary"}>
-                            Send in message
-                            </Typography>
-            
-                            </div>
-                            <div className="status-modal-box-item" onClick={handleClose}>
-                            <ShareIcon/>
-                            <Typography variant="body1" color={"textSecondary"}>
-                            Copy link
-                            </Typography>
-                            </div>                    
-                        </div>
-                    </ClickAwayListener>
-                </Popper>
             </div>
             <div className="status-list-bottom-box">
-                <img src="./status-buttons-retwits.png"  ref={anchorRef2} onClick={handleToggle2}/>
+                <IconButton ref={anchorRef} onClick={handleToggle}>
+                    <RepostIcon/>
+                </IconButton>
                 <Typography variant="body1" color={"textSecondary"}>
                     0
                 </Typography>
-                    <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
-                        <ClickAwayListener onClickAway={handleClose2}>
-                            <div className="status-list-bottom-box-modal" onClick={handleClose2}>
-                                <div className="status-modal-box-item" onClick={handleClose2}>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
+                    <ClickAwayListener onClickAway={handleClose2}>
+                        <div className="status-list-bottom-box-modal" onClick={handleClose2}>
+                            <div className="status-modal-box-item" onClick={handleClose2}>
                                 <RepostIcon />
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Repost
                                 </Typography>
-                
                             </div>
                             <div className="status-modal-box-item" onClick={handleClose2}>
-                                <PenIcon />
+                                <PenIcon/>
                                 <Typography variant="body1" color={"textSecondary"}>
-                                Repost with comment
+                                    Repost with comment
                                 </Typography>
-                                </div>
                             </div>
-                        </ClickAwayListener>
-                    </Popper>
+                        </div>
+                    </ClickAwayListener>
+                </Popper>
             </div>
             <div className="status-list-bottom-box">
                 {statusLikePending
@@ -123,11 +100,31 @@ export const StatusBottom = ({
                 </Typography>
             </div>
             <div className="status-list-bottom-box">
-                <img src="./status-buttons-share.png" />
-                    <Typography variant="body1" color={"textSecondary"}>
-                        0
-                    </Typography>
+                <IconButton ref={anchorRef2} onClick={handleToggle2} disableRipple>
+                    <AnotherShareIcon/>
+                </IconButton>
+                <Typography variant="body1" color={"textSecondary"}>
+                    0
+                </Typography>
+                <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
+                    <ClickAwayListener onClickAway={handleClose2}>
+                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                            <div className="status-modal-box-item" onClick={handleClose}>
+                                <LetterIcon />
+                                <Typography variant="body1" color={"textSecondary"}>
+                                    Send in message
+                                </Typography>
+                            </div>
+                            <div className="status-modal-box-item" onClick={handleClose}>
+                                <ShareIcon/>
+                                <Typography variant="body1" color={"textSecondary"}>
+                                    Copy link
+                                </Typography>
+                            </div>
+                        </div>
+                    </ClickAwayListener>
+                </Popper>
             </div>
         </CardActions>
     );
-}
+};

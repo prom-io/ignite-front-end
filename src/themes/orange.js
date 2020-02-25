@@ -38,6 +38,7 @@ export const orange = createMuiTheme({
     "typography": {
         "button": {
             "textTransform": "none"
-        }
+        },
+        "fontFamily": "Museo Sans Cyrl"
     }
 });

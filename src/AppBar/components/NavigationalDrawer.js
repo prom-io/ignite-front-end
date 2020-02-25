@@ -1,32 +1,60 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {SwipeableDrawer} from "@material-ui/core";
+import {SwipeableDrawer, makeStyles, Typography} from "@material-ui/core";
+import {Link} from "mobx-router";
 import {DrawerMenu} from "./DrawerMenu";
 import {DrawerUserInfo} from "./DrawerUserInfo";
+import {Routes} from "../../routes";
 
-const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded}) => (
-    <SwipeableDrawer onClose={() => setDrawerExpanded(false)}
-                     onOpen={() => setDrawerExpanded(true)}
-                     open={drawerExpanded}
-                     PaperProps={{
-                         style: {
-                             width: 256
-                         }
-                     }}
-                     BackdropProps={{
-                         style: {
-                             backgroundColor: "rgba(0,0,0,0)"
-                         }
-                     }}
-    >
-        <DrawerUserInfo/>
-        <DrawerMenu/>
-    </SwipeableDrawer>
-);
+const useStyles = makeStyles(theme => ({
+    importantInfoLink: {
+        color: theme.palette.primary.main,
+        marginLeft: 15,
+        marginTop: 20
+    }
+}));
 
-const mapMobxToProps = ({drawer}) => ({
+const ImportantInfo = "{Important info}";
+
+const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded, routerStore}) => {
+    const classes = useStyles();
+
+    return (
+        <SwipeableDrawer onClose={() => setDrawerExpanded(false)}
+                         onOpen={() => setDrawerExpanded(true)}
+                         open={drawerExpanded}
+                         PaperProps={{
+                             style: {
+                                 width: 256
+                             }
+                         }}
+                         BackdropProps={{
+                             style: {
+                                 backgroundColor: "rgba(0,0,0,0)"
+                             }
+                         }}
+        >
+            <Link view={Routes.home}
+                  store={routerStore}
+                  className={classes.importantInfoLink}
+            >
+                <Typography variant="body1"
+                            color="primary"
+                            onClick={() => setDrawerExpanded(false)}
+                >
+                    <strong>{ImportantInfo}</strong>
+                </Typography>
+            </Link>
+            <DrawerUserInfo/>
+            <DrawerMenu/>
+        </SwipeableDrawer>
+    );
+};
+
+const mapMobxToProps = ({drawer, store}) => ({
     drawerExpanded: drawer.drawerExpanded,
-    setDrawerExpanded: drawer.setDrawerExpanded
+    setDrawerExpanded: drawer.setDrawerExpanded,
+    routerStore: store
 });
 
 export const NavigationalDrawer = inject(mapMobxToProps)(observer(_NavigationalDrawer));

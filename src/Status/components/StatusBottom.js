@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, {Fragment, useEffect, useRef, useState} from "react";
 import {CardActions, Checkbox, CircularProgress, Typography} from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -6,10 +7,19 @@ import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
 import { RepostIcon } from "../../icons/RepostIcon";
 import { PenIcon } from "../../icons/PenIcon";
-
-const handleOpenStatusModal = () => {
-
-}
+import {
+    ClickAwayListener,
+    Grow,
+    IconButton,
+    ListItemIcon,
+    ListItemText,
+    MenuItem,
+    MenuList,
+    Paper,
+    Popper
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 
 export const StatusBottom = ({
     favourited,
@@ -33,7 +43,7 @@ export const StatusBottom = ({
 
                 </div>
                 <div className="status-modal-box-item">
-                   <ShareIcon/>
+                <ShareIcon/>
                    <Typography variant="body1" color={"textSecondary"}>
                    Copy link
                 </Typography>
@@ -53,14 +63,13 @@ export const StatusBottom = ({
                     Repost
                 </Typography>
 
-                </div>
-                <div className="status-modal-box-item">
-                   <PenIcon />
-                   <Typography variant="body1" color={"textSecondary"}>
+            </div>
+            <div className="status-modal-box-item">
+                <PenIcon />
+                <Typography variant="body1" color={"textSecondary"}>
                    Repost with comment
                 </Typography>
                 </div>
-               
             </div>
         </div>
         <div className="status-list-bottom-box">

@@ -9,7 +9,7 @@ import {PrometeusDescription} from "../PrometeusDescription";
 import '../styles/App.sass'
 
 const _HomePage = ({currentUser}) => (
-    <Grid container >
+    <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="home" />
         </Grid>

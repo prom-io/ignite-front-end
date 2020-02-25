@@ -5,10 +5,7 @@ import {StatusBottom} from "./StatusBottom";
 import {StatusBody} from "./StatusBody";
 
 export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusChange, displayMenu, onFollowRequest, onUnfollowRequest, statusLikePending}) => (
-    <Card style={{
-            border: "2px solid "
-    }}
-          elevation={0}
+    <Card elevation={0}
           className="statusCardBox"
     >
         <StatusHeader username={status.account.username}

@@ -46,7 +46,7 @@ export const UserProfileHeader = ({
     }
 
     return (
-        <Grid container  className="user-profile-header-content">
+        <Grid container  className="user-profile-header-content another-user">
             <Grid className="user-profile-header-content-top">
                 <Grid container>
                     <Grid item xs={12} className="justify-content-center">

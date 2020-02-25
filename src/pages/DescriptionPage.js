@@ -20,13 +20,12 @@ console.log(pageHeight)
 const _DescriptionPage = ({routerStore}) => {
   const classes = useStyles();
 
-  const Prometeus = '{Prometeus}';
   const PrometeusNetwork = "{Prometeus Network}";
   const Talk = "{Talk}";
 
 
   return(
-    <div className="static-page" style={{ minHeight: pageHeight}}>
+    <div className="description-page">
         <div className="arrow-go-home">
           <Link view={Routes.home} store={routerStore} >
             <img src="./arrow-go-back.png"/>

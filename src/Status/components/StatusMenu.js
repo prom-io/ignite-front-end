@@ -61,11 +61,11 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
             >
                 <ExpandMoreIcon/>
             </IconButton>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal style={{ zIndex: 10 }}>
+            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition style={{ zIndex: 10 }}>
                 {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                        style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom"}}
                     >
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>

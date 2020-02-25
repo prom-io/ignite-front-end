@@ -2,6 +2,7 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {SwipeableDrawer} from "@material-ui/core";
 import {DrawerMenu} from "./DrawerMenu";
+import {DrawerUserInfo} from "./DrawerUserInfo";
 
 const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded}) => (
     <SwipeableDrawer onClose={() => setDrawerExpanded(false)}
@@ -18,6 +19,7 @@ const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded}) => (
                          }
                      }}
     >
+        <DrawerUserInfo/>
         <DrawerMenu/>
     </SwipeableDrawer>
 );

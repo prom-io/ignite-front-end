@@ -20,6 +20,23 @@
   max-width: 1170px
   border: 1px solid red
 
+.Mui-disabled
+  background: #ffdecc !important
+  font-family: Museo Sans Cyrl !important
+  font-style: normal !important
+  font-weight: 600 !important
+  font-size: 15px !important
+  color: #FFFFFF !important
+
+.header-logo
+  display: none
+  @media (min-width: 670px)
+    display: block
+
+
+
+
+
 .app-bar
   background-color: $main-bg !important
   flex-direction: row !important
@@ -310,3 +327,96 @@
   text-align: center
   @media (min-width: 922px)
     text-align: left
+
+.static-page-container
+  width: 100%
+  min-height: 50rem
+  padding-top: 50px
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+  align-items: flex-start
+  div
+    width: 100%
+    display: flex
+    justify-content: center
+    &:last-child
+      flex-wrap: wrap
+      max-width: 770px
+    p
+      width: 100%
+      font-family: Museo Sans Cyrl
+      font-style: normal
+      font-weight: 300
+      font-size: 20px
+      line-height: 32px
+      color: #1C1C1C
+      text-align: left
+      span
+        font-weight: 600
+        color: $main
+
+.static-page-logo-container
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+  align-items: flex-start
+  img
+    width: 168px
+    height: 168px
+  h1
+    width: 100%
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 600
+    font-size: 32px
+    line-height: 38px
+    text-align: center
+    color: #1C1C1C
+.static-page
+  // min-height: 100%
+  // position: relative
+.static-page-footer
+  width: 100%
+  height: 58px
+  border-top: 1px solid #E5E5E5
+  // position: absolute
+  // margin-bottom: 1px
+  bottom: 0
+  left: 0
+  display: flex
+  justify-content: space-between
+  div
+    width: 50%
+    display: flex
+    justify-content: flex-start
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 300
+    font-size: 15px
+    line-height: 23px
+    color: #A2A2A2
+    &:last-child
+      justify-content: flex-end
+    ul
+      display: flex
+      width: 100%
+      justify-content: flex-end
+      li
+        margin-left: 27px
+        list-style: disc
+        cursor: pointer
+        &:hover
+          text-decoration: underline
+      li:first-child
+        list-style: none
+.static-page-link
+  text-decoration: none
+  font-family: Museo Sans Cyrl
+  font-style: normal
+  font-weight: 300
+  font-size: 15px
+  line-height: 23px
+  color: #A2A2A2
+  &:hover
+    text-decoration: underline

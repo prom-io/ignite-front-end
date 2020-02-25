@@ -26,7 +26,7 @@ export const PrometeusDescription = () => {
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body1">
-                    <a href="https://binance.com" target="_blank">
+                    <a href="https://www.binance.com/?ref=28821136" target="_blank">
                         <img src={BinanceBanner}/>
                     </a>
                 </Typography>

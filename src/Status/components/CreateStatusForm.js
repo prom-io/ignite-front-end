@@ -55,7 +55,7 @@ const _CreateStatusForm = ({
                 <Grid item xs={11}>
                     <TextField placeholder="What's on your mind?"
                                multiline
-                               rows={inputFocused || content.length > 0 ? 4 : 1}
+                               rows="4"
                                onFocus={event => {
                                    console.log(event);
                                    setInputFocused(true)
@@ -70,18 +70,15 @@ const _CreateStatusForm = ({
             </Grid>
             <CardActions style={{display: "flex"}}>
                 <Grid container justify="flex-start">
-                    {(inputFocused || content.length > 0) && (
                         <div className="create-status-form-pic">
                             <img src="/pic.png" />
-                            <img src="/pic_gif.png" />
-                            <img src="/pic_list.png" />
-                            <img src="/pic_smile.png" />
+                            <img src="/pic-gif-disabled.png" />
+                            <img src="/pic-list-disabled.png" />
+                            <img src="/pic-smile-disabled.png" />
                         </div>
-                    )}
                 </Grid>
                 <Grid container justify="flex-end">
                     <Grid item xs={12} className="create-status-form-counter-container">
-                        {(inputFocused || content.length > 0) && (
                             <div className={classes.remainingCharactersCounter}>
                                 <Typography variant="body1"
                                             color="textSecondary"
@@ -89,21 +86,20 @@ const _CreateStatusForm = ({
                                     {charactersRemaining}
                                 </Typography>
                             </div>
-                        )}
                     </Grid>
                     <Grid item xs={12} className="create-status-form-button-container">
-                        {(inputFocused || content.length > 0) && (
+                        {/* {(inputFocused || content.length > 0) && ( */}
                             <Button variant="contained"
                                     color="primary"
-                                    disableElevation
+                                    
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
-                                    disabled={pending}
+                                    disabled={!(content.length > 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
                                 Send
                             </Button>
-                        )}
+                        {/* )} */}
                     </Grid>
                 </Grid>
             </CardActions>

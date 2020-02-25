@@ -7,10 +7,8 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "build")));
 
-app.get("*", (request, response) => {
-    if (request.sendFile) {
-        request.sendFile(path.resolve(__dirname, 'index.html'));
-    }
+app.get("/*", (request, response) => {
+    response.sendFile(path.resolve(__dirname, "build/index.html"));
 });
 
 app.listen(process.env.REACT_APP_PRODUCTION_PORT, () => {

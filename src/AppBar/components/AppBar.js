@@ -1,24 +1,19 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
-import {AppBar as MuiAppBar, makeStyles, Toolbar, Hidden} from "@material-ui/core";
+import {AppBar as MuiAppBar, Hidden, Toolbar} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
 import {Routes} from "../../routes";
-import {CreateStatusDialog, OpenCreateStatusDialogButton, OpenCreateStatusDialogFloatingActionButton} from "../../Status/components";
-
-const useStyles = makeStyles(theme => ({
-    appBar: {
-        backgroundColor: theme.palette.background.paper,
-        border: "none"
-    }
-}));
+import {
+    CreateStatusDialog,
+    OpenCreateStatusDialogButton,
+    OpenCreateStatusDialogFloatingActionButton
+} from "../../Status/components";
 
 const setIcon = (source) => <img src={source}/>;
 
 const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
-    console.log(Boolean(currentUser));
-
     return (
         <Fragment>
             <MuiAppBar variant="outlined"

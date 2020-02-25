@@ -25,6 +25,9 @@ const _CreateStatusDialog = ({
         <Dialog open={createStatusDialogOpen}
                 onClose={() => setCreateStatusDialogOpen(false)}
                 fullScreen
+                style={{
+                    zIndex: 15000000000
+                }}
         >
             <DialogTitle>
                 <IconButton onClick={() => setCreateStatusDialogOpen(false)}

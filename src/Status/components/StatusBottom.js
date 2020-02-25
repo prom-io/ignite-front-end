@@ -68,15 +68,15 @@ export const StatusBottom = ({
                     0
                 </Typography>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
-                    <ClickAwayListener onClickAway={handleClose2}>
-                        <div className="status-list-bottom-box-modal" onClick={handleClose2}>
-                            <div className="status-modal-box-item" onClick={handleClose2}>
+                    <ClickAwayListener onClickAway={handleClose}>
+                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                            <div className="status-modal-box-item" onClick={handleClose}>
                                 <RepostIcon />
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Repost
                                 </Typography>
                             </div>
-                            <div className="status-modal-box-item" onClick={handleClose2}>
+                            <div className="status-modal-box-item" onClick={handleClose}>
                                 <PenIcon/>
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Repost with comment
@@ -108,14 +108,14 @@ export const StatusBottom = ({
                 </Typography>
                 <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
                     <ClickAwayListener onClickAway={handleClose2}>
-                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
-                            <div className="status-modal-box-item" onClick={handleClose}>
+                        <div className="status-list-bottom-box-modal" onClick={handleClose2}>
+                            <div className="status-modal-box-item" onClick={handleClose2}>
                                 <LetterIcon />
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Send in message
                                 </Typography>
                             </div>
-                            <div className="status-modal-box-item" onClick={handleClose}>
+                            <div className="status-modal-box-item" onClick={handleClose2}>
                                 <ShareIcon/>
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Copy link

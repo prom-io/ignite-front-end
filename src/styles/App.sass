@@ -88,6 +88,12 @@ p
   width: 100%
   background-color: #FEFDFD !important
   border-bottom: 1px solid #F1EBE8 !important
+  .MuiPaper-elevation1
+    background-color: #FBF7F6 !important
+    width: 70vw
+    height: 100vh
+  & > div
+    transform: translate3d(0px, 0px, 0px) !important
   @media (min-width: 670px)
     position: relative !important
     background: none !important
@@ -346,7 +352,9 @@ p
   width: 45px
   height: 20px
   display: flex
-  justify-content: flex-start
+  justify-content: space-around
+  align-items: center
+  margin-left: 15px !important
   img
     padding: 0
     margin-right: 6px
@@ -515,3 +523,7 @@ p
   display: flex
   justify-content: center
   margin-bottom: 24px
+.MuiListItem-root.Mui-disabled
+  opacity: 0.5
+  color: #A2A2A2 !important
+  background-color: transparent !important

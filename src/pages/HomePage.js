@@ -39,8 +39,9 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
     </Grid>
 );
 
-const mapMobxToProps = ({authorization}) => ({
-    currentUser: authorization.currentUser
+const mapMobxToProps = ({authorization, timelineSwitcher}) => ({
+    currentUser: authorization.currentUser,
+    homepageTimeline: timelineSwitcher.currentTimeline
 });
 
 export const HomePage = inject(mapMobxToProps)(observer(_HomePage));

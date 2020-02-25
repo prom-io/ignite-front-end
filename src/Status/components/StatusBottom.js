@@ -66,15 +66,15 @@ export const StatusBottom = ({
                 </Typography>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     <ClickAwayListener onClickAway={handleClose}>
-                        <div className="status-list-bottom-box-modal">
-                            <div className="status-modal-box-item">
+                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                            <div className="status-modal-box-item" onClick={handleClose}>
                             <LetterIcon />
                             <Typography variant="body1" color={"textSecondary"}>
                             Send in message
                             </Typography>
             
                             </div>
-                            <div className="status-modal-box-item">
+                            <div className="status-modal-box-item" onClick={handleClose}>
                             <ShareIcon/>
                             <Typography variant="body1" color={"textSecondary"}>
                             Copy link
@@ -91,15 +91,15 @@ export const StatusBottom = ({
                 </Typography>
                     <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition disablePortal>
                         <ClickAwayListener onClickAway={handleClose2}>
-                            <div className="status-list-bottom-box-modal">
-                                <div className="status-modal-box-item">
+                            <div className="status-list-bottom-box-modal" onClick={handleClose2}>
+                                <div className="status-modal-box-item" onClick={handleClose2}>
                                 <RepostIcon />
                                 <Typography variant="body1" color={"textSecondary"}>
                                     Repost
                                 </Typography>
                 
                             </div>
-                            <div className="status-modal-box-item">
+                            <div className="status-modal-box-item" onClick={handleClose2}>
                                 <PenIcon />
                                 <Typography variant="body1" color={"textSecondary"}>
                                 Repost with comment

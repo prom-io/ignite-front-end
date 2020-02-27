@@ -31,6 +31,7 @@ export class AuthorizationStore {
     @action
     doLogout = () => {
         this.currentUser = undefined;
+        this.accessToken = undefined;
         localStorage.removeItem("accessToken");
     };
 

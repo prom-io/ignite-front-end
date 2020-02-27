@@ -81,7 +81,7 @@ export class UserProfileStore {
 
     @action
     followUser = () => {
-        axiosInstance.post(`/api/v1/accounts/${this.user.username}/follow`)
+        axiosInstance.post(`/api/v1/accounts/${this.user.id}/follow`)
             .then(() => {
                 this.user.following = true;
                 this.user.followers_count += 1;
@@ -91,7 +91,7 @@ export class UserProfileStore {
 
     @action
     unfollowUser = () => {
-        axiosInstance.post(`/api/v1/accounts/${this.user.username}/unfollow`)
+        axiosInstance.post(`/api/v1/accounts/${this.user.id}/unfollow`)
             .then(() => {
                 this.user.following = false;
                 this.user.followers_count -= 1;

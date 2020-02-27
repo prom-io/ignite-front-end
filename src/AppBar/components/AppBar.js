@@ -15,6 +15,8 @@ import {NavigationalDrawer} from "./NavigationalDrawer";
 import {BellIcon} from "../../icons/BellIcon";
 import {ChatIcon} from "../../icons/ChatIcon";
 import {TrendsIcon} from "../../icons/TrendsIcon";
+import {LoginDialog} from "../../Authorization/components/LoginDialog";
+import {OpenLoginDialogButton} from "../../Authorization/components";
 
 const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
     return (
@@ -69,6 +71,8 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
                     )
                         : <div></div>
                     }
+                    {!currentUser && (<OpenLoginDialogButton/>)}
+                    <LoginDialog/>
                 </Toolbar>
             </MuiAppBar>
             <Hidden smDown>

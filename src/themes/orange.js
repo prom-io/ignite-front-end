@@ -13,7 +13,7 @@ export const orange = createMuiTheme({
         "primary": {
             "light": "#ff9c00",
             "main": "#FF5C01",
-            "dark": "#d45401",
+            "dark": "#EF5600",
             "contrastText": "#fff"
         },
         "secondary": {

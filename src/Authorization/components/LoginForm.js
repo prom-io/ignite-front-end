@@ -48,51 +48,67 @@ const _LoginForm = ({
     pending,
     setFormValue,
     doLogin,
-    setSignUpDialogOpen
+    setSignUpDialogOpen,
+    hideLoginButton,
+    hideSignUpButton,
+    disableCard
 }) => {
     const classes = useStyles();
 
-    return (
-       <Fragment>
-           <Card className={classes.loginCard}>
-               <CardContent>
-                   <TextField label="Wallet number"
-                              value={loginForm.username}
-                              onChange={event => setFormValue("username", event.target.value)}
-                              fullWidth
-                              margin="dense"
-                              className="input-default"
-                   />
-                   <TextField label="Password"
-                              value={loginForm.password}
-                              onChange={event => setFormValue("password", event.target.value)}
-                              fullWidth
-                              margin="dense"
-                              type="password"
-                   />
-                   <Button className={classes.loginButton}
-                           color="primary"
-                           variant="contained"
-                           onClick={doLogin}
-                           disabled={pending}
-                           fullWidth
-                   >
-                       {pending && <CircularProgress size={14} color="primary"/>}
-                       Login
-                   </Button>
-                   <Button variant="text"
-                           color="primary"
-                           fullWidth
-                           className={classes.signUpButton}
-                           onClick={() => setSignUpDialogOpen(true)}
-                           disabled={pending}
-                   >
-                       Sign up for Prometeus {Talk}
-                   </Button>
-               </CardContent>
-           </Card>
-           <SignUpDialog/>
-       </Fragment>
+    const content = (
+        <Fragment>
+            <TextField label="Wallet number"
+                       value={loginForm.username}
+                       onChange={event => setFormValue("username", event.target.value)}
+                       fullWidth
+                       margin="dense"
+                       className="input-default"
+            />
+            <TextField label="Password"
+                       value={loginForm.password}
+                       onChange={event => setFormValue("password", event.target.value)}
+                       fullWidth
+                       margin="dense"
+                       type="password"
+            />
+            {!hideLoginButton && (
+                <Button className={classes.loginButton}
+                        color="primary"
+                        variant="contained"
+                        onClick={doLogin}
+                        disabled={pending}
+                        fullWidth
+                >
+                    {pending && <CircularProgress size={14} color="primary"/>}
+                    Login
+                </Button>
+            )}
+            {!hideSignUpButton && (
+                <Button variant="text"
+                        color="primary"
+                        fullWidth
+                        className={classes.signUpButton}
+                        onClick={() => setSignUpDialogOpen(true)}
+                        disabled={pending}
+                >
+                    Sign up for Prometeus {Talk}
+                </Button>
+            )}
+            <SignUpDialog/>
+        </Fragment>
+    );
+
+    return ( disableCard
+            ? content
+            : (
+                <Fragment>
+                    <Card className={classes.loginCard}>
+                        <CardContent>
+                            {content}
+                        </CardContent>
+                    </Card>
+                </Fragment>
+            )
     )
 };
 

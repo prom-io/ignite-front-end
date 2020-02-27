@@ -15,6 +15,9 @@ export class LoginStore {
     @observable
     pending = false;
 
+    @observable
+    loginDialogOpen = false;
+
     @action
     setFormValue = (key, value) => {
         this.loginForm[key] = value;
@@ -36,8 +39,14 @@ export class LoginStore {
                         username: "",
                         password: ""
                     };
+                    this.setLoginDialogOpen(false);
                 })
                 .finally(() => this.pending = false);
         }
-    }
+    };
+
+    @action
+    setLoginDialogOpen = loginDialogOpen => {
+        this.loginDialogOpen = loginDialogOpen;
+    };
 }

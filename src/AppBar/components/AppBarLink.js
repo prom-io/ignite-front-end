@@ -33,7 +33,7 @@ export const AppBarLink = ({routerStore, targetView, viewParameters, active, ico
             <div color="inherit" className={classes.appBarLinkTextContainer}>
                 {icon}
                 <Typography variant="body1" style={{ paddingLeft: "8px" }} className="nav-bar-link">
-                    {text}
+                    <strong>{text}</strong>
                 </Typography>
             </div>
         </Link>

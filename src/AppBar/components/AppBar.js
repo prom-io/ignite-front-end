@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
-import {AppBar as MuiAppBar, Hidden, Toolbar} from "@material-ui/core";
+import {AppBar as MuiAppBar, Hidden, Toolbar, withTheme} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
@@ -12,10 +12,11 @@ import {
 } from "../../Status/components";
 import {ExpandDrawerButton} from "./ExpandDrawerButton";
 import {NavigationalDrawer} from "./NavigationalDrawer";
+import {BellIcon} from "../../icons/BellIcon";
+import {ChatIcon} from "../../icons/ChatIcon";
+import {TrendsIcon} from "../../icons/TrendsIcon";
 
-const setIcon = (source) => <img src={source}/>;
-
-const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
+const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
     return (
         <Fragment>
             <Hidden mdUp>
@@ -38,26 +39,25 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser}) => {
                         <AppBarLink text="Notifications"
                                     targetView={Routes.notifications}
                                     active={currentActiveRoute === "notifications"}
-                                    icon={currentActiveRoute ===  "notifications" ? setIcon('./notifications_active.png') : setIcon('./notifications.png')}
+                                    icon={<BellIcon color={currentActiveRoute === "notifications" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
                         <AppBarLink text="Chat"
                                     targetView={Routes.chat}
                                     active={currentActiveRoute === "chat"}
-                                    icon={currentActiveRoute ===  "chat" ? setIcon('./user-card-chat_active.png') : setIcon('./user-card-chat.png')}
+                                    icon={<ChatIcon color={currentActiveRoute === "chat" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
                         <AppBarLink text="Trends"
                                     targetView={Routes.trends}
                                     active={currentActiveRoute === "trends"}
-                                    icon={currentActiveRoute ===  "trends" ? setIcon('./trends_active.png') : setIcon('./trends.png')}
+                                    icon={<TrendsIcon color={currentActiveRoute === "trends" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
                     </div>
-                    {/* <AppBarSearchTextField/> */}
                     <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
                     <Hidden smDown>
                         <UserAppBarMenu/>
@@ -92,4 +92,6 @@ const mapMobxToProps = ({store, authorization}) => ({
     currentUser: authorization.currentUser
 });
 
-export const AppBar = inject(mapMobxToProps)(observer(_AppBar));
+export const AppBar = withTheme(
+    inject(mapMobxToProps)(observer(_AppBar))
+);

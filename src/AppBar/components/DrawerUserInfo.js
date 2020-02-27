@@ -8,15 +8,14 @@ const _DrawerUserInfo = ({currentUser}) => {
     if (!currentUser) {
         return null;
     }
-    console.log('ollololollol')
+
     return (
-        <Fragment >
+        <Fragment>
             <div className="sidebar-menu-user-wrapper">
                 <Avatar src={currentUser.avatar}
-                className="sidebar-menu-user-avatar"
+                        className="sidebar-menu-user-avatar"
                 />
                 <div className="sidebar-menu-user-info">
-
                     <Typography variant="body1" className="sidebar-menu-user-info-name">
                         <strong>{lineBreak(currentUser.username)}</strong>
                     </Typography>
@@ -48,8 +47,7 @@ const _DrawerUserInfo = ({currentUser}) => {
                         Follows
                     </Typography>
                     </div>
-                   
-                  
+
                 </div>
             </div>
         </Fragment>

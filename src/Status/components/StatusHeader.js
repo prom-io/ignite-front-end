@@ -8,6 +8,7 @@ import {Routes} from "../../routes";
 
 const _StatusHeader = ({
     username,
+    userId,
     displayName,
     avatar,
     createdAt,
@@ -24,7 +25,7 @@ const _StatusHeader = ({
                     <div className="status-header">
                         <Link store={routerStore}
                               view={Routes.userProfile}
-                              params={{username}}
+                              params={{username: userId}}
                               style={{
                                   textDecoration: "underline",
                                   color: "inherit"

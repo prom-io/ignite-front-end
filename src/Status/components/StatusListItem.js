@@ -9,6 +9,7 @@ export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusCh
           className="statusCardBox"
     >
         <StatusHeader username={status.account.username}
+                      userId={status.account.id}
                       displayName={status.account.display_name}
                       avatar={status.account.avatar}
                       createdAt={status.created_at}

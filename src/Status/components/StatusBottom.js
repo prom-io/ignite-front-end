@@ -103,9 +103,6 @@ export const StatusBottom = ({
                 <IconButton ref={anchorRef2} onClick={handleToggle2} disableRipple>
                     <AnotherShareIcon/>
                 </IconButton>
-                <Typography variant="body1" color={"textSecondary"}>
-                    0
-                </Typography>
                 <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
                     <ClickAwayListener onClickAway={handleClose2}>
                         <div className="status-list-bottom-box-modal" onClick={handleClose2}>

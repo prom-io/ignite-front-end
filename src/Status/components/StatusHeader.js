@@ -5,6 +5,7 @@ import prettyDate from "pretty-date";
 import {Link} from "mobx-router";
 import {StatusMenu} from "./StatusMenu";
 import {Routes} from "../../routes";
+import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
 
 const _StatusHeader = ({
     username,
@@ -42,14 +43,21 @@ const _StatusHeader = ({
                                 </Typography>
                             </Hidden>
                         </Link>
-                        <Typography variant="body1"
-                                    color="textSecondary"
-                        >
-                            {prettyDate.format(new Date(createdAt))}
-                        </Typography>
                     </div>
                 }
-                subheader={`@${lineBreak(username)}`}
+                subheader={(
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center"
+                    }}>
+                        <Typography>
+                            @{username}
+                        </Typography>
+                        <Typography style={{marginLeft: 12}}>
+                            <SmallEllipseIcon/> {prettyDate.format(new Date(createdAt))}
+                        </Typography>
+                    </div>
+                )}
                 action={displayMenu && <StatusMenu onUnfollowRequest={onUnfollowRequest}
                                                    onFollowRequest={onFollowRequest}
                                                    statusId={statusId}

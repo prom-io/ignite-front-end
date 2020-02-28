@@ -31,6 +31,11 @@ const _CreateStatusDialog = ({
                 }}
                 fullWidth
                 maxWidth="md"
+                BackdropProps={{
+                    style: {
+                        backgroundColor: "rgba(44,44,44,0.84)"
+                    }
+                }}
         >
             <DialogTitle>
                 <IconButton onClick={() => setCreateStatusDialogOpen(false)}

@@ -44,6 +44,7 @@ const _StatusHeader = ({
                         </Link>
                         <Typography variant="body1"
                                     color="textSecondary"
+                                    className="status-header-date"
                         >
                             {prettyDate.format(new Date(createdAt))}
                         </Typography>

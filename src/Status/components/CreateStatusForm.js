@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
         background: "#F1EBE8"
     },
     remainingCharactersCounter: {
-        // background: "#FBF7F6",
+        background: "#FBF7F6",
         justifyContent: "space-between",
         padding: "7px 10px"
     },

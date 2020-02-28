@@ -1,6 +1,6 @@
 import React from "react";
 import {inject} from "mobx-react";
-import {CardHeader, Typography, Avatar} from "@material-ui/core";
+import {CardHeader, Typography, Avatar, Hidden} from "@material-ui/core";
 import prettyDate from "pretty-date";
 import {Link} from "mobx-router";
 import {StatusMenu} from "./StatusMenu";
@@ -31,9 +31,16 @@ const _StatusHeader = ({
                                   color: "inherit"
                               }}
                         >
-                            <Typography>
-                                <strong>{lineBreak(displayName)}</strong>
-                            </Typography>
+                            <Hidden xsDown>
+                                <Typography>
+                                    <strong>{displayName}</strong>
+                                </Typography>
+                            </Hidden>
+                            <Hidden smUp>
+                                <Typography>
+                                    <strong>{lineBreak(displayName)}</strong>
+                                </Typography>
+                            </Hidden>
                         </Link>
                         <Typography variant="body1"
                                     color="textSecondary"

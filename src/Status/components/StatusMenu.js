@@ -86,19 +86,20 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             Embed this post
                                         </ListItemText>
                                     </MenuItem>
-                                    {!currentUserIsAuthor  && (
-                                        <MenuItem onClick={event => {
-                                            currentUserFollowsAuthor ? onUnfollowRequest(statusId) : onFollowRequest(statusId);
-                                            handleClose(event)
-                                        }}>
-                                            <ListItemIcon>
-                                                {currentUserFollowsAuthor ? <UnfollowIcon/> : <PersonAddOutlinedIcon/>}
-                                            </ListItemIcon>
-                                            <ListItemText>
-                                                {currentUserFollowsAuthor ? "Unfollow author" : "Follow author"}
-                                            </ListItemText>
-                                        </MenuItem>
-                                    )}
+                                    <MenuItem disabled={currentUserIsAuthor}
+                                              onClick={event => {
+                                                  if (!currentUserIsAuthor) {
+                                                      currentUserFollowsAuthor ? onUnfollowRequest(statusId) : onFollowRequest(statusId);
+                                                      handleClose(event)
+                                                  }
+                                              }}>
+                                        <ListItemIcon>
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? <UnfollowIcon/> : <PersonAddOutlinedIcon/>}
+                                        </ListItemIcon>
+                                        <ListItemText>
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? "Unfollow author" : "Follow author"}
+                                        </ListItemText>
+                                    </MenuItem>
                                     <MenuItem disabled>
                                         <ListItemIcon>
                                             <MuteIcon/>

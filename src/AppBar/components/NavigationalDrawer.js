@@ -10,7 +10,13 @@ const useStyles = makeStyles(theme => ({
     importantInfoLink: {
         color: theme.palette.primary.main,
         marginLeft: 15,
-        marginTop: 20
+        marginTop: 20,
+        fontStyle: "normal",
+        fontWeight: "600 !important",
+        fontSize: "15px",
+        lineHeight: "18px",
+        color: "#FF5C01"
+        
     }
 }));
 

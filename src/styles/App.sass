@@ -450,8 +450,15 @@ p
 .login_dialog_title
   max-width: 600px !important
 
+.create_status_form_container
+  border: 1px solid red !important
+.create_status_form_mobile
+  display: none
+  @media (min-width: 960px)
+    display: block
 .create-status-form
-  display: none 
+  // display: none 
+  background-color: #F1EBE8 !important
   @media (min-width: 960px)
     display: block
     border-radius: 0 !important
@@ -468,8 +475,10 @@ p
   border: none !important
 .create-status-form-counter-container
   max-width: 50px !important
+  // @media (min-width: 960px)
 .create-status-form-button-container
-  max-width: 116px !important
+  // display: none
+    max-width: 116px !important
 .create-status-form-pic
   width: 108px
   height: 20px
@@ -509,6 +518,7 @@ p
     line-height: 18px
     color: #1C1C1C
   .status-header-date
+    display: none
     font-style: normal
     font-weight: 300
     font-size: 15px
@@ -594,10 +604,13 @@ p
 .user-profile-container
   display: flex
   justify-content: center
+  @media (min-width: 960px)
+    position: relative
+    top: 100px
 
 .user-profile-header
   max-width: 256px !important
-  height: 320px !important
+  height: 360px !important
   padding: 0 !important
   background: #FBF7F6
   border: 1px solid #F1EBE8
@@ -606,8 +619,9 @@ p
   @media screen and( max-width: 960px )
     margin-right: 0 !important
     max-width: 600px !important
-    height: 320px !important
+    // height: 360px !important
     margin-bottom: 20px !important
+    margin-top: 70px !important
 
 .user-profile-header-content
   max-width: 256px !important
@@ -624,23 +638,57 @@ p
   justify-content: center
   align-items: center
   box-sizing: border-box
+  margin-top: 36px
+  h4
+    margin-top: 20px
 .user-profile-header-content-bottom
   width: 100%
   display: flex
   align-items: center
   flex-wrap: wrap
   box-sizing: border-box
+  justify-content: center
 .user-profile-header-content-bottom-follows
   width: 100%
   align-content: space-between
   div
     width: 33%
     text-align: center
+  h6
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 600
+    font-size: 16px
+    line-height: 19px
+    text-align: center
+    color: #1C1C1C
+  p
+    font-style: normal
+    font-weight: 300
+    font-size: 12px
+    line-height: 14px
+    text-align: center
+    color: #A2A2A2
+
 .user-profile-header-content-bottom-follow-button
-  width: 100%
+  width: 202px
   height: 40px
   display: flex
   justify-content: center
+  margin-top: 20px
+  // background: #FF5C01
+  // border-radius: 30px
+  button
+    background: #FF5C01
+    border-radius: 30px
+    width: 202px
+    font-style: normal
+    font-weight: 600 !important
+    font-size: 15px
+    line-height: 18px
+    text-align: center
+    color: #FFFFFF
+
 .justify-content-center
   display: flex
   justify-content: center !important

@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect} from "react";
-import {Card, Divider} from "@material-ui/core";
 import {StatusListItem} from "./StatusListItem";
 
 export const StatusList = ({

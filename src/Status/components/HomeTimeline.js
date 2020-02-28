@@ -40,7 +40,7 @@ const _HomeTimeline= ({
         ? <CircularProgress size={20} className={classes.centered}/>
         : (
             <Grid container spacing={2}>
-                <Grid item xs={12} className={classes.gridItemBottomSpacing}>
+                <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm/>
                 </Grid>
                 <Grid item xs={12} className={classes.gridItemOverridePadding}>

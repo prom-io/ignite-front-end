@@ -6,7 +6,7 @@ import {EditIcon} from "../../icons/EditIcon";
 const useStyles = makeStyles(theme => ({
     fab: {
         position: "fixed",
-        bottom: theme.spacing(8),
+        bottom: theme.spacing(7),
         right: theme.spacing(2),
         zIndex: 900000
     }

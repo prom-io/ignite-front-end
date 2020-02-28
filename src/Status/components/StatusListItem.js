@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {Card} from "@material-ui/core";
 import {StatusHeader} from "./StatusHeader";
 import {StatusBottom} from "./StatusBottom";

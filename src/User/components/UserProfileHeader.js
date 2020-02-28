@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Grid} from "@material-ui/core";
 import {UserProfileAvatar} from "./UserProfileAvatar";
 import {UserProfileTab} from "./UserProfileTab";
+import {addLineBreak} from "../../utils/string-utils";
 
 export const UserProfileHeader = ({
     avatar,
@@ -14,6 +15,7 @@ export const UserProfileHeader = ({
     onUnfollowRequest,
     onTabSelected,
     username,
+    displayName,
     currentUser
 }) => {
     let followButton = null;
@@ -52,6 +54,12 @@ export const UserProfileHeader = ({
                     <Grid item xs={12} className="justify-content-center">
                         <UserProfileAvatar avatarUrl={avatar}/>
                     </Grid>
+                    <Grid item xs={12}>
+                        <div className="user-card-username">
+                            <h4>{addLineBreak(username)}</h4>
+                            <p>{addLineBreak(displayName) }</p>
+                        </div>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid className="user-profile-header-content-bottom">
@@ -72,8 +80,7 @@ export const UserProfileHeader = ({
                                     onSelectActive={() => onTabSelected("following")}
                     />
                 </Grid>
-                
-                    {followButton}
+                {followButton}
             </Grid>
         </Grid>
     )

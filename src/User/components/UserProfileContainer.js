@@ -65,6 +65,7 @@ const _UserProfileContainer = ({
                                    onUnfollowRequest={unfollowUser}
                                    onTabSelected={setActiveTab}
                                    username={user.username}
+                                   displayName={user.display_name}
                                    currentUser={currentUser}
                 />
             </Grid>

@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Fab , makeStyles} from "@material-ui/core";
+import {Fab, makeStyles} from "@material-ui/core";
 import {EditIcon} from "../../icons/EditIcon";
 
 const useStyles = makeStyles(theme => ({

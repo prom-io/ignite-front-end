@@ -19,28 +19,30 @@ const _StaticPageFooter = ({routerStore}) => {
 
 
   return (
-    <div className="static-page-footer" >
-      <div><p>© 2020 {Prometeus} Team</p></div>
-      <div>
-        <ul>
-          <li>Settings</li>
-          <li>
-            <StaticPageLinks 
-              targetView={Routes.terms}
-              routerStore={routerStore}
-              linkTekst={links.termsOfService}
-            />
-          </li>
-          <li>
-            <StaticPageLinks 
-              targetView={Routes.terms}
-              routerStore={routerStore}
-              linkTekst={links.privacyPolicy}
-            />
-          </li>
-          <li>Help Center</li>
-          <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/>
-        </ul>
+    <div className="static-page-footer-container">
+      <div className="static-page-footer" >
+        <div><p>© 2020 {Prometeus} Team</p></div>
+        <div>
+          <ul>
+            <li>Settings</li>
+            <li>
+              <StaticPageLinks 
+                targetView={Routes.terms}
+                routerStore={routerStore}
+                linkTekst={links.termsOfService}
+              />
+            </li>
+            <li>
+              <StaticPageLinks 
+                targetView={Routes.terms}
+                routerStore={routerStore}
+                linkTekst={links.privacyPolicy}
+              />
+            </li>
+            <li>Help Center</li>
+            <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/>
+          </ul>
+        </div>
       </div>
     </div>
   )

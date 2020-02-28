@@ -2,19 +2,13 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {Button, makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
-    openLoginDialogButton: {
-        borderRadius: 30,
-        width: 114,
-        fontStyle: "normal"
-    },
-}));
+const useStyles = makeStyles();
 
 const _OpenLoginDialogButton = ({setLoginDialogOpen}) => {
     const classes = useStyles();
 
     return (
-        <Button className={classes.openLoginDialogButton}
+        <Button className="open_login_dialog_button"
                 onClick={() => setLoginDialogOpen(true)}
                 variant="contained"
                 disableElevation

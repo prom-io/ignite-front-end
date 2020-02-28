@@ -5,7 +5,8 @@ import {EditIcon} from "../../icons/EditIcon";
 
 const userStyles = makeStyles(theme => ({
     openCreateStatusDialogButton: {
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
+        marginLeft: 0
     }
 }));
 

@@ -28,7 +28,7 @@ const _LoginDialog = ({loginDialogOpen, setLoginDialogOpen, fullScreen}) => {
                 onClose={() => setLoginDialogOpen(false)}
                 fullScreen={fullScreen}
                 fullWidth
-                maxWidth="md"
+                maxWidth="sm"
         >
             <DialogTitle>
                 Log in

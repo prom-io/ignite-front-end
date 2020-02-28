@@ -16,11 +16,9 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
         <Grid item xs={12}>
             <Layout>
                 <Grid container spacing={2} className="content-container">
-                    {/* <Hidden mdDown> */}
-                        <Grid item md={3} className="left-container">
-                            <PrometeusDescription/>
-                        </Grid>
-                    {/* </Hidden> */}
+                    <Grid item md={3} className="left-container">
+                        <PrometeusDescription/>
+                    </Grid>
                     <Grid item lg={9} xs={12} className="right-content-container">
                         <Grid container spacing={2}>
                             {!currentUser && (
@@ -32,6 +30,8 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
                                 {homepageTimeline === "home" ? <HomeTimeline/> : <GlobalTimeline/>}
                             </Grid>
                         </Grid>
+                    </Grid>
+                    <Grid item md={3} className="left-container">
                     </Grid>
                 </Grid>
             </Layout>

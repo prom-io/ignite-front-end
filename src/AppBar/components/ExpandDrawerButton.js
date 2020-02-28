@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {IconButton, Avatar} from "@material-ui/core";
 
 const _ExpandDrawerButton = ({setDrawerExpanded, currentUser}) => (
-    <IconButton onClick={() => setDrawerExpanded(true)}>
+    <IconButton onClick={() => setDrawerExpanded(true)} className="expand_drawer_button">
         <Avatar src={currentUser.avatar}/>
     </IconButton>
 );

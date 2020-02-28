@@ -23,6 +23,7 @@ const _NavigationalDrawer = ({drawerExpanded, setDrawerExpanded, routerStore}) =
         <SwipeableDrawer onClose={() => setDrawerExpanded(false)}
                          onOpen={() => setDrawerExpanded(true)}
                          open={drawerExpanded}
+                         className="navigation_drawer_menu"
                          PaperProps={{
                              style: {
                                  width: 256

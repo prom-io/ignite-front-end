@@ -72,7 +72,10 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
                         : <div></div>
                     }
                     {!currentUser && (<OpenLoginDialogButton/>)}
-                    <LoginDialog/>
+                    <div className="mobile_header">
+                        <LoginDialog/>
+                        <img src="/search.png" />
+                    </div>
                 </Toolbar>
             </MuiAppBar>
             <Hidden smDown>

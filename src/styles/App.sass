@@ -3,7 +3,7 @@
 
 body
   margin: 0 !important
-  overflow-x: hidden;
+  overflow-x: hidden
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2
   max-width: 100% !important
   margin: 0 !important
@@ -17,12 +17,9 @@ body
 
 .border
   border: 1px solid red !important
+  z-index: 9999
 .border-green
   border: 1px solid green !important
-
-.page
-  max-width: 1170px
-  border: 1px solid red
 
 .Mui-disabled
   background: #ffdecc !important
@@ -45,6 +42,7 @@ p
   background-color: #F1EBE8 !important
   flex-direction: row !important
   align-items: center
+  justify-content: center
   max-height: 49px
   padding: 0 40px
   bottom: 0 !important
@@ -59,12 +57,18 @@ p
   width: 100%
   max-height: 49px
   min-height: 49px !important
+  max-width: 840px
+  padding-right: 0px !important
+  @media (min-width: 1245px)
+    max-width: 1100px
+    padding-right: 24px !important
   @media (max-width: 960px)
     padding: 0 !important
+    position: static !important
   & > button
-    padding: 5px;
+    padding: 5px
     display: flex
-    margin: auto 0 auto 30px !important;
+    margin: auto 0 auto 28px !important
     justify-self: center
     align-items: center
     min-width: 35px
@@ -76,6 +80,7 @@ p
   justify-content: space-around
   @media (min-width: 960px)
     justify-content: flex-start
+    position: static !important
 .nav-bar-link
   display: none !important
   @media (min-width: 960px)
@@ -103,12 +108,13 @@ p
   left: auto !important
   min-height: 50px
   max-height: 50px
+  max-width: 40px !important
   top: 0 !important
   left: 0 !important
   width: 100%
   display: flex
   align-items: center
-  padding: 0 15px
+  padding: 0
   background-color: #FFFFFf!important
   border-bottom: 1px solid #F1EBE8 !important
   @media (min-width: 670px)
@@ -134,7 +140,9 @@ p
   background-position: center
   box-sizing: border-box
 .content-container
+  padding-top: 60px !important
   @media (min-width: 952px)
+    padding-top: 0 !important
     width: 100% !important
     justify-content: center !important
 .right-content-container
@@ -142,7 +150,43 @@ p
   padding: 0 !important
   @media (min-width: 952px)
     max-width: 600px !important
-  
+.mobile_header
+  width: 100%
+  height: 60px
+  position: fixed
+  left: 0
+  top: 0
+  border: 1px solid #F1EBE8
+  background-color: #FEFDFD
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  @media (min-width: 960px)
+    display: none !important
+  img
+    position: relative
+    right: 13px
+    width: 24px
+    height: 24px
+    cursor: pointer
+    outline: none
+.open_login_dialog_button
+  position: fixed !important
+  top: 11px
+  left: -11px
+  font-style: normal
+  border-radius: 30px !important
+  width: 90px
+  z-index: 10
+  @media (min-width: 960px)
+    position: static !important
+    width: 114px
+
+.expand_drawer_button
+  position: fixed !important
+  z-index: 9999 !important
+.navigation_drawer_menu
+  z-index: 99999 !important
 
 .drawer-user-info-link
   font-family: Museo Sans Cyrl
@@ -193,6 +237,7 @@ p
   max-width: auto !important
   width: 100%
   padding-top: 0
+  display: none
   @media (min-width: 952px)
     display: block
     max-width: 272px !important
@@ -226,6 +271,8 @@ p
   padding: 8px
   display: flex
   flex-direction: column
+  cursor: default
+  margin-top: -8px
   @media screen and ( max-width: 960px)
     max-width: 600px
     width: 100%
@@ -248,6 +295,7 @@ p
   justify-content: center
   align-items: flex-start
   margin-top: -8px
+  cursor: default
 .user-card-content-box
   width: 100%
   // border: 1px solid red
@@ -328,7 +376,7 @@ p
   padding-top: 20px
   flex-wrap: wrap
   justify-content: center
-  cursor: pointer
+  cursor: default
   p
     width: 100%
     font-family: Museo Sans Cyrl
@@ -389,12 +437,18 @@ p
     max-width: 100% !important
 
 .login-form-container
-  padding: 0 !important
-  // background: #FBF7F6 !important
-  // border: 1px solid #F1EBE8 !important
-  box-sizing: border-box !important
-  border-radius: 4px 4px 0px 0px
-  height: 300px
+  display: none
+  @media (min-width: 960px)
+    display: block
+    padding: 0 !important
+    // background: #FBF7F6 !important
+    // border: 1px solid #F1EBE8 !important
+    box-sizing: border-box !important
+    border-radius: 4px 4px 0px 0px
+    height: 300px
+
+.login_dialog_title
+  max-width: 600px !important
 
 .create-status-form
   border-radius: 0 !important
@@ -577,8 +631,9 @@ p
 .static-page-container
   width: auto
   min-height: 50rem
-  padding: 50px 15px
+  padding: 100px 15px 50px 15px
   max-width: 100%
+  width: auto
   display: flex
   justify-content: center
   flex-wrap: wrap
@@ -625,11 +680,18 @@ p
   flex-direction: column
   // min-height: 100%
   // position: relative
+
+.static-page-footer-container
+  width: 100%
+  display: flex
+  justify-content: center
+  border-top: 1px solid #E5E5E5
 .static-page-footer
+  max-width: 1148px
+  width: 100% !important
   bottom: 0
   left: 0
   display: flex
-  border-top: 1px solid #E5E5E5
   width: auto
   padding: 0 20px
   height: 50px
@@ -656,15 +718,15 @@ p
     width: 100%
     @media (min-width: 960px)
       justify-content: flex-start
-   
     ul
       display: flex
       width: 100%
       padding: 0
       flex-wrap: wrap
       @media (max-width: 960px)
+        width: 50%
         flex-wrap: wrap
-        flex-direction: column
+        // flex-direction: column
       @media (min-width: 960px)
         padding: 0 0 0 40px
         justify-content: flex-end
@@ -682,6 +744,7 @@ p
         list-style: disc
         @media (min-width: 960px)
           list-style: none
+          
 .static-page-link
   text-decoration: none
   font-family: Museo Sans Cyrl

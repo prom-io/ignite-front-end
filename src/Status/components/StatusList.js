@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect} from "react";
 import {Card, Divider} from "@material-ui/core";
-import _ from "lodash";
 import {StatusListItem} from "./StatusListItem";
 
 export const StatusList = ({

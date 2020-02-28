@@ -4,11 +4,22 @@ import {CircularProgress, makeStyles, Grid} from "@material-ui/core";
 import {StatusList} from "./StatusList";
 import {CreateStatusForm} from "./CreateStatusForm";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    gridItemOverridePadding: {
+        [theme.breakpoints.down("md")]: {
+            padding: "0px !important"
+        }
+    },
+    gridItemBottomSpacing: {
+        [theme.breakpoints.down("md")]: {
+            padding: "0px !important",
+            paddingBottom: `${theme.spacing(1)}px !important`
+        }
     }
 }));
 
@@ -29,10 +40,10 @@ const _HomeTimeline= ({
         ? <CircularProgress size={20} className={classes.centered}/>
         : (
             <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.gridItemBottomSpacing}>
                     <CreateStatusForm/>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.gridItemOverridePadding}>
                     <StatusList statuses={statuses}
                                 onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                                 pending={pending}

@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Grid, Hidden} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import {AppBar} from "../AppBar/components";
 import {LoginForm} from "../Authorization/components";
 import {Layout} from "../Layout";
@@ -17,9 +17,9 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
             <Layout>
                 <Grid container spacing={2} className="content-container">
                     {/* <Hidden mdDown> */}
-                        <Grid item md={3} className="left-container">
-                            <PrometeusDescription/>
-                        </Grid>
+                    <Grid item md={3} className="left-container">
+                        <PrometeusDescription/>
+                    </Grid>
                     {/* </Hidden> */}
                     <Grid item lg={9} xs={12} className="right-content-container">
                         <Grid container spacing={2}>

@@ -4,17 +4,25 @@ import {CircularProgress, makeStyles, Grid} from "@material-ui/core";
 import {StatusList} from "./StatusList";
 import {CreateStatusForm} from "./CreateStatusForm";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
     },
     paddingCorective: {
-        paddingBottom: "0 !important" 
+        paddingBottom: "0 !important",
+        [theme.breakpoints.down("md")]: {
+            padding: "0px !important",
+            paddingBottom: `${theme.spacing(1)}px !important`
+        }
     },
     statusListBorderCorrective: {
         paddingTop: "0 !important",
+        [theme.breakpoints.down("md")]: {
+            padding: "0px !important",
+            paddingBottom: `${theme.spacing(1)}px !important`
+        }
     }
 }));
 

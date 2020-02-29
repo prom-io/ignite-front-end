@@ -777,7 +777,7 @@ p
   width: 100%
   display: flex
   justify-content: center
-  border-top: 1px solid #E5E5E5
+  border-top: 1px solid #E5E5E5 !important
 .static-page-footer
   max-width: 1148px
   width: 100% !important
@@ -788,6 +788,7 @@ p
   padding: 0 20px
   height: 50px
   justify-content: space-between
+  // border-top: 1px solid #E5E5E5 !important
   @media (max-width: 960px)
     justify-content: space-between
     margin: 0
@@ -816,14 +817,15 @@ p
       padding: 0
       flex-wrap: wrap
       @media (max-width: 960px)
-        width: 50%
+        width: 250px
         flex-wrap: wrap
         // flex-direction: column
-      @media (min-width: 960px)
-        padding: 0 0 0 40px
-        justify-content: flex-end
-        flex-wrap: nowrap
+      // @media (min-width: 960px)
+      //   padding: 0 0 0 40px
+      //   justify-content: flex-end
+      //   flex-wrap: nowrap
       li
+        
         margin-left: 27px
         @media (min-width: 960px)
           margin-left: 27px
@@ -832,10 +834,19 @@ p
           white-space: nowrap
         &:hover
           text-decoration: underline
-      li:first-child
-        list-style: disc
+      li:first-child, li:last-child
+        list-style: none
+        margin-left: 0
         @media (min-width: 960px)
           list-style: none
+          margin-left: 27px
+      li:nth-child(3)
+        list-style: none
+        margin-left: 0
+        @media (min-width: 960px)
+          list-style: disc
+          margin-left: 27px
+      
           
 .static-page-link
   text-decoration: none

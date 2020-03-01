@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
         textAlign: "center",
         color: "#1C1C1C",
     },
-    signUpButton: {
+    signUpDialogButton: {
         maxWidth: 374,
         marginTop: 20,
         borderRadius: 30,
@@ -136,7 +136,7 @@ const _SignUpDialog = ({
                    />
                    <Button onClick={signUp}
                            fullWidth
-                           className={classes.signUpButton}
+                           className={classes.signUpDialogButton}
                            disableElevation
                            disabled={pending}
                            color="primary"
@@ -147,11 +147,19 @@ const _SignUpDialog = ({
                    </Button>
                     <Button disabled={pending}
                             onClick={handleLoginButtonClick}
-                            className={classes.signUpButton}
+                            className={classes.signUpDialogButton}
                             color="primary"
                             variant="text"
                     >
                         Log in
+                    </Button>
+                    <Button disabled={pending}
+                            onClick={() => setSignUpDialogOpen(false)}
+                            className={classes.signUpDialogButton}
+                            color="primary"
+                            variant="text"
+                    >
+                        Close
                     </Button>
                 </div>
             </DialogContent>

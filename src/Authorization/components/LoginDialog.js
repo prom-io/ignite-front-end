@@ -1,10 +1,10 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Dialog, DialogContent, DialogTitle, Button, withMobileDialog, makeStyles} from "@material-ui/core";
+import {Button, Dialog, DialogContent, DialogTitle, makeStyles, withMobileDialog} from "@material-ui/core";
 import {LoginForm} from "./LoginForm";
 
 const useStyles = makeStyles(theme => ({
-    closeButton: {
+    dialogSecondaryAction: {
         maxWidth: 374,
         marginLeft: "auto",
         marginRight: "auto",
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _LoginDialog = ({loginDialogOpen, setLoginDialogOpen, fullScreen}) => {
+const _LoginDialog = ({loginDialogOpen, setLoginDialogOpen, fullScreen, setSignUpDialogOpen}) => {
     const classes = useStyles();
 
     return (
@@ -38,7 +38,16 @@ const _LoginDialog = ({loginDialogOpen, setLoginDialogOpen, fullScreen}) => {
                            disableCard
                 />
                 <Button variant="text"
-                        className={classes.closeButton}
+                        className={classes.dialogSecondaryAction}
+                        onClick={() => {
+                            setSignUpDialogOpen(true);
+                            setLoginDialogOpen(false)
+                        }}
+                >
+                    Sign up
+                </Button>
+                <Button variant="text"
+                        className={classes.dialogSecondaryAction}
                         onClick={() => setLoginDialogOpen(false)}
                 >
                     Close
@@ -48,9 +57,10 @@ const _LoginDialog = ({loginDialogOpen, setLoginDialogOpen, fullScreen}) => {
     )
 };
 
-const mapMobxToProps = ({login}) => ({
+const mapMobxToProps = ({login, signUp}) => ({
     setLoginDialogOpen: login.setLoginDialogOpen,
-    loginDialogOpen: login.loginDialogOpen
+    loginDialogOpen: login.loginDialogOpen,
+    setSignUpDialogOpen: signUp.setSignUpDialogOpen
 });
 
 export const LoginDialog = withMobileDialog()(

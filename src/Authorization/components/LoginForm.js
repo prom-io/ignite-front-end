@@ -51,7 +51,8 @@ const _LoginForm = ({
     setSignUpDialogOpen,
     hideLoginButton,
     hideSignUpButton,
-    disableCard
+    disableCard,
+    setLoginDialogOpen
 }) => {
     const classes = useStyles();
 
@@ -88,13 +89,15 @@ const _LoginForm = ({
                         color="primary"
                         fullWidth
                         className={classes.signUpButton}
-                        onClick={() => setSignUpDialogOpen(true)}
+                        onClick={() => {
+                            setLoginDialogOpen(false);
+                            setSignUpDialogOpen(true);
+                        }}
                         disabled={pending}
                 >
                     Sign up for Prometeus {Talk}
                 </Button>
             )}
-            <SignUpDialog/>
         </Fragment>
     );
 
@@ -118,7 +121,8 @@ const mapMobxToProps = ({login, signUp}) => ({
     submissionError: login.submissionError,
     setFormValue: login.setFormValue,
     doLogin: login.doLogin,
-    setSignUpDialogOpen: signUp.setSignUpDialogOpen
+    setSignUpDialogOpen: signUp.setSignUpDialogOpen,
+    setLoginDialogOpen: login.setLoginDialogOpen
 });
 
 export const LoginForm = inject(mapMobxToProps)(observer(_LoginForm));

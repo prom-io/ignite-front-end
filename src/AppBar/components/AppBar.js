@@ -17,8 +17,9 @@ import {ChatIcon} from "../../icons/ChatIcon";
 import {TrendsIcon} from "../../icons/TrendsIcon";
 import {LoginDialog} from "../../Authorization/components/LoginDialog";
 import {OpenLoginDialogButton} from "../../Authorization/components";
+import {SignUpDialog} from "../../SignUp/components";
 
-const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
+const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme}) => {
     return (
         <Fragment>
             <Hidden mdUp>
@@ -74,6 +75,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
                     {!currentUser && (<OpenLoginDialogButton/>)}
                     <div className="mobile_header">
                         <LoginDialog/>
+                        <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)}/>
                         <img src="/search.png" />
                     </div>
                 </Toolbar>
@@ -94,9 +96,10 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, theme}) => {
     )
 };
 
-const mapMobxToProps = ({store, authorization}) => ({
+const mapMobxToProps = ({store, authorization, login}) => ({
     routerStore: store,
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen
 });
 
 export const AppBar = withTheme(

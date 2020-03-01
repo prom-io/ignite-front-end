@@ -62,15 +62,24 @@ const _SignUpDialog = ({
     setShowSnackbar,
     setSignUpDialogOpen,
     enqueueSnackbar,
+    onLoginButtonClick
 }) => {
     const classes = useStyles();
+
+    const handleLoginButtonClick = () => {
+        setSignUpDialogOpen(false);
+
+        if (onLoginButtonClick) {
+            onLoginButtonClick();
+        }
+    };
 
     if (showSnackbar) {
         if (!submissionError) {
             enqueueSnackbar("Account has been created successfully");
             setSignUpDialogOpen(false);
         } else {
-            enqueueSnackbar("Error occurred when tried to sign up");
+            enqueueSnackbar("Error occurred when tried to sign up", {variant: "error"});
         }
 
         setShowSnackbar(false);
@@ -137,7 +146,7 @@ const _SignUpDialog = ({
                        Sign up for Prometeus {Talk}
                    </Button>
                     <Button disabled={pending}
-                            onClick={() => setSignUpDialogOpen(false)}
+                            onClick={handleLoginButtonClick}
                             className={classes.signUpButton}
                             color="primary"
                             variant="text"

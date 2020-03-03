@@ -17,13 +17,13 @@ export const ChatPage = () => {
     </Grid >
     <div className="static-page-container">
       <div className="static-page-logo-container">
-        <img src="/page_img/promptalk_chat_page.png" />
-        <h1>PrompTalk Chat</h1>
+        <img src="/page_img/Ignite_chat_page.png" />
+        <h1>Ignite Chat</h1>
       </div>
       <div>
         <div>
           <p>
-            Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of PrompTalk service. All the messages will be encrypted on the user's device and cannot be read by <span>{Prometeus}</span>. All the messages will be deleted after 30 days.
+            Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by <span>{Prometeus}</span>. All the messages will be deleted after 30 days.
           </p>
           <p>
             Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open.

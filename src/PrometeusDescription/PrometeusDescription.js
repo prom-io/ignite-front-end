@@ -35,7 +35,7 @@ export const PrometeusDescription = () => {
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body2">
-                    <span>Prometeus {Talk} </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
+                    <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
                 </Typography>
             </Grid>
             <Grid item xs={12}>

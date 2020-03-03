@@ -60,7 +60,6 @@ export class StatusesListStore {
         this.pending = true;
 
         if (this.baseUrl) {
-            this.allowedToMakeRequest = false;
             if (this.statuses.length !== 0) {
                 const maxId = this.statuses[this.statuses.length - 1].id;
                 axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
@@ -84,7 +83,14 @@ export class StatusesListStore {
             axiosInstance.post(`/api/v1/statuses/${id}/favourite`)
                 .then(({data}) => {
                     this.statusLikePendingMap[id] = false;
-                    this.statuses = this.statuses.map(status => status.id === id ? data : status);
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments = status.media_attachments;
+                            status = {...data};
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                 })
                 .finally(() => this.statusLikePendingMap[id] = false);
         }
@@ -100,7 +106,14 @@ export class StatusesListStore {
             axiosInstance.post(`/api/v1/statuses/${id}/unfavourite`)
                 .then(({data}) => {
                     this.statusLikePendingMap[id] = false;
-                    this.statuses = this.statuses.map(status => status.id === id ? data : status);
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments = status.media_attachments;
+                            status = {...data};
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                 })
                 .finally(() => this.statusLikePendingMap[id] = false);
         }

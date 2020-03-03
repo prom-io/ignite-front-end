@@ -11,8 +11,10 @@ import {
     TextField,
     Typography
 } from "@material-ui/core";
+import {AttachImageInput} from "./AttachImageInput";
+import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
         background: "#F1EBE8"
     },
@@ -28,6 +30,11 @@ const useStyles = makeStyles(() => ({
         borderRadius: 30,
         float: "right",
         width: "114px",
+    },
+    mediaAttachmentsContainer: {
+        marginBottom: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2)
     }
 }));
 
@@ -39,11 +46,13 @@ const _CreateStatusForm = ({
     currentUserAvatar,
     setContent,
     createStatus,
+    mediaAttachmentsFiles,
+    addMediaAttachment,
+    removeMediaAttachment,
+    uploadedAttachments,
     hideSendButton = false
 }) => {
     const classes = useStyles();
-
-    const [inputFocused, setInputFocused] = useState(false);
 
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
@@ -57,11 +66,6 @@ const _CreateStatusForm = ({
                     <TextField placeholder="What's on your mind?"
                                multiline
                                rows="4"
-                               onFocus={event => {
-                                   console.log(event);
-                                   setInputFocused(true)
-                               }}
-                               onBlur={() => setInputFocused(false)}
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
@@ -71,12 +75,12 @@ const _CreateStatusForm = ({
             </Grid>
             <CardActions style={{display: "flex"}}>
                 <Grid container justify="flex-start">
-                        <div className="create-status-form-pic">
-                            <img src="/pic.png" />
-                            <img src="/pic-gif-disabled.png" />
-                            <img src="/pic-list-disabled.png" />
-                            <img src="/pic-smile-disabled.png" />
-                        </div>
+                    <div className="create-status-form-pic">
+                        <AttachImageInput onImageAttached={addMediaAttachment}/>
+                        <img src="/pic-gif-disabled.png" />
+                        <img src="/pic-list-disabled.png" />
+                        <img src="/pic-smile-disabled.png" />
+                    </div>
                 </Grid>
                 <Grid container justify="flex-end">
                     <Grid item xs={12} className="create-status-form-counter-container">
@@ -94,7 +98,7 @@ const _CreateStatusForm = ({
                                     color="primary"
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
-                                    disabled={!(content.length > 0)}
+                                    disabled={!(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
                                 Send
@@ -103,11 +107,16 @@ const _CreateStatusForm = ({
                     </Grid>
                 </Grid>
             </CardActions>
+            <div className={classes.mediaAttachmentsContainer}>
+                <CreateStatusFormMediaAttachments mediaAttachmentsFiles={mediaAttachmentsFiles}
+                                                  onDelete={removeMediaAttachment}
+                />
+            </div>
         </Card>
     )
 };
 
-const mapMobxToProps = ({createStatus, authorization}) => ({
+const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) => ({
     charactersRemaining: createStatus.charactersRemaining,
     submissionError: createStatus.submissionError,
     content: createStatus.content,
@@ -116,7 +125,11 @@ const mapMobxToProps = ({createStatus, authorization}) => ({
         ? authorization.currentUser.avatar || "http://localhost:3000/avatars/original/missing.png"
         : "http://localhost:3000/avatars/original/missing.png",
     setContent: createStatus.setContent,
-    createStatus: createStatus.createStatus
+    createStatus: createStatus.createStatus,
+    addMediaAttachment: uploadMediaAttachments.attachFile,
+    removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
+    mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
+    uploadedAttachments: createStatus.mediaAttachments
 });
 
 export const CreateStatusForm = inject(mapMobxToProps)(observer(_CreateStatusForm));

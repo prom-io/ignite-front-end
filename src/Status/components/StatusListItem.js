@@ -1,8 +1,9 @@
 import React from "react";
-import {Card} from "@material-ui/core";
+import {Card, Typography} from "@material-ui/core";
 import {StatusHeader} from "./StatusHeader";
 import {StatusBottom} from "./StatusBottom";
 import {StatusBody} from "./StatusBody";
+import {StatusMediaAttachments} from "./StatusMediaAttachments";
 
 export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusChange, displayMenu, onFollowRequest, onUnfollowRequest, statusLikePending}) => (
     <Card elevation={0}
@@ -20,7 +21,9 @@ export const StatusListItem = ({status, currentUserIsAuthor, onFavouriteStatusCh
                       onUnfollowRequest={onUnfollowRequest}
                       currentUserIsAuthor={currentUserIsAuthor}
         />
-        <StatusBody text={status.content}/>
+        <StatusBody text={status.content}
+                    mediaAttachments={status.media_attachments}
+        />
         <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                       favourited={status.favourited}
                       statusId={status.id}

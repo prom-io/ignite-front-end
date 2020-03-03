@@ -24,7 +24,7 @@ export const TrendsPage = () => {
               <div>
                 <p>
                   Prometeus Team plans to create and develop Trends service to offer our users
-                  a realtime pulse on what the internet is discussing right now. Trends in Promp Talk will be the people-powered newsroom. Our Trends will decentralize news discovery away from gatekeepers and create a level playing field for mainstream, alternative, and citizen journalists to share their story with the world.
+                  a realtime pulse on what the internet is discussing right now. Trends in Ignite will be the people-powered newsroom. Our Trends will decentralize news discovery away from gatekeepers and create a level playing field for mainstream, alternative, and citizen journalists to share their story with the world.
                 </p>
                 <p>
                   You may notice that some trends in other social networks have # sign before the word or phrase. This is called a hashtag and will be included specifically in posts

@@ -143,7 +143,7 @@ const _SignUpDialog = ({
                            variant="contained"
                    >
                        {pending && <CircularProgress size={15} color="primary"/>}
-                       Sign up for Prometeus {Talk}
+                       Sign up for Ignite
                    </Button>
                     <Button disabled={pending}
                             onClick={handleLoginButtonClick}

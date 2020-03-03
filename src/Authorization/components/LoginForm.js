@@ -95,7 +95,7 @@ const _LoginForm = ({
                         }}
                         disabled={pending}
                 >
-                    Sign up for Prometeus {Talk}
+                    Sign up for Ignite
                 </Button>
             )}
         </Fragment>

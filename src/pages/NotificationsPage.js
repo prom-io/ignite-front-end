@@ -26,7 +26,7 @@ export const NotificationsPage = () => {
           <div>
             <div>
               <p>
-                Prometeus Team plans to create and develop Notifications timeline to offer our users a simple way to see how others on Promp Talk are interacting with them. 
+                Prometeus Team plans to create and develop Notifications timeline to offer our users a simple way to see how others on Ignite are interacting with them. 
               </p>
               <p>
                 From the Notifications timeline, you’ll be able to see which of your posts have been liked, plus the latest reposts, posts directed to you (replies and mentions) and your new followers. You could view your notifications in two ways: 'All' shows you notifications for account activity like new followers, reposts, mentions, and likes. 'Mentions' will show you notifications only for posts that mention your username.   

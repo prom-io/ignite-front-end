@@ -6,8 +6,6 @@ import {StaticPageFooter} from '../components/StaticPageFooter';
 
 
 export const ChatPage = () => {
-  
-  const Prometeus = '{Prometeus}'
 
   return(
   
@@ -23,7 +21,7 @@ export const ChatPage = () => {
       <div>
         <div>
           <p>
-            Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by <span>{Prometeus}</span>. All the messages will be deleted after 30 days.
+            Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by us. All the messages will be deleted after 30 days.
           </p>
           <p>
             Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open.

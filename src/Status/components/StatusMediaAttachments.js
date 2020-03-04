@@ -14,7 +14,6 @@ export const StatusMediaAttachments = ({mediaAttachments}) => {
             <div style={{flex: "auto"}}>
                 <Gallery images={gallery}
                          enableImageSelection={false}
-                         backdropClosesModal={true}
                          showLightboxThumbnails={true}
                 />
             </div>

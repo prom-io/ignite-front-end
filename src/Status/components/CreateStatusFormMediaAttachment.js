@@ -23,7 +23,7 @@ export const CreateStatusFormMediaAttachment = ({fileContainer, onDelete}) => {
 
     const hoveredStyle = {
         backgroundImage: `url(${fileContainer.url})`,
-        boxShadow: "inset 0 0 0 1000px rgba(255, 255, 255, 0.2)"
+        boxShadow: "inset 0 0 0 1000px rgba(0, 0, 0, 0.2)"
     };
 
     const notHoveredStyle = {
@@ -41,8 +41,7 @@ export const CreateStatusFormMediaAttachment = ({fileContainer, onDelete}) => {
         >
             {!fileContainer.pending && (
                 <IconButton onClick={() => onDelete(fileContainer.fileId)}
-                            style={{float: "right"}}
-                            color="primary"
+                            style={{float: "right", color: "white"}}
                             size="small"
                 >
                     <CloseIcon/>
@@ -50,7 +49,7 @@ export const CreateStatusFormMediaAttachment = ({fileContainer, onDelete}) => {
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <CircularProgress size={40}/>
+                    <CircularProgress size={40} style={{color: "white"}}/>
                 </div>
             )}
         </div>

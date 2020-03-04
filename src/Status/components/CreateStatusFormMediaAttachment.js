@@ -4,9 +4,10 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles(theme => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "table"
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%"
     },
     mediaFile: {
         width: 100,
@@ -34,6 +35,8 @@ export const CreateStatusFormMediaAttachment = ({fileContainer, onDelete}) => {
              style={hovered ? hoveredStyle : notHoveredStyle}
              onMouseOver={() => setHovered(true)}
              onMouseOut={() => setHovered(false)}
+             onTouchStart={() => setHovered(true)}
+             onTouchEnd={() => setHovered(false)}
              key={fileContainer.fileId}
         >
             {!fileContainer.pending && (
@@ -45,7 +48,11 @@ export const CreateStatusFormMediaAttachment = ({fileContainer, onDelete}) => {
                     <CloseIcon/>
                 </IconButton>
             )}
-            {fileContainer.pending && <CircularProgress size={15} className={classes.centered}/>}
+            {fileContainer.pending && (
+                <div className={classes.centered}>
+                    <CircularProgress size={40}/>
+                </div>
+            )}
         </div>
     )
 };

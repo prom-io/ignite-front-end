@@ -1,12 +1,16 @@
 import React, {useState} from "react";
 import {IconButton, Tooltip, makeStyles} from "@material-ui/core";
 import {AttachImageIcon} from "../../icons/AttachImageIcon";
+import {AttachImageDisabledIcon} from "../../icons/AttachImageDisabledIcon";
 
 const useStyles = makeStyles(() => ({
     attachImageInput: {
         width: 20,
         height: 20,
         padding: "0px !important"
+    },
+    disabled: {
+        background: "none !important"
     }
 }));
 
@@ -25,8 +29,11 @@ export const AttachImageInput = ({onImageAttached, disabled, disabledLabel}) => 
                                     disableElevation
                                     variant="text"
                                     className={classes.attachImageInput}
+                                    classes={{
+                                        disabled: classes.disabled
+                                    }}
                         >
-                            <AttachImageIcon/>
+                            <AttachImageDisabledIcon/>
                         </IconButton>
                     </div>
                 </Tooltip>

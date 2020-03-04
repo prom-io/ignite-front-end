@@ -101,7 +101,7 @@ const _CreateStatusForm = ({
                                     color="primary"
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
-                                    disabled={!(content.length > 0 || uploadedAttachments.length !== 0)}
+                                    disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
                                 Send

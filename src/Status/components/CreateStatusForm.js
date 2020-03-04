@@ -76,7 +76,10 @@ const _CreateStatusForm = ({
             <CardActions style={{display: "flex"}}>
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
-                        <AttachImageInput onImageAttached={addMediaAttachment}/>
+                        <AttachImageInput onImageAttached={addMediaAttachment}
+                                          disabled={mediaAttachmentsFiles.length === 10}
+                                          disabledLabel="You can't attach more than 10 images"
+                        />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
                         <img src="/pic-smile-disabled.png" />

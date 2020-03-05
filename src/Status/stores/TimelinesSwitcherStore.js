@@ -48,7 +48,7 @@ export class TimelinesSwitcherStore {
     @action
     setSwitchOnUserChange = switchOnUserChange => {
         this.switchOnUserChange = switchOnUserChange;
-    }
+    };
 
     @action
     setCurrentTimeline = currentTimeline => {

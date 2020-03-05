@@ -1,6 +1,14 @@
 import React from "react";
 import {Route} from "mobx-router";
-import {HomePage, UserProfilePage, NotificationsPage, ChatPage, TrendsPage, TermsAndPolicesPage, DescriptionPage} from "../pages";
+import {
+    ChatPage,
+    DescriptionPage,
+    HomePage,
+    NotificationsPage,
+    TermsAndPolicesPage,
+    TrendsPage,
+    UserProfilePage
+} from "../pages";
 import {store} from "../store";
 
 export const Routes = {
@@ -10,6 +18,11 @@ export const Routes = {
         beforeEnter: () => {
             store.userCard.setDisplayMode("currentUser");
             store.timelineSwitcher.setSwitchOnUserChange(true);
+
+            if (store.authorization.currentUser && store.authorization.currentUser.follows_count !== 0) {
+                store.timelineSwitcher.setCurrentTimeline("home");
+            }
+
             store.timelineSwitcher.selectedTimeline.fetchStatuses();
         },
         onExit: () => {

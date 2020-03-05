@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     mediaFile: {
         width: 100,
         height: 100,
+        minWidth: 100,
         marginRight: theme.spacing(2),
         backgroundSize: "cover"
     },

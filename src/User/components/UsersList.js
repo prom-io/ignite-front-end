@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {inject} from "mobx-react";
-import {Avatar, CardHeader, List, ListItem, ListItemAvatar, Typography} from "@material-ui/core";
+import {Avatar, CardHeader, List, ListItem, ListItemAvatar, Typography, Hidden} from "@material-ui/core";
 import {Link} from "mobx-router";
+import {trimString} from "../../utils/string-utils";
 import {Routes} from "../../routes";
 
 const _UsersList = ({users, routerStore}) => (
@@ -13,18 +14,34 @@ const _UsersList = ({users, routerStore}) => (
                 </ListItemAvatar>
                 <CardHeader title={(
                     <Link view={Routes.userProfile}
-                          params={{username: user.username}}
+                          params={{username: user.id}}
                           store={routerStore}
                           style={{
                               color: "inherit"
                           }}
                     >
-                        <Typography>
-                            <strong>{user.display_name}</strong>
-                        </Typography>
+                        <Hidden xsDown>
+                            <Typography>
+                                <strong>{user.display_name}</strong>
+                            </Typography>
+                        </Hidden>
+                        <Hidden smUp>
+                            <Typography>
+                                <strong>{trimString(user.display_name, 28)}</strong>
+                            </Typography>
+                        </Hidden>
                     </Link>
                 )}
-                            subheader={`${user.username}`}
+                            subheader={
+                                <Fragment>
+                                    <Hidden xsDown>
+                                        {user.username}
+                                    </Hidden>
+                                    <Hidden smUp>
+                                        <strong>{trimString(user.username, 28)}</strong>
+                                    </Hidden>
+                                </Fragment>
+                            }
                 />
             </ListItem>
         ))}

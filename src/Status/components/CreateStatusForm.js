@@ -47,7 +47,7 @@ const _CreateStatusForm = ({
     setContent,
     createStatus,
     mediaAttachmentsFiles,
-    addMediaAttachment,
+    addMediaAttachments,
     removeMediaAttachment,
     uploadedAttachments,
     hideSendButton = false
@@ -76,7 +76,7 @@ const _CreateStatusForm = ({
             <CardActions style={{display: "flex"}}>
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
-                        <AttachImageInput onImageAttached={addMediaAttachment}
+                        <AttachImageInput onImagesAttached={addMediaAttachments}
                                           disabled={mediaAttachmentsFiles.length === 10}
                                           disabledLabel="You can't attach more than 10 images"
                         />
@@ -129,7 +129,7 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
         : "http://localhost:3000/avatars/original/missing.png",
     setContent: createStatus.setContent,
     createStatus: createStatus.createStatus,
-    addMediaAttachment: uploadMediaAttachments.attachFile,
+    addMediaAttachments: uploadMediaAttachments.attachFiles,
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
     uploadedAttachments: createStatus.mediaAttachments

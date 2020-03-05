@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const AttachImageInput = ({onImageAttached, disabled, disabledLabel}) => {
+export const AttachImageInput = ({onImagesAttached, disabled, disabledLabel}) => {
     const [value, setValue] = useState("");
 
     const classes = useStyles();
@@ -50,9 +50,15 @@ export const AttachImageInput = ({onImageAttached, disabled, disabledLabel}) => 
                            style={{display: "none"}}
                            accept="image/png, image/jpg, image/jpeg"
                            onClick={() => setValue("")}
+                           multiple
                            onChange={event => {
                                if (event.target.files && event.target.files.length !== 0) {
-                                   onImageAttached(event.target.files[0]);
+                                   let files = event.target.files;
+                                   console.log(files);
+                                   if (files.length > 10) {
+                                       files = files.slice(0, 9)
+                                   }
+                                   onImagesAttached(files);
                                }
                            }}
                     />

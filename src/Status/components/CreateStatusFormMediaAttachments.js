@@ -4,7 +4,9 @@ import {CreateStatusFormMediaAttachment} from "./CreateStatusFormMediaAttachment
 
 const useStyles = makeStyles(() => ({
     mediaFilesContainer: {
-        display: "flex"
+        display: "flex",
+        width: "100%",
+        overflow: "auto"
     }
 }));
 

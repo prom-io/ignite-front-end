@@ -23,14 +23,16 @@ export class UploadMediaAttachmentsStore {
     error = undefined;
 
     @action
-    attachFile = file => {
-        const fileId = randomString({length: 7});
-        this.uploadPending = true;
-        this.mediaAttachmentsFiles = [
-            ...this.mediaAttachmentsFiles,
-            new FileContainer(file, fileId, true)
-        ];
-        this.uploadFile(file, fileId)
+    attachFiles = files => {
+        for (let file of files) {
+            const fileId = randomString({length: 7});
+            this.uploadPending = true;
+            this.mediaAttachmentsFiles = [
+                ...this.mediaAttachmentsFiles,
+                new FileContainer(file, fileId, true)
+            ];
+            this.uploadFile(file, fileId)
+        }
     };
 
     @action

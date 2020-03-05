@@ -24,6 +24,12 @@ export class UploadMediaAttachmentsStore {
 
     @action
     attachFiles = files => {
+        const attachmentsRemaining = 10 - this.mediaAttachmentsFiles.length;
+
+        if (files.length > attachmentsRemaining) {
+            files = Array.prototype.slice.call(files, 0, attachmentsRemaining);
+        }
+
         for (let file of files) {
             const fileId = randomString({length: 7});
             this.uploadPending = true;

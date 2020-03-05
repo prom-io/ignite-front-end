@@ -56,7 +56,7 @@ export const AttachImageInput = ({onImagesAttached, disabled, disabledLabel}) =>
                                    let files = event.target.files;
                                    console.log(files);
                                    if (files.length > 10) {
-                                       files = files.slice(0, 9)
+                                       files = Array.prototype.slice(0, 9);
                                    }
                                    onImagesAttached(files);
                                }

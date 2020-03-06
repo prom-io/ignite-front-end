@@ -1,6 +1,5 @@
 import {action, observable} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
-import {isStringEmpty} from "../../utils/string-utils";
 
 export class LoginStore {
     @observable
@@ -31,18 +30,18 @@ export class LoginStore {
 
     @action
     doLogin = () => {
-        if (!isStringEmpty(this.loginForm.username) || !isStringEmpty(this.loginForm.password)) {
-            axiosInstance.post("/api/v3/auth/login", {...this.loginForm})
-                .then(({data}) => {
-                    this.authorizationStore.setAccessToken(data.access_token);
-                    this.loginForm = {
-                        username: "",
-                        password: ""
-                    };
-                    this.setLoginDialogOpen(false);
-                })
-                .finally(() => this.pending = false);
-        }
+        this.submissionError = undefined;
+        axiosInstance.post("/api/v3/auth/login", {...this.loginForm})
+            .then(({data}) => {
+                this.authorizationStore.setAccessToken(data.access_token);
+                this.loginForm = {
+                    username: "",
+                    password: ""
+                };
+                this.setLoginDialogOpen(false);
+            })
+            .catch(error => this.submissionError = error)
+            .finally(() => this.pending = false);
     };
 
     @action

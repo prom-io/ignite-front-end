@@ -1,9 +1,8 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
-import {TextField, Button, Typography, CircularProgress, Card, CardContent, makeStyles} from "@material-ui/core";
-import {SignUpDialog} from "../../SignUp/components";
+import {Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography} from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     loginCard: {
         backgroundColor: "#FBF7F6",
     },
@@ -35,12 +34,26 @@ const useStyles = makeStyles(() => ({
         fontSize: "15px",
         lineHeight: "18px",
         textAlign: "center",
-        color: "#FF5C01",
+        color: theme.palette.primary.main,
         marginTop: "24px"
+    },
+    errorLabel: {
+        color: theme.palette.error.main
     }
 }));
 
-const Talk = "{Talk}";
+const getLabelFromSubmissionError = error => {
+    if (error.response) {
+        if (error.response.status === 401) {
+            return "Unknown combination of address and private key"
+        } else {
+            console.log(error);
+            return `Unknown error occurred when tried to log in. Server responded with ${error.response.status} status`;
+        }
+    } else {
+        return "Error occurred when tried to log in: no response from server";
+    }
+};
 
 const _LoginForm = ({
     loginForm,
@@ -72,6 +85,13 @@ const _LoginForm = ({
                        margin="dense"
                        type="password"
             />
+            {submissionError && (
+                <Typography variant="body1"
+                            className={classes.errorLabel}
+                >
+                    {getLabelFromSubmissionError(submissionError)}
+                </Typography>
+            )}
             {!hideLoginButton && (
                 <Button className={classes.loginButton}
                         color="primary"

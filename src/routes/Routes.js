@@ -7,7 +7,8 @@ import {
     NotificationsPage,
     TermsAndPolicesPage,
     TrendsPage,
-    UserProfilePage
+    UserProfilePage,
+    StatusPage
 } from "../pages";
 import {store} from "../store";
 
@@ -104,4 +105,17 @@ export const Routes = {
             store.userProfile.fetchUserByUsername(params.username);
         }
     }),
+    status: new Route({
+        path: "/status/:id",
+        component: <StatusPage/>,
+        beforeEnter: (route, params) => {
+            store.statusPage.fetchStatus(params.id);
+        },
+        onParamsChange: (route, params) => {
+            store.statusPage.fetchStatus(params.id);
+        },
+        onExit: () => {
+            store.statusPage.reset();
+        }
+    })
 };

@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import {AuthorizationStore, LoginStore} from "../Authorization/stores";
-import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore} from "../Status/stores";
+import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, StatusPageStore} from "../Status/stores";
 import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
@@ -19,6 +19,7 @@ const homeTimeline = new StatusesListStore(authorization, createStatus, "/api/v1
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
+const statusPage = new StatusPageStore(authorization);
 
 export const store = {
     authorization,
@@ -34,5 +35,6 @@ export const store = {
     homeTimeline,
     timelineSwitcher,
     userCard,
-    drawer
+    drawer,
+    statusPage
 };

@@ -6,6 +6,7 @@ import {Link} from "mobx-router";
 import {StatusMenu} from "./StatusMenu";
 import {Routes} from "../../routes";
 import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
+import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 const _StatusHeader = ({
     username,
@@ -24,25 +25,27 @@ const _StatusHeader = ({
     <CardHeader avatar={<Avatar src={avatar} className="avatar-mini"/>}
                 title={
                     <div className="status-header">
-                        <Link store={routerStore}
-                              view={Routes.userProfile}
-                              params={{username: userId}}
-                              style={{
-                                  textDecoration: "underline",
-                                  color: "inherit"
-                              }}
-                        >
-                            <Hidden xsDown>
-                                <Typography>
-                                    <strong>{displayName}</strong>
-                                </Typography>
-                            </Hidden>
-                            <Hidden smUp>
-                                <Typography>
-                                    <strong>{lineBreak(displayName)}</strong>
-                                </Typography>
-                            </Hidden>
-                        </Link>
+                        <ClickEventPropagationStopper>
+                            <Link store={routerStore}
+                                  view={Routes.userProfile}
+                                  params={{username: userId}}
+                                  style={{
+                                      textDecoration: "underline",
+                                      color: "inherit"
+                                  }}
+                            >
+                                <Hidden xsDown>
+                                    <Typography>
+                                        <strong>{displayName}</strong>
+                                    </Typography>
+                                </Hidden>
+                                <Hidden smUp>
+                                    <Typography>
+                                        <strong>{lineBreak(displayName)}</strong>
+                                    </Typography>
+                                </Hidden>
+                            </Link>
+                        </ClickEventPropagationStopper>
                         <Typography variant="body1"
                                     color="textSecondary"
                                     className="status-header-date"
@@ -64,12 +67,16 @@ const _StatusHeader = ({
                         </Typography>
                     </div>
                 )}
-                action={displayMenu && <StatusMenu onUnfollowRequest={onUnfollowRequest}
-                                                   onFollowRequest={onFollowRequest}
-                                                   statusId={statusId}
-                                                   currentUserFollowsAuthor={currentUserFollowsAuthor}
-                                                   currentUserIsAuthor={currentUserIsAuthor}
-                />}
+                action={displayMenu && (
+                    <ClickEventPropagationStopper>
+                        <StatusMenu onUnfollowRequest={onUnfollowRequest}
+                                    onFollowRequest={onFollowRequest}
+                                    statusId={statusId}
+                                    currentUserFollowsAuthor={currentUserFollowsAuthor}
+                                    currentUserIsAuthor={currentUserIsAuthor}
+                        />
+                    </ClickEventPropagationStopper>
+                )}
     />
 );
 

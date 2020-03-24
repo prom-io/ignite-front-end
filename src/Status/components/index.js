@@ -10,3 +10,4 @@ export * from "./HomeTimeline";
 export * from "./OpenCreateStatusDialogButton";
 export * from "./CreateStatusDialog";
 export * from "./OpenCreateStatusDialogFloatingActionButton";
+export * from "./StatusPageContainer";

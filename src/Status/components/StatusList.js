@@ -40,6 +40,7 @@ export const StatusList = ({
                                     displayMenu={displayMenu}
                                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                                     statusLikePending={statusLikePendingMap[status.id]}
+                                    link
                     />
                 </Fragment>
             ))}

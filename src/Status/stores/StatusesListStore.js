@@ -60,7 +60,6 @@ export class StatusesListStore {
         this.pending = true;
 
         if (this.baseUrl) {
-            this.allowedToMakeRequest = false;
             if (this.statuses.length !== 0) {
                 const maxId = this.statuses[this.statuses.length - 1].id;
                 axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)

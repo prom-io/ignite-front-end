@@ -38,6 +38,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const getDisabledLabelForAttachmentsInput = maxAttachments => {
+    const maxAttachmentsString = `${maxAttachments}`;
+    const end = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) === "1" ? "image" : "images";
+
+    return `You can't attach more than ${maxAttachments} ${end}`;
+};
+
 const _CreateStatusForm = ({
     charactersRemaining,
     submissionError,
@@ -77,8 +84,8 @@ const _CreateStatusForm = ({
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
                         <AttachImageInput onImagesAttached={addMediaAttachments}
-                                          disabled={mediaAttachmentsFiles.length === 10}
-                                          disabledLabel="You can't attach more than 10 images"
+                                          disabled={mediaAttachmentsFiles.length === 1}
+                                          disabledLabel={getDisabledLabelForAttachmentsInput(1)}
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />

@@ -1,8 +1,15 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {CircularProgress, Typography} from "@material-ui/core";
+import {CircularProgress, Typography, makeStyles} from "@material-ui/core";
 import {StatusListItem} from "./StatusListItem";
-import {StatusMenu} from "./StatusMenu";
+
+const useStyles = makeStyles(() => ({
+    centered: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        display: "table"
+    }
+}));
 
 const getLabelFromError = error => {
     if (error.response) {
@@ -28,8 +35,10 @@ const _StatusPageContainer = ({
     favouriteStatus,
     unfavouriteStatus
 }) => {
+    const classes = useStyles();
+
     if (pending) {
-        return <CircularProgress size={25} color="primary"/>
+        return <CircularProgress size={25} color="primary" className={classes.centered}/>
     }
 
     if (error) {

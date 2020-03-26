@@ -1,5 +1,6 @@
 import React from "react";
 import Gallery from "react-grid-gallery";
+import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 export const StatusMediaAttachments = ({mediaAttachments}) => {
     const gallery = mediaAttachments.map(mediaAttachment => ({
@@ -12,10 +13,12 @@ export const StatusMediaAttachments = ({mediaAttachments}) => {
     return (
         <div style={{display: "flex"}}>
             <div style={{flex: "auto"}}>
-                <Gallery images={gallery}
-                         enableImageSelection={false}
-                         showLightboxThumbnails={true}
-                />
+                <ClickEventPropagationStopper>
+                    <Gallery images={gallery}
+                             enableImageSelection={false}
+                             showLightboxThumbnails={true}
+                    />
+                </ClickEventPropagationStopper>
             </div>
         </div>
     )

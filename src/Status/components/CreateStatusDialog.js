@@ -17,6 +17,7 @@ const _CreateStatusDialog = ({
     setCreateStatusDialogOpen,
     content,
     pending,
+    uploadedAttachments,
     createStatus,
     fullScreen
 }) => {
@@ -45,7 +46,7 @@ const _CreateStatusDialog = ({
                 </IconButton>
                 <Button className={classes.createStatusButton}
                         onClick={createStatus}
-                        disabled={pending || content.length === 0}
+                        disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         color="primary"
                         variant="contained"
                 >
@@ -65,7 +66,8 @@ const mapMobxToProps = ({createStatus}) => ({
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen,
     content: createStatus.content,
     pending: createStatus.pending,
-    createStatus: createStatus.createStatus
+    createStatus: createStatus.createStatus,
+    uploadedAttachments: createStatus.mediaAttachments
 });
 
 export const CreateStatusDialog = withMobileDialog()(

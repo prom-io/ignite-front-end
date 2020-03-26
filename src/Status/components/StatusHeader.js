@@ -7,6 +7,7 @@ import {StatusMenu} from "./StatusMenu";
 import {Routes} from "../../routes";
 import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
+import {addLineBreak, trimString} from "../../utils/string-utils";
 
 const _StatusHeader = ({
     username,
@@ -36,12 +37,12 @@ const _StatusHeader = ({
                             >
                                 <Hidden xsDown>
                                     <Typography>
-                                        <strong>{displayName}</strong>
+                                        <strong>{trimString(displayName)}</strong>
                                     </Typography>
                                 </Hidden>
                                 <Hidden smUp>
                                     <Typography>
-                                        <strong>{lineBreak(displayName)}</strong>
+                                        <strong>{addLineBreak(displayName)}</strong>
                                     </Typography>
                                 </Hidden>
                             </Link>
@@ -59,10 +60,17 @@ const _StatusHeader = ({
                         display: "flex",
                         alignItems: "center"
                     }}>
-                        <Typography>
-                            @{username}
-                        </Typography>
-                        <Typography style={{marginLeft: 12}}>
+                        <Hidden xsDown>
+                            <Typography>
+                                @{username}
+                            </Typography>
+                        </Hidden>
+                        <Hidden smUp>
+                            <Typography style={{fontSize: 15}}>
+                                @{trimString(username, 20)}
+                            </Typography>
+                        </Hidden>
+                        <Typography style={{marginLeft: 12, fontSize: 12}}>
                             <SmallEllipseIcon/> {prettyDate.format(new Date(createdAt))}
                         </Typography>
                     </div>
@@ -79,8 +87,6 @@ const _StatusHeader = ({
                 )}
     />
 );
-
-const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
 const mapMobxToProps = ({store}) => ({
     routerStore: store

@@ -1,5 +1,6 @@
 import React from "react";
-import {CardContent, Typography, makeStyles} from "@material-ui/core";
+import {CardContent, Typography, makeStyles, Card} from "@material-ui/core";
+import {StatusMediaAttachments} from "./StatusMediaAttachments";
 
 const useStyles = makeStyles(() => ({
     statusText: {
@@ -13,16 +14,17 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const StatusBody = ({text}) => {
+export const StatusBody = ({text, mediaAttachments}) => {
     const classes = useStyles();
 
     return (
-        <CardContent className="status-list-body-container">
+        <CardContent className="status-list-body-container" style={{flex: "auto"}}>
             <Typography variant="body1"
                         className={classes.statusText}
             >
                 {text}
             </Typography>
+            <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
         </CardContent>
     );
 };

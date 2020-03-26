@@ -1,13 +1,14 @@
 import Web3 from "web3";
 import {AuthorizationStore, LoginStore} from "../Authorization/stores";
-import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, StatusPageStore} from "../Status/stores";
+import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, UploadMediaAttachmentsStore, StatusPageStore} from "../Status/stores";
 import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
-const createStatus = new CreateStatusStore();
+const uploadMediaAttachments = new UploadMediaAttachmentsStore();
+const createStatus = new CreateStatusStore(uploadMediaAttachments);
 const globalTimeline = new StatusesListStore(authorization, createStatus,"/api/v1/timelines/global");
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();
@@ -36,5 +37,6 @@ export const store = {
     timelineSwitcher,
     userCard,
     drawer,
-    statusPage
+    statusPage,
+    uploadMediaAttachments
 };

@@ -1,4 +1,4 @@
-import {action, observable} from "mobx";
+import {action, observable, computed} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class CreateStatusStore {
@@ -23,6 +23,19 @@ export class CreateStatusStore {
     @observable
     createdStatus = undefined;
 
+    @computed
+    get mediaAttachments() {
+        return this.uploadMediaAttachmentsStore.mediaAttachmentsFiles
+            .filter(fileContainer => fileContainer.uploadedMediaAttachment)
+            .map(fileContainer => fileContainer.uploadedMediaAttachment.id);
+    }
+
+    uploadMediaAttachmentsStore = undefined;
+
+    constructor(uploadMediaAttachmentsStore) {
+        this.uploadMediaAttachmentsStore = uploadMediaAttachmentsStore;
+    }
+
     @action
     setContent = content => {
         this.content = content;
@@ -41,18 +54,19 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if (this.content.length !== 0 && this.content.length <= 250) {
+        if ((this.content.length !== 0 && this.content.length <= 250) || this.mediaAttachments.length !== 0) {
             this.pending = true;
             this.submissionError = undefined;
 
-            axiosInstance.post("/api/v1/statuses", {status: this.content})
+            axiosInstance.post("/api/v1/statuses", {status: this.content, media_attachments: this.mediaAttachments})
                 .then(({data}) => {
                     this.createdStatus = data;
                     this.setContent("");
+                    this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
                 })
                 .catch(error => this.submissionError = error)
                 .finally(() => this.pending = false)
         }
-    }
+    };
 }

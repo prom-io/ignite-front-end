@@ -23,10 +23,12 @@
     "node-sass": "^4.13.1",
     "notistack": "^0.9.7",
     "pretty-date": "^0.2.0",
+    "random-string": "^0.2.0",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
     "react-bottom-scroll-listener": "^3.0.0",
     "react-dom": "^16.12.0",
+    "react-grid-gallery": "^0.5.5",
     "react-scripts": "3.4.0",
     "web3": "^1.2.6"
   },

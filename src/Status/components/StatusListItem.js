@@ -34,7 +34,9 @@ const _StatusListItem = ({
                           onUnfollowRequest={onUnfollowRequest}
                           currentUserIsAuthor={currentUserIsAuthor}
             />
-            <StatusBody text={status.content}/>
+            <StatusBody text={status.content}
+                        mediaAttachments={status.media_attachments}
+            />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}
                           statusId={status.id}

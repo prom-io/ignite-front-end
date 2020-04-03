@@ -1,0 +1,11 @@
+version: "3.5"
+services:
+  ignite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - ${REACT_APP_PRODUCTION_PORT}:${REACT_APP_PRODUCTION_PORT}
+    tty: true

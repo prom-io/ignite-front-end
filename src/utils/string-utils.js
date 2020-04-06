@@ -9,3 +9,9 @@ export const trimString = (string, position) => {
 
     return string;
 };
+
+export const replacePlaceholder = (string, bindings, regexp = /{([^{]+)}/g) => {
+    return string.replace(regexp, (_, key) => {
+        return (key = bindings[key]) ? key : "";
+    });
+};

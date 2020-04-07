@@ -17,13 +17,15 @@ import {PenIcon} from "../../icons/PenIcon";
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {CommentIcon} from "../../icons/CommentIcon";
+import {localized} from "../../localization/components";
 
-export const StatusBottom = ({
+const _StatusBottom = ({
     favourited,
     onFavouriteClick,
     statusId,
     favouritesCount,
-    statusLikePending
+    statusLikePending,
+    l
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -82,7 +84,7 @@ export const StatusBottom = ({
                                         <div className="status-modal-box-item" onClick={handleClose}>
                                             <RepostIcon />
                                             <Typography variant="body1" color={"textSecondary"}>
-                                                Repost
+                                                {l("status.repost")}
                                             </Typography>
                                         </div>
                                     </ClickEventPropagationStopper>
@@ -90,7 +92,7 @@ export const StatusBottom = ({
                                         <div className="status-modal-box-item" onClick={handleClose}>
                                             <PenIcon/>
                                             <Typography variant="body1" color={"textSecondary"}>
-                                                Repost with comment
+                                                {l("status.repost.with-comment")}
                                             </Typography>
                                         </div>
                                     </ClickEventPropagationStopper>
@@ -134,13 +136,13 @@ export const StatusBottom = ({
                                     <div className="status-modal-box-item" onClick={handleClose2}>
                                         <LetterIcon />
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Send in message
+                                            {l("status.send-in-message")}
                                         </Typography>
                                     </div>
                                     <div className="status-modal-box-item" onClick={handleClose2}>
                                         <ShareIcon/>
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Copy link
+                                            {l("status.copy-link")}
                                         </Typography>
                                     </div>
                                 </div>
@@ -152,3 +154,5 @@ export const StatusBottom = ({
         </ClickEventPropagationStopper>
     );
 };
+
+export const StatusBottom = localized(_StatusBottom);

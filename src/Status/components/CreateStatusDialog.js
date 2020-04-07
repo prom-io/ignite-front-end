@@ -3,6 +3,7 @@ import {inject, observer} from "mobx-react";
 import {Dialog, DialogTitle, DialogContent, Button, IconButton, makeStyles, CircularProgress, withMobileDialog} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import {CreateStatusForm} from "./CreateStatusForm";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     createStatusButton: {
@@ -19,7 +20,8 @@ const _CreateStatusDialog = ({
     pending,
     uploadedAttachments,
     createStatus,
-    fullScreen
+    fullScreen,
+    l
 }) => {
     const classes = useStyles();
 
@@ -51,7 +53,7 @@ const _CreateStatusDialog = ({
                         variant="contained"
                 >
                     {pending && <CircularProgress size={15}/>}
-                    Send
+                    {l("status.send")}
                 </Button>
             </DialogTitle>
             <DialogContent>
@@ -70,6 +72,7 @@ const mapMobxToProps = ({createStatus}) => ({
     uploadedAttachments: createStatus.mediaAttachments
 });
 
-export const CreateStatusDialog = withMobileDialog()(
-    inject(mapMobxToProps)(observer(_CreateStatusDialog))
-);
+export const CreateStatusDialog = localized(
+    withMobileDialog()(
+        inject(mapMobxToProps)(observer(_CreateStatusDialog))
+));

@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import {AttachImageInput} from "./AttachImageInput";
 import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -38,11 +39,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const getDisabledLabelForAttachmentsInput = maxAttachments => {
+const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
     const maxAttachmentsString = `${maxAttachments}`;
-    const end = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) === "1" ? "image" : "images";
+    const isPlural = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) !== "1";
+    const bindings = {limit: 1};
+    const labelKey = isPlural ? "status.images-attachments-limit.plural" : "status.images-attachments-limit";
 
-    return `You can't attach more than ${maxAttachments} ${end}`;
+    return l(labelKey, bindings);
 };
 
 const _CreateStatusForm = ({
@@ -57,7 +60,8 @@ const _CreateStatusForm = ({
     addMediaAttachments,
     removeMediaAttachment,
     uploadedAttachments,
-    hideSendButton = false
+    hideSendButton = false,
+    l
 }) => {
     const classes = useStyles();
 
@@ -70,7 +74,7 @@ const _CreateStatusForm = ({
                     <Avatar src={currentUserAvatar} className="avatar-mini"/>
                 </Grid>
                 <Grid item xs={11}>
-                    <TextField placeholder="What's on your mind?"
+                    <TextField placeholder={l("status.placeholder")}
                                multiline
                                rows="4"
                                onChange={event => setContent(event.target.value)}
@@ -85,7 +89,7 @@ const _CreateStatusForm = ({
                     <div className="create-status-form-pic">
                         <AttachImageInput onImagesAttached={addMediaAttachments}
                                           disabled={mediaAttachmentsFiles.length === 1}
-                                          disabledLabel={getDisabledLabelForAttachmentsInput(1)}
+                                          disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
@@ -111,7 +115,7 @@ const _CreateStatusForm = ({
                                     disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
-                                Send
+                                {l("status.send")}
                             </Button>
                         )}
                     </Grid>
@@ -142,4 +146,4 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     uploadedAttachments: createStatus.mediaAttachments
 });
 
-export const CreateStatusForm = inject(mapMobxToProps)(observer(_CreateStatusForm));
+export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

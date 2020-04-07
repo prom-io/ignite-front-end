@@ -18,8 +18,9 @@ import {BlockIcon} from "../../icons/BlockIcon";
 import {ReportIcon} from "../../icons/ReportIcon";
 import {SadIcon} from "../../icons/SadIcon";
 import {EmbedIcon} from "../../icons/EmbedIcon";
+import {localized} from "../../localization/components";
 
-export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest}) => {
+const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest, l}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -61,7 +62,12 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
             >
                 <ExpandMoreIcon/>
             </IconButton>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition style={{ zIndex: 10 }}>
+            <Popper open={open}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    transition
+                    style={{ zIndex: 10 }}
+            >
                 {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
@@ -75,7 +81,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             <SadIcon/>
                                         </ListItemIcon>
                                         <ListItemText>
-                                            Not interested
+                                            {l("status.menu.not-interested")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
@@ -83,7 +89,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             <EmbedIcon/>
                                         </ListItemIcon>
                                         <ListItemText>
-                                            Embed this post
+                                            {l("status.menu.embed")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled={currentUserIsAuthor}
@@ -97,7 +103,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             {(currentUserFollowsAuthor || currentUserIsAuthor) ? <UnfollowIcon/> : <PersonAddOutlinedIcon/>}
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? "Unfollow author" : "Follow author"}
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? l("status.menu.follow-author") : l("status.menu.unfollow-author")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
@@ -105,7 +111,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             <MuteIcon/>
                                         </ListItemIcon>
                                         <ListItemText>
-                                            Mute author
+                                            {l("status.menu.mute-author")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
@@ -113,7 +119,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             <BlockIcon/>
                                         </ListItemIcon>
                                         <ListItemText>
-                                            Block author
+                                            {l("status.menu.block-author")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
@@ -121,7 +127,7 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
                                             <ReportIcon/>
                                         </ListItemIcon>
                                         <ListItemText>
-                                            Report abuse
+                                            {l("status.menu.report")}
                                         </ListItemText>
                                     </MenuItem>
                                 </MenuList>
@@ -133,3 +139,5 @@ export const StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statu
         </Fragment>
     )
 };
+
+export const StatusMenu = localized(_StatusMenu);

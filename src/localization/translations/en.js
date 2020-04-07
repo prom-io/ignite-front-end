@@ -1,14 +1,15 @@
 export const en = {
     "status.send": "Send",
     "status.placeholder": "What's on your mind?",
-    "status.images-attachments-limit": "You can't attach more than {limit} images",
-    "status.not-interested": "Not interested",
-    "status.embed": "Embed this post",
-    "status.follow-author": "Follow author",
-    "status.unfollow-author": "Unfollow author",
-    "status.mute-author": "Mute author",
-    "status.block-author": "Block author",
-    "status.report": "Report abuse",
+    "status.images-attachments-limit": "You can't attach more than {limit} image",
+    "status.images-attachments-limit.plural": "You can't attach more that {limit} images",
+    "status.menu.not-interested": "Not interested",
+    "status.menu.embed": "Embed this post",
+    "status.menu.follow-author": "Follow author",
+    "status.menu.unfollow-author": "Unfollow author",
+    "status.menu.mute-author": "Mute author",
+    "status.menu.block-author": "Block author",
+    "status.menu.report": "Report abuse",
     "status.repost": "Repost",
     "status.repost-with-comment": "Repost with comment",
     "status-send-in-message": "Send in message",
@@ -35,6 +36,11 @@ export const en = {
     "chat.description.second-paragraph": "Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open. We believe that users of social networks should be able to control their social media experience on their own terms, rather than the terms set down by Big Tech.",
     "notifications.description.first-paragraph": "Prometeus Team plans to create and develop Notifications timeline to offer our users a simple way to see how others on Ignite are interacting with them.",
     "notifications.description.second-paragraph": "From the Notifications timeline, you’ll be able to see which of your posts have been liked, plus the latest reposts, posts directed to you (replies and mentions) and your new followers. You could view your notifications in two ways: 'All' shows you notifications for account activity like new followers, reposts, mentions, and likes. 'Mentions' will show you notifications only for posts that mention your username.",
-    "notifications.description.third-paragraph": " Later we are going to implement the 'Quality filter' that will filter lower-quality content from your notifications, for example, duplicate posts or content that appears to be automated, but it will never filter notifications from people you follow or accounts you’ve recently interacted with. You will have the option to turn this on or off in your notifications settings."
+    "notifications.description.third-paragraph": " Later we are going to implement the 'Quality filter' that will filter lower-quality content from your notifications, for example, duplicate posts or content that appears to be automated, but it will never filter notifications from people you follow or accounts you’ve recently interacted with. You will have the option to turn this on or off in your notifications settings.",
+    "appbar.home": "Home",
+    "appbar.notifications": "Notifications",
+    "appbar.chat": "Chat",
+    "appbar.trends": "Trends",
+    "appbar.search": "Search"
 };
 

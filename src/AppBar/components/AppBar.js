@@ -18,8 +18,9 @@ import {TrendsIcon} from "../../icons/TrendsIcon";
 import {LoginDialog} from "../../Authorization/components/LoginDialog";
 import {OpenLoginDialogButton} from "../../Authorization/components";
 import {SignUpDialog} from "../../SignUp/components";
+import {localized} from "../../localization/components";
 
-const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme}) => {
+const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l}) => {
     return (
         <Fragment>
             <Hidden mdUp>
@@ -32,28 +33,28 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
             <div className="header-logo"></div>
                 <Toolbar className="tool-bar">
                     <div style={{flexGrow: 1}} className="tool-bar_list">
-                        <AppBarLink text="Home"
+                        <AppBarLink text={l("appbar.home")}
                                     targetView={Routes.home}
                                     active={currentActiveRoute === "home"}
                                     icon={<HomeIcon/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
-                        <AppBarLink text="Notifications"
+                        <AppBarLink text={l("appbar.notifications")}
                                     targetView={Routes.notifications}
                                     active={currentActiveRoute === "notifications"}
                                     icon={<BellIcon color={currentActiveRoute === "notifications" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
-                        <AppBarLink text="Chat"
+                        <AppBarLink text={l("appbar.chat")}
                                     targetView={Routes.chat}
                                     active={currentActiveRoute === "chat"}
                                     icon={<ChatIcon color={currentActiveRoute === "chat" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
-                        <AppBarLink text="Trends"
+                        <AppBarLink text={l("appbar.trends")}
                                     targetView={Routes.trends}
                                     active={currentActiveRoute === "trends"}
                                     icon={<TrendsIcon color={currentActiveRoute === "trends" && theme.palette.primary.main}/>}
@@ -61,7 +62,11 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     viewParameters={{}}
                         />
                     </div>
-                    <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
+                    <input type="text"
+                           placeholder={l("appbar.search")}
+                           disabled
+                           className="app-bar-search-field"
+                    />
                     <Hidden smDown>
                         <UserAppBarMenu/>
                     </Hidden>
@@ -102,6 +107,8 @@ const mapMobxToProps = ({store, authorization, login}) => ({
     setLoginDialogOpen: login.setLoginDialogOpen
 });
 
-export const AppBar = withTheme(
-    inject(mapMobxToProps)(observer(_AppBar))
+export const AppBar = localized(
+    withTheme(
+        inject(mapMobxToProps)(observer(_AppBar))
+    )
 );

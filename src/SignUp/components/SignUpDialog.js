@@ -11,6 +11,7 @@ import {
     Typography
 } from "@material-ui/core";
 import {withSnackbar} from "notistack";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     signUpFormContent: {
@@ -62,7 +63,8 @@ const _SignUpDialog = ({
     setShowSnackbar,
     setSignUpDialogOpen,
     enqueueSnackbar,
-    onLoginButtonClick
+    onLoginButtonClick,
+    l
 }) => {
     const classes = useStyles();
 
@@ -85,8 +87,6 @@ const _SignUpDialog = ({
         setShowSnackbar(false);
     }
 
-    const Talk = '{Talk}'
-
     return (
         <Dialog open={signUpDialogOpen}
                 fullScreen={fullScreen}
@@ -98,8 +98,7 @@ const _SignUpDialog = ({
                 <div className={classes.signUpFormFields}
                     style={{
                         "padding":"30px"
-                    }
-                    }
+                    }}
                 >
                     <div className="sign-in-logo">
                         <img src="./logo.png" />
@@ -107,9 +106,9 @@ const _SignUpDialog = ({
                     <Typography variant="h6"
                                 className={classes.centered}
                     >
-                        Create an account
+                        {l("sign-up.create-an-account")}
                     </Typography>
-                   <TextField label="Wallet address"
+                   <TextField label={l("sign-up.wallet-address")}
                               value={signUpForm.address}
                               onChange={event => setFormValue("address", event.target.value)}
                               error={Boolean(signUpFormErrors.address)}
@@ -117,7 +116,7 @@ const _SignUpDialog = ({
                               fullWidth
                               margin="dense"
                    />
-                   <TextField label="Private key"
+                   <TextField label={l("sign-up.private-key")}
                               value={signUpForm.privateKey}
                               onChange={event => setFormValue("privateKey", event.target.value)}
                               error={Boolean(signUpFormErrors.privateKey)}
@@ -126,7 +125,7 @@ const _SignUpDialog = ({
                               margin="dense"
                               type="password"
                    />
-                   <TextField label="Username"
+                   <TextField label={l("sign-up.username")}
                               value={signUpForm.username}
                               onChange={event => setFormValue("username", event.target.value)}
                               error={Boolean(signUpFormErrors.username)}
@@ -143,7 +142,7 @@ const _SignUpDialog = ({
                            variant="contained"
                    >
                        {pending && <CircularProgress size={15} color="primary"/>}
-                       Sign up for Ignite
+                       {l("sign-up")}
                    </Button>
                     <Button disabled={pending}
                             onClick={handleLoginButtonClick}
@@ -151,7 +150,7 @@ const _SignUpDialog = ({
                             color="primary"
                             variant="text"
                     >
-                        Log in
+                        {l("authorization.login")}
                     </Button>
                     <Button disabled={pending}
                             onClick={() => setSignUpDialogOpen(false)}
@@ -159,7 +158,7 @@ const _SignUpDialog = ({
                             color="primary"
                             variant="text"
                     >
-                        Close
+                        {l("sign-up.close")}
                     </Button>
                 </div>
             </DialogContent>
@@ -180,8 +179,10 @@ const mapMobxToProps = ({signUp}) => ({
     setSignUpDialogOpen: signUp.setSignUpDialogOpen
 });
 
-export const SignUpDialog = withMobileDialog()(
-    withSnackbar(
-        inject(mapMobxToProps)(observer(_SignUpDialog))
+export const SignUpDialog = localized(
+    withMobileDialog()(
+        withSnackbar(
+            inject(mapMobxToProps)(observer(_SignUpDialog))
+        )
     )
 );

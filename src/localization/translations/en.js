@@ -32,6 +32,7 @@ export const en = {
     "authorization.login.error.invalid-credentials": "Unknown combination of address and private key",
     "authorization.login.error.unknown": "Unknown error occurred when tried to log in. Server responded with {responseStatus} status",
     "authorization.login.error.no-response": "Error occurred when tried to log in: no response from server",
+    "sign-up": "Sign up for ignite",
     "chat.description.first-paragraph": "Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by us. All the messages will be deleted after 30 days.",
     "chat.description.second-paragraph": "Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open. We believe that users of social networks should be able to control their social media experience on their own terms, rather than the terms set down by Big Tech.",
     "notifications.description.first-paragraph": "Prometeus Team plans to create and develop Notifications timeline to offer our users a simple way to see how others on Ignite are interacting with them.",

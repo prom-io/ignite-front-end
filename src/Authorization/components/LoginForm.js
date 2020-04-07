@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
 import {Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography} from "@material-ui/core";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -42,16 +43,16 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const getLabelFromSubmissionError = error => {
+const getLabelFromSubmissionError = (error, l) => {
     if (error.response) {
         if (error.response.status === 401) {
-            return "Unknown combination of address and private key"
+            return l("authorization.login.error.invalid-credentials");
         } else {
             console.log(error);
-            return `Unknown error occurred when tried to log in. Server responded with ${error.response.status} status`;
+            return l("authorization.login.error.unknown", {responseStatus: error.response.status});
         }
     } else {
-        return "Error occurred when tried to log in: no response from server";
+        return l("authorization.login.error.no-response");
     }
 };
 
@@ -65,20 +66,21 @@ const _LoginForm = ({
     hideLoginButton,
     hideSignUpButton,
     disableCard,
-    setLoginDialogOpen
+    setLoginDialogOpen,
+    l
 }) => {
     const classes = useStyles();
 
     const content = (
         <Fragment>
-            <TextField label="Wallet number"
+            <TextField label={l("authorization.login.wallet-address")}
                        value={loginForm.username}
                        onChange={event => setFormValue("username", event.target.value)}
                        fullWidth
                        margin="dense"
                        className="input-default"
             />
-            <TextField label="Password"
+            <TextField label={l("authorization.login.private-key")}
                        value={loginForm.password}
                        onChange={event => setFormValue("password", event.target.value)}
                        fullWidth
@@ -89,7 +91,7 @@ const _LoginForm = ({
                 <Typography variant="body1"
                             className={classes.errorLabel}
                 >
-                    {getLabelFromSubmissionError(submissionError)}
+                    {getLabelFromSubmissionError(submissionError, l)}
                 </Typography>
             )}
             {!hideLoginButton && (
@@ -101,7 +103,7 @@ const _LoginForm = ({
                         fullWidth
                 >
                     {pending && <CircularProgress size={14} color="primary"/>}
-                    Login
+                    {l("authorization.login")}
                 </Button>
             )}
             {!hideSignUpButton && (
@@ -115,7 +117,7 @@ const _LoginForm = ({
                         }}
                         disabled={pending}
                 >
-                    Sign up for Ignite
+                    {l("sign-up")}
                 </Button>
             )}
         </Fragment>
@@ -145,4 +147,6 @@ const mapMobxToProps = ({login, signUp}) => ({
     setLoginDialogOpen: login.setLoginDialogOpen
 });
 
-export const LoginForm = inject(mapMobxToProps)(observer(_LoginForm));
+export const LoginForm = localized(
+    inject(mapMobxToProps)(observer(_LoginForm))
+);

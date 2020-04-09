@@ -49,4 +49,3 @@ export const en = {
     "user.card.hear-what-people-talking-about": "Hear what people talking about",
     "user.card.join-the-conversation": "Join the conversation"
 };
-

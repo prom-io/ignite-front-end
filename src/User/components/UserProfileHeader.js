@@ -3,8 +3,9 @@ import {Button, Grid} from "@material-ui/core";
 import {UserProfileAvatar} from "./UserProfileAvatar";
 import {UserProfileTab} from "./UserProfileTab";
 import {addLineBreak} from "../../utils/string-utils";
+import {localized} from "../../localization/components";
 
-export const UserProfileHeader = ({
+const _UserProfileHeader = ({
     avatar,
     following,
     followers,
@@ -16,7 +17,8 @@ export const UserProfileHeader = ({
     onTabSelected,
     username,
     displayName,
-    currentUser
+    currentUser,
+    l
 }) => {
     let followButton = null;
 
@@ -29,7 +31,7 @@ export const UserProfileHeader = ({
                             onClick={() => onUnfollowRequest(username)}
                             disableElevation
                     >
-                        Unfollow
+                        {l("user.profile.unfollow")}
                     </Button>
                 </Grid>
             )
@@ -40,9 +42,8 @@ export const UserProfileHeader = ({
                             onClick={() => onFollowRequest(username)}
                             disableElevation
                     >
-                        Follow
+                        {l("user.profile.follow")}
                     </Button>
-
                 </Grid>
             )
     }
@@ -85,3 +86,5 @@ export const UserProfileHeader = ({
         </Grid>
     )
 };
+
+export const UserProfileHeader = localized(_UserProfileHeader);

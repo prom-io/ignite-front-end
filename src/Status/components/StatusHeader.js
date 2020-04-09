@@ -37,7 +37,7 @@ const _StatusHeader = ({
                             >
                                 <Hidden xsDown>
                                     <Typography>
-                                        <strong>{trimString(displayName)}</strong>
+                                        <strong>{trimString(displayName, 35)}</strong>
                                     </Typography>
                                 </Hidden>
                                 <Hidden smUp>
@@ -47,12 +47,6 @@ const _StatusHeader = ({
                                 </Hidden>
                             </Link>
                         </ClickEventPropagationStopper>
-                        <Typography variant="body1"
-                                    color="textSecondary"
-                                    className="status-header-date"
-                        >
-                            {prettyDate.format(new Date(createdAt))}
-                        </Typography>
                     </div>
                 }
                 subheader={(
@@ -62,7 +56,7 @@ const _StatusHeader = ({
                     }}>
                         <Hidden xsDown>
                             <Typography>
-                                @{username}
+                                @{trimString(username, 35)}
                             </Typography>
                         </Hidden>
                         <Hidden smUp>

@@ -1,6 +1,7 @@
 import React from "react";
 import {CardContent, Typography, makeStyles, Card} from "@material-ui/core";
 import {StatusMediaAttachments} from "./StatusMediaAttachments";
+import {RepostedStatusContent} from "./RepostedStatusContent";
 
 const useStyles = makeStyles(() => ({
     statusText: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const StatusBody = ({text, mediaAttachments}) => {
+export const StatusBody = ({text, mediaAttachments, repostedStatus}) => {
     const classes = useStyles();
 
     return (
@@ -25,6 +26,7 @@ export const StatusBody = ({text, mediaAttachments}) => {
                 {text}
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
+            {Boolean(repostedStatus) && <RepostedStatusContent repostedStatus={repostedStatus}/>}
         </CardContent>
     );
 };

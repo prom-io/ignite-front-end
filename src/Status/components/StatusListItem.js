@@ -36,6 +36,7 @@ const _StatusListItem = ({
             />
             <StatusBody text={status.content}
                         mediaAttachments={status.media_attachments}
+                        repostedStatus={status.reposted_status}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}

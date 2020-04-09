@@ -1,9 +1,11 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import {Avatar} from "@material-ui/core";
+import {localized} from "../localization/components";
 
 const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
 
+@localized
 @inject(({userCard}) => ({
   isLogin: Boolean(userCard.user),
   src: userCard.user && userCard.user.avatar,
@@ -19,7 +21,7 @@ class UserComponent extends React.Component {
     super(props)
   }
   render () {
-    const {isLogin, src, username, displayName, posts, followers, follow} = this.props;
+    const {isLogin, src, username, displayName, posts, followers, follow, l} = this.props;
 
     if (isLogin) {
       return (
@@ -42,15 +44,15 @@ class UserComponent extends React.Component {
             <div className="user-card-statistic">
               <div>
                 <p>{posts}</p>
-                <h5>Posts</h5>
+                <h5>{l("user.profile.posts")}</h5>
               </div>
               <div>
                 <p>{followers}</p>
-                <h5>Followers</h5>
+                <h5>{l("user.profile.followers")}</h5>
               </div>
               <div>
                 <p>{follow}</p>
-                <h5>Follow</h5>
+                <h5>{l("user.profile.following")}</h5>
               </div>
             </div>
           </div>
@@ -62,15 +64,15 @@ class UserComponent extends React.Component {
           <div className="user-card-notauth-box">
             <div className="user-card-notauth">
               <img src="/user-card-search.png" alt=""/>
-              <p>Follow your interests.</p>
+              <p>{l("user.card.follow-your-interests")}</p>
             </div>
             <div className="user-card-notauth">
               <img src="/user-card-friend.png" alt=""/>
-              <p>Hear what people talking about</p>
+              <p>{l("user.card.hear-what-people-talking-about")}</p>
             </div>
             <div className="user-card-notauth">
               <img src="/user-card-search.png" alt=""/>
-              <p>Join the conversation</p>
+              <p>{l("user.card.join-the-conversation")}</p>
             </div>
           </div>
         </div>

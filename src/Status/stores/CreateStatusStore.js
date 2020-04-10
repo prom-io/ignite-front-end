@@ -6,6 +6,12 @@ export class CreateStatusStore {
     content = "";
 
     @observable
+    repostedStatus = undefined;
+
+    @observable
+    pendingRepostsMap = {};
+
+    @observable
     pending = false;
 
     @observable
@@ -54,11 +60,20 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if ((this.content.length !== 0 && this.content.length <= 250) || this.mediaAttachments.length !== 0) {
+        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || this.repostedStatus)) {
             this.pending = true;
             this.submissionError = undefined;
+            const repostedStatusId = this.repostedStatus && this.repostedStatus.id;
 
-            axiosInstance.post("/api/v1/statuses", {status: this.content, media_attachments: this.mediaAttachments})
+            if (repostedStatusId) {
+                this.pendingRepostsMap[repostedStatusId] = true;
+            }
+
+            axiosInstance.post("/api/v1/statuses", {
+                status: this.content,
+                media_attachments: this.mediaAttachments,
+                repostedStatusId
+            })
                 .then(({data}) => {
                     this.createdStatus = data;
                     this.setContent("");
@@ -66,7 +81,18 @@ export class CreateStatusStore {
                     this.createStatusDialogOpen = false;
                 })
                 .catch(error => this.submissionError = error)
-                .finally(() => this.pending = false)
+                .finally(() => {
+                    this.pending = false;
+
+                    if (repostedStatusId) {
+                        this.pendingRepostsMap[repostedStatusId] = false;
+                    }
+                })
         }
     };
+
+    @action
+    setRepostedStatus = repostedStatus => {
+        this.repostedStatus = repostedStatus;
+    }
 }

@@ -26,7 +26,7 @@ export const StatusBody = ({text, mediaAttachments, repostedStatus}) => {
                 {text}
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
-            {Boolean(repostedStatus) && <RepostedStatusContent repostedStatus={repostedStatus}/>}
+            {repostedStatus && <RepostedStatusContent repostedStatus={repostedStatus}/>}
         </CardContent>
     );
 };

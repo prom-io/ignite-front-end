@@ -17,13 +17,16 @@ import {PenIcon} from "../../icons/PenIcon";
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {CommentIcon} from "../../icons/CommentIcon";
+import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
+import {RepostStatusMenu} from "./RespostStatusMenu";
 
 export const StatusBottom = ({
     favourited,
     onFavouriteClick,
     statusId,
     favouritesCount,
-    statusLikePending
+    statusLikePending,
+    status
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -65,40 +68,7 @@ export const StatusBottom = ({
                         0
                     </Typography>
                 </div>
-                <div className="status-list-bottom-box">
-                    <IconButton ref={anchorRef}
-                                onClick={handleToggle}
-                    >
-                        <RepostIcon/>
-                    </IconButton>
-                    <Typography variant="body1" color={"textSecondary"}>
-                        0
-                    </Typography>
-                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
-                        <ClickEventPropagationStopper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <div className="status-list-bottom-box-modal" onClick={handleClose}>
-                                    <ClickEventPropagationStopper>
-                                        <div className="status-modal-box-item" onClick={handleClose}>
-                                            <RepostIcon />
-                                            <Typography variant="body1" color={"textSecondary"}>
-                                                Repost
-                                            </Typography>
-                                        </div>
-                                    </ClickEventPropagationStopper>
-                                    <ClickEventPropagationStopper>
-                                        <div className="status-modal-box-item" onClick={handleClose}>
-                                            <PenIcon/>
-                                            <Typography variant="body1" color={"textSecondary"}>
-                                                Repost with comment
-                                            </Typography>
-                                        </div>
-                                    </ClickEventPropagationStopper>
-                                </div>
-                            </ClickAwayListener>
-                        </ClickEventPropagationStopper>
-                    </Popper>
-                </div>
+                <RepostStatusMenu status={status}/>
                 <div className="status-list-bottom-box">
                     {statusLikePending
                         ? <CircularProgress size={20} color="primary"/>

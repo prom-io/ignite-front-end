@@ -45,7 +45,6 @@ export class StatusesListStore {
             () => this.createdStatus,
             status => {
                 if (status) {
-                    console.log(status);
                     this.statuses = [
                         status,
                         ...this.statuses

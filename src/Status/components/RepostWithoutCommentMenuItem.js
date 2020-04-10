@@ -1,8 +1,18 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Typography} from "@material-ui/core";
+import {ListItemIcon, ListItemText, makeStyles, MenuItem} from "@material-ui/core";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {localized} from "../../localization/components";
+
+const useStyles = makeStyles(() => ({
+    menuItemGutters: {
+        paddingLeft: 0
+    },
+    listItemIconRoot: {
+        minWidth: 15,
+        marginRight: 8
+    }
+}));
 
 const _RepostWithoutCommentMenuItem = ({
     onClick,
@@ -11,6 +21,8 @@ const _RepostWithoutCommentMenuItem = ({
     createStatus,
     l
 }) => {
+    const classes = useStyles();
+
     const handleClick = () => {
         setRepostedStatus(status);
         createStatus();
@@ -21,14 +33,20 @@ const _RepostWithoutCommentMenuItem = ({
     };
 
     return (
-        <div className="status-modal-box-item"
-             onClick={handleClick}
+        <MenuItem onClick={handleClick}
+                  classes={{
+                      gutters: classes.menuItemGutters
+                  }}
         >
-            <RepostIcon />
-            <Typography variant="body1" color={"textSecondary"}>
+            <ListItemIcon classes={{
+                root: classes.listItemIconRoot
+            }}>
+                <RepostIcon/>
+            </ListItemIcon>
+            <ListItemText>
                 {l("status.repost")}
-            </Typography>
-        </div>
+            </ListItemText>
+        </MenuItem>
     )
 };
 

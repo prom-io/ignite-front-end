@@ -1,14 +1,14 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import {Link} from "mobx-router"
-import {Divider, IconButton} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import {Divider} from "@material-ui/core";
 import {StatusBody} from "./StatusBody";
+import {StatusHeader} from "./StatusHeader";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
-import {StatusHeader} from "./StatusHeader";
+import {localized} from "../../localization/components";
 
-const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton, onClearButtonClick}) => {
+const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton, onClearButtonClick, l}) => {
     const doNothing = () => {};
 
     return (
@@ -41,6 +41,7 @@ const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton
                           }}>
                         <StatusBody text={repostedStatus.content}
                                     mediaAttachments={repostedStatus.media_attachments}
+                                    nestedRepostedStatusId={repostedStatus.reposted_status_id}
                         />
                     </Link>
                 </ClickEventPropagationStopper>
@@ -53,4 +54,6 @@ const mapMobxToProps = ({store}) => ({
     routerStore: store
 });
 
-export const RepostedStatusContent = inject(mapMobxToProps)(observer(_RepostedStatusContent));
+export const RepostedStatusContent = localized(
+    inject(mapMobxToProps)(observer(_RepostedStatusContent))
+);

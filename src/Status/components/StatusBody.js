@@ -1,7 +1,13 @@
 import React from "react";
-import {CardContent, Typography, makeStyles, Card} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
+import {Link} from "mobx-router";
+import {CardContent, makeStyles, Typography, useTheme} from "@material-ui/core";
+import ReplyIcon from "@material-ui/icons/Reply";
 import {StatusMediaAttachments} from "./StatusMediaAttachments";
 import {RepostedStatusContent} from "./RepostedStatusContent";
+import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
+import {Routes} from "../../routes";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     statusText: {
@@ -15,8 +21,9 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const StatusBody = ({text, mediaAttachments, repostedStatus}) => {
+const _StatusBody = ({text, mediaAttachments, repostedStatus, nestedRepostedStatusId, routerStore, l}) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <CardContent className="status-list-body-container" style={{flex: "auto"}}>
@@ -27,6 +34,32 @@ export const StatusBody = ({text, mediaAttachments, repostedStatus}) => {
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
             {repostedStatus && <RepostedStatusContent repostedStatus={repostedStatus}/>}
+            {nestedRepostedStatusId && (
+                <ClickEventPropagationStopper>
+                    <Link store={routerStore}
+                          view={Routes.status}
+                          params={{id: nestedRepostedStatusId}}
+                          style={{
+                              color: theme.palette.primary.main
+                          }}
+                    >
+                       <div style={{display: "flex"}}>
+                           <ReplyIcon/>
+                           <Typography style={{color: theme.palette.primary.main}}>
+                               {l("status.reposted-status")}
+                           </Typography>
+                       </div>
+                    </Link>
+                </ClickEventPropagationStopper>
+            )}
         </CardContent>
     );
 };
+
+const mapMobxToProps = ({store}) => ({
+    routerStore: store
+});
+
+export const StatusBody = localized(
+    inject(mapMobxToProps)(observer(_StatusBody))
+);

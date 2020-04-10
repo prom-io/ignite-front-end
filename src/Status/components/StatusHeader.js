@@ -103,7 +103,7 @@ const _StatusHeader = ({
                     )}
         />
     );
-}
+};
 
 const mapMobxToProps = ({store}) => ({
     routerStore: store

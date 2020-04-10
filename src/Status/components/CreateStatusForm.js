@@ -63,6 +63,7 @@ const _CreateStatusForm = ({
     uploadedAttachments,
     hideSendButton = false,
     repostedStatus,
+    setRepostedStatus,
     l
 }) => {
     const classes = useStyles();
@@ -77,7 +78,10 @@ const _CreateStatusForm = ({
                         <Typography>
                             {l("status.reposted-status")}:
                         </Typography>
-                        <RepostedStatusContent repostedStatus={repostedStatus}/>
+                        <RepostedStatusContent repostedStatus={repostedStatus}
+                                               displayClearButton
+                                               onClearButtonClick={() => setRepostedStatus(undefined)}
+                        />
                     </Grid>
                 )}
                 <Grid item xs={1}>
@@ -154,7 +158,8 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
     uploadedAttachments: createStatus.mediaAttachments,
-    repostedStatus: createStatus.repostedStatus
+    repostedStatus: createStatus.repostedStatus,
+    setRepostedStatus: createStatus.setRepostedStatus
 });
 
 export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

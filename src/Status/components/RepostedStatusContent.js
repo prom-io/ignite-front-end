@@ -1,13 +1,14 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import {Link} from "mobx-router"
-import {Divider} from "@material-ui/core";
+import {Divider, IconButton} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import {StatusBody} from "./StatusBody";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
 import {StatusHeader} from "./StatusHeader";
 
-const _RepostedStatusContent = ({repostedStatus, routerStore}) => {
+const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton, onClearButtonClick}) => {
     const doNothing = () => {};
 
     return (
@@ -27,6 +28,8 @@ const _RepostedStatusContent = ({repostedStatus, routerStore}) => {
                               onFollowRequest={doNothing}
                               onUnfollowRequest={doNothing}
                               currentUserIsAuthor={false}
+                              displayClearButton={displayClearButton}
+                              onClearButtonClick={onClearButtonClick}
                 />
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}

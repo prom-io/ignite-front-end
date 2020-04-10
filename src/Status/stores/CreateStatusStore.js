@@ -79,6 +79,7 @@ export class CreateStatusStore {
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
+                    this.repostedStatus = undefined;
                 })
                 .catch(error => this.submissionError = error)
                 .finally(() => {

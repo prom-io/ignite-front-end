@@ -1,9 +1,9 @@
 import React, {useRef, useState} from "react";
 import {ClickAwayListener, IconButton, Popper, Typography} from "@material-ui/core";
+import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {PenIcon} from "../../icons/PenIcon";
-import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 
 export const RepostStatusMenu = ({status}) => {
     const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export const RepostStatusMenu = ({status}) => {
                 <RepostIcon/>
             </IconButton>
             <Typography variant="body1" color={"textSecondary"}>
-                0
+                {status.reposts_count}
             </Typography>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
                 <ClickEventPropagationStopper>

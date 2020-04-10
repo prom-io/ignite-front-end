@@ -1,6 +1,7 @@
 import React, {useRef, useState} from "react";
 import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
 import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
+import {RepostWithCommentMenuItem} from "./RepostWithCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {PenIcon} from "../../icons/PenIcon";
@@ -46,12 +47,9 @@ export const RepostStatusMenu = ({status, repostPending}) => {
                                 />
                             </ClickEventPropagationStopper>
                             <ClickEventPropagationStopper>
-                                <div className="status-modal-box-item" onClick={handleClose}>
-                                    <PenIcon/>
-                                    <Typography variant="body1" color={"textSecondary"}>
-                                        Repost with comment
-                                    </Typography>
-                                </div>
+                                <RepostWithCommentMenuItem status={status}
+                                                           onClick={handleClose}
+                                />
                             </ClickEventPropagationStopper>
                         </div>
                     </ClickAwayListener>

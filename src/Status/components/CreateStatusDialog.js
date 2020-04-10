@@ -1,6 +1,15 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Dialog, DialogTitle, DialogContent, Button, IconButton, makeStyles, CircularProgress, withMobileDialog} from "@material-ui/core";
+import {
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    IconButton,
+    makeStyles,
+    withMobileDialog
+} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import {CreateStatusForm} from "./CreateStatusForm";
 import {localized} from "../../localization/components";

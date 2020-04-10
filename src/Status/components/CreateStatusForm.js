@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import {AttachImageInput} from "./AttachImageInput";
 import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
+import {RepostedStatusContent} from "./RepostedStatusContent";
 import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
@@ -61,6 +62,7 @@ const _CreateStatusForm = ({
     removeMediaAttachment,
     uploadedAttachments,
     hideSendButton = false,
+    repostedStatus,
     l
 }) => {
     const classes = useStyles();
@@ -70,6 +72,14 @@ const _CreateStatusForm = ({
             <Grid container style={{
                 padding: "25px 15px 25px 15px"
             }}>
+                {repostedStatus && (
+                    <Grid item xs={12}>
+                        <Typography>
+                            {l("status.reposted-status")}:
+                        </Typography>
+                        <RepostedStatusContent repostedStatus={repostedStatus}/>
+                    </Grid>
+                )}
                 <Grid item xs={1}>
                     <Avatar src={currentUserAvatar} className="avatar-mini"/>
                 </Grid>
@@ -143,7 +153,8 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     addMediaAttachments: uploadMediaAttachments.attachFiles,
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
-    uploadedAttachments: createStatus.mediaAttachments
+    uploadedAttachments: createStatus.mediaAttachments,
+    repostedStatus: createStatus.repostedStatus
 });
 
 export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

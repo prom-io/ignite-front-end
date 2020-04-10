@@ -50,7 +50,9 @@ export const StatusBottom = ({
                         0
                     </Typography>
                 </div>
-                <RepostStatusMenu status={status}/>
+                <RepostStatusMenu status={status}
+                                  repostPending={repostPending}
+                />
                 <div className="status-list-bottom-box">
                     {statusLikePending
                         ? <CircularProgress size={20} color="primary"/>

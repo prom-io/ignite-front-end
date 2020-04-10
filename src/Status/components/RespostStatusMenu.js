@@ -1,11 +1,11 @@
 import React, {useRef, useState} from "react";
-import {ClickAwayListener, IconButton, Popper, Typography} from "@material-ui/core";
+import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
 import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {PenIcon} from "../../icons/PenIcon";
 
-export const RepostStatusMenu = ({status}) => {
+export const RepostStatusMenu = ({status, repostPending}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -23,11 +23,16 @@ export const RepostStatusMenu = ({status}) => {
 
     return (
         <div className="status-list-bottom-box">
-            <IconButton ref={anchorRef}
-                        onClick={handleToggle}
-            >
-                <RepostIcon/>
-            </IconButton>
+            {repostPending
+                ? <CircularProgress size={20} color="primary"/>
+                :  (
+                    <IconButton ref={anchorRef}
+                                onClick={handleToggle}
+                    >
+                        <RepostIcon/>
+                    </IconButton>
+                )
+            }
             <Typography variant="body1" color={"textSecondary"}>
                 {status.reposts_count}
             </Typography>

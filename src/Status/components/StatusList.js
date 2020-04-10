@@ -8,6 +8,7 @@ export const StatusList = ({
     hasNewStatuses,
     onShowNewStatusesClick,
     statusLikePendingMap,
+    repostsPendingMap,
     currentUser,
     displayMenu,
     onFollowRequest,
@@ -40,6 +41,7 @@ export const StatusList = ({
                                     displayMenu={displayMenu}
                                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                                     statusLikePending={statusLikePendingMap[status.id]}
+                                    repostPending={repostsPendingMap[status.id]}
                                     link
                     />
                 </Fragment>

@@ -1,4 +1,4 @@
-import {action, observable, computed} from "mobx";
+import {action, computed, observable} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class CreateStatusStore {
@@ -66,7 +66,10 @@ export class CreateStatusStore {
             const repostedStatusId = this.repostedStatus && this.repostedStatus.id;
 
             if (repostedStatusId) {
-                this.pendingRepostsMap[repostedStatusId] = true;
+                this.pendingRepostsMap = {
+                    ...this.pendingRepostsMap,
+                    [repostedStatusId]: true
+                }
             }
 
             axiosInstance.post("/api/v1/statuses", {
@@ -84,9 +87,11 @@ export class CreateStatusStore {
                 .catch(error => this.submissionError = error)
                 .finally(() => {
                     this.pending = false;
-
                     if (repostedStatusId) {
-                        this.pendingRepostsMap[repostedStatusId] = false;
+                        this.pendingRepostsMap = {
+                            ...this.pendingRepostsMap,
+                            [repostedStatusId]: false
+                        }
                     }
                 })
         }

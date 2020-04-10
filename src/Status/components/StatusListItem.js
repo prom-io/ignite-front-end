@@ -15,6 +15,7 @@ const _StatusListItem = ({
     onFollowRequest,
     onUnfollowRequest,
     statusLikePending,
+    repostPending,
     link = false,
     routerStore
 }) => {
@@ -43,6 +44,7 @@ const _StatusListItem = ({
                           statusId={status.id}
                           favouritesCount={status.favourite_count}
                           statusLikePending={statusLikePending}
+                          repostPending={repostPending}
                           status={status}
             />
         </Card>

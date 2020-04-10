@@ -21,7 +21,7 @@ const homeTimeline = new StatusesListStore(authorization, createStatus, "/api/v1
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
-const statusPage = new StatusPageStore(authorization);
+const statusPage = new StatusPageStore(authorization, createStatus);
 const localization = new LocaleStore();
 
 export const store = {

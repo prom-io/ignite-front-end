@@ -1,20 +1,21 @@
 import React, {Fragment} from "react";
 import {Typography} from "@material-ui/core";
 import {format} from "date-fns";
+import {addLineBreak} from "../../utils/string-utils";
+import {localized} from "../../localization/components";
 
-
-const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21))
-
-export const UserProfileInfo = ({username, displayName, createdAt}) => (
+const _UserProfileInfo = ({username, displayName, createdAt, l, dateFnsLocale}) => (
     <Fragment>
         <Typography variant="h6" className="user-profile-info-text">
-            {lineBreak(displayName)}
+            {addLineBreak(displayName)}
         </Typography>
         <Typography variant="body2" color="textSecondary" className="user-profile-info-text" >
-            {`@${lineBreak(username)}`}
+            {`@${addLineBreak(username)}`}
         </Typography>
         <Typography variant="body1" noWrap className="user-profile-info-text">
-            Member since {format(createdAt, "MMMM yy")}
+            {l("user.profile.member-since")} {format(createdAt, "MMMM yy", {locale: dateFnsLocale})}
         </Typography>
     </Fragment>
 );
+
+export const UserProfileInfo = localized(_UserProfileInfo);

@@ -1,5 +1,12 @@
 import {action, observable, computed} from "mobx";
 import {en} from "../translations";
+import englishDateFnsLocale from "date-fns/locale/en-US";
+import koreanDateFnsLocale from "date-fns/locale/ko";
+
+const dateFnsLocalesMap = {
+    en: englishDateFnsLocale,
+    ko: koreanDateFnsLocale
+};
 
 const getInitialLanguage = () => {
     const localStorageLanguage = localStorage.getItem("language");
@@ -26,6 +33,11 @@ export class LocaleStore {
     @computed
     get selectedLanguageLabels() {
         return this.labels[this.selectedLanguage];
+    }
+
+    @computed
+    get dateFnsLocale() {
+        return dateFnsLocalesMap[this.selectedLanguage];
     }
 
     @action

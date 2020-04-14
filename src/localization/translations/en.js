@@ -47,6 +47,10 @@ export const en = {
     "appbar.notifications": "Notifications",
     "appbar.chat": "Chat",
     "appbar.trends": "Trends",
-    "appbar.search": "Search"
+    "appbar.search": "Search",
+    "description-links.privacy-policy": "Privacy policy",
+    "description-links.terms-of-service": "Terms of service",
+    "user.card.follow-your-interests": "Follow your interests",
+    "user.card.hear-what-people-talking-about": "Hear what people talking about",
+    "user.card.join-the-conversation": "Join the conversation"
 };
-

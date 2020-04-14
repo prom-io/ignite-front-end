@@ -4,12 +4,13 @@ import {replacePlaceholder} from "../../utils/string-utils";
 
 const mapMobxToProps = ({localization}) => ({
     currentLabels: localization.selectedLanguageLabels,
-    locale: localization.selectedLanguage
+    locale: localization.selectedLanguage,
+    dateFnsLocale: localization.dateFnsLocale
 });
 
 export const localized = WrappedComponent => {
     return inject(mapMobxToProps)(observer(props => {
-        const {locale, currentLabels} = props;
+        const {locale, currentLabels, dateFnsLocale} = props;
 
         const getLabel = (labelKey, bindings) => {
             let label = currentLabels[labelKey];
@@ -21,6 +22,6 @@ export const localized = WrappedComponent => {
             return label;
         };
 
-        return <WrappedComponent l={getLabel} locale={locale} {...props}/>
+        return <WrappedComponent l={getLabel} locale={locale} dateFnsLocale={dateFnsLocale} {...props}/>
     }))
 };

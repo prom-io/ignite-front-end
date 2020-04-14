@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import {OpenStatusBtfsInfoDialogButton} from "./OpenStatusBtfsInfoDialogButton";
 import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
 import {RepostIcon} from "../../icons/RepostIcon";
@@ -23,7 +24,8 @@ export const StatusBottom = ({
     onFavouriteClick,
     statusId,
     favouritesCount,
-    statusLikePending
+    statusLikePending,
+    btfsInfo
 }) => {
 
     const [open, setOpen] = useState(false);
@@ -147,6 +149,9 @@ export const StatusBottom = ({
                             </ClickAwayListener>
                         </Popper>
                     </div>
+                </ClickEventPropagationStopper>
+                <ClickEventPropagationStopper className="status-list-bottom-box">
+                    <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo}/>
                 </ClickEventPropagationStopper>
             </CardActions>
         </ClickEventPropagationStopper>

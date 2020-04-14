@@ -42,6 +42,7 @@ const _StatusListItem = ({
                           statusId={status.id}
                           favouritesCount={status.favourite_count}
                           statusLikePending={statusLikePending}
+                          btfsInfo={status.btfs_info}
             />
         </Card>
     );

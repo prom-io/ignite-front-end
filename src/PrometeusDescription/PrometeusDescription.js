@@ -1,6 +1,7 @@
 import React from "react";
 import {Grid, makeStyles, Typography} from "@material-ui/core";
 import BinanceBanner from "../images/binance-banner.jpg";
+import JustBanner from "../images/just-banner.png";
 import UserCard from '../components/UserCard';
 import {DescriptionLinks} from '../components/DescriptionLinks';
 
@@ -9,8 +10,6 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main
     }
 }));
-
-const PrometeusNetwork = "{Prometeus Network}";
 
 export const PrometeusDescription = () => {
     const classes = useStyles();
@@ -27,10 +26,17 @@ export const PrometeusDescription = () => {
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body1" className="description-image-container">
-                    <a href="https://www.binance.com/?ref=28821136" target="_blank">
+                    <a href="https://www.binance.com/?ref=28821136" target="_blank" rel="noopener noreferrer">
                         <img src={BinanceBanner}/>
                     </a>
                 </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <div className="description-image-container">
+                    <a href="https://just.network/#/" target="_blank" rel="noopener noreferrer">
+                        <img src={JustBanner}/>
+                    </a>
+                </div>
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body2">

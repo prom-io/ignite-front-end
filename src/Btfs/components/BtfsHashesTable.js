@@ -2,10 +2,14 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Card, CardHeader, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {format} from "date-fns";
+import {trimString} from "../../utils/string-utils";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
         overflow: "auto"
+    },
+    link: {
+        color: theme.palette.primary.main,
     },
     centered: {
         display: "flex",
@@ -59,6 +63,9 @@ const _BtfsHashesTable = ({btfsHashes, pending, error}) => {
                                     <strong>Created at</strong>
                                 </TableCell>
                                 <TableCell>
+                                    <strong>Node wallet</strong>
+                                </TableCell>
+                                <TableCell>
                                     <strong>Synced</strong>
                                 </TableCell>
                             </TableRow>
@@ -71,12 +78,16 @@ const _BtfsHashesTable = ({btfsHashes, pending, error}) => {
                                         <a href={btfsHash.soter_link}
                                            target="_blank"
                                            rel="noopener noreferrer"
+                                           className={classes.link}
                                         >
-                                            {btfsHash.soter_link}
+                                            {trimString(btfsHash.soter_link, 25)}
                                         </a>
                                     </TableCell>
                                     <TableCell>
-                                        {format(new Date(btfsHash.created_at), "dd MMMM yyyy")}
+                                        {format(new Date(btfsHash.created_at), "dd MMMM yyyy HH:mm")}
+                                    </TableCell>
+                                    <TableCell>
+                                        {btfsHash.peer_wallet}
                                     </TableCell>
                                     <TableCell>
                                         {btfsHash.synced ? "True" : "False"}

@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
 import {AppBar as MuiAppBar, Hidden, Toolbar, withTheme} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
-import CloudUploadOutlined from "@material-ui/icons/CloudUploadOutlined";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
 import {Routes} from "../../routes";
@@ -16,6 +15,7 @@ import {NavigationalDrawer} from "./NavigationalDrawer";
 import {BellIcon} from "../../icons/BellIcon";
 import {ChatIcon} from "../../icons/ChatIcon";
 import {TrendsIcon} from "../../icons/TrendsIcon";
+import {BtfsIcon} from "../../icons/BtfsIcon";
 import {LoginDialog} from "../../Authorization/components/LoginDialog";
 import {OpenLoginDialogButton} from "../../Authorization/components";
 import {SignUpDialog} from "../../SignUp/components";
@@ -65,7 +65,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                             <AppBarLink text="Explore BTFS"
                                         targetView={Routes.btfs}
                                         active={currentActiveRoute === "btfs"}
-                                        icon={<CloudUploadOutlined color={currentActiveRoute === "btfs" ? theme.palette.primary.main : "inherit"}/>}
+                                        icon={<BtfsIcon color={currentActiveRoute === "btfs" && theme.palette.primary.main}/>}
                                         routerStore={routerStore}
                                         viewParameters={{}}
                             />

@@ -8,7 +8,7 @@ import {
     TermsAndPolicesPage,
     TrendsPage,
     UserProfilePage,
-    StatusPage
+    StatusPage, BtfsHashesPage
 } from "../pages";
 import {store} from "../store";
 
@@ -75,6 +75,11 @@ export const Routes = {
         },
         onExit: () => {
         }
+    }),
+    btfs: new Route({
+        path: "/btfs",
+        component: <BtfsHashesPage/>,
+        beforeEnter: () => store.btfs.fetchBtfsHashes()
     }),
     userProfile: new Route({
         path: "/:username",

@@ -4,6 +4,7 @@ import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, UploadMedi
 import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
+import {BtfsHashesStore} from "../Btfs/stores";
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
@@ -21,6 +22,7 @@ const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline
 const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
 const statusPage = new StatusPageStore(authorization);
+const btfs = new BtfsHashesStore();
 
 export const store = {
     authorization,
@@ -38,5 +40,6 @@ export const store = {
     userCard,
     drawer,
     statusPage,
-    uploadMediaAttachments
+    uploadMediaAttachments,
+    btfs
 };

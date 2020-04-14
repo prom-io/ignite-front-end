@@ -2,6 +2,7 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {MenuList, MenuItem, ListItemIcon, ListItemText, Divider, makeStyles} from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import CloudUploadOutlined from "@material-ui/icons/CloudUploadOutlined";
 import {Link} from "mobx-router";
 import {MuteIcon} from "../../icons/MuteIcon";
 import {Routes} from "../../routes";
@@ -101,6 +102,19 @@ const _DrawerMenu = ({
                     Help center
                 </ListItemText>
             </MenuItem>
+            <Link view={Routes.btfs}
+                  store={routerStore}
+                  className={classes.undecoratedLink}
+            >
+                <MenuItem onClick={handleMenuItemClick}>
+                    <ListItemIcon>
+                        <CloudUploadOutlined/>
+                    </ListItemIcon>
+                    <ListItemText>
+                        Explore BTFS
+                    </ListItemText>
+                </MenuItem>
+            </Link>
             <Divider/>
             <MenuItem onClick={handleLogoutItemClick}>
                 <ListItemIcon>

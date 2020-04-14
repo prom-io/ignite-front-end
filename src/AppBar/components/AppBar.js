@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
 import {AppBar as MuiAppBar, Hidden, Toolbar, withTheme} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/HomeOutlined";
+import CloudUploadOutlined from "@material-ui/icons/CloudUploadOutlined";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
 import {Routes} from "../../routes";
@@ -60,6 +61,15 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
+                        <Hidden mdDown>
+                            <AppBarLink text="Explore BTFS"
+                                        targetView={Routes.btfs}
+                                        active={currentActiveRoute === "btfs"}
+                                        icon={<CloudUploadOutlined color={currentActiveRoute === "btfs" ? theme.palette.primary.main : "inherit"}/>}
+                                        routerStore={routerStore}
+                                        viewParameters={{}}
+                            />
+                        </Hidden>
                     </div>
                     <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
                     <Hidden smDown>

@@ -1,7 +1,20 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Table, TableBody, TableCell, TableRow, makeStyles, withMobileDialog} from "@material-ui/core";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    makeStyles,
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+    withMobileDialog
+} from "@material-ui/core";
 import {format} from "date-fns";
+import {localized} from "../../localization/components";
 import {trimString} from "../../utils/string-utils";
 
 const useStyles = makeStyles(theme => ({
@@ -10,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogOpen, fullScreen}) => {
+const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogOpen, fullScreen, l}) => {
     const classes = useStyles();
 
     if (!btfsInfo) {
@@ -25,34 +38,34 @@ const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogO
                 maxWidth="md"
         >
             <DialogTitle>
-                Bit Torrent File System Block Info
+                {l("btfs.block-info")}
             </DialogTitle>
             <DialogContent>
                 <Table>
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                <strong>BTFS CID</strong>
+                                <strong>{l("btfs.cid")}</strong>
                             </TableCell>
                             <TableCell>{btfsInfo.cid}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>Created at</strong>
+                                <strong>{l("btfs.created-at")}</strong>
                             </TableCell>
                             <TableCell>{format(new Date(btfsInfo.created_at), "dd MMMM yyyy HH:mm")}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>Sync Status</strong>
+                                <strong>{l("btfs.sync.status")}</strong>
                             </TableCell>
                             <TableCell>
-                                {btfsInfo.synced ? "Synchronized" : "Not synchronized"}
+                                {btfsInfo.synced ? l("btfs.sync.status.synchronized") : l("btfs.sync.status.not-synchronized")}
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>Soter link</strong>
+                                <strong>{l("btfs.soter-link")}</strong>
                             </TableCell>
                             <TableCell>
                                 <a href={btfsInfo.soter_link}
@@ -72,7 +85,7 @@ const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogO
                         color="primary"
                         onClick={() => setBtfsInfoDialogOpen(false)}
                 >
-                    Close
+                    {l("btfs.close")}
                 </Button>
             </DialogActions>
         </Dialog>
@@ -86,5 +99,7 @@ const mapMobxToProps = ({statusBtfsInfo}) => ({
 });
 
 export const StatusBtfsInfoDialog = withMobileDialog()(
-    inject(mapMobxToProps)(observer(_StatusBtfsInfoDialog))
+    localized(
+        inject(mapMobxToProps)(observer(_StatusBtfsInfoDialog))
+    )
 );

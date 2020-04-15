@@ -10,7 +10,8 @@ import {SettingsIcon} from "../../icons/SettingsIcon";
 import {TermsOfServiceIcon} from "../../icons/TermsOfServiceIcon";
 import {InfoIcon} from "../../icons/InfoIcon";
 import {LogoutIcon} from "../../icons/LogoutIcon";
-import {BtfsIcon} from "../../icons/BtfsIcon";
+import {BtfsIcon} from "../../icons/BtfsIcon"
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     undecoratedLink: {
@@ -23,7 +24,8 @@ const _DrawerMenu = ({
     currentUser,
     doLogout,
     setDrawerExpanded,
-    routerStore
+    routerStore,
+    l
 }) => {
     const classes = useStyles();
 
@@ -52,7 +54,7 @@ const _DrawerMenu = ({
                         <PersonOutlineIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                        Profile
+                        {l("menu.profile")}
                     </ListItemText>
                 </MenuItem>
             </Link>
@@ -62,7 +64,7 @@ const _DrawerMenu = ({
                     <MuteIcon/>
                 </ListItemIcon>
                 <ListItemText>
-                    Muted users
+                    {l("menu.muted-users")}
                 </ListItemText>
             </MenuItem>
             <MenuItem disabled>
@@ -70,7 +72,7 @@ const _DrawerMenu = ({
                     <BlockIcon/>
                 </ListItemIcon>
                 <ListItemText>
-                    Blocked users
+                    {l("menu.blocked-users")}
                 </ListItemText>
             </MenuItem>
             <MenuItem disabled>
@@ -78,7 +80,7 @@ const _DrawerMenu = ({
                     <SettingsIcon/>
                 </ListItemIcon>
                 <ListItemText>
-                    Settings
+                    {l("menu.settings")}
                 </ListItemText>
             </MenuItem>
             <Link view={Routes.terms}
@@ -90,7 +92,7 @@ const _DrawerMenu = ({
                         <TermsOfServiceIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                        Terms of service
+                        {l("menu.terms-of-service")}
                     </ListItemText>
                 </MenuItem>
             </Link>
@@ -99,7 +101,7 @@ const _DrawerMenu = ({
                     <InfoIcon/>
                 </ListItemIcon>
                 <ListItemText>
-                    Help center
+                    {l("menu.help-center")}
                 </ListItemText>
             </MenuItem>
             <Link view={Routes.btfs}
@@ -111,7 +113,7 @@ const _DrawerMenu = ({
                         <BtfsIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                        Explore BTFS
+                        {l("menu.explore-btfs")}
                     </ListItemText>
                 </MenuItem>
             </Link>
@@ -121,7 +123,7 @@ const _DrawerMenu = ({
                     <LogoutIcon/>
                 </ListItemIcon>
                 <ListItemText>
-                    Logout
+                    {l("menu.logout")}
                 </ListItemText>
             </MenuItem>
         </MenuList>
@@ -135,4 +137,6 @@ const mapMobxToProps = ({authorization, drawer, store}) => ({
     doLogout: authorization.doLogout
 });
 
-export const DrawerMenu = inject(mapMobxToProps)(observer(_DrawerMenu));
+export const DrawerMenu = localized(
+    inject(mapMobxToProps)(observer(_DrawerMenu))
+);

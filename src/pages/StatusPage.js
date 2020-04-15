@@ -1,7 +1,7 @@
 import React from "react";
 import {Grid} from "@material-ui/core";
 import {AppBar} from "../AppBar/components";
-import {StatusPageContainer} from "../Status/components";
+import {StatusBtfsInfoDialog, StatusPageContainer} from "../Status/components";
 
 export const StatusPage = () => (
     <Grid container>
@@ -15,5 +15,6 @@ export const StatusPage = () => (
                 </Grid>
             </Grid>
         </Grid>
+        <StatusBtfsInfoDialog/>
     </Grid>
 );

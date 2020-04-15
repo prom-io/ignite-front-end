@@ -1,10 +1,21 @@
 import Web3 from "web3";
 import {AuthorizationStore, LoginStore} from "../Authorization/stores";
-import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, UploadMediaAttachmentsStore, StatusPageStore} from "../Status/stores";
+import {
+    StatusesListStore,
+    CreateStatusStore,
+    TimelinesSwitcherStore,
+    UploadMediaAttachmentsStore,
+    StatusPageStore,
+    StatusBtfsInfoStore
+} from "../Status/stores";
 import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
+<<<<<<< HEAD
 import {LocaleStore} from "../localization/stores";
+=======
+import {BtfsHashesStore} from "../Btfs/stores";
+>>>>>>> c4c50ef25d730164c4e85498067d0ed08e1b2372
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
@@ -23,6 +34,8 @@ const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
 const statusPage = new StatusPageStore(authorization);
 const localization = new LocaleStore();
+const btfs = new BtfsHashesStore();
+const statusBtfsInfo = new StatusBtfsInfoStore();
 
 export const store = {
     authorization,
@@ -41,5 +54,7 @@ export const store = {
     drawer,
     statusPage,
     uploadMediaAttachments,
-    localization
+    localization,
+    btfs,
+    statusBtfsInfo
 };

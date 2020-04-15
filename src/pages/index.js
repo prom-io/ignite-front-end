@@ -6,3 +6,4 @@ export * from "./TrendsPage";
 export * from "./TermsAndPolicesPage";
 export * from "./DescriptionPage";
 export * from "./StatusPage";
+export * from "./BtfsHashesPage";

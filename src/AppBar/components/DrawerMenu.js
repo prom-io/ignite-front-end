@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {MenuList, MenuItem, ListItemIcon, ListItemText, Divider, makeStyles} from "@material-ui/core";
+import {Divider, ListItemIcon, ListItemText, makeStyles, MenuItem, MenuList} from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import {Link} from "mobx-router";
 import {MuteIcon} from "../../icons/MuteIcon";
@@ -10,6 +10,7 @@ import {SettingsIcon} from "../../icons/SettingsIcon";
 import {TermsOfServiceIcon} from "../../icons/TermsOfServiceIcon";
 import {InfoIcon} from "../../icons/InfoIcon";
 import {LogoutIcon} from "../../icons/LogoutIcon";
+import {BtfsIcon} from "../../icons/BtfsIcon";
 
 const useStyles = makeStyles(() => ({
     undecoratedLink: {
@@ -101,6 +102,19 @@ const _DrawerMenu = ({
                     Help center
                 </ListItemText>
             </MenuItem>
+            <Link view={Routes.btfs}
+                  store={routerStore}
+                  className={classes.undecoratedLink}
+            >
+                <MenuItem onClick={handleMenuItemClick}>
+                    <ListItemIcon>
+                        <BtfsIcon/>
+                    </ListItemIcon>
+                    <ListItemText>
+                        Explore BTFS
+                    </ListItemText>
+                </MenuItem>
+            </Link>
             <Divider/>
             <MenuItem onClick={handleLogoutItemClick}>
                 <ListItemIcon>

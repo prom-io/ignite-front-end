@@ -11,11 +11,8 @@ import {
 import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
-<<<<<<< HEAD
 import {LocaleStore} from "../localization/stores";
-=======
 import {BtfsHashesStore} from "../Btfs/stores";
->>>>>>> c4c50ef25d730164c4e85498067d0ed08e1b2372
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);

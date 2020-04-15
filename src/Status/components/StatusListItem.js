@@ -15,6 +15,7 @@ const _StatusListItem = ({
     onFollowRequest,
     onUnfollowRequest,
     statusLikePending,
+    repostPending,
     link = false,
     routerStore
 }) => {
@@ -36,6 +37,7 @@ const _StatusListItem = ({
             />
             <StatusBody text={status.content}
                         mediaAttachments={status.media_attachments}
+                        repostedStatus={status.reposted_status}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}
@@ -43,6 +45,8 @@ const _StatusListItem = ({
                           favouritesCount={status.favourite_count}
                           statusLikePending={statusLikePending}
                           btfsInfo={status.btfs_info}
+                          repostPending={repostPending}
+                          status={status}
             />
         </Card>
     );

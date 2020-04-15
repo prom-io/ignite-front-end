@@ -11,7 +11,7 @@ export const en = {
     "status.menu.block-author": "Block author",
     "status.menu.report": "Report abuse",
     "status.repost": "Repost",
-    "status.repost-with-comment": "Repost with comment",
+    "status.repost.with-comment": "Repost with comment",
     "status-send-in-message": "Send in message",
     "status.copy-link": "Copy link",
     "menu.profile": "Profile",
@@ -47,5 +47,6 @@ export const en = {
     "description-links.terms-of-service": "Terms of service",
     "user.card.follow-your-interests": "Follow your interests",
     "user.card.hear-what-people-talking-about": "Hear what people talking about",
-    "user.card.join-the-conversation": "Join the conversation"
+    "user.card.join-the-conversation": "Join the conversation",
+    "status.reposted-status": "Reposted status"
 };

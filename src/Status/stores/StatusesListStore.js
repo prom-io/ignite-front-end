@@ -45,11 +45,13 @@ export class StatusesListStore {
             () => this.createdStatus,
             status => {
                 if (status) {
-                    console.log(status);
                     this.statuses = [
                         status,
                         ...this.statuses
-                    ]
+                    ];
+                    if (status.reposted_status) {
+                        this.increaseRepostsCount(status.reposted_status.id)
+                    }
                 }
             }
         )
@@ -180,6 +182,16 @@ export class StatusesListStore {
             return status;
         })
     };
+
+    @action
+    increaseRepostsCount = statusId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.id === statusId) {
+                status.reposts_count += 1;
+            }
+            return status;
+        })
+    }
 
     @action
     setBaseUrl = baseUrl => {

@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 const _UserProfileTimeline = ({
     statuses,
     statusLikePendingMap,
+    repostsPendingMap,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
@@ -59,13 +60,14 @@ const _UserProfileTimeline = ({
                                 displayMenu={Boolean(currentUser)}
                                 currentUser={currentUser}
                                 statusLikePendingMap={statusLikePendingMap}
+                                repostsPendingMap={repostsPendingMap}
                     />
                 </Grid>
             </Grid>
         )
 };
 
-const mapMobxToProps = ({userProfileTimeline, userProfile, authorization}) => ({
+const mapMobxToProps = ({userProfileTimeline, userProfile, authorization, createStatus}) => ({
     statuses: userProfileTimeline.statuses,
     statusLikePendingMap: userProfileTimeline.statusLikePendingMap,
     favouriteStatus: userProfileTimeline.favouriteStatus,
@@ -75,7 +77,8 @@ const mapMobxToProps = ({userProfileTimeline, userProfile, authorization}) => ({
     pending: userProfileTimeline.pending,
     fetchStatuses: userProfileTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
-    profileOwnerId: userProfile.user && userProfile.user.id
+    profileOwnerId: userProfile.user && userProfile.user.id,
+    repostsPendingMap: createStatus.pendingRepostsMap
 });
 
 export const UserProfileTimeline = inject(mapMobxToProps)(observer(_UserProfileTimeline));

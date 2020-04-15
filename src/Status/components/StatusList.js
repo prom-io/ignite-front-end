@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect} from "react";
 import {StatusListItem} from "./StatusListItem";
-import {StatusBtfsInfoDialog} from "./StatusBtfsInfoDialog";
 
 export const StatusList = ({
     statuses,
@@ -9,6 +8,7 @@ export const StatusList = ({
     hasNewStatuses,
     onShowNewStatusesClick,
     statusLikePendingMap,
+    repostsPendingMap,
     currentUser,
     displayMenu,
     onFollowRequest,
@@ -31,22 +31,21 @@ export const StatusList = ({
     });
 
     return (
-        <Fragment>
-            <div id="statusList" className="status-list-card paddingBottomRoot">
-                {statuses.map(status => (
-                    <Fragment key={status.id}>
-                        <StatusListItem status={status}
-                                        onFavouriteStatusChange={onFavouriteClick}
-                                        onFollowRequest={onFollowRequest}
-                                        onUnfollowRequest={onUnfollowRequest}
-                                        displayMenu={displayMenu}
-                                        currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
-                                        statusLikePending={statusLikePendingMap[status.id]}
-                                        link
-                        />
-                    </Fragment>
-                ))}
-            </div>
-        </Fragment>
+        <div id="statusList" className="status-list-card paddingBottomRoot">
+            {statuses.map(status => (
+                <Fragment key={status.id}>
+                    <StatusListItem status={status}
+                                    onFavouriteStatusChange={onFavouriteClick}
+                                    onFollowRequest={onFollowRequest}
+                                    onUnfollowRequest={onUnfollowRequest}
+                                    displayMenu={displayMenu}
+                                    currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
+                                    statusLikePending={statusLikePendingMap[status.id]}
+                                    repostPending={repostsPendingMap[status.id]}
+                                    link
+                    />
+                </Fragment>
+            ))}
+        </div>
     );
 };

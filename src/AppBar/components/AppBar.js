@@ -15,7 +15,6 @@ import {NavigationalDrawer} from "./NavigationalDrawer";
 import {BellIcon} from "../../icons/BellIcon";
 import {ChatIcon} from "../../icons/ChatIcon";
 import {TrendsIcon} from "../../icons/TrendsIcon";
-import {BtfsIcon} from "../../icons/BtfsIcon";
 import {LoginDialog} from "../../Authorization/components/LoginDialog";
 import {OpenLoginDialogButton} from "../../Authorization/components";
 import {SignUpDialog} from "../../SignUp/components";
@@ -61,15 +60,6 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     routerStore={routerStore}
                                     viewParameters={{}}
                         />
-                        <Hidden mdDown>
-                            <AppBarLink text="Explore BTFS"
-                                        targetView={Routes.btfs}
-                                        active={currentActiveRoute === "btfs"}
-                                        icon={<BtfsIcon color={currentActiveRoute === "btfs" && theme.palette.primary.main}/>}
-                                        routerStore={routerStore}
-                                        viewParameters={{}}
-                            />
-                        </Hidden>
                     </div>
                     <input type="text" placeholder="Search" disabled className="app-bar-search-field"/>
                     <Hidden smDown>

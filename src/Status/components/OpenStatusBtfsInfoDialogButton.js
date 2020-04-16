@@ -17,7 +17,7 @@ const _OpenStatusBtfsInfoDialogButton = ({btfsInfo, setBtfsInfo, setBtfsInfoDial
         <IconButton color="inherit"
                     onClick={handleClick}
         >
-            <BtfsIcon/>
+            <BtfsIcon color="#A2A2A2"/>
         </IconButton>
     )
 };

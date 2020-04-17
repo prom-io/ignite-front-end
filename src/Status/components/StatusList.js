@@ -1,5 +1,7 @@
 import React, {Fragment, useEffect} from "react";
 import {StatusListItem} from "./StatusListItem";
+import {CommentsList} from "../../Comment/components";
+import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 export const StatusList = ({
     statuses,

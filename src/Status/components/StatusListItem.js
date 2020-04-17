@@ -6,6 +6,8 @@ import {StatusHeader} from "./StatusHeader";
 import {StatusBottom} from "./StatusBottom";
 import {StatusBody} from "./StatusBody";
 import {Routes} from "../../routes";
+import {CommentsList} from "../../Comment/components";
+import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 const _StatusListItem = ({
     status,
@@ -48,6 +50,11 @@ const _StatusListItem = ({
                           repostPending={repostPending}
                           status={status}
             />
+            <ClickEventPropagationStopper style={{
+                width: "100%"
+            }}>
+                <CommentsList statusId={status.id}/>
+            </ClickEventPropagationStopper>
         </Card>
     );
 

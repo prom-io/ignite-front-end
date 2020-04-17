@@ -17,6 +17,7 @@ import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {CommentIcon} from "../../icons/CommentIcon";
 import {RepostStatusMenu} from "./RespostStatusMenu";
+import {CommentsButton} from "./CommentsButton";
 
 export const StatusBottom = ({
     favourited,
@@ -46,12 +47,9 @@ export const StatusBottom = ({
     return (
         <ClickEventPropagationStopper>
             <CardActions  className="status-list-bottom-container">
-                <div className="status-list-bottom-box">
-                    <CommentIcon/>
-                    <Typography variant="body1" color={"textSecondary"}>
-                        0
-                    </Typography>
-                </div>
+                <ClickEventPropagationStopper>
+                    <CommentsButton statusId={statusId} commentsCount={status.comments_count}/>
+                </ClickEventPropagationStopper>
                 <RepostStatusMenu status={status}
                                   repostPending={repostPending}
                 />

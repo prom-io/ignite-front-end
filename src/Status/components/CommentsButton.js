@@ -8,7 +8,6 @@ const _CommentsButton = ({statusId, commentsCount, commentsByStatusesMap, fetchC
         if (!commentsByStatusesMap[statusId]) {
             fetchComments(statusId);
         } else {
-            console.log(commentsByStatusesMap[statusId].expanded);
             setCommentsExpanded(statusId, !commentsByStatusesMap[statusId].expanded);
         }
     };

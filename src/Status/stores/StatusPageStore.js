@@ -106,6 +106,17 @@ export class StatusPageStore {
     };
 
     @action
+    increaseCommentsCount = statusId => {
+        console.log("Increasing comments count")
+        if (this.status && statusId === this.status.id) {
+            this.status = {
+                ...this.status,
+                comments_count: this.status.comments_count + 1
+            }
+        }
+    };
+
+    @action
     reset = () => {
         this.status = undefined;
         this.error = undefined;

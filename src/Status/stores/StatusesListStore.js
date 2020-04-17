@@ -191,7 +191,17 @@ export class StatusesListStore {
             }
             return status;
         })
-    }
+    };
+
+    @action
+    increaseCommentsCount = statusId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.id === statusId) {
+                status.comments_count += 1;
+            };
+            return status;
+        })
+    };
 
     @action
     setBaseUrl = baseUrl => {

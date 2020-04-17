@@ -8,6 +8,9 @@ export class CommentsStore {
     @observable
     commentsByStatusesMap = {};
 
+    @observable
+    commentCreationListeners = [];
+
     @action
     fetchComments = statusId => {
         if (!this.commentsByStatusesMap[statusId]) {
@@ -22,6 +25,7 @@ export class CommentsStore {
                         ...this.commentsByStatusesMap[comment.status_id].comments,
                         comment
                     ];
+                    this.commentCreationListeners.forEach(listener => listener(statusId, comment));
                 }),
                 expanded: true
             }
@@ -47,12 +51,15 @@ export class CommentsStore {
     @action
     setCommentsExpanded = (statusId, expanded) => {
         if (this.commentsByStatusesMap[statusId]) {
-            console.log(expanded);
-            console.log(this.commentsByStatusesMap[statusId].expanded);
             this.commentsByStatusesMap[statusId] = {
                 ...this.commentsByStatusesMap[statusId],
                 expanded
             }
         }
     };
+
+    @action
+    addCommentCreationListener = commentCreationListener => {
+        this.commentCreationListeners.push(commentCreationListener);
+    }
 }

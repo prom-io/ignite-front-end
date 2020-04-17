@@ -9,7 +9,13 @@ export class CreateStatusStore {
     repostedStatus = undefined;
 
     @observable
+    repostedComment = undefined;
+
+    @observable
     pendingRepostsMap = {};
+
+    @observable
+    pendingCommentsRepostsMap = {};
 
     @observable
     pending = false;
@@ -60,10 +66,11 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || this.repostedStatus)) {
+        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || this.repostedStatus || this.repostedComment)) {
             this.pending = true;
             this.submissionError = undefined;
             const repostedStatusId = this.repostedStatus && this.repostedStatus.id;
+            const repostedCommentId = this.repostedComment && this.repostedComment.id;
 
             if (repostedStatusId) {
                 this.pendingRepostsMap = {
@@ -72,10 +79,18 @@ export class CreateStatusStore {
                 }
             }
 
+            if (repostedCommentId) {
+                this.pendingCommentsRepostsMap = {
+                    ...this.pendingCommentsRepostsMap,
+                    [repostedCommentId]: true
+                }
+            }
+
             axiosInstance.post("/api/v1/statuses", {
                 status: this.content,
                 media_attachments: this.mediaAttachments,
-                repostedStatusId
+                repostedStatusId,
+                reposted_comment_id: repostedCommentId
             })
                 .then(({data}) => {
                     this.createdStatus = data;
@@ -83,6 +98,7 @@ export class CreateStatusStore {
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
                     this.repostedStatus = undefined;
+                    this.repostedComment = undefined;
                 })
                 .catch(error => this.submissionError = error)
                 .finally(() => {
@@ -93,6 +109,12 @@ export class CreateStatusStore {
                             [repostedStatusId]: false
                         }
                     }
+                    if (repostedCommentId) {
+                        this.pendingCommentsRepostsMap = {
+                            ...this.pendingCommentsRepostsMap,
+                            [repostedCommentId]: false
+                        }
+                    }
                 })
         }
     };
@@ -100,5 +122,10 @@ export class CreateStatusStore {
     @action
     setRepostedStatus = repostedStatus => {
         this.repostedStatus = repostedStatus;
+    };
+
+    @action
+    setRepostedComment = repostedComment => {
+        this.repostedComment = repostedComment;
     }
 }

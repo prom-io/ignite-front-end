@@ -107,7 +107,6 @@ export class StatusPageStore {
 
     @action
     increaseCommentsCount = statusId => {
-        console.log("Increasing comments count")
         if (this.status && statusId === this.status.id) {
             this.status = {
                 ...this.status,

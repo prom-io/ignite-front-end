@@ -1,11 +1,12 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {CardHeader, CardContent, Avatar, makeStyles, Hidden, Typography, Divider} from "@material-ui/core";
+import {CardActions, CardHeader, CardContent, Avatar, makeStyles, Hidden, Typography, Divider} from "@material-ui/core";
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
 import {addLineBreak, trimString} from "../../utils/string-utils";
 import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
 import prettyDate from "pretty-date";
+import {RepostCommentMenu} from "./RepostCommentMenu";
 
 const useStyles = makeStyles(() => ({
     commentHeader: {
@@ -13,14 +14,18 @@ const useStyles = makeStyles(() => ({
         alignItems: "flex-end",
         justifyContent: "space-between",
         width: "100%"
+    },
+    commentListItem: {
+        width: "100%",
+        borderBottom: "1px solid #F1EBE8"
     }
 }));
 
-const _CommentListItem = ({comment, routerStore}) => {
+const _CommentListItem = ({hideBottomMenu, comment, pendingCommentsRepostsMap, routerStore}) => {
     const classes = useStyles();
 
     return (
-        <div style={{width: "100%"}}>
+        <div className={classes.commentListItem}>
             <CardHeader className={classes.commentHeader}
                         avatar={<Avatar src={comment.author.avatar} className="avatar-mini"/>}
                         title={
@@ -70,15 +75,20 @@ const _CommentListItem = ({comment, routerStore}) => {
                     {comment.text}
                 </Typography>
             </CardContent>
-            <Divider style={{
-                width: "100%"
-            }}/>
+            {!hideBottomMenu && (
+                <CardActions className="status-list-bottom-container">
+                    <RepostCommentMenu comment={comment}
+                                       repostPending={pendingCommentsRepostsMap[comment.id]}
+                    />
+                </CardActions>
+            )}
         </div>
     )
 };
 
-const mapMobxToProps = ({store}) => ({
-    routerStore: store
+const mapMobxToProps = ({store, createStatus}) => ({
+    routerStore: store,
+    pendingCommentsRepostsMap: createStatus.pendingCommentsRepostsMap
 });
 
 export const CommentListItem = inject(mapMobxToProps)(observer(_CommentListItem));

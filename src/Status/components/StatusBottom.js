@@ -15,7 +15,6 @@ import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
-import {CommentIcon} from "../../icons/CommentIcon";
 import {RepostStatusMenu} from "./RespostStatusMenu";
 import {CommentsButton} from "./CommentsButton";
 

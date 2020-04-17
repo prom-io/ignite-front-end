@@ -8,6 +8,7 @@ import {RepostedStatusContent} from "./RepostedStatusContent";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
 import {localized} from "../../localization/components";
+import {RepostedCommentContent} from "./RepostedCommentContent";
 
 const useStyles = makeStyles(() => ({
     statusText: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _StatusBody = ({text, mediaAttachments, repostedStatus, nestedRepostedStatusId, routerStore, l}) => {
+const _StatusBody = ({text, mediaAttachments, repostedStatus, repostedComment, nestedRepostedStatusId, routerStore, l}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -34,6 +35,7 @@ const _StatusBody = ({text, mediaAttachments, repostedStatus, nestedRepostedStat
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
             {repostedStatus && <RepostedStatusContent repostedStatus={repostedStatus}/>}
+            {repostedComment && <RepostedCommentContent comment={repostedComment}/>}
             {nestedRepostedStatusId && (
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}

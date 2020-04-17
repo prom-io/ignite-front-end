@@ -1,11 +1,11 @@
 import React, {useRef, useState} from "react";
 import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
-import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
-import {RepostWithCommentMenuItem} from "./RepostWithCommentMenuItem";
+import {RepostCommentWithoutCommentMenuItem} from "./RepostCommentWithoutCommentMenuItem";
+import {RepostCommentWithCommentMenuItem} from "./RepostCommentWithCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 
-export const RepostStatusMenu = ({status, repostPending}) => {
+export const RepostCommentMenu = ({comment, repostPending}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -34,20 +34,20 @@ export const RepostStatusMenu = ({status, repostPending}) => {
                 )
             }
             <Typography variant="body1" color={"textSecondary"}>
-                {status.reposts_count}
+                {comment.reposts_count}
             </Typography>
             <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
                 <ClickEventPropagationStopper>
                     <ClickAwayListener onClickAway={handleClose}>
                         <div className="status-list-bottom-box-modal" onClick={handleClose}>
                             <ClickEventPropagationStopper>
-                                <RepostWithoutCommentMenuItem status={status}
-                                                              onClick={handleClose}
+                                <RepostCommentWithoutCommentMenuItem comment={comment}
+                                                                     onClick={handleClose}
                                 />
                             </ClickEventPropagationStopper>
                             <ClickEventPropagationStopper>
-                                <RepostWithCommentMenuItem status={status}
-                                                           onClick={handleClose}
+                                <RepostCommentWithCommentMenuItem comment={comment}
+                                                                  onClick={handleClose}
                                 />
                             </ClickEventPropagationStopper>
                         </div>

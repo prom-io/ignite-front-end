@@ -15,6 +15,7 @@ import {AttachImageInput} from "./AttachImageInput";
 import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
 import {RepostedStatusContent} from "./RepostedStatusContent";
 import {localized} from "../../localization/components";
+import {RepostedCommentContent} from "./RepostedCommentContent";
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -64,6 +65,8 @@ const _CreateStatusForm = ({
     hideSendButton = false,
     repostedStatus,
     setRepostedStatus,
+    repostedComment,
+    setRepostedComment,
     l
 }) => {
     const classes = useStyles();
@@ -81,6 +84,17 @@ const _CreateStatusForm = ({
                         <RepostedStatusContent repostedStatus={repostedStatus}
                                                displayClearButton
                                                onClearButtonClick={() => setRepostedStatus(undefined)}
+                        />
+                    </Grid>
+                )}
+                {repostedComment && (
+                    <Grid item xs={12}>
+                        <Typography>
+                            {l("status.reposted-comment")}:
+                        </Typography>
+                        <RepostedCommentContent comment={repostedComment}
+                                                displayClearButton
+                                                onClearButtonClick={() => setRepostedComment(undefined)}
                         />
                     </Grid>
                 )}
@@ -159,7 +173,9 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
     uploadedAttachments: createStatus.mediaAttachments,
     repostedStatus: createStatus.repostedStatus,
-    setRepostedStatus: createStatus.setRepostedStatus
+    setRepostedStatus: createStatus.setRepostedStatus,
+    repostedComment: createStatus.repostedComment,
+    setRepostedComment: createStatus.setRepostedComment
 });
 
 export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

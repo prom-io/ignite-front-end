@@ -34,7 +34,7 @@ const statusPage = new StatusPageStore(authorization, createStatus);
 const localization = new LocaleStore();
 const btfs = new BtfsHashesStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
-const comments = new CommentsStore();
+const comments = new CommentsStore(createStatus);
 
 export const store = {
     authorization,

@@ -1,4 +1,4 @@
-import {observable, action} from "mobx";
+import {observable, action, computed, reaction} from "mobx";
 import {CreateCommentStore} from "./CreateCommentStore";
 import {axiosInstance} from "../../api/axios-instance";
 
@@ -10,6 +10,35 @@ export class CommentsStore {
 
     @observable
     commentCreationListeners = [];
+
+    createStatusStore = undefined;
+
+    @computed
+    get createdStatus() {
+        return this.createStatusStore.createdStatus;
+    }
+
+    constructor(createStatusStore) {
+        this.createStatusStore = createStatusStore;
+
+        reaction(
+            () => this.createdStatus,
+            status => {
+                if (status && status.reposted_comment) {
+                    Object.keys(this.commentsByStatusesMap).forEach(statusId => {
+                        if (this.commentsByStatusesMap[statusId].comments.map(comment => comment.id).includes(status.reposted_comment.id)) {
+                            this.commentsByStatusesMap[statusId].comments = this.commentsByStatusesMap[statusId].comments.map(comment => {
+                                if (comment.id === status.reposted_comment.id) {
+                                    comment.reposts_count += 1;
+                                }
+                                return comment;
+                            })
+                        }
+                    })
+                }
+            }
+        )
+    }
 
     @action
     fetchComments = statusId => {

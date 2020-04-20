@@ -8,7 +8,7 @@ import UserCard from '../components/UserCard';
 import {DescriptionLinks} from '../components/DescriptionLinks';
 import {BtfsIcon} from "../icons/BtfsIcon";
 import {Routes} from "../routes";
-
+import {localized} from "../localization/components";
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
@@ -16,7 +16,33 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _PrometeusDescription = ({routerStore}) => {
+const tryOurNetworkTranslations = {
+    en: ({classes}) => (
+        <Typography variant="body2">
+            Try our <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
+        </Typography>
+    ),
+    ko: ({classes}) => (
+        <Typography variant="body2">
+            Try our <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
+        </Typography>
+    )
+};
+
+const igniteDescriptionTranslations = {
+    en: () => (
+        <Typography variant="body2">
+            <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
+        </Typography>
+    ),
+    ko: () => (
+        <Typography variant="body2">
+            <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
+        </Typography>
+    )
+};
+
+const _PrometeusDescription = ({routerStore, l, locale}) => {
     const classes = useStyles();
 
     return (
@@ -25,9 +51,7 @@ const _PrometeusDescription = ({routerStore}) => {
                 <UserCard isLogin={true} />
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="body2">
-                    Try our <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
-                </Typography>
+                {tryOurNetworkTranslations[locale]({classes})}
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="body1" className="description-image-container">
@@ -44,9 +68,7 @@ const _PrometeusDescription = ({routerStore}) => {
                 </div>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="body2">
-                    <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
-                </Typography>
+                {igniteDescriptionTranslations[locale]()}
             </Grid>
             <Grid item xs={12} style={{
                                 borderTop: "1px solid #F1EBE8"
@@ -62,7 +84,7 @@ const _PrometeusDescription = ({routerStore}) => {
                 >
                     <BtfsIcon/>
                     <Typography style={{paddingLeft: "8px"}}>
-                        Explore BTFS
+                        {l("menu.explore-btfs")}
                     </Typography>
                 </Link>
             </Grid>
@@ -77,4 +99,6 @@ const mapMobxToProps = ({store}) => ({
     routerStore: store
 });
 
-export const PrometeusDescription = inject(mapMobxToProps)(observer(_PrometeusDescription));
+export const PrometeusDescription = localized(
+    inject(mapMobxToProps)(observer(_PrometeusDescription))
+);

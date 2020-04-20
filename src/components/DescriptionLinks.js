@@ -20,10 +20,12 @@ const _DescriptionLinks= ({routerStore, l}) => {
   return (
     <div className="description-links" >
       <div>
-        <StaticPageLinks targetView={Routes.settings}
-                         routerStore={routerStore}
-                         linkTekst={links.settings}
-        />
+        <p>
+          <StaticPageLinks targetView={Routes.settings}
+                           routerStore={routerStore}
+                           linkTekst={links.settings}
+          />
+        </p>
         <p>&bull;</p>
         <p>
           <StaticPageLinks

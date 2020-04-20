@@ -1,14 +1,19 @@
 import React from "react";
-import {Divider} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {CommentListItem} from "../../Comment/components";
 
+const useStyles = makeStyles(() => ({
+    repostedCommentContent: {
+        display: "flex",
+        border: "1px solid #F1EBE8"
+    }
+}));
+
 export const RepostedCommentContent = ({comment, displayClearButton = false, onClearButtonClick}) => {
+    const classes = useStyles();
 
     return (
-        <div style={{display: "flex"}}>
-            <Divider orientation="vertical"
-                     flexItem
-            />
+        <div className={classes.repostedCommentContent}>
             <CommentListItem comment={comment}
                              hideBottomMenu
                              hideBottomDivider

@@ -1,21 +1,27 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import {Link} from "mobx-router"
-import {Divider} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {StatusBody} from "./StatusBody";
 import {StatusHeader} from "./StatusHeader";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
 import {localized} from "../../localization/components";
 
+const useStyles = makeStyles(() => ({
+    repostedStatusContent: {
+        display: "flex",
+        border: "1px solid #F1EBE8"
+    }
+}));
+
 const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton, onClearButtonClick, l}) => {
+    const classes = useStyles();
+
     const doNothing = () => {};
 
     return (
-        <div style={{display: "flex"}}>
-            <Divider orientation="vertical"
-                     flexItem
-            />
+        <div className={classes.repostedStatusContent}>
             <div>
                 <StatusHeader username={repostedStatus.account.username}
                               userId={repostedStatus.account.id}

@@ -1,5 +1,5 @@
 import {action, observable, computed} from "mobx";
-import {en} from "../translations";
+import {en, ko} from "../translations";
 import englishDateFnsLocale from "date-fns/locale/en-US";
 import koreanDateFnsLocale from "date-fns/locale/ko";
 
@@ -27,7 +27,7 @@ export class LocaleStore {
     @observable
     labels = {
         en,
-        ko: en
+        ko
     };
 
     @computed

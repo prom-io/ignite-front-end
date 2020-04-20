@@ -92,7 +92,7 @@ const _DrawerMenu = ({
                         <TermsOfServiceIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                        {l("menu.terms-of-service")}
+                        {l("terms-of-service")}
                     </ListItemText>
                 </MenuItem>
             </Link>

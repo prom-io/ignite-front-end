@@ -67,17 +67,17 @@ const _UserProfileHeader = ({
                 <Grid style={{display: "flex", padding: 10}} className="user-profile-header-content-bottom-follows">
                     <UserProfileTab active={activeTab === "posts"}
                                     header={statuses}
-                                    subheader="Posts"
+                                    subheader={l("user.profile.posts")}
                                     onSelectActive={() => onTabSelected("posts")}
                     />
                     <UserProfileTab active={activeTab === "followers"}
                                     header={followers}
-                                    subheader="Followers"
+                                    subheader={l("user.profile.followers")}
                                     onSelectActive={() => onTabSelected("followers")}
                     />
                     <UserProfileTab active={activeTab === "following"}
                                     header={following}
-                                    subheader="Following"
+                                    subheader={l("user.profile.following")}
                                     onSelectActive={() => onTabSelected("following")}
                     />
                 </Grid>

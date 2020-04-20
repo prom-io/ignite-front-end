@@ -44,7 +44,7 @@ export const ko = {
     "appbar.chat": "채팅",
     "appbar.trends": "Trends",
     "appbar.search": "Search",
-    "appbar.explore-btfs": "Explore BTFS",
+    "appbar.explore-btfs": "BTFS 탐색",
     "description-links.privacy-policy": "Privacy policy",
     "description-links.terms-of-service": "Terms of service",
     "user.card.follow-your-interests": "Follow your interests",
@@ -91,6 +91,6 @@ export const ko = {
     "menu.terms-and-policies": "Terms and policies",
     "settings": "Settings",
     "settings.language": "Language",
-    "settings.language.en": "English",
-    "settings.language.ko": "Korean"
+    "settings.language.english": "English",
+    "settings.language.korean": "Korean"
 };

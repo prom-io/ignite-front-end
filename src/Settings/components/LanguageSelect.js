@@ -18,12 +18,12 @@ const _LanguageSelect = ({setSelectedLanguage, locale, l}) => {
             >
                 <MenuItem value="en">
                     <ListItemText>
-                        {l("settings.language.en")}
+                        {l("settings.language.english")}
                     </ListItemText>
                 </MenuItem>
                 <MenuItem value="ko">
                     <ListItemText>
-                        {l("settings.language.ko")}
+                        {l("settings.language.korean")}
                     </ListItemText>
                 </MenuItem>
             </Select>

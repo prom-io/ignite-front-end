@@ -63,7 +63,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     viewParameters={{}}
                         />
                         <Hidden smDown>
-                            <AppBarLink text="Explore BTFS"
+                            <AppBarLink text={l("appbar.explore-btfs")}
                                         targetView={Routes.btfs}
                                         active={currentActiveRoute === "btfs"}
                                         icon={<BtfsIcon color={currentActiveRoute === "btfs" && theme.palette.primary.main}/>}

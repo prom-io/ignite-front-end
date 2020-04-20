@@ -91,6 +91,6 @@ export const en = {
     "menu.terms-and-policies": "Terms and policies",
     "settings": "Settings",
     "settings.language": "Language",
-    "settings.language.en": "English",
-    "settings.language.ko": "Korean",
+    "settings.language.english": "English",
+    "settings.language.korean": "Korean",
 };

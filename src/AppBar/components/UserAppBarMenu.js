@@ -11,15 +11,23 @@ import {
     MenuList,
     Paper,
     Popper,
-    Grid
+    Grid,
+    makeStyles
 } from "@material-ui/core";
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
 import {LogoutMenuItem} from "../../Authorization/components";
 import {localized} from "../../localization/components";
 
-const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
+const useStyles = makeStyles(() => ({
+    undecoratedLink: {
+        textDecoration: "none",
+        color: "inherit"
+    }
+}));
 
+const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -77,12 +85,9 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Link view={Routes.userProfile}
-                                            params={{username: currentUser.id}}
-                                            store={routerStore}
-                                            style={{
-                                                textDecoration: "none",
-                                                color: "inherit"
-                                            }}
+                                              params={{username: currentUser.id}}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
@@ -101,11 +106,17 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
                                                 {l("menu.blocked-users")}
                                             </ListItemText>
                                         </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            <ListItemText>
-                                                {l("menu.terms-and-policies")}
-                                            </ListItemText>
-                                        </MenuItem>
+                                        <Link view={Routes.terms}
+                                              params={{}}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
+                                        >
+                                            <MenuItem onClick={handleClose}>
+                                                <ListItemText>
+                                                    {l("menu.terms-and-policies")}
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Link>
                                         <MenuItem disabled>
                                             <ListItemText>
                                                 {l("menu.help-center")}

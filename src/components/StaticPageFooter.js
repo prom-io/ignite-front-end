@@ -25,7 +25,12 @@ const _StaticPageFooter = ({routerStore, l}) => {
         <div><p>© 2020 {Prometeus} Team</p></div>
         <div>
           <ul>
-            <li>{l("menu.settings")}</li>
+            <li>
+              <StaticPageLinks targetView={Routes.settings}
+                               routerStore={routerStore}
+                               linkTekst={l("menu.settings")}
+              />
+            </li>
             <li>
               <StaticPageLinks
                 targetView={Routes.terms}

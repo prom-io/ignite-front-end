@@ -1,14 +1,16 @@
 import React from "react";
 import {Route} from "mobx-router";
 import {
+    BtfsHashesPage,
     ChatPage,
     DescriptionPage,
     HomePage,
     NotificationsPage,
+    SettingsPage,
+    StatusPage,
     TermsAndPoliciesPage,
     TrendsPage,
-    UserProfilePage,
-    StatusPage, BtfsHashesPage
+    UserProfilePage
 } from "../pages";
 import {store} from "../store";
 
@@ -81,6 +83,10 @@ export const Routes = {
         path: "/btfs",
         component: <BtfsHashesPage/>,
         beforeEnter: () => store.btfs.fetchBtfsHashes()
+    }),
+    settings: new Route({
+        path: "/settings",
+        component: <SettingsPage/>
     }),
     userProfile: new Route({
         path: "/:username",

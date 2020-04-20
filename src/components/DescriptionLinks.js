@@ -11,7 +11,8 @@ const _DescriptionLinks= ({routerStore, l}) => {
 
   const links = {
     termsOfService : l("description-links.terms-of-service"),
-    privacyPolicy: l("description-links.privacy-policy")
+    privacyPolicy: l("description-links.privacy-policy"),
+    settings: l("menu.settings"),
   }
   const handleClose = () => null
 
@@ -19,7 +20,10 @@ const _DescriptionLinks= ({routerStore, l}) => {
   return (
     <div className="description-links" >
       <div>
-        <p>{l("menu.settings")}</p>
+        <StaticPageLinks targetView={Routes.settings}
+                         routerStore={routerStore}
+                         linkTekst={links.settings}
+        />
         <p>&bull;</p>
         <p>
           <StaticPageLinks

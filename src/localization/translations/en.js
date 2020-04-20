@@ -88,5 +88,9 @@ export const en = {
     "trends.second-paragraph": "You may notice that some trends in other social networks have # sign before the word or phrase. This is called a hashtag and will be included specifically in posts to mark them as relating to a topic, so that people can follow the conversation in search.",
     "trends.third-paragraph": "Trends will be tailored for you based on who you follow and your interests, and your location (if mentioned). You will be able to choose to see trends that are not tailored for you by selecting specific trends in your trends settings.",
     "status.reposted-comment": "Reposted comment",
-    "menu.terms-and-policies": "Terms and policies"
+    "menu.terms-and-policies": "Terms and policies",
+    "settings": "Settings",
+    "settings.language": "Language",
+    "settings.language.en": "English",
+    "settings.language.ko": "Korean",
 };

@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {
     Avatar,
     ClickAwayListener,
     Divider,
+    Grid,
     Grow,
     IconButton,
     ListItemText,
+    makeStyles,
     MenuItem,
     MenuList,
     Paper,
-    Popper,
-    Grid,
-    makeStyles
+    Popper
 } from "@material-ui/core";
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
@@ -106,8 +106,17 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
                                                 {l("menu.blocked-users")}
                                             </ListItemText>
                                         </MenuItem>
+                                        <Link view={Routes.settings}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
+                                        >
+                                            <MenuItem>
+                                                <ListItemText>
+                                                    {l("menu.settings")}
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Link>
                                         <Link view={Routes.terms}
-                                              params={{}}
                                               store={routerStore}
                                               className={classes.undecoratedLink}
                                         >

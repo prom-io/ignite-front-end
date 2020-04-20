@@ -7,3 +7,4 @@ export * from "./TermsAndPoliciesPage";
 export * from "./DescriptionPage";
 export * from "./StatusPage";
 export * from "./BtfsHashesPage";
+export * from "./SettingsPage";

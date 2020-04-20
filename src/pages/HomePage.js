@@ -31,8 +31,7 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item md={3} className="left-container">
-                    </Grid>
+                    <Grid item md={3} className="left-container"/>
                 </Grid>
             </Layout>
         </Grid>

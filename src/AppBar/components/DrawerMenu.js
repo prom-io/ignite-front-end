@@ -75,14 +75,19 @@ const _DrawerMenu = ({
                     {l("menu.blocked-users")}
                 </ListItemText>
             </MenuItem>
-            <MenuItem disabled>
-                <ListItemIcon>
-                    <SettingsIcon/>
-                </ListItemIcon>
-                <ListItemText>
-                    {l("menu.settings")}
-                </ListItemText>
-            </MenuItem>
+            <Link view={Routes.settings}
+                  store={routerStore}
+                  className={classes.undecoratedLink}
+            >
+                <MenuItem onClick={handleMenuItemClick}>
+                    <ListItemIcon>
+                        <SettingsIcon/>
+                    </ListItemIcon>
+                    <ListItemText>
+                        {l("menu.settings")}
+                    </ListItemText>
+                </MenuItem>
+            </Link>
             <Link view={Routes.terms}
                   store={routerStore}
                   className={classes.undecoratedLink}

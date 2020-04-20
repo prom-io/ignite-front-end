@@ -2,10 +2,9 @@ import React from "react";
 import {Grid} from "@material-ui/core";
 import {AppBar} from "../AppBar/components";
 import {StaticPageFooter} from '../components/StaticPageFooter';
+import {localized} from "../localization/components";
 
-
-
-export const ChatPage = () => {
+const _ChatPage = ({l}) => {
 
   return(
   
@@ -21,11 +20,10 @@ export const ChatPage = () => {
       <div>
         <div>
           <p>
-            Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by us. All the messages will be deleted after 30 days.
+            {l("chat.description.first-paragraph")}
           </p>
           <p>
-            Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open.
-            We believe that users of social networks should be able to control their social media experience on their own terms, rather than the terms set down by Big Tech.
+            {l("chat.description.second-paragraph")}
           </p>
         </div>
       </div>
@@ -33,3 +31,5 @@ export const ChatPage = () => {
     <StaticPageFooter />
   </div>
 )}
+
+export const ChatPage = localized(_ChatPage);

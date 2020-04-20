@@ -5,7 +5,7 @@ import {
     DescriptionPage,
     HomePage,
     NotificationsPage,
-    TermsAndPolicesPage,
+    TermsAndPoliciesPage,
     TrendsPage,
     UserProfilePage,
     StatusPage, BtfsHashesPage
@@ -61,7 +61,7 @@ export const Routes = {
     }),
     terms: new Route({
         path: "/terms-and-policy",
-        component: <TermsAndPolicesPage/>,
+        component: <TermsAndPoliciesPage/>,
         beforeEnter: () => {
 
         },

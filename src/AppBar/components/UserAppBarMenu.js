@@ -16,8 +16,9 @@ import {
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
 import {LogoutMenuItem} from "../../Authorization/components";
+import {localized} from "../../localization/components";
 
-const _UserAppBarMenu = ({currentUser, routerStore}) => {
+const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -85,29 +86,29 @@ const _UserAppBarMenu = ({currentUser, routerStore}) => {
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    Profile
+                                                    {l("menu.profile")}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
                                         <Divider/>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Muted users
+                                                {l("menu.muted-users")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Blocked users
+                                                {l("menu.blocked-users")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem onClick={handleClose}>
                                             <ListItemText>
-                                                Terms and policies
+                                                {l("menu.terms-and-policies")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Help center
+                                                {l("menu.help-center")}
                                             </ListItemText>
                                         </MenuItem>
                                         <Divider/>
@@ -128,4 +129,6 @@ const mapMobxToProps = ({authorization, store}) => ({
     routerStore: store
 });
 
-export const UserAppBarMenu = inject(mapMobxToProps)(observer(_UserAppBarMenu));
+export const UserAppBarMenu = localized(
+    inject(mapMobxToProps)(observer(_UserAppBarMenu))
+);

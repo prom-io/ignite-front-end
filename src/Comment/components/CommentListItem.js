@@ -13,11 +13,12 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import {Link} from "mobx-router";
-import prettyDate from "pretty-date";
 import {RepostCommentMenu} from "./RepostCommentMenu";
 import {Routes} from "../../routes";
 import {addLineBreak, trimString} from "../../utils/string-utils";
+import {getCreatedAtLabel} from "../../utils/date-utlis";
 import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     commentHeader: {
@@ -31,8 +32,18 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _CommentListItem = ({hideBottomMenu, hideBottomDivider, comment, pendingCommentsRepostsMap, routerStore, displayClearButton, onClearButtonClick}) => {
+const _CommentListItem = ({
+    hideBottomMenu,
+    hideBottomDivider,
+    comment,
+    pendingCommentsRepostsMap,
+    routerStore,
+    displayClearButton,
+    onClearButtonClick,
+    dateFnsLocale
+}) => {
     const classes = useStyles();
+    console.log(comment.created_at);
 
     return (
         <div className={classes.commentListItem}>
@@ -84,7 +95,7 @@ const _CommentListItem = ({hideBottomMenu, hideBottomDivider, comment, pendingCo
                                     </Typography>
                                 </Hidden>
                                 <Typography style={{marginLeft: 12, fontSize: 12}}>
-                                    <SmallEllipseIcon/> {prettyDate.format(new Date(comment.created_at))}
+                                    <SmallEllipseIcon/> {getCreatedAtLabel(new Date(comment.created_at), dateFnsLocale)}
                                 </Typography>
                             </div>
                         }
@@ -111,4 +122,6 @@ const mapMobxToProps = ({store, createStatus}) => ({
     pendingCommentsRepostsMap: createStatus.pendingCommentsRepostsMap
 });
 
-export const CommentListItem = inject(mapMobxToProps)(observer(_CommentListItem));
+export const CommentListItem = localized(
+    inject(mapMobxToProps)(observer(_CommentListItem))
+);

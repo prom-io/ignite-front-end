@@ -2,13 +2,14 @@ import React from "react";
 import {inject} from "mobx-react";
 import {CardHeader, Typography, Avatar, Hidden, IconButton, makeStyles} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import prettyDate from "pretty-date";
 import {Link} from "mobx-router";
 import {StatusMenu} from "./StatusMenu";
 import {Routes} from "../../routes";
 import {SmallEllipseIcon} from "../../icons/SmallEllipseIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {addLineBreak, trimString} from "../../utils/string-utils";
+import {localized} from "../../localization/components";
+import {getCreatedAtLabel} from "../../utils/date-utlis";
 
 const useStyles = makeStyles(() => ({
     statusHeader: {
@@ -33,7 +34,8 @@ const _StatusHeader = ({
     onUnfollowRequest,
     displayClearButton = false,
     onClearButtonClick,
-    routerStore
+    routerStore,
+    dateFnsLocale
 }) => {
     const classes = useStyles();
 
@@ -87,7 +89,7 @@ const _StatusHeader = ({
                                 </Typography>
                             </Hidden>
                             <Typography style={{marginLeft: 12, fontSize: 12}}>
-                                <SmallEllipseIcon/> {prettyDate.format(new Date(createdAt))}
+                                <SmallEllipseIcon/> {getCreatedAtLabel(new Date(createdAt), dateFnsLocale)}
                             </Typography>
                         </div>
                     )}
@@ -109,4 +111,6 @@ const mapMobxToProps = ({store}) => ({
     routerStore: store
 });
 
-export const StatusHeader = inject(mapMobxToProps)(_StatusHeader);
+export const StatusHeader = localized(
+    inject(mapMobxToProps)(_StatusHeader)
+);

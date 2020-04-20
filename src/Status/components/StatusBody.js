@@ -5,10 +5,11 @@ import {CardContent, makeStyles, Typography, useTheme} from "@material-ui/core";
 import ReplyIcon from "@material-ui/icons/Reply";
 import {StatusMediaAttachments} from "./StatusMediaAttachments";
 import {RepostedStatusContent} from "./RepostedStatusContent";
+import {RepostedCommentContent} from "./RepostedCommentContent";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
 import {localized} from "../../localization/components";
-import {RepostedCommentContent} from "./RepostedCommentContent";
+import {toJS} from "mobx";
 
 const useStyles = makeStyles(() => ({
     statusText: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles(() => ({
 const _StatusBody = ({text, mediaAttachments, repostedStatus, repostedComment, nestedRepostedStatusId, routerStore, l}) => {
     const classes = useStyles();
     const theme = useTheme();
+    console.log(toJS(repostedComment));
 
     return (
         <CardContent className="status-list-body-container" style={{flex: "auto"}}>

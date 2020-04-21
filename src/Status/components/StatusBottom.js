@@ -11,14 +11,15 @@ import {
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {OpenStatusBtfsInfoDialogButton} from "./OpenStatusBtfsInfoDialogButton";
+import {RepostStatusMenu} from "./RespostStatusMenu";
+import {CommentsButton} from "./CommentsButton";
 import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
-import {RepostStatusMenu} from "./RespostStatusMenu";
-import {CommentsButton} from "./CommentsButton";
+import {localized} from "../../localization/components";
 
-export const StatusBottom = ({
+const _StatusBottom = ({
     favourited,
     onFavouriteClick,
     statusId,
@@ -26,12 +27,13 @@ export const StatusBottom = ({
     statusLikePending,
     btfsInfo,
     repostPending,
-    status
+    status,
+    l
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
-    const handleToggle = event => {
+    const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
     };
 
@@ -87,13 +89,13 @@ export const StatusBottom = ({
                                     <div className="status-modal-box-item" onClick={handleClose}>
                                         <LetterIcon />
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Send in message
+                                            {l("status.send-in-message")}
                                         </Typography>
                                     </div>
                                     <div className="status-modal-box-item" onClick={handleClose}>
                                         <ShareIcon/>
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Copy link
+                                            {l("status.copy-link")}
                                         </Typography>
                                     </div>
                                 </div>
@@ -108,3 +110,5 @@ export const StatusBottom = ({
         </ClickEventPropagationStopper>
     );
 };
+
+export const StatusBottom = localized(_StatusBottom);

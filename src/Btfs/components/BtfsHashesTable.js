@@ -3,6 +3,7 @@ import {inject, observer} from "mobx-react";
 import {Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Card, CardHeader, CardContent, makeStyles, Typography} from "@material-ui/core";
 import {format} from "date-fns";
 import {trimString} from "../../utils/string-utils";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
@@ -28,7 +29,7 @@ const getErrorLabel = error => {
     }
 };
 
-const _BtfsHashesTable = ({btfsHashes, pending, error}) => {
+const _BtfsHashesTable = ({btfsHashes, pending, error, l}) => {
     const classes = useStyles();
 
     if (pending) {
@@ -42,7 +43,7 @@ const _BtfsHashesTable = ({btfsHashes, pending, error}) => {
     } else if (btfsHashes.length === 0) {
         return  (
             <Typography>
-                No data is present
+                {l("btfs.no-data")}
             </Typography>
         )
     } else {
@@ -54,19 +55,19 @@ const _BtfsHashesTable = ({btfsHashes, pending, error}) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>
-                                    <strong>BTFS CID</strong>
+                                    <strong>{l("btfs.cid")}</strong>
                                 </TableCell>
                                 <TableCell>
-                                    <strong>Soter link</strong>
+                                    <strong>{l("btfs.soter-link")}</strong>
                                 </TableCell>
                                 <TableCell>
-                                    <strong>Created at</strong>
+                                    <strong>{l("btfs.created-at")}</strong>
                                 </TableCell>
                                 <TableCell>
-                                    <strong>Node wallet</strong>
+                                    <strong>{l("btfs.node-wallet")}</strong>
                                 </TableCell>
                                 <TableCell>
-                                    <strong>Synced</strong>
+                                    <strong>{l("btfs.synced")}</strong>
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -108,4 +109,6 @@ const mapMoxToProps = ({btfs}) => ({
     error: btfs.error
 });
 
-export const BtfsHashesTable = inject(mapMoxToProps)(observer(_BtfsHashesTable));
+export const BtfsHashesTable = localized(
+    inject(mapMoxToProps)(observer(_BtfsHashesTable))
+);

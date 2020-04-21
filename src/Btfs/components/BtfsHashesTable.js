@@ -29,7 +29,7 @@ const getErrorLabel = error => {
     }
 };
 
-const _BtfsHashesTable = ({btfsHashes, pending, error, l}) => {
+const _BtfsHashesTable = ({btfsHashes, pending, error, l, dateFnsLocale}) => {
     const classes = useStyles();
 
     if (pending) {
@@ -85,7 +85,7 @@ const _BtfsHashesTable = ({btfsHashes, pending, error, l}) => {
                                         </a>
                                     </TableCell>
                                     <TableCell>
-                                        {format(new Date(btfsHash.created_at), "dd MMMM yyyy HH:mm")}
+                                        {format(new Date(btfsHash.created_at), "dd MMMM yyyy HH:mm", {locale: dateFnsLocale})}
                                     </TableCell>
                                     <TableCell>
                                         {btfsHash.peer_wallet}

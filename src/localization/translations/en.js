@@ -92,5 +92,5 @@ export const en = {
     "settings": "Settings",
     "settings.language": "Language",
     "settings.language.english": "English",
-    "settings.language.korean": "Korean",
+    "settings.language.korean": "한국어",
 };

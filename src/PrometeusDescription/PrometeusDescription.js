@@ -24,7 +24,7 @@ const tryOurNetworkTranslations = {
     ),
     ko: ({classes}) => (
         <Typography variant="body2">
-            Try our <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
+            를 사용해 보십시오. 계약 템플릿, 음악, 3D 모델, 소스 코드, 통계 또는 석사 논문 등 상상할 수 있는 모든 디지털 데이터를 구입하고 판매할 수 있는 <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">네트워크</a>를 파일로 저장합니다.
         </Typography>
     )
 };
@@ -37,7 +37,7 @@ const igniteDescriptionTranslations = {
     ),
     ko: () => (
         <Typography variant="body2">
-            <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
+            <span>Ignite </span>은 Ethereum Plasma 기반의 '중앙집중화된 트위터' 솔루션으로, 불변적인 저장장치로 검열저항을 입증합니다.
         </Typography>
     )
 };

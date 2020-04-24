@@ -103,7 +103,7 @@ const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, o
                                             {(currentUserFollowsAuthor || currentUserIsAuthor) ? <UnfollowIcon/> : <PersonAddOutlinedIcon/>}
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? l("status.menu.follow-author") : l("status.menu.unfollow-author")}
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? l("status.menu.unfollow-author") : l("status.menu.follow-author")}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>

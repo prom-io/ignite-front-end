@@ -117,7 +117,7 @@ const _LoginForm = ({
                         }}
                         disabled={pending}
                 >
-                    {l("sign-up")}
+                    {l("sign-up.beta-testing")}
                 </Button>
             )}
         </Fragment>

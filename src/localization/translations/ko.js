@@ -34,6 +34,7 @@ export const ko = {
     "authorization.login.error.unknown": "로그인을 시도할 때 알 수 없는 오류가 발생했어요. 서버가 {responseStatus} 상태로 응답해요",
     "authorization.login.error.no-response": "로그인 시도 중 오류 발생했어요: 서버에서 응답이 없어요",
     "sign-up": "점화를 신청해요",
+    "sign-up.beta-testing": "Sign up for private beta testing",
     "chat.description.first-paragraph": "프로메테우스 팀은 “강열” 서비스의 기능 중 하나로 암호화된 피어 투 피어 채팅 메시징 서비스를 만들어 개발할 계획이다. 모든 메시지는 사용자의 장치에서 암호화되며 우리가 읽을 수 없다. 30일 후에 모든 메시지가 삭제될 것이다.",
     "chat.description.second-paragraph": "우리의 일반적인 목적은 전세계 언론의 자유를 지원하기 위한 분산된 도구를 만드는 것이다. 우리는 언론의 자유, 개인의 자유 그리고 정보의 온라인 흐름을 지지한다. 우리는 온라인 출판의 미래가 분권화되고 열려있다고 믿는다. 우리는 소셜 네트워크의 사용자들이 빅테크가 정한 조건이 아닌 자신의 방식으로 소셜 미디어 경험을 조절할 수 있어야 한다고 생각한다.",
     "notifications.description.first-paragraph": "프로메테우스 팀은 강열의 다른 사용자들이 그들과 어떻게 상호작용하는지를 볼 수 있는 간단한 방법을 제공하기 위해 알림 타임라인을 만들고 개발할 계획이다.",

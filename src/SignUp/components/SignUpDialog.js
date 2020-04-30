@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import {withSnackbar} from "notistack";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     signUpFormContent: {
         padding: 10
     },
@@ -46,6 +46,9 @@ const useStyles = makeStyles(() => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    privateBetaText: {
+        marginTop: theme.spacing(1)
     }
 }));
 
@@ -114,6 +117,9 @@ const _SignUpDialog = ({
                                fullWidth
                                margin="dense"
                     />
+                    <Typography className={classes.privateBetaText}>
+                        Private Beta testing in progress. Please provide your email address and we will send you further instructions
+                    </Typography>
                    <Button onClick={signUp}
                            fullWidth
                            className={classes.signUpDialogButton}

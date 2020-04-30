@@ -21,8 +21,6 @@ const _DescriptionPage = ({routerStore}) => {
   const classes = useStyles();
 
   const PrometeusNetwork = "{Prometeus Network}";
-  const Talk = "{Talk}";
-
 
   return(
     <div className="description-page">
@@ -35,13 +33,6 @@ const _DescriptionPage = ({routerStore}) => {
             <Grid item xs={12}>
                 <Typography variant="body2">
                     Try <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">{PrometeusNetwork}</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography variant="body1" className="description-image-container">
-                    <a href="https://www.binance.com/?ref=28821136" target="_blank">
-                        <img src={BinanceBanner}/>
-                    </a>
                 </Typography>
             </Grid>
             <Grid item xs={12}>

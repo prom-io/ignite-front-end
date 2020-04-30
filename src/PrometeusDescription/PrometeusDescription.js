@@ -54,20 +54,6 @@ const _PrometeusDescription = ({routerStore, l, locale}) => {
                 {tryOurNetworkTranslations[locale]({classes})}
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="body1" className="description-image-container">
-                    <a href="https://www.binance.com/?ref=28821136" target="_blank" rel="noopener noreferrer">
-                        <img src={BinanceBanner}/>
-                    </a>
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <div className="description-image-container">
-                    <a href="https://just.network/#/" target="_blank" rel="noopener noreferrer">
-                        <img src={JustBanner}/>
-                    </a>
-                </div>
-            </Grid>
-            <Grid item xs={12}>
                 {igniteDescriptionTranslations[locale]()}
             </Grid>
             <Grid item xs={12} style={{

@@ -9,13 +9,18 @@ import {Routes} from "../../routes";
 import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
-    repostedStatusContent: {
+    repostedStatus: {
         display: "flex",
         border: "1px solid #F1EBE8"
     }
 }));
 
-const _RepostedStatusContent = ({repostedStatus, routerStore, displayClearButton, onClearButtonClick, l}) => {
+const _RepostedStatusContent = ({
+    repostedStatus,
+    routerStore,
+    displayClearButton,
+    onClearButtonClick
+}) => {
     const classes = useStyles();
 
     const doNothing = () => {};

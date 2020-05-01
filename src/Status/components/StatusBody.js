@@ -5,13 +5,11 @@ import {CardContent, makeStyles, Typography, useTheme} from "@material-ui/core";
 import ReplyIcon from "@material-ui/icons/Reply";
 import {StatusMediaAttachments} from "./StatusMediaAttachments";
 import {RepostedStatusContent} from "./RepostedStatusContent";
-import {RepostedCommentContent} from "./RepostedCommentContent";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {Routes} from "../../routes";
 import {localized} from "../../localization/components";
-import {toJS} from "mobx";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     statusText: {
         overflowWrap: "break-word",
         fontFamily: "Museo Sans Cyrl",
@@ -20,24 +18,47 @@ const useStyles = makeStyles(() => ({
         fontSize: "15px",
         lineHeight: "23px",
         color: "#1C1C1C"
+    },
+    replyingToLabel: {
+        color: "#A2A2A2"
+    },
+    replyingToLink: {
+        textDecoration: "none",
+        color: "#A2A2A2"
+    },
+    threadLink: {
+        textDecoration: "none",
+        color: theme.palette.primary.main
     }
 }));
 
-const _StatusBody = ({text, mediaAttachments, repostedStatus, repostedComment, nestedRepostedStatusId, routerStore, l}) => {
+const _StatusBody = ({text, mediaAttachments, referredStatus, nestedRepostedStatusId, routerStore, l}) => {
     const classes = useStyles();
     const theme = useTheme();
-    console.log(toJS(repostedComment));
 
     return (
         <CardContent className="status-list-body-container" style={{flex: "auto"}}>
+            {referredStatus && referredStatus.status_reference_type === "COMMENT" && (
+                <div>
+                    <Typography classname={classes.replyingToLabel}>
+                        {l("status.replying-to")}
+                    </Typography>
+                    <Link store={routerStore}
+                          view={Routes.userProfile}
+                          params={{username: referredStatus.account.username}}
+                          className={classes.replyingToLink}
+                    >
+                        @{referredStatus.account.username}
+                    </Link>
+                </div>
+            )}
             <Typography variant="body1"
                         className={classes.statusText}
             >
                 {text}
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
-            {repostedStatus && <RepostedStatusContent repostedStatus={repostedStatus}/>}
-            {repostedComment && <RepostedCommentContent comment={repostedComment}/>}
+            {referredStatus && referredStatus.status_reference_type === "REPOST" && <RepostedStatusContent repostedStatus={referredStatus}/>}
             {nestedRepostedStatusId && (
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}
@@ -55,6 +76,15 @@ const _StatusBody = ({text, mediaAttachments, repostedStatus, repostedComment, n
                        </div>
                     </Link>
                 </ClickEventPropagationStopper>
+            )}
+            {referredStatus && referredStatus.status_reference_type === "COMMENT" && (
+                <Link store={routerStore}
+                      view={Routes.status}
+                      params={{id: referredStatus.id}}
+                      className={classes.threadLink}
+                >
+                    {l("status.show-this-thread")}
+                </Link>
             )}
         </CardContent>
     );

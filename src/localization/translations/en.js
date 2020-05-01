@@ -94,4 +94,6 @@ export const en = {
     "settings.language": "Language",
     "settings.language.english": "English",
     "settings.language.korean": "한국어",
+    "status.replying-to": "Replying to",
+    "status.show-this-thread": "Show this thread"
 };

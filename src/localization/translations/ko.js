@@ -93,5 +93,7 @@ export const ko = {
     "settings": "설정",
     "settings.language": "언어",
     "settings.language.english": "English",
-    "settings.language.korean": "한국어"
+    "settings.language.korean": "한국어",
+    "status.replying-to": "Replying to ",
+    "status.show-this-thread": "Show this thread"
 };

@@ -46,7 +46,7 @@ const _DescriptionPage = ({routerStore}) => {
         </Grid>
     </div>
   )
-}
+};
 
 const mapMobxToProps = ({store}) => ({
   routerStore: store

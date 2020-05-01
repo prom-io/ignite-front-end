@@ -39,8 +39,7 @@ const _StatusListItem = ({
             />
             <StatusBody text={status.content}
                         mediaAttachments={status.media_attachments}
-                        repostedStatus={status.reposted_status}
-                        repostedComment={status.reposted_comment}
+                        referredStatus={status.referred_status}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}
@@ -51,11 +50,6 @@ const _StatusListItem = ({
                           repostPending={repostPending}
                           status={status}
             />
-            <ClickEventPropagationStopper style={{
-                width: "100%"
-            }}>
-                <CommentsList statusId={status.id}/>
-            </ClickEventPropagationStopper>
         </Card>
     );
 

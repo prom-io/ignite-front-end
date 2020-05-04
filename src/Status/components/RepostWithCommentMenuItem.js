@@ -14,17 +14,18 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _RepostWithCommentMenuItem = ({status, onClick, setRepostedStatus, setCreateStatusDialogOpen, l}) => {
+const _RepostWithCommentMenuItem = ({status, onClick, setReferredStatus, setStatusReferenceType, setCreateStatusDialogOpen, l}) => {
     const classes = useStyles();
 
     const handleClick = event => {
-        setRepostedStatus(status);
+        setReferredStatus(status);
+        setStatusReferenceType("REPOST");
         setCreateStatusDialogOpen(true);
 
         if (onClick) {
             onClick(event);
         }
-    }
+    };
 
     return (
         <MenuItem classes={{
@@ -45,7 +46,8 @@ const _RepostWithCommentMenuItem = ({status, onClick, setRepostedStatus, setCrea
 };
 
 const mapMobxToProps = ({createStatus}) => ({
-    setRepostedStatus: createStatus.setRepostedStatus,
+    setReferredStatus: createStatus.setReferredStatus,
+    setStatusReferenceType: createStatus.setStatusReferenceType,
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen
 });
 

@@ -1,7 +1,8 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {CircularProgress, Typography, makeStyles} from "@material-ui/core";
+import {CircularProgress, Typography, makeStyles, Grid} from "@material-ui/core";
 import {StatusListItem} from "./StatusListItem";
+import {StatusCommentsList} from "./StatusCommentsList";
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -62,14 +63,21 @@ const _StatusPageContainer = ({
     }
 
     return (
-        <StatusListItem status={status}
-                        statusLikePending={statusLikePending}
-                        onUnfollowRequest={unfollowStatusAuthor}
-                        onFollowRequest={followStatusAuthor}
-                        onFavouriteStatusChange={handleFavouriteStatusChange}
-                        currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
-                        displayMenu={Boolean(currentUser)}
-        />
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <StatusListItem status={status}
+                                statusLikePending={statusLikePending}
+                                onUnfollowRequest={unfollowStatusAuthor}
+                                onFollowRequest={followStatusAuthor}
+                                onFavouriteStatusChange={handleFavouriteStatusChange}
+                                currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
+                                displayMenu={Boolean(currentUser)}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <StatusCommentsList/>
+            </Grid>
+        </Grid>
     )
 };
 

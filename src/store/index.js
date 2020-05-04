@@ -13,7 +13,6 @@ import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
 import {LocaleStore} from "../localization/stores";
 import {BtfsHashesStore} from "../Btfs/stores";
-import {CommentsStore} from "../Comment/stores";
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
@@ -34,7 +33,7 @@ const statusPage = new StatusPageStore(authorization, createStatus);
 const localization = new LocaleStore();
 const btfs = new BtfsHashesStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
-const comments = new CommentsStore(createStatus);
+const statusComments = new StatusesListStore(authorization, createStatus, undefined);
 
 export const store = {
     authorization,
@@ -56,5 +55,5 @@ export const store = {
     localization,
     btfs,
     statusBtfsInfo,
-    comments
+    statusComments
 };

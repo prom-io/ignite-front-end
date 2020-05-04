@@ -3,13 +3,11 @@ import {inject, observer} from "mobx-react";
 import {IconButton, Typography} from "@material-ui/core";
 import {CommentIcon} from "../../icons/CommentIcon";
 
-const _CommentsButton = ({statusId, commentsCount, commentsByStatusesMap, fetchComments, setCommentsExpanded}) => {
+const _CommentsButton = ({status, setCreateStatusDialogOpen, setReferredStatus, setStatusReferenceType}) => {
     const handleClick = () => {
-        if (!commentsByStatusesMap[statusId]) {
-            fetchComments(statusId);
-        } else {
-            setCommentsExpanded(statusId, !commentsByStatusesMap[statusId].expanded);
-        }
+        setReferredStatus(status);
+        setStatusReferenceType("COMMENT");
+        setCreateStatusDialogOpen(true);
     };
 
     return (
@@ -18,16 +16,16 @@ const _CommentsButton = ({statusId, commentsCount, commentsByStatusesMap, fetchC
                 <CommentIcon/>
             </IconButton>
             <Typography>
-                {commentsCount}
+                {status.comments_count}
             </Typography>
         </div>
     )
 };
 
-const mapMobxToProps = ({comments}) => ({
-    commentsByStatusesMap: comments.commentsByStatusesMap,
-    fetchComments: comments.fetchComments,
-    setCommentsExpanded: comments.setCommentsExpanded
+const mapMobxToProps = ({createStatus}) => ({
+    setReferredStatus: createStatus.setReferredStatus,
+    setStatusReferenceType: createStatus.setStatusReferenceType,
+    setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen
 });
 
 export const CommentsButton = inject(mapMobxToProps)(observer(_CommentsButton));

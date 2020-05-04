@@ -27,7 +27,6 @@ export const Routes = {
             }
 
             store.timelineSwitcher.selectedTimeline.fetchStatuses();
-            store.comments.addCommentCreationListener(statusId => store.timelineSwitcher.selectedTimeline.increaseCommentsCount(statusId));
         },
         onExit: () => {
             store.timelineSwitcher.setSwitchOnUserChange(false);
@@ -106,7 +105,6 @@ export const Routes = {
                     store.userProfile.setFollowedByCurrentUser(false);
                 }
             });
-            store.comments.addCommentCreationListener(statusId => store.userProfileTimeline.increaseCommentsCount(statusId));
         },
         onExit: () => {
             store.userProfile.reset();
@@ -123,14 +121,21 @@ export const Routes = {
         component: <StatusPage/>,
         beforeEnter: (route, params) => {
             store.statusPage.fetchStatus(params.id);
-            store.comments.addCommentCreationListener(statusId => store.statusPage.increaseCommentsCount(statusId))
+            store.statusComments.reset();
+            store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            store.statusComments.fetchStatuses();
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);
-            store.comments.addCommentCreationListener(statusId => store.statusPage.increaseCommentsCount(statusId))
+            store.statusComments.reset();
+            store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            store.statusComments.fetchStatuses();
         },
         onExit: () => {
             store.statusPage.reset();
+            store.statusComments.reset();
         }
     })
 };

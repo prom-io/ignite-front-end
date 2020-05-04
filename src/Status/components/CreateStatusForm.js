@@ -15,7 +15,6 @@ import {AttachImageInput} from "./AttachImageInput";
 import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
 import {RepostedStatusContent} from "./RepostedStatusContent";
 import {localized} from "../../localization/components";
-import {RepostedCommentContent} from "./RepostedCommentContent";
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -63,10 +62,10 @@ const _CreateStatusForm = ({
     removeMediaAttachment,
     uploadedAttachments,
     hideSendButton = false,
-    repostedStatus,
-    setRepostedStatus,
-    repostedComment,
-    setRepostedComment,
+    referredStatus,
+    statusReferenceType,
+    setReferredStatus,
+    setStatusReferenceType,
     l
 }) => {
     const classes = useStyles();
@@ -76,25 +75,20 @@ const _CreateStatusForm = ({
             <Grid container style={{
                 padding: "25px 15px 25px 15px"
             }}>
-                {repostedStatus && (
+                {referredStatus  && (
                     <Grid item xs={12}>
                         <Typography>
-                            {l("status.reposted-status")}:
+                            {statusReferenceType === "REPOST"
+                                ? l("status.reposted-status")
+                                : l("status.replying-to") + ": "
+                            }
                         </Typography>
-                        <RepostedStatusContent repostedStatus={repostedStatus}
+                        <RepostedStatusContent repostedStatus={referredStatus}
                                                displayClearButton
-                                               onClearButtonClick={() => setRepostedStatus(undefined)}
-                        />
-                    </Grid>
-                )}
-                {repostedComment && (
-                    <Grid item xs={12}>
-                        <Typography>
-                            {l("status.reposted-comment")}:
-                        </Typography>
-                        <RepostedCommentContent comment={repostedComment}
-                                                displayClearButton
-                                                onClearButtonClick={() => setRepostedComment(undefined)}
+                                               onClearButtonClick={() => {
+                                                   setReferredStatus(undefined);
+                                                   setStatusReferenceType(undefined);
+                                               }}
                         />
                     </Grid>
                 )}
@@ -172,10 +166,10 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
     uploadedAttachments: createStatus.mediaAttachments,
-    repostedStatus: createStatus.repostedStatus,
-    setRepostedStatus: createStatus.setRepostedStatus,
-    repostedComment: createStatus.repostedComment,
-    setRepostedComment: createStatus.setRepostedComment
+    referredStatus: createStatus.referredStatus,
+    setReferredStatus: createStatus.setReferredStatus,
+    statusReferenceType: createStatus.statusReferenceType,
+    setStatusReferenceType: createStatus.setStatusReferenceType
 });
 
 export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

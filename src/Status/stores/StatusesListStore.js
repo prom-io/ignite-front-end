@@ -15,6 +15,9 @@ export class StatusesListStore {
     @observable
     statusLikePendingMap = {};
 
+    @observable
+    onlyAddCommentsToThisStatus = undefined;
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
@@ -45,17 +48,36 @@ export class StatusesListStore {
             () => this.createdStatus,
             status => {
                 if (status) {
-                    this.statuses = [
-                        status,
-                        ...this.statuses
-                    ];
-                    if (status.reposted_status) {
-                        this.increaseRepostsCount(status.reposted_status.id)
+                    if (this.onlyAddCommentsToThisStatus) {
+                        if (status.referred_status && status.status_reference_type === "COMMENT") {
+                            this.statuses = [
+                                ...this.statuses,
+                                status,
+                            ];
+                        }
+                    } else {
+                        this.statuses = [
+                            status,
+                            ...this.statuses
+                        ];
+                    }
+
+                    if (status.referred_status) {
+                        if (status.status_reference_type === "REPOST") {
+                            this.increaseRepostsCount(status.referred_status.id)
+                        } else {
+                            this.increaseCommentsCount(status.referred_status.id);
+                        }
                     }
                 }
             }
         )
     }
+
+    @action
+    setOnlyAddCommentsToStatus = statusId => {
+        this.onlyAddCommentsToThisStatus = statusId;
+    };
 
     @action
     fetchStatuses = () => {
@@ -198,7 +220,7 @@ export class StatusesListStore {
         this.statuses = this.statuses.map(status => {
             if (status.id === statusId) {
                 status.comments_count += 1;
-            };
+            }
             return status;
         })
     };

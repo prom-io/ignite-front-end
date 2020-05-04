@@ -1,21 +1,18 @@
 import React, {Fragment, useEffect} from "react";
+import {Typography} from "@material-ui/core";
 import {StatusListItem} from "./StatusListItem";
-import {CommentsList} from "../../Comment/components";
-import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 export const StatusList = ({
     statuses,
     onFavouriteClick,
-    pending,
-    hasNewStatuses,
-    onShowNewStatusesClick,
     statusLikePendingMap,
     repostsPendingMap,
     currentUser,
     displayMenu,
     onFollowRequest,
     onUnfollowRequest,
-    onNextPageRequest
+    onNextPageRequest,
+    header
 }) => {
     let trackScrolling = () => {
         const element = document.getElementById("statusList");
@@ -34,6 +31,7 @@ export const StatusList = ({
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
+            {header && <Typography variant="h6">{header}</Typography>}
             {statuses.map(status => (
                 <Fragment key={status.id}>
                     <StatusListItem status={status}

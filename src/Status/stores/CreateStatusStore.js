@@ -6,10 +6,10 @@ export class CreateStatusStore {
     content = "";
 
     @observable
-    repostedStatus = undefined;
+    referredStatus = undefined;
 
     @observable
-    repostedComment = undefined;
+    statusReferenceType = undefined;
 
     @observable
     pendingRepostsMap = {};
@@ -66,53 +66,42 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || this.repostedStatus || this.repostedComment)) {
+        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || (this.referredStatus && this.statusReferenceType === "REPOST"))) {
             this.pending = true;
             this.submissionError = undefined;
-            const repostedStatusId = this.repostedStatus && this.repostedStatus.id;
-            const repostedCommentId = this.repostedComment && this.repostedComment.id;
+            const referredStatusId = this.referredStatus && this.referredStatus.id;
 
-            if (repostedStatusId) {
+            if (referredStatusId && this.statusReferenceType === "REPOST") {
                 this.pendingRepostsMap = {
                     ...this.pendingRepostsMap,
-                    [repostedStatusId]: true
+                    [referredStatusId]: true
                 }
             }
 
-            if (repostedCommentId) {
-                this.pendingCommentsRepostsMap = {
-                    ...this.pendingCommentsRepostsMap,
-                    [repostedCommentId]: true
-                }
-            }
+            const statusReferenceType = this.statusReferenceType;
 
             axiosInstance.post("/api/v1/statuses", {
                 status: this.content,
                 media_attachments: this.mediaAttachments,
-                repostedStatusId,
-                reposted_comment_id: repostedCommentId
+                referred_status_id: referredStatusId,
+                status_reference_type: this.statusReferenceType
             })
                 .then(({data}) => {
                     this.createdStatus = data;
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
-                    this.repostedStatus = undefined;
-                    this.repostedComment = undefined;
+
+                    this.referredStatus = undefined;
+                    this.statusReferenceType = undefined;
                 })
                 .catch(error => this.submissionError = error)
                 .finally(() => {
                     this.pending = false;
-                    if (repostedStatusId) {
+                    if (referredStatusId && statusReferenceType === "REPOST") {
                         this.pendingRepostsMap = {
                             ...this.pendingRepostsMap,
-                            [repostedStatusId]: false
-                        }
-                    }
-                    if (repostedCommentId) {
-                        this.pendingCommentsRepostsMap = {
-                            ...this.pendingCommentsRepostsMap,
-                            [repostedCommentId]: false
+                            [referredStatusId]: false
                         }
                     }
                 })
@@ -120,12 +109,12 @@ export class CreateStatusStore {
     };
 
     @action
-    setRepostedStatus = repostedStatus => {
-        this.repostedStatus = repostedStatus;
+    setReferredStatus = referredStatus => {
+        this.referredStatus = referredStatus;
     };
 
     @action
-    setRepostedComment = repostedComment => {
-        this.repostedComment = repostedComment;
+    setStatusReferenceType = statusReferenceType => {
+        this.statusReferenceType = statusReferenceType;
     }
 }

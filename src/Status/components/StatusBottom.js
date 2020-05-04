@@ -49,7 +49,7 @@ const _StatusBottom = ({
         <ClickEventPropagationStopper>
             <CardActions  className="status-list-bottom-container">
                 <ClickEventPropagationStopper>
-                    <CommentsButton statusId={statusId} commentsCount={status.comments_count}/>
+                    <CommentsButton status={status}/>
                 </ClickEventPropagationStopper>
                 <RepostStatusMenu status={status}
                                   repostPending={repostPending}

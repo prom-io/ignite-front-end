@@ -27,10 +27,17 @@ export class StatusPageStore {
         reaction(
             () => this.createStatusStore.createdStatus,
             status => {
-                if (this.status && status && status.reposted_status && status.reposted_status.id === this.status.id) {
-                    this.status = {
-                        ...this.status,
-                        reposts_count: this.status.reposts_count + 1
+                if (this.status && status && status.referred_status && status.referred_status.id === this.status.id) {
+                    if (status.status_reference_type === "REPOST") {
+                        this.status = {
+                            ...this.status,
+                            reposts_count: this.status.reposts_count + 1
+                        }
+                    } else {
+                        this.status = {
+                            ...this.status,
+                            comments_count: this.status.comments_count + 1
+                        }
                     }
                 }
             }

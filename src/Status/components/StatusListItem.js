@@ -6,8 +6,6 @@ import {StatusHeader} from "./StatusHeader";
 import {StatusBottom} from "./StatusBottom";
 import {StatusBody} from "./StatusBody";
 import {Routes} from "../../routes";
-import {CommentsList} from "../../Comment/components";
-import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 
 const _StatusListItem = ({
     status,
@@ -40,6 +38,7 @@ const _StatusListItem = ({
             <StatusBody text={status.content}
                         mediaAttachments={status.media_attachments}
                         referredStatus={status.referred_status}
+                        statusReferenceType={status.status_reference_type}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}

@@ -26,7 +26,7 @@ const _RepostedStatusContent = ({
     const doNothing = () => {};
 
     return (
-        <div className={classes.repostedStatusContent}>
+        <div className={classes.repostedStatus}>
             <div>
                 <StatusHeader username={repostedStatus.account.username}
                               userId={repostedStatus.account.id}
@@ -49,10 +49,11 @@ const _RepostedStatusContent = ({
                           style={{
                               textDecoration: "none",
                               color: "inherit"
-                          }}>
+                          }}
+                    >
                         <StatusBody text={repostedStatus.content}
                                     mediaAttachments={repostedStatus.media_attachments}
-                                    nestedRepostedStatusId={repostedStatus.reposted_status_id}
+                                    nestedRepostedStatusId={repostedStatus.status_reference_type === "REPOST" && repostedStatus.referred_status_id}
                         />
                     </Link>
                 </ClickEventPropagationStopper>

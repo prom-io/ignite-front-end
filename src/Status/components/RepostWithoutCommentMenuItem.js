@@ -17,14 +17,16 @@ const useStyles = makeStyles(() => ({
 const _RepostWithoutCommentMenuItem = ({
     onClick,
     status,
-    setRepostedStatus,
+    setReferredStatus,
+    setStatusReferenceType,
     createStatus,
     l
 }) => {
     const classes = useStyles();
 
     const handleClick = () => {
-        setRepostedStatus(status);
+        setReferredStatus(status);
+        setStatusReferenceType("REPOST");
         createStatus();
 
         if (onClick) {
@@ -52,7 +54,8 @@ const _RepostWithoutCommentMenuItem = ({
 
 const mapMobxToProps = ({createStatus}) => ({
     createStatus: createStatus.createStatus,
-    setRepostedStatus: createStatus.setRepostedStatus
+    setReferredStatus: createStatus.setReferredStatus,
+    setStatusReferenceType: createStatus.setStatusReferenceType
 });
 
 export const RepostWithoutCommentMenuItem = localized(

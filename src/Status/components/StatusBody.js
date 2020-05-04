@@ -20,37 +20,50 @@ const useStyles = makeStyles(theme => ({
         color: "#1C1C1C"
     },
     replyingToLabel: {
-        color: "#A2A2A2"
+        color: "#A2A2A2 !important"
+    },
+    replyToContainer: {
+        marginBottom: theme.spacing(1),
+        display: "flex"
     },
     replyingToLink: {
         textDecoration: "none",
-        color: "#A2A2A2"
+        color: "#A2A2A2",
+        marginLeft: 5
     },
     threadLink: {
         textDecoration: "none",
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
+        marginTop: theme.spacing(1)
     }
 }));
 
-const _StatusBody = ({text, mediaAttachments, referredStatus, nestedRepostedStatusId, routerStore, l}) => {
+const _StatusBody = ({text, mediaAttachments, referredStatus, statusReferenceType, nestedReferredStatusId, nestedStatusReferenceType, routerStore, l}) => {
     const classes = useStyles();
     const theme = useTheme();
 
     return (
         <CardContent className="status-list-body-container" style={{flex: "auto"}}>
-            {referredStatus && referredStatus.status_reference_type === "COMMENT" && (
-                <div>
-                    <Typography classname={classes.replyingToLabel}>
-                        {l("status.replying-to")}
-                    </Typography>
-                    <Link store={routerStore}
-                          view={Routes.userProfile}
-                          params={{username: referredStatus.account.username}}
-                          className={classes.replyingToLink}
-                    >
-                        @{referredStatus.account.username}
-                    </Link>
-                </div>
+            {referredStatus && statusReferenceType === "COMMENT" && (
+                <ClickEventPropagationStopper>
+                    <div style={{
+                        display: "flex",
+                        marginBottom: 4
+                    }}>
+                        <Typography className={classes.replyingToLabel}>
+                            {l("status.replying-to")}
+                        </Typography>
+                        <Link store={routerStore}
+                              view={Routes.userProfile}
+                              params={{username: referredStatus.account.username}}
+                              className={classes.replyingToLink}
+                        >
+                            <Typography style={{color: "#A2A2A2"}}>
+                                @{referredStatus.account.username}
+                            </Typography>
+                        </Link>
+                    </div>
+                </ClickEventPropagationStopper>
             )}
             <Typography variant="body1"
                         className={classes.statusText}
@@ -58,12 +71,12 @@ const _StatusBody = ({text, mediaAttachments, referredStatus, nestedRepostedStat
                 {text}
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
-            {referredStatus && referredStatus.status_reference_type === "REPOST" && <RepostedStatusContent repostedStatus={referredStatus}/>}
-            {nestedRepostedStatusId && (
+            {referredStatus && statusReferenceType === "REPOST" && <RepostedStatusContent repostedStatus={referredStatus}/>}
+            {nestedReferredStatusId && nestedStatusReferenceType === "REPOST" && (
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}
                           view={Routes.status}
-                          params={{id: nestedRepostedStatusId}}
+                          params={{id: nestedReferredStatusId}}
                           style={{
                               color: theme.palette.primary.main
                           }}
@@ -77,14 +90,21 @@ const _StatusBody = ({text, mediaAttachments, referredStatus, nestedRepostedStat
                     </Link>
                 </ClickEventPropagationStopper>
             )}
-            {referredStatus && referredStatus.status_reference_type === "COMMENT" && (
-                <Link store={routerStore}
-                      view={Routes.status}
-                      params={{id: referredStatus.id}}
-                      className={classes.threadLink}
-                >
-                    {l("status.show-this-thread")}
-                </Link>
+            {referredStatus && statusReferenceType === "COMMENT" && (
+                <ClickEventPropagationStopper>
+                    <Link store={routerStore}
+                          view={Routes.status}
+                          params={{id: referredStatus.id}}
+                          className={classes.threadLink}
+                    >
+                        <Typography style={{
+                            color: theme.palette.primary.main,
+                            marginTop: theme.spacing(1)
+                        }}>
+                            {l("status.show-this-thread")}
+                        </Typography>
+                    </Link>
+                </ClickEventPropagationStopper>
             )}
         </CardContent>
     );

@@ -40,6 +40,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     icon={<HomeIcon/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
+                                    id="homeLink"
                         />
                         <AppBarLink text={l("appbar.notifications")}
                                     targetView={Routes.notifications}
@@ -47,6 +48,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     icon={<BellIcon color={currentActiveRoute === "notifications" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
+                                    id="notificationsLink"
                         />
                         <AppBarLink text={l("appbar.chat")}
                                     targetView={Routes.chat}
@@ -54,6 +56,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     icon={<ChatIcon color={currentActiveRoute === "chat" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
+                                    id="chatLink"
                         />
                         <AppBarLink text={l("appbar.trends")}
                                     targetView={Routes.trends}
@@ -61,6 +64,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     icon={<TrendsIcon color={currentActiveRoute === "trends" && theme.palette.primary.main}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
+                                    id="trendsLink"
                         />
                         <Hidden smDown>
                             <AppBarLink text={l("appbar.explore-btfs")}
@@ -69,6 +73,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                         icon={<BtfsIcon color={currentActiveRoute === "btfs" && theme.palette.primary.main}/>}
                                         routerStore={routerStore}
                                         viewParameters={{}}
+                                        id="btfsLink"
                             />
                         </Hidden>
                     </div>

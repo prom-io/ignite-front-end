@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const AppBarLink = ({routerStore, targetView, viewParameters, active, icon, text}) => {
+export const AppBarLink = ({routerStore, targetView, viewParameters, active, icon, text, id}) => {
     const classes = useStyles();
 
     return (
@@ -30,7 +30,10 @@ export const AppBarLink = ({routerStore, targetView, viewParameters, active, ico
               view={targetView}
               params={viewParameters}
         >
-            <div color="inherit" className={classes.appBarLinkTextContainer}>
+            <div color="inherit"
+                 className={classes.appBarLinkTextContainer}
+                 id={id}
+            >
                 {icon}
                 <Typography variant="body1" style={{ paddingLeft: "8px" }} className="nav-bar-link">
                     <strong>{text}</strong>

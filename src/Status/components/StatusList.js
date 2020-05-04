@@ -12,7 +12,8 @@ export const StatusList = ({
     onFollowRequest,
     onUnfollowRequest,
     onNextPageRequest,
-    header
+    header,
+    hideThreadLinks
 }) => {
     let trackScrolling = () => {
         const element = document.getElementById("statusList");
@@ -43,6 +44,7 @@ export const StatusList = ({
                                     statusLikePending={statusLikePendingMap[status.id]}
                                     repostPending={repostsPendingMap[status.id]}
                                     link
+                                    hideThreadLink={hideThreadLinks}
                     />
                 </Fragment>
             ))}

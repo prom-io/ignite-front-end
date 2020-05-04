@@ -53,7 +53,8 @@ const _RepostedStatusContent = ({
                     >
                         <StatusBody text={repostedStatus.content}
                                     mediaAttachments={repostedStatus.media_attachments}
-                                    nestedRepostedStatusId={repostedStatus.status_reference_type === "REPOST" && repostedStatus.referred_status_id}
+                                    nestedReferredStatusId={repostedStatus.referred_status_id}
+                                    nestedReferredStatusReferenceType={repostedStatus.status_reference_type}
                         />
                     </Link>
                 </ClickEventPropagationStopper>

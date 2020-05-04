@@ -43,6 +43,7 @@ const _StatusCommentsList = ({
                                 statusLikePendingMap={statusLikePendingMap}
                                 repostsPendingMap={repostsPendingMap}
                                 header={l("status.comments")}
+                                hideThreadLinks
                     />
                 </Grid>
             </Grid>

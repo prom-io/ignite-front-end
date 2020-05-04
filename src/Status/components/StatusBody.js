@@ -38,7 +38,17 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _StatusBody = ({text, mediaAttachments, referredStatus, statusReferenceType, nestedReferredStatusId, nestedStatusReferenceType, routerStore, l}) => {
+const _StatusBody = ({
+    text,
+    mediaAttachments,
+    referredStatus,
+    statusReferenceType,
+    nestedReferredStatusId,
+    nestedReferredStatusReferenceType,
+    routerStore,
+    hideThreadLink,
+    l
+}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -72,7 +82,7 @@ const _StatusBody = ({text, mediaAttachments, referredStatus, statusReferenceTyp
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments}/>
             {referredStatus && statusReferenceType === "REPOST" && <RepostedStatusContent repostedStatus={referredStatus}/>}
-            {nestedReferredStatusId && nestedStatusReferenceType === "REPOST" && (
+            {nestedReferredStatusId && nestedReferredStatusReferenceType === "REPOST" && (
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}
                           view={Routes.status}
@@ -90,11 +100,27 @@ const _StatusBody = ({text, mediaAttachments, referredStatus, statusReferenceTyp
                     </Link>
                 </ClickEventPropagationStopper>
             )}
-            {referredStatus && statusReferenceType === "COMMENT" && (
+            {referredStatus && statusReferenceType === "COMMENT" && !hideThreadLink && (
                 <ClickEventPropagationStopper>
                     <Link store={routerStore}
                           view={Routes.status}
                           params={{id: referredStatus.id}}
+                          className={classes.threadLink}
+                    >
+                        <Typography style={{
+                            color: theme.palette.primary.main,
+                            marginTop: theme.spacing(1)
+                        }}>
+                            {l("status.show-this-thread")}
+                        </Typography>
+                    </Link>
+                </ClickEventPropagationStopper>
+            )}
+            {nestedReferredStatusId && nestedReferredStatusReferenceType === "COMMENT" && !hideThreadLink && (
+                <ClickEventPropagationStopper>
+                    <Link store={routerStore}
+                          view={Routes.status}
+                          params={{id: nestedReferredStatusId}}
                           className={classes.threadLink}
                     >
                         <Typography style={{

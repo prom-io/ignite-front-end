@@ -17,7 +17,8 @@ const _StatusListItem = ({
     statusLikePending,
     repostPending,
     link = false,
-    routerStore
+    routerStore,
+    hideThreadLink
 }) => {
     const content = (
         <Card elevation={0}
@@ -39,6 +40,7 @@ const _StatusListItem = ({
                         mediaAttachments={status.media_attachments}
                         referredStatus={status.referred_status}
                         statusReferenceType={status.status_reference_type}
+                        hideThreadLink={hideThreadLink}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}

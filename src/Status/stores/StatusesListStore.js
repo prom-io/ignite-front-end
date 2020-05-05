@@ -23,16 +23,18 @@ export class StatusesListStore {
 
     statusAuthorSubscriptionListeners = [];
     statusAuthorUnsubscriptionListeners = [];
+    reverseOrder = false;
 
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl) {
+    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
+        this.reverseOrder = reverseOrder;
 
         this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
 
@@ -85,10 +87,17 @@ export class StatusesListStore {
 
         if (this.baseUrl) {
             if (this.statuses.length !== 0) {
-                const maxId = this.statuses[this.statuses.length - 1].id;
-                axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
-                    .then(({data}) => this.statuses.push(...data))
-                    .finally(() => this.pending = false);
+                if (this.reverseOrder) {
+                    const minId = this.statuses[this.statuses.length - 1].id;
+                    axiosInstance.get(`${this.baseUrl}?since_id=${minId}`)
+                        .then(({data}) => this.statuses.push(...data))
+                        .finally(() => this.pending = false);
+                } else {
+                    const maxId = this.statuses[this.statuses.length - 1].id;
+                    axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
+                        .then(({data}) => this.statuses.push(...data))
+                        .finally(() => this.pending = false);
+                }
             } else {
                 axiosInstance.get(`${this.baseUrl}`)
                     .then(({data}) => this.statuses.push(...data))

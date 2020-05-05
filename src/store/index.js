@@ -33,7 +33,7 @@ const statusPage = new StatusPageStore(authorization, createStatus);
 const localization = new LocaleStore();
 const btfs = new BtfsHashesStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
-const statusComments = new StatusesListStore(authorization, createStatus, undefined);
+const statusComments = new StatusesListStore(authorization, createStatus, undefined, true);
 
 export const store = {
     authorization,

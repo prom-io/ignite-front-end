@@ -40,7 +40,20 @@ const _StatusHeader = ({
     const classes = useStyles();
 
     return (
-        <CardHeader avatar={<Avatar src={avatar} className="avatar-mini"/>}
+        <CardHeader avatar={
+            <ClickEventPropagationStopper>
+                <Link store={routerStore}
+                      view={Routes.userProfile}
+                      params={{username: userId}}
+                      style={{
+                          textDecoration: "none",
+                          color: "inherit"
+                      }}
+                >
+                    <Avatar src={avatar} className="avatar-mini"/>
+                </Link>
+            </ClickEventPropagationStopper>
+        }
                     title={
                         <div className="status-header">
                             <ClickEventPropagationStopper className={classes.statusHeader}>
@@ -78,16 +91,27 @@ const _StatusHeader = ({
                             display: "flex",
                             alignItems: "center"
                         }}>
-                            <Hidden xsDown>
-                                <Typography>
-                                    @{trimString(username, 35)}
-                                </Typography>
-                            </Hidden>
-                            <Hidden smUp>
-                                <Typography style={{fontSize: 15}}>
-                                    @{trimString(username, 20)}
-                                </Typography>
-                            </Hidden>
+                            <ClickEventPropagationStopper>
+                                <Link store={routerStore}
+                                      view={Routes.userProfile}
+                                      params={{username: userId}}
+                                      style={{
+                                          textDecoration: "none",
+                                          color: "inherit"
+                                      }}
+                                >
+                                    <Hidden xsDown>
+                                        <Typography>
+                                            @{trimString(username, 35)}
+                                        </Typography>
+                                    </Hidden>
+                                    <Hidden smUp>
+                                        <Typography style={{fontSize: 15}}>
+                                            @{trimString(username, 20)}
+                                        </Typography>
+                                    </Hidden>
+                                </Link>
+                            </ClickEventPropagationStopper>
                             <Typography style={{marginLeft: 12, fontSize: 12}}>
                                 <SmallEllipseIcon/> {getCreatedAtLabel(new Date(createdAt), dateFnsLocale)}
                             </Typography>

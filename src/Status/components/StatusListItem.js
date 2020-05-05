@@ -20,8 +20,6 @@ const _StatusListItem = ({
     routerStore,
     hideThreadLink
 }) => {
-    console.log(status.can_be_reposted);
-
     const content = (
         <Card elevation={0}
               className="statusCardBox"

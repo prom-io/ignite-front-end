@@ -32,7 +32,7 @@ export const StatusList = ({
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
-            {header && <Typography variant="h6">{header}</Typography>}
+            {header && statuses.length !== 0 && <Typography variant="h6">{header}</Typography>}
             {statuses.map(status => (
                 <Fragment key={status.id}>
                     <StatusListItem status={status}

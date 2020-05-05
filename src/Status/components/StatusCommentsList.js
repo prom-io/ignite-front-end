@@ -38,7 +38,7 @@ const _StatusCommentsList = ({
                 {pending && statuses.length === 0 && <CircularProgress size={20} className={classes.centered}/>}
             </Grid>
             <Grid item xs={12}>
-                {statuses.length === 0 && !pending && <Typography color="secondary"></Typography>}
+                {statuses.length === 0 && !pending && <Typography color="textSecondary">{l("status.no-comments")}</Typography>}
                 <StatusList statuses={statuses}
                             onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
                             pending={pending}

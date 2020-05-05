@@ -97,5 +97,6 @@ export const en = {
     "status.replying-to": "Replying to",
     "status.show-this-thread": "Show this thread",
     "status.comments": "Comments to this post",
-    "status.undo-repost": "Undo repost"
+    "status.undo-repost": "Undo repost",
+    "status.no-comments": "No comments"
 };

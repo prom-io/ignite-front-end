@@ -27,6 +27,7 @@ const _StatusBottom = ({
     statusLikePending,
     btfsInfo,
     repostPending,
+    canBeReposted,
     status,
     l
 }) => {
@@ -53,6 +54,7 @@ const _StatusBottom = ({
                 </ClickEventPropagationStopper>
                 <RepostStatusMenu status={status}
                                   repostPending={repostPending}
+                                  canBeReposted={canBeReposted}
                 />
                 <div className="status-list-bottom-box">
                     {statusLikePending

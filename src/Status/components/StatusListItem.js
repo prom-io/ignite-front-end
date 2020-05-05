@@ -20,6 +20,8 @@ const _StatusListItem = ({
     routerStore,
     hideThreadLink
 }) => {
+    console.log(status.can_be_reposted);
+
     const content = (
         <Card elevation={0}
               className="statusCardBox"
@@ -49,6 +51,7 @@ const _StatusListItem = ({
                           statusLikePending={statusLikePending}
                           btfsInfo={status.btfs_info}
                           repostPending={repostPending}
+                          canBeReposted={status.can_be_reposted}
                           status={status}
             />
         </Card>

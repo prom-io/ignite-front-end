@@ -1,11 +1,12 @@
-import React, {useRef, useState} from "react";
+import React, {Fragment, useRef, useState} from "react";
 import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
 import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 import {RepostWithCommentMenuItem} from "./RepostWithCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
+import {UndoRepostMenuItem} from "./UndoRepostMenuItem";
 
-export const RepostStatusMenu = ({status, repostPending}) => {
+export const RepostStatusMenu = ({status, repostPending, canBeReposted}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -40,16 +41,21 @@ export const RepostStatusMenu = ({status, repostPending}) => {
                 <ClickEventPropagationStopper>
                     <ClickAwayListener onClickAway={handleClose}>
                         <div className="status-list-bottom-box-modal" onClick={handleClose}>
-                            <ClickEventPropagationStopper>
-                                <RepostWithoutCommentMenuItem status={status}
-                                                              onClick={handleClose}
-                                />
-                            </ClickEventPropagationStopper>
-                            <ClickEventPropagationStopper>
-                                <RepostWithCommentMenuItem status={status}
-                                                           onClick={handleClose}
-                                />
-                            </ClickEventPropagationStopper>
+                            {canBeReposted && (
+                                <Fragment>
+                                    <ClickEventPropagationStopper>
+                                        <RepostWithoutCommentMenuItem status={status}
+                                                                      onClick={handleClose}
+                                        />
+                                    </ClickEventPropagationStopper>
+                                    <ClickEventPropagationStopper>
+                                        <RepostWithCommentMenuItem status={status}
+                                                                   onClick={handleClose}
+                                        />
+                                    </ClickEventPropagationStopper>
+                                </Fragment>
+                            )}
+                            {!canBeReposted && <UndoRepostMenuItem onClick={handleClose}/>}
                         </div>
                     </ClickAwayListener>
                 </ClickEventPropagationStopper>

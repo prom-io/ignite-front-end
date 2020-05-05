@@ -1,17 +1,18 @@
 import React, {Fragment, useRef, useState} from "react";
 import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
+import {inject, observer} from "mobx-react";
 import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 import {RepostWithCommentMenuItem} from "./RepostWithCommentMenuItem";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {UndoRepostMenuItem} from "./UndoRepostMenuItem";
 
-export const RepostStatusMenu = ({status, repostPending, canBeReposted}) => {
+const _RepostStatusMenu = ({status, repostPending, canBeReposted, currentUser}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
     const handleToggle = () => {
-        setOpen(prevOpen => !prevOpen);
+        setOpen(prevOpen => currentUser && !prevOpen);
     };
 
     const handleClose = event => {
@@ -63,3 +64,9 @@ export const RepostStatusMenu = ({status, repostPending, canBeReposted}) => {
         </div>
     )
 };
+
+const mampMobxToProps = ({authorization}) => ({
+    currentUser: authorization.currentUser
+});
+
+export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

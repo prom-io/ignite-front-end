@@ -3,8 +3,12 @@ import {inject, observer} from "mobx-react";
 import {IconButton, Typography} from "@material-ui/core";
 import {CommentIcon} from "../../icons/CommentIcon";
 
-const _CommentsButton = ({status, setCreateStatusDialogOpen, setReferredStatus, setStatusReferenceType}) => {
+const _CommentsButton = ({status, setCreateStatusDialogOpen, setReferredStatus, setStatusReferenceType, currentUser}) => {
     const handleClick = () => {
+        if (!currentUser) {
+            return;
+        }
+
         setReferredStatus(status);
         setStatusReferenceType("COMMENT");
         setCreateStatusDialogOpen(true);
@@ -22,7 +26,8 @@ const _CommentsButton = ({status, setCreateStatusDialogOpen, setReferredStatus, 
     )
 };
 
-const mapMobxToProps = ({createStatus}) => ({
+const mapMobxToProps = ({createStatus, authorization}) => ({
+    currentUser: authorization.currentUser,
     setReferredStatus: createStatus.setReferredStatus,
     setStatusReferenceType: createStatus.setStatusReferenceType,
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen

@@ -13,7 +13,7 @@ const _UserProfileInfo = ({username, displayName, createdAt, l, dateFnsLocale}) 
             {`@${addLineBreak(username)}`}
         </Typography>
         <Typography variant="body1" noWrap className="user-profile-info-text">
-            {l("user.profile.member-since")} {format(createdAt, "MMMM yy", {locale: dateFnsLocale})}
+            {l("user.profile.member-since")} {format(createdAt, "MMMM yyyy", {locale: dateFnsLocale})}
         </Typography>
     </Fragment>
 );

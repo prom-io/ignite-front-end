@@ -26,17 +26,22 @@ const useStyles = makeStyles(theme => ({
         padding: "7px 10px"
     },
     createStatusButtonWrapper: {
-        paddingTop: 15
+        paddingTop: 15,
     },
     createStatusButton: {
         borderRadius: 30,
         float: "right",
         width: "114px",
+        boxShadow: 'none'
     },
     mediaAttachmentsContainer: {
         marginBottom: theme.spacing(2),
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2)
+    },
+    cardActionsStyled: {
+        display: 'flsex',
+        padding: '8px 15px',
     }
 }));
 
@@ -106,7 +111,7 @@ const _CreateStatusForm = ({
                     />
                 </Grid>
             </Grid>
-            <CardActions style={{display: "flex"}}>
+            <CardActions className={classes.cardActionsStyled}>
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
                         <AttachImageInput onImagesAttached={addMediaAttachments}

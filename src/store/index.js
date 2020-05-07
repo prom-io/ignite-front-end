@@ -8,7 +8,7 @@ import {
     StatusPageStore,
     StatusBtfsInfoStore
 } from "../Status/stores";
-import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
+import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore, UpdateUserProfileStore, UploadUserAvatarStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
 import {LocaleStore} from "../localization/stores";
@@ -34,6 +34,8 @@ const localization = new LocaleStore();
 const btfs = new BtfsHashesStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
 const statusComments = new StatusesListStore(authorization, createStatus, undefined, true);
+const userAvatarUpload = new UploadUserAvatarStore();
+const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile);
 
 export const store = {
     authorization,
@@ -55,5 +57,7 @@ export const store = {
     localization,
     btfs,
     statusBtfsInfo,
-    statusComments
+    statusComments,
+    userAvatarUpload,
+    userProfileUpdate
 };

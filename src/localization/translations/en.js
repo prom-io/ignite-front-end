@@ -98,5 +98,18 @@ export const en = {
     "status.show-this-thread": "Show this thread",
     "status.comments": "Comments to this post",
     "status.undo-repost": "Undo repost",
-    "status.no-comments": "No comments"
+    "status.no-comments": "No comments",
+    "user.username": "Username",
+    "user.username.cant-be-empty": "Username can't be empty",
+    "user.username.is-too-long": "Username is too long",
+    "user.username.contains-invalid-characters": "Username contains invalid characters",
+    "user.username.has-already-been-taken": "This username has already been taken",
+    "user.display-name": "Displayed name",
+    "user.display-name.is-too-long": "Displayed name is too long",
+    "user.bio": "Bio",
+    "user.bio.is-too-long": "Bio is too long",
+    "user.upload-avatar": "Upload avatar",
+    "user.update-profile": "Update profile",
+    "user.update-profile.save-changes": "Save changes",
+    "user.update-profile.close": "Close"
 };

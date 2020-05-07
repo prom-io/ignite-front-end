@@ -43,6 +43,11 @@ export class UserProfileStore {
     }
 
     @action
+    setUser = user => {
+        this.user = user;
+    };
+
+    @action
     fetchUserByUsername = username => {
         this.fetchingUser = true;
         this.error = undefined;

@@ -8,6 +8,10 @@ const useStyles = makeStyles(() => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    cardContainer: {
+        boxShadow: 'none',
+        border: '1px solid #F1EBE8'
     }
 }));
 
@@ -17,7 +21,7 @@ const _UserFollowersList = ({followers, pending}) => {
     return followers.length === 0 && pending
         ? <CircularProgress size={15} className={classes.centered}/>
         : (
-            <Card>
+            <Card className={classes.cardContainer}>
                 <UsersList users={followers}/>
             </Card>
         )

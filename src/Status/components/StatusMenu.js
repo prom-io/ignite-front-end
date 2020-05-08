@@ -8,7 +8,8 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper
+    Popper,
+    makeStyles
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
@@ -20,7 +21,15 @@ import {SadIcon} from "../../icons/SadIcon";
 import {EmbedIcon} from "../../icons/EmbedIcon";
 import {localized} from "../../localization/components";
 
+const useStyles = makeStyles({
+    paper: {
+        boxShadow: '0 0 5px rgba(0,0,0,0.2)'
+    }
+});
+
 const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest, l}) => {
+    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -73,7 +82,7 @@ const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, o
                         {...TransitionProps}
                         style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom"}}
                     >
-                        <Paper>
+                        <Paper className={classes.paper}>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                     <MenuItem disabled>

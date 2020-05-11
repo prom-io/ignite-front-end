@@ -11,7 +11,7 @@
 
 ## Description
 
-[Ignite] (http://ignite.so/) is a decentralized social network, which allows everyone to share her/his mind freely via texts and media files. All the posts are distributed through Ethereum blockchain and stored immutable in distributed Data Storage. This storage is able to store necessary data and media for a period of 10-100 years. It is based on Bit Torrent File System, so Ignite could not be blocked by any form of barrier or firewall.
+[Ignite](http://ignite.so/) is a decentralized social network, which allows everyone to share her/his mind freely via texts and media files. All the posts are distributed through Ethereum blockchain and stored immutable in Distributed Data Storage. This storage is able to store necessary data and media for a period of 10-100 years. It is based on Bit Torrent File System, so Ignite could not be blocked by any form of barrier or firewall.
 
 Our mission is to create a free flow of information online. It is a way to communicate globally that supports individual liberty of everyone without any form of censorship. Due to its decentralized nature Ignite will not be governed by anyone and cannot be controlled by authorities.
 
@@ -29,7 +29,14 @@ As such this codebase should be treated as experimental and does not contain all
 
 ## How it works
 
+Our primary target is to implement some standard social networks features:
 
+- Sign up / Sign in - account/wallet creation and login feature; — чсайнап нельзя на прайват бете
+- Post - share text or media file and write it directly into ethereum blockchain;
+- Repost - share post you like;
+- Follow / Unfollow - don’t miss posts from your favorite users;
+- Like - let your favourite authors know that you agree with their position;
+- Comment / Discuss - share your opinion with the others in hot discussions.
 
 ## How to run
 

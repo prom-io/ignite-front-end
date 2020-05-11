@@ -17,7 +17,9 @@ Our mission is to create a free flow of information online. It is a way to commu
 
 ## How to test
 
-....
+Please apply for the test account to participate our private beta testing.
+
+The overall user experience supposed to be the same as you use other social networks like Facebook or Twitter. All the essential features are implemented within our functionality so you can make posts, comment somebody, follow users you’d like to follow and like their posts.
 
 ## License
 
@@ -31,7 +33,7 @@ As such this codebase should be treated as experimental and does not contain all
 
 Our primary target is to implement some standard social networks features:
 
-- Sign up / Sign in - account/wallet creation and login feature; — чсайнап нельзя на прайват бете
+- Sign up / Sign in - account/wallet creation and login feature; 
 - Post - share text or media file and write it directly into ethereum blockchain;
 - Repost - share post you like;
 - Follow / Unfollow - don’t miss posts from your favorite users;

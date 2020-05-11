@@ -71,6 +71,7 @@ const _CreateStatusForm = ({
     statusReferenceType,
     setReferredStatus,
     setStatusReferenceType,
+    mediaAttachmentUploadPending,
     l
 }) => {
     const classes = useStyles();
@@ -103,7 +104,8 @@ const _CreateStatusForm = ({
                 <Grid item xs={11}>
                     <TextField placeholder={l("status.placeholder")}
                                multiline
-                               rows="4"
+                               rows={4}
+                               rowsMax={Number.MAX_SAFE_INTEGER}
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
@@ -139,7 +141,7 @@ const _CreateStatusForm = ({
                                     color="primary"
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
-                                    disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                                    disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
                                 {l("status.send")}
@@ -162,6 +164,7 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     submissionError: createStatus.submissionError,
     content: createStatus.content,
     pending: createStatus.pending,
+    mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     currentUserAvatar: authorization.currentUser
         ? authorization.currentUser.avatar || "http://localhost:3000/avatars/original/missing.png"
         : "http://localhost:3000/avatars/original/missing.png",

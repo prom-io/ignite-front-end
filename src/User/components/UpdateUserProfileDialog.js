@@ -21,6 +21,7 @@ const _UpdateUserProfileDialog = ({
     submissionError,
     pending,
     checkingUsernameAvailability,
+    avatarUploadPending,
     updateUser,
     setFormValue,
     setUpdateUserProfileDialogOpen,
@@ -86,7 +87,7 @@ const _UpdateUserProfileDialog = ({
                 <Button variant="contained"
                         color="primary"
                         onClick={updateUser}
-                        disabled={pending || checkingUsernameAvailability}
+                        disabled={pending || checkingUsernameAvailability || avatarUploadPending}
                 >
                     {pending && <CircularProgress size={15} color="primary"/>}
                     {l("user.update-profile.save-changes")}
@@ -103,6 +104,7 @@ const mapMobxToProps = ({userProfileUpdate}) => ({
     submissionError: userProfileUpdate.submissionError,
     pending: userProfileUpdate.pending,
     checkingUsernameAvailability: userProfileUpdate.checkingUsernameAvailability,
+    avatarUploadPending: userProfileUpdate.avatarUploadPending,
     setFormValue: userProfileUpdate.setFormValue,
     setUpdateUserProfileDialogOpen: userProfileUpdate.setUpdateUserProfileDialogOpen,
     updateUser: userProfileUpdate.updateUser

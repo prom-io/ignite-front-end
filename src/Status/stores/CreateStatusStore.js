@@ -1,6 +1,8 @@
 import {action, computed, observable} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
+const STATUS_TEXT_LENGTH_LIMIT = 1000;
+
 export class CreateStatusStore {
     @observable
     content = "";
@@ -27,7 +29,7 @@ export class CreateStatusStore {
     inputExpanded = false;
 
     @observable
-    charactersRemaining = 250;
+    charactersRemaining = STATUS_TEXT_LENGTH_LIMIT;
 
     @observable
     submissionError = undefined;
@@ -42,6 +44,13 @@ export class CreateStatusStore {
             .map(fileContainer => fileContainer.uploadedMediaAttachment.id);
     }
 
+    @computed
+    get mediaAttachmentUploadPending() {
+        return this.uploadMediaAttachmentsStore.mediaAttachmentsFiles
+            .filter(fileContainer => fileContainer.pending)
+            .length !== 0;
+    }
+
     uploadMediaAttachmentsStore = undefined;
 
     constructor(uploadMediaAttachmentsStore) {
@@ -50,8 +59,10 @@ export class CreateStatusStore {
 
     @action
     setContent = content => {
-        this.content = content;
-        this.charactersRemaining = 250 - content.length;
+        if (STATUS_TEXT_LENGTH_LIMIT - content.length >= 0) {
+            this.content = content;
+            this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - content.length;
+        }
     };
 
     @action
@@ -66,7 +77,7 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if ((this.content.length !== 0 && this.content.length <= 250) || (this.mediaAttachments.length !== 0 || (this.referredStatus && this.statusReferenceType === "REPOST"))) {
+        if ((this.content.length !== 0 && this.content.length <= STATUS_TEXT_LENGTH_LIMIT) || (this.mediaAttachments.length !== 0 || (this.referredStatus && this.statusReferenceType === "REPOST"))) {
             this.pending = true;
             this.submissionError = undefined;
             const referredStatusId = this.referredStatus && this.referredStatus.id;

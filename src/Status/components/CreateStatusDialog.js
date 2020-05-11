@@ -28,6 +28,7 @@ const _CreateStatusDialog = ({
     content,
     pending,
     uploadedAttachments,
+    mediaAttachmentUploadPending,
     createStatus,
     fullScreen,
     l
@@ -57,7 +58,7 @@ const _CreateStatusDialog = ({
                 </IconButton>
                 <Button className={classes.createStatusButton}
                         onClick={createStatus}
-                        disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         color="primary"
                         variant="contained"
                 >
@@ -77,6 +78,7 @@ const mapMobxToProps = ({createStatus}) => ({
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen,
     content: createStatus.content,
     pending: createStatus.pending,
+    mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     createStatus: createStatus.createStatus,
     uploadedAttachments: createStatus.mediaAttachments
 });

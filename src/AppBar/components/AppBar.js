@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import {inject, observer} from "mobx-react";
 import {AppBar as MuiAppBar, Hidden, Toolbar, withTheme} from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/HomeOutlined";
+import CustomHomeOutlinedIcon from "../../components/CustomHomeOutlinedIcon";
 import {AppBarLink} from "./AppBarLink";
 import {UserAppBarMenu} from "./UserAppBarMenu";
 import {Routes} from "../../routes";
@@ -37,7 +37,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                         <AppBarLink text={l("appbar.home")}
                                     targetView={Routes.home}
                                     active={currentActiveRoute === "home"}
-                                    icon={<HomeIcon/>}
+                                    icon={<CustomHomeOutlinedIcon color={currentActiveRoute === "home" ? theme.palette.primary.main : theme.palette.text.primary}/>}
                                     routerStore={routerStore}
                                     viewParameters={{}}
                                     id="homeLink"

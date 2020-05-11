@@ -3,16 +3,18 @@ import {Typography, makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     userProfileTab: {
-        "&hover": {
-            borderBottom: "2px solid #1C1C1C"
-        },
         cursor: "pointer",
-        flex: "1 1 auto"
+        flex: "1 1 auto",
+        color: '#A2A2A2'
     },
     userProfileActiveTab: {
-        borderBottom: "2px solid #1C1C1C",
+        borderBottom: "2px solid #FF5C01",
         cursor: "pointer",
-        flex: "1 1 auto"
+        flex: "1 1 auto",
+        color: '#1C1C1C',
+        "&.MuiTypography-colorTextSecondary p": {
+            color: '#1C1C1C'
+        }
     }
 }));
 
@@ -27,7 +29,7 @@ export const UserProfileTab = ({header, subheader, active, onSelectActive}) => {
                 {header}
             </Typography>
             <Typography variant="body1"
-                        color="textSecondary"
+                        // color="textSecondary"
             >
                 {subheader}
             </Typography>

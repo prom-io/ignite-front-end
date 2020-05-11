@@ -6,7 +6,8 @@ import {
     ClickAwayListener,
     IconButton,
     Popper,
-    Typography
+    Typography,
+    makeStyles
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -18,6 +19,15 @@ import {ShareIcon} from '../../icons/ShareIcon';
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {localized} from "../../localization/components";
+
+const useStyles = makeStyles({
+    styledCheckbox: {
+        '&.MuiCheckbox-root': {
+            color: 'rgba(0, 0, 0, 0.35)'
+        }
+    },
+    border: '1px solid red'
+});
 
 const _StatusBottom = ({
     favourited,
@@ -31,6 +41,9 @@ const _StatusBottom = ({
     status,
     l
 }) => {
+
+    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -65,11 +78,12 @@ const _StatusBottom = ({
                                           checkedIcon={<FavoriteIcon color="primary"/>}
                                           checked={favourited}
                                           onChange={() => onFavouriteClick(statusId, !favourited)}
+                                          className={classes.styledCheckbox}
                                 />
                             </ClickEventPropagationStopper>
                         )
                     }
-                    <Typography variant="body1" color={favourited ? "primary" : "textSecondary"}>
+                    <Typography variant="body1" color={favourited ? "primary" : "textSecondary"} >
                         {favouritesCount}
                     </Typography>
                 </div>

@@ -3,7 +3,7 @@ import {Grid, makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     layout: {
-        marginTop: 16,
+        marginTop: 20,
         [theme.breakpoints.up("lg")]: {
             paddingLeft: "2.08333333334%",
             paddingRight: "2.08333333334%",

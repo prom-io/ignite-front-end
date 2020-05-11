@@ -1,9 +1,10 @@
 import React from "react";
-import {Button, Grid} from "@material-ui/core";
+import {Button, Grid, Typography} from "@material-ui/core";
 import {UserProfileAvatar} from "./UserProfileAvatar";
 import {UserProfileTab} from "./UserProfileTab";
 import {addLineBreak} from "../../utils/string-utils";
 import {localized} from "../../localization/components";
+import {format} from "date-fns";
 
 const _UserProfileHeader = ({
     avatar,
@@ -17,8 +18,10 @@ const _UserProfileHeader = ({
     onTabSelected,
     username,
     displayName,
+    createdAt,
     currentUser,
-    l
+    l,
+    dateFnsLocale
 }) => {
     let followButton = null;
 
@@ -80,6 +83,11 @@ const _UserProfileHeader = ({
                                     subheader={l("user.profile.following")}
                                     onSelectActive={() => onTabSelected("following")}
                     />
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body1" noWrap className="user-profile-info-text justify-content-center">
+                        {l("user.profile.member-since")} {format(createdAt, "MMMM yyyy", {locale: dateFnsLocale})}
+                    </Typography>
                 </Grid>
                 {followButton}
             </Grid>

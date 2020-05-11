@@ -6,7 +6,7 @@ import {OpenUpdateUserProfileDialogButton} from "./OpenUpdateUserProfileDialogBu
 import {addLineBreak} from "../../utils/string-utils";
 import {localized} from "../../localization/components";
 
-const _UserProfileInfo = ({username, displayName, createdAt, l, dateFnsLocale, user, currentUser}) => (
+const _UserProfileInfo = ({username, displayName, user, currentUser, bio}) => (
     <Fragment>
         <div>
                 <Typography variant="h6" className="user-profile-info-text">
@@ -21,16 +21,14 @@ const _UserProfileInfo = ({username, displayName, createdAt, l, dateFnsLocale, u
         <Typography variant="body2" color="textSecondary" className="user-profile-info-text" >
             {`@${addLineBreak(username)}`}
         </Typography>
-        <Typography variant="body1" noWrap className="user-profile-info-text">
-            {l("user.profile.member-since")} {format(createdAt, "MMMM yyyy", {locale: dateFnsLocale})}
-        </Typography>
+        {bio && <Typography className="user-profile-info-text">{bio}</Typography>}
     </Fragment>
 );
 
 const mapMobxToProps = ({userProfile, authorization}) => ({
         user: userProfile.user,
         currentUser: authorization.currentUser
-})
+});
 
 export const UserProfileInfo = localized(
     inject(mapMobxToProps)(observer(_UserProfileInfo))

@@ -5,7 +5,7 @@ import {
     ChatPage,
     DescriptionPage,
     HomePage,
-    NotificationsPage,
+    NotificationsPage, SetEnglishLanguageAndRedirectToHomePage, SetKoreanLanguageAndRedirectToHomePage,
     SettingsPage,
     StatusPage,
     TermsAndPoliciesPage,
@@ -32,6 +32,14 @@ export const Routes = {
             store.timelineSwitcher.setSwitchOnUserChange(false);
             store.timelineSwitcher.selectedTimeline.reset();
         }
+    }),
+    en: new Route({
+        path: "/en",
+        component: <SetEnglishLanguageAndRedirectToHomePage/>
+    }),
+    ko: new Route({
+        path: "/ko",
+        component: <SetKoreanLanguageAndRedirectToHomePage/>
     }),
     notifications: new Route({
         path: "/notifications",

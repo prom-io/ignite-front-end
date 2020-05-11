@@ -8,3 +8,5 @@ export * from "./DescriptionPage";
 export * from "./StatusPage";
 export * from "./BtfsHashesPage";
 export * from "./SettingsPage";
+export * from "./SetEnglishLanguageAndRedirectToHomePage";
+export * from "./SetKoreanLanguageAndRedirectToHomePage";

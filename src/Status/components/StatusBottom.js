@@ -71,23 +71,23 @@ const _StatusBottom = ({
                                   repostPending={repostPending}
                                   canBeReposted={canBeReposted}
                 />
-                <div className="status-list-bottom-box">
-                    {statusLikePending
-                        ? <CircularProgress size={20} color="primary"/>
-                        : ( 
-                            <ClickEventPropagationStopper>
+                <div>
+                    <ClickEventPropagationStopper className="status-list-bottom-box">
+                        {statusLikePending
+                            ? <CircularProgress size={20} color="primary"/>
+                            : (
                                 <Checkbox icon={<FavoriteBorderIcon/>}
                                           checkedIcon={<FavoriteIcon color="primary"/>}
                                           checked={favourited}
                                           onChange={() => onFavouriteClick(statusId, !favourited)}
                                           className={classes.styledCheckbox}
                                 />
-                            </ClickEventPropagationStopper>
-                        )
-                    }
-                    <Typography variant="body1" color={favourited ? "primary" : "textSecondary"} >
-                        {favouritesCount}
-                    </Typography>
+                            )
+                        }
+                        <Typography variant="body1" color={favourited ? "primary" : "textSecondary"} >
+                            {favouritesCount}
+                        </Typography>
+                    </ClickEventPropagationStopper>
                 </div>
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <div>

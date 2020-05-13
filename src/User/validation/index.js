@@ -1,6 +1,6 @@
 import {isStringEmpty} from "../../utils/string-utils";
 
-const USERNAME_REGEXP = /^[a-zA-Z0-9]+$/;
+const USERNAME_REGEXP = /^[a-zA-Z0-9\u3130-\u318F\uAC00-\uD7AF_]+$/;
 
 export const validateUsername = username => {
     if (isStringEmpty(username)) {

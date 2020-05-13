@@ -24,9 +24,11 @@ const useStyles = makeStyles({
     styledCheckbox: {
         '&.MuiCheckbox-root': {
             color: 'rgba(0, 0, 0, 0.35)'
-        }
+        },
     },
-    border: '1px solid red'
+    correctBorderRadius: {
+        borderRadius: 0
+    }
 });
 
 const _StatusBottom = ({
@@ -72,7 +74,7 @@ const _StatusBottom = ({
                 <div className="status-list-bottom-box">
                     {statusLikePending
                         ? <CircularProgress size={20} color="primary"/>
-                        : (
+                        : ( 
                             <ClickEventPropagationStopper>
                                 <Checkbox icon={<FavoriteBorderIcon/>}
                                           checkedIcon={<FavoriteIcon color="primary"/>}
@@ -91,6 +93,7 @@ const _StatusBottom = ({
                     <div>
                         <ClickEventPropagationStopper>
                             <IconButton ref={anchorRef}
+                                        className={classes.correctBorderRadius}
                                         onClick={event => {
                                             handleToggle(event);
                                         }}

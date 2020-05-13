@@ -58,7 +58,7 @@ const _StatusBody = ({
                 <ClickEventPropagationStopper>
                     <div style={{
                         display: "flex",
-                        marginBottom: 4
+                        // marginBottom: 4
                     }}>
                         <Typography className={classes.replyingToLabel}>
                             {l("status.replying-to")}

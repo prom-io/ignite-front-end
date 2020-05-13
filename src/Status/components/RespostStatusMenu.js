@@ -1,5 +1,5 @@
 import React, {Fragment, useRef, useState} from "react";
-import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress} from "@material-ui/core";
+import {ClickAwayListener, IconButton, Popper, Typography, CircularProgress, makeStyles} from "@material-ui/core";
 import {inject, observer} from "mobx-react";
 import {RepostWithoutCommentMenuItem} from "./RepostWithoutCommentMenuItem";
 import {RepostWithCommentMenuItem} from "./RepostWithCommentMenuItem";
@@ -7,7 +7,15 @@ import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
 import {RepostIcon} from "../../icons/RepostIcon";
 import {UndoRepostMenuItem} from "./UndoRepostMenuItem";
 
+const useStyles = makeStyles({
+    correctBorderRadius: {
+        borderRadius: 0
+    }
+});
+
 const _RepostStatusMenu = ({status, repostPending, canBeReposted, currentUser}) => {
+    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -30,6 +38,7 @@ const _RepostStatusMenu = ({status, repostPending, canBeReposted, currentUser}) 
                 :  (
                     <IconButton ref={anchorRef}
                                 onClick={handleToggle}
+                                className={classes.correctBorderRadius}
                     >
                         <RepostIcon/>
                     </IconButton>

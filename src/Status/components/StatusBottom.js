@@ -6,30 +6,50 @@ import {
     ClickAwayListener,
     IconButton,
     Popper,
-    Typography
+    Typography,
+    makeStyles
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import {OpenStatusBtfsInfoDialogButton} from "./OpenStatusBtfsInfoDialogButton";
+import {RepostStatusMenu} from "./RespostStatusMenu";
+import {CommentsButton} from "./CommentsButton";
 import {LetterIcon} from '../../icons/LetterIcon';
 import {ShareIcon} from '../../icons/ShareIcon';
-import {RepostIcon} from "../../icons/RepostIcon";
-import {PenIcon} from "../../icons/PenIcon";
 import {AnotherShareIcon} from "../../icons/AnotherShareIcon";
 import {ClickEventPropagationStopper} from "../../ClickEventProgatationStopper";
-import {CommentIcon} from "../../icons/CommentIcon";
+import {localized} from "../../localization/components";
 
-export const StatusBottom = ({
+const useStyles = makeStyles({
+    styledCheckbox: {
+        '&.MuiCheckbox-root': {
+            color: 'rgba(0, 0, 0, 0.35)'
+        },
+    },
+    correctBorderRadius: {
+        borderRadius: 0
+    }
+});
+
+const _StatusBottom = ({
     favourited,
     onFavouriteClick,
     statusId,
     favouritesCount,
-    statusLikePending
+    statusLikePending,
+    btfsInfo,
+    repostPending,
+    canBeReposted,
+    status,
+    l
 }) => {
+
+    const classes = useStyles();
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
-    const handleToggle = event => {
+    const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
     };
 
@@ -41,106 +61,60 @@ export const StatusBottom = ({
         setOpen(false);
     };
 
-    const [open2, setOpen2] = useState(false);
-    const anchorRef2 = useRef(null);
-
-    const handleToggle2 = event => {
-        setOpen2(prevOpen => !prevOpen);
-    };
-
-    const handleClose2 = event => {
-        if (event && anchorRef2.current && anchorRef2.current.contains(event.target)) {
-            return;
-        }
-
-        setOpen2(false);
-    };
-
     return (
         <ClickEventPropagationStopper>
             <CardActions  className="status-list-bottom-container">
-                <div className="status-list-bottom-box">
-                    <CommentIcon/>
-                    <Typography variant="body1" color={"textSecondary"}>
-                        0
-                    </Typography>
-                </div>
-                <div className="status-list-bottom-box">
-                    <IconButton ref={anchorRef}
-                                onClick={handleToggle}
-                    >
-                        <RepostIcon/>
-                    </IconButton>
-                    <Typography variant="body1" color={"textSecondary"}>
-                        0
-                    </Typography>
-                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
-                        <ClickEventPropagationStopper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <div className="status-list-bottom-box-modal" onClick={handleClose}>
-                                    <ClickEventPropagationStopper>
-                                        <div className="status-modal-box-item" onClick={handleClose}>
-                                            <RepostIcon />
-                                            <Typography variant="body1" color={"textSecondary"}>
-                                                Repost
-                                            </Typography>
-                                        </div>
-                                    </ClickEventPropagationStopper>
-                                    <ClickEventPropagationStopper>
-                                        <div className="status-modal-box-item" onClick={handleClose}>
-                                            <PenIcon/>
-                                            <Typography variant="body1" color={"textSecondary"}>
-                                                Repost with comment
-                                            </Typography>
-                                        </div>
-                                    </ClickEventPropagationStopper>
-                                </div>
-                            </ClickAwayListener>
-                        </ClickEventPropagationStopper>
-                    </Popper>
-                </div>
+                <ClickEventPropagationStopper>
+                    <CommentsButton status={status}/>
+                </ClickEventPropagationStopper>
+                <RepostStatusMenu status={status}
+                                  repostPending={repostPending}
+                                  canBeReposted={canBeReposted}
+                />
                 <div className="status-list-bottom-box">
                     {statusLikePending
                         ? <CircularProgress size={20} color="primary"/>
-                        : (
+                        : ( 
                             <ClickEventPropagationStopper>
                                 <Checkbox icon={<FavoriteBorderIcon/>}
                                           checkedIcon={<FavoriteIcon color="primary"/>}
                                           checked={favourited}
                                           onChange={() => onFavouriteClick(statusId, !favourited)}
+                                          className={classes.styledCheckbox}
                                 />
                             </ClickEventPropagationStopper>
                         )
                     }
-                    <Typography variant="body1" color={favourited ? "primary" : "textSecondary"}>
+                    <Typography variant="body1" color={favourited ? "primary" : "textSecondary"} >
                         {favouritesCount}
                     </Typography>
                 </div>
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <div>
                         <ClickEventPropagationStopper>
-                            <IconButton ref={anchorRef2}
+                            <IconButton ref={anchorRef}
+                                        className={classes.correctBorderRadius}
                                         onClick={event => {
-                                            handleToggle2(event);
+                                            handleToggle(event);
                                         }}
                                         disableRipple
                             >
                                 <AnotherShareIcon/>
                             </IconButton>
                         </ClickEventPropagationStopper>
-                        <Popper open={open2} anchorEl={anchorRef2.current} role={undefined} transition>
-                            <ClickAwayListener onClickAway={handleClose2}>
-                                <div className="status-list-bottom-box-modal" onClick={handleClose2}>
-                                    <div className="status-modal-box-item" onClick={handleClose2}>
+                        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                                    <div className="status-modal-box-item" onClick={handleClose}>
                                         <LetterIcon />
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Send in message
+                                            {l("status.send-in-message")}
                                         </Typography>
                                     </div>
-                                    <div className="status-modal-box-item" onClick={handleClose2}>
+                                    <div className="status-modal-box-item" onClick={handleClose}>
                                         <ShareIcon/>
                                         <Typography variant="body1" color={"textSecondary"}>
-                                            Copy link
+                                            {l("status.copy-link")}
                                         </Typography>
                                     </div>
                                 </div>
@@ -148,7 +122,12 @@ export const StatusBottom = ({
                         </Popper>
                     </div>
                 </ClickEventPropagationStopper>
+                <ClickEventPropagationStopper className="status-list-bottom-box">
+                    <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo}/>
+                </ClickEventPropagationStopper>
             </CardActions>
         </ClickEventPropagationStopper>
     );
 };
+
+export const StatusBottom = localized(_StatusBottom);

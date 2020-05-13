@@ -226,7 +226,7 @@ p
         align-items: center
         margin-top: 15px
         margin-right: 10px
-        & p 
+        & p
           margin-right: 5px
           &:first-child
             font-size: 16px
@@ -279,7 +279,7 @@ p
     & .user-profile-card
       max-width: 600px
       width: 100%
-    
+
 
 .user-profile-card
   background: $user-card-bg
@@ -319,8 +319,8 @@ p
   h4
     font-family: Museo Sans Cyrl
     font-style: normal
-    font-weight: 600
-    font-size: 14px
+    font-weight: 700
+    font-size: 20px
     line-height: 24px
     text-align: center
     color: #1C1C1C
@@ -421,7 +421,7 @@ p
       margin: 8px 4px
       &:hover
         text-decoration: underline
-  
+
 
 
 
@@ -459,8 +459,9 @@ p
   display: none
   @media (min-width: 960px)
     display: block
+    padding: 0 8px 8px 8px !important
 .create-status-form
-  // display: none 
+  // display: none
   background-color: #F1EBE8 !important
   @media (min-width: 960px)
     display: block
@@ -496,10 +497,11 @@ p
   border-top: 1px solid #F1EBE8
   border-right: 1px solid #F1EBE8
   border-left: 1px solid #F1EBE8
+  border-radius: 0px !important
   overflow: visible !important
   &:last-child
     border-bottom: 1px solid #F1EBE8
-  
+
 .status-list-card
   border-radius: 0px !important
   /*@media screen and ( max-width: 960px)
@@ -527,12 +529,13 @@ p
     font-size: 15px
     line-height: 18px
     color: #A2A2A2
-    
-      
+
+
 .avatar-mini
   height: 35px !important
   width: 35px !important
 .status-list-body-container
+  padding-top: 0px !important
   padding-left: 65px !important
   p
     font-family: Museo Sans Cyrl
@@ -550,13 +553,13 @@ p
     font-weight: normal
     font-size: 15px
     line-height: 18px
-    color: #A2A2A2 
+    color: #A2A2A2
   button, input, img, svg
     padding: 0
     margin: 0
     width: 20px
     height: 20px
-    
+
 .status-list-bottom-box
   cursor: pointer
   width: 45px
@@ -570,12 +573,25 @@ p
     margin-left: 0 !important
   &:last-child
     justify-content: flex-start
-  img
-    padding: 0
-    margin-right: 6px
-  span
-    padding: 0
-    margin-right: 6px
+  // img
+  //   padding: 0
+  //   margin-right: 6px
+  // span
+  //   padding: 0
+  //   margin-right: 6px
+  // button
+  //   margin-right: 6px
+// .status-list-bottom-box-item-custom
+//   cursor: pointer
+//   width: 45px
+//   height: 20px
+//   position: relative
+//   display: flex
+//   justify-content: space-around
+//   align-items: center
+//   margin-left: 20px !important
+  // span
+  //   margin-right: 0
 .status-list-bottom-box-modal
   position: absolute
   display: flex
@@ -588,7 +604,7 @@ p
   left: 0
   z-index: 2
   min-width: 150px
-  width: 180px
+  width: 200px
   padding: 5px 20px
 .status-modal-box-item
   display: flex
@@ -609,7 +625,7 @@ p
   justify-content: center
   @media (min-width: 960px)
     position: relative
-    top: 100px
+    // top: 100px
 
 .user-profile-header
   max-width: 256px !important
@@ -634,7 +650,7 @@ p
     &.another-user
       width: 100% !important
       max-width: 100% !important
-      
+
 .user-profile-header-content-top
   width: 100%
   // height: 50%
@@ -654,10 +670,13 @@ p
   justify-content: center
 .user-profile-header-content-bottom-follows
   width: 100%
+  height: 45px
   align-content: space-between
   div
     width: 33%
     text-align: center
+    &:hover > p
+      color: #1C1C1C
   h6
     font-family: Museo Sans Cyrl
     font-style: normal
@@ -672,7 +691,7 @@ p
     font-size: 12px
     line-height: 14px
     text-align: center
-    color: #A2A2A2
+    // color: #A2A2A2
 
 .user-profile-header-content-bottom-follow-button
   width: 202px
@@ -825,7 +844,7 @@ p
       //   justify-content: flex-end
       //   flex-wrap: nowrap
       li
-        
+
         margin-left: 27px
         @media (min-width: 960px)
           margin-left: 27px
@@ -846,8 +865,8 @@ p
         @media (min-width: 960px)
           list-style: disc
           margin-left: 27px
-      
-          
+
+
 .static-page-link
   text-decoration: none
   font-family: Museo Sans Cyrl

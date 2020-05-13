@@ -1,9 +1,18 @@
 import Web3 from "web3";
 import {AuthorizationStore, LoginStore} from "../Authorization/stores";
-import {StatusesListStore, CreateStatusStore, TimelinesSwitcherStore, UploadMediaAttachmentsStore, StatusPageStore} from "../Status/stores";
-import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore} from "../User/stores";
+import {
+    StatusesListStore,
+    CreateStatusStore,
+    TimelinesSwitcherStore,
+    UploadMediaAttachmentsStore,
+    StatusPageStore,
+    StatusBtfsInfoStore
+} from "../Status/stores";
+import {UserProfileStore, UserFollowersStore, UserFollowingStore, UserCardStore, UpdateUserProfileStore, UploadUserAvatarStore} from "../User/stores";
 import {SignUpStore} from "../SignUp/stores";
 import {DrawerStore} from "../AppBar/stores";
+import {LocaleStore} from "../localization/stores";
+import {BtfsHashesStore} from "../Btfs/stores";
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
@@ -20,7 +29,13 @@ const homeTimeline = new StatusesListStore(authorization, createStatus, "/api/v1
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
-const statusPage = new StatusPageStore(authorization);
+const statusPage = new StatusPageStore(authorization, createStatus);
+const localization = new LocaleStore();
+const btfs = new BtfsHashesStore();
+const statusBtfsInfo = new StatusBtfsInfoStore();
+const statusComments = new StatusesListStore(authorization, createStatus, undefined, true);
+const userAvatarUpload = new UploadUserAvatarStore();
+const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile);
 
 export const store = {
     authorization,
@@ -38,5 +53,11 @@ export const store = {
     userCard,
     drawer,
     statusPage,
-    uploadMediaAttachments
+    uploadMediaAttachments,
+    localization,
+    btfs,
+    statusBtfsInfo,
+    statusComments,
+    userAvatarUpload,
+    userProfileUpdate
 };

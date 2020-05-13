@@ -54,5 +54,10 @@ export class AuthorizationStore {
         if (this.currentUser) {
             this.currentUser.follows_count = followsCount;
         }
-    }
+    };
+
+    @action
+    setCurrentUser = currentUser => {
+        this.currentUser = currentUser;
+    };
 }

@@ -1,16 +1,7 @@
 import {action, observable} from "mobx";
 import randomString from "random-string";
 import {axiosInstance} from "../../api/axios-instance";
-
-class FileContainer {
-    constructor(file, fileId, pending, uploadedMediaAttachment = undefined) {
-        this.file = file;
-        this.fileId = fileId;
-        this.pending = pending;
-        this.url = URL.createObjectURL(file);
-        this.uploadedMediaAttachment = uploadedMediaAttachment;
-    }
-}
+import {FileContainer} from "../../utils/file-utils";
 
 export class UploadMediaAttachmentsStore {
     @observable

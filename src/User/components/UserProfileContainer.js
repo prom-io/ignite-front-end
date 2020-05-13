@@ -67,6 +67,7 @@ const _UserProfileContainer = ({
                                    username={user.username}
                                    displayName={user.display_name}
                                    currentUser={currentUser}
+                                   createdAt={new Date(user.created_at)}
                 />
             </Grid>
             <Grid item xs={12} md={7} className="user-profile-content-container">
@@ -74,6 +75,7 @@ const _UserProfileContainer = ({
                     <UserProfileInfo createdAt={new Date(user.created_at)}
                                      username={user.username}
                                      displayName={user.display_name}
+                                     bio={user.bio}
                     />
                 </Grid>
                 {tabContent}

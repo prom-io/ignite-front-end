@@ -22,7 +22,6 @@
     "mobx-router": "^0.0.20",
     "node-sass": "^4.13.1",
     "notistack": "^0.9.7",
-    "pretty-date": "^0.2.0",
     "random-string": "^0.2.0",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",

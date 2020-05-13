@@ -4,7 +4,7 @@ import {Grid} from "@material-ui/core";
 import {AppBar} from "../AppBar/components";
 import {LoginForm} from "../Authorization/components";
 import {Layout} from "../Layout";
-import {GlobalTimeline, HomeTimeline} from "../Status/components";
+import {GlobalTimeline, HomeTimeline, StatusBtfsInfoDialog} from "../Status/components";
 import {PrometeusDescription} from "../PrometeusDescription";
 import '../styles/App.sass'
 
@@ -31,11 +31,11 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item md={3} className="left-container">
-                    </Grid>
+                    <Grid item md={3} className="left-container"/>
                 </Grid>
             </Layout>
         </Grid>
+        <StatusBtfsInfoDialog/>
     </Grid>
 );
 

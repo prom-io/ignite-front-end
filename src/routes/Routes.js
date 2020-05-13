@@ -1,14 +1,16 @@
 import React from "react";
 import {Route} from "mobx-router";
 import {
+    BtfsHashesPage,
     ChatPage,
     DescriptionPage,
     HomePage,
-    NotificationsPage,
-    TermsAndPolicesPage,
+    NotificationsPage, SetEnglishLanguageAndRedirectToHomePage, SetKoreanLanguageAndRedirectToHomePage,
+    SettingsPage,
+    StatusPage,
+    TermsAndPoliciesPage,
     TrendsPage,
-    UserProfilePage,
-    StatusPage
+    UserProfilePage
 } from "../pages";
 import {store} from "../store";
 
@@ -30,6 +32,14 @@ export const Routes = {
             store.timelineSwitcher.setSwitchOnUserChange(false);
             store.timelineSwitcher.selectedTimeline.reset();
         }
+    }),
+    en: new Route({
+        path: "/en",
+        component: <SetEnglishLanguageAndRedirectToHomePage/>
+    }),
+    ko: new Route({
+        path: "/ko",
+        component: <SetKoreanLanguageAndRedirectToHomePage/>
     }),
     notifications: new Route({
         path: "/notifications",
@@ -60,7 +70,7 @@ export const Routes = {
     }),
     terms: new Route({
         path: "/terms-and-policy",
-        component: <TermsAndPolicesPage/>,
+        component: <TermsAndPoliciesPage/>,
         beforeEnter: () => {
 
         },
@@ -75,6 +85,15 @@ export const Routes = {
         },
         onExit: () => {
         }
+    }),
+    btfs: new Route({
+        path: "/btfs",
+        component: <BtfsHashesPage/>,
+        beforeEnter: () => store.btfs.fetchBtfsHashes()
+    }),
+    settings: new Route({
+        path: "/settings",
+        component: <SettingsPage/>
     }),
     userProfile: new Route({
         path: "/:username",
@@ -93,7 +112,7 @@ export const Routes = {
                 unsubscribeFromStatusAuthor: () => {
                     store.userProfile.setFollowedByCurrentUser(false);
                 }
-            })
+            });
         },
         onExit: () => {
             store.userProfile.reset();
@@ -110,12 +129,21 @@ export const Routes = {
         component: <StatusPage/>,
         beforeEnter: (route, params) => {
             store.statusPage.fetchStatus(params.id);
+            store.statusComments.reset();
+            store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            store.statusComments.fetchStatuses();
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);
+            store.statusComments.reset();
+            store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            store.statusComments.fetchStatuses();
         },
         onExit: () => {
             store.statusPage.reset();
+            store.statusComments.reset();
         }
     })
 };

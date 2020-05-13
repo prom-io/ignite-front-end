@@ -1,20 +1,16 @@
-import {observable, action, reaction, computed} from "mobx";
-import {validateEthereumAddress, validatePrivateKey} from "../validation";
+import {action, computed, observable, reaction} from "mobx";
+import {validateEmail} from "../validation";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class SignUpStore {
     @observable
     signUpForm = {
-        address: "",
-        privateKey: "",
-        username: undefined
+        email: ""
     };
 
     @observable
     signUpFormErrors = {
-        address: undefined,
-        privateKey: undefined,
-        username: undefined
+        email: undefined
     };
 
     @observable
@@ -42,20 +38,8 @@ export class SignUpStore {
         this.web3 = web3;
 
         reaction(
-            () => this.signUpForm.address,
-            address => this.signUpFormErrors.address = validateEthereumAddress(address)
-        );
-
-        reaction(
-            () => this.signUpFormErrors.privateKey,
-            privateKey => {
-                this.signUpFormErrors.address = validateEthereumAddress(this.signUpForm.address);
-
-                if (!this.signUpFormErrors.address) {
-                    console.log(this.web3);
-                    this.signUpFormErrors.privateKey = validatePrivateKey(this.signUpForm.address, this.web3, privateKey);
-                }
-            }
+            () => this.signUpForm.email,
+            email => this.signUpFormErrors.email = validateEmail(email)
         );
 
         reaction(
@@ -88,7 +72,7 @@ export class SignUpStore {
         if (this.validateForm()) {
             this.pending = true;
 
-            axiosInstance.post("/api/v3/accounts", {...this.signUpForm})
+            axiosInstance.post("/api/v1/accounts/private-beta", {...this.signUpForm})
                 .then(() => this.showSnackbar = true)
                 .catch(error => {
                     this.submissionError = error;
@@ -100,26 +84,23 @@ export class SignUpStore {
 
     @action
     validateForm = () => {
-        this.signUpFormErrors.address = validateEthereumAddress(this.signUpForm.address);
-        this.signUpFormErrors.privateKey = validatePrivateKey(this.signUpForm.address, this.web3, this.signUpForm.privateKey);
+        this.signUpFormErrors.email = validateEmail(this.signUpForm.email);
 
-        const {address, privateKey} = this.signUpFormErrors;
+        const {email} = this.signUpFormErrors;
 
-        return !Boolean(address || privateKey);
+        return !Boolean(email);
     };
 
     @action
     reset = () => {
         this.signUpForm = {
-            address: "",
-            privateKey: ""
+            email: ""
         };
         this.pending = false;
         this.submissionError = undefined;
         setTimeout(() => {
             this.signUpFormErrors = {
-                address: undefined,
-                privateKey: undefined
+                email: undefined,
             };
         })
     }

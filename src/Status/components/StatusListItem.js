@@ -15,8 +15,10 @@ const _StatusListItem = ({
     onFollowRequest,
     onUnfollowRequest,
     statusLikePending,
+    repostPending,
     link = false,
-    routerStore
+    routerStore,
+    hideThreadLink
 }) => {
     const content = (
         <Card elevation={0}
@@ -36,12 +38,19 @@ const _StatusListItem = ({
             />
             <StatusBody text={status.content}
                         mediaAttachments={status.media_attachments}
+                        referredStatus={status.referred_status}
+                        statusReferenceType={status.status_reference_type}
+                        hideThreadLink={hideThreadLink}
             />
             <StatusBottom onFavouriteClick={onFavouriteStatusChange}
                           favourited={status.favourited}
                           statusId={status.id}
                           favouritesCount={status.favourite_count}
                           statusLikePending={statusLikePending}
+                          btfsInfo={status.btfs_info}
+                          repostPending={repostPending}
+                          canBeReposted={status.can_be_reposted}
+                          status={status}
             />
         </Card>
     );

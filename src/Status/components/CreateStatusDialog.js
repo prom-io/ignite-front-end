@@ -1,8 +1,18 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import {Dialog, DialogTitle, DialogContent, Button, IconButton, makeStyles, CircularProgress, withMobileDialog} from "@material-ui/core";
+import {
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    IconButton,
+    makeStyles,
+    withMobileDialog
+} from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import {CreateStatusForm} from "./CreateStatusForm";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     createStatusButton: {
@@ -18,8 +28,10 @@ const _CreateStatusDialog = ({
     content,
     pending,
     uploadedAttachments,
+    mediaAttachmentUploadPending,
     createStatus,
-    fullScreen
+    fullScreen,
+    l
 }) => {
     const classes = useStyles();
 
@@ -46,12 +58,12 @@ const _CreateStatusDialog = ({
                 </IconButton>
                 <Button className={classes.createStatusButton}
                         onClick={createStatus}
-                        disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         color="primary"
                         variant="contained"
                 >
                     {pending && <CircularProgress size={15}/>}
-                    Send
+                    {l("status.send")}
                 </Button>
             </DialogTitle>
             <DialogContent>
@@ -66,10 +78,12 @@ const mapMobxToProps = ({createStatus}) => ({
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen,
     content: createStatus.content,
     pending: createStatus.pending,
+    mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     createStatus: createStatus.createStatus,
     uploadedAttachments: createStatus.mediaAttachments
 });
 
-export const CreateStatusDialog = withMobileDialog()(
-    inject(mapMobxToProps)(observer(_CreateStatusDialog))
-);
+export const CreateStatusDialog = localized(
+    withMobileDialog()(
+        inject(mapMobxToProps)(observer(_CreateStatusDialog))
+));

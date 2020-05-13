@@ -3,19 +3,20 @@ import {inject} from "mobx-react";
 import {Routes} from "../routes";
 import {StaticPageLinks} from './StaticPageLinks';
 import {LogoutMenuItem} from "../Authorization/components";
+import {localized} from "../localization/components";
 
 
-const _StaticPageFooter = ({routerStore}) => {
+const _StaticPageFooter = ({routerStore, l}) => {
 
   const Prometeus = "{Prometeus}"
 
   const links = {
-    termsOfService : "Terms of Service",
-    privacyPolicy: "Privacy Policy"
+    termsOfService : l("description-links.terms-of-service"),
+    privacyPolicy: l("description-links.privacy-policy")
   }
 
   const handleClose = () => null
-  
+
 
 
   return (
@@ -24,22 +25,27 @@ const _StaticPageFooter = ({routerStore}) => {
         <div><p>© 2020 {Prometeus} Team</p></div>
         <div>
           <ul>
-            <li>Settings</li>
             <li>
-              <StaticPageLinks 
+              <StaticPageLinks targetView={Routes.settings}
+                               routerStore={routerStore}
+                               linkTekst={l("menu.settings")}
+              />
+            </li>
+            <li>
+              <StaticPageLinks
                 targetView={Routes.terms}
                 routerStore={routerStore}
                 linkTekst={links.termsOfService}
               />
             </li>
             <li>
-              <StaticPageLinks 
+              <StaticPageLinks
                 targetView={Routes.terms}
                 routerStore={routerStore}
                 linkTekst={links.privacyPolicy}
               />
             </li>
-            <li>Help Center</li>
+            <li>{l("menu.help-center")}</li>
             <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/>
           </ul>
         </div>
@@ -52,4 +58,6 @@ const mapMobxToProps = ({store}) => ({
   routerStore: store
 });
 
-export const StaticPageFooter = inject(mapMobxToProps)(_StaticPageFooter);
+export const StaticPageFooter = localized(
+    inject(mapMobxToProps)(_StaticPageFooter)
+);

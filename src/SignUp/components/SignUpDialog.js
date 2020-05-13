@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import {withSnackbar} from "notistack";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     signUpFormContent: {
         padding: 10
     },
@@ -46,6 +46,9 @@ const useStyles = makeStyles(() => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    privateBetaText: {
+        marginTop: theme.spacing(1)
     }
 }));
 
@@ -76,16 +79,14 @@ const _SignUpDialog = ({
 
     if (showSnackbar) {
         if (!submissionError) {
-            enqueueSnackbar("Account has been created successfully");
+            enqueueSnackbar("Your have successfully signed up for private beta testing");
             setSignUpDialogOpen(false);
         } else {
-            enqueueSnackbar("Error occurred when tried to sign up", {variant: "error"});
+            enqueueSnackbar("Error occurred when tried to sign up for private beta testing", {variant: "error"});
         }
 
         setShowSnackbar(false);
     }
-
-    const Talk = '{Talk}'
 
     return (
         <Dialog open={signUpDialogOpen}
@@ -98,8 +99,7 @@ const _SignUpDialog = ({
                 <div className={classes.signUpFormFields}
                     style={{
                         "padding":"30px"
-                    }
-                    }
+                    }}
                 >
                     <div className="sign-in-logo">
                         <img src="./logo.png" />
@@ -107,33 +107,19 @@ const _SignUpDialog = ({
                     <Typography variant="h6"
                                 className={classes.centered}
                     >
-                        Create an account
+                        Sign up for private beta testing
                     </Typography>
-                   <TextField label="Wallet address"
-                              value={signUpForm.address}
-                              onChange={event => setFormValue("address", event.target.value)}
-                              error={Boolean(signUpFormErrors.address)}
-                              helperText={signUpFormErrors.address && signUpFormErrors.address}
-                              fullWidth
-                              margin="dense"
-                   />
-                   <TextField label="Private key"
-                              value={signUpForm.privateKey}
-                              onChange={event => setFormValue("privateKey", event.target.value)}
-                              error={Boolean(signUpFormErrors.privateKey)}
-                              helperText={signUpFormErrors.privateKey && signUpFormErrors.privateKey}
-                              fullWidth
-                              margin="dense"
-                              type="password"
-                   />
-                   <TextField label="Username"
-                              value={signUpForm.username}
-                              onChange={event => setFormValue("username", event.target.value)}
-                              error={Boolean(signUpFormErrors.username)}
-                              helperText={signUpFormErrors.userStatusesStore && signUpFormErrors.username}
-                              fullWidth
-                              margin="dense"
-                   />
+                    <TextField label="Email"
+                               value={signUpForm.email}
+                               onChange={event => setFormValue("email", event.target.value)}
+                               error={Boolean(signUpFormErrors.email)}
+                               helperText={signUpFormErrors.email && signUpFormErrors.email}
+                               fullWidth
+                               margin="dense"
+                    />
+                    <Typography className={classes.privateBetaText}>
+                        Private Beta testing in progress. Please provide your email address and we will send you further instructions
+                    </Typography>
                    <Button onClick={signUp}
                            fullWidth
                            className={classes.signUpDialogButton}
@@ -143,7 +129,7 @@ const _SignUpDialog = ({
                            variant="contained"
                    >
                        {pending && <CircularProgress size={15} color="primary"/>}
-                       Sign up for Ignite
+                       Sign up for private beta testing
                    </Button>
                     <Button disabled={pending}
                             onClick={handleLoginButtonClick}

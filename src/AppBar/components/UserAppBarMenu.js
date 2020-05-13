@@ -1,24 +1,33 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {
     Avatar,
     ClickAwayListener,
     Divider,
+    Grid,
     Grow,
     IconButton,
     ListItemText,
+    makeStyles,
     MenuItem,
     MenuList,
     Paper,
-    Popper,
-    Grid
+    Popper
 } from "@material-ui/core";
 import {Link} from "mobx-router";
 import {Routes} from "../../routes";
 import {LogoutMenuItem} from "../../Authorization/components";
+import {localized} from "../../localization/components";
 
-const _UserAppBarMenu = ({currentUser, routerStore}) => {
+const useStyles = makeStyles(() => ({
+    undecoratedLink: {
+        textDecoration: "none",
+        color: "inherit"
+    }
+}));
 
+const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -76,38 +85,50 @@ const _UserAppBarMenu = ({currentUser, routerStore}) => {
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Link view={Routes.userProfile}
-                                            params={{username: currentUser.id}}
-                                            store={routerStore}
-                                            style={{
-                                                textDecoration: "none",
-                                                color: "inherit"
-                                            }}
+                                              params={{username: currentUser.id}}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    Profile
+                                                    {l("menu.profile")}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
                                         <Divider/>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Muted users
+                                                {l("menu.muted-users")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Blocked users
+                                                {l("menu.blocked-users")}
                                             </ListItemText>
                                         </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            <ListItemText>
-                                                Terms and policies
-                                            </ListItemText>
-                                        </MenuItem>
+                                        <Link view={Routes.settings}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
+                                        >
+                                            <MenuItem>
+                                                <ListItemText>
+                                                    {l("menu.settings")}
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Link>
+                                        <Link view={Routes.terms}
+                                              store={routerStore}
+                                              className={classes.undecoratedLink}
+                                        >
+                                            <MenuItem onClick={handleClose}>
+                                                <ListItemText>
+                                                    {l("menu.terms-and-policies")}
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Link>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                Help center
+                                                {l("menu.help-center")}
                                             </ListItemText>
                                         </MenuItem>
                                         <Divider/>
@@ -128,4 +149,6 @@ const mapMobxToProps = ({authorization, store}) => ({
     routerStore: store
 });
 
-export const UserAppBarMenu = inject(mapMobxToProps)(observer(_UserAppBarMenu));
+export const UserAppBarMenu = localized(
+    inject(mapMobxToProps)(observer(_UserAppBarMenu))
+);

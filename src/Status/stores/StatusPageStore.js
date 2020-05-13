@@ -1,4 +1,4 @@
-import {action, reaction, observable} from "mobx";
+import {action, reaction, observable, toJS} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class StatusPageStore {
@@ -18,9 +18,30 @@ export class StatusPageStore {
     statusAuthorSubscriptionPending = false;
 
     authorizationStore = undefined;
+    createStatusStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, createStatusStore) {
         this.authorizationStore = authorizationStore;
+        this.createStatusStore = createStatusStore;
+
+        reaction(
+            () => this.createStatusStore.createdStatus,
+            status => {
+                if (this.status && status && status.referred_status && status.referred_status.id === this.status.id) {
+                    if (status.status_reference_type === "REPOST") {
+                        this.status = {
+                            ...this.status,
+                            reposts_count: this.status.reposts_count + 1
+                        }
+                    } else {
+                        this.status = {
+                            ...this.status,
+                            comments_count: this.status.comments_count + 1
+                        }
+                    }
+                }
+            }
+        )
     }
 
     @action
@@ -88,6 +109,16 @@ export class StatusPageStore {
                     }
                 })
                 .finally(() => this.statusAuthorSubscriptionPending = false)
+        }
+    };
+
+    @action
+    increaseCommentsCount = statusId => {
+        if (this.status && statusId === this.status.id) {
+            this.status = {
+                ...this.status,
+                comments_count: this.status.comments_count + 1
+            }
         }
     };
 

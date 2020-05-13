@@ -1,9 +1,23 @@
-import {action, observable, computed} from "mobx";
+import {action, computed, observable} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
+
+const STATUS_TEXT_LENGTH_LIMIT = 1000;
 
 export class CreateStatusStore {
     @observable
     content = "";
+
+    @observable
+    referredStatus = undefined;
+
+    @observable
+    statusReferenceType = undefined;
+
+    @observable
+    pendingRepostsMap = {};
+
+    @observable
+    pendingCommentsRepostsMap = {};
 
     @observable
     pending = false;
@@ -15,7 +29,7 @@ export class CreateStatusStore {
     inputExpanded = false;
 
     @observable
-    charactersRemaining = 250;
+    charactersRemaining = STATUS_TEXT_LENGTH_LIMIT;
 
     @observable
     submissionError = undefined;
@@ -30,6 +44,13 @@ export class CreateStatusStore {
             .map(fileContainer => fileContainer.uploadedMediaAttachment.id);
     }
 
+    @computed
+    get mediaAttachmentUploadPending() {
+        return this.uploadMediaAttachmentsStore.mediaAttachmentsFiles
+            .filter(fileContainer => fileContainer.pending)
+            .length !== 0;
+    }
+
     uploadMediaAttachmentsStore = undefined;
 
     constructor(uploadMediaAttachmentsStore) {
@@ -38,8 +59,10 @@ export class CreateStatusStore {
 
     @action
     setContent = content => {
-        this.content = content;
-        this.charactersRemaining = 250 - content.length;
+        if (STATUS_TEXT_LENGTH_LIMIT - content.length >= 0) {
+            this.content = content;
+            this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - content.length;
+        }
     };
 
     @action
@@ -54,19 +77,55 @@ export class CreateStatusStore {
 
     @action
     createStatus = () => {
-        if ((this.content.length !== 0 && this.content.length <= 250) || this.mediaAttachments.length !== 0) {
+        if ((this.content.length !== 0 && this.content.length <= STATUS_TEXT_LENGTH_LIMIT) || (this.mediaAttachments.length !== 0 || (this.referredStatus && this.statusReferenceType === "REPOST"))) {
             this.pending = true;
             this.submissionError = undefined;
+            const referredStatusId = this.referredStatus && this.referredStatus.id;
 
-            axiosInstance.post("/api/v1/statuses", {status: this.content, media_attachments: this.mediaAttachments})
+            if (referredStatusId && this.statusReferenceType === "REPOST") {
+                this.pendingRepostsMap = {
+                    ...this.pendingRepostsMap,
+                    [referredStatusId]: true
+                }
+            }
+
+            const statusReferenceType = this.statusReferenceType;
+
+            axiosInstance.post("/api/v1/statuses", {
+                status: this.content,
+                media_attachments: this.mediaAttachments,
+                referred_status_id: referredStatusId,
+                status_reference_type: this.statusReferenceType
+            })
                 .then(({data}) => {
                     this.createdStatus = data;
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
+
+                    this.referredStatus = undefined;
+                    this.statusReferenceType = undefined;
                 })
                 .catch(error => this.submissionError = error)
-                .finally(() => this.pending = false)
+                .finally(() => {
+                    this.pending = false;
+                    if (referredStatusId && statusReferenceType === "REPOST") {
+                        this.pendingRepostsMap = {
+                            ...this.pendingRepostsMap,
+                            [referredStatusId]: false
+                        }
+                    }
+                })
         }
     };
+
+    @action
+    setReferredStatus = referredStatus => {
+        this.referredStatus = referredStatus;
+    };
+
+    @action
+    setStatusReferenceType = statusReferenceType => {
+        this.statusReferenceType = statusReferenceType;
+    }
 }

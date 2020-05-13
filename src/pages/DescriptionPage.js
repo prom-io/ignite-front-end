@@ -21,8 +21,6 @@ const _DescriptionPage = ({routerStore}) => {
   const classes = useStyles();
 
   const PrometeusNetwork = "{Prometeus Network}";
-  const Talk = "{Talk}";
-
 
   return(
     <div className="description-page">
@@ -38,13 +36,6 @@ const _DescriptionPage = ({routerStore}) => {
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="body1" className="description-image-container">
-                    <a href="https://www.binance.com/?ref=28821136" target="_blank">
-                        <img src={BinanceBanner}/>
-                    </a>
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
                 <Typography variant="body2">
                     <span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
                 </Typography>
@@ -55,7 +46,7 @@ const _DescriptionPage = ({routerStore}) => {
         </Grid>
     </div>
   )
-}
+};
 
 const mapMobxToProps = ({store}) => ({
   routerStore: store

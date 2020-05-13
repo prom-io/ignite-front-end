@@ -15,21 +15,26 @@ export class StatusesListStore {
     @observable
     statusLikePendingMap = {};
 
+    @observable
+    onlyAddCommentsToThisStatus = undefined;
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
     statusAuthorSubscriptionListeners = [];
     statusAuthorUnsubscriptionListeners = [];
+    reverseOrder = false;
 
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl) {
+    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
+        this.reverseOrder = reverseOrder;
 
         this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
 
@@ -45,15 +50,36 @@ export class StatusesListStore {
             () => this.createdStatus,
             status => {
                 if (status) {
-                    console.log(status);
-                    this.statuses = [
-                        status,
-                        ...this.statuses
-                    ]
+                    if (this.onlyAddCommentsToThisStatus) {
+                        if (status.referred_status && status.status_reference_type === "COMMENT") {
+                            this.statuses = [
+                                ...this.statuses,
+                                status,
+                            ];
+                        }
+                    } else {
+                        this.statuses = [
+                            status,
+                            ...this.statuses
+                        ];
+                    }
+
+                    if (status.referred_status) {
+                        if (status.status_reference_type === "REPOST") {
+                            this.increaseRepostsCount(status.referred_status.id)
+                        } else {
+                            this.increaseCommentsCount(status.referred_status.id);
+                        }
+                    }
                 }
             }
         )
     }
+
+    @action
+    setOnlyAddCommentsToStatus = statusId => {
+        this.onlyAddCommentsToThisStatus = statusId;
+    };
 
     @action
     fetchStatuses = () => {
@@ -61,10 +87,17 @@ export class StatusesListStore {
 
         if (this.baseUrl) {
             if (this.statuses.length !== 0) {
-                const maxId = this.statuses[this.statuses.length - 1].id;
-                axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
-                    .then(({data}) => this.statuses.push(...data))
-                    .finally(() => this.pending = false);
+                if (this.reverseOrder) {
+                    const minId = this.statuses[this.statuses.length - 1].id;
+                    axiosInstance.get(`${this.baseUrl}?since_id=${minId}`)
+                        .then(({data}) => this.statuses.push(...data))
+                        .finally(() => this.pending = false);
+                } else {
+                    const maxId = this.statuses[this.statuses.length - 1].id;
+                    axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
+                        .then(({data}) => this.statuses.push(...data))
+                        .finally(() => this.pending = false);
+                }
             } else {
                 axiosInstance.get(`${this.baseUrl}`)
                     .then(({data}) => this.statuses.push(...data))
@@ -176,6 +209,26 @@ export class StatusesListStore {
         this.statuses = this.statuses.map(status => {
             if (status.account.id === authorId) {
                 status.account.following = false;
+            }
+            return status;
+        })
+    };
+
+    @action
+    increaseRepostsCount = statusId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.id === statusId) {
+                status.reposts_count += 1;
+            }
+            return status;
+        })
+    };
+
+    @action
+    increaseCommentsCount = statusId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.id === statusId) {
+                status.comments_count += 1;
             }
             return status;
         })

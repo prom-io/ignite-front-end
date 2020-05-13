@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import {AttachImageInput} from "./AttachImageInput";
 import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
+import {RepostedStatusContent} from "./RepostedStatusContent";
+import {localized} from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -24,25 +26,32 @@ const useStyles = makeStyles(theme => ({
         padding: "7px 10px"
     },
     createStatusButtonWrapper: {
-        paddingTop: 15
+        paddingTop: 15,
     },
     createStatusButton: {
         borderRadius: 30,
         float: "right",
         width: "114px",
+        boxShadow: 'none'
     },
     mediaAttachmentsContainer: {
         marginBottom: theme.spacing(2),
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2)
+    },
+    cardActionsStyled: {
+        display: 'flsex',
+        padding: '8px 15px',
     }
 }));
 
-const getDisabledLabelForAttachmentsInput = maxAttachments => {
+const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
     const maxAttachmentsString = `${maxAttachments}`;
-    const end = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) === "1" ? "image" : "images";
+    const isPlural = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) !== "1";
+    const bindings = {limit: 1};
+    const labelKey = isPlural ? "status.images-attachments-limit.plural" : "status.images-attachments-limit";
 
-    return `You can't attach more than ${maxAttachments} ${end}`;
+    return l(labelKey, bindings);
 };
 
 const _CreateStatusForm = ({
@@ -57,7 +66,13 @@ const _CreateStatusForm = ({
     addMediaAttachments,
     removeMediaAttachment,
     uploadedAttachments,
-    hideSendButton = false
+    hideSendButton = false,
+    referredStatus,
+    statusReferenceType,
+    setReferredStatus,
+    setStatusReferenceType,
+    mediaAttachmentUploadPending,
+    l
 }) => {
     const classes = useStyles();
 
@@ -66,13 +81,31 @@ const _CreateStatusForm = ({
             <Grid container style={{
                 padding: "25px 15px 25px 15px"
             }}>
+                {referredStatus  && (
+                    <Grid item xs={12}>
+                        <Typography>
+                            {statusReferenceType === "REPOST"
+                                ? l("status.reposted-status")
+                                : l("status.replying-to") + ": "
+                            }
+                        </Typography>
+                        <RepostedStatusContent repostedStatus={referredStatus}
+                                               displayClearButton
+                                               onClearButtonClick={() => {
+                                                   setReferredStatus(undefined);
+                                                   setStatusReferenceType(undefined);
+                                               }}
+                        />
+                    </Grid>
+                )}
                 <Grid item xs={1}>
                     <Avatar src={currentUserAvatar} className="avatar-mini"/>
                 </Grid>
                 <Grid item xs={11}>
-                    <TextField placeholder="What's on your mind?"
+                    <TextField placeholder={l("status.placeholder")}
                                multiline
-                               rows="4"
+                               rows={4}
+                               rowsMax={Number.MAX_SAFE_INTEGER}
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
@@ -80,12 +113,12 @@ const _CreateStatusForm = ({
                     />
                 </Grid>
             </Grid>
-            <CardActions style={{display: "flex"}}>
+            <CardActions className={classes.cardActionsStyled}>
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
                         <AttachImageInput onImagesAttached={addMediaAttachments}
                                           disabled={mediaAttachmentsFiles.length === 1}
-                                          disabledLabel={getDisabledLabelForAttachmentsInput(1)}
+                                          disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
@@ -108,10 +141,10 @@ const _CreateStatusForm = ({
                                     color="primary"
                                     className={classes.createStatusButton}
                                     onClick={createStatus}
-                                    disabled={pending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                                    disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
                                 {pending && <CircularProgress size={15}/>}
-                                Send
+                                {l("status.send")}
                             </Button>
                         )}
                     </Grid>
@@ -131,6 +164,7 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     submissionError: createStatus.submissionError,
     content: createStatus.content,
     pending: createStatus.pending,
+    mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     currentUserAvatar: authorization.currentUser
         ? authorization.currentUser.avatar || "http://localhost:3000/avatars/original/missing.png"
         : "http://localhost:3000/avatars/original/missing.png",
@@ -139,7 +173,11 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     addMediaAttachments: uploadMediaAttachments.attachFiles,
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,
     mediaAttachmentsFiles: uploadMediaAttachments.mediaAttachmentsFiles,
-    uploadedAttachments: createStatus.mediaAttachments
+    uploadedAttachments: createStatus.mediaAttachments,
+    referredStatus: createStatus.referredStatus,
+    setReferredStatus: createStatus.setReferredStatus,
+    statusReferenceType: createStatus.statusReferenceType,
+    setStatusReferenceType: createStatus.setStatusReferenceType
 });
 
-export const CreateStatusForm = inject(mapMobxToProps)(observer(_CreateStatusForm));
+export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

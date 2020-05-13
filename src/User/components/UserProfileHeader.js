@@ -5,6 +5,7 @@ import {UserProfileTab} from "./UserProfileTab";
 import {addLineBreak} from "../../utils/string-utils";
 import {localized} from "../../localization/components";
 import {format} from "date-fns";
+import {OpenUpdateUserProfileDialogButton} from "./OpenUpdateUserProfileDialogButton";
 
 const _UserProfileHeader = ({
     avatar,
@@ -23,32 +24,36 @@ const _UserProfileHeader = ({
     l,
     dateFnsLocale
 }) => {
-    let followButton = null;
+    let profileButton = null;
 
-    if (currentUser && currentUser.username !== username) {
-        followButton = currentUserFollows
-            ? (
-                <Grid  className="user-profile-header-content-bottom-follow-button">
-                    <Button variant="contained"
-                            color="primary"
-                            onClick={() => onUnfollowRequest(username)}
-                            disableElevation
-                    >
-                        {l("user.profile.unfollow")}
-                    </Button>
-                </Grid>
-            )
-            : (
-                <Grid  className="user-profile-header-content-bottom-follow-button">
-                    <Button variant="contained"
-                            color="primary"
-                            onClick={() => onFollowRequest(username)}
-                            disableElevation
-                    >
-                        {l("user.profile.follow")}
-                    </Button>
-                </Grid>
-            )
+    if (currentUser) {
+        if (currentUser.username !== username) {
+            profileButton = currentUserFollows
+                ? (
+                    <Grid  className="user-profile-header-content-bottom-follow-button">
+                        <Button variant="contained"
+                                color="primary"
+                                onClick={() => onUnfollowRequest(username)}
+                                disableElevation
+                        >
+                            {l("user.profile.unfollow")}
+                        </Button>
+                    </Grid>
+                )
+                : (
+                    <Grid  className="user-profile-header-content-bottom-follow-button">
+                        <Button variant="contained"
+                                color="primary"
+                                onClick={() => onFollowRequest(username)}
+                                disableElevation
+                        >
+                            {l("user.profile.follow")}
+                        </Button>
+                    </Grid>
+                )
+        } else {
+            profileButton = <OpenUpdateUserProfileDialogButton/>;
+        }
     }
 
     return (
@@ -89,7 +94,7 @@ const _UserProfileHeader = ({
                         {l("user.profile.member-since")} {format(createdAt, "MMMM yyyy", {locale: dateFnsLocale})}
                     </Typography>
                 </Grid>
-                {followButton}
+                {profileButton}
             </Grid>
         </Grid>
     )

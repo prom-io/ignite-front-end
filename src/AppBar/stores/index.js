@@ -1,1 +1,1 @@
-export * from "./DrawerStore";
+export * from './DrawerStore';

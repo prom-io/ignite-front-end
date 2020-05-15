@@ -1,1 +1,1 @@
-export * from "./ClickEventPropagationStopper";
+export * from './ClickEventPropagationStopper';

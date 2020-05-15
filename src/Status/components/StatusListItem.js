@@ -1,11 +1,11 @@
-import React from "react";
-import {inject} from "mobx-react";
-import {Link} from "mobx-router";
-import {Card} from "@material-ui/core";
-import {StatusHeader} from "./StatusHeader";
-import {StatusBottom} from "./StatusBottom";
-import {StatusBody} from "./StatusBody";
-import {Routes} from "../../routes";
+import React from 'react';
+import { inject } from 'mobx-react';
+import { Link } from 'mobx-router';
+import { Card } from '@material-ui/core';
+import { StatusHeader } from './StatusHeader';
+import { StatusBottom } from './StatusBottom';
+import { StatusBody } from './StatusBody';
+import { Routes } from '../../routes';
 
 const _StatusListItem = ({
     status,
@@ -18,63 +18,67 @@ const _StatusListItem = ({
     repostPending,
     link = false,
     routerStore,
-    hideThreadLink
+    hideThreadLink,
 }) => {
     const content = (
-        <Card elevation={0}
-              className="statusCardBox"
+        <Card
+            elevation={0}
+            className="statusCardBox"
         >
-            <StatusHeader username={status.account.username}
-                          userId={status.account.id}
-                          displayName={status.account.display_name}
-                          avatar={status.account.avatar}
-                          createdAt={status.created_at}
-                          statusId={status.id}
-                          displayMenu={displayMenu}
-                          currentUserFollowsAuthor={status.account.following}
-                          onFollowRequest={onFollowRequest}
-                          onUnfollowRequest={onUnfollowRequest}
-                          currentUserIsAuthor={currentUserIsAuthor}
+            <StatusHeader
+                username={status.account.username}
+                userId={status.account.id}
+                displayName={status.account.display_name}
+                avatar={status.account.avatar}
+                createdAt={status.created_at}
+                statusId={status.id}
+                displayMenu={displayMenu}
+                currentUserFollowsAuthor={status.account.following}
+                onFollowRequest={onFollowRequest}
+                onUnfollowRequest={onUnfollowRequest}
+                currentUserIsAuthor={currentUserIsAuthor}
             />
-            <StatusBody text={status.content}
-                        mediaAttachments={status.media_attachments}
-                        referredStatus={status.referred_status}
-                        statusReferenceType={status.status_reference_type}
-                        hideThreadLink={hideThreadLink}
+            <StatusBody
+                text={status.content}
+                mediaAttachments={status.media_attachments}
+                referredStatus={status.referred_status}
+                statusReferenceType={status.status_reference_type}
+                hideThreadLink={hideThreadLink}
             />
-            <StatusBottom onFavouriteClick={onFavouriteStatusChange}
-                          favourited={status.favourited}
-                          statusId={status.id}
-                          favouritesCount={status.favourite_count}
-                          statusLikePending={statusLikePending}
-                          btfsInfo={status.btfs_info}
-                          repostPending={repostPending}
-                          canBeReposted={status.can_be_reposted}
-                          status={status}
+            <StatusBottom
+                onFavouriteClick={onFavouriteStatusChange}
+                favourited={status.favourited}
+                statusId={status.id}
+                favouritesCount={status.favourite_count}
+                statusLikePending={statusLikePending}
+                btfsInfo={status.btfs_info}
+                repostPending={repostPending}
+                canBeReposted={status.can_be_reposted}
+                status={status}
             />
         </Card>
     );
 
     if (link) {
         return (
-            <Link style={{
-                textDecoration: "none",
-                color: "inherit"
-            }}
-                  store={routerStore}
-                  view={Routes.status}
-                  params={{id: status.id}}
+            <Link
+                style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                }}
+                store={routerStore}
+                view={Routes.status}
+                params={{ id: status.id }}
             >
                 {content}
             </Link>
-        )
-    } else {
-        return content;
+        );
     }
+    return content;
 };
 
-const mapMobxToProps = ({store}) => ({
-    routerStore: store
+const mapMobxToProps = ({ store }) => ({
+    routerStore: store,
 });
 
 export const StatusListItem = inject(mapMobxToProps)(_StatusListItem);

@@ -1,4 +1,4 @@
-import {differenceInSeconds, formatDistance, formatDistanceStrict} from "date-fns";
+import { differenceInSeconds, formatDistance, formatDistanceStrict } from 'date-fns';
 
 export const getCreatedAtLabel = (createdAt, dateFnsLocale) => {
     const now = new Date();
@@ -7,12 +7,11 @@ export const getCreatedAtLabel = (createdAt, dateFnsLocale) => {
         return formatDistance(createdAt, now, {
             includeSeconds: true,
             locale: dateFnsLocale,
-            addSuffix: true
-        })
-    } else {
-        return formatDistanceStrict(createdAt, now, {
-            locale: dateFnsLocale,
-            addSuffix: true
-        })
+            addSuffix: true,
+        });
     }
+    return formatDistanceStrict(createdAt, now, {
+        locale: dateFnsLocale,
+        addSuffix: true,
+    });
 };

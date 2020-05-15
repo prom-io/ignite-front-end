@@ -1,5 +1,5 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Avatar,
     Button,
@@ -9,47 +9,47 @@ import {
     Grid,
     makeStyles,
     TextField,
-    Typography
-} from "@material-ui/core";
-import {AttachImageInput} from "./AttachImageInput";
-import {CreateStatusFormMediaAttachments} from "./CreateStatusFormMediaAttachments";
-import {RepostedStatusContent} from "./RepostedStatusContent";
-import {localized} from "../../localization/components";
+    Typography,
+} from '@material-ui/core';
+import { AttachImageInput } from './AttachImageInput';
+import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
+import { RepostedStatusContent } from './RepostedStatusContent';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
-        background: "#F1EBE8"
+        background: '#F1EBE8',
     },
     remainingCharactersCounter: {
-        background: "#FBF7F6",
-        justifyContent: "space-between",
-        padding: "7px 10px"
+        background: '#FBF7F6',
+        justifyContent: 'space-between',
+        padding: '7px 10px',
     },
     createStatusButtonWrapper: {
         paddingTop: 15,
     },
     createStatusButton: {
         borderRadius: 30,
-        float: "right",
-        width: "114px",
-        boxShadow: 'none'
+        float: 'right',
+        width: '114px',
+        boxShadow: 'none',
     },
     mediaAttachmentsContainer: {
         marginBottom: theme.spacing(2),
         marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2)
+        marginRight: theme.spacing(2),
     },
     cardActionsStyled: {
         display: 'flsex',
         padding: '8px 15px',
-    }
+    },
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
     const maxAttachmentsString = `${maxAttachments}`;
-    const isPlural = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) !== "1";
-    const bindings = {limit: 1};
-    const labelKey = isPlural ? "status.images-attachments-limit.plural" : "status.images-attachments-limit";
+    const isPlural = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) !== '1';
+    const bindings = { limit: 1 };
+    const labelKey = isPlural ? 'status.images-attachments-limit.plural' : 'status.images-attachments-limit';
 
     return l(labelKey, bindings);
 };
@@ -72,53 +72,58 @@ const _CreateStatusForm = ({
     setReferredStatus,
     setStatusReferenceType,
     mediaAttachmentUploadPending,
-    l
+    l,
 }) => {
     const classes = useStyles();
 
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
-            <Grid container style={{
-                padding: "25px 15px 25px 15px"
-            }}>
-                {referredStatus  && (
+            <Grid
+                container
+                style={{
+                    padding: '25px 15px 25px 15px',
+                }}
+            >
+                {referredStatus && (
                     <Grid item xs={12}>
                         <Typography>
-                            {statusReferenceType === "REPOST"
-                                ? l("status.reposted-status")
-                                : l("status.replying-to") + ": "
-                            }
+                            {statusReferenceType === 'REPOST'
+                                ? l('status.reposted-status')
+                                : `${l('status.replying-to')}: `}
                         </Typography>
-                        <RepostedStatusContent repostedStatus={referredStatus}
-                                               displayClearButton
-                                               onClearButtonClick={() => {
-                                                   setReferredStatus(undefined);
-                                                   setStatusReferenceType(undefined);
-                                               }}
+                        <RepostedStatusContent
+                            repostedStatus={referredStatus}
+                            displayClearButton
+                            onClearButtonClick={() => {
+                                setReferredStatus(undefined);
+                                setStatusReferenceType(undefined);
+                            }}
                         />
                     </Grid>
                 )}
                 <Grid item xs={1}>
-                    <Avatar src={currentUserAvatar} className="avatar-mini"/>
+                    <Avatar src={currentUserAvatar} className="avatar-mini" />
                 </Grid>
                 <Grid item xs={11}>
-                    <TextField placeholder={l("status.placeholder")}
-                               multiline
-                               rows={4}
-                               rowsMax={Number.MAX_SAFE_INTEGER}
-                               onChange={event => setContent(event.target.value)}
-                               fullWidth
-                               value={content}
-                               className="create-status-form-textfield"
+                    <TextField
+                        placeholder={l('status.placeholder')}
+                        multiline
+                        rows={4}
+                        rowsMax={Number.MAX_SAFE_INTEGER}
+                        onChange={event => setContent(event.target.value)}
+                        fullWidth
+                        value={content}
+                        className="create-status-form-textfield"
                     />
                 </Grid>
             </Grid>
             <CardActions className={classes.cardActionsStyled}>
                 <Grid container justify="flex-start">
                     <div className="create-status-form-pic">
-                        <AttachImageInput onImagesAttached={addMediaAttachments}
-                                          disabled={mediaAttachmentsFiles.length === 1}
-                                          disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
+                        <AttachImageInput
+                            onImagesAttached={addMediaAttachments}
+                            disabled={mediaAttachmentsFiles.length === 1}
+                            disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
@@ -127,47 +132,50 @@ const _CreateStatusForm = ({
                 </Grid>
                 <Grid container justify="flex-end">
                     <Grid item xs={12} className="create-status-form-counter-container">
-                            <div className={classes.remainingCharactersCounter}>
-                                <Typography variant="body1"
-                                            color="textSecondary"
-                                >
-                                    {charactersRemaining}
-                                </Typography>
-                            </div>
+                        <div className={classes.remainingCharactersCounter}>
+                            <Typography
+                                variant="body1"
+                                color="textSecondary"
+                            >
+                                {charactersRemaining}
+                            </Typography>
+                        </div>
                     </Grid>
                     <Grid item xs={12} className="create-status-form-button-container">
                         {!hideSendButton && (
-                            <Button variant="contained"
-                                    color="primary"
-                                    className={classes.createStatusButton}
-                                    onClick={createStatus}
-                                    disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.createStatusButton}
+                                onClick={createStatus}
+                                disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
-                                {pending && <CircularProgress size={15}/>}
-                                {l("status.send")}
+                                {pending && <CircularProgress size={15} />}
+                                {l('status.send')}
                             </Button>
                         )}
                     </Grid>
                 </Grid>
             </CardActions>
             <div className={classes.mediaAttachmentsContainer}>
-                <CreateStatusFormMediaAttachments mediaAttachmentsFiles={mediaAttachmentsFiles}
-                                                  onDelete={removeMediaAttachment}
+                <CreateStatusFormMediaAttachments
+                    mediaAttachmentsFiles={mediaAttachmentsFiles}
+                    onDelete={removeMediaAttachment}
                 />
             </div>
         </Card>
-    )
+    );
 };
 
-const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) => ({
+const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments }) => ({
     charactersRemaining: createStatus.charactersRemaining,
     submissionError: createStatus.submissionError,
     content: createStatus.content,
     pending: createStatus.pending,
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     currentUserAvatar: authorization.currentUser
-        ? authorization.currentUser.avatar || "http://localhost:3000/avatars/original/missing.png"
-        : "http://localhost:3000/avatars/original/missing.png",
+        ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
+        : 'http://localhost:3000/avatars/original/missing.png',
     setContent: createStatus.setContent,
     createStatus: createStatus.createStatus,
     addMediaAttachments: uploadMediaAttachments.attachFiles,
@@ -177,7 +185,7 @@ const mapMobxToProps = ({createStatus, authorization, uploadMediaAttachments}) =
     referredStatus: createStatus.referredStatus,
     setReferredStatus: createStatus.setReferredStatus,
     statusReferenceType: createStatus.statusReferenceType,
-    setStatusReferenceType: createStatus.setStatusReferenceType
+    setStatusReferenceType: createStatus.setStatusReferenceType,
 });
 
 export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));

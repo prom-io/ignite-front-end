@@ -1,61 +1,65 @@
-import React, {Fragment} from "react";
-import {inject, observer} from "mobx-react";
-import {Typography, Avatar} from "@material-ui/core";
+import React, { Fragment } from 'react';
+import { inject, observer } from 'mobx-react';
+import { Typography, Avatar } from '@material-ui/core';
 
-const lineBreak = (param) => (param.slice(0, 21) + " " + param.slice(21));
+const lineBreak = (param) => (`${param.slice(0, 21)} ${param.slice(21)}`);
 
-const _DrawerUserInfo = ({currentUser}) => {
+const _DrawerUserInfo = ({ currentUser }) => {
     if (!currentUser) {
         return null;
     }
 
     return (
-        <Fragment>
+        <>
             <div className="sidebar-menu-user-wrapper">
-                <Avatar src={currentUser.avatar}
-                        className="sidebar-menu-user-avatar"
+                <Avatar
+                    src={currentUser.avatar}
+                    className="sidebar-menu-user-avatar"
                 />
                 <div className="sidebar-menu-user-info">
                     <Typography variant="body1" className="sidebar-menu-user-info-name">
                         <strong>{lineBreak(currentUser.username)}</strong>
                     </Typography>
-                    <Typography variant="body2"
-                                color="textSecondary"
-                                className="sidebar-menu-user-info-id"
+                    <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        className="sidebar-menu-user-info-id"
                     >
                         {lineBreak(currentUser.display_name)}
                     </Typography>
                 </div>
                 <div className="sidebar-menu-user-info-count">
                     <div className="sidebar-menu-user-info-count-item">
-                    <Typography variant="body1">
-                        <strong>{currentUser.followers_count}</strong>
-                    </Typography>
-                    <Typography variant="body2"
-                                color="textSecondary"
-                    >
-                        Followers
-                    </Typography>
+                        <Typography variant="body1">
+                            <strong>{currentUser.followers_count}</strong>
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                        >
+                            Followers
+                        </Typography>
                     </div>
                     <div className="sidebar-menu-user-info-count-item">
-                    <Typography variant="body1">
-                        <strong>{currentUser.follows_count}</strong>
-                    </Typography>
-                    <Typography variant="body2"
-                                color="textSecondary"
-                    >
-                        Follows
-                    </Typography>
+                        <Typography variant="body1">
+                            <strong>{currentUser.follows_count}</strong>
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                        >
+                            Follows
+                        </Typography>
                     </div>
 
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 };
 
-const mapMobxToProps = ({authorization}) => ({
-    currentUser: authorization.currentUser
+const mapMobxToProps = ({ authorization }) => ({
+    currentUser: authorization.currentUser,
 });
 
 export const DrawerUserInfo = inject(mapMobxToProps)(observer(_DrawerUserInfo));

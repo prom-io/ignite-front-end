@@ -1,29 +1,29 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
-import {CircularProgress, makeStyles, Grid} from "@material-ui/core";
-import {StatusList} from "./StatusList";
-import {CreateStatusForm} from "./CreateStatusForm";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
+import { StatusList } from './StatusList';
+import { CreateStatusForm } from './CreateStatusForm';
 
 const useStyles = makeStyles(theme => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "table"
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'table',
     },
     gridItemOverridePadding: {
-        [theme.breakpoints.down("md")]: {
-            padding: "0px !important"
-        }
+        [theme.breakpoints.down('md')]: {
+            padding: '0px !important',
+        },
     },
     gridItemBottomSpacing: {
-        [theme.breakpoints.down("md")]: {
-            padding: "0px !important",
-            paddingBottom: `${theme.spacing(1)}px !important`
-        }
-    }
+        [theme.breakpoints.down('md')]: {
+            padding: '0px !important',
+            paddingBottom: `${theme.spacing(1)}px !important`,
+        },
+    },
 }));
 
-const _HomeTimeline= ({
+const _HomeTimeline = ({
     statuses,
     statusLikePendingMap,
     repostsPendingMap,
@@ -33,35 +33,36 @@ const _HomeTimeline= ({
     unfollowStatusAuthor,
     fetchStatuses,
     pending,
-    currentUser
+    currentUser,
 }) => {
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <CircularProgress size={20} className={classes.centered}/>
+        ? <CircularProgress size={20} className={classes.centered} />
         : (
             <Grid container spacing={2}>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
-                    <CreateStatusForm/>
+                    <CreateStatusForm />
                 </Grid>
                 <Grid item xs={12} className={classes.gridItemOverridePadding}>
-                    <StatusList statuses={statuses}
-                                onFavouriteClick={(statusId, favourited) => favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)}
-                                pending={pending}
-                                onNextPageRequest={fetchStatuses}
-                                onFollowRequest={followStatusAuthor}
-                                onUnfollowRequest={unfollowStatusAuthor}
-                                currentUser={currentUser}
-                                displayMenu={Boolean(currentUser)}
-                                statusLikePendingMap={statusLikePendingMap}
-                                repostsPendingMap={repostsPendingMap}
+                    <StatusList
+                        statuses={statuses}
+                        onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}
+                        pending={pending}
+                        onNextPageRequest={fetchStatuses}
+                        onFollowRequest={followStatusAuthor}
+                        onUnfollowRequest={unfollowStatusAuthor}
+                        currentUser={currentUser}
+                        displayMenu={Boolean(currentUser)}
+                        statusLikePendingMap={statusLikePendingMap}
+                        repostsPendingMap={repostsPendingMap}
                     />
                 </Grid>
             </Grid>
-        )
+        );
 };
 
-const mapMobxToProps = ({homeTimeline, authorization, createStatus}) => ({
+const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     statuses: homeTimeline.statuses,
     statusLikePendingMap: homeTimeline.statusLikePendingMap,
     favouriteStatus: homeTimeline.favouriteStatus,
@@ -71,7 +72,7 @@ const mapMobxToProps = ({homeTimeline, authorization, createStatus}) => ({
     pending: homeTimeline.pending,
     fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
-    repostsPendingMap: createStatus.pendingRepostsMap
+    repostsPendingMap: createStatus.pendingRepostsMap,
 });
 
-export const HomeTimeline= inject(mapMobxToProps)(observer(_HomeTimeline));
+export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

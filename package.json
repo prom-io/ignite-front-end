@@ -28,10 +28,14 @@
     "react-bottom-scroll-listener": "^3.0.0",
     "react-dom": "^16.12.0",
     "react-grid-gallery": "^0.5.5",
+    "react-markdown": "^4.3.1",
     "react-scripts": "3.4.0",
-    "web3": "^1.2.6"
+    "web3": "^1.2.6",
+    "yarn": "^1.22.4"
   },
   "scripts": {
+    "beta": "REACT_APP_API_BASE_URL=http://178.128.240.29:3004/ react-app-rewired start",
+    "betaurl": "REACT_APP_API_BASE_URL=http://beta.ignite.so/ react-app-rewired start",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
@@ -52,5 +56,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1"
   }
 }

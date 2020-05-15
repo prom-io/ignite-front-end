@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
-import {inject, observer} from "mobx-react";
+import React, { useEffect, useRef, useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Avatar,
     ClickAwayListener,
@@ -12,21 +12,21 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper
-} from "@material-ui/core";
-import {Link} from "mobx-router";
-import {Routes} from "../../routes";
-import {LogoutMenuItem} from "../../Authorization/components";
-import {localized} from "../../localization/components";
+    Popper,
+} from '@material-ui/core';
+import { Link } from 'mobx-router';
+import { Routes } from '../../routes';
+import { LogoutMenuItem } from '../../Authorization/components';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     undecoratedLink: {
-        textDecoration: "none",
-        color: "inherit"
-    }
+        textDecoration: 'none',
+        color: 'inherit',
+    },
 }));
 
-const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
+const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -65,15 +65,16 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
     }
 
     return (
-        <Grid >
+        <Grid>
             <Grid className="user-app-bar-menu">
-                <IconButton ref={anchorRef}
-                            aria-controls={open ? 'menu-list-grow' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleToggle}
-                            className="user-app-bar-menu-button"
+                <IconButton
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                    className="user-app-bar-menu-button"
                 >
-                    <Avatar src={currentUser.avatar}/>
+                    <Avatar src={currentUser.avatar} />
                 </IconButton>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
@@ -84,55 +85,58 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <Link view={Routes.userProfile}
-                                              params={{username: currentUser.id}}
-                                              store={routerStore}
-                                              className={classes.undecoratedLink}
+                                        <Link
+                                            view={Routes.userProfile}
+                                            params={{ username: currentUser.id }}
+                                            store={routerStore}
+                                            className={classes.undecoratedLink}
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    {l("menu.profile")}
+                                                    {l('menu.profile')}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
-                                        <Divider/>
+                                        <Divider />
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l("menu.muted-users")}
+                                                {l('menu.muted-users')}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l("menu.blocked-users")}
+                                                {l('menu.blocked-users')}
                                             </ListItemText>
                                         </MenuItem>
-                                        <Link view={Routes.settings}
-                                              store={routerStore}
-                                              className={classes.undecoratedLink}
+                                        <Link
+                                            view={Routes.settings}
+                                            store={routerStore}
+                                            className={classes.undecoratedLink}
                                         >
                                             <MenuItem>
                                                 <ListItemText>
-                                                    {l("menu.settings")}
+                                                    {l('menu.settings')}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
-                                        <Link view={Routes.terms}
-                                              store={routerStore}
-                                              className={classes.undecoratedLink}
+                                        <Link
+                                            view={Routes.terms}
+                                            store={routerStore}
+                                            className={classes.undecoratedLink}
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    {l("menu.terms-and-policies")}
+                                                    {l('menu.terms-and-policies')}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l("menu.help-center")}
+                                                {l('menu.help-center')}
                                             </ListItemText>
                                         </MenuItem>
-                                        <Divider/>
-                                        <LogoutMenuItem onClick={handleClose}/>
+                                        <Divider />
+                                        <LogoutMenuItem onClick={handleClose} />
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>
@@ -141,14 +145,14 @@ const _UserAppBarMenu = ({currentUser, routerStore, l}) => {
                 </Popper>
             </Grid>
         </Grid>
-    )
+    );
 };
 
-const mapMobxToProps = ({authorization, store}) => ({
+const mapMobxToProps = ({ authorization, store }) => ({
     currentUser: authorization.currentUser,
-    routerStore: store
+    routerStore: store,
 });
 
 export const UserAppBarMenu = localized(
-    inject(mapMobxToProps)(observer(_UserAppBarMenu))
+    inject(mapMobxToProps)(observer(_UserAppBarMenu)),
 );

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef, useState} from "react";
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import {
     ClickAwayListener,
     Grow,
@@ -9,25 +9,25 @@ import {
     MenuList,
     Paper,
     Popper,
-    makeStyles
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+    makeStyles,
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
-import {UnfollowIcon} from "../../icons/UnfollowIcon";
-import {MuteIcon} from "../../icons/MuteIcon";
-import {BlockIcon} from "../../icons/BlockIcon";
-import {ReportIcon} from "../../icons/ReportIcon";
-import {SadIcon} from "../../icons/SadIcon";
-import {EmbedIcon} from "../../icons/EmbedIcon";
-import {localized} from "../../localization/components";
+import { UnfollowIcon } from '../../icons/UnfollowIcon';
+import { MuteIcon } from '../../icons/MuteIcon';
+import { BlockIcon } from '../../icons/BlockIcon';
+import { ReportIcon } from '../../icons/ReportIcon';
+import { SadIcon } from '../../icons/SadIcon';
+import { EmbedIcon } from '../../icons/EmbedIcon';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     paper: {
-        boxShadow: '0 0 5px rgba(0,0,0,0.2)'
-    }
+        boxShadow: '0 0 5px rgba(0,0,0,0.2)',
+    },
 });
 
-const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest, l}) => {
+const _StatusMenu = ({ currentUserFollowsAuthor, currentUserIsAuthor, statusId, onFollowRequest, onUnfollowRequest, l }) => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -63,80 +63,84 @@ const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, o
     };
 
     return (
-        <Fragment>
-            <IconButton ref={anchorRef}
-                        ria-controls={open ? 'menu-list-grow' : undefined}
-                        aria-haspopup="true"
-                        onClick={handleToggle}
+        <>
+            <IconButton
+                ref={anchorRef}
+                ria-controls={open ? 'menu-list-grow' : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
             >
-                <ExpandMoreIcon/>
+                <ExpandMoreIcon />
             </IconButton>
-            <Popper open={open}
-                    anchorEl={anchorRef.current}
-                    role={undefined}
-                    transition
-                    style={{ zIndex: 10 }}
+            <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                style={{ zIndex: 10 }}
             >
                 {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
-                        style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom"}}
+                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                     >
                         <Paper className={classes.paper}>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                     <MenuItem disabled>
                                         <ListItemIcon>
-                                            <SadIcon/>
+                                            <SadIcon />
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {l("status.menu.not-interested")}
+                                            {l('status.menu.not-interested')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
                                         <ListItemIcon>
-                                            <EmbedIcon/>
+                                            <EmbedIcon />
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {l("status.menu.embed")}
+                                            {l('status.menu.embed')}
                                         </ListItemText>
                                     </MenuItem>
-                                    <MenuItem disabled={currentUserIsAuthor}
-                                              onClick={event => {
-                                                  if (!currentUserIsAuthor) {
-                                                      currentUserFollowsAuthor ? onUnfollowRequest(statusId) : onFollowRequest(statusId);
-                                                      handleClose(event)
-                                                  }
-                                              }}>
+                                    <MenuItem
+                                        disabled={currentUserIsAuthor}
+                                        onClick={event => {
+                                            if (!currentUserIsAuthor) {
+                                                currentUserFollowsAuthor ? onUnfollowRequest(statusId) : onFollowRequest(statusId);
+                                                handleClose(event);
+                                            }
+                                        }}
+                                    >
                                         <ListItemIcon>
-                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? <UnfollowIcon/> : <PersonAddOutlinedIcon/>}
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? <UnfollowIcon /> : <PersonAddOutlinedIcon />}
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? l("status.menu.unfollow-author") : l("status.menu.follow-author")}
-                                        </ListItemText>
-                                    </MenuItem>
-                                    <MenuItem disabled>
-                                        <ListItemIcon>
-                                            <MuteIcon/>
-                                        </ListItemIcon>
-                                        <ListItemText>
-                                            {l("status.menu.mute-author")}
+                                            {(currentUserFollowsAuthor || currentUserIsAuthor) ? l('status.menu.unfollow-author') : l('status.menu.follow-author')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
                                         <ListItemIcon>
-                                            <BlockIcon/>
+                                            <MuteIcon />
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {l("status.menu.block-author")}
+                                            {l('status.menu.mute-author')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem disabled>
                                         <ListItemIcon>
-                                            <ReportIcon/>
+                                            <BlockIcon />
                                         </ListItemIcon>
                                         <ListItemText>
-                                            {l("status.menu.report")}
+                                            {l('status.menu.block-author')}
+                                        </ListItemText>
+                                    </MenuItem>
+                                    <MenuItem disabled>
+                                        <ListItemIcon>
+                                            <ReportIcon />
+                                        </ListItemIcon>
+                                        <ListItemText>
+                                            {l('status.menu.report')}
                                         </ListItemText>
                                     </MenuItem>
                                 </MenuList>
@@ -145,8 +149,8 @@ const _StatusMenu = ({currentUserFollowsAuthor, currentUserIsAuthor, statusId, o
                     </Grow>
                 )}
             </Popper>
-        </Fragment>
-    )
+        </>
+    );
 };
 
 export const StatusMenu = localized(_StatusMenu);

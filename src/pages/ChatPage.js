@@ -1,35 +1,33 @@
-import React from "react";
-import {Grid} from "@material-ui/core";
-import {AppBar} from "../AppBar/components";
-import {StaticPageFooter} from '../components/StaticPageFooter';
-import {localized} from "../localization/components";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import { AppBar } from '../AppBar/components';
+import { StaticPageFooter } from '../components/StaticPageFooter';
+import { localized } from '../localization/components';
 
-const _ChatPage = ({l}) => {
+const _ChatPage = ({ l }) => (
 
-  return(
-  
-  <div className="static-page">
-    <Grid item xs={12}>
-        <AppBar currentActiveRoute="chat" />
-    </Grid >
-    <div className="static-page-container">
-      <div className="static-page-logo-container">
-        <img src="/page_img/Ignite_chat_page.png" />
-        <h1>Ignite Chat</h1>
-      </div>
-      <div>
-        <div>
-          <p>
-            {l("chat.description.first-paragraph")}
-          </p>
-          <p>
-            {l("chat.description.second-paragraph")}
-          </p>
+    <div className="static-page">
+        <Grid item xs={12}>
+            <AppBar currentActiveRoute="chat" />
+        </Grid>
+        <div className="static-page-container">
+            <div className="static-page-logo-container">
+                <img src="/page_img/Ignite_chat_page.png" />
+                <h1>Ignite Chat</h1>
+            </div>
+            <div>
+                <div>
+                    <p>
+                        {l('chat.description.first-paragraph')}
+                    </p>
+                    <p>
+                        {l('chat.description.second-paragraph')}
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
+        <StaticPageFooter />
     </div>
-    <StaticPageFooter />
-  </div>
-)}
+);
 
 export const ChatPage = localized(_ChatPage);

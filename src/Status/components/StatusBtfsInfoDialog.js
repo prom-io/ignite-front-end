@@ -1,5 +1,5 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Button,
     Dialog,
@@ -11,19 +11,19 @@ import {
     TableBody,
     TableCell,
     TableRow,
-    withMobileDialog
-} from "@material-ui/core";
-import {format} from "date-fns";
-import {localized} from "../../localization/components";
-import {trimString} from "../../utils/string-utils";
+    withMobileDialog,
+} from '@material-ui/core';
+import { format } from 'date-fns';
+import { localized } from '../../localization/components';
+import { trimString } from '../../utils/string-utils';
 
 const useStyles = makeStyles(theme => ({
     soterLink: {
-        color: theme.palette.primary.main
-    }
+        color: theme.palette.primary.main,
+    },
 }));
 
-const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogOpen, fullScreen, l}) => {
+const _StatusBtfsInfoDialog = ({ btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogOpen, fullScreen, l }) => {
     const classes = useStyles();
 
     if (!btfsInfo) {
@@ -31,47 +31,49 @@ const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogO
     }
 
     return (
-        <Dialog open={btfsInfoDialogOpen}
-                onClose={() => setBtfsInfoDialogOpen(false)}
-                fullScreen={fullScreen}
-                fullWidth
-                maxWidth="md"
+        <Dialog
+            open={btfsInfoDialogOpen}
+            onClose={() => setBtfsInfoDialogOpen(false)}
+            fullScreen={fullScreen}
+            fullWidth
+            maxWidth="md"
         >
             <DialogTitle>
-                {l("btfs.block-info")}
+                {l('btfs.block-info')}
             </DialogTitle>
             <DialogContent>
                 <Table>
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("btfs.cid")}</strong>
+                                <strong>{l('btfs.cid')}</strong>
                             </TableCell>
                             <TableCell>{btfsInfo.cid}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("btfs.created-at")}</strong>
+                                <strong>{l('btfs.created-at')}</strong>
                             </TableCell>
-                            <TableCell>{format(new Date(btfsInfo.created_at), "dd MMMM yyyy HH:mm")}</TableCell>
+                            <TableCell>{format(new Date(btfsInfo.created_at), 'dd MMMM yyyy HH:mm')}</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("btfs.sync.status")}</strong>
+                                <strong>{l('btfs.sync.status')}</strong>
                             </TableCell>
                             <TableCell>
-                                {btfsInfo.synced ? l("btfs.sync.status.synchronized") : l("btfs.sync.status.not-synchronized")}
+                                {btfsInfo.synced ? l('btfs.sync.status.synchronized') : l('btfs.sync.status.not-synchronized')}
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("btfs.soter-link")}</strong>
+                                <strong>{l('btfs.soter-link')}</strong>
                             </TableCell>
                             <TableCell>
-                                <a href={btfsInfo.soter_link}
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   className={classes.soterLink}
+                                <a
+                                    href={btfsInfo.soter_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={classes.soterLink}
                                 >
                                     {trimString(btfsInfo.soter_link, 55)}
                                 </a>
@@ -81,25 +83,26 @@ const _StatusBtfsInfoDialog = ({btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialogO
                 </Table>
             </DialogContent>
             <DialogActions>
-                <Button variant="outlined"
-                        color="primary"
-                        onClick={() => setBtfsInfoDialogOpen(false)}
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setBtfsInfoDialogOpen(false)}
                 >
-                    {l("btfs.close")}
+                    {l('btfs.close')}
                 </Button>
             </DialogActions>
         </Dialog>
-    )
+    );
 };
 
-const mapMobxToProps = ({statusBtfsInfo}) => ({
+const mapMobxToProps = ({ statusBtfsInfo }) => ({
     btfsInfo: statusBtfsInfo.btfsInfo,
     setBtfsInfoDialogOpen: statusBtfsInfo.setBtfsInfoDialogOpen,
-    btfsInfoDialogOpen: statusBtfsInfo.btfsInfoDialogOpen
+    btfsInfoDialogOpen: statusBtfsInfo.btfsInfoDialogOpen,
 });
 
 export const StatusBtfsInfoDialog = withMobileDialog()(
     localized(
-        inject(mapMobxToProps)(observer(_StatusBtfsInfoDialog))
-    )
+        inject(mapMobxToProps)(observer(_StatusBtfsInfoDialog)),
+    ),
 );

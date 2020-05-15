@@ -1,9 +1,9 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
-import {IconButton} from "@material-ui/core";
-import {BtfsIcon} from "../../icons/BtfsIcon";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { IconButton } from '@material-ui/core';
+import { BtfsIcon } from '../../icons/BtfsIcon';
 
-const _OpenStatusBtfsInfoDialogButton = ({btfsInfo, setBtfsInfo, setBtfsInfoDialogOpen}) => {
+const _OpenStatusBtfsInfoDialogButton = ({ btfsInfo, setBtfsInfo, setBtfsInfoDialogOpen }) => {
     if (!btfsInfo) {
         return null;
     }
@@ -14,17 +14,18 @@ const _OpenStatusBtfsInfoDialogButton = ({btfsInfo, setBtfsInfo, setBtfsInfoDial
     };
 
     return (
-        <IconButton color="inherit"
-                    onClick={handleClick}
+        <IconButton
+            color="inherit"
+            onClick={handleClick}
         >
-            <BtfsIcon color="#A2A2A2"/>
+            <BtfsIcon color="#A2A2A2" />
         </IconButton>
-    )
+    );
 };
 
-const mapMobxToProps = ({statusBtfsInfo}) => ({
+const mapMobxToProps = ({ statusBtfsInfo }) => ({
     setBtfsInfo: statusBtfsInfo.setBtfsInfo,
-    setBtfsInfoDialogOpen: statusBtfsInfo.setBtfsInfoDialogOpen
+    setBtfsInfoDialogOpen: statusBtfsInfo.setBtfsInfoDialogOpen,
 });
 
 export const OpenStatusBtfsInfoDialogButton = inject(mapMobxToProps)(observer(_OpenStatusBtfsInfoDialogButton));

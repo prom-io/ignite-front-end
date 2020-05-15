@@ -1,17 +1,17 @@
-import React from "react";
-import {Grid, makeStyles} from "@material-ui/core";
+import React from 'react';
+import { Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     layout: {
         marginTop: 20,
-        [theme.breakpoints.up("lg")]: {
-            paddingLeft: "2.08333333334%",
-            paddingRight: "2.08333333334%",
-        }
-    }
+        [theme.breakpoints.up('lg')]: {
+            paddingLeft: '2.08333333334%',
+            paddingRight: '2.08333333334%',
+        },
+    },
 }));
 
-export const Layout = ({children}) => {
+export const Layout = ({ children }) => {
     const classes = useStyles();
 
     return (
@@ -20,5 +20,5 @@ export const Layout = ({children}) => {
                 {children}
             </Grid>
         </Grid>
-    )
+    );
 };

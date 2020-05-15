@@ -1,27 +1,25 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
-import {CircularProgress, Typography, makeStyles, Grid} from "@material-ui/core";
-import {StatusListItem} from "./StatusListItem";
-import {StatusCommentsList} from "./StatusCommentsList";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
+import { StatusListItem } from './StatusListItem';
+import { StatusCommentsList } from './StatusCommentsList';
 
 const useStyles = makeStyles(() => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "table"
-    }
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'table',
+    },
 }));
 
 const getLabelFromError = error => {
     if (error.response) {
         if (error.response.status === 404) {
-            return "Status not found";
-        } else {
-            return `Could not load status, server responded with ${error.response.status} status`;
+            return 'Status not found';
         }
-    } else {
-        return "Could not load status, server is unreachable";
+        return `Could not load status, server responded with ${error.response.status} status`;
     }
+    return 'Could not load status, server is unreachable';
 };
 
 const _StatusPageContainer = ({
@@ -34,12 +32,12 @@ const _StatusPageContainer = ({
     followStatusAuthor,
     unfollowStatusAuthor,
     favouriteStatus,
-    unfavouriteStatus
+    unfavouriteStatus,
 }) => {
     const classes = useStyles();
 
     if (pending) {
-        return <CircularProgress size={25} color="primary" className={classes.centered}/>
+        return <CircularProgress size={25} color="primary" className={classes.centered} />;
     }
 
     if (error) {
@@ -47,7 +45,7 @@ const _StatusPageContainer = ({
             <Typography variant="body1">
                 {getLabelFromError(error)}
             </Typography>
-        )
+        );
     }
 
     const handleFavouriteStatusChange = () => {
@@ -65,23 +63,24 @@ const _StatusPageContainer = ({
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <StatusListItem status={status}
-                                statusLikePending={statusLikePending}
-                                onUnfollowRequest={unfollowStatusAuthor}
-                                onFollowRequest={followStatusAuthor}
-                                onFavouriteStatusChange={handleFavouriteStatusChange}
-                                currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
-                                displayMenu={Boolean(currentUser)}
+                <StatusListItem
+                    status={status}
+                    statusLikePending={statusLikePending}
+                    onUnfollowRequest={unfollowStatusAuthor}
+                    onFollowRequest={followStatusAuthor}
+                    onFavouriteStatusChange={handleFavouriteStatusChange}
+                    currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
+                    displayMenu={Boolean(currentUser)}
                 />
             </Grid>
             <Grid item xs={12}>
-                <StatusCommentsList/>
+                <StatusCommentsList />
             </Grid>
         </Grid>
-    )
+    );
 };
 
-const mapMobxToProps = ({statusPage, authorization}) => ({
+const mapMobxToProps = ({ statusPage, authorization }) => ({
     status: statusPage.status,
     pending: statusPage.pending,
     error: statusPage.error,
@@ -91,7 +90,7 @@ const mapMobxToProps = ({statusPage, authorization}) => ({
     followStatusAuthor: statusPage.followStatusAuthor,
     unfollowStatusAuthor: statusPage.unfollowStatusAuthor,
     favouriteStatus: statusPage.favouriteStatus,
-    unfavouriteStatus: statusPage.unfavouriteStatus
+    unfavouriteStatus: statusPage.unfavouriteStatus,
 });
 
 export const StatusPageContainer = inject(mapMobxToProps)(observer(_StatusPageContainer));

@@ -1,23 +1,23 @@
-import React from "react";
-import {inject, observer} from "mobx-react";
-import {Divider, ListItemIcon, ListItemText, makeStyles, MenuItem, MenuList} from "@material-ui/core";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import {Link} from "mobx-router";
-import {MuteIcon} from "../../icons/MuteIcon";
-import {Routes} from "../../routes";
-import {BlockIcon} from "../../icons/BlockIcon";
-import {SettingsIcon} from "../../icons/SettingsIcon";
-import {TermsOfServiceIcon} from "../../icons/TermsOfServiceIcon";
-import {InfoIcon} from "../../icons/InfoIcon";
-import {LogoutIcon} from "../../icons/LogoutIcon";
-import {BtfsIcon} from "../../icons/BtfsIcon"
-import {localized} from "../../localization/components";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Divider, ListItemIcon, ListItemText, makeStyles, MenuItem, MenuList } from '@material-ui/core';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import { Link } from 'mobx-router';
+import { MuteIcon } from '../../icons/MuteIcon';
+import { Routes } from '../../routes';
+import { BlockIcon } from '../../icons/BlockIcon';
+import { SettingsIcon } from '../../icons/SettingsIcon';
+import { TermsOfServiceIcon } from '../../icons/TermsOfServiceIcon';
+import { InfoIcon } from '../../icons/InfoIcon';
+import { LogoutIcon } from '../../icons/LogoutIcon';
+import { BtfsIcon } from '../../icons/BtfsIcon';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     undecoratedLink: {
-        textDecoration: "none",
-        color: "inherit"
-    }
+        textDecoration: 'none',
+        color: 'inherit',
+    },
 }));
 
 const _DrawerMenu = ({
@@ -25,7 +25,7 @@ const _DrawerMenu = ({
     doLogout,
     setDrawerExpanded,
     routerStore,
-    l
+    l,
 }) => {
     const classes = useStyles();
 
@@ -43,105 +43,109 @@ const _DrawerMenu = ({
     }
 
     return (
-        <MenuList >
-            <Link view={Routes.userProfile}
-                  params={{username: currentUser.id}}
-                  store={routerStore}
-                  className={classes.undecoratedLink}
+        <MenuList>
+            <Link
+                view={Routes.userProfile}
+                params={{ username: currentUser.id }}
+                store={routerStore}
+                className={classes.undecoratedLink}
             >
                 <MenuItem onClick={handleMenuItemClick}>
                     <ListItemIcon>
-                        <PersonOutlineIcon/>
+                        <PersonOutlineIcon />
                     </ListItemIcon>
                     <ListItemText>
-                        {l("menu.profile")}
+                        {l('menu.profile')}
                     </ListItemText>
                 </MenuItem>
             </Link>
-            <Divider/>
+            <Divider />
             <MenuItem disabled>
                 <ListItemIcon>
-                    <MuteIcon/>
+                    <MuteIcon />
                 </ListItemIcon>
                 <ListItemText>
-                    {l("menu.muted-users")}
+                    {l('menu.muted-users')}
                 </ListItemText>
             </MenuItem>
             <MenuItem disabled>
                 <ListItemIcon>
-                    <BlockIcon/>
+                    <BlockIcon />
                 </ListItemIcon>
                 <ListItemText>
-                    {l("menu.blocked-users")}
+                    {l('menu.blocked-users')}
                 </ListItemText>
             </MenuItem>
-            <Link view={Routes.settings}
-                  store={routerStore}
-                  className={classes.undecoratedLink}
+            <Link
+                view={Routes.settings}
+                store={routerStore}
+                className={classes.undecoratedLink}
             >
                 <MenuItem onClick={handleMenuItemClick}>
                     <ListItemIcon>
-                        <SettingsIcon/>
+                        <SettingsIcon />
                     </ListItemIcon>
                     <ListItemText>
-                        {l("menu.settings")}
+                        {l('menu.settings')}
                     </ListItemText>
                 </MenuItem>
             </Link>
-            <Link view={Routes.terms}
-                  store={routerStore}
-                  className={classes.undecoratedLink}
+            <Link
+                view={Routes.terms}
+                store={routerStore}
+                className={classes.undecoratedLink}
             >
                 <MenuItem onClick={handleMenuItemClick}>
                     <ListItemIcon>
-                        <TermsOfServiceIcon/>
+                        <TermsOfServiceIcon />
                     </ListItemIcon>
                     <ListItemText>
-                        {l("terms-of-service")}
+                        {l('terms-of-service')}
                     </ListItemText>
                 </MenuItem>
             </Link>
             <MenuItem disabled>
                 <ListItemIcon>
-                    <InfoIcon/>
+                    <InfoIcon />
                 </ListItemIcon>
                 <ListItemText>
-                    {l("menu.help-center")}
+                    {l('menu.help-center')}
                 </ListItemText>
             </MenuItem>
-            <Link view={Routes.btfs}
-                  store={routerStore}
-                  className={classes.undecoratedLink}
+            <Link
+                view={Routes.btfs}
+                store={routerStore}
+                className={classes.undecoratedLink}
             >
                 <MenuItem onClick={handleMenuItemClick}>
                     <ListItemIcon>
-                        <BtfsIcon/>
+                        <BtfsIcon />
                     </ListItemIcon>
                     <ListItemText>
-                        {l("menu.explore-btfs")}
+                        {l('menu.explore-btfs')}
                     </ListItemText>
                 </MenuItem>
             </Link>
-            <Divider/>
+            <Divider />
             <MenuItem onClick={handleLogoutItemClick}>
                 <ListItemIcon>
-                    <LogoutIcon/>
+                    <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText>
-                    {l("menu.logout")}
+                    {l('menu.logout')}
                 </ListItemText>
             </MenuItem>
         </MenuList>
-    )
+    );
 };
 
-const mapMobxToProps = ({authorization, drawer, store}) => ({
+const mapMobxToProps = ({ authorization, drawer, store }) => ({
     currentUser: authorization.currentUser,
     setDrawerExpanded: drawer.setDrawerExpanded,
     routerStore: store,
-    doLogout: authorization.doLogout
+    doLogout: authorization.doLogout,
 });
 
 export const DrawerMenu = localized(
-    inject(mapMobxToProps)(observer(_DrawerMenu))
+    inject(mapMobxToProps)(observer(_DrawerMenu)),
 );

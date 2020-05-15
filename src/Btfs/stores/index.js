@@ -1,1 +1,1 @@
-export * from "./BtfsHashesStore";
+export * from './BtfsHashesStore';

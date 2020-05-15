@@ -1,1 +1,1 @@
-export * from "./PrometeusDescription";
+export * from './PrometeusDescription';

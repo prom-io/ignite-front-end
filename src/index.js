@@ -1,26 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import {Provider} from "mobx-react";
-import {RouterStore, startRouter} from "mobx-router";
-import * as serviceWorker from "./serviceWorker";
-import {App} from "./App";
-import {store} from "./store";
-import {Routes} from "./routes";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
+import { RouterStore, startRouter } from 'mobx-router';
+import * as serviceWorker from './serviceWorker';
+import { App } from './App';
+import { store } from './store';
+import { Routes } from './routes';
 
 const routerStore = {
-    router: new RouterStore()
+    router: new RouterStore(),
 };
 
 startRouter(Routes, routerStore);
 
 ReactDOM.render(
     <Provider store={routerStore} {...store} className="root">
-        <App/>
+        <App />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );
 
-if (localStorage.getItem("accessToken")) {
+if (localStorage.getItem('accessToken')) {
     store.authorization.fetchCurrentUser();
 }
 

@@ -24,17 +24,19 @@ export class StatusesListStore {
     statusAuthorSubscriptionListeners = [];
     statusAuthorUnsubscriptionListeners = [];
     reverseOrder = false;
+    sendLanguage = false;
 
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder) {
+    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
         this.reverseOrder = reverseOrder;
+        this.sendLanguage = sendLanguage;
 
         this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
 
@@ -89,17 +91,50 @@ export class StatusesListStore {
             if (this.statuses.length !== 0) {
                 if (this.reverseOrder) {
                     const minId = this.statuses[this.statuses.length - 1].id;
-                    axiosInstance.get(`${this.baseUrl}?since_id=${minId}`)
+                    let url;
+                    if (this.sendLanguage) {
+                        let language = localStorage.getItem("language");
+                        if (language !== "en" && language !== "ko") {
+                            language = "en";
+                        }
+                        url = `${this.baseUrl}?since_id=${minId}&language=${language}`;
+                    } else{
+                        url = `${this.baseUrl}?since_id=${minId}`;
+                    }
+                    axiosInstance.get(url)
                         .then(({data}) => this.statuses.push(...data))
                         .finally(() => this.pending = false);
                 } else {
+                    let url;
                     const maxId = this.statuses[this.statuses.length - 1].id;
-                    axiosInstance.get(`${this.baseUrl}?max_id=${maxId}`)
+
+                    if (this.sendLanguage) {
+                        let language = localStorage.getItem("language");
+                        if (language !== "en" && language !== "ko") {
+                            language = "en";
+                        }
+                        url = `${this.baseUrl}?max_id=${maxId}&language=${language}`;
+                    } else {
+                        url = `${this.baseUrl}?max_id=${maxId}`
+                    }
+                    axiosInstance.get(url)
                         .then(({data}) => this.statuses.push(...data))
                         .finally(() => this.pending = false);
                 }
             } else {
-                axiosInstance.get(`${this.baseUrl}`)
+                let url;
+
+                if (this.sendLanguage) {
+                    let language = localStorage.getItem("language");
+                    if (language !== "en" && language !== "ko") {
+                        language = "en";
+                    }
+                    url = `${this.baseUrl}?language=${language}`;
+                } else {
+                    url = `${this.baseUrl}`;
+                }
+
+                axiosInstance.get(`${url}`)
                     .then(({data}) => this.statuses.push(...data))
                     .finally(() => this.pending = false)
             }

@@ -7,6 +7,12 @@ import { App } from './App';
 import { store } from './store';
 import { Routes } from './routes';
 
+if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
+    window.AndroidCallback = {
+        logout: () => {},
+    };
+}
+
 const routerStore = {
     router: new RouterStore(),
 };

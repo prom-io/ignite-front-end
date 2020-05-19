@@ -19,14 +19,17 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
     },
+    hidden: {
+        display: 'none',
+    },
 }));
 
-export const AppBarLink = ({ routerStore, targetView, viewParameters, active, icon, text, id }) => {
+export const AppBarLink = ({ routerStore, targetView, viewParameters, active, icon, text, id, hidden }) => {
     const classes = useStyles();
 
     return (
         <Link
-            className={active ? classes.appBarLinkActive : classes.appBarLink}
+            className={hidden ? classes.hidden : active ? classes.appBarLinkActive : classes.appBarLink}
             store={routerStore}
             view={targetView}
             params={viewParameters}

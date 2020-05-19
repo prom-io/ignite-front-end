@@ -30,13 +30,18 @@ export class AuthorizationStore {
 
     @action
     doLogout = () => {
+        console.log("Doing logout");
         this.currentUser = undefined;
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
 
         //logout for Android webview
+        console.log("Checking AndroidCallback presence");
         if (window.AndroidCallback) {
+            console.log("AndroidCallback is present, doing logout for webview");
             window.AndroidCallback.logout();
+        } else {
+            console.log("AndroidCallback is not present");
         }
     };
 

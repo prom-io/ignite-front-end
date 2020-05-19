@@ -33,6 +33,11 @@ export class AuthorizationStore {
         this.currentUser = undefined;
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
+
+        //logout for Android webview
+        if (window.AndroidCallback) {
+            window.AndroidCallback.logout();
+        }
     };
 
     @action

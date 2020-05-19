@@ -33,55 +33,57 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
         >
             <div className="header-logo" />
             <Toolbar className="tool-bar">
-                <div style={{ flexGrow: 1 }} className="tool-bar_list">
-                    <AppBarLink
-                        text={l('appbar.home')}
-                        targetView={Routes.home}
-                        active={currentActiveRoute === 'home'}
-                        icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
-                        routerStore={routerStore}
-                        viewParameters={{}}
-                        id="homeLink"
-                    />
-                    <AppBarLink
-                        text={l('appbar.notifications')}
-                        targetView={Routes.notifications}
-                        active={currentActiveRoute === 'notifications'}
-                        icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
-                        routerStore={routerStore}
-                        viewParameters={{}}
-                        id="notificationsLink"
-                    />
-                    <AppBarLink
-                        text={l('appbar.chat')}
-                        targetView={Routes.chat}
-                        active={currentActiveRoute === 'chat'}
-                        icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
-                        routerStore={routerStore}
-                        viewParameters={{}}
-                        id="chatLink"
-                    />
-                    <AppBarLink
-                        text={l('appbar.trends')}
-                        targetView={Routes.trends}
-                        active={currentActiveRoute === 'trends'}
-                        icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
-                        routerStore={routerStore}
-                        viewParameters={{}}
-                        id="trendsLink"
-                    />
-                    <Hidden smDown>
+                {!window.AndroidCallback && (
+                    <div style={{ flexGrow: 1 }} className="tool-bar_list">
                         <AppBarLink
-                            text={l('appbar.explore-btfs')}
-                            targetView={Routes.btfs}
-                            active={currentActiveRoute === 'btfs'}
-                            icon={<BtfsIcon color={currentActiveRoute === 'btfs' && theme.palette.primary.main} />}
+                            text={l('appbar.home')}
+                            targetView={Routes.home}
+                            active={currentActiveRoute === 'home'}
+                            icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
                             routerStore={routerStore}
                             viewParameters={{}}
-                            id="btfsLink"
+                            id="homeLink"
                         />
-                    </Hidden>
-                </div>
+                        <AppBarLink
+                            text={l('appbar.notifications')}
+                            targetView={Routes.notifications}
+                            active={currentActiveRoute === 'notifications'}
+                            icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
+                            routerStore={routerStore}
+                            viewParameters={{}}
+                            id="notificationsLink"
+                        />
+                        <AppBarLink
+                            text={l('appbar.chat')}
+                            targetView={Routes.chat}
+                            active={currentActiveRoute === 'chat'}
+                            icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
+                            routerStore={routerStore}
+                            viewParameters={{}}
+                            id="chatLink"
+                        />
+                        <AppBarLink
+                            text={l('appbar.trends')}
+                            targetView={Routes.trends}
+                            active={currentActiveRoute === 'trends'}
+                            icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
+                            routerStore={routerStore}
+                            viewParameters={{}}
+                            id="trendsLink"
+                        />
+                        <Hidden smDown>
+                            <AppBarLink
+                                text={l('appbar.explore-btfs')}
+                                targetView={Routes.btfs}
+                                active={currentActiveRoute === 'btfs'}
+                                icon={<BtfsIcon color={currentActiveRoute === 'btfs' && theme.palette.primary.main} />}
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="btfsLink"
+                            />
+                        </Hidden>
+                    </div>
+                )}
                 <input
                     type="text"
                     placeholder={l('appbar.search')}

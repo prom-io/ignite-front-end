@@ -28,7 +28,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
         </Hidden>
         <MuiAppBar
             variant="outlined"
-            className="app-bar"
+            className={`${window.AndroidCallback ? 'bottom-inherit ' : ''}app-bar`}
             position="fixed"
         >
             <div className="header-logo" />

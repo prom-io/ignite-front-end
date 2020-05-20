@@ -42,6 +42,23 @@ const useStyles = makeStyles(theme => ({
     cardActionsStyled: {
         display: 'flsex',
         padding: '8px 15px',
+    },
+    customTextarea: {
+        paddingLeft: 20,
+        width: '95%',
+        border: 'none',
+        '& .MuiInput-underline:before': {
+            borderBottom: 'none'
+        },
+        '& .MuiInput-underline:hover': {
+            borderBottom: 'none'
+        },
+        '& .MuiInput-underline:after': {
+            borderBottom: 'none'
+        },
+        '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+            borderBottom: 'none'
+        }
     }
 }));
 
@@ -79,7 +96,7 @@ const _CreateStatusForm = ({
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container style={{
-                padding: "25px 15px 25px 15px"
+                padding: "25px 15px 0px"
             }}>
                 {referredStatus  && (
                     <Grid item xs={12}>
@@ -109,7 +126,7 @@ const _CreateStatusForm = ({
                                onChange={event => setContent(event.target.value)}
                                fullWidth
                                value={content}
-                               className="create-status-form-textfield"
+                               className={classes.customTextarea}
                     />
                 </Grid>
             </Grid>

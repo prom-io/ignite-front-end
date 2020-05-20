@@ -7,6 +7,8 @@ body
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2
   max-width: 100% !important
   margin: 0 !important
+.MuiButton-contained
+  box-shadow: none !important
 #root
   // padding: 0 30px
   // width: 100%
@@ -459,10 +461,15 @@ p
   display: none
   @media (min-width: 960px)
     display: block
-    padding: 0 8px 8px 8px !important
+    padding: 0 !important
+  @media (min-width: 1280px)
+    padding: 0 8px !important
 .create-status-form
   // display: none
+  box-shadow: none !important
   background-color: #F1EBE8 !important
+  border: 1px solid #F1EBE8
+  box-sizing: border-box
   @media (min-width: 960px)
     display: block
     border-radius: 0 !important
@@ -475,6 +482,9 @@ p
 .create-status-form-textfield
   padding-left: 20px !important
   width: 95% !important
+  border: none
+  background: none
+  outline: none
 .create-status-counter
   border: none !important
 .create-status-form-counter-container

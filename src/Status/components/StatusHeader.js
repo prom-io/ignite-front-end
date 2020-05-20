@@ -40,14 +40,18 @@ const _StatusHeader = ({
     const classes = useStyles();
 
     return (
-        <CardHeader avatar={
+        <CardHeader 
+            style={{
+                padding: '16px 16px 8px 16px'
+            }}
+            avatar={
             <ClickEventPropagationStopper>
                 <Link store={routerStore}
                       view={Routes.userProfile}
                       params={{username: userId}}
                       style={{
                           textDecoration: "none",
-                          color: "inherit"
+                          color: "inherit",
                       }}
                 >
                     <Avatar src={avatar} className="avatar-mini"/>
@@ -62,7 +66,7 @@ const _StatusHeader = ({
                                       params={{username: userId}}
                                       style={{
                                           textDecoration: "underline",
-                                          color: "inherit"
+                                          color: "inherit",
                                       }}
                                 >
                                     <Hidden xsDown>

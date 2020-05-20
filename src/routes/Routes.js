@@ -5,7 +5,9 @@ import {
     ChatPage,
     DescriptionPage,
     HomePage,
-    NotificationsPage, SetEnglishLanguageAndRedirectToHomePage, SetKoreanLanguageAndRedirectToHomePage,
+    NotificationsPage,
+    SetEnglishLanguageAndRedirectToHomePage,
+    SetKoreanLanguageAndRedirectToHomePage,
     SettingsPage,
     StatusPage,
     TermsAndPoliciesPage,
@@ -45,7 +47,7 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
-
+            store.notifications.fetchNotifications();
         },
         onExit: () => {
         },

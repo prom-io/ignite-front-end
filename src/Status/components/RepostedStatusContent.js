@@ -58,6 +58,8 @@ const _RepostedStatusContent = ({
                             mediaAttachments={repostedStatus.media_attachments}
                             nestedReferredStatusId={repostedStatus.referred_status_id}
                             nestedReferredStatusReferenceType={repostedStatus.status_reference_type}
+                            referredStatus={repostedStatus.referred_status}
+                            statusReferenceType={repostedStatus.status_reference_type}
                         />
                     </Link>
                 </ClickEventPropagationStopper>

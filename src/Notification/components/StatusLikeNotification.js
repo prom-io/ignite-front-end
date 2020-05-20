@@ -9,9 +9,6 @@ const useStyles = makeStyles(theme => ({
     cardContentRoot: {
         paddingLeft: theme.spacing(6) + 2,
     },
-    statusLikeNotification: {
-        marginBottom: 0,
-    },
 }));
 
 const _StatusLikeNotification = ({ notification, l }) => {
@@ -20,7 +17,10 @@ const _StatusLikeNotification = ({ notification, l }) => {
     const status = notification.payload.liked_status;
 
     return (
-        <Card className={classes.statusLikeNotification}>
+        <Card
+            elevation={0}
+            className="statusCardBox"
+        >
             <NotificationTitle
                 user={user}
                 actionLabel={l('notification.like')}

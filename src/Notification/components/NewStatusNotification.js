@@ -9,9 +9,6 @@ const useStyles = makeStyles(theme => ({
     cardContentRoot: {
         paddingLeft: theme.spacing(6) + 2,
     },
-    newStatusNotification: {
-        marginBottom: 0,
-    },
 }));
 
 const _NewStatusNotifications = ({ notification, l }) => {
@@ -21,7 +18,10 @@ const _NewStatusNotifications = ({ notification, l }) => {
     const user = status.account;
 
     return (
-        <Card className={classes.statusLikeNotification}>
+        <Card
+            elevation={0}
+            className="statusCardBox"
+        >
             <NotificationTitle
                 user={user}
                 actionLabel={l('notification.new-post')}

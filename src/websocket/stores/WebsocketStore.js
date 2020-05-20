@@ -63,6 +63,8 @@ export class WebsocketStore {
 
     @action
     disconnectFromWebsocket = () => {
-
+        if (this.socketIoClient) {
+            this.socketIoClient.disconnect();
+        }
     }
 }

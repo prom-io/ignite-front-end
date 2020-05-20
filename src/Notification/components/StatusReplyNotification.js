@@ -9,9 +9,6 @@ const useStyles = makeStyles(theme => ({
     cardContentRoot: {
         paddingLeft: theme.spacing(6) + 2,
     },
-    statusReplyNotification: {
-        marginBottom: 0,
-    },
 }));
 
 const _StatusReplyNotification = ({ notification, l }) => {
@@ -21,7 +18,10 @@ const _StatusReplyNotification = ({ notification, l }) => {
     const user = status.account;
 
     return (
-        <Card className={classes.statusReplyNotification}>
+        <Card
+            elevation={0}
+            className="statusCardBox"
+        >
             <NotificationTitle
                 user={user}
                 actionLabel={l('notification.reply')}

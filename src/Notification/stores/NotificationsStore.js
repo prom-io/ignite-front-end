@@ -35,8 +35,6 @@ export class NotificationsStore {
 
     @action
     addNotification = notification => {
-        console.log("Received new notification");
-        console.log(notification);
         this.notifications = [
             notification,
             ...this.notifications

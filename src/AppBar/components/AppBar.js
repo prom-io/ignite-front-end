@@ -31,7 +31,13 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
             className={`${window.AndroidCallback ? 'bottom-inherit ' : ''}app-bar`}
             position="fixed"
         >
-            <div className="header-logo" />
+            <a
+                href="http://ignite.so"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div className="header-logo" />
+            </a>
             <Toolbar className="tool-bar">
                 <div style={{ flexGrow: 1 }} className="tool-bar_list">
                     <AppBarLink

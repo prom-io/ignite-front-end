@@ -5,7 +5,6 @@ import { StaticPageFooter } from '../components/StaticPageFooter';
 import { localized } from '../localization/components';
 
 const _TermsAndPolicesPage = ({ l }) => (
-
     <div className="static-page">
         <Grid item xs={12}>
             <AppBar currentActiveRoute="terms" />
@@ -38,7 +37,6 @@ const _TermsAndPolicesPage = ({ l }) => (
                 </div>
             </div>
         </div>
-
         <div className="static-page-container">
             <div className="static-page-logo-container">
                 <img src="/page_img/privacy_policies_page.png" />

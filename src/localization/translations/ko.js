@@ -112,4 +112,8 @@ export const ko = {
     'user.update-profile': 'Update profile',
     'user.update-profile.save-changes': 'Save changes',
     'user.update-profile.close': 'Close',
+    'notification.new-post': 'published new post',
+    'notification.reply': 'replied to your post',
+    'notification.like': 'liked your post',
+    'notification.follow': 'followed you',
 };

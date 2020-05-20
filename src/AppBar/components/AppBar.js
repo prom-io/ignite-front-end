@@ -15,10 +15,7 @@ import { NavigationalDrawer } from './NavigationalDrawer';
 import { BellIcon } from '../../icons/BellIcon';
 import { ChatIcon } from '../../icons/ChatIcon';
 import { TrendsIcon } from '../../icons/TrendsIcon';
-import { BtfsIcon } from '../../icons/BtfsIcon';
-import { LoginDialog } from '../../Authorization/components/LoginDialog';
-import { OpenLoginDialogButton } from '../../Authorization/components';
-import { SignUpDialog } from '../../SignUp/components';
+import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => (
@@ -28,7 +25,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
         </Hidden>
         <MuiAppBar
             variant="outlined"
-            className={`${window.AndroidCallback ? 'bottom-inherit ' : ''}app-bar`}
+            className="app-bar"
             position="fixed"
         >
             <a
@@ -81,12 +78,11 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                         hidden={Boolean(window.AndroidCallback)}
                     />
                 </div>
-                <input
-                    type="text"
-                    placeholder={l('appbar.search')}
-                    disabled
-                    className="app-bar-search-field"
-                />
+                {/* <input type="text"
+                           placeholder={l("appbar.search")}
+                           disabled
+                           className="app-bar-search-field"
+                    /> */}
                 <Hidden smDown>
                     <UserAppBarMenu />
                 </Hidden>
@@ -97,6 +93,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                 )
                     : <div />}
                 {!currentUser && (<OpenLoginDialogButton />)}
+                <div className="select-language"><AppBarLanguageSelect /></div>
                 <div className="mobile_header">
                     <LoginDialog />
                     <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)} />

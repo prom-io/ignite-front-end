@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: theme.palette.primary.main,
-        marginTop: '24px',
-    },
+        marginTop: "24px",
+    }
 }));
 
 const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSignUpDialogOpen }) => {

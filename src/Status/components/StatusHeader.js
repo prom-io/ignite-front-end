@@ -41,6 +41,9 @@ const _StatusHeader = ({
 
     return (
         <CardHeader
+            style={{
+                padding: '16px 16px 8px 16px',
+            }}
             avatar={(
                 <ClickEventPropagationStopper>
                     <Link

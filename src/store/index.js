@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import {AuthorizationStore, LoginStore} from '../Authorization/stores';
+import { AuthorizationStore, LoginStore } from '../Authorization/stores';
 import {
     CreateStatusStore,
     StatusBtfsInfoStore,
@@ -14,13 +14,14 @@ import {
     UserCardStore,
     UserFollowersStore,
     UserFollowingStore,
-    UserProfileStore
+    UserProfileStore,
 } from '../User/stores';
-import {SignUpStore} from '../SignUp/stores';
-import {DrawerStore} from '../AppBar/stores';
-import {LocaleStore} from '../localization/stores';
-import {BtfsHashesStore} from '../Btfs/stores';
-import {NotificationsStore} from '../Notification/stores';
+import { SignUpStore } from '../SignUp/stores';
+import { DrawerStore } from '../AppBar/stores';
+import { LocaleStore } from '../localization/stores';
+import { BtfsHashesStore } from '../Btfs/stores';
+import { NotificationsStore } from '../Notification/stores';
+import { WebsocketStore } from '../websocket/stores';
 
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
@@ -45,6 +46,7 @@ const statusComments = new StatusesListStore(authorization, createStatus, undefi
 const userAvatarUpload = new UploadUserAvatarStore();
 const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile);
 const notifications = new NotificationsStore(authorization);
+const websocket = new WebsocketStore(authorization, notifications);
 
 export const store = {
     authorization,
@@ -70,4 +72,5 @@ export const store = {
     userAvatarUpload,
     userProfileUpdate,
     notifications,
+    websocket,
 };

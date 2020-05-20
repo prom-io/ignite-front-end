@@ -34,6 +34,16 @@ export class NotificationsStore {
     }
 
     @action
+    addNotification = notification => {
+        console.log("Received new notification");
+        console.log(notification);
+        this.notifications = [
+            notification,
+            ...this.notifications
+        ];
+    };
+
+    @action
     fetchNotifications = () => {
         if (this.currentUser) {
             this.pending = true;

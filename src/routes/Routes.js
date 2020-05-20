@@ -47,7 +47,6 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
-            store.notifications.fetchNotifications();
         },
         onExit: () => {
         },

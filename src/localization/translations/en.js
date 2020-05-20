@@ -32,7 +32,7 @@ export const en = {
     'authorization.login.private-key': 'Private key',
     'authorization.login.password': 'Password',
     'authorization.login.error.invalid-credentials': 'Unknown combination of address and private key',
-    'authorization.login.error.invalid-credentials.password': 'Unknown combination of address and password',
+    'authorization.login.error.invalid-credentials.password': 'Unknown combination of wallet address and password',
     'authorization.login.error.unknown': 'Unknown error occurred when tried to log in. Server responded with {responseStatus} status',
     'authorization.login.error.no-response': 'Error occurred when tried to log in: no response from server',
     'sign-up': 'Sign up for ignite',

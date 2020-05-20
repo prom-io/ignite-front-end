@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusLikeNotification } from './StatusLikeNotification';
 import { StatusReplyNotification } from './StatusReplyNotification';
 import { NewStatisNotification } from './NewStatusNotification';
+import { FollowNotification } from './FollowNotification';
 
 export const Notification = ({ notification }) => {
     switch (notification.type) {
@@ -11,6 +12,8 @@ export const Notification = ({ notification }) => {
         return <StatusReplyNotification notification={notification} />;
     case 'NEW_STATUS':
         return <NewStatisNotification notification={notification} />;
+    case 'FOLLOW':
+        return <FollowNotification notification={notification} />;
     default:
         return null;
     }

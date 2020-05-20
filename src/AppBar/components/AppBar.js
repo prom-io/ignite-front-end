@@ -74,18 +74,6 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                         id="trendsLink"
                         hidden={Boolean(window.AndroidCallback)}
                     />
-                    <Hidden smDown>
-                        <AppBarLink
-                            text={l('appbar.explore-btfs')}
-                            targetView={Routes.btfs}
-                            active={currentActiveRoute === 'btfs'}
-                            icon={<BtfsIcon color={currentActiveRoute === 'btfs' && theme.palette.primary.main} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="btfsLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                    </Hidden>
                 </div>
                 <input
                     type="text"

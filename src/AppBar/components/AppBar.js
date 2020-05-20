@@ -17,6 +17,8 @@ import { ChatIcon } from '../../icons/ChatIcon';
 import { TrendsIcon } from '../../icons/TrendsIcon';
 import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
+import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
+import { SignUpDialog } from '../../SignUp/components';
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => (
     <>

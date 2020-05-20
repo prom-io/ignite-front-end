@@ -46,9 +46,8 @@ const useStyles = makeStyles(theme => ({
 const getLabelFromSubmissionError = (error, l) => {
     if (error.response) {
         if (error.response.status === 401) {
-            return l('authorization.login.error.invalid-credentials');
+            return l('authorization.login.error.invalid-credentials.password');
         }
-        console.log(error);
         return l('authorization.login.error.unknown', { responseStatus: error.response.status });
     }
     return l('authorization.login.error.no-response');
@@ -80,7 +79,7 @@ const _LoginForm = ({
                 className="input-default"
             />
             <TextField
-                label={l('authorization.login.private-key')}
+                label={l('authorization.login.password')}
                 value={loginForm.password}
                 onChange={event => setFormValue('password', event.target.value)}
                 fullWidth

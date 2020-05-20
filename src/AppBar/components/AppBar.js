@@ -20,6 +20,7 @@ import {LoginDialog} from "../../Authorization/components/LoginDialog";
 import {OpenLoginDialogButton} from "../../Authorization/components";
 import {SignUpDialog} from "../../SignUp/components";
 import {localized} from "../../localization/components";
+import {AppBarLanguageSelect} from '../../Settings/components'
 
 const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l}) => {
     return (
@@ -66,7 +67,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                     viewParameters={{}}
                                     id="trendsLink"
                         />
-                        <Hidden smDown>
+                        {/* <Hidden smDown>
                             <AppBarLink text={l("appbar.explore-btfs")}
                                         targetView={Routes.btfs}
                                         active={currentActiveRoute === "btfs"}
@@ -75,13 +76,13 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                                         viewParameters={{}}
                                         id="btfsLink"
                             />
-                        </Hidden>
+                        </Hidden> */}
                     </div>
-                    <input type="text"
+                    {/* <input type="text"
                            placeholder={l("appbar.search")}
                            disabled
                            className="app-bar-search-field"
-                    />
+                    /> */}
                     <Hidden smDown>
                         <UserAppBarMenu/>
                     </Hidden>
@@ -93,6 +94,7 @@ const _AppBar = ({currentActiveRoute, routerStore, currentUser, setLoginDialogOp
                         : <div></div>
                     }
                     {!currentUser && (<OpenLoginDialogButton/>)}
+                    <div className="select-language"><AppBarLanguageSelect /></div>
                     <div className="mobile_header">
                         <LoginDialog/>
                         <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)}/>

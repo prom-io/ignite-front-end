@@ -165,6 +165,7 @@ p
   align-items: center
   @media (min-width: 960px)
     display: none !important
+    border: 1px solid red !important
   img
     position: relative
     right: 13px
@@ -232,6 +233,16 @@ p
           margin-right: 5px
           &:first-child
             font-size: 16px
+
+.select-language
+  height: 34px
+  width: 34px
+  border: 1px solid #F1EBE8
+  border-radius: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-left: 16px
 
 .left-container
   display: flex
@@ -442,12 +453,13 @@ p
   display: none
   @media (min-width: 960px)
     display: block
-    padding: 0 !important
+    padding: 0 8px !important
     // background: #FBF7F6 !important
     // border: 1px solid #F1EBE8 !important
     box-sizing: border-box !important
     border-radius: 4px 4px 0px 0px
-    height: 300px
+    height: 273px
+    box-shadow: none
 
 .login_dialog_title
   max-width: 600px !important

@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
     userLink: {
         color: theme.palette.primary.main,
     },
+    undecoratedLink: {
+        textDecoration: 'none',
+    },
     notificationTitle: {
         display: 'flex',
         paddingLeft: theme.spacing(2),
@@ -26,13 +29,20 @@ const _NotificationTitle = ({ user, actionLabel, icon, routerStore }) => {
             {icon}
             <CardHeader
                 avatar={(
-                    <Avatar
-                        src={user.avatar}
-                        style={{
-                            width: 35,
-                            height: 35,
-                        }}
-                    />
+                    <Link
+                        view={Routes.userProfile}
+                        params={{ username: user.id }}
+                        store={routerStore}
+                        className={classes.undecoratedLink}
+                    >
+                        <Avatar
+                            src={user.avatar}
+                            style={{
+                                width: 35,
+                                height: 35,
+                            }}
+                        />
+                    </Link>
                 )}
                 title={(
                     <Typography>

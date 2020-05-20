@@ -14,7 +14,6 @@ const useStyles = makeStyles({
         height: 34,
         width: 34,
         borderRadius: 100,
-        outline: 'none',
         '& div': {
             height: 34,
             display: 'flex',

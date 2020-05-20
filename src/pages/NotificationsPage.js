@@ -14,11 +14,11 @@ const _NotificationsPage = ({l}) => {
           <AppBar currentActiveRoute="notifications" />
       </Grid>
         <div className="static-page-container">
-          <div className="static-page-logo-container">
-            <img src="/page_img/notifications_page.png" />
-            <h1>{l("appbar.notifications")}</h1>
-          </div>
           <div>
+            <div className="static-page-logo-container">
+              <img src="/page_img/notifications_page1.png" />
+              <h1>{l("appbar.notifications")}</h1>
+            </div>
             <div>
               <p>
                 {l("notifications.description.first-paragraph")}

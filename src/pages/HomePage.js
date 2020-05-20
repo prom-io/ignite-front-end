@@ -5,7 +5,7 @@ import {AppBar} from "../AppBar/components";
 import {LoginForm} from "../Authorization/components";
 import {Layout} from "../Layout";
 import {GlobalTimeline, HomeTimeline, StatusBtfsInfoDialog} from "../Status/components";
-import {PrometeusDescription} from "../PrometeusDescription";
+import {PrometeusDescription, ExploreOurFeaturesDescription} from "../PrometeusDescription";
 import '../styles/App.sass'
 
 const _HomePage = ({currentUser, homepageTimeline}) => (
@@ -16,7 +16,7 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
         <Grid item xs={12}>
             <Layout>
                 <Grid container spacing={2} className="content-container">
-                    <Grid item md={3} className="left-container">
+                    <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription/>
                     </Grid>
                     <Grid item lg={9} xs={12} className="right-content-container">
@@ -31,7 +31,9 @@ const _HomePage = ({currentUser, homepageTimeline}) => (
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item md={3} className="left-container"/>
+                    <Grid item md={3} className="right-banners-container">
+                        <ExploreOurFeaturesDescription />
+                    </Grid>
                 </Grid>
             </Layout>
         </Grid>

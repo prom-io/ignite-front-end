@@ -13,11 +13,11 @@ const _ChatPage = ({l}) => {
         <AppBar currentActiveRoute="chat" />
     </Grid >
     <div className="static-page-container">
-      <div className="static-page-logo-container">
-        <img src="/page_img/Ignite_chat_page.png" />
-        <h1>Ignite Chat</h1>
-      </div>
       <div>
+        <div className="static-page-logo-container">
+          <img src="/page_img/Ignite_chat_page.svg" />
+          <h1>PrompTalk Chat</h1>
+        </div>
         <div>
           <p>
             {l("chat.description.first-paragraph")}

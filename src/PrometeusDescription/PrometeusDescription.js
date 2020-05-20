@@ -9,10 +9,16 @@ import {DescriptionLinks} from '../components/DescriptionLinks';
 import {BtfsIcon} from "../icons/BtfsIcon";
 import {Routes} from "../routes";
 import {localized} from "../localization/components";
+import {DescriptionUnauthBanner} from './DescriptionUnauthBanner';
+import {DescriptionStoaBanner} from './DescriptionStoaBanner';
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
         color: theme.palette.primary.main
+    },
+    marginDescription: {
+        position: 'relative',
+        top: 200,
     }
 }));
 
@@ -42,15 +48,21 @@ const igniteDescriptionTranslations = {
     )
 };
 
-const _PrometeusDescription = ({routerStore, l, locale}) => {
+const _PrometeusDescription = ({routerStore, l, locale, currentUser}) => {
     const classes = useStyles();
 
     return (
         <Grid container spacing={2} className="description-container">
-            <Grid  className="user_profile_container">
-                <UserCard isLogin={true} />
+            
+            <Grid  className="user_profile_container" style={{padding: '8px 0'}}>
+                {currentUser ? <UserCard isLogin={true}/> : <DescriptionUnauthBanner />}
             </Grid>
-            <Grid item xs={12}>
+
+            <Grid className={classes.marginDescription}>
+                {currentUser ? '' : <DescriptionStoaBanner/>}
+            </Grid>
+            
+            {/*<Grid item xs={12}>
                 {tryOurNetworkTranslations[locale]({classes})}
             </Grid>
             <Grid item xs={12}>
@@ -76,13 +88,14 @@ const _PrometeusDescription = ({routerStore, l, locale}) => {
             </Grid>
             <Grid item xs={12}>
                 <DescriptionLinks />
-            </Grid>
+            </Grid> */}
         </Grid>
     )
 };
 
-const mapMobxToProps = ({store}) => ({
-    routerStore: store
+const mapMobxToProps = ({store, authorization}) => ({
+    routerStore: store,
+    currentUser: authorization.currentUser,
 });
 
 export const PrometeusDescription = localized(

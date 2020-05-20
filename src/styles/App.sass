@@ -243,8 +243,10 @@ p
   justify-content: center
   align-items: center
   margin-left: 16px
+  &:active
+    background: red !important
 
-.left-container
+.left-banners-container
   display: flex
   justify-content: center !important
   max-width: auto !important
@@ -253,11 +255,24 @@ p
   display: none
   @media (min-width: 952px)
     display: block
+    margin-top: -8px !important
     max-width: 272px !important
     margin-right: 25px !important
     padding: 0
 
-// .right-container
+.right-banners-container
+  display: flex
+  justify-content: center !important
+  max-width: auto !important
+  width: 100%
+  padding-top: 0
+  display: none
+  @media (min-width: 952px)
+    display: block
+    margin-top: -8px !important
+    max-width: 272px !important
+    margin-left: 25px !important
+    padding: 0
 
 
 .description-container
@@ -269,6 +284,7 @@ p
     max-width: 272px !important
     margin-right: 25px !important
     padding: 0
+    // border: 1px solid red
   p
     font-family: Museo Sans Cyrl
     font-style: normal
@@ -556,6 +572,7 @@ p
 .avatar-mini
   height: 35px !important
   width: 35px !important
+  border: 1px solid #F1EBE8
 .status-list-body-container
   padding-top: 0px !important
   padding-left: 65px !important
@@ -793,12 +810,12 @@ p
 
 .static-page-logo-container
   display: flex
-  justify-content: center
-  flex-wrap: wrap
+  justify-content: flex-start
+  // flex-wrap: wrap
   align-items: flex-start
   img
-    width: 168px
-    height: 168px
+    width: 56px
+    height: 56px
   h1
     width: 100%
     font-family: Museo Sans Cyrl
@@ -806,8 +823,10 @@ p
     font-weight: 600
     font-size: 32px
     line-height: 38px
-    text-align: center
+    text-align: left
+    padding-left: 24px
     color: #1C1C1C
+    margin: 9px 0 0 0
 .static-page
   display: flex
   flex-direction: column
@@ -857,6 +876,7 @@ p
       width: 100%
       padding: 0
       flex-wrap: wrap
+      justify-content: flex-end
       @media (max-width: 960px)
         width: 250px
         flex-wrap: wrap
@@ -866,27 +886,26 @@ p
       //   justify-content: flex-end
       //   flex-wrap: nowrap
       li
-
         margin-left: 27px
         @media (min-width: 960px)
           margin-left: 27px
-          list-style: disc
+          list-style: none
           cursor: pointer
           white-space: nowrap
         &:hover
           text-decoration: underline
-      li:first-child, li:last-child
-        list-style: none
-        margin-left: 0
-        @media (min-width: 960px)
-          list-style: none
-          margin-left: 27px
-      li:nth-child(3)
-        list-style: none
-        margin-left: 0
-        @media (min-width: 960px)
-          list-style: disc
-          margin-left: 27px
+      // li:first-child, li:last-child
+      //   list-style: none
+      //   margin-left: 0
+      //   @media (min-width: 960px)
+      //     list-style: none
+      //     margin-left: 27px
+      // li:nth-child(3)
+      //   list-style: none
+      //   margin-left: 0
+      //   @media (min-width: 960px)
+      //     list-style: disc
+      //     margin-left: 27px
 
 
 .static-page-link

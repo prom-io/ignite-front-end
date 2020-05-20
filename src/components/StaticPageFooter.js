@@ -26,18 +26,13 @@ const _StaticPageFooter = ({routerStore, l}) => {
         <div>
           <ul>
             <li>
-              <StaticPageLinks targetView={Routes.settings}
-                               routerStore={routerStore}
-                               linkTekst={l("menu.settings")}
-              />
-            </li>
-            <li>
               <StaticPageLinks
                 targetView={Routes.terms}
                 routerStore={routerStore}
                 linkTekst={links.termsOfService}
               />
             </li>
+            <li>&bull;</li>
             <li>
               <StaticPageLinks
                 targetView={Routes.terms}
@@ -45,8 +40,8 @@ const _StaticPageFooter = ({routerStore, l}) => {
                 linkTekst={links.privacyPolicy}
               />
             </li>
-            <li>{l("menu.help-center")}</li>
-            <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/>
+            {/* <li>{l("menu.help-center")}</li>
+            <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem={true}/> */}
           </ul>
         </div>
       </div>

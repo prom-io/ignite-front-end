@@ -51,6 +51,7 @@ export const ko = {
     "user.card.follow-your-interests": "당신의 관심사 찾아보세요",
     "user.card.hear-what-people-talking-about": "사람들이 무엇에 관심있을까요?",
     "user.card.join-the-conversation": "대화에 참여하십시오",
+    "user.card.eplore-our-features": "우리의 기능을 탐험",
     "status.reposted-status": "다시 게시된 상태",
     "btfs.block-info": "비트 토렌트 파일 시스템 블록 정보",
     "btfs.no-data": "데이터가 없음",
@@ -111,5 +112,14 @@ export const ko = {
     "user.upload-avatar": "Upload avatar",
     "user.update-profile": "Update profile",
     "user.update-profile.save-changes": "Save changes",
-    "user.update-profile.close": "Close"
+    "user.update-profile.close": "Close",
+    "description.unauth-banner.unblockable": "봉쇄하지 못한다",
+    "description.unauth-banner.unblockable.description": "블록체인을 금지할 수 없는 한 Ignite 또한 금지할 수 없음",
+    "description.unauth-banner.Censorship-free": "심사를 면제한다",
+    "description.unauth-banner.Censorship-free.description": "무절제와 사용자 금지",
+    "description.unauth-banner.Immutable": "고정불변하다",
+    "description.unauth-banner.Immutable.description": "데이터가 분산 데이터 스토리지 BTFS/SOTER에 영구 저장됨",
+    "description.unauth-banner.Anonymous": "익명",
+    "description.unauth-banner.Anonymous.description": "블록체인을 통한 인증",
+
 };

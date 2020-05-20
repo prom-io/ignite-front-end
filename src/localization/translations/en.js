@@ -51,6 +51,7 @@ export const en = {
     "user.card.follow-your-interests": "Follow your interests",
     "user.card.hear-what-people-talking-about": "Hear what people talking about",
     "user.card.join-the-conversation": "Join the conversation",
+    "user.card.eplore-our-features": "Explore our Features",
     "status.reposted-status": "Reposted status",
     "btfs.block-info": "Bit Torrent File System Block Info",
     "btfs.no-data": "No data is present",
@@ -111,5 +112,13 @@ export const en = {
     "user.upload-avatar": "Upload avatar",
     "user.update-profile": "Update profile",
     "user.update-profile.save-changes": "Save changes",
-    "user.update-profile.close": "Close"
+    "user.update-profile.close": "Close",
+    "description.unauth-banner.unblockable": "Unblockable",
+    "description.unauth-banner.unblockable.description": "You can’t ban Ignite as long as you can’t ban blockchain itself",
+    "description.unauth-banner.Censorship-free": "Censorship-free",
+    "description.unauth-banner.Censorship-free.description": "No moderation and user bans",
+    "description.unauth-banner.Immutable": "Immutable",
+    "description.unauth-banner.Immutable.description": "Data is stored forever on a distributed data storage BTFS/SOTER",
+    "description.unauth-banner.Anonymous": "Anonymous",
+    "description.unauth-banner.Anonymous.description": "Authentication through blockchain",
 };

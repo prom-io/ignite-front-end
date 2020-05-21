@@ -1,8 +1,20 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
+import { CircularProgress, Typography, makeStyles } from '@material-ui/core';
 import { Notification } from './Notification';
+import { localized } from '../../localization/components';
 
-const _NotificationsList = ({ notifications, fetchNotifications, pending }) => {
+const useStyles = makeStyles(() => ({
+    centered: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'table',
+    },
+}));
+
+const _NotificationsList = ({ notifications, fetchNotifications, pending, currentUser, l }) => {
+    const classes = useStyles();
+
     const trackScrolling = () => {
         const element = document.getElementById('notificationsList');
 
@@ -17,6 +29,14 @@ const _NotificationsList = ({ notifications, fetchNotifications, pending }) => {
         return () => document.removeEventListener('scroll', trackScrolling);
     });
 
+    if (!currentUser) {
+        return (
+            <Typography>
+                {l('notifications.login-required')}
+            </Typography>
+        );
+    }
+
     return (
         <div id="notificationsList">
             {notifications.map(notification => (
@@ -25,13 +45,23 @@ const _NotificationsList = ({ notifications, fetchNotifications, pending }) => {
                     key={notification.id}
                 />
             ))}
+            {pending && (
+                <CircularProgress
+                    size={25}
+                    color="primary"
+                    className={classes.centered}
+                />
+            )}
         </div>
     );
 };
 
-const mapMobxToProps = ({ notifications }) => ({
+const mapMobxToProps = ({ notifications, authorization }) => ({
     notifications: notifications.notifications,
     fetchNotifications: notifications.fetchNotifications,
+    currentUser: authorization.currentUser,
 });
 
-export const NotificationsList = inject(mapMobxToProps)(observer(_NotificationsList));
+export const NotificationsList = localized(
+    inject(mapMobxToProps)(observer(_NotificationsList)),
+);

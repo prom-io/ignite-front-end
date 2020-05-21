@@ -41,7 +41,7 @@ export const AppBarLink = ({ routerStore, targetView, viewParameters, active, ic
             >
                 {icon}
                 <Typography variant="body1" style={{ paddingLeft: '8px' }} className="nav-bar-link">
-                    <strong>{text}</strong>
+                    <span>{text}</span>
                 </Typography>
             </div>
         </Link>

@@ -16,11 +16,11 @@ const _TrendsPage = ({ l }) => (
                 <AppBar currentActiveRoute="trends" />
             </Grid>
             <div className="static-page-container">
-                <div className="static-page-logo-container">
-                    <img src="/page_img/trends_page.png" />
-                    <h1>{l('appbar.trends')}</h1>
-                </div>
                 <div>
+                    <div className="static-page-logo-container">
+                        <img src="/page_img/trends_page.svg" />
+                        <h1>{l('appbar.trends')}</h1>
+                    </div>
                     <div>
                         <p>
                             {l('trends.first-paragraph')}

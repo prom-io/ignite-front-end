@@ -5,7 +5,6 @@ import { StaticPageLinks } from './StaticPageLinks';
 import { LogoutMenuItem } from '../Authorization/components';
 import { localized } from '../localization/components';
 
-
 const _StaticPageFooter = ({ routerStore, l }) => {
     const Prometeus = '{Prometeus}';
 
@@ -32,18 +31,12 @@ const _StaticPageFooter = ({ routerStore, l }) => {
                     <ul>
                         <li>
                             <StaticPageLinks
-                                targetView={Routes.settings}
-                                routerStore={routerStore}
-                                linkTekst={l('menu.settings')}
-                            />
-                        </li>
-                        <li>
-                            <StaticPageLinks
                                 targetView={Routes.terms}
                                 routerStore={routerStore}
                                 linkTekst={links.termsOfService}
                             />
                         </li>
+                        <li>&bull;</li>
                         <li>
                             <StaticPageLinks
                                 targetView={Routes.terms}
@@ -51,8 +44,6 @@ const _StaticPageFooter = ({ routerStore, l }) => {
                                 linkTekst={links.privacyPolicy}
                             />
                         </li>
-                        <li>{l('menu.help-center')}</li>
-                        <LogoutMenuItem onClick={handleClose} isStaticFooterMenuItem />
                     </ul>
                 </div>
             </div>

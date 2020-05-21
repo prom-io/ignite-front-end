@@ -9,10 +9,16 @@ import { DescriptionLinks } from '../components/DescriptionLinks';
 import { BtfsIcon } from '../icons/BtfsIcon';
 import { Routes } from '../routes';
 import { localized } from '../localization/components';
+import { DescriptionUnauthBanner } from './DescriptionUnauthBanner';
+import { DescriptionStoaBanner } from './DescriptionStoaBanner';
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
         color: theme.palette.primary.main,
+    },
+    marginDescription: {
+        position: 'relative',
+        top: 245,
     },
 }));
 
@@ -51,52 +57,54 @@ const igniteDescriptionTranslations = {
     ),
 };
 
-const _PrometeusDescription = ({ routerStore, l, locale }) => {
+const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
     const classes = useStyles();
 
     return (
         <Grid container spacing={2} className="description-container">
-            <Grid className="user_profile_container">
-                <UserCard isLogin />
+
+            <Grid className="user_profile_container" style={{ padding: '8px 0' }}>
+                {currentUser ? <UserCard isLogin /> : <DescriptionUnauthBanner />}
             </Grid>
-            <Grid item xs={12}>
-                {tryOurNetworkTranslations[locale]({ classes })}
+
+            <Grid className={classes.marginDescription}>
+                {currentUser ? '' : <DescriptionStoaBanner />}
+            </Grid>
+
+            {/* <Grid item xs={12}>
+                {tryOurNetworkTranslations[locale]({classes})}
             </Grid>
             <Grid item xs={12}>
                 {igniteDescriptionTranslations[locale]()}
             </Grid>
-            <Grid
-                item
-                xs={12}
-                style={{
-                    borderTop: '1px solid #F1EBE8',
-                }}
-            >
-                <Link
-                    store={routerStore}
-                    view={Routes.btfs}
-                    style={{
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}
+            <Grid item xs={12} style={{
+                                borderTop: "1px solid #F1EBE8"
+            }}>
+                <Link store={routerStore}
+                      view={Routes.btfs}
+                      style={{
+                          textDecoration: "none",
+                          color: "inherit",
+                          display: "flex",
+                          alignItems: "center"
+                      }}
                 >
-                    <BtfsIcon />
-                    <Typography style={{ paddingLeft: '8px' }}>
-                        {l('menu.explore-btfs')}
+                    <BtfsIcon/>
+                    <Typography style={{paddingLeft: "8px"}}>
+                        {l("menu.explore-btfs")}
                     </Typography>
                 </Link>
             </Grid>
             <Grid item xs={12}>
                 <DescriptionLinks />
-            </Grid>
+            </Grid> */}
         </Grid>
     );
 };
 
-const mapMobxToProps = ({ store }) => ({
+const mapMobxToProps = ({ store, authorization }) => ({
     routerStore: store,
+    currentUser: authorization.currentUser,
 });
 
 export const PrometeusDescription = localized(

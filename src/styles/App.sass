@@ -244,8 +244,8 @@ p
   justify-content: center
   align-items: center
   margin-left: 16px
-  &:active
-    background: red !important
+  // &:active
+  //   background: red !important
 
 .left-banners-container
   display: flex
@@ -804,8 +804,8 @@ p
       font-family: Museo Sans Cyrl
       font-style: normal
       font-weight: 300
-      font-size: 20px
-      line-height: 32px
+      font-size: 15px
+      line-height: 26px
       color: #1C1C1C
       text-align: left
       span
@@ -841,7 +841,7 @@ p
   width: 100%
   display: flex
   justify-content: center
-  border-top: 1px solid #E5E5E5 !important
+  // border-top: 1px solid #E5E5E5 !important
 .static-page-footer
   max-width: 1148px
   width: 100% !important
@@ -852,17 +852,19 @@ p
   padding: 0 20px
   height: 50px
   justify-content: space-between
-  // border-top: 1px solid #E5E5E5 !important
+  border-top: 1px solid #E5E5E5 !important
   @media (max-width: 960px)
-    justify-content: space-between
-    margin: 0
     margin-bottom: 50px
-    min-height: 100px
-    height: 100%
-    max-height: auto
-    padding: 0px 30px
-    width: auto
-    flex-direction: column-reverse
+  @media (max-width: 556px)
+    margin-bottom: 70px
+  //   justify-content: space-between
+  //   margin: 0
+  //   min-height: 100px
+  //   height: 100%
+  //   max-height: auto
+  //   padding: 0px 30px
+  //   width: auto
+  //   flex-direction: column-reverse
   div
     display: flex
     font-family: Museo Sans Cyrl
@@ -873,17 +875,17 @@ p
     color: #A2A2A2
     justify-content: flex-start
     width: 100%
-    @media (min-width: 960px)
-      justify-content: flex-start
+    // @media (min-width: 960px)
+    //   justify-content: flex-start
     ul
       display: flex
       width: 100%
       padding: 0
       flex-wrap: wrap
       justify-content: flex-end
-      @media (max-width: 960px)
-        width: 250px
-        flex-wrap: wrap
+      // @media (max-width: 960px)
+      //   width: 250px
+      //   flex-wrap: wrap
         // flex-direction: column
       // @media (min-width: 960px)
       //   padding: 0 0 0 40px
@@ -891,11 +893,12 @@ p
       //   flex-wrap: nowrap
       li
         margin-left: 27px
+        list-style: none
         @media (min-width: 960px)
-          margin-left: 27px
           list-style: none
-          cursor: pointer
-          white-space: nowrap
+        //   margin-left: 27px
+        //   cursor: pointer
+        //   white-space: nowrap
         &:hover
           text-decoration: underline
       // li:first-child, li:last-child
@@ -904,8 +907,10 @@ p
       //   @media (min-width: 960px)
       //     list-style: none
       //     margin-left: 27px
-      // li:nth-child(3)
-      //   list-style: none
+      li:nth-child(2)
+        display: none
+        @media (min-width: 622px)
+          display: block
       //   margin-left: 0
       //   @media (min-width: 960px)
       //     list-style: disc

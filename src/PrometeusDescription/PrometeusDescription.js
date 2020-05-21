@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
     marginDescription: {
         position: 'relative',
-        top: 200,
+        top: 245,
     },
 }));
 

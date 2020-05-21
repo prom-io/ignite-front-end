@@ -5,9 +5,6 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     root: {
-        '& .MuiInput-underline:after': {
-            border: '1px solid red',
-        },
     },
     styledSelectBox: {
         border: 'none',
@@ -33,9 +30,15 @@ const useStyles = makeStyles({
             color: '#A2A2A2',
         },
         '& ul': {
-            border: '1px solid red',
             zIndex: 900001,
             position: 'fixed',
+        },
+    },
+    styletMenuItem: {
+        width: '118px',
+        padding: 12,
+        '& p': {
+            margin: 0,
         },
     },
 });
@@ -59,7 +62,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                         <p>En</p>
                     </ListItemText>
                 </MenuItem>
-                <MenuItem value="ko">
+                <MenuItem value="ko" className={classes.styletMenuItem}>
                     <ListItemText>
                         <p>Ko</p>
                     </ListItemText>

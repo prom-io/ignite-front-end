@@ -74,7 +74,7 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                     onClick={handleToggle}
                     className="user-app-bar-menu-button"
                 >
-                    <Avatar src={currentUser.avatar} style={{border: '1px solid #F1EBE8'}} />
+                    <Avatar src={currentUser.avatar} style={{ border: '1px solid #F1EBE8' }} />
                 </IconButton>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (

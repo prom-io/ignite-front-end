@@ -1,4 +1,5 @@
 import { action, observable, reaction, computed } from 'mobx';
+import { throttle } from 'lodash';
 import { axiosInstance } from '../../api/axios-instance';
 
 export class NotificationsStore {
@@ -20,6 +21,8 @@ export class NotificationsStore {
 
     constructor(authorization) {
         this.authorization = authorization;
+
+        this.fetchNotifications = throttle(this.fetchNotifications, 5000);
 
         reaction(
             () => this.currentUser,
@@ -46,8 +49,17 @@ export class NotificationsStore {
         if (this.currentUser) {
             this.pending = true;
 
-            axiosInstance.get("/api/v1/notifications")
-                .then(({data}) => this.notifications = [...this.notifications, ...data])
+            let url;
+
+            if (this.notifications.length !== 0) {
+                const maxId = this.notifications[this.notifications.length - 1].id;
+                url = `/api/v1/notifications?max_id=${maxId}`;
+            } else {
+                url = "/api/v1/notifications";
+            }
+
+            axiosInstance.get(url)
+                .then(({data}) => this.notifications.push(...data))
                 .catch(error => this.error = error)
                 .finally(() => this.pending = false)
         }

@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import { AppBar } from '../AppBar/components';
 import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
-import {PrometeusDescription} from "../PrometeusDescription";
+import { PrometeusDescription } from '../PrometeusDescription';
 
 const pageHeight = document.documentElement.clientHeight;
 

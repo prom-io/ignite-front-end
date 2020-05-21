@@ -5,7 +5,7 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
-        backgroundColor: '#FBF7F6',
+        backgroundColor: '#FFFBF8',
         boxShadow: 'none',
         border: '1px solid #F1EBE8',
         borderRadius: '4px 4px 0px 0px',

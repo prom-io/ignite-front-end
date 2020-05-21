@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button } from '@material-ui/core';
+import { localized } from '../../localization/components';
 
 const _OpenLoginDialogButton = ({ setLoginDialogOpen, l }) => (
     <Button
@@ -16,4 +17,6 @@ const _OpenLoginDialogButton = ({ setLoginDialogOpen, l }) => (
 
 const mapMobxToProps = ({ login }) => ({ setLoginDialogOpen: login.setLoginDialogOpen });
 
-export const OpenLoginDialogButton = inject(mapMobxToProps)(observer(_OpenLoginDialogButton));
+export const OpenLoginDialogButton = localized(
+    inject(mapMobxToProps)(observer(_OpenLoginDialogButton)),
+);

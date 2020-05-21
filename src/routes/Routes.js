@@ -47,6 +47,7 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },

@@ -123,4 +123,5 @@ export const ko = {
     'description.unauth-banner.Immutable.description': '데이터가 분산 데이터 스토리지 BTFS/SOTER에 영구 저장됨',
     'description.unauth-banner.Anonymous': '익명',
     'description.unauth-banner.Anonymous.description': '블록체인을 통한 인증',
+    post: 'Post',
 };

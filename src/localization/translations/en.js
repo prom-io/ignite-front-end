@@ -123,4 +123,5 @@ export const en = {
     'description.unauth-banner.Immutable.description': 'Data is stored forever on a distributed data storage BTFS/SOTER',
     'description.unauth-banner.Anonymous': 'Anonymous',
     'description.unauth-banner.Anonymous.description': 'Authentication through blockchain',
+    post: 'Post',
 };

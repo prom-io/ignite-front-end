@@ -109,17 +109,6 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                                             </ListItemText>
                                         </MenuItem>
                                         <Link
-                                            view={Routes.settings}
-                                            store={routerStore}
-                                            className={classes.undecoratedLink}
-                                        >
-                                            <MenuItem>
-                                                <ListItemText>
-                                                    {l('menu.settings')}
-                                                </ListItemText>
-                                            </MenuItem>
-                                        </Link>
-                                        <Link
                                             view={Routes.terms}
                                             store={routerStore}
                                             className={classes.undecoratedLink}

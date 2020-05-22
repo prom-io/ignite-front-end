@@ -38,7 +38,7 @@ const _NotificationsList = ({ notifications, fetchNotifications, pending, curren
     }
 
     return (
-        <div id="notificationsList">
+        <div id="notificationsList" className="paddingBottomRoot">
             {notifications.map(notification => (
                 <Notification
                     notification={notification}

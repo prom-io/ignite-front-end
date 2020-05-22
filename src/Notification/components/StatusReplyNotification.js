@@ -20,7 +20,7 @@ const _StatusReplyNotification = ({ notification, l }) => {
     return (
         <Card
             elevation={0}
-            className="statusCardBox"
+            className="notificationCardBox"
         >
             <NotificationTitle
                 user={user}

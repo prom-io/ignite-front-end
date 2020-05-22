@@ -7,7 +7,7 @@ import {FollowerIcon} from '../../icons/FollowerIcon';
 const _FollowNotification = ({ notification, l }) => (
     <Card
         elevation={0}
-        className="statusCardBox"
+        className="notificationCardBox"
     >
         <NotificationTitle
             user={notification.payload}

@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         paddingLeft: theme.spacing(2),
         paddingTop: theme.spacing(2),
+        borderBottom: '1px solid #F1EBE8',
     },
     cardHeaderRoot: {
         paddingTop: 0,

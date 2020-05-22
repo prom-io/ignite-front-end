@@ -7,7 +7,9 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     cardContentRoot: {
-        paddingLeft: theme.spacing(6) + 2,
+        [theme.breakpoints.up('md')]: {
+            paddingLeft: theme.spacing(6) + 2,
+        },
     },
 }));
 

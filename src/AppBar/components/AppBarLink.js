@@ -18,6 +18,17 @@ const useStyles = makeStyles(theme => ({
     appBarLinkTextContainer: {
         display: 'flex',
         alignItems: 'center',
+        '& span':{
+            fontFamily: 'Museo Sans Cyrl;',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '15px',
+            lineHeight: '18px',
+        },
+        '& svg': {
+            width: '16px',
+            height: '16px'
+        }
     },
     hidden: {
         display: 'none',

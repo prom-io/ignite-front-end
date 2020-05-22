@@ -127,5 +127,5 @@ export const ko = {
     'notification.reply': '댓글을 잇어요',
     'notification.like': '당신의 게시물을 좋아요',
     'notifications.login-required': '알림을 보려면 먼저 로그인해주세요',
-    post: 'Post',
+    post: '게시물',
 };

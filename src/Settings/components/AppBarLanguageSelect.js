@@ -11,6 +11,17 @@ const useStyles = makeStyles({
         height: 34,
         width: 34,
         borderRadius: 100,
+        '& :hover': {
+            borderRadius: '100%',
+            background:'#FFDECC',
+        },
+        '& :hover p': {
+            color: '#FF5C01'
+        },
+        '& span:hover p': {
+            background: 'none',
+            color: '#FF5C01'
+        },
         '& div': {
             height: 34,
             display: 'flex',
@@ -33,6 +44,9 @@ const useStyles = makeStyles({
             zIndex: 900001,
             position: 'fixed',
         },
+        '& .MuiSelect-select:focus': {
+            background: 'none',
+        }
     },
     styletMenuItem: {
         width: '118px',

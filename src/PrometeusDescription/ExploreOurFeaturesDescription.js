@@ -30,13 +30,14 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid #F1EBE8',
         borderRadius: '4px',
         '& h3': {
-            paddingLeft: 24,
+            paddingLeft: 16,
             fontFamily: 'Museo Sans Cyrl',
             fontStyle: 'normal',
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: '20px',
             lineHeight: '24px',
             color: '#1C1C1C',
+            margin: '0 0 16px 0',
         },
     },
     exploreCardBody: {
@@ -48,7 +49,7 @@ const useStyles = makeStyles(theme => ({
         boxSizing: 'border-box',
         borderTop: '1px solid #F1EBE8',
         height: 84,
-        paddingLeft: 24,
+        paddingLeft: 16,
         '& p': {
             display: 'flex',
             justifyContent: 'flex-start',
@@ -62,10 +63,14 @@ const useStyles = makeStyles(theme => ({
         },
     },
     exploreCardImgBox: {
-        width: 44,
+        width: '32px !important',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        '& img': {
+            width: '20px',
+            marginRight: 12
+        }
     },
 }));
 const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser }) => {
@@ -90,7 +95,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src="/descriptions/friends.png" />
+                                <img src="/descriptions/friends.svg" />
                             </div>
                             <p>
                                 {l('user.card.hear-what-people-talking-about')}

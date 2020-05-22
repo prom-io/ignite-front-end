@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         color: '#FF5C01',
     },
     exploreLink: {
-        margin: '24 0',
+        margin: '17px 0 19px 0',
         width: '100%',
         height: 51,
         borderTop: '1px solid #F1EBE8',
@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px !important',
             lineHeight: '23px !important',
             color: '#A2A2A2 !important',
+            margin: '0'
         },
     },
 }));
@@ -113,10 +114,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
                         href="https://prometeus.io/"
                         rel="noopener noreferrer"
                         target="_blank"
-                        style={{
-                            textDecoration: 'none',
-                            color: 'inherit',
-                        }}
+                        className="static-page-link"
                     >
                         © 2020
                         {Prometeus}

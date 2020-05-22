@@ -48,13 +48,17 @@ const _StatusBody = ({
     nestedReferredStatusReferenceType,
     routerStore,
     hideThreadLink,
+    disableLeftPadding,
     l,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
 
     return (
-        <CardContent className="status-list-body-container" style={{ flex: 'auto' }}>
+        <CardContent
+            className={disableLeftPadding ? 'status-list-body-container-no-padding-left' : 'status-list-body-container'}
+            style={{ flex: 'auto' }}
+        >
             {referredStatus && statusReferenceType === 'COMMENT' && (
                 <ClickEventPropagationStopper>
                     <div

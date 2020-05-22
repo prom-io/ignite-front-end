@@ -1,12 +1,12 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Link } from 'mobx-router';
-import { makeStyles } from '@material-ui/core';
-import { StatusBody } from './StatusBody';
-import { StatusHeader } from './StatusHeader';
-import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
-import { Routes } from '../../routes';
-import { localized } from '../../localization/components';
+import {inject, observer} from 'mobx-react';
+import {Link} from 'mobx-router';
+import {makeStyles} from '@material-ui/core';
+import {StatusBody} from './StatusBody';
+import {StatusHeader} from './StatusHeader';
+import {ClickEventPropagationStopper} from '../../ClickEventProgatationStopper';
+import {Routes} from '../../routes';
+import {localized} from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     repostedStatus: {
@@ -20,6 +20,7 @@ const _RepostedStatusContent = ({
     routerStore,
     displayClearButton,
     onClearButtonClick,
+    disableLeftPadding
 }) => {
     const classes = useStyles();
 
@@ -60,6 +61,7 @@ const _RepostedStatusContent = ({
                             nestedReferredStatusReferenceType={repostedStatus.status_reference_type}
                             referredStatus={repostedStatus.referred_status}
                             statusReferenceType={repostedStatus.status_reference_type}
+                            disableLeftPadding={disableLeftPadding}
                         />
                     </Link>
                 </ClickEventPropagationStopper>

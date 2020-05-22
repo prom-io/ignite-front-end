@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
         '& h3': {
             fontFamily: 'Museo Sans Cyrl',
             fontStyle: 'normal',
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: 15,
             color: '#1C1C1C',
             lineHeight: '22px',
@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 15,
         color: '#A2A2A2',
         margin: '12px 0 0 0',
+        lineHeight: '22px',
     },
 }));
 

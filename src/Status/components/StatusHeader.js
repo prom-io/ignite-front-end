@@ -17,6 +17,14 @@ const useStyles = makeStyles(() => ({
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         width: '100%',
+        '& a': {
+            textDecoration: 'none',
+            color: 'inherit',
+            fontWeight: 700,
+        },
+        '& a:hover': {
+            textDecoration: 'underline',
+        }
     },
 }));
 
@@ -66,10 +74,6 @@ const _StatusHeader = ({
                             store={routerStore}
                             view={Routes.userProfile}
                             params={{ username: userId }}
-                            style={{
-                                textDecoration: 'underline',
-                                color: 'inherit',
-                            }}
                         >
                             <Hidden xsDown>
                                 <Typography>

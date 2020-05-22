@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         border: '1px solid #F1EBE8',
         borderRadius: '4px 4px 0px 0px',
+        paddingBottom: '8px'
     },
     loginButton: {
         maxWidth: 374,
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: '##FFFFFF',
-        marginTop: '24px',
+        marginTop: '36px',
     },
     signUpButton: {
         maxWidth: 374,
@@ -38,7 +39,8 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: theme.palette.primary.main,
-        marginTop: '24px',
+        marginTop: '15px',
+        borderRadius: '30px',
     },
     errorLabel: {
         color: theme.palette.error.main,

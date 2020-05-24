@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
         '& a': {
             textDecoration: 'none',
             color: 'inherit',
+            fontFamily: 'Museo Sans Cyrl Bold',
             fontWeight: 700,
         },
         '& a:hover': {
@@ -114,7 +115,7 @@ const _StatusHeader = ({
                             }}
                         >
                             <Hidden xsDown>
-                                <Typography>
+                                <Typography style={{ fontSize: 15 }}>
                                     @
                                     {trimString(username, 35)}
                                 </Typography>

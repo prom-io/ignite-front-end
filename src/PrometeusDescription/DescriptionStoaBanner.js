@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     },
     descriptionStoa: {
         color: '#FF5C01',
+        margin: '4px 0',
     },
     exploreLink: {
         margin: '17px 0 19px 0',
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         '& p': {
-            fontFamily: 'Museo Sans Cyrl !important',
+            fontFamily: 'Museo Sans Cyrl Regular !important',
             fontStyle: 'normal !important',
             fontSize: '15px !important',
             lineHeight: '18px !important',
@@ -31,10 +32,13 @@ const useStyles = makeStyles(theme => ({
         '& span': {
             color: '#1C1C1C !important',
             fontWeight: '300 !important',
+            '&:hover': {
+                color: '#FF5C01 !important',
+            }
         },
     },
     styledText: {
-        fontFamily: 'Museo Sans Cyrl !important',
+        fontFamily: 'Museo Sans Cyrl Regular !important',
         fontStyle: 'normal !important',
         fontWeight: '300 !important',
         fontSize: '15px !important',
@@ -42,14 +46,15 @@ const useStyles = makeStyles(theme => ({
         color: '#A2A2A2 !important',
     },
     descriprionLinks: {
+        marginTop: 4,
         '& p': {
-            fontFamily: 'Museo Sans Cyrl !important',
+            fontFamily: 'Museo Sans Cyrl Regular !important',
             fontStyle: 'normal !important',
             fontWeight: '300 !important',
             fontSize: '15px !important',
             lineHeight: '23px !important',
             color: '#A2A2A2 !important',
-            margin: '0'
+            margin: '0 0 6px 0'
         },
     },
 }));
@@ -76,7 +81,7 @@ const tryOurNetworkTranslations = {
 const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
     const classes = useStyles();
 
-    const Prometeus = ' {Prometeus}';
+    const Prometeus = '{Prometeus}';
 
     const links = {
         termsOfService: l('description-links.terms-of-service'),
@@ -117,7 +122,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
                         className="static-page-link"
                     >
                         © 2020
-                        {Prometeus}
+                        <u>{Prometeus}</u>
                         {' '}
                         Team
                     </a>

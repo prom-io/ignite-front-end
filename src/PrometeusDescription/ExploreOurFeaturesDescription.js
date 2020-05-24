@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '4px',
         '& h3': {
             paddingLeft: 16,
-            fontFamily: 'Museo Sans Cyrl',
+            fontFamily: 'Museo Sans Cyrl Bold',
             fontStyle: 'normal',
             fontWeight: 700,
             fontSize: '20px',
@@ -49,12 +49,12 @@ const useStyles = makeStyles(theme => ({
         boxSizing: 'border-box',
         borderTop: '1px solid #F1EBE8',
         height: 84,
-        paddingLeft: 16,
+        padding: '0 16px',
         '& p': {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            fontFamily: 'Museo Sans Cyrl',
+            fontFamily: 'Museo Sans Cyrl Regular',
             fontStyle: 'normal',
             fontWeight: 300,
             fontSize: '15px',

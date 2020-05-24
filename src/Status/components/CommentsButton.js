@@ -8,7 +8,12 @@ const useStyles = makeStyles({
         margin: 0,
         padding: 0,
         borderRadius: 0,
-
+        width: 34,
+        height: 34,
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        }
     },
     styledComponentContainer: {
         display: 'flex',

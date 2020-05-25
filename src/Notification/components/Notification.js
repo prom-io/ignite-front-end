@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusLikeNotification } from './StatusLikeNotification';
 import { StatusReplyNotification } from './StatusReplyNotification';
-import { NewStatisNotification } from './NewStatusNotification';
+import { NewStatusNotification } from './NewStatusNotification';
 import { FollowNotification } from './FollowNotification';
 import { RepostNotification } from './RepostNotification';
 
@@ -12,7 +12,7 @@ export const Notification = ({ notification }) => {
     case 'STATUS_REPLY':
         return <StatusReplyNotification notification={notification} />;
     case 'NEW_STATUS':
-        return <NewStatisNotification notification={notification} />;
+        return <NewStatusNotification notification={notification} />;
     case 'FOLLOW':
         return <FollowNotification notification={notification} />;
     case 'REPOST':

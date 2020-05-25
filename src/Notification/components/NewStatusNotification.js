@@ -53,4 +53,4 @@ const _NewStatusNotifications = ({ notification, l, dateFnsLocale }) => {
     );
 };
 
-export const NewStatisNotification = localized(_NewStatusNotifications);
+export const NewStatusNotification = localized(_NewStatusNotifications);

@@ -4,25 +4,31 @@ import { AppBar } from '../AppBar/components';
 import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
 import { PrometeusDescription } from '../PrometeusDescription';
-
-const pageHeight = document.documentElement.clientHeight;
+import { Layout } from '../Layout';
 
 const _NotificationsPage = ({ l }) => (
-    <div className="static-page" style={{ minHeight: pageHeight }}>
+    <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="notifications" />
         </Grid>
         <Grid item xs={12}>
-            <Grid container className="content-container" spacing={2}>
-                <Grid item md={3} className="left-banners-container">
-                    <PrometeusDescription />
+            <Layout>
+                <Grid container spacing={2} className="content-container">
+                    <Grid item md={3} className="left-banners-container">
+                        <PrometeusDescription />
+                    </Grid>
+                    <Grid item lg={9} xs={12} className="right-content-container">
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={9} className="right-content">
+                                <NotificationsList />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item md={3} className="right-banners-container" />
                 </Grid>
-                <Grid item xs={12} lg={9} className="right-content-container">
-                    <NotificationsList />
-                </Grid>
-            </Grid>
+            </Layout>
         </Grid>
-    </div>
+    </Grid>
 );
 
 export const NotificationsPage = localized(_NotificationsPage);

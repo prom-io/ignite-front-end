@@ -38,6 +38,7 @@ const _UserProfileTimeline = ({
     pending,
     currentUser,
     profileOwnerId,
+    hasMore,
 }) => {
     const classes = useStyles();
 
@@ -62,6 +63,7 @@ const _UserProfileTimeline = ({
                         currentUser={currentUser}
                         statusLikePendingMap={statusLikePendingMap}
                         repostsPendingMap={repostsPendingMap}
+                        hasMore={hasMore}
                     />
                 </Grid>
             </Grid>
@@ -80,6 +82,7 @@ const mapMobxToProps = ({ userProfileTimeline, userProfile, authorization, creat
     currentUser: authorization.currentUser,
     profileOwnerId: userProfile.user && userProfile.user.id,
     repostsPendingMap: createStatus.pendingRepostsMap,
+    hasMore: userProfileTimeline.hasMore,
 });
 
 export const UserProfileTimeline = inject(mapMobxToProps)(observer(_UserProfileTimeline));

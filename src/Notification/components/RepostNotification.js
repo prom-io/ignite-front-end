@@ -1,18 +1,15 @@
 import React from 'react';
 import { Card, CardContent, makeStyles, useMediaQuery, useTheme, Hidden } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
+import { NotificationLeftMargin } from './NotificationLeftMargin';
 import { RepostedStatusContent } from '../../Status/components';
 import { ReplyOrangeIcon } from '../../icons/ReplyOrangeIcon';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     cardContentRoot: {
         display: 'flex',
         padding: '0px !important',
-    },
-    notificationLeftContainer: {
-        backgroundColor: '#FFFBF8',
-        paddingLeft: theme.spacing(6),
     },
 }));
 
@@ -41,7 +38,7 @@ const _RepostNotification = ({ notification, l, dateFnsLocale }) => {
                 }}
             >
                 <Hidden xsDown>
-                    <div className={classes.notificationLeftContainer} />
+                    <NotificationLeftMargin/>
                 </Hidden>
                 <RepostedStatusContent
                     repostedStatus={status}

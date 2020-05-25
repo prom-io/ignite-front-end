@@ -18,7 +18,7 @@ const _NotificationsList = ({ notifications, fetchNotifications, pending, curren
     const trackScrolling = () => {
         const element = document.getElementById('notificationsList');
 
-        if (element.getBoundingClientRect().bottom <= window.innerHeight) {
+        if (element && element.getBoundingClientRect().bottom <= window.innerHeight) {
             fetchNotifications();
         }
     };

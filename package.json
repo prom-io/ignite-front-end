@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/express": "^4.17.2",
+    "@types/socket.io-client": "^1.4.33",
     "axios": "^0.19.2",
     "customize-cra": "^0.9.1",
     "date-fns": "^2.9.0",
@@ -30,6 +31,7 @@
     "react-grid-gallery": "^0.5.5",
     "react-markdown": "^4.3.1",
     "react-scripts": "3.4.0",
+    "socket.io-client": "^2.3.0",
     "web3": "^1.2.6",
     "yarn": "^1.22.4"
   },

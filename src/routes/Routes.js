@@ -5,8 +5,9 @@ import {
     ChatPage,
     DescriptionPage,
     HomePage,
-    NotificationsPage, SetEnglishLanguageAndRedirectToHomePage, SetKoreanLanguageAndRedirectToHomePage,
-    SettingsPage,
+    NotificationsPage,
+    SetEnglishLanguageAndRedirectToHomePage,
+    SetKoreanLanguageAndRedirectToHomePage,
     StatusPage,
     TermsAndPoliciesPage,
     TrendsPage,
@@ -45,7 +46,7 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
-
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },
@@ -90,10 +91,6 @@ export const Routes = {
         path: '/btfs',
         component: <BtfsHashesPage />,
         beforeEnter: () => store.btfs.fetchBtfsHashes(),
-    }),
-    settings: new Route({
-        path: '/settings',
-        component: <SettingsPage />,
     }),
     userProfile: new Route({
         path: '/:username',

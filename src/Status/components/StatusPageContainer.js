@@ -3,6 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
+import { ArrowBackIcon } from '../../icons/ArrowBackIcon';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -33,6 +35,7 @@ const _StatusPageContainer = ({
     unfollowStatusAuthor,
     favouriteStatus,
     unfavouriteStatus,
+    l,
 }) => {
     const classes = useStyles();
 
@@ -62,6 +65,26 @@ const _StatusPageContainer = ({
 
     return (
         <Grid container spacing={2}>
+            <Grid xs={12}>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                }}
+                >
+                    <div
+                        onClick={() => window.history.back()}
+                        style={{
+                            cursor: 'pointer',
+                            marginRight: 12,
+                        }}
+                    >
+                        <ArrowBackIcon />
+                    </div>
+                    <Typography>
+                        <strong>{l('post')}</strong>
+                    </Typography>
+                </div>
+            </Grid>
             <Grid item xs={12}>
                 <StatusListItem
                     status={status}
@@ -93,4 +116,6 @@ const mapMobxToProps = ({ statusPage, authorization }) => ({
     unfavouriteStatus: statusPage.unfavouriteStatus,
 });
 
-export const StatusPageContainer = inject(mapMobxToProps)(observer(_StatusPageContainer));
+export const StatusPageContainer = localized(
+    inject(mapMobxToProps)(observer(_StatusPageContainer)),
+);

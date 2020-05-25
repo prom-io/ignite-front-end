@@ -5,17 +5,16 @@ import { StaticPageFooter } from '../components/StaticPageFooter';
 import { localized } from '../localization/components';
 
 const _TermsAndPolicesPage = ({ l }) => (
-
     <div className="static-page">
         <Grid item xs={12}>
             <AppBar currentActiveRoute="terms" />
         </Grid>
         <div className="static-page-container">
-            <div className="static-page-logo-container">
-                <img src="/page_img/terms_of_service_page.png" />
-                <h1>{l('terms-of-service')}</h1>
-            </div>
             <div>
+                <div className="static-page-logo-container">
+                    <img src="/page_img/terms_of_service_page.svg" />
+                    <h1>{l('terms-of-service')}</h1>
+                </div>
                 <div>
                     <p>
                         {l('terms-of-service.paragraph-1')}
@@ -38,13 +37,12 @@ const _TermsAndPolicesPage = ({ l }) => (
                 </div>
             </div>
         </div>
-
         <div className="static-page-container">
-            <div className="static-page-logo-container">
-                <img src="/page_img/privacy_policies_page.png" />
-                <h1>{l('privacy-policies')}</h1>
-            </div>
             <div>
+                <div className="static-page-logo-container">
+                    <img src="/page_img/privacy_policies_page.svg" />
+                    <h1>{l('privacy-policies')}</h1>
+                </div>
                 <div>
                     <p>
                         {l('privacy-policies.version')}

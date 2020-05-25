@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
         position: 'fixed',
         bottom: window.AndroidCallback ? theme.spacing(6) : theme.spacing(8),
         right: theme.spacing(2),
-        zIndex: 900000,
+        zIndex: 1000,
     },
 }));
 

@@ -7,6 +7,8 @@ body
 .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2
   max-width: 100% !important
   margin: 0 !important
+.MuiButton-contained
+  box-shadow: none !important
 #root
   // padding: 0 30px
   // width: 100%
@@ -73,7 +75,7 @@ p
     min-width: 35px
     height: 35px
     &:hover
-      background-color: #FF5C01 !important
+      background-color: #EF5600 !important
 .bottom-inherit
   bottom: inherit !important
 .tool-bar_list
@@ -164,6 +166,7 @@ p
   align-items: center
   @media (min-width: 960px)
     display: none !important
+    border: 1px solid red !important
   img
     position: relative
     right: 13px
@@ -232,7 +235,19 @@ p
           &:first-child
             font-size: 16px
 
-.left-container
+.select-language
+  height: 34px
+  width: 34px
+  border: 1px solid #F1EBE8
+  border-radius: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-left: 16px
+  // &:active
+  //   background: red !important
+
+.left-banners-container
   display: flex
   justify-content: center !important
   max-width: auto !important
@@ -241,11 +256,24 @@ p
   display: none
   @media (min-width: 952px)
     display: block
+    margin-top: -8px !important
     max-width: 272px !important
-    margin-right: 25px !important
+    margin-right: 12px !important
     padding: 0
 
-// .right-container
+.right-banners-container
+  display: flex
+  justify-content: center !important
+  max-width: auto !important
+  width: 100%
+  padding-top: 0
+  display: none
+  @media (min-width: 952px)
+    display: block
+    margin-top: -8px !important
+    max-width: 272px !important
+    margin-left: 4px !important
+    padding: 0
 
 
 .description-container
@@ -257,6 +285,7 @@ p
     max-width: 272px !important
     margin-right: 25px !important
     padding: 0
+    // border: 1px solid red
   p
     font-family: Museo Sans Cyrl
     font-style: normal
@@ -441,12 +470,13 @@ p
   display: none
   @media (min-width: 960px)
     display: block
-    padding: 0 !important
+    padding: 0 8px !important
     // background: #FBF7F6 !important
     // border: 1px solid #F1EBE8 !important
     box-sizing: border-box !important
     border-radius: 4px 4px 0px 0px
-    height: 300px
+    height: 284px
+    box-shadow: none
 
 .login_dialog_title
   max-width: 600px !important
@@ -460,10 +490,15 @@ p
   display: none
   @media (min-width: 960px)
     display: block
-    padding: 0 8px 8px 8px !important
+    padding: 0 !important
+  @media (min-width: 1280px)
+    padding: 0 8px !important
 .create-status-form
   // display: none
+  box-shadow: none !important
   background-color: #F1EBE8 !important
+  border: 1px solid #F1EBE8
+  box-sizing: border-box
   @media (min-width: 960px)
     display: block
     border-radius: 0 !important
@@ -476,6 +511,9 @@ p
 .create-status-form-textfield
   padding-left: 20px !important
   width: 95% !important
+  border: none
+  background: none
+  outline: none
 .create-status-counter
   border: none !important
 .create-status-form-counter-container
@@ -500,6 +538,8 @@ p
   border-left: 1px solid #F1EBE8
   border-radius: 0px !important
   overflow: visible !important
+  &:hover
+    background: #FFFBF8
   &:last-child
     border-bottom: 1px solid #F1EBE8
 
@@ -535,6 +575,7 @@ p
 .avatar-mini
   height: 35px !important
   width: 35px !important
+  border: 1px solid #F1EBE8
 .status-list-body-container
   padding-top: 0px !important
   padding-left: 65px !important
@@ -545,6 +586,17 @@ p
     font-size: 15px
     line-height: 23px
     color: #1C1C1C
+    word-break: break-word
+.status-list-body-container-no-padding-left
+  padding-top: 0px !important
+  p
+    font-family: Museo Sans Cyrl
+    font-style: normal
+    font-weight: 300
+    font-size: 15px
+    line-height: 23px
+    color: #1C1C1C
+    word-break: break-word
 .status-list-bottom-container
   padding-left: 65px !important
   padding-bottom: 15px !important
@@ -765,8 +817,8 @@ p
       font-family: Museo Sans Cyrl
       font-style: normal
       font-weight: 300
-      font-size: 20px
-      line-height: 32px
+      font-size: 15px
+      line-height: 26px
       color: #1C1C1C
       text-align: left
       span
@@ -775,12 +827,12 @@ p
 
 .static-page-logo-container
   display: flex
-  justify-content: center
-  flex-wrap: wrap
+  justify-content: flex-start
+  // flex-wrap: wrap
   align-items: flex-start
   img
-    width: 168px
-    height: 168px
+    width: 56px
+    height: 56px
   h1
     width: 100%
     font-family: Museo Sans Cyrl
@@ -788,8 +840,10 @@ p
     font-weight: 600
     font-size: 32px
     line-height: 38px
-    text-align: center
+    text-align: left
+    padding-left: 24px
     color: #1C1C1C
+    margin: 9px 0 0 0
 .static-page
   display: flex
   flex-direction: column
@@ -800,7 +854,7 @@ p
   width: 100%
   display: flex
   justify-content: center
-  border-top: 1px solid #E5E5E5 !important
+  // border-top: 1px solid #E5E5E5 !important
 .static-page-footer
   max-width: 1148px
   width: 100% !important
@@ -811,17 +865,19 @@ p
   padding: 0 20px
   height: 50px
   justify-content: space-between
-  // border-top: 1px solid #E5E5E5 !important
+  border-top: 1px solid #E5E5E5 !important
   @media (max-width: 960px)
-    justify-content: space-between
-    margin: 0
     margin-bottom: 50px
-    min-height: 100px
-    height: 100%
-    max-height: auto
-    padding: 0px 30px
-    width: auto
-    flex-direction: column-reverse
+  @media (max-width: 556px)
+    margin-bottom: 70px
+  //   justify-content: space-between
+  //   margin: 0
+  //   min-height: 100px
+  //   height: 100%
+  //   max-height: auto
+  //   padding: 0px 30px
+  //   width: auto
+  //   flex-direction: column-reverse
   div
     display: flex
     font-family: Museo Sans Cyrl
@@ -832,43 +888,46 @@ p
     color: #A2A2A2
     justify-content: flex-start
     width: 100%
-    @media (min-width: 960px)
-      justify-content: flex-start
+    // @media (min-width: 960px)
+    //   justify-content: flex-start
     ul
       display: flex
       width: 100%
       padding: 0
       flex-wrap: wrap
-      @media (max-width: 960px)
-        width: 250px
-        flex-wrap: wrap
+      justify-content: flex-end
+      // @media (max-width: 960px)
+      //   width: 250px
+      //   flex-wrap: wrap
         // flex-direction: column
       // @media (min-width: 960px)
       //   padding: 0 0 0 40px
       //   justify-content: flex-end
       //   flex-wrap: nowrap
       li
-
         margin-left: 27px
-        @media (min-width: 960px)
-          margin-left: 27px
-          list-style: disc
-          cursor: pointer
-          white-space: nowrap
-        &:hover
-          text-decoration: underline
-      li:first-child, li:last-child
         list-style: none
-        margin-left: 0
         @media (min-width: 960px)
           list-style: none
-          margin-left: 27px
-      li:nth-child(3)
-        list-style: none
-        margin-left: 0
-        @media (min-width: 960px)
-          list-style: disc
-          margin-left: 27px
+        //   margin-left: 27px
+        //   cursor: pointer
+        //   white-space: nowrap
+        &:hover
+          text-decoration: underline
+      // li:first-child, li:last-child
+      //   list-style: none
+      //   margin-left: 0
+      //   @media (min-width: 960px)
+      //     list-style: none
+      //     margin-left: 27px
+      li:nth-child(2)
+        display: none
+        @media (min-width: 622px)
+          display: block
+      //   margin-left: 0
+      //   @media (min-width: 960px)
+      //     list-style: disc
+      //     margin-left: 27px
 
 
 .static-page-link
@@ -879,7 +938,10 @@ p
   font-size: 15px
   line-height: 23px
   color: #A2A2A2
+  text-decoration: none
   &:hover
+    text-decoration: underline
+  &:hover > a
     text-decoration: underline
 
 .sign-in-logo
@@ -912,3 +974,12 @@ p
 #lightboxBackdrop
   z-index: 9999999999999
   font-family: Museo Sans Cyrl !important
+
+.notificationCardBox
+  border-top: 1px solid #F1EBE8
+  border-right: 1px solid #F1EBE8
+  border-left: 1px solid #F1EBE8
+  border-radius: 0px !important
+  overflow: visible !important
+  &:last-child
+    border-bottom: 1px solid #F1EBE8

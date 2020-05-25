@@ -20,6 +20,7 @@ class UserComponent extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render () {
     const {isLogin, src, username, displayName, posts, followers, follow, l} = this.props;
 
@@ -32,7 +33,8 @@ class UserComponent extends React.Component {
                       width: 90,
                       height: 90,
                       minWidth: 90,
-                      minHeight: 90
+                      minHeight: 90,
+                      border: '1px solid #F1EBE8'
                     }}
             />
           </div>

@@ -15,11 +15,10 @@ import { NavigationalDrawer } from './NavigationalDrawer';
 import { BellIcon } from '../../icons/BellIcon';
 import { ChatIcon } from '../../icons/ChatIcon';
 import { TrendsIcon } from '../../icons/TrendsIcon';
-import { BtfsIcon } from '../../icons/BtfsIcon';
-import { LoginDialog } from '../../Authorization/components/LoginDialog';
-import { OpenLoginDialogButton } from '../../Authorization/components';
-import { SignUpDialog } from '../../SignUp/components';
+import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
+import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
+import { SignUpDialog } from '../../SignUp/components';
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => (
     <>
@@ -28,10 +27,16 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
         </Hidden>
         <MuiAppBar
             variant="outlined"
-            className={`${window.AndroidCallback ? 'bottom-inherit ' : ''}app-bar`}
+            className="app-bar"
             position="fixed"
         >
-            <div className="header-logo" />
+            <a
+                href="http://ignite.so"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div className="header-logo" />
+            </a>
             <Toolbar className="tool-bar">
                 <div style={{ flexGrow: 1 }} className="tool-bar_list">
                     <AppBarLink
@@ -74,25 +79,12 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                         id="trendsLink"
                         hidden={Boolean(window.AndroidCallback)}
                     />
-                    <Hidden smDown>
-                        <AppBarLink
-                            text={l('appbar.explore-btfs')}
-                            targetView={Routes.btfs}
-                            active={currentActiveRoute === 'btfs'}
-                            icon={<BtfsIcon color={currentActiveRoute === 'btfs' && theme.palette.primary.main} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="btfsLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                    </Hidden>
                 </div>
-                <input
-                    type="text"
-                    placeholder={l('appbar.search')}
-                    disabled
-                    className="app-bar-search-field"
-                />
+                {/* <input type="text"
+                           placeholder={l("appbar.search")}
+                           disabled
+                           className="app-bar-search-field"
+                    /> */}
                 <Hidden smDown>
                     <UserAppBarMenu />
                 </Hidden>
@@ -103,6 +95,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                 )
                     : <div />}
                 {!currentUser && (<OpenLoginDialogButton />)}
+                <div className="select-language"><AppBarLanguageSelect /></div>
                 <div className="mobile_header">
                     <LoginDialog />
                     <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)} />

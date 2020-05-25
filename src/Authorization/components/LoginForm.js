@@ -5,7 +5,11 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
-        backgroundColor: '#FBF7F6',
+        backgroundColor: '#FFFBF8',
+        boxShadow: 'none',
+        border: '1px solid #F1EBE8',
+        borderRadius: '4px 4px 0px 0px',
+        paddingBottom: '8px'
     },
     loginButton: {
         maxWidth: 374,
@@ -21,8 +25,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: '##FFFFFF',
-        marginTop: '24px',
-
+        marginTop: '36px',
     },
     signUpButton: {
         maxWidth: 374,
@@ -36,7 +39,8 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: theme.palette.primary.main,
-        marginTop: '24px',
+        marginTop: '15px',
+        borderRadius: '30px',
     },
     errorLabel: {
         color: theme.palette.error.main,
@@ -46,9 +50,8 @@ const useStyles = makeStyles(theme => ({
 const getLabelFromSubmissionError = (error, l) => {
     if (error.response) {
         if (error.response.status === 401) {
-            return l('authorization.login.error.invalid-credentials');
+            return l('authorization.login.error.invalid-credentials.password');
         }
-        console.log(error);
         return l('authorization.login.error.unknown', { responseStatus: error.response.status });
     }
     return l('authorization.login.error.no-response');
@@ -80,7 +83,7 @@ const _LoginForm = ({
                 className="input-default"
             />
             <TextField
-                label={l('authorization.login.private-key')}
+                label={l('authorization.login.password')}
                 value={loginForm.password}
                 onChange={event => setFormValue('password', event.target.value)}
                 fullWidth

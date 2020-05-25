@@ -17,6 +17,17 @@ const useStyles = makeStyles(() => ({
         alignItems: 'flex-end',
         justifyContent: 'space-between',
         width: '100%',
+        '& a': {
+            textDecoration: 'none',
+            color: 'inherit',
+            fontWeight: 700,
+        },
+        '& a:hover': {
+            textDecoration: 'underline',
+        },
+    },
+    cardHeaderRootNoAlignItems: {
+        alignItems: 'normal',
     },
 }));
 
@@ -36,11 +47,15 @@ const _StatusHeader = ({
     onClearButtonClick,
     routerStore,
     dateFnsLocale,
+    disableCardHeaderAlign = false,
 }) => {
     const classes = useStyles();
 
     return (
         <CardHeader
+            style={{
+                padding: '16px 16px 8px 16px',
+            }}
             avatar={(
                 <ClickEventPropagationStopper>
                     <Link
@@ -63,10 +78,6 @@ const _StatusHeader = ({
                             store={routerStore}
                             view={Routes.userProfile}
                             params={{ username: userId }}
-                            style={{
-                                textDecoration: 'underline',
-                                color: 'inherit',
-                            }}
                         >
                             <Hidden xsDown>
                                 <Typography>
@@ -138,6 +149,7 @@ const _StatusHeader = ({
                     />
                 </ClickEventPropagationStopper>
             )}
+            classes={disableCardHeaderAlign ? {root: classes.cardHeaderRootNoAlignItems} : undefined}
         />
     );
 };

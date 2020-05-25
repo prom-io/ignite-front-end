@@ -43,6 +43,23 @@ const useStyles = makeStyles(theme => ({
         display: 'flsex',
         padding: '8px 15px',
     },
+    customTextarea: {
+        paddingLeft: 20,
+        width: '95%',
+        border: 'none',
+        '& .MuiInput-underline:before': {
+            borderBottom: 'none',
+        },
+        '& .MuiInput-underline:hover': {
+            borderBottom: 'none',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottom: 'none',
+        },
+        '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+            borderBottom: 'none',
+        },
+    },
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -81,7 +98,7 @@ const _CreateStatusForm = ({
             <Grid
                 container
                 style={{
-                    padding: '25px 15px 25px 15px',
+                    padding: '25px 15px 0px',
                 }}
             >
                 {referredStatus && (
@@ -113,7 +130,7 @@ const _CreateStatusForm = ({
                         onChange={event => setContent(event.target.value)}
                         fullWidth
                         value={content}
-                        className="create-status-form-textfield"
+                        className={classes.customTextarea}
                     />
                 </Grid>
             </Grid>

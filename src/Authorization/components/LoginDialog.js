@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Regular',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: '15px',

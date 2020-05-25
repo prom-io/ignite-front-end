@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-start',
         '& h3': {
-            fontFamily: 'Museo Sans Cyrl',
+            fontFamily: 'Museo Sans Cyrl Bold',
             fontStyle: 'normal',
             fontWeight: 700,
             fontSize: 15,
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     },
     bannerBody: {
         width: '100%',
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Regular',
         fontStyle: 'normal',
         fontWeight: 300,
         fontSize: 15,

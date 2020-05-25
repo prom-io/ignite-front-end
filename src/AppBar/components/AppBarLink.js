@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         alignItems: 'center',
         '& span':{
-            fontFamily: 'Museo Sans Cyrl;',
+            fontFamily: 'Museo Sans Cyrl Regular',
             fontStyle: 'normal',
             fontWeight: '300',
             fontSize: '15px',

@@ -12,6 +12,19 @@ const useStyles = makeStyles(() => ({
         marginRight: 'auto',
         display: 'table',
     },
+    postBackButton: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        marginRight: 12,
+        height: '32px',
+        width: '32px',
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: '30px',
+        }
+    }
 }));
 
 const getLabelFromError = error => {
@@ -68,15 +81,13 @@ const _StatusPageContainer = ({
             <Grid xs={12}>
                 <div style={{
                     display: 'flex',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
+                    marginLeft: '10px',
                 }}
                 >
                     <div
                         onClick={() => window.history.back()}
-                        style={{
-                            cursor: 'pointer',
-                            marginRight: 12,
-                        }}
+                        className={classes.postBackButton}
                     >
                         <ArrowBackIcon />
                     </div>

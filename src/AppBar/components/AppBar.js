@@ -99,7 +99,8 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                 <div className="mobile_header">
                     <LoginDialog />
                     <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)} />
-                    <img src="/search.png" />
+                   {/* <img src="/search.png" />*/}
+                  <div className="select-language"><AppBarLanguageSelect /></div>
                 </div>
             </Toolbar>
         </MuiAppBar>

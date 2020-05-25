@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '4px 4px 0px 0px',
         paddingBottom: '8px'
     },
+    loginCardContent: {
+        padding: '20px'
+    },
     loginButton: {
         maxWidth: 374,
         borderRadius: 30,
@@ -18,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: 'auto',
         display: 'table',
         height: '40px',
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Bold',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: '15px',
@@ -32,18 +35,26 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Bold',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: '15px',
         lineHeight: '18px',
         textAlign: 'center',
         color: theme.palette.primary.main,
-        marginTop: '15px',
+        marginTop: '18px',
+        marginBottom: '6px',
         borderRadius: '30px',
     },
     errorLabel: {
         color: theme.palette.error.main,
+    },
+    loginInput: {
+        display: 'flex',
+        maxWidth: '375px',
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
 }));
 
@@ -78,16 +89,13 @@ const _LoginForm = ({
                 label={l('authorization.login.wallet-address')}
                 value={loginForm.username}
                 onChange={event => setFormValue('username', event.target.value)}
-                fullWidth
-                margin="dense"
-                className="input-default"
+                className={`input-default ${classes.loginInput}`}
             />
             <TextField
                 label={l('authorization.login.password')}
                 value={loginForm.password}
                 onChange={event => setFormValue('password', event.target.value)}
-                fullWidth
-                margin="dense"
+                className={`input-default ${classes.loginInput}`}
                 type="password"
             />
             {submissionError && (
@@ -134,7 +142,7 @@ const _LoginForm = ({
         : (
             <>
                 <Card className={classes.loginCard}>
-                    <CardContent>
+                    <CardContent className={classes.loginCardContent}>
                         {content}
                     </CardContent>
                 </Card>

@@ -39,6 +39,6 @@ export const orange = createMuiTheme({
         button: {
             textTransform: 'none',
         },
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Regular',
     },
 });

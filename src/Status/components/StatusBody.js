@@ -13,12 +13,15 @@ import { localized } from '../../localization/components';
 const useStyles = makeStyles(theme => ({
     statusText: {
         overflowWrap: 'break-word',
-        fontFamily: 'Museo Sans Cyrl',
+        fontFamily: 'Museo Sans Cyrl Regular',
         fontStyle: 'normal',
         fontWeight: '300',
         fontSize: '15px',
         lineHeight: '23px',
         color: '#1C1C1C',
+        '& a':{
+            color: '#6483C0',
+        }
     },
     replyingToLabel: {
         color: '#A2A2A2 !important',
@@ -36,6 +39,9 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'none',
         color: theme.palette.primary.main,
         marginTop: theme.spacing(1),
+        '& :hover': {
+            textDecoration: 'underline',
+        }
     },
 }));
 

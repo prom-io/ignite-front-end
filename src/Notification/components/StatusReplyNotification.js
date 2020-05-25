@@ -8,7 +8,6 @@ import { localized } from '../../localization/components';
 const useStyles = makeStyles(theme => ({
     notificationLeftContainer: {
         backgroundColor: '#FFFBF8',
-        borderRight: '1px solid #F1EBE8',
         paddingLeft: theme.spacing(6),
     },
     cardContentRoot: {
@@ -41,13 +40,12 @@ const _StatusReplyNotification = ({ notification, l, dateFnsLocale }) => {
                     root: classes.cardContentRoot,
                 }}
             >
-                <Hidden smDown>
+                <Hidden xsDown>
                     <div className={classes.notificationLeftContainer} />
                 </Hidden>
                 <RepostedStatusContent
                     repostedStatus={status}
                     diableLeftPadding={disableLeftPadding}
-                    disableStatusCardHeaderAlign
                     hideBorders
                 />
             </CardContent>

@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
     },
     notificationLeftContainer: {
         backgroundColor: '#FFFBF8',
-        borderRight: '1px solid #F1EBE8',
         paddingLeft: theme.spacing(6),
     },
 }));
@@ -41,13 +40,12 @@ const _StatusLikeNotification = ({ notification, l, dateFnsLocale }) => {
                     root: classes.cardContentRoot,
                 }}
             >
-                <Hidden smDown>
+                <Hidden xsDown>
                     <div className={classes.notificationLeftContainer} />
                 </Hidden>
                 <RepostedStatusContent
                     repostedStatus={status}
                     disableLeftPadding={disableLeftPadding}
-                    disableStatusCardHeaderAlign
                     hideBorders
                 />
             </CardContent>

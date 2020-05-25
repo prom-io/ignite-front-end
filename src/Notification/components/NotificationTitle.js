@@ -17,12 +17,12 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: 0,
         paddingTop: 0,
         display: 'flex',
-        borderBottom: '1px solid #F1EBE8',
     },
     notificationTitle: {
         display: 'flex',
         paddingLeft: theme.spacing(2),
         paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(1),
     },
     notificationTitleTypography: {
         paddingBottom: theme.spacing(1),
@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     },
     iconContainer: props => ({
         backgroundColor: '#FFFBF8',
-        borderRight: '1px solid #F1EBE8',
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2) + props.pixelsToAddToIconRightPadding,
         alignItems: 'center',
@@ -47,6 +46,7 @@ const useStyles = makeStyles(theme => ({
     }),
     cardHeaderAvatar: {
         marginRight: 0,
+        paddingBottom: theme.spacing(1),
     },
 }));
 

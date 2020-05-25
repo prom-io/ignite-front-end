@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _StatusLikeNotification = ({ notification, l }) => {
+const _StatusLikeNotification = ({ notification, l, dateFnsLocale }) => {
     const theme = useTheme();
     const classes = useStyles();
     const user = notification.payload.liked_by;
@@ -33,6 +33,8 @@ const _StatusLikeNotification = ({ notification, l }) => {
                 user={user}
                 actionLabel={l('notification.like')}
                 icon={<HeartOrangeIcon />}
+                createdAt={notification.created_at}
+                dateFnsLocale={dateFnsLocale}
             />
             <CardContent
                 classes={{

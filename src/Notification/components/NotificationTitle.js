@@ -3,6 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { Avatar, CardHeader, makeStyles, Typography, Hidden } from '@material-ui/core';
 import { Routes } from '../../routes';
+import { SmallEllipseIcon } from '../../icons/SmallEllipseIcon';
+import { getCreatedAtLabel } from '../../utils/date-utlis';
 
 const useStyles = makeStyles(theme => ({
     userLink: {
@@ -25,6 +27,12 @@ const useStyles = makeStyles(theme => ({
     notificationTitleTypography: {
         paddingBottom: theme.spacing(1),
     },
+    createdAtTypography: {
+        marginLeft: 12,
+        fontSize: 12,
+        paddingTop: theme.spacing(1) / 2,
+        color: '#A2A2A2',
+    },
     cardHeaderRoot: {
         display: 'flex',
         alignItems: 'flex-end',
@@ -42,8 +50,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _NotificationTitle = ({ user, actionLabel, icon, routerStore, pixelsToAddToIconRightPadding = 0 }) => {
-    const classes = useStyles({pixelsToAddToIconRightPadding});
+const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale, routerStore, pixelsToAddToIconRightPadding = 0 }) => {
+    const classes = useStyles({ pixelsToAddToIconRightPadding });
 
     return (
         <div className={classes.notificationTitleContainer}>
@@ -80,6 +88,11 @@ const _NotificationTitle = ({ user, actionLabel, icon, routerStore, pixelsToAddT
                                 {user.username}
                             </Link>
                             {` ${actionLabel}`}
+                        </Typography>
+                        <Typography className={classes.createdAtTypography}>
+                            <SmallEllipseIcon />
+                            {' '}
+                            {getCreatedAtLabel(new Date(createdAt), dateFnsLocale, false)}
                         </Typography>
                     </div>
                 )}

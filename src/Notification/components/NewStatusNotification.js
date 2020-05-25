@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _NewStatusNotifications = ({ notification, l }) => {
+const _NewStatusNotifications = ({ notification, l, dateFnsLocale }) => {
     const classes = useStyles();
     const theme = useTheme();
     const status = notification.payload;
@@ -34,6 +34,8 @@ const _NewStatusNotifications = ({ notification, l }) => {
                 actionLabel={l('notification.new-post')}
                 icon={<IgniteOrangeIcon />}
                 pixelsToAddToIconRightPadding={4}
+                createdAt={notification.created_at}
+                dateFnsLocale={dateFnsLocale}
             />
             <CardContent classes={{
                 root: classes.cardContentRoot,

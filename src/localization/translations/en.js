@@ -128,5 +128,6 @@ export const en = {
     'description.unauth-banner.Anonymous': 'Anonymous',
     'description.unauth-banner.Anonymous.description': 'Authentication through blockchain',
     'notifications.login-required': 'You have too log in to see your notifications',
+    'notification.repost': 'respoted your post',
     post: 'Post',
 };

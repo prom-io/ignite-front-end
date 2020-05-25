@@ -1,23 +1,23 @@
 import React from 'react';
-import {Card, CardContent, Hidden, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
+import { Card, CardContent, makeStyles, useMediaQuery, useTheme, Hidden } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
 import { RepostedStatusContent } from '../../Status/components';
 import { ReplyOrangeIcon } from '../../icons/ReplyOrangeIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
+    cardContentRoot: {
+        display: 'flex',
+        padding: '0px !important',
+    },
     notificationLeftContainer: {
         backgroundColor: '#FFFBF8',
         borderRight: '1px solid #F1EBE8',
         paddingLeft: theme.spacing(6),
     },
-    cardContentRoot: {
-        display: 'flex',
-        padding: '0px !important',
-    },
 }));
 
-const _StatusReplyNotification = ({ notification, l, dateFnsLocale }) => {
+const _RepostNotification = ({ notification, l, dateFnsLocale }) => {
     const classes = useStyles();
     const theme = useTheme();
     const status = notification.payload;
@@ -31,7 +31,7 @@ const _StatusReplyNotification = ({ notification, l, dateFnsLocale }) => {
         >
             <NotificationTitle
                 user={user}
-                actionLabel={l('notification.reply')}
+                actionLabel={l('notification.repost')}
                 icon={<ReplyOrangeIcon />}
                 createdAt={notification.created_at}
                 dateFnsLocale={dateFnsLocale}
@@ -55,4 +55,4 @@ const _StatusReplyNotification = ({ notification, l, dateFnsLocale }) => {
     );
 };
 
-export const StatusReplyNotification = localized(_StatusReplyNotification);
+export const RepostNotification = localized(_RepostNotification);

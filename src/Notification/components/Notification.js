@@ -3,6 +3,7 @@ import { StatusLikeNotification } from './StatusLikeNotification';
 import { StatusReplyNotification } from './StatusReplyNotification';
 import { NewStatisNotification } from './NewStatusNotification';
 import { FollowNotification } from './FollowNotification';
+import { RepostNotification } from './RepostNotification';
 
 export const Notification = ({ notification }) => {
     switch (notification.type) {
@@ -14,6 +15,8 @@ export const Notification = ({ notification }) => {
         return <NewStatisNotification notification={notification} />;
     case 'FOLLOW':
         return <FollowNotification notification={notification} />;
+    case 'REPOST':
+        return <RepostNotification notification={notification} />;
     default:
         return null;
     }

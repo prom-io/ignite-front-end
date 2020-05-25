@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         border: '1px solid #F1EBE8',
     },
+    repostedStatusNoBorders: {
+        display: 'flex',
+    },
 }));
 
 const _RepostedStatusContent = ({
@@ -20,14 +23,16 @@ const _RepostedStatusContent = ({
     routerStore,
     displayClearButton,
     onClearButtonClick,
-    disableLeftPadding
+    disableLeftPadding,
+    hideBorders = false,
+    disableStatusCardHeaderAlign = false,
 }) => {
     const classes = useStyles();
 
     const doNothing = () => {};
 
     return (
-        <div className={classes.repostedStatus}>
+        <div className={hideBorders ? classes.repostedStatusNoBorders : classes.repostedStatus}>
             <div>
                 <StatusHeader
                     username={repostedStatus.account.username}
@@ -43,6 +48,7 @@ const _RepostedStatusContent = ({
                     currentUserIsAuthor={false}
                     displayClearButton={displayClearButton}
                     onClearButtonClick={onClearButtonClick}
+                    disableCardHeaderAlign={disableStatusCardHeaderAlign}
                 />
                 <ClickEventPropagationStopper>
                     <Link

@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
-import { Avatar, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, CardHeader, makeStyles, Typography, Hidden } from '@material-ui/core';
 import { Routes } from '../../routes';
 
 const useStyles = makeStyles(theme => ({
@@ -11,23 +11,45 @@ const useStyles = makeStyles(theme => ({
     undecoratedLink: {
         textDecoration: 'none',
     },
+    notificationTitleContainer: {
+        paddingLeft: 0,
+        paddingTop: 0,
+        display: 'flex',
+        borderBottom: '1px solid #F1EBE8',
+    },
     notificationTitle: {
         display: 'flex',
         paddingLeft: theme.spacing(2),
         paddingTop: theme.spacing(2),
-        borderBottom: '1px solid #F1EBE8',
+    },
+    notificationTitleTypography: {
+        paddingBottom: theme.spacing(1),
     },
     cardHeaderRoot: {
-        paddingTop: 0,
+        display: 'flex',
+        alignItems: 'flex-end',
+    },
+    iconContainer: props => ({
+        backgroundColor: '#FFFBF8',
+        borderRight: '1px solid #F1EBE8',
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2) + props.pixelsToAddToIconRightPadding,
+        alignItems: 'center',
+        display: 'flex',
+    }),
+    cardHeaderAvatar: {
+        marginRight: 0,
     },
 }));
 
-const _NotificationTitle = ({ user, actionLabel, icon, routerStore }) => {
-    const classes = useStyles();
+const _NotificationTitle = ({ user, actionLabel, icon, routerStore, pixelsToAddToIconRightPadding = 0 }) => {
+    const classes = useStyles({pixelsToAddToIconRightPadding});
 
     return (
-        <div className={classes.notificationTitle}>
-            {icon}
+        <div className={classes.notificationTitleContainer}>
+            <div className={classes.iconContainer}>
+                {icon}
+            </div>
             <CardHeader
                 avatar={(
                     <Link
@@ -46,21 +68,24 @@ const _NotificationTitle = ({ user, actionLabel, icon, routerStore }) => {
                     </Link>
                 )}
                 title={(
-                    <Typography>
-                        <Link
-                            view={Routes.userProfile}
-                            params={{ username: user.id }}
-                            store={routerStore}
-                            className={classes.userLink}
-                        >
-                            @
-                            {user.username}
-                        </Link>
-                        {` ${actionLabel}`}
-                    </Typography>
+                    <div className={classes.notificationTitle}>
+                        <Typography className={classes.notificationTitleTypography}>
+                            <Link
+                                view={Routes.userProfile}
+                                params={{ username: user.id }}
+                                store={routerStore}
+                                className={classes.userLink}
+                            >
+                                @
+                                {user.username}
+                            </Link>
+                            {` ${actionLabel}`}
+                        </Typography>
+                    </div>
                 )}
                 classes={{
                     root: classes.cardHeaderRoot,
+                    avatar: classes.cardHeaderAvatar,
                 }}
             />
         </div>

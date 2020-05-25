@@ -1,8 +1,8 @@
 import React from 'react';
-import {Card} from '@material-ui/core';
-import {NotificationTitle} from './NotificationTitle';
-import {localized} from '../../localization/components';
-import {FollowerIcon} from '../../icons/FollowerIcon';
+import { Card } from '@material-ui/core';
+import { NotificationTitle } from './NotificationTitle';
+import { localized } from '../../localization/components';
+import { FollowOrangeIcon } from '../../icons/FollowOrangeIcon';
 
 const _FollowNotification = ({ notification, l }) => (
     <Card
@@ -12,9 +12,9 @@ const _FollowNotification = ({ notification, l }) => (
         <NotificationTitle
             user={notification.payload}
             actionLabel={l('notification.follow')}
-            icon={<FollowerIcon />}
+            icon={<FollowOrangeIcon />}
         />
     </Card>
-);;
+);
 
 export const FollowNotification = localized(_FollowNotification);

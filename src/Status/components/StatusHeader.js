@@ -24,7 +24,10 @@ const useStyles = makeStyles(() => ({
         },
         '& a:hover': {
             textDecoration: 'underline',
-        }
+        },
+    },
+    cardHeaderRootNoAlignItems: {
+        alignItems: 'normal',
     },
 }));
 
@@ -44,6 +47,7 @@ const _StatusHeader = ({
     onClearButtonClick,
     routerStore,
     dateFnsLocale,
+    disableCardHeaderAlign = false,
 }) => {
     const classes = useStyles();
 
@@ -145,6 +149,7 @@ const _StatusHeader = ({
                     />
                 </ClickEventPropagationStopper>
             )}
+            classes={disableCardHeaderAlign ? {root: classes.cardHeaderRootNoAlignItems} : undefined}
         />
     );
 };

@@ -1,15 +1,19 @@
 import React from 'react';
-import {Card, CardContent, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
+import { Card, CardContent, makeStyles, useMediaQuery, useTheme, Hidden } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
 import { RepostedStatusContent } from '../../Status/components';
-import { HeartOutlinedIcon } from '../../icons/HeartOutlinedIcon';
+import { HeartOrangeIcon } from '../../icons/HeartOrangeIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     cardContentRoot: {
-        [theme.breakpoints.up('md')]: {
-            paddingLeft: theme.spacing(6) + 2,
-        },
+        display: 'flex',
+        padding: '0px !important',
+    },
+    notificationLeftContainer: {
+        backgroundColor: '#FFFBF8',
+        borderRight: '1px solid #F1EBE8',
+        paddingLeft: theme.spacing(6),
     },
 }));
 
@@ -28,16 +32,21 @@ const _StatusLikeNotification = ({ notification, l }) => {
             <NotificationTitle
                 user={user}
                 actionLabel={l('notification.like')}
-                icon={<HeartOutlinedIcon />}
+                icon={<HeartOrangeIcon />}
             />
             <CardContent
                 classes={{
                     root: classes.cardContentRoot,
                 }}
             >
+                <Hidden smDown>
+                    <div className={classes.notificationLeftContainer} />
+                </Hidden>
                 <RepostedStatusContent
                     repostedStatus={status}
                     disableLeftPadding={disableLeftPadding}
+                    disableStatusCardHeaderAlign
+                    hideBorders
                 />
             </CardContent>
         </Card>

@@ -1,15 +1,19 @@
 import React from 'react';
-import {Card, CardContent, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
+import { Card, CardContent, Hidden, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
 import { RepostedStatusContent } from '../../Status/components';
 import { localized } from '../../localization/components';
-import { ReplyOutlinedIcon } from '../../icons/ReplyOutlinedIcon';
+import { IgniteOrangeIcon } from '../../icons/IgniteOrangeIcon';
 
 const useStyles = makeStyles(theme => ({
+    notificationLeftContainer: {
+        backgroundColor: '#FFFBF8',
+        borderRight: '1px solid #F1EBE8',
+        paddingLeft: theme.spacing(6),
+    },
     cardContentRoot: {
-        [theme.breakpoints.up('md')]: {
-            paddingLeft: theme.spacing(6) + 2,
-        },
+        display: 'flex',
+        padding: '0px !important',
     },
 }));
 
@@ -28,16 +32,21 @@ const _NewStatusNotifications = ({ notification, l }) => {
             <NotificationTitle
                 user={user}
                 actionLabel={l('notification.new-post')}
-                icon={<ReplyOutlinedIcon />}
+                icon={<IgniteOrangeIcon />}
+                pixelsToAddToIconRightPadding={4}
             />
-            <CardContent
-                classes={{
-                    root: classes.cardContentRoot,
-                }}
+            <CardContent classes={{
+                root: classes.cardContentRoot,
+            }}
             >
+                <Hidden smDown>
+                    <div className={classes.notificationLeftContainer} />
+                </Hidden>
                 <RepostedStatusContent
                     disableLeftPadding={disableLeftPadding}
+                    disableStatusCardHeaderAlign
                     repostedStatus={status}
+                    hideBorders
                 />
             </CardContent>
         </Card>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Typography, makeStyles } from '@material-ui/core';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
 import { localized } from '../../localization/components';
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const _NotificationsList = ({ notifications, fetchNotifications, pending, currentUser, l }) => {
+const _NotificationsList = ({ notifications, fetchNotifications, currentUser, hasMore, l }) => {
     const classes = useStyles();
 
     const trackScrolling = () => {
@@ -39,19 +40,26 @@ const _NotificationsList = ({ notifications, fetchNotifications, pending, curren
 
     return (
         <div id="notificationsList" className="paddingBottomRoot">
-            {notifications.map(notification => (
-                <Notification
-                    notification={notification}
-                    key={notification.id}
-                />
-            ))}
-            {pending && (
-                <CircularProgress
-                    size={25}
-                    color="primary"
-                    className={classes.centered}
-                />
-            )}
+            <InfiniteScroll
+                next={fetchNotifications}
+                hasMore={hasMore}
+                loader={(
+                    <CircularProgress
+                        size={25}
+                        color="primary"
+                        className={classes.centered}
+                    />
+                )}
+                dataLength={notifications.length}
+                style={{ overflowY: 'hidden' }}
+            >
+                {notifications.map(notification => (
+                    <Notification
+                        notification={notification}
+                        key={notification.id}
+                    />
+                ))}
+            </InfiniteScroll>
         </div>
     );
 };
@@ -60,6 +68,7 @@ const mapMobxToProps = ({ notifications, authorization }) => ({
     notifications: notifications.notifications,
     fetchNotifications: notifications.fetchNotifications,
     currentUser: authorization.currentUser,
+    hasMore: notifications.hasMore,
 });
 
 export const NotificationsList = localized(

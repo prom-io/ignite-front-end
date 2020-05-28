@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
 import { localized } from '../../localization/components';
 import { SadIconLarge } from '../../icons/SadIconLarge';
+import { BellIcon } from '../../icons/BellIcon';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -27,6 +28,28 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         paddingLeft: theme.spacing(2),
     },
+    notificationsError: {
+        border: '1px solid #F1EBE8',
+        borderBottom: 'none',
+        height: '100%'
+    },
+    notificationsErrorInfo: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '65px',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+        lineHeight: '26px',
+        color: '#A2A2A2',
+        '& p': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: '#1C1C1C',
+        }
+    }
 }));
 
 const noNotifications = {
@@ -72,15 +95,19 @@ const noNotifications = {
 
 const _NotificationsList = ({ notifications, fetchNotifications, currentUser, hasMore, l, locale }) => {
     const classes = useStyles();
-
+    
     if (!currentUser) {
         return (
-            <Typography>
-                {l('notifications.login-required')}
-            </Typography>
+          <div className={ classes.notificationsError }>
+              <div className={ classes.notificationsErrorInfo }>
+                  <BellIcon width={ '50' } height={ '50' } color={ '#A1A1A1' }/>
+                  <p>Nothing to display yet!</p>
+                  <span>Please login or sign up to receive notifications</span>
+              </div>
+          </div>
         );
     }
-
+    
     if (notifications.length === 0 && !hasMore) {
         return noNotifications[locale](classes);
     }

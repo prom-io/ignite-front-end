@@ -148,10 +148,11 @@ p
   @media (min-width: 952px)
     padding-top: 0 !important
     width: 100% !important
-    justify-content: center !important
+    justify-content: flex-start !important
 .right-content-container
   max-width: auto !important
   padding: 0 !important
+  margin: 0 26px !important
   @media (min-width: 952px)
     max-width: 600px !important
 .mobile_header
@@ -260,9 +261,7 @@ p
   display: none
   @media (min-width: 952px)
     display: block
-    margin-top: -8px !important
-    max-width: 272px !important
-    margin-right: 20px !important
+    max-width: 256px !important
     padding: 0
 
 .right-banners-container
@@ -270,14 +269,12 @@ p
   justify-content: center !important
   max-width: auto !important
   width: 100%
-  padding-top: 0
+  padding: 0 !important
   display: none
   @media (min-width: 952px)
     display: block
-    margin-top: -8px !important
     max-width: 272px !important
-    margin-left: 12px !important
-    padding: 0
+    padding: 0 !important
 
 
 .description-container
@@ -300,9 +297,9 @@ p
     span
       color: #FF5C01
 .user_profile_container
-  width: 272px
+  width: 256px
   height: 300px
-  padding: 8px
+  padding: 8px 0
   display: flex
   flex-direction: column
   cursor: default
@@ -471,6 +468,7 @@ p
     max-width: 100% !important
 
 .login-form-container
+  width: 100%
   display: none
   @media (min-width: 960px)
     display: block
@@ -491,6 +489,7 @@ p
   border: 1px solid red !important
 .create_status_form_mobile
   display: none
+  width: 100%
   @media (min-width: 960px)
     display: block
     padding: 0 !important
@@ -502,6 +501,7 @@ p
   background-color: #F1EBE8 !important
   border: 1px solid #F1EBE8
   box-sizing: border-box
+  height: 174px
   @media (min-width: 960px)
     display: block
     border-radius: 0 !important
@@ -520,6 +520,8 @@ p
 .create-status-counter
   border: none !important
 .create-status-form-counter-container
+  display: flex
+  align-items: center
   max-width: 50px !important
   // @media (min-width: 960px)
 .create-status-form-button-container
@@ -576,8 +578,8 @@ p
 
 
 .avatar-mini
-  height: 35px !important
-  width: 35px !important
+  height: 33px !important
+  width: 33px !important
   border: 1px solid #F1EBE8
 .status-list-body-container
   padding-top: 0px !important
@@ -861,16 +863,18 @@ p
   justify-content: center
   // border-top: 1px solid #E5E5E5 !important
 .static-page-footer
-  display: flex
   position: fixed
-  max-width: 1148px
-  width: 100% !important
+  width: 100%
   bottom: 0
   left: 0
-  padding: 0 20px
   height: 50px
-  justify-content: space-between
-  border-top: 1px solid #E5E5E5 !important
+  footer
+    display: flex
+    max-width: 1148px
+    margin: 0 auto
+    width: 100% !important
+    justify-content: space-between
+    border-top: 1px solid #E5E5E5 !important
   @media (max-width: 960px)
     margin-bottom: 50px
   @media (max-width: 556px)

@@ -71,13 +71,13 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
                 {currentUser ? '' : <DescriptionStoaBanner />}
             </Grid>
 
-            {/* <Grid item xs={12}>
+            {/* <Grid item >
                 {tryOurNetworkTranslations[locale]({classes})}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item >
                 {igniteDescriptionTranslations[locale]()}
             </Grid>
-            <Grid item xs={12} style={{
+            <Grid item  style={{
                                 borderTop: "1px solid #F1EBE8"
             }}>
                 <Link store={routerStore}
@@ -95,7 +95,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
                     </Typography>
                 </Link>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item >
                 <DescriptionLinks />
             </Grid> */}
         </Grid>

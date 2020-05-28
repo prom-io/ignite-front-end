@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         display: 'table',
     },
     gridItemOverridePadding: {
+        padding: '0 8px !important',
         [theme.breakpoints.down('md')]: {
             padding: '0px !important',
         },
@@ -41,10 +42,10 @@ const _HomeTimeline = ({
         ? <CircularProgress size={20} className={classes.centered} />
         : (
             <Grid container spacing={2}>
-                <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
+                <Grid item className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm />
                 </Grid>
-                <Grid item xs={12} className={classes.gridItemOverridePadding}>
+                <Grid item  className={classes.gridItemOverridePadding}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

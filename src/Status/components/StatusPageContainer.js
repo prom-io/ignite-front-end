@@ -78,7 +78,7 @@ const _StatusPageContainer = ({
 
     return (
         <Grid container spacing={2}>
-            <Grid xs={12}>
+            <Grid >
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -96,7 +96,7 @@ const _StatusPageContainer = ({
                     </Typography>
                 </div>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item >
                 <StatusListItem
                     status={status}
                     statusLikePending={statusLikePending}
@@ -107,7 +107,7 @@ const _StatusPageContainer = ({
                     displayMenu={Boolean(currentUser)}
                 />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item >
                 <StatusCommentsList />
             </Grid>
         </Grid>

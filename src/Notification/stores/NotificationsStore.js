@@ -12,6 +12,9 @@ export class NotificationsStore {
     @observable
     error = undefined;
 
+    @observable
+    hasMore = true;
+
     authorization = undefined;
 
     @computed
@@ -59,7 +62,13 @@ export class NotificationsStore {
             }
 
             axiosInstance.get(url)
-                .then(({data}) => this.notifications.push(...data))
+                .then(({data}) => {
+                    if (data.length !== 0) {
+                        this.notifications.push(...data);
+                    } else {
+                        this.hasMore = false;
+                    }
+                })
                 .catch(error => this.error = error)
                 .finally(() => this.pending = false)
         }

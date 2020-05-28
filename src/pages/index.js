@@ -1,4 +1,5 @@
 export * from './HomePage';
+export * from './FollowPeoplePage';
 export * from './UserProfilePage';
 export * from './NotificationsPage';
 export * from './ChatPage';

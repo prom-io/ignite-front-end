@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const BellIcon = ({ color }) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const BellIcon = ({ color, width, height }) => (
+    <svg width={width || "20"} height={height || "20"} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0)">
             <path
                 d="M10 19.2C9.66877 19.2 9.35377 19.1269 9.07054 18.9958H10.9295C10.6462 19.1269 10.3312 19.2 10 19.2Z"
@@ -16,7 +16,7 @@ export const BellIcon = ({ color }) => (
             <path
                 d="M4.07042 14.9725C4.96751 13.077 5.13335 10.4942 5.13335 8.75097C5.13335 6.06832 7.31713 3.88459 9.99976 3.88459C12.6761 3.88459 14.8558 6.0578 14.8661 8.73156L14.8662 8.74466L14.8666 8.75486C14.8668 10.4981 15.0331 13.0784 15.9295 14.9725C16.2126 15.5708 16.507 15.9675 16.744 16.2219H3.25591C3.49284 15.9676 3.78721 15.571 4.07042 14.9725ZM4.07042 14.9725L3.34731 14.6303L4.07042 14.9725Z"
                 stroke={color || '#1C1C1C'}
-                strokeWidth="1.6"
+                strokeWidth="1"
             />
         </g>
         <defs>

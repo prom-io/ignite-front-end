@@ -35,6 +35,7 @@ const _HomeTimeline = ({
     fetchStatuses,
     pending,
     currentUser,
+    hasMore
 }) => {
     const classes = useStyles();
 
@@ -57,6 +58,7 @@ const _HomeTimeline = ({
                         displayMenu={Boolean(currentUser)}
                         statusLikePendingMap={statusLikePendingMap}
                         repostsPendingMap={repostsPendingMap}
+                        hasMore={hasMore}
                     />
                 </Grid>
             </Grid>
@@ -74,6 +76,7 @@ const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
+    hasMore: homeTimeline.hasMore,
 });
 
 export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

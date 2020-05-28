@@ -5,26 +5,31 @@ import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
 import { PrometeusDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
+import { ExploreOurFeaturesDescription } from '../PrometeusDescription';
 
-const _NotificationsPage = ({ l }) => (
+const _NotificationsPage = ({ currentUser, l }) => (
     <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="notifications" />
         </Grid>
         <Grid item xs={12}>
             <Layout>
-                <Grid container spacing={2} className="content-container">
+                <Grid container className="content-container">
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item lg={9} xs={12} className="right-content-container">
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={9} className="right-content">
-                                <NotificationsList />
-                            </Grid>
-                        </Grid>
+                    <Grid item spacing={28} lg={9}  className="right-content-container">
+                        {!currentUser && (
+                          <Grid item  className="login-form-container">
+                              <LoginForm />
+                          </Grid>
+                        )}
+                        <NotificationsList />
                     </Grid>
-                    <Grid item md={3} className="right-banners-container" />
+                    <Grid item md={3} className="right-banners-container">
+                        <ExploreOurFeaturesDescription />
+                    </Grid>
                 </Grid>
             </Layout>
         </Grid>

@@ -58,8 +58,8 @@ const useStyles = makeStyles(theme => ({
             background: "transparent",
             border: `1px solid ${theme.palette.primary.main}`,
             color: theme.palette.primary.main,
-            [theme.breakpoints.down('md')]: {
-                width: "95px"
+            [theme.breakpoints.down('sm')]: {
+                marginRight: "8px"
             },
         },
 
@@ -68,10 +68,7 @@ const useStyles = makeStyles(theme => ({
             background: theme.palette.primary.main,
             border: "none",
             color: "#fff",
-            marginLeft: 0,
-            [theme.breakpoints.down('md')]: {
-                width: "115px"
-            },
+            marginLeft: 0
         }
     },
     dialogPaper: {

@@ -41,7 +41,7 @@ const _HomeTimeline = ({
     return pending && statuses.length === 0
         ? <CircularProgress size={20} className={classes.centered} />
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm />
                 </Grid>

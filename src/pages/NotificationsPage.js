@@ -7,6 +7,7 @@ import { PrometeusDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import { ExploreOurFeaturesDescription } from '../PrometeusDescription';
+import { inject, observer } from 'mobx-react';
 
 const _NotificationsPage = ({ currentUser, l }) => (
     <Grid container>
@@ -36,4 +37,10 @@ const _NotificationsPage = ({ currentUser, l }) => (
     </Grid>
 );
 
-export const NotificationsPage = localized(_NotificationsPage);
+const mapMobxToProps = ({ authorization, timelineSwitcher }) => ({
+  currentUser: authorization.currentUser,
+  homepageTimeline: timelineSwitcher.currentTimeline,
+});
+
+export const NotificationsPage = localized(
+  inject(mapMobxToProps)(observer(_NotificationsPage)));

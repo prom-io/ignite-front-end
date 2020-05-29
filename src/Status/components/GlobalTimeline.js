@@ -44,7 +44,7 @@ const _GlobalTimeline = ({
     return pending && statuses.length === 0
         ? <CircularProgress size={40} className={classes.centered} />
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 {currentUser && (
                     <Grid item xs={12} className={classes.paddingCorective}>
                         <CreateStatusForm />

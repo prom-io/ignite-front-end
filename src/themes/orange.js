@@ -2,32 +2,12 @@ import { createMuiTheme } from '@material-ui/core';
 
 export const orange = createMuiTheme({
     overrides: {
-        MuiDialogTitle: {
-            root: {
-                background: '#FFFBF8',
+        MuiMenu: {
+            paper: {
+                top: '20px',
+                right: '100px',
             },
-        },
-        MuiButton: {
-            root: {
-                borderRadius: '30px',
-            },
-        },
-        MuiDialogContent: {
-            root: {
-                padding: 0,
-                margin: '24px 62px',
-            },
-        },
-        MuiDialog: {
-            paperWidthSm: {
-                maxWidth: '648px',
-            },
-        },
-        MuiInputBase: {
-            input: {
-                color: '#A2A2A2',
-            },
-        },
+        }
     },
     palette: {
         common: {

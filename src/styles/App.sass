@@ -10,13 +10,12 @@ body
 .MuiButton-contained
   box-shadow: none !important
 #root
-  // padding: 0 30px
-  // width: 100%
-  // display: flex
-  // justify-content: center
-  // flex-wrap: wrap
-  // align-items: flex-start
-
+// padding: 0 30px
+// width: 100%
+// display: flex
+// justify-content: center
+// flex-wrap: wrap
+// align-items: flex-start
 .border
   border: 1px solid red !important
   z-index: 9999
@@ -148,11 +147,10 @@ p
   @media (min-width: 952px)
     padding-top: 0 !important
     width: 100% !important
-    justify-content: flex-start !important
+    justify-content: space-between
 .right-content-container
   max-width: auto !important
   padding: 0 !important
-  margin: 0 26px !important
   @media (min-width: 952px)
     max-width: 600px !important
 .mobile_header
@@ -246,9 +244,9 @@ p
   justify-content: center
   align-items: center
   margin-left: 16px
-  // &:active
-  //   background: red !important
-
+  margin-right: 15px
+// &:active
+//   background: red !important
 .mobile_header .select-language
   margin-right: 40px
 
@@ -269,12 +267,12 @@ p
   justify-content: center !important
   max-width: auto !important
   width: 100%
-  padding: 0 !important
+  padding-top: 0
   display: none
   @media (min-width: 952px)
     display: block
-    max-width: 272px !important
-    padding: 0 !important
+    max-width: 256px !important
+    padding: 0
 
 
 .description-container
@@ -286,7 +284,7 @@ p
     max-width: 272px !important
     margin-right: 25px !important
     padding: 0
-    // border: 1px solid red
+  // border: 1px solid red
   p
     font-family: Museo Sans Cyrl Regular
     font-style: normal
@@ -299,11 +297,9 @@ p
 .user_profile_container
   width: 256px
   height: 300px
-  padding: 8px 0
   display: flex
   flex-direction: column
   cursor: default
-  margin-top: -8px
   @media screen and ( max-width: 960px)
     max-width: 600px
     width: 100%
@@ -325,12 +321,11 @@ p
   flex-wrap: wrap
   justify-content: center
   align-items: flex-start
-  margin-top: -8px
   cursor: default
 .user-card-content-box
   width: 100%
-  // border: 1px solid red
-  // box-sizing: border-box
+// border: 1px solid red
+// box-sizing: border-box
 .user-card-bottom
   padding-top: 20px
 .user-card-top
@@ -342,7 +337,7 @@ p
 // .user-card-bottom
 .paddingBottomRoot
   padding-bottom: 120px
-  // @media screen and ( max-width: 960px )
+// @media screen and ( max-width: 960px )
 .user-card-username
   display: flex
   flex-direction: column
@@ -457,7 +452,7 @@ p
 
 
 .main-content-container
-  // width: 100% !important
+// width: 100% !important
 .main-content
   max-width: 100% !important
   width: 100% !important
@@ -468,7 +463,6 @@ p
     max-width: 100% !important
 
 .login-form-container
-  width: 100%
   display: none
   @media (min-width: 960px)
     display: block
@@ -489,19 +483,14 @@ p
   border: 1px solid red !important
 .create_status_form_mobile
   display: none
-  width: 100%
   @media (min-width: 960px)
     display: block
-    padding: 0 !important
-  @media (min-width: 1280px)
-    padding: 0 8px !important
 .create-status-form
   // display: none
   box-shadow: none !important
   background-color: #F1EBE8 !important
   border: 1px solid #F1EBE8
   box-sizing: border-box
-  height: 174px
   @media (min-width: 960px)
     display: block
     border-radius: 0 !important
@@ -510,7 +499,7 @@ p
     // height: 174px
     background-color: $user-card-bg !important
     box-sizing: border-box
-  // border: 1px solid red
+// border: 1px solid red
 .create-status-form-textfield
   padding-left: 20px !important
   width: 95% !important
@@ -520,13 +509,11 @@ p
 .create-status-counter
   border: none !important
 .create-status-form-counter-container
-  display: flex
-  align-items: center
   max-width: 50px !important
-  // @media (min-width: 960px)
+// @media (min-width: 960px)
 .create-status-form-button-container
-  // display: none
-    max-width: 116px !important
+// display: none
+  max-width: 116px !important
 .create-status-form-pic
   width: 108px
   height: 20px
@@ -550,8 +537,8 @@ p
 
 .status-list-card
   border-radius: 0px !important
-  /*@media screen and ( max-width: 960px)
-    margin: 0 -14px*/
+/*@media screen and ( max-width: 960px)
+  margin: 0 -14px*/
 
 .status-header
   display: flex
@@ -578,8 +565,8 @@ p
 
 
 .avatar-mini
-  height: 33px !important
-  width: 33px !important
+  height: 35px !important
+  width: 35px !important
   border: 1px solid #F1EBE8
 .status-list-body-container
   padding-top: 0px !important
@@ -634,14 +621,14 @@ p
     margin-left: 0 !important
   &:last-child
     justify-content: flex-start
-  // img
-  //   padding: 0
-  //   margin-right: 6px
-  // span
-  //   padding: 0
-  //   margin-right: 6px
-  // button
-  //   margin-right: 6px
+// img
+//   padding: 0
+//   margin-right: 6px
+// span
+//   padding: 0
+//   margin-right: 6px
+// button
+//   margin-right: 6px
 // .status-list-bottom-box-item-custom
 //   cursor: pointer
 //   width: 45px
@@ -686,8 +673,7 @@ p
   justify-content: center
   @media (min-width: 960px)
     position: relative
-    // top: 100px
-
+// top: 100px
 .user-profile-header
   max-width: 256px !important
   height: 388px !important
@@ -697,12 +683,12 @@ p
   box-sizing: border-box
   border-radius: 4px
   @media screen and( max-width: 960px )
-    margin-right: 0 !important
-    max-width: 600px !important
-    // height: 360px !important
-    // margin-bottom: 20px !important
-    margin-top: 70px !important
-    height: 450px !important
+                       margin-right: 0 !important
+                       max-width: 600px !important
+  // height: 360px !important
+  // margin-bottom: 20px !important
+                       margin-top: 70px !important
+                       height: 450px !important
 
 .user-profile-header-content
   max-width: 256px !important
@@ -752,8 +738,7 @@ p
     font-size: 12px
     line-height: 14px
     text-align: center
-    // color: #A2A2A2
-
+// color: #A2A2A2
 .user-profile-header-content-bottom-follow-button
   width: 202px
   height: 40px
@@ -854,27 +839,24 @@ p
 .static-page
   display: flex
   flex-direction: column
-  // min-height: 100%
-  // position: relative
-
+// min-height: 100%
+// position: relative
 .static-page-footer-container
   width: 100%
   display: flex
   justify-content: center
-  // border-top: 1px solid #E5E5E5 !important
+// border-top: 1px solid #E5E5E5 !important
 .static-page-footer
+  display: flex
   position: fixed
-  width: 100%
+  max-width: 1148px
+  width: 100% !important
   bottom: 0
   left: 0
+  padding: 0 20px
   height: 50px
-  footer
-    display: flex
-    max-width: 1148px
-    margin: 0 auto
-    width: 100% !important
-    justify-content: space-between
-    border-top: 1px solid #E5E5E5 !important
+  justify-content: space-between
+  border-top: 1px solid #E5E5E5 !important
   @media (max-width: 960px)
     margin-bottom: 50px
   @media (max-width: 556px)
@@ -933,11 +915,10 @@ p
         display: none
         @media (min-width: 622px)
           display: block
-      //   margin-left: 0
-      //   @media (min-width: 960px)
-      //     list-style: disc
-      //     margin-left: 27px
-
+//   margin-left: 0
+//   @media (min-width: 960px)
+//     list-style: disc
+//     margin-left: 27px
 
 .static-page-link
   text-decoration: none

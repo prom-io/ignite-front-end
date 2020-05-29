@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import { AppBar } from '../AppBar/components';
 import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
-import { PrometeusDescription } from '../PrometeusDescription';
+import { PrometeusDescription, ExploreOurFeaturesDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import {useAuthorization} from "../store/hooks";

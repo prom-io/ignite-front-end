@@ -1,14 +1,13 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 import { AppBar } from '../AppBar/components';
-import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
-import { PrometeusDescription } from '../PrometeusDescription';
+import { PrometeusDescription, ExploreOurFeaturesDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { ExploreOurFeaturesDescription } from '../PrometeusDescription';
 
-const _NotificationsPage = ({ currentUser, l }) => (
+const _NotificationsPage = ({ currentUser }) => (
     <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="notifications" />
@@ -19,11 +18,11 @@ const _NotificationsPage = ({ currentUser, l }) => (
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item spacing={28} lg={9}  className="right-content-container">
+                    <Grid item spacing={28} lg={9} className="right-content-container">
                         {!currentUser && (
-                          <Grid item  className="login-form-container">
-                              <LoginForm />
-                          </Grid>
+                            <Grid item className="login-form-container">
+                                <LoginForm />
+                            </Grid>
                         )}
                         <NotificationsList />
                     </Grid>
@@ -36,4 +35,8 @@ const _NotificationsPage = ({ currentUser, l }) => (
     </Grid>
 );
 
-export const NotificationsPage = localized(_NotificationsPage);
+const mapMobxToProps = ({authorization}) => ({
+    currentUser: authorization,
+});
+
+export const NotificationsPage = inject(mapMobxToProps)(observer(_NotificationsPage));

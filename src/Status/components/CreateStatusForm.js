@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     remainingCharactersCounter: {
         background: '#FBF7F6',
         justifyContent: 'space-between',
-        padding: '7px 10px',
+        marginRight: 16,
     },
     createStatusButtonWrapper: {
         paddingTop: 15,
@@ -40,11 +40,12 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     cardActionsStyled: {
-        display: 'flsex',
+        display: 'flex',
         padding: '8px 15px',
     },
     customTextarea: {
-        paddingLeft: 20,
+        paddingLeft: 12,
+        height: '102px',
         width: '95%',
         border: 'none',
         '& .MuiInput-underline:before': {
@@ -60,6 +61,14 @@ const useStyles = makeStyles(theme => ({
             borderBottom: 'none',
         },
     },
+    textArea: {
+      width: '516px',
+        overflowY: 'auto',
+    },
+    avatarIconMini: {
+        width: 35,
+        height: 35,
+    }
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -98,11 +107,11 @@ const _CreateStatusForm = ({
             <Grid
                 container
                 style={{
-                    padding: '25px 15px 0px',
+                    padding: '18px 15px 0px',
                 }}
             >
                 {referredStatus && (
-                    <Grid item xs={12}>
+                    <Grid item >
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')
@@ -118,10 +127,10 @@ const _CreateStatusForm = ({
                         />
                     </Grid>
                 )}
-                <Grid item xs={1}>
+                <Grid item className={classes.avatarIconMini}>
                     <Avatar src={currentUserAvatar} className="avatar-mini" />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item className={classes.textArea}>
                     <TextField
                         placeholder={l('status.placeholder')}
                         multiline
@@ -148,7 +157,7 @@ const _CreateStatusForm = ({
                     </div>
                 </Grid>
                 <Grid container justify="flex-end">
-                    <Grid item xs={12} className="create-status-form-counter-container">
+                    <Grid item className="create-status-form-counter-container">
                         <div className={classes.remainingCharactersCounter}>
                             <Typography
                                 variant="body1"
@@ -158,7 +167,7 @@ const _CreateStatusForm = ({
                             </Typography>
                         </div>
                     </Grid>
-                    <Grid item xs={12} className="create-status-form-button-container">
+                    <Grid item className="create-status-form-button-container">
                         {!hideSendButton && (
                             <Button
                                 variant="contained"

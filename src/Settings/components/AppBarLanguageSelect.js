@@ -41,20 +41,24 @@ const useStyles = makeStyles({
             color: '#A2A2A2',
         },
         '& ul': {
-            zIndex: 900001,
+            zIndex: 99,
             position: 'fixed',
         },
         '& .MuiSelect-select:focus': {
             background: 'none',
         }
     },
-    styletMenuItem: {
+    styledMenuItem: {
         width: '118px',
         padding: 12,
         '& p': {
             margin: 0,
         },
     },
+    styledOpenMenu: {
+        right: '100px',
+        top: 50,
+    }
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
@@ -65,18 +69,21 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
             <Select
                 value={locale}
                 className={classes.styledSelectBox}
+                classes={{
+                    root: classes.styledSelectBox
+                }}
                 onChange={event => setSelectedLanguage(event.target.value)}
                 style={{
                     width: '100%',
                 }}
                 disableUnderline
             >
-                <MenuItem value="en" className={classes.styletMenuItem}>
+                <MenuItem value="en" className={classes.styledMenuItem}>
                     <ListItemText>
                         <p>En</p>
                     </ListItemText>
                 </MenuItem>
-                <MenuItem value="ko" className={classes.styletMenuItem}>
+                <MenuItem value="ko" className={classes.styledMenuItem}>
                     <ListItemText>
                         <p>Ko</p>
                     </ListItemText>

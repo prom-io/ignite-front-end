@@ -12,7 +12,7 @@ const _TrendsPage = ({ l }) => (
                 'flex-direction': 'column',
             }}
         >
-            <Grid item xs={12}>
+            <Grid item >
                 <AppBar currentActiveRoute="trends" />
             </Grid>
             <div className="static-page-container">

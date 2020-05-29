@@ -6,7 +6,7 @@ import { localized } from '../localization/components';
 
 const _TermsAndPolicesPage = ({ l }) => (
     <div className="static-page">
-        <Grid item xs={12}>
+        <Grid item >
             <AppBar currentActiveRoute="terms" />
         </Grid>
         <div className="static-page-container">

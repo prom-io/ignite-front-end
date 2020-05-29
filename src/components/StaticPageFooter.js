@@ -6,7 +6,7 @@ import { LogoutMenuItem } from '../Authorization/components';
 import { localized } from '../localization/components';
 
 const _StaticPageFooter = ({ routerStore, l }) => {
-    const Prometeus = '{Prometeus}';
+    const Prometeus = ' {Prometeus}';
 
     const links = {
         termsOfService: l('description-links.terms-of-service'),
@@ -19,6 +19,7 @@ const _StaticPageFooter = ({ routerStore, l }) => {
     return (
         <div className="static-page-footer-container">
             <div className="static-page-footer">
+                <footer>
                 <div>
                     <p>
                         © 2020
@@ -46,6 +47,7 @@ const _StaticPageFooter = ({ routerStore, l }) => {
                         </li>
                     </ul>
                 </div>
+                </footer>
             </div>
         </div>
     );

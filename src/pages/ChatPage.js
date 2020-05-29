@@ -7,7 +7,7 @@ import { localized } from '../localization/components';
 const _ChatPage = ({ l }) => (
 
     <div className="static-page">
-        <Grid item xs={12}>
+        <Grid item >
             <AppBar currentActiveRoute="chat" />
         </Grid>
         <div className="static-page-container">

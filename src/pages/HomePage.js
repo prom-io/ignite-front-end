@@ -10,23 +10,23 @@ import '../styles/App.sass';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
-        <Grid item xs={12}>
+        <Grid item >
             <AppBar currentActiveRoute="home" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item style={{width: '100%'}}>
             <Layout>
-                <Grid container spacing={2} className="content-container">
+                <Grid container className="content-container">
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item lg={9} xs={12} className="right-content-container">
+                    <Grid item spacing={28} lg={9}  className="right-content-container">
                         <Grid container spacing={2}>
                             {!currentUser && (
-                                <Grid item xs={12} className="login-form-container">
+                                <Grid item  className="login-form-container">
                                     <LoginForm />
                                 </Grid>
                             )}
-                            <Grid item xs={12} md={9} className="right-content">
+                            <Grid item  md={9} className="right-content">
                                 {homepageTimeline === 'home' ? <HomeTimeline /> : <GlobalTimeline />}
                             </Grid>
                         </Grid>

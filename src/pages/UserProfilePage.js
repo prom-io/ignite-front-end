@@ -7,10 +7,10 @@ import { StatusBtfsInfoDialog } from '../Status/components';
 
 export const UserProfilePage = () => (
     <Grid container>
-        <Grid item xs={12}>
+        <Grid item >
             <AppBar currentActiveRoute="none" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item >
             <Layout>
                 <UserProfileContainer />
                 <UpdateUserProfileDialog />

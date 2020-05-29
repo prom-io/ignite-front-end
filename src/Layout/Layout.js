@@ -3,10 +3,9 @@ import { Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     layout: {
-        marginTop: 5,
+        maxWidth: 1180,
         [theme.breakpoints.up('lg')]: {
-            paddingLeft: '2.08333333334%',
-            paddingRight: '2.08333333334%',
+            margin: 'auto',
         },
     },
 }));
@@ -16,9 +15,7 @@ export const Layout = ({ children }) => {
 
     return (
         <Grid container className={classes.layout}>
-            <Grid item xs={12}>
-                {children}
-            </Grid>
+            {children}
         </Grid>
     );
 };

@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
         lineHeight: 0,
         color: "#FF5C01",
         fontSize: "12px",
+        
+        [theme.breakpoints.down('md')]: {
+            width: "90px"
+        },
 
         "&.lg": {
             width: "96px",

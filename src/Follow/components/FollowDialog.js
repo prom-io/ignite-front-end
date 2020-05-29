@@ -15,7 +15,7 @@ import { localized } from "../../localization/components";
 const useStyles = makeStyles(theme => ({
     unfollowDialog: {
         maxWidth: "291px",
-        padding: "52px 48px"
+        padding: "52px 32px"
     },
     unfollowDialogTitle: {
         marginBottom: "24px",
@@ -57,7 +57,10 @@ const useStyles = makeStyles(theme => ({
             width: "124px",
             background: "transparent",
             border: `1px solid ${theme.palette.primary.main}`,
-            color: theme.palette.primary.main
+            color: theme.palette.primary.main,
+            [theme.breakpoints.down('md')]: {
+                width: "95px"
+            },
         },
 
         "& button:last-child": {
@@ -65,8 +68,14 @@ const useStyles = makeStyles(theme => ({
             background: theme.palette.primary.main,
             border: "none",
             color: "#fff",
-            marginLeft: 0
+            marginLeft: 0,
+            [theme.breakpoints.down('md')]: {
+                width: "115px"
+            },
         }
+    },
+    dialogPaper: {
+        margin: '15px'
     }
 }));
 
@@ -83,6 +92,9 @@ const _FollowDialog = ({
         <Dialog
             open={unfollowDialogOpen}
             onClose={() => setUnfollowDialogOpen(false)}
+            classes={{
+                paper: classes.dialogPaper
+            }}
         >
             <div className={classes.unfollowDialog}>
                 <DialogTitle className={classes.unfollowDialogTitle}>

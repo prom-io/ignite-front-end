@@ -9,7 +9,7 @@ import { FollowButton } from "./";
 
 const useStyles = makeStyles(() => ({
     whoToFollowBodyItem: {
-        padding: "16px",
+        padding: "12px 16px",
         borderBottom: "1px solid #F1EBE8",
         display: "flex",
 

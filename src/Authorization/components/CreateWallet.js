@@ -44,13 +44,12 @@ export const CreateWallet = ({submissionError,l}) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     password: '',
+    repeatPassword: '',
     showPassword: false,
     copied: false,
   });
   
   return (
-    <>
-      <CustomDialogTitle title={'Wallet Created'}/>
       <DialogContent classes={{
         root: classes.dialogContentRoot
       }}>
@@ -83,6 +82,5 @@ export const CreateWallet = ({submissionError,l}) => {
           Sign up
         </Button>
       </DialogContent>
-      </>
   )
 }

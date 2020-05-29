@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CloseIcon } from '../../icons/CloseIcon';
 import { AttentionIcon } from '../../icons/AttentionIcon';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   titleBlock: {
@@ -24,14 +25,21 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 24,
   },
   closeIcon: {
+    cursor: 'pointer',
+    top: '-10px',
+    right: '-10px',
     '& svg': {
       stroke: '#A1A1A1',
-      marginBottom: '18px',
+    }
+  },
+  colorPrimary: {
+    '&:hover':{
+      background: 'rgba(255, 92, 1, 0.2)',
     }
   }
 }));
 
-const CustomDialogTitle = ({title, type}) => {
+const CustomDialogTitle = ({title, type, setLoginDialogOpen}) => {
   const classes = useStyles();
   return (
       <div className={classes.titleBlock}>
@@ -46,7 +54,12 @@ const CustomDialogTitle = ({title, type}) => {
           }
           <span className={classes.text}>{title}</span>
         </div>
-        <span className={classes.closeIcon}>{CloseIcon()}</span>
+        <IconButton aria-label="close" color="primary" classes={{
+          root:classes.closeIcon,
+          colorPrimary: classes.colorPrimary,
+        }} onClick={() => setLoginDialogOpen(false)}>
+          <CloseIcon/>
+        </IconButton>
       </div>
   )
  };

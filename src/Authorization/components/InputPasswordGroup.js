@@ -41,6 +41,14 @@ const useStyles = makeStyles(theme => ({
   iconButton: {
     padding: 0,
   },
+  underlineInput: {
+    '&:hover': {
+      borderColor: '#F1EBE8',
+    },
+    '&:before':{
+      borderColor: '#F1EBE8',
+    }
+  }
 }));
 
 export const InputPasswordGroup = ({submissionError,l,setValues,values, title}) => {
@@ -73,6 +81,9 @@ export const InputPasswordGroup = ({submissionError,l,setValues,values, title}) 
           type={values.showPassword ? 'text' : 'password'}
           value={values.password}
           onChange={handleChange('password')}
+          classes={{
+            underline: classes.underlineInput
+          }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -93,8 +104,11 @@ export const InputPasswordGroup = ({submissionError,l,setValues,values, title}) 
         <Input
           id="standard-adornment-password"
           type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          onChange={handleChange('password')}
+          value={values.repeatPassword}
+          onChange={handleChange('repeatPassword')}
+          classes={{
+            underline: classes.underlineInput
+          }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
@@ -29,8 +28,6 @@ export const GenerateHash = ({submissionError,l}) => {
   });
   
   return (
-    <>
-      <CustomDialogTitle title={'Generate a Hashcode'}/>
       <DialogContent classes={{
         root: classes.dialogContentRoot
       }}>
@@ -48,6 +45,5 @@ export const GenerateHash = ({submissionError,l}) => {
           Continue
         </Button>
       </DialogContent>
-    </>
   )
 }

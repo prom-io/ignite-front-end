@@ -57,8 +57,6 @@ const useStyles = makeStyles(theme => ({
 export const PasswordUpdatedError = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Oops!'}/>
       <DialogContent>
         <div className={classes.contentDescription}>
           Something seems to go wrong…  Please contact us on <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a> or
@@ -87,6 +85,5 @@ export const PasswordUpdatedError = () => {
           Sorry for the inconvenience.
         </div>
       </DialogContent>
-    </>
   );
 };

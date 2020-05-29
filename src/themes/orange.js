@@ -22,7 +22,12 @@ export const orange = createMuiTheme({
             paperWidthSm: {
                 maxWidth: '648px',
             }
-        }
+        },
+        MuiInputBase: {
+            input: {
+                color: '#A2A2A2',
+            },
+        },
     },
     palette: {
         common: {

@@ -37,8 +37,6 @@ const useStyles = makeStyles(theme => ({
 export const ResetWithoutKey = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Reset Password'}/>
       <DialogContent>
         <div className={classes.contentBlock}>
           If you don't want to share your Private Key with anybody including Ignite, you can use previously created ETH
@@ -60,6 +58,5 @@ export const ResetWithoutKey = () => {
           please note that we use standard Niels Provos and David Mazières bcrypt password hashing function.
         </div>
       </DialogContent>
-    </>
   );
 };

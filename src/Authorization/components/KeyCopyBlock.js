@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { CopyIcon } from '../../icons/CopyIcon';
 import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   key: {
@@ -39,7 +40,7 @@ export const KeyCopyBlock = ({children, ...props}) => {
         <div className={classes.titleBold}>{props.title}</div>
         <span className={classes.keyValue}>{children}</span>
       </div>
-      <span>{CopyIcon()}</span>
+        <CopyIcon color={'#A2A2A2'}/>
     </div>
   )
 };

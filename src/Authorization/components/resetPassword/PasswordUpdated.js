@@ -38,8 +38,6 @@ const useStyles = makeStyles(theme => ({
 export const PasswordUpdated = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Password Updated'}/>
       <DialogContent>
         <div className={classes.contentDescription}>
           Your password has been successfully changed. Use your new password to log in.
@@ -56,6 +54,5 @@ export const PasswordUpdated = () => {
           </Button>
         </div>
       </DialogContent>
-    </>
   );
 };

@@ -29,8 +29,6 @@ export const ResetPassword = () => {
 const classes = useStyles();
 
 return (
-  <>
-    <CustomDialogTitle title={'Reset Password'}/>
     <DialogContent classes={{root:classes.dialogRoot}}>
        <span className={classes.contentDescription}>
           To continue the password reset procedure, enter the Wallet address and the Password recovery key (Private key)
@@ -45,7 +43,6 @@ return (
         </Button>
       </form>
     </DialogContent>
-  </>
 )
 
 };

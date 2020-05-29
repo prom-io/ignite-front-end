@@ -68,7 +68,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
         <>
             <Select
                 value={locale}
-                /*className={classes.styledSelectBox}*/
+                className={classes.styledSelectBox}
                 classes={{
                     root: classes.styledSelectBox
                 }}

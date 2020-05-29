@@ -52,8 +52,6 @@ const useStyles = makeStyles(theme => ({
 export const Welcome = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Welcome to Ignite!'}/>
       <DialogContent>
         <span className={classes.contentDescription}>
          Wow! You have just signed up to Ignite: the most exciting decentralized social network in the world!
@@ -75,6 +73,5 @@ export const Welcome = () => {
           If you don't like something, you will have options to unfollow, block or mute that person. However, please do not expect that we will ban somebody whose opinion you hate. For this option please consider Hezbollah or Facebook. Our Report abuse option is intended for emergency situations.
         </div>
       </DialogContent>
-    </>
   );
 };

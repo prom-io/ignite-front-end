@@ -43,8 +43,6 @@ const useStyles = makeStyles(theme => ({
 export const ErrorVerify = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Oops!'}/>
       <DialogContent>
         <div className={classes.contentDescription}>
           Your password does not fit to the hashcode from the transaction. Please contact us on
@@ -73,6 +71,5 @@ export const ErrorVerify = () => {
           Enjoy
         </Button>
       </DialogContent>
-    </>
   );
 };

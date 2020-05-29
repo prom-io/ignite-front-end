@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
 
 const useStyles = makeStyles(theme => ({
   contentDescription: {
@@ -53,8 +52,6 @@ const useStyles = makeStyles(theme => ({
 export const ErrorAuthorization = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Oops!'}/>
       <DialogContent>
         <span className={classes.contentDescription}>
           Something seems to go wrong…  Please contact us on <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a> or
@@ -81,6 +78,5 @@ export const ErrorAuthorization = () => {
         Sorry for the inconvenience.
         </span>
       </DialogContent>
-    </>
   );
 };

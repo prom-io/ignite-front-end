@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
 
 const useStyles = makeStyles(theme => ({
   contentDescription: {
@@ -43,8 +42,6 @@ const useStyles = makeStyles(theme => ({
 export const CreateAccount = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Create an Account'}/>
       <DialogContent>
         <span className={classes.contentDescription}>
          Creating an Ignite account based on existing ETH Wallet
@@ -70,6 +67,5 @@ export const CreateAccount = () => {
           please note that we use standard Niels Provos and David Mazières bcrypt password hashing function.
         </div>
       </DialogContent>
-    </>
   );
 };

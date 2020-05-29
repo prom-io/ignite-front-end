@@ -30,8 +30,6 @@ export const ChangePassword = () => {
     copied: false,
   });
   return (
-    <>
-      <CustomDialogTitle title={'Change Your Password'}/>
       <DialogContent classes={{root:classes.dialogRoot}}>
         <span className={classes.titleBold}>Set a new password for your Ignite account</span>
         <InputPasswordGroup title={'Password'} values={values} setValues={setValues}/>
@@ -41,6 +39,5 @@ export const ChangePassword = () => {
           Continue
         </Button>
       </DialogContent>
-    </>
   )
 };

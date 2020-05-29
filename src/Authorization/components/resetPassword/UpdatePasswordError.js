@@ -19,14 +19,11 @@ const useStyles = makeStyles(theme => ({
 export const UpdatePasswordError = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Oops!'}/>
-      <DialogContent classes={{root:classes.dialogRoot}}>
-        <span>Your password does not fit to the hashcode from the transaction.</span>
-        <Button variant="contained" color="primary" classes={{root:classes.button}}>
-          OK
-        </Button>
-      </DialogContent>
-    </>
+    <DialogContent classes={{root:classes.dialogRoot}}>
+      <span>Your password does not fit to the hashcode from the transaction.</span>
+      <Button variant="contained" color="primary" classes={{root:classes.button}}>
+        OK
+      </Button>
+    </DialogContent>
   )
 };

@@ -52,8 +52,6 @@ const useStyles = makeStyles(theme => ({
 export const SignUp = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Sign Up'}/>
       <DialogContent>
         <span className={classes.contentDescription}>
           <a>Ignite</a> is a decentralized social network, based on blockchain technology.
@@ -87,6 +85,5 @@ export const SignUp = () => {
           It will require you to make a record to the Ethereum blockchain using your existing ERC20 wallet.
         </div>
       </DialogContent>
-   </>
   );
 };

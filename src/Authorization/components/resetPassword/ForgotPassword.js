@@ -39,8 +39,6 @@ const useStyles = makeStyles(theme => ({
 export const ForgotPassword = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Forgot your Password?'}/>
       <DialogContent classes={{root:classes.dialogRoot}}>
         <span className={classes.contentDescription}>
           We need to verify that you really are the owner of the Ignite account,
@@ -71,8 +69,6 @@ export const ForgotPassword = () => {
             Enter Txn hash
           </Button>
         </div>
-        
       </DialogContent>
-    </>
   );
 };

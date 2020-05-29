@@ -29,8 +29,6 @@ const useStyles = makeStyles(theme => ({
 export const Verify = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Verify hashcode'}/>
       <DialogContent>
         <form className={classes.root} noValidate autoComplete="off">
           <TextField id="standard-basic" label="Ethereum Txn Hash" />
@@ -52,6 +50,5 @@ export const Verify = () => {
           please note that we use standard Niels Provos and David Mazières bcrypt password hashing function.
         </div>
       </DialogContent>
-    </>
   );
 };

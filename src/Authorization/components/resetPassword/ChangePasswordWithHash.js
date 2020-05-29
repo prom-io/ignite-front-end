@@ -33,8 +33,6 @@ export const ChangePasswordWithHash = ({submissionError,l}) => {
   });
   
   return (
-    <>
-      <CustomDialogTitle title={'Change Your Password'}/>
       <DialogContent classes={{
         root: classes.dialogContentRoot
       }}>
@@ -54,6 +52,5 @@ export const ChangePasswordWithHash = ({submissionError,l}) => {
           Continue
         </Button>
       </DialogContent>
-    </>
   )
 }

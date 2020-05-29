@@ -80,65 +80,62 @@ const useStyles = makeStyles(theme => ({
 export const Attention = () => {
   const classes = useStyles();
   return (
-    <>
-      <CustomDialogTitle title={'Attention'} type={'attention'}/>
-      <DialogContent classes={{
-        root: classes.dialogContentRoot
-      }}>
-        <p className={classes.contentDescription}>
-          Make sure you <span>really</span> saved this info:
-        </p>
-        
-        <div className={classes.infoCheckingBlock}>
-          <div className={classes.checkboxBlock}>
-            <div className={classes.checkboxTitle}>
-              <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
-              <div className={classes.checkboxBlockDescription}>
-                <span className={classes.title}>Wallet Address (login)</span>
-                <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
-              </div>
+    <DialogContent classes={{
+      root: classes.dialogContentRoot
+    }}>
+      <p className={classes.contentDescription}>
+        Make sure you <span>really</span> saved this info:
+      </p>
+    
+      <div className={classes.infoCheckingBlock}>
+        <div className={classes.checkboxBlock}>
+          <div className={classes.checkboxTitle}>
+            <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
+            <div className={classes.checkboxBlockDescription}>
+              <span className={classes.title}>Wallet Address (login)</span>
+              <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
             </div>
-            <span>{CopyIcon()}</span>
           </div>
-          <div className={classes.checkboxBlock}>
-            <div className={classes.checkboxTitle}>
-              <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
-              <div className={classes.checkboxBlockDescription}>
-                <span className={classes.title}>Private Key (password recovery key)</span>
-                <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
-              </div>
-            </div>
-            <span>{CopyIcon()}</span>
-          </div>
-          <div className={classes.checkboxBlock}>
-            <div className={classes.checkboxTitle}>
-              <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
-              <div className={classes.checkboxBlockDescription}>
-                <span className={classes.title}>Password</span>
-                <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
-              </div>
-            </div>
-            <span>{CopyIcon()}</span>
-          </div>
+          <span>{CopyIcon()}</span>
         </div>
-        
-        <div className={classes.markList}>
-          <p className={classes.contentDescription}>
+        <div className={classes.checkboxBlock}>
+          <div className={classes.checkboxTitle}>
+            <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
+            <div className={classes.checkboxBlockDescription}>
+              <span className={classes.title}>Private Key (password recovery key)</span>
+              <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+            </div>
+          </div>
+          <span>{CopyIcon()}</span>
+        </div>
+        <div className={classes.checkboxBlock}>
+          <div className={classes.checkboxTitle}>
+            <Checkbox color={'primary'} classes={{root:classes.checkbox}}/>
+            <div className={classes.checkboxBlockDescription}>
+              <span className={classes.title}>Password</span>
+              <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+            </div>
+          </div>
+          <span>{CopyIcon()}</span>
+        </div>
+      </div>
+    
+      <div className={classes.markList}>
+        <p className={classes.contentDescription}>
           Please do not lose it!
         </p>
-          <ul>
-            <li>Make <span>100%</span> sure that you really saved all this info in a safe place</li>
-            <li>You will be able to change the password later using the Private Key</li>
-            <li>If you lose your Private Key, you will <span>never</span> recover the password</li>
-          </ul>
-        </div>
-       
-        <Button variant="contained" color="primary" classes={{
-          root: classes.button
-        }} >
-          Ok
-        </Button>
-      </DialogContent>
-    </>
+        <ul>
+          <li>Make <span>100%</span> sure that you really saved all this info in a safe place</li>
+          <li>You will be able to change the password later using the Private Key</li>
+          <li>If you lose your Private Key, you will <span>never</span> recover the password</li>
+        </ul>
+      </div>
+    
+      <Button variant="contained" color="primary" classes={{
+        root: classes.button
+      }} >
+        Ok
+      </Button>
+    </DialogContent>
   )
 };

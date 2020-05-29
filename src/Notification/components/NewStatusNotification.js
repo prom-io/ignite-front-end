@@ -1,24 +1,43 @@
 import React from 'react';
-import { Card, CardContent, Hidden, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
+import { Link } from 'mobx-router';
+import { Card, makeStyles } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
-import { NotificationLeftMargin } from './NotificationLeftMargin';
-import { RepostedStatusContent } from '../../Status/components';
 import { localized } from '../../localization/components';
 import { IgniteOrangeIcon } from '../../icons/IgniteOrangeIcon';
+import { Routes } from '../../routes';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     cardContentRoot: {
         display: 'flex',
         padding: '0px !important',
     },
+    postLink: {
+        color: theme.palette.primary.main,
+    },
 }));
 
-const _NewStatusNotifications = ({ notification, l, dateFnsLocale }) => {
+const translationsMap = {
+    en: ({ classes, routerStore, statusId }) => (
+        <span>
+            published new
+            {' '}
+            <Link className={classes.postLink} view={Routes.status} params={{ id: statusId }} store={routerStore}>post</Link>
+        </span>
+    ),
+    ko: ({ classes, routerStore, statusId }) => (
+        <span>
+            <Link className={classes.postLink} view={Routes.status} params={{ id: statusId }} store={routerStore}>게시물</Link>
+            {' '}
+            오르다
+        </span>
+    ),
+};
+
+const _NewStatusNotifications = ({ notification, locale, routerStore, dateFnsLocale }) => {
     const classes = useStyles();
-    const theme = useTheme();
     const status = notification.payload;
     const user = status.account;
-    const disableLeftPadding = useMediaQuery(theme.breakpoints.down('md')) && status.status_reference_type === 'REPOST';
 
     return (
         <Card
@@ -27,27 +46,18 @@ const _NewStatusNotifications = ({ notification, l, dateFnsLocale }) => {
         >
             <NotificationTitle
                 user={user}
-                actionLabel={l('notification.new-post')}
+                actionLabel={translationsMap[locale]({ classes, routerStore, statusId: status.id })}
                 icon={<IgniteOrangeIcon />}
                 pixelsToAddToIconRightPadding={4}
                 createdAt={notification.created_at}
                 dateFnsLocale={dateFnsLocale}
             />
-            <CardContent classes={{
-                root: classes.cardContentRoot,
-            }}
-            >
-                <Hidden xsDown>
-                    <NotificationLeftMargin/>
-                </Hidden>
-                <RepostedStatusContent
-                    disableLeftPadding={disableLeftPadding}
-                    repostedStatus={status}
-                    hideBorders
-                />
-            </CardContent>
         </Card>
     );
 };
 
-export const NewStatusNotification = localized(_NewStatusNotifications);
+const mapMobxToProps = ({ store }) => ({ routerStore: store });
+
+export const NewStatusNotification = localized(
+    inject(mapMobxToProps)(observer(_NewStatusNotifications)),
+);

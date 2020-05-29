@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     notificationsError: {
         border: '1px solid #F1EBE8',
         borderBottom: 'none',
-        height: '100%'
+        height: '100%',
     },
     notificationsErrorInfo: {
         display: 'flex',
@@ -48,8 +48,8 @@ const useStyles = makeStyles(theme => ({
             fontSize: '20px',
             margin: '24px 0 4px 0',
             color: '#1C1C1C',
-        }
-    }
+        },
+    },
 }));
 
 const noNotifications = {
@@ -95,19 +95,19 @@ const noNotifications = {
 
 const _NotificationsList = ({ notifications, fetchNotifications, currentUser, hasMore, l, locale }) => {
     const classes = useStyles();
-    
+
     if (!currentUser) {
         return (
-          <div className={ classes.notificationsError }>
-              <div className={ classes.notificationsErrorInfo }>
-                  <BellIcon width={ '50' } height={ '50' } color={ '#A1A1A1' }/>
-                  <p>Nothing to display yet!</p>
-                  <span>Please login or sign up to receive notifications</span>
-              </div>
-          </div>
+            <div className={classes.notificationsError}>
+                <div className={classes.notificationsErrorInfo}>
+                    <BellIcon width="50" height="50" color="#A1A1A1" />
+                    <p>Nothing to display yet!</p>
+                    <span>Please login or sign up to receive notifications</span>
+                </div>
+            </div>
         );
     }
-    
+
     if (notifications.length === 0 && !hasMore) {
         return noNotifications[locale](classes);
     }

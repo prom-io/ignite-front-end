@@ -1,16 +1,19 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { observer } from 'mobx-react';
 import { AppBar } from '../AppBar/components';
 import { localized } from '../localization/components';
 import { NotificationsList } from '../Notification/components';
 import { PrometeusDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { ExploreOurFeaturesDescription } from '../PrometeusDescription';
-import { inject, observer } from 'mobx-react';
+import {useAuthorization} from "../store/hooks";
 
-const _NotificationsPage = ({ currentUser, l }) => (
-    <Grid container>
+export const NotificationsPage = observer(() => {
+    const { currentUser } = useAuthorization();
+
+    return (
+       <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="notifications" />
         </Grid>
@@ -35,12 +38,5 @@ const _NotificationsPage = ({ currentUser, l }) => (
             </Layout>
         </Grid>
     </Grid>
-);
-
-const mapMobxToProps = ({ authorization, timelineSwitcher }) => ({
-  currentUser: authorization.currentUser,
-  homepageTimeline: timelineSwitcher.currentTimeline,
+    );
 });
-
-export const NotificationsPage = localized(
-  inject(mapMobxToProps)(observer(_NotificationsPage)));

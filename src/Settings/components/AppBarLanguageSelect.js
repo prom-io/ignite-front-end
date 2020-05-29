@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Select, MenuItem, ListItemText, InputLabel, makeStyles } from '@material-ui/core';
 import { localized } from '../../localization/components';
+import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles({
-    root: {
-    },
     styledSelectBox: {
         border: 'none',
         height: 34,
@@ -46,6 +45,9 @@ const useStyles = makeStyles({
         },
         '& .MuiSelect-select:focus': {
             background: 'none',
+        },
+        '& .MuiList-padding':{
+            padding: 0,
         }
     },
     styletMenuItem: {
@@ -55,6 +57,9 @@ const useStyles = makeStyles({
             margin: 0,
         },
     },
+    selectMenu: {
+        padding: 0
+    }
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {

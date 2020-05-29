@@ -4,8 +4,9 @@ export const orange = createMuiTheme({
   overrides: {
     MuiMenu: {
       paper: {
-        top: '20px',
-        right: '100px',
+        top: '50px !important',
+        right: '100px !important',
+        left: 'auto !important'
       },
     }
   },

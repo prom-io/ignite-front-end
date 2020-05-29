@@ -62,13 +62,13 @@ const useStyles = makeStyles(theme => ({
         },
     },
     textArea: {
-      width: '516px',
+        width: '516px',
         overflowY: 'auto',
     },
     avatarIconMini: {
         width: 35,
         height: 35,
-    }
+    },
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -111,7 +111,7 @@ const _CreateStatusForm = ({
                 }}
             >
                 {referredStatus && (
-                    <Grid item >
+                    <Grid item>
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')

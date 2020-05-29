@@ -35,7 +35,7 @@ const _HomeTimeline = ({
     fetchStatuses,
     pending,
     currentUser,
-    hasMore
+    hasMore,
 }) => {
     const classes = useStyles();
 
@@ -46,7 +46,7 @@ const _HomeTimeline = ({
                 <Grid item className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm />
                 </Grid>
-                <Grid item  className={classes.gridItemOverridePadding}>
+                <Grid item className={classes.gridItemOverridePadding}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

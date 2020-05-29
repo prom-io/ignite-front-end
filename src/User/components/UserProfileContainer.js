@@ -54,7 +54,7 @@ const _UserProfileContainer = ({
 
     return (
         <Grid container spacing={2} className="user-profile-container">
-            <Grid item  className="user-profile-header">
+            <Grid item className="user-profile-header">
                 <UserProfileHeader
                     followers={user.followers_count}
                     following={user.follows_count}
@@ -71,7 +71,7 @@ const _UserProfileContainer = ({
                     createdAt={new Date(user.created_at)}
                 />
             </Grid>
-            <Grid item  md={7} className="user-profile-content-container">
+            <Grid item md={7} className="user-profile-content-container">
                 <Grid className="user-profile-info">
                     <UserProfileInfo
                         createdAt={new Date(user.created_at)}

@@ -25,7 +25,7 @@ export const StatusList = ({
     hideThreadLinks,
     hasMore,
 }) => {
-    const classes = useStyles({radius: 55});
+    const classes = useStyles({ radius: 55 });
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">

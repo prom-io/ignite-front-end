@@ -20,33 +20,33 @@ const _StaticPageFooter = ({ routerStore, l }) => {
         <div className="static-page-footer-container">
             <div className="static-page-footer">
                 <footer>
-                <div>
-                    <p>
-                        © 2020
-                        {Prometeus}
-                        {' '}
-                        Team
-                    </p>
-                </div>
-                <div>
-                    <ul>
-                        <li>
-                            <StaticPageLinks
-                                targetView={Routes.terms}
-                                routerStore={routerStore}
-                                linkTekst={links.termsOfService}
-                            />
-                        </li>
-                        <li>&bull;</li>
-                        <li>
-                            <StaticPageLinks
-                                targetView={Routes.terms}
-                                routerStore={routerStore}
-                                linkTekst={links.privacyPolicy}
-                            />
-                        </li>
-                    </ul>
-                </div>
+                    <div>
+                        <p>
+                            © 2020
+                            {Prometeus}
+                            {' '}
+                            Team
+                        </p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <StaticPageLinks
+                                    targetView={Routes.terms}
+                                    routerStore={routerStore}
+                                    linkTekst={links.termsOfService}
+                                />
+                            </li>
+                            <li>&bull;</li>
+                            <li>
+                                <StaticPageLinks
+                                    targetView={Routes.terms}
+                                    routerStore={routerStore}
+                                    linkTekst={links.privacyPolicy}
+                                />
+                            </li>
+                        </ul>
+                    </div>
                 </footer>
             </div>
         </div>

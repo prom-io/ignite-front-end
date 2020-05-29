@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: '300 !important',
             '&:hover': {
                 color: '#FF5C01 !important',
-            }
+            },
         },
     },
     styledText: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px !important',
             lineHeight: '23px !important',
             color: '#A2A2A2 !important',
-            margin: '0 0 6px 0'
+            margin: '0 0 6px 0',
         },
     },
 }));

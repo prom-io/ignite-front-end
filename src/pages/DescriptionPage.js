@@ -30,7 +30,7 @@ const _DescriptionPage = ({ routerStore }) => {
                 </Link>
             </div>
             <Grid container spacing={2} className="description-container">
-                <Grid item >
+                <Grid item>
                     <Typography variant="body2">
                         Try
                         {' '}
@@ -38,14 +38,14 @@ const _DescriptionPage = ({ routerStore }) => {
                         , which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
                     </Typography>
                 </Grid>
-                <Grid item >
+                <Grid item>
                     <Typography variant="body2">
                         <span>Ignite </span>
                         {' '}
                         is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
                     </Typography>
                 </Grid>
-                <Grid item >
+                <Grid item>
                     <DescriptionLinks />
                 </Grid>
             </Grid>

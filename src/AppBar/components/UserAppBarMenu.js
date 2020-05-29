@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
         height: 34,
         width: 34,
         border: '1px solid #F1EBE8',
-    }
+    },
 }));
 
 const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
@@ -79,9 +79,12 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                     onClick={handleToggle}
                     className="user-app-bar-menu-button"
                 >
-                    <Avatar src={currentUser.avatar} classes={{
-                        root: classes.avatarRoot
-                    }}/>
+                    <Avatar
+                        src={currentUser.avatar}
+                        classes={{
+                            root: classes.avatarRoot,
+                        }}
+                    />
                 </IconButton>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (

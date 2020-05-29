@@ -46,11 +46,11 @@ const _GlobalTimeline = ({
         : (
             <Grid container spacing={2}>
                 {currentUser && (
-                    <Grid item  className={classes.paddingCorective}>
+                    <Grid item className={classes.paddingCorective}>
                         <CreateStatusForm />
                     </Grid>
                 )}
-                <Grid item  className={classes.statusListBorderCorrective}>
+                <Grid item className={classes.statusListBorderCorrective}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

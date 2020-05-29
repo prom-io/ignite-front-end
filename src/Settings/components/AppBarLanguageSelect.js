@@ -13,14 +13,14 @@ const useStyles = makeStyles({
         borderRadius: 100,
         '& :hover': {
             borderRadius: '100%',
-            background:'#FFDECC',
+            background: '#FFDECC',
         },
         '& :hover p': {
-            color: '#FF5C01'
+            color: '#FF5C01',
         },
         '& span:hover p': {
             background: 'none',
-            color: '#FF5C01'
+            color: '#FF5C01',
         },
         '& div': {
             height: 34,
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
         },
         '& .MuiSelect-select:focus': {
             background: 'none',
-        }
+        },
     },
     styledMenuItem: {
         width: '118px',
@@ -58,7 +58,7 @@ const useStyles = makeStyles({
     styledOpenMenu: {
         right: '100px',
         top: 50,
-    }
+    },
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
@@ -70,7 +70,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                 value={locale}
                 className={classes.styledSelectBox}
                 classes={{
-                    root: classes.styledSelectBox
+                    root: classes.styledSelectBox,
                 }}
                 onChange={event => setSelectedLanguage(event.target.value)}
                 style={{

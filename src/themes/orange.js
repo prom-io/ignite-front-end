@@ -5,23 +5,23 @@ export const orange = createMuiTheme({
         MuiDialogTitle: {
             root: {
                 background: '#FFFBF8',
-            }
+            },
         },
         MuiButton: {
             root: {
                 borderRadius: '30px',
-            }
+            },
         },
         MuiDialogContent: {
             root: {
                 padding: 0,
                 margin: '24px 62px',
-            }
+            },
         },
         MuiDialog: {
             paperWidthSm: {
                 maxWidth: '648px',
-            }
+            },
         },
         MuiInputBase: {
             input: {

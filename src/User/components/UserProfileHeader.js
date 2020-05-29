@@ -62,10 +62,10 @@ const _UserProfileHeader = ({
         <Grid container className="user-profile-header-content another-user">
             <Grid className="user-profile-header-content-top">
                 <Grid container>
-                    <Grid item  className="justify-content-center">
+                    <Grid item className="justify-content-center">
                         <UserProfileAvatar avatarUrl={avatar} />
                     </Grid>
-                    <Grid item >
+                    <Grid item>
                         <div className="user-card-username">
                             <h4>{addLineBreak(username)}</h4>
                             <p>{addLineBreak(displayName) }</p>
@@ -94,7 +94,7 @@ const _UserProfileHeader = ({
                         onSelectActive={() => onTabSelected('following')}
                     />
                 </Grid>
-                <Grid item >
+                <Grid item>
                     <Typography variant="body1" noWrap className="user-profile-info-text justify-content-center">
                         {l('user.profile.member-since')}
                         {' '}

@@ -9,10 +9,10 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
         border: '1px solid #F1EBE8',
         borderRadius: '4px 4px 0px 0px',
-        paddingBottom: '8px'
+        paddingBottom: '8px',
     },
     loginCardContent: {
-        padding: '20px'
+        padding: '20px',
     },
     loginButton: {
         maxWidth: 374,

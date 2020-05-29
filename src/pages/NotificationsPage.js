@@ -6,7 +6,7 @@ import { NotificationsList } from '../Notification/components';
 import { PrometeusDescription, ExploreOurFeaturesDescription } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import {useAuthorization} from "../store/hooks";
+import { useAuthorization } from '../store/hooks';
 
 export const NotificationsPage = observer(() => {
     const { currentUser } = useAuthorization();

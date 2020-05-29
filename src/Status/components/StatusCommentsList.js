@@ -30,15 +30,15 @@ const _StatusCommentsList = ({
 
     return (
         <Grid container spacing={2}>
-            <Grid item >
+            <Grid item>
                 <Typography variant="h6">
                     {l('status.comments')}
                 </Typography>
             </Grid>
-            <Grid item >
+            <Grid item>
                 {pending && statuses.length === 0 && <CircularProgress size={20} className={classes.centered} />}
             </Grid>
-            <Grid item >
+            <Grid item>
                 {statuses.length === 0 && !pending && <Typography color="textSecondary">{l('status.no-comments')}</Typography>}
                 <StatusList
                     statuses={statuses}

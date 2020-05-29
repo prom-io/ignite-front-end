@@ -20,127 +20,127 @@ import { PasswordUpdatedError } from './resetPassword/PasswordUpdatedError';
 import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 
-/**Список всех возможных диалоговых окон для регистрации и восстановления пароля*/
+/** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
-  signUp: {
-    id: 'signUp',
-    component: <SignUp/>,
-    title: 'Sign Up',
-    type: 'default', // в зависимости от type меняеться иконка в dialogHeader. Возможные варианты: default, attention
-  },
-  createWallet: {
-    id: 'createWallet',
-    component: <CreateWallet/>,
-    title: 'Wallet Created',
-    type: 'default',
-  },
-  attention: {
-    id: 'attention',
-    component: <Attention/>,
-    title: 'Attention',
-    type: 'attention',
-  },
-  welcome: {
-    id: 'welcome',
-    component: <Welcome/>,
-    title: 'Welcome to Ignite!',
-    type: 'default',
-  },
-  errorAuthorization: {
-    id: 'errorAuthorization',
-    component: <ErrorAuthorization/>,
-    title: 'Oops!',
-    type: 'default',
-  },
-  createAccount: {
-    id: 'createAccount',
-    component: <CreateAccount/>,
-    title: 'Create an Account',
-    type: 'default',
-  },
-  generateHash: {
-    id: 'generateHash',
-    component: <GenerateHash/>,
-    title: 'Generate a Hashcode',
-    type: 'default',
-  },
-  verifyHash: {
-    id: 'verifyHash',
-    component: <Verify/>,
-    title: 'Verify hashcode',
-    type: 'default',
-  },
-  verifyError: {
-    id: 'verifyError',
-    component: <ErrorVerify/>,
-    title: 'Oops!',
-    type: 'default',
-  },
-  forgotPassword: {
-    id: 'forgotPassword',
-    component: <ForgotPassword/>,
-    title: 'Forgot your Password?',
-    type: 'default',
-  },
-  resetPassword: {
-    id: 'resetPassword',
-    component: <ResetPassword/>,
-    title: 'Reset Password',
-    type: 'default',
-  },
-  changePassword: {
-    id: 'changePassword',
-    component: <ChangePassword/>,
-    title: 'Change Your Password',
-    type: 'default',
-  },
-  passwordUpdated: {
-    id: 'passwordUpdated',
-    component: <PasswordUpdated/>,
-    title: 'Password Updated',
-    type: 'default',
-  },
-  passwordUpdatedError: {
-    id: 'passwordUpdatedError',
-    component: <PasswordUpdatedError />,
-    title: 'Oops!',
-    type: 'default',
-  },
-  updatePasswordError: {
-    id: 'updatePasswordError',
-    component: <UpdatePasswordError />,
-    title: 'Oops!',
-    type: 'default',
-  },
-  resetWithoutKey: {
-    id: 'resetWithoutKey',
-    component: <ResetWithoutKey/>,
-    title: 'Reset Password',
-    type: 'default',
-  },
-  changePasswordWithHash: {
-    id: 'changePasswordWithHash',
-    component: <ChangePasswordWithHash/>,
-    title: 'Change Your Password',
-    type: 'default',
-  },
+    signUp: {
+        id: 'signUp',
+        component: <SignUp />,
+        title: 'Sign Up',
+        type: 'default', // в зависимости от type меняеться иконка в dialogHeader. Возможные варианты: default, attention
+    },
+    createWallet: {
+        id: 'createWallet',
+        component: <CreateWallet />,
+        title: 'Wallet Created',
+        type: 'default',
+    },
+    attention: {
+        id: 'attention',
+        component: <Attention />,
+        title: 'Attention',
+        type: 'attention',
+    },
+    welcome: {
+        id: 'welcome',
+        component: <Welcome />,
+        title: 'Welcome to Ignite!',
+        type: 'default',
+    },
+    errorAuthorization: {
+        id: 'errorAuthorization',
+        component: <ErrorAuthorization />,
+        title: 'Oops!',
+        type: 'default',
+    },
+    createAccount: {
+        id: 'createAccount',
+        component: <CreateAccount />,
+        title: 'Create an Account',
+        type: 'default',
+    },
+    generateHash: {
+        id: 'generateHash',
+        component: <GenerateHash />,
+        title: 'Generate a Hashcode',
+        type: 'default',
+    },
+    verifyHash: {
+        id: 'verifyHash',
+        component: <Verify />,
+        title: 'Verify hashcode',
+        type: 'default',
+    },
+    verifyError: {
+        id: 'verifyError',
+        component: <ErrorVerify />,
+        title: 'Oops!',
+        type: 'default',
+    },
+    forgotPassword: {
+        id: 'forgotPassword',
+        component: <ForgotPassword />,
+        title: 'Forgot your Password?',
+        type: 'default',
+    },
+    resetPassword: {
+        id: 'resetPassword',
+        component: <ResetPassword />,
+        title: 'Reset Password',
+        type: 'default',
+    },
+    changePassword: {
+        id: 'changePassword',
+        component: <ChangePassword />,
+        title: 'Change Your Password',
+        type: 'default',
+    },
+    passwordUpdated: {
+        id: 'passwordUpdated',
+        component: <PasswordUpdated />,
+        title: 'Password Updated',
+        type: 'default',
+    },
+    passwordUpdatedError: {
+        id: 'passwordUpdatedError',
+        component: <PasswordUpdatedError />,
+        title: 'Oops!',
+        type: 'default',
+    },
+    updatePasswordError: {
+        id: 'updatePasswordError',
+        component: <UpdatePasswordError />,
+        title: 'Oops!',
+        type: 'default',
+    },
+    resetWithoutKey: {
+        id: 'resetWithoutKey',
+        component: <ResetWithoutKey />,
+        title: 'Reset Password',
+        type: 'default',
+    },
+    changePasswordWithHash: {
+        id: 'changePasswordWithHash',
+        component: <ChangePasswordWithHash />,
+        title: 'Change Your Password',
+        type: 'default',
+    },
 };
 
-const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSignUpDialogOpen }) => {
-    return (
-      <Dialog
+const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSignUpDialogOpen }) => (
+    <Dialog
         open={loginDialogOpen}
         onClose={() => setLoginDialogOpen(false)}
         fullScreen={fullScreen}
         fullWidth
-        scroll={'body'}
-      >
+        scroll="body"
+    >
         /*В заголовке title тоже берться из меняющегося компонента*/
-        <CustomDialogTitle title={dialogType.createWallet.title} setLoginDialogOpen={setLoginDialogOpen}/>
-        <CreateWallet/> /** Изменяющийся контент */
-      </Dialog>
-    );
-};
+        <CustomDialogTitle title={dialogType.createWallet.title} setLoginDialogOpen={setLoginDialogOpen} />
+        <CreateWallet />
+        {' '}
+        /** Изменяющийся контент */
+    </Dialog>
+);
 
 const mapMobxToProps = ({ login, signUp }) => ({
     setLoginDialogOpen: login.setLoginDialogOpen,

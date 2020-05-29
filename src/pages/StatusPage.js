@@ -5,12 +5,12 @@ import { StatusBtfsInfoDialog, StatusPageContainer } from '../Status/components'
 
 export const StatusPage = () => (
     <Grid container>
-        <Grid item >
+        <Grid item>
             <AppBar />
         </Grid>
-        <Grid item >
-            <Grid container spacing={2} className="content-container" >
-                <Grid item  lg={9} className="right-content-container">
+        <Grid item>
+            <Grid container spacing={2} className="content-container">
+                <Grid item lg={9} className="right-content-container">
                     <StatusPageContainer />
                 </Grid>
             </Grid>

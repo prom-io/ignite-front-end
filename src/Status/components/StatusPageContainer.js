@@ -23,8 +23,8 @@ const useStyles = makeStyles(() => ({
         '&:hover': {
             background: 'rgba(255, 92, 1, 0.2)',
             borderRadius: '30px',
-        }
-    }
+        },
+    },
 }));
 
 const getLabelFromError = error => {
@@ -78,7 +78,7 @@ const _StatusPageContainer = ({
 
     return (
         <Grid container spacing={2}>
-            <Grid >
+            <Grid>
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -96,7 +96,7 @@ const _StatusPageContainer = ({
                     </Typography>
                 </div>
             </Grid>
-            <Grid item >
+            <Grid item>
                 <StatusListItem
                     status={status}
                     statusLikePending={statusLikePending}
@@ -107,7 +107,7 @@ const _StatusPageContainer = ({
                     displayMenu={Boolean(currentUser)}
                 />
             </Grid>
-            <Grid item >
+            <Grid item>
                 <StatusCommentsList />
             </Grid>
         </Grid>

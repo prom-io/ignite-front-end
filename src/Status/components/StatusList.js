@@ -24,6 +24,7 @@ export const StatusList = ({
     onNextPageRequest,
     header,
     hideThreadLinks,
+    hasMore,
 }) => {
     const classes = useStyles({radius: 55});
 
@@ -32,7 +33,7 @@ export const StatusList = ({
             {header && statuses.length !== 0 && <Typography variant="h6">{header}</Typography>}
             <InfiniteScroll
                 next={onNextPageRequest}
-                hasMore
+                hasMore={hasMore}
                 loader={<CircularProgress size={15} color="primary" className={classes.centered} />}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}

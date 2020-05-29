@@ -23,6 +23,7 @@ const _StatusCommentsList = ({
     fetchStatuses,
     pending,
     currentUser,
+    hasMore,
     l,
 }) => {
     const classes = useStyles();
@@ -51,6 +52,7 @@ const _StatusCommentsList = ({
                     statusLikePendingMap={statusLikePendingMap}
                     repostsPendingMap={repostsPendingMap}
                     hideThreadLinks
+                    hasMore={hasMore}
                 />
             </Grid>
         </Grid>
@@ -68,6 +70,7 @@ const mapMobxToProps = ({ statusComments, authorization, createStatus }) => ({
     fetchStatuses: statusComments.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
+    hasMore: statusComments.hasMore,
 });
 
 export const StatusCommentsList = localized(

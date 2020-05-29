@@ -34,13 +34,14 @@ const _HomeTimeline = ({
     fetchStatuses,
     pending,
     currentUser,
+    hasMore
 }) => {
     const classes = useStyles();
 
     return pending && statuses.length === 0
         ? <CircularProgress size={20} className={classes.centered} />
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm />
                 </Grid>
@@ -56,6 +57,7 @@ const _HomeTimeline = ({
                         displayMenu={Boolean(currentUser)}
                         statusLikePendingMap={statusLikePendingMap}
                         repostsPendingMap={repostsPendingMap}
+                        hasMore={hasMore}
                     />
                 </Grid>
             </Grid>
@@ -73,6 +75,7 @@ const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
+    hasMore: homeTimeline.hasMore,
 });
 
 export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

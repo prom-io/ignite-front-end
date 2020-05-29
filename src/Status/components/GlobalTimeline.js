@@ -37,13 +37,14 @@ const _GlobalTimeline = ({
     fetchStatuses,
     pending,
     currentUser,
+    hasMore,
 }) => {
     const classes = useStyles();
 
     return pending && statuses.length === 0
         ? <CircularProgress size={40} className={classes.centered} />
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 {currentUser && (
                     <Grid item xs={12} className={classes.paddingCorective}>
                         <CreateStatusForm />
@@ -61,6 +62,7 @@ const _GlobalTimeline = ({
                         currentUser={currentUser}
                         statusLikePendingMap={statusLikePendingMap}
                         repostsPendingMap={repostsPendingMap}
+                        hasMore={hasMore}
                     />
                 </Grid>
             </Grid>
@@ -78,6 +80,7 @@ const mapMobxToProps = ({ globalTimeline, authorization, createStatus }) => ({
     fetchStatuses: globalTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
+    hasMore: globalTimeline.hasMore,
 });
 
 export const GlobalTimeline = inject(mapMobxToProps)(observer(_GlobalTimeline));

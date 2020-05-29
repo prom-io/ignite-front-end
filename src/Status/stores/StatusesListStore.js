@@ -18,6 +18,9 @@ export class StatusesListStore {
     @observable
     onlyAddCommentsToThisStatus = undefined;
 
+    @observable
+    hasMore = true;
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
@@ -102,7 +105,13 @@ export class StatusesListStore {
                         url = `${this.baseUrl}?since_id=${minId}`;
                     }
                     axiosInstance.get(url)
-                        .then(({data}) => this.statuses.push(...data))
+                        .then(({data}) => {
+                            if (data.length !== 0) {
+                                this.statuses.push(...data);
+                            } else {
+                                this.hasMore = false;
+                            }
+                        })
                         .finally(() => this.pending = false);
                 } else {
                     let url;
@@ -118,7 +127,13 @@ export class StatusesListStore {
                         url = `${this.baseUrl}?max_id=${maxId}`
                     }
                     axiosInstance.get(url)
-                        .then(({data}) => this.statuses.push(...data))
+                        .then(({data}) => {
+                            if (data.length !== 0) {
+                                this.statuses.push(...data);
+                            } else {
+                                this.hasMore = false;
+                            }
+                        })
                         .finally(() => this.pending = false);
                 }
             } else {
@@ -135,7 +150,13 @@ export class StatusesListStore {
                 }
 
                 axiosInstance.get(`${url}`)
-                    .then(({data}) => this.statuses.push(...data))
+                    .then(({data}) => {
+                        if (data.length !== 0) {
+                            this.statuses.push(...data);
+                        } else {
+                            this.hasMore = false;
+                        }
+                    })
                     .finally(() => this.pending = false)
             }
         }

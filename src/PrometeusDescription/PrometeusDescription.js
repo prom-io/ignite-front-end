@@ -63,7 +63,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
     return (
         <Grid container spacing={2} className="description-container">
 
-            <Grid className="user_profile_container" style={{ padding: '8px 0' }}>
+            <Grid className="user_profile_container">
                 {currentUser ? <UserCard isLogin /> : <DescriptionUnauthBanner />}
             </Grid>
 

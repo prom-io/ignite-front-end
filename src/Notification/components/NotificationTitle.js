@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
-import { Avatar, CardHeader, makeStyles, Typography, Hidden } from '@material-ui/core';
+import { Avatar, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import { Routes } from '../../routes';
 import { SmallEllipseIcon } from '../../icons/SmallEllipseIcon';
 import { getCreatedAtLabel } from '../../utils/date-utlis';
@@ -87,7 +87,8 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                                 @
                                 {user.username}
                             </Link>
-                            {` ${actionLabel}`}
+                            {' '}
+                            {actionLabel}
                         </Typography>
                         <Typography className={classes.createdAtTypography}>
                             <SmallEllipseIcon />

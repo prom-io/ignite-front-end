@@ -1,9 +1,9 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
-import { localized } from '../../localization/components';
+import { useStore, useAuthorization, useLocalization } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     notificationsError: {
         border: '1px solid #F1EBE8',
         borderBottom: 'none',
-        height: '100%'
+        height: '100%',
     },
     notificationsErrorInfo: {
         display: 'flex',
@@ -48,8 +48,8 @@ const useStyles = makeStyles(theme => ({
             fontSize: '20px',
             margin: '24px 0 4px 0',
             color: '#1C1C1C',
-        }
-    }
+        },
+    },
 }));
 
 const noNotifications = {
@@ -93,21 +93,25 @@ const noNotifications = {
     ),
 };
 
-const _NotificationsList = ({ notifications, fetchNotifications, currentUser, hasMore, l, locale }) => {
+export const NotificationsList = observer(() => {
     const classes = useStyles();
-    
+    const notificationsStore = useStore().notifications;
+    const { notifications, fetchNotifications, hasMore } = notificationsStore;
+    const { currentUser } = useAuthorization();
+    const { locale } = useLocalization();
+
     if (!currentUser) {
         return (
-          <div className={ classes.notificationsError }>
-              <div className={ classes.notificationsErrorInfo }>
-                  <BellIcon width={ '50' } height={ '50' } color={ '#A1A1A1' }/>
-                  <p>Nothing to display yet!</p>
-                  <span>Please login or sign up to receive notifications</span>
-              </div>
-          </div>
+            <div className={classes.notificationsError}>
+                <div className={classes.notificationsErrorInfo}>
+                    <BellIcon width="50" height="50" color="#A1A1A1" />
+                    <p>Nothing to display yet!</p>
+                    <span>Please login or sign up to receive notifications</span>
+                </div>
+            </div>
         );
     }
-    
+
     if (notifications.length === 0 && !hasMore) {
         return noNotifications[locale](classes);
     }
@@ -136,15 +140,4 @@ const _NotificationsList = ({ notifications, fetchNotifications, currentUser, ha
             </InfiniteScroll>
         </div>
     );
-};
-
-const mapMobxToProps = ({ notifications, authorization }) => ({
-    notifications: notifications.notifications,
-    fetchNotifications: notifications.fetchNotifications,
-    currentUser: authorization.currentUser,
-    hasMore: notifications.hasMore,
 });
-
-export const NotificationsList = localized(
-    inject(mapMobxToProps)(observer(_NotificationsList)),
-);

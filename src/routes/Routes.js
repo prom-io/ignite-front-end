@@ -65,13 +65,12 @@ export const Routes = {
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,
-        beforeEnter: (route) => {
+        beforeEnter: (route, params, st) => {
             // if (!store.authorization.currentUser) {
-            //     console.log(route)
-            //     route.goTo(Routes.home);
-            //     return false;
+            //     st.router.goTo(Routes.home, {});
+            // } else {
+                store.followPeople.fetchFollowPeople();
             // }
-            store.followPeople.fetchFollowPeople();
         },
         onExit: () => {
             store.followPeople.reset();

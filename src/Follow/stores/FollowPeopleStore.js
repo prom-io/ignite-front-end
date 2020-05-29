@@ -32,8 +32,12 @@ export class FollowPeopleStore {
 
     @action
     doFollow = () => {
+        const username =
+            this.followInputValue[0] === "@"
+                ? this.followInputValue.slice(1)
+                : this.followInputValue;
         axiosInstance
-            .post(`/api/v1/accounts/${this.followInputValue}/follow`)
+            .post(`/api/v1/accounts/${username}/follow`)
             .then(({ data }) => {
                 this.followInputValue = "";
                 this.followResult = {
@@ -61,28 +65,6 @@ export class FollowPeopleStore {
                     this.followResult.type = "error";
                 }
             });
-    };
-
-    @action
-    followWithButton = user => {
-        if (user.following || user.followingForBtn) {
-            axiosInstance
-                .post(`/api/v1/accounts/${user.id}/unfollow`)
-                .then(() => {
-                    user.following = false;
-                    user.followingForBtn = false;
-                    this.authorizationStore.currentUser.follows_count -= 1;
-                })
-                .catch(error => (this.error = error));
-        } else {
-            axiosInstance
-                .post(`/api/v1/accounts/${user.id}/follow`)
-                .then(() => {
-                    user.followingForBtn = true;
-                    this.authorizationStore.currentUser.follows_count += 1;
-                })
-                .catch(error => (this.error = error));
-        }
     };
 
     @action

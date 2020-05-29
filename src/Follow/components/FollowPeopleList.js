@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const _FollowPeopleList = ({
     fetchFollowPeople,
     followPeopleItems,
-    followWithButton
+    actionWithFollow
 }) => {
     const classes = useStyles();
 
@@ -39,7 +39,7 @@ const _FollowPeopleList = ({
                 {followPeopleItems.map(user => (
                     <FollowPeopleItem
                         user={user}
-                        followWithButton={followWithButton}
+                        actionWithFollow={actionWithFollow}
                     />
                 ))}
             </InfiniteScroll>
@@ -47,10 +47,10 @@ const _FollowPeopleList = ({
     );
 };
 
-const mapMobxToProps = ({ followPeople }) => ({
+const mapMobxToProps = ({ followPeople, followAction }) => ({
     fetchFollowPeople: followPeople.fetchFollowPeople,
     followPeopleItems: followPeople.followPeopleItems,
-    followWithButton: followPeople.followWithButton
+    actionWithFollow: followAction.actionWithFollow
 });
 
 export const FollowPeopleList = inject(mapMobxToProps)(observer(_FollowPeopleList));

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { inject } from "mobx-react";
 import { Button, makeStyles } from "@material-ui/core";
 
 import { localized } from "../../localization/components";
@@ -44,11 +43,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _FollowButton = ({ user, handleClick, size, l }) => {
+const _FollowButton = ({ user, actionWithFollow, size, l }) => {
     const classes = useStyles();
     const [statusBtn, setStatusBtn] = useState(
         user.following ? "followed" : user.followingForBtn ? "following" : "follow"
-    ); // follow, followed, following or unfollow
+    );
 
     const handleMouseEnter = () => {
         if (statusBtn === "following" || statusBtn === "followed") {
@@ -68,14 +67,6 @@ const _FollowButton = ({ user, handleClick, size, l }) => {
         }
     };
 
-    const changeStatus = () => {
-        if (statusBtn === "follow") {
-            setStatusBtn("following");
-        } else if (statusBtn === "unfollow") {
-            setStatusBtn("follow");
-        }
-    };
-
     return (
         <Button
             variant="contained"
@@ -83,16 +74,11 @@ const _FollowButton = ({ user, handleClick, size, l }) => {
             className={[classes.followBtn, statusBtn, size].join(" ")}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => {
-                handleClick(user);
-                changeStatus();
-            }}
+            onClick={() => actionWithFollow(user, setStatusBtn)}
         >
             {l(`user.profile.${statusBtn}`)}
         </Button>
     );
 };
 
-const mapMobxToProps = ({}) => ({});
-
-export const FollowButton = localized(inject(mapMobxToProps)(_FollowButton));
+export const FollowButton = localized(_FollowButton);

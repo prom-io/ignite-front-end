@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _FollowPeopleItem = ({ user, followWithButton, routerStore }) => {
+const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
     const classes = useStyles();
 
     return (
@@ -83,7 +83,7 @@ const _FollowPeopleItem = ({ user, followWithButton, routerStore }) => {
                     </Typography>
                     <FollowButton
                         user={user}
-                        handleClick={followWithButton}
+                        actionWithFollow={actionWithFollow}
                         size="lg"
                     />
                 </div>

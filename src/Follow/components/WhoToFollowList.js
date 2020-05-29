@@ -13,32 +13,34 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _WhoToFollowList = ({
+    isMobile,
     fetchWhoToFollow,
     whoToFollowItems,
-    followWithButton,
+    actionWithFollow,
     pending
 }) => {
     const classes = useStyles();
+    const viewCount = isMobile ? 3 : 5;
 
     useEffect(() => {
         fetchWhoToFollow();
     }, []);
 
-    return whoToFollowItems.slice(0, 5).length === 0 && pending ? (
+    return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
         <CircularProgress size={15} className={classes.centered} />
     ) : (
         <SideBarList
-            users={whoToFollowItems.slice(0, 5)}
-            followWithButton={followWithButton}
+            users={whoToFollowItems.slice(0, viewCount)}
+            actionWithFollow={actionWithFollow}
         />
     );
 };
 
-const mapMobxToProps = ({ whoToFollow }) => ({
+const mapMobxToProps = ({ whoToFollow, followAction }) => ({
     fetchWhoToFollow: whoToFollow.fetchWhoToFollow,
     whoToFollowItems: whoToFollow.whoToFollowItems,
-    followWithButton: whoToFollow.followWithButton,
-    pending: whoToFollow.pending
+    pending: whoToFollow.pending,
+    actionWithFollow: followAction.actionWithFollow
 });
 
 export const WhoToFollowList = inject(mapMobxToProps)(observer(_WhoToFollowList));

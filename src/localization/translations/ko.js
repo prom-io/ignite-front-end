@@ -33,6 +33,7 @@ export const ko = {
     'follow.people.not-found': 'ПЕРЕВОД',
     'follow.people.success': 'ПЕРЕВОД',
     'follow.people.already': 'ПЕРЕВОД',
+    'unfollow.dialog.warning': 'ПЕРЕВОД',
     'authorization.login': '로그인',
     'authorization.login.wallet-address': '지갑 주소',
     'authorization.login.private-key': '개인 키',

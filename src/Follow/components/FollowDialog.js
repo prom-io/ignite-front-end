@@ -4,93 +4,126 @@ import {
     Button,
     Dialog,
     DialogContent,
+    DialogContentText,
+    DialogActions,
     DialogTitle,
-    makeStyles,
-    withMobileDialog
+    makeStyles
 } from "@material-ui/core";
 
+import { localized } from "../../localization/components";
+
 const useStyles = makeStyles(theme => ({
-    dialogActionButton: {
-        cancelButton: {
-            background: "transparent",
-            maxWidth: 374,
-            marginLeft: "auto",
-            marginRight: "auto",
-            display: "table",
-            fontFamily: "Museo Sans Cyrl Regular",
-            fontStyle: "normal",
-            fontWeight: "600",
+    unfollowDialog: {
+        maxWidth: "291px",
+        padding: "52px 48px"
+    },
+    unfollowDialogTitle: {
+        marginBottom: "24px",
+        padding: 0,
+
+        "& h2": {
+            fontWeight: 600,
+            fontSize: "20px",
+            lineHeight: "24px",
+            color: "#1C1C1C",
+            marginBottom: 0
+        }
+    },
+    unfollowDialogContent: {
+        marginBottom: "24px",
+        padding: 0,
+
+        "& p": {
+            margin: 0,
+            fontWeight: 300,
+            fontSize: "15px",
+            lineHeight: "26px",
+            color: "#1C1C1C"
+        }
+    },
+    dialogActionsButton: {
+        justifyContent: "space-between",
+        padding: 0,
+
+        "& button": {
+            height: "40px",
+            fontWeight: 600,
             fontSize: "15px",
             lineHeight: "18px",
-            textAlign: "center",
-            color: theme.palette.primary.main,
-            marginTop: "24px"
+            borderRadius: 30
         },
 
-        unfollowButton: {
-            maxWidth: 374,
-            marginLeft: "auto",
-            marginRight: "auto",
-            display: "table",
-            fontFamily: "Museo Sans Cyrl Regular",
-            fontStyle: "normal",
-            fontWeight: "600",
-            fontSize: "15px",
-            lineHeight: "18px",
-            textAlign: "center",
-            color: theme.palette.primary.main,
-            marginTop: "24px"
+        "& button:first-child": {
+            width: "124px",
+            background: "transparent",
+            border: `1px solid ${theme.palette.primary.main}`,
+            color: theme.palette.primary.main
+        },
+
+        "& button:last-child": {
+            width: "146px",
+            background: theme.palette.primary.main,
+            border: "none",
+            color: "#fff",
+            marginLeft: 0
         }
     }
 }));
 
 const _FollowDialog = ({
+    selectedUser,
     unfollowUser,
-    followDialogOpen,
-    setFollowDialogOpen,
-    fullScreen
+    unfollowDialogOpen,
+    setUnfollowDialogOpen,
+    l
 }) => {
     const classes = useStyles();
 
     return (
         <Dialog
-            open={followDialogOpen}
-            onClose={() => setFollowDialogOpen(false)}
-            fullScreen={fullScreen}
-            fullWidth
-            maxWidth="sm"
+            open={unfollowDialogOpen}
+            onClose={() => setUnfollowDialogOpen(false)}
         >
-            <DialogTitle>Вы уверены?</DialogTitle>
-            <DialogContent>
-                <Button
-                    variant="text"
-                    className={[classes.dialogActionButton, cancelButton].join(" ")}
-                    onClick={() => {
-                        setFollowDialogOpen(false);
-                    }}
-                >
-                    {l("user.profile.cancel")}
-                </Button>
-                <Button
-                    variant="text"
-                    className={[classes.dialogActionButton, unfollowButton].join(
-                        " "
-                    )}
-                    onClick={unfollowUser}
-                >
-                    {l("user.profile.unfollow")}
-                </Button>
-            </DialogContent>
+            <div className={classes.unfollowDialog}>
+                <DialogTitle className={classes.unfollowDialogTitle}>
+                    {l("user.profile.follow")} @{selectedUser.username}?
+                </DialogTitle>
+                <DialogContent className={classes.unfollowDialogContent}>
+                    <DialogContentText>
+                        {l("unfollow.dialog.warning")}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions className={classes.dialogActionsButton}>
+                    <Button
+                        variant="text"
+                        className={classes.cancelButton}
+                        onClick={() => {
+                            setUnfollowDialogOpen(false);
+                        }}
+                        autoFocus
+                    >
+                        {l("user.profile.cancel")}
+                    </Button>
+                    <Button
+                        variant="text"
+                        className={classes.unfollowButton}
+                        onClick={unfollowUser}
+                    >
+                        {l("user.profile.unfollow")}
+                    </Button>
+                </DialogActions>
+            </div>
         </Dialog>
     );
 };
 
-const mapMobxToProps = ({ followDialog }) => ({
-    unfollowUser: followDialog.unfollowUser,
-    setFollowDialogOpen: followDialog.setFollowDialogOpen,
-    followDialogOpen: followDialog.followDialogOpen
+const mapMobxToProps = ({ followAction }) => ({
+    selectedUser: followAction.selectedUser,
+    unfollowUser: followAction.unfollowUser,
+    setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen
 });
 
-export const FollowDialog = withMobileDialog()(
+export const FollowDialog = localized(
     inject(mapMobxToProps)(observer(_FollowDialog))
 );

@@ -50,7 +50,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _SideBarList = ({ users, followWithButton, routerStore }) => {
+const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
     const classes = useStyles();
 
     return users.map(user => (
@@ -77,7 +77,7 @@ const _SideBarList = ({ users, followWithButton, routerStore }) => {
                     <h3>{trimString(user.display_name, 24)}</h3>
                 </Link>
                 <small>@{trimString(user.username, 24)}</small>
-                <FollowButton user={user} handleClick={followWithButton} />
+                <FollowButton user={user} actionWithFollow={actionWithFollow} />
             </div>
         </div>
     ));

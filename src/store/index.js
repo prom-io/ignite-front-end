@@ -16,7 +16,7 @@ import {
     UserFollowingStore,
     UserProfileStore,
 } from '../User/stores';
-import { FollowPeopleStore, WhoToFollowStore, FollowDialogStore } from '../Follow/stores';
+import { FollowActionStore, FollowPeopleStore, WhoToFollowStore } from '../Follow/stores';
 import { SignUpStore } from '../SignUp/stores';
 import { DrawerStore } from '../AppBar/stores';
 import { LocaleStore } from '../localization/stores';
@@ -34,9 +34,9 @@ const userFollowers = new UserFollowersStore();
 const userFollowing = new UserFollowingStore();
 const userProfileTimeline = new StatusesListStore(authorization, createStatus);
 const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing);
+const followAction = new FollowActionStore(authorization);
 const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);
-const followDialog = new FollowDialogStore(authorization);
 const signUp = new SignUpStore(authorization, new Web3());
 const homeTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/home');
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
@@ -64,7 +64,7 @@ export const store = {
     userProfileTimeline,
     followPeople,
     whoToFollow,
-    followDialog,
+    followAction,
     signUp,
     homeTimeline,
     timelineSwitcher,

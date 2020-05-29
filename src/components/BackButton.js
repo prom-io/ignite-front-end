@@ -1,8 +1,10 @@
 import React from "react";
+import { inject } from "mobx-react";
 import { Typography, makeStyles } from "@material-ui/core";
 
 import { ArrowBackIcon } from "../icons/ArrowBackIcon";
 import { localized } from "../localization/components";
+import { Routes } from "../routes";
 
 const useStyles = makeStyles(() => ({
     backButtonWrapper: {
@@ -31,13 +33,19 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _BackButton = ({ title, l }) => {
+const _BackButton = ({ title, toHome, routerStore, l }) => {
     const classes = useStyles();
 
     return (
         <div className={classes.backButtonWrapper}>
             <div
-                onClick={() => window.history.back()}
+                onClick={() => {
+                    if (toHome) {
+                        routerStore.router.goTo(Routes.home);
+                    } else {
+                        window.history.back();
+                    }
+                }}
                 className={classes.backButton}
             >
                 <ArrowBackIcon />
@@ -49,4 +57,8 @@ const _BackButton = ({ title, l }) => {
     );
 };
 
-export const BackButton = localized(_BackButton);
+const mapMobxToProps = ({ store }) => ({
+    routerStore: store
+});
+
+export const BackButton = localized(inject(mapMobxToProps)(_BackButton));

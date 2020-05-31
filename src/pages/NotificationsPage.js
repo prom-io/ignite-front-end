@@ -8,7 +8,6 @@ import { PrometeusDescription, ExploreOurFeaturesDescription } from '../Prometeu
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import {useAuthorization} from "../store/hooks";
-import { ExploreOurFeaturesDescription } from '../PrometeusDescription';
 
 export const NotificationsPage = observer(() => {
     const { currentUser } = useAuthorization();

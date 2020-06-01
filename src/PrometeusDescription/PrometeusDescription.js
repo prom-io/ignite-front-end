@@ -4,7 +4,7 @@ import { Link } from 'mobx-router';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
 import BinanceBanner from '../images/binance-banner.jpg';
 import JustBanner from '../images/just-banner.png';
-import UserCard from '../components/UserCard';
+import { UserCard } from '../components/UserCard';
 import { DescriptionLinks } from '../components/DescriptionLinks';
 import { BtfsIcon } from '../icons/BtfsIcon';
 import { Routes } from '../routes';

@@ -683,12 +683,12 @@ p
   box-sizing: border-box
   border-radius: 4px
   @media screen and( max-width: 960px )
-                       margin-right: 0 !important
-                       max-width: 600px !important
-  // height: 360px !important
-  // margin-bottom: 20px !important
-                       margin-top: 70px !important
-                       height: 450px !important
+    margin-right: 0 !important
+    max-width: 600px !important
+    // height: 360px !important
+    // margin-bottom: 20px !important
+    margin-top: 60px !important
+    height: 450px !important
 
 .user-profile-header-content
   max-width: 256px !important
@@ -777,6 +777,7 @@ p
   padding-left: 6px
   margin-bottom: 8px
   &:first-child
+    margin-top: 20px
     margin-bottom: 10px !important
   &:nth-child(2)
     margin-bottom: 6px !important
@@ -797,6 +798,8 @@ p
   justify-content: center
   flex-wrap: wrap
   align-items: flex-start
+  @media (max-width: 556px)
+    padding-top: 70px
   div
     width: 100%
     display: flex
@@ -860,7 +863,7 @@ p
   @media (max-width: 960px)
     margin-bottom: 50px
   @media (max-width: 556px)
-    margin-bottom: 70px
+    display: none
   //   justify-content: space-between
   //   margin: 0
   //   min-height: 100px

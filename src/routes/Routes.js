@@ -9,6 +9,7 @@ import {
     SetEnglishLanguageAndRedirectToHomePage,
     SetKoreanLanguageAndRedirectToHomePage,
     StatusPage,
+    FollowPeoplePage,
     TermsAndPoliciesPage,
     TrendsPage,
     UserProfilePage,
@@ -32,6 +33,7 @@ export const Routes = {
         onExit: () => {
             store.timelineSwitcher.setSwitchOnUserChange(false);
             store.timelineSwitcher.selectedTimeline.reset();
+            store.whoToFollow.reset();
         },
     }),
     en: new Route({
@@ -58,6 +60,20 @@ export const Routes = {
 
         },
         onExit: () => {
+        },
+    }),
+    followPeople: new Route({
+        path: '/follow-people',
+        component: <FollowPeoplePage />,
+        beforeEnter: (route, params, st) => {
+            // if (!store.authorization.currentUser) {
+            //     st.router.goTo(Routes.home, {});
+            // } else {
+            store.followPeople.fetchFollowPeople();
+            // }
+        },
+        onExit: () => {
+            store.followPeople.reset();
         },
     }),
     trends: new Route({

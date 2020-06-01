@@ -3,27 +3,14 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
-import { ArrowBackIcon } from '../../icons/ArrowBackIcon';
 import { localized } from '../../localization/components';
+import { BackButton } from '../../components/BackButton';
 
 const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
-    },
-    postBackButton: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        marginRight: 12,
-        height: '32px',
-        width: '32px',
-        '&:hover': {
-            background: 'rgba(255, 92, 1, 0.2)',
-            borderRadius: '30px',
-        },
     },
 }));
 
@@ -78,23 +65,8 @@ const _StatusPageContainer = ({
 
     return (
         <Grid container spacing={2}>
-            <Grid>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    marginLeft: '10px',
-                }}
-                >
-                    <div
-                        onClick={() => window.history.back()}
-                        className={classes.postBackButton}
-                    >
-                        <ArrowBackIcon />
-                    </div>
-                    <Typography>
-                        <strong>{l('post')}</strong>
-                    </Typography>
-                </div>
+            <Grid xs={12}>
+                <BackButton title="post" style={{ marginLeft: '10px' }} />
             </Grid>
             <Grid item>
                 <StatusListItem

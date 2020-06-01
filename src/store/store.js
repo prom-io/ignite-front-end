@@ -1,5 +1,10 @@
-import Web3 from 'web3';
-import { AuthorizationStore, LoginStore } from '../Authorization/stores';
+import {
+    AuthorizationStore,
+    LoginStore,
+    GenericAuthorizationDialogStore,
+    GenerateWalletStore,
+    SignUpStore,
+} from '../Authorization/stores';
 import {
     CreateStatusStore,
     StatusBtfsInfoStore,
@@ -21,7 +26,6 @@ import {
     FollowPeopleStore,
     WhoToFollowStore,
 } from '../Follow/stores';
-import { SignUpStore } from '../SignUp/stores';
 import { DrawerStore } from '../AppBar/stores';
 import { LocaleStore } from '../localization/stores';
 import { BtfsHashesStore } from '../Btfs/stores';
@@ -41,7 +45,6 @@ const userProfile = new UserProfileStore(authorization, userProfileTimeline, use
 const followAction = new FollowActionStore(authorization);
 const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);
-const signUp = new SignUpStore(authorization, new Web3());
 const homeTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/home');
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
@@ -55,6 +58,9 @@ const userAvatarUpload = new UploadUserAvatarStore();
 const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile);
 const notifications = new NotificationsStore(authorization);
 const websocket = new WebsocketStore(authorization, notifications);
+const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
+const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
+const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog);
 
 export const store = {
     authorization,
@@ -84,4 +90,6 @@ export const store = {
     userProfileUpdate,
     notifications,
     websocket,
+    genericAuthorizationDialog,
+    walletGeneration,
 };

@@ -1,7 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import { CopyIcon } from '../../icons/CopyIcon';
+import { makeStyles } from '@material-ui/core';
+import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
 
 const useStyles = makeStyles(theme => ({
     key: {
@@ -31,16 +30,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const KeyCopyBlock = ({ children, ...props }) => {
+export const KeyCopyBlock = ({ children, title, textToCopy }) => {
     const classes = useStyles();
 
     return (
         <div className={classes.key}>
             <div className={classes.keyTitle}>
-                <div className={classes.titleBold}>{props.title}</div>
+                <div className={classes.titleBold}>{title}</div>
                 <span className={classes.keyValue}>{children}</span>
             </div>
-            <CopyIcon color="#A2A2A2" />
+            <CopyToClipboardButton textToCopy={textToCopy} />
         </div>
     );
 };

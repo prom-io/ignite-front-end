@@ -4,7 +4,7 @@ import { replacePlaceholder } from '../../utils/string-utils';
 
 export const localizationContext = createContext(({
     l: (labelKey, bindings) => {
-        let label = store.localization.currentLabels[labelKey];
+        let label = store.localization.selectedLanguageLabels[labelKey];
 
         if (bindings) {
             label = replacePlaceholder(label, bindings);

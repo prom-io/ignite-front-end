@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
+import { Button, CircularProgress, DialogContent, makeStyles} from '@material-ui/core';
+import {useStore} from "../../store/hooks";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -51,6 +51,8 @@ const useStyles = makeStyles(theme => ({
 
 export const SignUp = () => {
     const classes = useStyles();
+    const { generateWallet, pending } = useStore().walletGeneration;
+
     return (
         <DialogContent>
             <span className={classes.contentDescription}>
@@ -73,7 +75,10 @@ export const SignUp = () => {
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={generateWallet}
+                    disabled={pending}
                 >
+                    {pending && <CircularProgress size={20} />}
                     Create Wallet
                 </Button>
             </div>

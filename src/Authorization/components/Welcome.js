@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Bold',
         fontSize: '15px',
@@ -51,6 +51,10 @@ const useStyles = makeStyles(theme => ({
 
 export const Welcome = () => {
     const classes = useStyles();
+    const { genericAuthorizationDialog, walletGeneration } = useStore();
+    const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
+    const { generatedWallet } = walletGeneration;
+
     return (
         <DialogContent>
             <span className={classes.contentDescription}>
@@ -59,7 +63,7 @@ export const Welcome = () => {
 
             <div className={classes.contentBlock}>
                 <p>Your login is:</p>
-                <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                <span>{generatedWallet.address}</span>
             </div>
 
             <Button
@@ -68,6 +72,7 @@ export const Welcome = () => {
                 classes={{
                     root: classes.button,
                 }}
+                onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
                 Enjoy
             </Button>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button, Dialog, DialogContent, makeStyles } from '@material-ui/core';
-import Checkbox from '@material-ui/core/Checkbox';
-import CustomDialogTitle from './CustomDialogTitle';
-import { CopyIcon } from '../../icons/CopyIcon';
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
+import { Button, Checkbox, DialogContent, makeStyles } from '@material-ui/core';
+import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',
@@ -77,8 +77,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Attention = () => {
+export const Attention = observer(() => {
     const classes = useStyles();
+    const { walletGeneration, signUp, genericAuthorizationDialog } = useStore();
+    const { generatedWallet } = walletGeneration;
+    const { signUpForm, submissionError } = signUp;
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+
+    const [addressCopied, setAddressCopied] = useState(false);
+    const [privateKeyCopied, setPrivateKeyCopied] = useState(false);
+    const [passwordCopied, setPasswordCopied] = useState(false);
+
+    const handleOkClick = () => {
+        if (submissionError) {
+            setGenericAuthorizationDialogType('errorAuthorization');
+        } else {
+            setGenericAuthorizationDialogType('welcome');
+        }
+    };
+
     return (
         <DialogContent classes={{
             root: classes.dialogContentRoot,
@@ -95,36 +112,56 @@ export const Attention = () => {
             <div className={classes.infoCheckingBlock}>
                 <div className={classes.checkboxBlock}>
                     <div className={classes.checkboxTitle}>
-                        <Checkbox color="primary" classes={{ root: classes.checkbox }} />
+                        <Checkbox
+                            color="primary"
+                            classes={{ root: classes.checkbox }}
+                            checked={addressCopied}
+                            onChange={() => setAddressCopied(!addressCopied)}
+                        />
                         <div className={classes.checkboxBlockDescription}>
                             <span className={classes.title}>Wallet Address (login)</span>
-                            <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                            <span className={classes.value}>{generatedWallet.address}</span>
                         </div>
                     </div>
-                    <span>{CopyIcon()}</span>
+                    <span>
+                        <CopyToClipboardButton textToCopy={generatedWallet.address} />
+                    </span>
                 </div>
                 <div className={classes.checkboxBlock}>
                     <div className={classes.checkboxTitle}>
-                        <Checkbox color="primary" classes={{ root: classes.checkbox }} />
+                        <Checkbox
+                            color="primary"
+                            classes={{ root: classes.checkbox }}
+                            checked={privateKeyCopied}
+                            onChange={() => setPrivateKeyCopied(!privateKeyCopied)}
+                        />
                         <div className={classes.checkboxBlockDescription}>
                             <span className={classes.title}>Private Key (password recovery key)</span>
-                            <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                            <span className={classes.value}>{generatedWallet.privateKey}</span>
                         </div>
                     </div>
-                    <span>{CopyIcon()}</span>
+                    <span>
+                        <CopyToClipboardButton textToCopy={generatedWallet.privateKey} />
+                    </span>
                 </div>
                 <div className={classes.checkboxBlock}>
                     <div className={classes.checkboxTitle}>
-                        <Checkbox color="primary" classes={{ root: classes.checkbox }} />
+                        <Checkbox
+                            color="primary"
+                            classes={{ root: classes.checkbox }}
+                            checked={passwordCopied}
+                            onChange={() => setPasswordCopied(!passwordCopied)}
+                        />
                         <div className={classes.checkboxBlockDescription}>
                             <span className={classes.title}>Password</span>
-                            <span className={classes.value}>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                            <span className={classes.value}>{signUpForm.password}</span>
                         </div>
                     </div>
-                    <span>{CopyIcon()}</span>
+                    <span>
+                        <CopyToClipboardButton textToCopy={signUpForm.password} />
+                    </span>
                 </div>
             </div>
-
             <div className={classes.markList}>
                 <p className={classes.contentDescription}>
                     Please do not lose it!
@@ -152,9 +189,11 @@ export const Attention = () => {
                 classes={{
                     root: classes.button,
                 }}
+                disabled={!passwordCopied || !privateKeyCopied || !addressCopied}
+                onClick={handleOkClick}
             >
                 Ok
             </Button>
         </DialogContent>
     );
-};
+});

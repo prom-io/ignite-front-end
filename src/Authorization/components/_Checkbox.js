@@ -24,7 +24,7 @@ export const _Checkbox = ({ children, ...props }) => {
     const classes = useStyles();
     return (
         <div className={`${classes.checkboxGroup} ${props.className}`}>
-            <Checkbox color="primary" classes={{ root: classes.checkbox }} />
+            <Checkbox color="primary" classes={{ root: classes.checkbox }} {...props} />
             <div>{children}</div>
         </div>
     );

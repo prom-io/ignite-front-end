@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',
@@ -40,14 +41,23 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const CreateWallet = ({ submissionError, l }) => {
+export const CreateWallet = observer(() => {
+    const [savedEverything, setSavedEverything] = useState(false);
+    const [agreedToPolicy, setAgreedToPolicy] = useState(false);
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        password: '',
-        repeatPassword: '',
-        showPassword: false,
-        copied: false,
-    });
+    const { signUp, walletGeneration } = useStore();
+    const {
+        signUpForm,
+        formErrors,
+        setFormValue,
+        showPassword,
+        setShowPassword,
+        pending,
+        doSignUp,
+    } = signUp;
+    const { generatedWallet } = walletGeneration;
+
+    const signUpButtonDisabled = (!agreedToPolicy || !savedEverything) || pending;
 
     return (
         <DialogContent classes={{
@@ -61,34 +71,53 @@ export const CreateWallet = ({ submissionError, l }) => {
                 {' '}
                 the wallet address and private key and keep them in a safe place.
             </span>
-
-            <KeyCopyBlock title="Wallet Address (login)">
-                0xCBC41d42518F6614bcaf4C82587B19001af2E12F
+            <KeyCopyBlock
+                title="Wallet Address (login)"
+                textToCopy={generatedWallet.address}
+            >
+                {generatedWallet.address}
             </KeyCopyBlock>
-
-            <InputPasswordGroup values={values} setValues={setValues} title="Password" />
-
-            <KeyCopyBlock title="Private Key (password recovery key)">
-                3e6684c36848f43cd8f23487ebc45c8521a322852744765f7cbb06680caa6f93
+            <InputPasswordGroup
+                formValues={signUpForm}
+                onValueChange={setFormValue}
+                formErrors={formErrors}
+                showPassword={showPassword}
+                onShowPasswordChange={setShowPassword}
+                title="Password"
+            />
+            <KeyCopyBlock
+                title="Private Key (password recovery key)"
+                textToCopy={generatedWallet.privateKey}
+            >
+                {generatedWallet.privateKey}
             </KeyCopyBlock>
-
             <p className={classes.content}>
                 We believe that privacy is a personal right so do not ask for your email or any personal information.
                 However, that makes us unable to recover the password if you lose your private key.
             </p>
-
-            <_Checkbox>I have saved my Wallet Address(login), password and Private Key (password recovery key).</_Checkbox>
-            <_Checkbox>I am over 16 years old and have read and understood the Terms of Use and Privacy Policy.</_Checkbox>
-
+            <_Checkbox
+                checked={savedEverything}
+                onChange={() => setSavedEverything(!savedEverything)}
+            >
+                I have saved my Wallet Address(login), password and Private Key (password recovery key).
+            </_Checkbox>
+            <_Checkbox
+                checked={agreedToPolicy}
+                onChange={() => setAgreedToPolicy(!agreedToPolicy)}
+            >
+                I am over 16 years old and have read and understood the Terms of Use and Privacy Policy.
+            </_Checkbox>
             <Button
                 variant="contained"
                 color="primary"
                 classes={{
                     root: classes.button,
                 }}
+                disabled={signUpButtonDisabled}
+                onClick={doSignUp}
             >
                 Sign up
             </Button>
         </DialogContent>
     );
-};
+});

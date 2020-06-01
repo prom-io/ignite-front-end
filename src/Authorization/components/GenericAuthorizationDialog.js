@@ -1,5 +1,5 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Dialog, withMobileDialog } from '@material-ui/core';
 import { UpdatePasswordError } from './resetPassword/UpdatePasswordError';
 import CustomDialogTitle from './CustomDialogTitle';
@@ -19,6 +19,8 @@ import { PasswordUpdated } from './resetPassword/PasswordUpdated';
 import { PasswordUpdatedError } from './resetPassword/PasswordUpdatedError';
 import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
+import { useLocalization, useStore } from '../../store/hooks';
+import {LoginForm} from "./LoginForm";
 
 /** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
@@ -124,30 +126,38 @@ const dialogType = {
         title: 'Change Your Password',
         type: 'default',
     },
+    login: {
+        id: 'logIn',
+        component: <LoginForm />,
+        title: 'Log in',
+        type: 'default',
+    },
 };
 
-const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSignUpDialogOpen }) => (
-    <Dialog
-        open={loginDialogOpen}
-        onClose={() => setLoginDialogOpen(false)}
-        fullScreen={fullScreen}
-        fullWidth
-        scroll="body"
-    >
-        /*В заголовке title тоже берться из меняющегося компонента*/
-        <CustomDialogTitle title={dialogType.createWallet.title} setLoginDialogOpen={setLoginDialogOpen} />
-        <CreateWallet />
-        {' '}
-        /** Изменяющийся контент */
-    </Dialog>
-);
+const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
+    const {
+        genericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogOpen,
+        genericAuthorizationDialogType,
+        setGenericAuthorizationDialogType,
+    } = useStore().genericAuthorizationDialog;
+    const { l } = useLocalization();
 
-const mapMobxToProps = ({ login, signUp }) => ({
-    setLoginDialogOpen: login.setLoginDialogOpen,
-    loginDialogOpen: login.loginDialogOpen,
-    setSignUpDialogOpen: signUp.setSignUpDialogOpen,
+    return (
+        <Dialog
+            open={genericAuthorizationDialogOpen}
+            onClose={() => setGenericAuthorizationDialogOpen(false)}
+            fullScreen={fullScreen}
+            fullWidth
+            scroll="body"
+        >
+            <CustomDialogTitle
+                title={dialogType[genericAuthorizationDialogType].title}
+                setLoginDialogOpen={setGenericAuthorizationDialogOpen}
+            />
+            {dialogType[genericAuthorizationDialogType].component}
+        </Dialog>
+    );
 });
 
-export const LoginDialog = withMobileDialog()(
-    inject(mapMobxToProps)(observer(_LoginDialog)),
-);
+export const GenericAuthorizationDialog = withMobileDialog()(_GenericAuthorizationDialog);

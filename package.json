@@ -27,6 +27,7 @@
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
     "react-bottom-scroll-listener": "^3.0.0",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.12.0",
     "react-grid-gallery": "^0.5.5",
     "react-infinite-scroll-component": "^5.0.4",

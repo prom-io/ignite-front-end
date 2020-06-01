@@ -17,8 +17,7 @@ import { ChatIcon } from '../../icons/ChatIcon';
 import { TrendsIcon } from '../../icons/TrendsIcon';
 import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
-import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
-import { SignUpDialog } from '../../SignUp/components';
+import { OpenLoginDialogButton, GenericAuthorizationDialog } from '../../Authorization/components';
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => (
     <>
@@ -101,8 +100,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                     </div>
                 </Hidden>
                 <div className="mobile_header">
-                    <LoginDialog />
-                    <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)} />
+                    <GenericAuthorizationDialog />
                     {/* <img src="/search.png" /> */}
                     <div className="select-language">
                         <AppBarLanguageSelect />
@@ -123,6 +121,8 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
         <CreateStatusDialog />
     </>
 );
+
+console.log(111)
 
 const mapMobxToProps = ({ store, authorization, login }) => ({
     routerStore: store,

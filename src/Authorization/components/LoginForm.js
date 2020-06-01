@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { inject, observer } from 'mobx-react';
+import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
-import { localized } from '../../localization/components';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -68,20 +68,19 @@ const getLabelFromSubmissionError = (error, l) => {
     return l('authorization.login.error.no-response');
 };
 
-const _LoginForm = ({
-    loginForm,
-    submissionError,
-    pending,
-    setFormValue,
-    doLogin,
-    setSignUpDialogOpen,
+export const LoginForm = observer(({
     hideLoginButton,
     hideSignUpButton,
     disableCard,
-    setLoginDialogOpen,
-    l,
 }) => {
     const classes = useStyles();
+    const { login, genericAuthorizationDialog } = useStore();
+    const { loginForm, submissionError, setFormValue, doLogin, pending } = login;
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = genericAuthorizationDialog;
+    const { l } = useLocalization();
 
     const content = (
         <>
@@ -126,8 +125,8 @@ const _LoginForm = ({
                     fullWidth
                     className={classes.signUpButton}
                     onClick={() => {
-                        setLoginDialogOpen(false);
-                        setSignUpDialogOpen(true);
+                        setGenericAuthorizationDialogOpen(true);
+                        setGenericAuthorizationDialogType('signUp');
                     }}
                     disabled={pending}
                 >
@@ -149,18 +148,4 @@ const _LoginForm = ({
             </>
         )
     );
-};
-
-const mapMobxToProps = ({ login, signUp }) => ({
-    loginForm: login.loginForm,
-    pending: login.pending,
-    submissionError: login.submissionError,
-    setFormValue: login.setFormValue,
-    doLogin: login.doLogin,
-    setSignUpDialogOpen: signUp.setSignUpDialogOpen,
-    setLoginDialogOpen: login.setLoginDialogOpen,
 });
-
-export const LoginForm = localized(
-    inject(mapMobxToProps)(observer(_LoginForm)),
-);

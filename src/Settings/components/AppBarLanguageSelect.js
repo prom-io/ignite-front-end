@@ -3,6 +3,14 @@ import { inject, observer } from 'mobx-react';
 import { Select, MenuItem, ListItemText, InputLabel, makeStyles } from '@material-ui/core';
 import { localized } from '../../localization/components';
 import Menu from '@material-ui/core/Menu';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import MenuList from '@material-ui/core/MenuList';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
     styledSelectBox: {
@@ -10,64 +18,120 @@ const useStyles = makeStyles({
         height: 34,
         width: 34,
         borderRadius: 100,
-        '& :hover': {
+        '&:hover': {
             borderRadius: '100%',
             background:'#FFDECC',
-        },
-        '& :hover p': {
-            color: '#FF5C01'
-        },
-        '& span:hover p': {
-            background: 'none',
-            color: '#FF5C01'
-        },
-        '& div': {
-            height: 34,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-
         },
         '& svg': {
             left: 35,
         },
-        '& .MuiSelect-root': {
-            padding: 0,
-        },
-        '& span': {
-            display: 'flex',
-            justifyContent: 'center',
-            color: '#A2A2A2',
-        },
-        '& ul': {
-            zIndex: 900001,
-            position: 'fixed',
-        },
-        '& .MuiSelect-select:focus': {
-            background: 'none',
-        },
-        '& .MuiList-padding':{
-            padding: 0,
-        }
     },
-    styletMenuItem: {
-        width: '118px',
-        padding: 12,
-        '& p': {
-            margin: 0,
+    styleMenuItem: {
+        width: 'auto',
+        margin: '0 16px',
+        padding: '16px 0',
+        minHeight: '50px',
+        borderBottom: '1px solid rgba(0,43,47,.15)',
+        textAlign: 'center',
+        '&:last-child': {
+            borderBottom: 'none'
+        },
+        '&:hover': {
+            background: 'rgba(255,255,255,0)',
         },
     },
-    selectMenu: {
-        padding: 0
+    buttonMenuRoot: {
+        height: 34,
+        width: 34,
+        borderRadius: 100,
+        '&:hover': {
+            background:'rgba(255,255,255,0)',
+        },
+        '&:active': {
+            background:'rgba(255,255,255,0)',
+        },
+    },
+    testClass: {
+        padding: 0,
+        borderTop: '2px solid #131315'
     }
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const [lang, setLang] = React.useState(locale);
+    const anchorRef = React.useRef(null);
+    
+    const handleToggle = () => {
+        console.log(lang);
+        open && setSelectedLanguage(lang);
+        setOpen((prevOpen) => !prevOpen);
+    };
+    
+    const handleClose = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+       /* setLang(event.target);*/
+        setOpen(false);
+    };
+    
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        }
+    }
+    
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            anchorRef.current.focus();
+        }
+        
+        prevOpen.current = open;
+    }, [open]);
 
     return (
         <>
-            <Select
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+              classes={{
+                  label: classes.styledSelectBox,
+                  root: classes.buttonMenuRoot,
+              }}
+            >
+                {lang}
+            </Button>
+            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                  >
+                      <Paper>
+                          <ClickAwayListener onClickAway={handleClose}>
+                              <MenuList autoFocusItem={open} id="menu-list-grow"
+                                        onKeyDown={handleListKeyDown} classes={{root: classes.testClass}}>
+                                  <MenuItem classes={{root:classes.styleMenuItem}}
+                                            value={"en"} onClick={handleClose}>English</MenuItem>
+                                  <MenuItem  classes={{root:classes.styleMenuItem}}
+                                             value={"ko"} onClick={handleClose}>Korean</MenuItem>
+                              </MenuList>
+                          </ClickAwayListener>
+                      </Paper>
+                  </Grow>
+                )}
+            </Popper>
+
+
+
+            {/*<Select
                 value={locale}
                 className={classes.styledSelectBox}
                 onChange={event => setSelectedLanguage(event.target.value)}
@@ -76,7 +140,11 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                 }}
                 disableUnderline
             >
-                <MenuItem value="en" className={classes.styletMenuItem}>
+                
+                <MenuItem value="en" ListItemClasses={ classes.testClass}
+                          classes={{
+                    root:classes.styletMenuItem,
+                }} className={classes.styletMenuItem}>
                     <ListItemText>
                         <p>En</p>
                     </ListItemText>
@@ -86,7 +154,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                         <p>Ko</p>
                     </ListItemText>
                 </MenuItem>
-            </Select>
+            </Select>*/}
         </>
     );
 };

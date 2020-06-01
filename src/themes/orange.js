@@ -8,6 +8,11 @@ export const orange = createMuiTheme({
         right: '100px !important',
         left: 'auto !important'
       },
+      '& MuiList-padding': {
+        root: {
+          padding: 0,
+        }
+      }
     }
   },
     palette: {

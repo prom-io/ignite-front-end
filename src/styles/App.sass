@@ -156,7 +156,7 @@ p
     max-width: 600px !important
 .mobile_header
   width: 100%
-  height: 60px
+  height: 50px
   position: fixed
   left: 0
   top: 0
@@ -190,6 +190,8 @@ p
 .expand_drawer_button
   position: fixed !important
   z-index: 9999 !important
+  @media (min-width: 960px)
+    padding: 6px 12px
 .navigation_drawer_menu
   z-index: 99999 !important
 
@@ -690,7 +692,7 @@ p
     max-width: 600px !important
     // height: 360px !important
     // margin-bottom: 20px !important
-    margin-top: 60px !important
+    margin-top: 50px !important
     height: 450px !important
 
 .user-profile-header-content
@@ -776,7 +778,7 @@ p
   @media (max-width: 960px)
     margin-left: 0px !important
     position: relative
-    top: -120px
+    top: -80px
 .user-profile-info
   padding-left: 6px
   margin-bottom: 8px
@@ -796,7 +798,6 @@ p
 .static-page-container
   width: auto
   min-height: 100%
-  padding: 32px 15px 50px 15px
   max-width: 100%
   display: flex
   justify-content: center

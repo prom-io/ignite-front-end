@@ -150,7 +150,7 @@ const _StatusHeader = ({
                     />
                 </ClickEventPropagationStopper>
             )}
-            classes={disableCardHeaderAlign ? {root: classes.cardHeaderRootNoAlignItems} : undefined}
+            classes={disableCardHeaderAlign ? { root: classes.cardHeaderRootNoAlignItems } : undefined}
         />
     );
 };

@@ -34,7 +34,7 @@ const _HomeTimeline = ({
     fetchStatuses,
     pending,
     currentUser,
-    hasMore
+    hasMore,
 }) => {
     const classes = useStyles();
 

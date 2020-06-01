@@ -38,7 +38,7 @@ const _RepostNotification = ({ notification, l, dateFnsLocale }) => {
                 }}
             >
                 <Hidden xsDown>
-                    <NotificationLeftMargin/>
+                    <NotificationLeftMargin />
                 </Hidden>
                 <RepostedStatusContent
                     repostedStatus={status}

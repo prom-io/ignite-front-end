@@ -12,10 +12,6 @@ const useStyles = makeStyles(theme => ({
     },
     profileCreateStatusForm: {
         paddingBottom: '0 !important',
-        [theme.breakpoints.down('md')]: {
-            padding: '0px !important',
-            paddingBottom: `${theme.spacing(1)}px !important`,
-        },
     },
     profileStatusList: {
         paddingTop: '0 !important',

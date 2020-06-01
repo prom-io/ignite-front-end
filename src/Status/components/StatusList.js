@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import { CircularProgress, Typography, makeStyles } from '@material-ui/core';
+import { CircularProgress, Typography, Hidden, makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { StatusListItem } from './StatusListItem';
+import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -25,7 +26,7 @@ export const StatusList = ({
     hideThreadLinks,
     hasMore,
 }) => {
-    const classes = useStyles({radius: 55});
+    const classes = useStyles({ radius: 55 });
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
@@ -37,8 +38,9 @@ export const StatusList = ({
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >
-                {statuses.map(status => (
+                {statuses.map((status, index) => (
                     <Fragment key={status.id}>
+                        {currentUser && index === 5 && <Hidden lgUp><WhoToFollow isMobile /></Hidden>}
                         <StatusListItem
                             status={status}
                             onFavouriteStatusChange={onFavouriteClick}

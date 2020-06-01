@@ -1,87 +1,153 @@
 import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Select, MenuItem, ListItemText, InputLabel, makeStyles } from '@material-ui/core';
+import {
+    MenuItem,
+    makeStyles,
+} from '@material-ui/core';
+import MenuList from '@material-ui/core/MenuList';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
-    root: {
-    },
     styledSelectBox: {
         border: 'none',
         height: 34,
         width: 34,
         borderRadius: 100,
-        '& :hover': {
+        color: 'rgba(0, 0, 0, 0.87)',
+        '&:hover': {
             borderRadius: '100%',
-            background:'#FFDECC',
-        },
-        '& :hover p': {
-            color: '#FF5C01'
-        },
-        '& span:hover p': {
-            background: 'none',
-            color: '#FF5C01'
-        },
-        '& div': {
-            height: 34,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-
+            background: '#FFDECC',
         },
         '& svg': {
             left: 35,
-        },
-        '& .MuiSelect-root': {
-            padding: 0,
+            marginLeft: '10px',
         },
         '& span': {
-            display: 'flex',
-            justifyContent: 'center',
-            color: '#A2A2A2',
+            marginLeft: '34px',
         },
-        '& ul': {
-            zIndex: 900001,
-            position: 'fixed',
-        },
-        '& .MuiSelect-select:focus': {
-            background: 'none',
-        }
     },
-    styletMenuItem: {
-        width: '118px',
-        padding: 12,
-        '& p': {
-            margin: 0,
+    styleMenuItem: {
+        width: 'auto',
+        margin: '0 16px',
+        padding: '16px 0',
+        minHeight: '50px',
+        borderBottom: '1px solid rgba(0,43,47,.15)',
+        textAlign: 'center',
+        '&:last-child': {
+            borderBottom: 'none',
         },
+        '&:hover': {
+            background: 'rgba(255,255,255,0)',
+        },
+        '& span': {
+            color: 'rgba(255,255,255,0)',
+        },
+    },
+    buttonMenuRoot: {
+        height: 34,
+        width: 34,
+        borderRadius: 100,
+        transition: 'none',
+        color: 'rgba(255,255,255,0)',
+        '&:hover': {
+            background: 'rgba(255,255,255,0)',
+        },
+    },
+    menuList: {
+        padding: 0,
+        borderTop: '2px solid #131315',
+    },
+    arrowAnimate: {
+        transform: 'rotate(180deg)',
     },
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const handleListKeyDown = event => {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        }
+    };
+
+    const handleSelectLang = currentLang => {
+        setSelectedLanguage(currentLang);
+        setOpen(false);
+    };
 
     return (
         <>
-            <Select
-                value={locale}
-                className={classes.styledSelectBox}
-                onChange={event => setSelectedLanguage(event.target.value)}
-                style={{
-                    width: '100%',
+            <Button
+                ref={anchorRef}
+                aria-controls={open ? 'menu-list-grow' : undefined}
+                aria-haspopup="true"
+                onClick={() => setOpen(prevOpen => !prevOpen)}
+                classes={{
+                    label: classes.styledSelectBox,
+                    root: classes.buttonMenuRoot,
                 }}
-                disableUnderline
             >
-                <MenuItem value="en" className={classes.styletMenuItem}>
-                    <ListItemText>
-                        <p>En</p>
-                    </ListItemText>
-                </MenuItem>
-                <MenuItem value="ko" className={classes.styletMenuItem}>
-                    <ListItemText>
-                        <p>Ko</p>
-                    </ListItemText>
-                </MenuItem>
-            </Select>
+                <span>{locale}</span>
+                <ArrowDropDownIcon classes={{
+                    root: open && classes.arrowAnimate,
+                }}
+                />
+            </Button>
+            <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                disablePortal
+            >
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{
+                            transformOrigin:
+                                placement === 'bottom'
+                                    ? 'center top'
+                                    : 'center bottom',
+                        }}
+                    >
+                        <Paper>
+                            <ClickAwayListener onClickAway={() => setOpen(false)}>
+                                <MenuList
+                                    autoFocusItem={open}
+                                    id="menu-list-grow"
+                                    onKeyDown={handleListKeyDown}
+                                    classes={{ root: classes.menuList }}
+                                >
+                                    <MenuItem
+                                        classes={{ root: classes.styleMenuItem }}
+                                        value="en"
+                                        onClick={() => handleSelectLang('en')}
+                                    >
+                                        English
+                                    </MenuItem>
+                                    <MenuItem
+                                        classes={{ root: classes.styleMenuItem }}
+                                        value="ko"
+                                        onClick={() => handleSelectLang('ko')}
+                                    >
+                                        Korean
+                                    </MenuItem>
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
         </>
     );
 };

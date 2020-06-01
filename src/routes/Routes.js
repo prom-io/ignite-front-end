@@ -69,7 +69,7 @@ export const Routes = {
             // if (!store.authorization.currentUser) {
             //     st.router.goTo(Routes.home, {});
             // } else {
-                store.followPeople.fetchFollowPeople();
+            store.followPeople.fetchFollowPeople();
             // }
         },
         onExit: () => {
@@ -158,5 +158,5 @@ export const Routes = {
             store.statusPage.reset();
             store.statusComments.reset();
         },
-    })
+    }),
 };

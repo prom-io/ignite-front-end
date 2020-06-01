@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { inject, observer } from "mobx-react";
-import { CircularProgress, makeStyles } from "@material-ui/core";
+import React, { useEffect } from 'react';
+import { inject, observer } from 'mobx-react';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 
-import { SideBarList } from "./";
+import { SideBarList } from '.';
 
 const useStyles = makeStyles(() => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "table"
-    }
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'table',
+    },
 }));
 
 const _WhoToFollowList = ({
@@ -17,7 +17,7 @@ const _WhoToFollowList = ({
     fetchWhoToFollow,
     whoToFollowItems,
     actionWithFollow,
-    pending
+    pending,
 }) => {
     const classes = useStyles();
     const viewCount = isMobile ? 3 : 5;
@@ -40,7 +40,7 @@ const mapMobxToProps = ({ whoToFollow, followAction }) => ({
     fetchWhoToFollow: whoToFollow.fetchWhoToFollow,
     whoToFollowItems: whoToFollow.whoToFollowItems,
     pending: whoToFollow.pending,
-    actionWithFollow: followAction.actionWithFollow
+    actionWithFollow: followAction.actionWithFollow,
 });
 
 export const WhoToFollowList = inject(mapMobxToProps)(observer(_WhoToFollowList));

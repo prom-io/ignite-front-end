@@ -1,64 +1,64 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { Link } from "mobx-router";
-import { Grid, makeStyles } from "@material-ui/core";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Link } from 'mobx-router';
+import { Grid, makeStyles } from '@material-ui/core';
 
-import { Routes } from "../../routes";
-import { localized } from "../../localization/components";
-import { WhoToFollowList } from "./WhoToFollowList";
+import { Routes } from '../../routes';
+import { localized } from '../../localization/components';
+import { WhoToFollowList } from './WhoToFollowList';
 
 const useStyles = makeStyles(theme => ({
     whoToFollow: {
-        border: "1px solid #F1EBE8",
-        background: "#FBF7F6",
-        borderRadius: "4px"
+        border: '1px solid #F1EBE8',
+        background: '#FBF7F6',
+        borderRadius: '4px',
     },
     whoToFollowMobileWrapper: {
-        background: "#F1EBE8"
+        background: '#F1EBE8',
     },
     whoToFollowMobile: {
-        margin: "8px 0",
-        padding: "0px",
-        height: "unset",
-        maxWidth: "unset",
-        width: "100%",
+        margin: '8px 0',
+        padding: '0px',
+        height: 'unset',
+        maxWidth: 'unset',
+        width: '100%',
 
-        "& > div": {
-            background: "#fff",
-            borderRadius: "0px"
-        }
+        '& > div': {
+            background: '#fff',
+            borderRadius: '0px',
+        },
     },
     whoToFollowHeader: {
-        borderBottom: "1px solid #F1EBE8",
+        borderBottom: '1px solid #F1EBE8',
 
-        "& h3": {
-            padding: "16px",
-            margin: "0",
-            fontFamily: "Museo Sans Cyrl Bold",
-            fontStyle: "normal",
+        '& h3': {
+            padding: '16px',
+            margin: '0',
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontStyle: 'normal',
             fontWeight: 700,
-            fontSize: "20px",
-            lineHeight: "24px",
-            color: "#1C1C1C"
-        }
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: '#1C1C1C',
+        },
     },
     whoToFollowBody: {},
     whoToFollowFooter: {
-        padding: "16px",
-        margin: "0",
+        padding: '16px',
+        margin: '0',
 
-        "& a": {
-            fontFamily: "Museo Sans Cyrl Regular",
-            fontStyle: "normal",
+        '& a': {
+            fontFamily: 'Museo Sans Cyrl Regular',
+            fontStyle: 'normal',
             fontWeight: 300,
-            fontSize: "15px",
+            fontSize: '15px',
             color: theme.palette.primary.main,
 
-            "&:hover": {
-                textDecoration: "none"
-            }
-        }
-    }
+            '&:hover': {
+                textDecoration: 'none',
+            },
+        },
+    },
 }));
 
 const _WhoToFollow = ({ isMobile, routerStore, l }) => {
@@ -69,24 +69,24 @@ const _WhoToFollow = ({ isMobile, routerStore, l }) => {
             container
             spacing={2}
             className={`description-container-right ${
-                isMobile ? classes.whoToFollowMobileWrapper : ""
+                isMobile ? classes.whoToFollowMobileWrapper : ''
             }`}
         >
             <Grid
                 className={`user_profile_container ${
-                    isMobile ? classes.whoToFollowMobile : ""
+                    isMobile ? classes.whoToFollowMobile : ''
                 }`}
             >
                 <div className={classes.whoToFollow}>
                     <div className={classes.whoToFollowHeader}>
-                        <h3>{l("user.card.who-to-follow")}</h3>
+                        <h3>{l('user.card.who-to-follow')}</h3>
                     </div>
                     <div className={classes.whoToFollowBody}>
                         <WhoToFollowList isMobile={isMobile} />
                     </div>
                     <div className={classes.whoToFollowFooter}>
                         <Link view={Routes.followPeople} store={routerStore}>
-                            {l("user.card.show-more")}
+                            {l('user.card.show-more')}
                         </Link>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ const _WhoToFollow = ({ isMobile, routerStore, l }) => {
 };
 
 const mapMobxToProps = ({ store }) => ({
-    routerStore: store
+    routerStore: store,
 });
 
 export const WhoToFollow = localized(inject(mapMobxToProps)(_WhoToFollow));

@@ -16,10 +16,10 @@ import {
     UserFollowingStore,
     UserProfileStore,
 } from '../User/stores';
-import { 
-    FollowActionStore, 
+import {
+    FollowActionStore,
     FollowPeopleStore,
-    WhoToFollowStore 
+    WhoToFollowStore,
 } from '../Follow/stores';
 import { SignUpStore } from '../SignUp/stores';
 import { DrawerStore } from '../AppBar/stores';

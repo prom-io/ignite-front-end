@@ -1,13 +1,13 @@
 import { createMuiTheme } from '@material-ui/core';
 
 export const orange = createMuiTheme({
-  overrides: {
-    MuiTouchRipple: {
-      root:{
-        background: 'rgba(255,255,255,0)',
-      }
-    }
-  },
+    overrides: {
+        MuiTouchRipple: {
+            root: {
+                background: 'rgba(255,255,255,0)',
+            },
+        },
+    },
     palette: {
         common: {
             black: '#000',

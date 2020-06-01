@@ -69,8 +69,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         '& img': {
             width: '20px',
-            marginRight: 12
-        }
+            marginRight: 12,
+        },
     },
 }));
 const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser }) => {

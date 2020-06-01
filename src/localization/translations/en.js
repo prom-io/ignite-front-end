@@ -139,5 +139,5 @@ export const en = {
     'notifications.login-required': 'You have too log in to see your notifications',
     'notification.repost': 'respoted your post',
     post: 'Post',
-    'follow-people': "Follow People",
+    'follow-people': 'Follow People',
 };

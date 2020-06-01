@@ -1,21 +1,21 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { Grid, Hidden } from "@material-ui/core";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Grid, Hidden } from '@material-ui/core';
 
-import { AppBar } from "../AppBar/components";
-import { LoginForm } from "../Authorization/components";
-import { Layout } from "../Layout";
+import { AppBar } from '../AppBar/components';
+import { LoginForm } from '../Authorization/components';
+import { Layout } from '../Layout';
 import {
     GlobalTimeline,
     HomeTimeline,
-    StatusBtfsInfoDialog
-} from "../Status/components";
+    StatusBtfsInfoDialog,
+} from '../Status/components';
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
-import { WhoToFollow, FollowDialog } from "../Follow/components";
-import "../styles/App.sass";
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { WhoToFollow, FollowDialog } from '../Follow/components';
+import '../styles/App.sass';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
@@ -36,7 +36,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                                 </Grid>
                             )}
                             <Grid item xs={12} md={9} className="right-content">
-                                {homepageTimeline === "home" ? (
+                                {homepageTimeline === 'home' ? (
                                     <HomeTimeline />
                                 ) : (
                                     <GlobalTimeline />
@@ -46,7 +46,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     </Grid>
                     <Grid item md={3} className="right-banners-container">
                         {currentUser ? (
-                            <Hidden only={["md"]}>
+                            <Hidden only={['md']}>
                                 <WhoToFollow />
                             </Hidden>
                         ) : (
@@ -63,7 +63,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
 
 const mapMobxToProps = ({ authorization, timelineSwitcher }) => ({
     currentUser: authorization.currentUser,
-    homepageTimeline: timelineSwitcher.currentTimeline
+    homepageTimeline: timelineSwitcher.currentTimeline,
 });
 
 export const HomePage = inject(mapMobxToProps)(observer(_HomePage));

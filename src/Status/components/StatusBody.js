@@ -19,9 +19,9 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '23px',
         color: '#1C1C1C',
-        '& a':{
+        '& a': {
             color: '#6483C0',
-        }
+        },
     },
     replyingToLabel: {
         color: '#A2A2A2 !important',
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1),
         '& :hover': {
             textDecoration: 'underline',
-        }
+        },
     },
 }));
 

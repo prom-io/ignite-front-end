@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, Hidden, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
+import { Card, CardContent, Hidden, makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
 import { NotificationLeftMargin } from './NotificationLeftMargin';
 import { RepostedStatusContent } from '../../Status/components';

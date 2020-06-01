@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const BellIcon = ({ color, width, height }) => (
-    <svg width={width || "20"} height={height || "20"} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width || '20'} height={height || '20'} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0)">
             <path
                 d="M10 19.2C9.66877 19.2 9.35377 19.1269 9.07054 18.9958H10.9295C10.6462 19.1269 10.3312 19.2 10 19.2Z"

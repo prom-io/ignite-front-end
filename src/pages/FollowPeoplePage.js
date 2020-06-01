@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
+import React from 'react';
+import { Grid } from '@material-ui/core';
 
-import { AppBar } from "../AppBar/components";
-import { Layout } from "../Layout";
+import { AppBar } from '../AppBar/components';
+import { Layout } from '../Layout';
 import UserCard from '../components/UserCard';
-import { FollowPeopleContainer } from "../Follow/components";
-import "../styles/App.sass";
+import { FollowPeopleContainer } from '../Follow/components';
+import '../styles/App.sass';
 
 export const FollowPeoplePage = () => (
     <Grid container>

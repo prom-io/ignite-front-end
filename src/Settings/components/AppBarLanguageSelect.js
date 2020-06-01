@@ -1,22 +1,17 @@
 import React, { Fragment } from "react";
 import { inject, observer } from "mobx-react";
 import {
-    Select,
     MenuItem,
-    ListItemText,
-    InputLabel,
     makeStyles
 } from "@material-ui/core";
 import { localized } from "../../localization/components";
-import Menu from "@material-ui/core/Menu";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import MenuList from "@material-ui/core/MenuList";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Popper from "@material-ui/core/Popper";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles({
     styledSelectBox: {
@@ -24,13 +19,18 @@ const useStyles = makeStyles({
         height: 34,
         width: 34,
         borderRadius: 100,
+        color: 'rgba(0, 0, 0, 0.87)',
         "&:hover": {
             borderRadius: "100%",
             background: "#FFDECC"
         },
         "& svg": {
-            left: 35
-        }
+            left: 35,
+            marginLeft: '10px',
+        },
+        "& span": {
+            marginLeft: '34px',
+        },
     },
     styleMenuItem: {
         width: "auto",
@@ -44,29 +44,33 @@ const useStyles = makeStyles({
         },
         "&:hover": {
             background: "rgba(255,255,255,0)"
+        },
+        "& span":{
+            color: "rgba(255,255,255,0)"
         }
     },
     buttonMenuRoot: {
         height: 34,
         width: 34,
         borderRadius: 100,
+        transition: 'none',
+        color: 'rgba(255,255,255,0)',
         "&:hover": {
             background: "rgba(255,255,255,0)"
         },
-        "&:active": {
-            background: "rgba(255,255,255,0)"
-        }
     },
-    testClass: {
+    menuList: {
         padding: 0,
         borderTop: "2px solid #131315"
+    },
+    arrowAnimate: {
+        transform: 'rotate(180deg)'
     }
 });
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [lang, setLang] = React.useState(locale);
     const anchorRef = React.useRef(null);
 
     const handleListKeyDown = event => {
@@ -77,7 +81,6 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
     };
 
     const handleSelectLang = currentLang => {
-        setLang(currentLang);
         setSelectedLanguage(currentLang);
         setOpen(false);
     };
@@ -94,7 +97,10 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                     root: classes.buttonMenuRoot
                 }}
             >
-                {lang}
+                <span>{locale}</span>
+                <ArrowDropDownIcon classes={{
+                    root: open && classes.arrowAnimate,
+                }}/>
             </Button>
             <Popper
                 open={open}
@@ -119,7 +125,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                                     autoFocusItem={open}
                                     id="menu-list-grow"
                                     onKeyDown={handleListKeyDown}
-                                    classes={{ root: classes.testClass }}
+                                    classes={{ root: classes.menuList }}
                                 >
                                     <MenuItem
                                         classes={{ root: classes.styleMenuItem }}

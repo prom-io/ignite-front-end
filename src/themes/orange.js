@@ -2,16 +2,9 @@ import { createMuiTheme } from '@material-ui/core';
 
 export const orange = createMuiTheme({
   overrides: {
-    MuiMenu: {
-      paper: {
-        top: '50px !important',
-        right: '100px !important',
-        left: 'auto !important'
-      },
-      '& MuiList-padding': {
-        root: {
-          padding: 0,
-        }
+    MuiTouchRipple: {
+      root:{
+        background: 'rgba(255,255,255,0)',
       }
     }
   },

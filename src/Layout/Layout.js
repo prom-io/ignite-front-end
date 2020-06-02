@@ -6,7 +6,8 @@ const useStyles = makeStyles(theme => ({
         width: '1170px',
         margin: 'auto',
         [theme.breakpoints.down('md')]: {
-            width: '90%',
+            width: '100%',
+            maxWidth:'900px',
         },
         [theme.breakpoints.down('sm')]: {
             width: '100%',

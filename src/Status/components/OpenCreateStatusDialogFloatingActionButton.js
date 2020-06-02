@@ -6,7 +6,7 @@ import { EditIcon } from '../../icons/EditIcon';
 const useStyles = makeStyles(theme => ({
     fab: {
         position: 'fixed',
-        bottom: window.AndroidCallback ? theme.spacing(6) : theme.spacing(8),
+        bottom: window.AndroidCallback ? theme.spacing(2) : theme.spacing(8),
         right: theme.spacing(2),
         zIndex: 1000,
     },

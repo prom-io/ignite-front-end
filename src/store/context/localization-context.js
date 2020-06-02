@@ -1,7 +1,7 @@
 import { createContext } from 'react';
+import { computed } from 'mobx';
 import { store } from '../store';
 import { replacePlaceholder } from '../../utils/string-utils';
-import {computed} from "mobx";
 
 class LocalizationContextHolder {
     store = undefined;

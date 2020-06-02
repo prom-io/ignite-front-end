@@ -39,7 +39,7 @@ const _TermsAndPolicesPage = ({ l }) => (
         </div>
         <div className="static-page-container">
             <div>
-                <div className="static-page-logo-container">
+                <div className="static-page-logo-container" id="privacyPolicies">
                     <img src="/page_img/privacy_policies_page.svg" />
                     <h1>{l('privacy-policies')}</h1>
                 </div>

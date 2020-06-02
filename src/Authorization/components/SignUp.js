@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, CircularProgress, DialogContent, makeStyles} from '@material-ui/core';
-import {useStore} from "../../store/hooks";
+import { observer } from 'mobx-react';
+import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -49,25 +50,58 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const SignUp = () => {
+const igniteDescriptionTranslations = {
+    en: (classes) => (
+        <span className={classes.contentDescription}>
+            <a>Ignite </a>
+            {' '}
+            is a decentralized social network, based on blockchain technology.
+            You have to use a special ID named
+            <a>blockchain wallet address</a>
+            {' '}
+            to sign up.
+        </span>
+    ),
+    ko: (classes) => (
+        <span className={classes.contentDescription}>
+            <a>Ignite </a>
+            는 블록체인 기술을 기반으로 한 분산형 소셜 네트워크다. 가입하려면
+            <a>블록체인 지갑주소 라는</a>
+            {' '}
+            특수 아이디를 사용해야 합니다
+        </span>
+    ),
+};
+
+const useExistingWalletTranslations = {
+    en: () => (
+        <span>
+            Use an existing wallet
+            <br />
+            (for advanced users only)
+        </span>
+    ),
+    ko: () => (
+        <span>
+            기존 지갑 사용
+            <br />
+            (고급 사용자 전용)
+        </span>
+    ),
+};
+
+export const SignUp = observer(() => {
     const classes = useStyles();
     const { generateWallet, pending } = useStore().walletGeneration;
+    const { l, locale } = useLocalization();
 
     return (
         <DialogContent>
-            <span className={classes.contentDescription}>
-                <a>Ignite</a>
-                {' '}
-                is a decentralized social network, based on blockchain technology.
-                You have to use a special ID named
-                <a>blockchain wallet address</a>
-                {' '}
-                to sign up.
-            </span>
+            {igniteDescriptionTranslations[locale](classes)}
             <div className={classes.contentBlock}>
                 <div>
-                    <p>Recommended option:</p>
-                    <span>Create a new blockchain wallet</span>
+                    <p>{l('sign-up.options.recommended-option')}</p>
+                    <span>{l('sign-up.options.new-wallet')}</span>
                 </div>
                 <Button
                     variant="contained"
@@ -79,17 +113,12 @@ export const SignUp = () => {
                     disabled={pending}
                 >
                     {pending && <CircularProgress size={20} />}
-                    Create Wallet
+                    {l('sign-up.options.new-wallet')}
                 </Button>
             </div>
-
             <div className={classes.contentBlock}>
                 <div>
-                    <span>
-                        Use an existing wallet
-                        <br />
-                        (for advanced users only)
-                    </span>
+                    {useExistingWalletTranslations[locale]()}
                 </div>
                 <Button
                     variant="outlined"
@@ -98,15 +127,17 @@ export const SignUp = () => {
                         root: classes.button,
                     }}
                 >
-                    Use Own Wallet
+                    {l('sign-up.use-own-wallet')}
                 </Button>
             </div>
             <div className={classes.notes}>
-                <a>Note:</a>
+                <a>
+                    {l('sign-up.note')}
+                    :
+                </a>
                 {' '}
-                This option is suitable for blockchain experienced users only.
-                It will require you to make a record to the Ethereum blockchain using your existing ERC20 wallet.
+                {l('sign-up.options.use-existing-wallet.note')}
             </div>
         </DialogContent>
     );
-};
+});

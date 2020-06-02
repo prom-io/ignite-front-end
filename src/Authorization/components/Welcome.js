@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import { useStore } from '../../store/hooks';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -51,6 +51,7 @@ const useStyles = makeStyles(() => ({
 
 export const Welcome = () => {
     const classes = useStyles();
+    const { l } = useLocalization();
     const { genericAuthorizationDialog, walletGeneration } = useStore();
     const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
     const { generatedWallet } = walletGeneration;
@@ -58,14 +59,15 @@ export const Welcome = () => {
     return (
         <DialogContent>
             <span className={classes.contentDescription}>
-                Wow! You have just signed up to Ignite: the most exciting decentralized social network in the world!
+                {l('sign-up.success')}
             </span>
-
             <div className={classes.contentBlock}>
-                <p>Your login is:</p>
+                <p>
+                    {l('sign-up.your-login-is')}
+                    :
+                </p>
                 <span>{generatedWallet.address}</span>
             </div>
-
             <Button
                 variant="contained"
                 color="primary"
@@ -74,14 +76,16 @@ export const Welcome = () => {
                 }}
                 onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
-                Enjoy
+                {l('sign-up.enjoy')}
             </Button>
 
             <div className={classes.notes}>
-                <a>Note:</a>
+                <a>
+                    {l('sign-up.node')}
+                    :
+                </a>
                 {' '}
-                We created this network because we believe that every word is worth to be heard. That means Ignite does not control or censor anything you can publish or see here.
-                If you don't like something, you will have options to unfollow, block or mute that person. However, please do not expect that we will ban somebody whose opinion you hate. For this option please consider Hezbollah or Facebook. Our Report abuse option is intended for emergency situations.
+                {l('sign-up.no-bans')}
             </div>
         </DialogContent>
     );

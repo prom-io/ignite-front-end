@@ -179,4 +179,11 @@ export const en = {
     'sign-up.keep-your-login': 'Please keep your login (Wallet Address) and be ready to provide us with it. Time and date, as well as your device and browser info will be also useful. We will not ask about your IP address and location, but sometime it may help... so we would highly appreciate it if you could provide us with that info.',
     'sign-up.sorry': 'Sorry for the inconvenience.',
     'follow-people': 'Follow People',
+    'sign-up.create-account': 'Create an account',
+    'sign-up.generate-hash-code': 'Generate a Hashcode',
+    'sign-up.verify-hash-code': 'Verify hashcode',
+    'authorization.forgot-password': 'Forgot password?',
+    'authorization.reset-password': 'Reset password',
+    'authorization.change-password': 'Change Your Password',
+    'authorization.password-updated': 'Password Updated',
 };

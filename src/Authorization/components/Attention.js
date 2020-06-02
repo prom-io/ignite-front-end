@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Button, Checkbox, DialogContent, makeStyles } from '@material-ui/core';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
-import { useStore } from '../../store/hooks';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     dialogContentRoot: {
@@ -77,9 +77,70 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const makeSureYouReallySavedTranslations = {
+    en: (classes) => (
+        <p className={classes.contentDescription}>
+            Make sure you
+            {' '}
+            <span>really</span>
+            {' '}
+            saved this info:
+        </p>
+    ),
+    ko: (classes) => (
+        <p className={classes.contentDescription}>
+            다음 정보를
+            {' '}
+            <span>저장</span>
+            {' '}
+            했는지 확인하십시오
+        </p>
+    ),
+};
+
+const makeOneHundredPercentSureTranslations = {
+    en: () => (
+        <>
+            Make
+            <span>100%</span>
+            {' '}
+            sure that you really saved all this info in a safe place
+        </>
+    ),
+    ko: () => (
+        <>
+            이 모든 정보를 안전한 곳에 저장했는지
+            <span> 100%</span>
+            {' '}
+            확인해주세요
+        </>
+    ),
+};
+
+const privateKeyLossTranslations = {
+    en: () => (
+        <>
+            If you lose your Private Key, you will
+            <span>never</span>
+            {' '}
+            recover the password
+        </>
+    ),
+    ko: () => (
+        <>
+            개인 키를 잃어버리면
+            {' '}
+            <span>절대</span>
+            {' '}
+            비밀번호를 복구할 수 없다.
+        </>
+    ),
+};
+
 export const Attention = observer(() => {
     const classes = useStyles();
     const { walletGeneration, signUp, genericAuthorizationDialog } = useStore();
+    const { l, locale } = useLocalization();
     const { generatedWallet } = walletGeneration;
     const { signUpForm, submissionError } = signUp;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
@@ -101,14 +162,7 @@ export const Attention = observer(() => {
             root: classes.dialogContentRoot,
         }}
         >
-            <p className={classes.contentDescription}>
-                Make sure you
-                {' '}
-                <span>really</span>
-                {' '}
-                saved this info:
-            </p>
-
+            {makeSureYouReallySavedTranslations[locale](classes)}
             <div className={classes.infoCheckingBlock}>
                 <div className={classes.checkboxBlock}>
                     <div className={classes.checkboxTitle}>
@@ -119,7 +173,7 @@ export const Attention = observer(() => {
                             onChange={() => setAddressCopied(!addressCopied)}
                         />
                         <div className={classes.checkboxBlockDescription}>
-                            <span className={classes.title}>Wallet Address (login)</span>
+                            <span className={classes.title}>{l('sign-up.wallet-address')}</span>
                             <span className={classes.value}>{generatedWallet.address}</span>
                         </div>
                     </div>
@@ -136,7 +190,7 @@ export const Attention = observer(() => {
                             onChange={() => setPrivateKeyCopied(!privateKeyCopied)}
                         />
                         <div className={classes.checkboxBlockDescription}>
-                            <span className={classes.title}>Private Key (password recovery key)</span>
+                            <span className={classes.title}>{l('sign-up.private-key')}</span>
                             <span className={classes.value}>{generatedWallet.privateKey}</span>
                         </div>
                     </div>
@@ -164,21 +218,15 @@ export const Attention = observer(() => {
             </div>
             <div className={classes.markList}>
                 <p className={classes.contentDescription}>
-                    Please do not lose it!
+                    {l('sign-up.please-do-not-lose-it')}
                 </p>
                 <ul>
                     <li>
-                        Make
-                        <span>100%</span>
-                        {' '}
-                        sure that you really saved all this info in a safe place
+                        {makeOneHundredPercentSureTranslations[locale]()}
                     </li>
-                    <li>You will be able to change the password later using the Private Key</li>
+                    <li>{l('sign-up.password-change')}</li>
                     <li>
-                        If you lose your Private Key, you will
-                        <span>never</span>
-                        {' '}
-                        recover the password
+                        {privateKeyLossTranslations[locale]()}
                     </li>
                 </ul>
             </div>
@@ -192,7 +240,7 @@ export const Attention = observer(() => {
                 disabled={!passwordCopied || !privateKeyCopied || !addressCopied}
                 onClick={handleOkClick}
             >
-                Ok
+                {l('sign-up.ok')}
             </Button>
         </DialogContent>
     );

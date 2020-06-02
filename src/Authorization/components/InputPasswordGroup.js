@@ -94,7 +94,7 @@ export const InputPasswordGroup = ({
                     id="standard-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     value={formValues.password}
-                    label="Password"
+                    label={l('sign-up.password')}
                     onChange={handleChange('password')}
                     className={classes.underlinedInput}
                     InputProps={{
@@ -117,7 +117,7 @@ export const InputPasswordGroup = ({
             <FormControl classes={{ root: classes.input }}>
                 <TextField
                     id="standard-adornment-password-confirmation"
-                    label="Confirm password"
+                    label={l('sign-up.confirm-password')}
                     type={showPassword ? 'text' : 'password'}
                     value={formValues.passwordConfirmation}
                     onChange={handleChange('passwordConfirmation')}
@@ -141,9 +141,14 @@ export const InputPasswordGroup = ({
                 />
             </FormControl>
             <span className={classes.descriptionSecondary}>
-                Your password must be at least 8 characters long, be of mixed case and also contain a digit or symbol.
+                {l('sign-up.password.requirements')}
             </span>
-            <a className={classes.link} onClick={generateRandomPassword}>Generate a strong password</a>
+            <a
+                className={classes.link}
+                onClick={generateRandomPassword}
+            >
+                {l('sign-up.password.generate-strong-password')}
+            </a>
         </div>
     );
 };

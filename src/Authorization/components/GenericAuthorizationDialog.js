@@ -27,43 +27,43 @@ const dialogType = {
     signUp: {
         id: 'signUp',
         component: <SignUp />,
-        title: 'Sign Up',
+        title: 'sing-up',
         type: 'default', // в зависимости от type меняеться иконка в dialogHeader. Возможные варианты: default, attention
     },
     createWallet: {
         id: 'createWallet',
         component: <CreateWallet />,
-        title: 'Wallet Created',
+        title: 'sign-up.wallet-created',
         type: 'default',
     },
     attention: {
         id: 'attention',
         component: <Attention />,
-        title: 'Attention',
+        title: 'sign-up.attention',
         type: 'attention',
     },
     welcome: {
         id: 'welcome',
         component: <Welcome />,
-        title: 'Welcome to Ignite!',
+        title: 'sign-up.welcome',
         type: 'default',
     },
     errorAuthorization: {
         id: 'errorAuthorization',
         component: <ErrorAuthorization />,
-        title: 'Oops!',
+        title: 'sign-up.oops',
         type: 'default',
     },
     createAccount: {
         id: 'createAccount',
         component: <CreateAccount />,
-        title: 'Create an Account',
+        title: 'sign-up.create-an-account',
         type: 'default',
     },
     generateHash: {
         id: 'generateHash',
         component: <GenerateHash />,
-        title: 'Generate a Hashcode',
+        title: 'sign-up.generate-hash-code',
         type: 'default',
     },
     verifyHash: {
@@ -75,61 +75,61 @@ const dialogType = {
     verifyError: {
         id: 'verifyError',
         component: <ErrorVerify />,
-        title: 'Oops!',
+        title: 'sign-up.oops',
         type: 'default',
     },
     forgotPassword: {
         id: 'forgotPassword',
         component: <ForgotPassword />,
-        title: 'Forgot your Password?',
+        title: 'authorization.forgot-password',
         type: 'default',
     },
     resetPassword: {
         id: 'resetPassword',
         component: <ResetPassword />,
-        title: 'Reset Password',
+        title: 'authorization.reset-password',
         type: 'default',
     },
     changePassword: {
         id: 'changePassword',
         component: <ChangePassword />,
-        title: 'Change Your Password',
+        title: 'authorization.change-password',
         type: 'default',
     },
     passwordUpdated: {
         id: 'passwordUpdated',
         component: <PasswordUpdated />,
-        title: 'Password Updated',
+        title: 'authorization.password-updated',
         type: 'default',
     },
     passwordUpdatedError: {
         id: 'passwordUpdatedError',
         component: <PasswordUpdatedError />,
-        title: 'Oops!',
+        title: 'sign-up.oops',
         type: 'default',
     },
     updatePasswordError: {
         id: 'updatePasswordError',
         component: <UpdatePasswordError />,
-        title: 'Oops!',
+        title: 'sign-up.oops',
         type: 'default',
     },
     resetWithoutKey: {
         id: 'resetWithoutKey',
         component: <ResetWithoutKey />,
-        title: 'Reset Password',
+        title: 'authorization.reset-password',
         type: 'default',
     },
     changePasswordWithHash: {
         id: 'changePasswordWithHash',
         component: <ChangePasswordWithHash />,
-        title: 'Change Your Password',
+        title: 'authorization.change-password',
         type: 'default',
     },
     login: {
         id: 'logIn',
         component: <LoginForm />,
-        title: 'Log in',
+        title: 'authorization.login',
         type: 'default',
     },
 };
@@ -139,7 +139,6 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
         genericAuthorizationDialogOpen,
         setGenericAuthorizationDialogOpen,
         genericAuthorizationDialogType,
-        setGenericAuthorizationDialogType,
     } = useStore().genericAuthorizationDialog;
     const { l } = useLocalization();
 
@@ -152,8 +151,9 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
             scroll="body"
         >
             <CustomDialogTitle
-                title={dialogType[genericAuthorizationDialogType].title}
+                title={l(dialogType[genericAuthorizationDialogType].title)}
                 setLoginDialogOpen={setGenericAuthorizationDialogOpen}
+                type={dialogType[genericAuthorizationDialogType].type}
             />
             {dialogType[genericAuthorizationDialogType].component}
         </Dialog>

@@ -22,13 +22,20 @@ const getInitialLanguage = () => {
 
 export class LocaleStore {
     @observable
-    selectedLanguage = getInitialLanguage();
+    selectedLanguageContainer = {
+        selectedLanguage: getInitialLanguage()
+    };
 
     @observable
     labels = {
         en,
         ko
     };
+
+    @computed
+    get selectedLanguage() {
+        return this.selectedLanguageContainer.selectedLanguage;
+    }
 
     @computed
     get selectedLanguageLabels() {

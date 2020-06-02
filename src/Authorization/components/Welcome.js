@@ -81,7 +81,7 @@ export const Welcome = () => {
 
             <div className={classes.notes}>
                 <a>
-                    {l('sign-up.node')}
+                    {l('sign-up.note')}
                     :
                 </a>
                 {' '}

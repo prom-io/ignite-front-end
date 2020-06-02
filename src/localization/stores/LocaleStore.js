@@ -50,6 +50,6 @@ export class LocaleStore {
     @action
     setSelectedLanguage = language => {
         localStorage.setItem("language", language);
-        this.selectedLanguage = language;
+        this.selectedLanguageContainer.selectedLanguage = language;
     }
 }

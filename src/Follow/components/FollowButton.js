@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         },
 
         '&.follow': {
-            background: 'transparent',
+            background: '#fff',
         },
 
         '&.following': {

@@ -6,7 +6,7 @@ import { ArrowBackIcon } from '../icons/ArrowBackIcon';
 import { localized } from '../localization/components';
 import { Routes } from '../routes';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     backButtonWrapper: {
         display: 'flex',
         alignItems: 'center',
@@ -19,6 +19,11 @@ const useStyles = makeStyles(() => ({
         height: '32px',
         width: '32px',
         marginRight: '4px',
+        borderRadius: '30px',
+        [theme.breakpoints.down('sm')]: {
+            height: '48px',
+            width: '48px',
+        },
 
         '&:hover': {
             background: 'rgba(255, 92, 1, 0.2)',

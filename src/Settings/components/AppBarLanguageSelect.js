@@ -103,8 +103,17 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                 <ArrowDropDownIcon classes={{
                     root: open && classes.arrowAnimate,
                 }}
+            <div
+                className={classes.styledSelectBox}
+                onClick={() => setOpen(prevOpen => !prevOpen)}
+            >
+                <span>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
+                <ArrowDropDownIcon
+                    classes={{
+                        root: open && classes.arrowAnimate
+                    }}
                 />
-            </Button>
+            </div>
             <Popper
                 open={open}
                 anchorEl={anchorRef.current}

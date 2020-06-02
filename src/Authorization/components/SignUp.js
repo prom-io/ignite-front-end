@@ -112,7 +112,7 @@ export const SignUp = observer(() => {
                     onClick={generateWallet}
                     disabled={pending}
                 >
-                    {pending && <CircularProgress size={20} />}
+                    {pending && <CircularProgress size={40} style={{ height: '100%' }} />}
                     {l('sign-up.options.new-wallet')}
                 </Button>
             </div>

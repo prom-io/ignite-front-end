@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
@@ -153,6 +153,7 @@ export const CreateWallet = observer(() => {
                 disabled={signUpButtonDisabled}
                 onClick={doSignUp}
             >
+                {pending && <CircularProgress size={20} color="primary"/>}
                 {l('sign-up')}
             </Button>
         </DialogContent>

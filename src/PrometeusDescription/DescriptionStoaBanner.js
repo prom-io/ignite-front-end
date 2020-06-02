@@ -122,6 +122,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
                         className="static-page-link"
                     >
                         © 2020
+                        {' '}
                         <u>{Prometeus}</u>
                         {' '}
                         Team

@@ -16,10 +16,9 @@ const useStyles = makeStyles(theme => ({
     prometeusLink: {
         color: theme.palette.primary.main,
     },
-    marginDescription: {
-        position: 'relative',
-        top: 281,
-    },
+  marginTop: {
+      marginTop: '20px',
+  }
 }));
 
 const tryOurNetworkTranslations = {
@@ -67,7 +66,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
                 {currentUser ? <UserCard isLogin /> : <DescriptionUnauthBanner />}
             </Grid>
 
-            <Grid className={classes.marginDescription}>
+            <Grid classes={{root: classes.marginTop}}>
                 {currentUser ? '' : <DescriptionStoaBanner />}
             </Grid>
 

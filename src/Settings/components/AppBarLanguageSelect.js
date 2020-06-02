@@ -49,16 +49,6 @@ const useStyles = makeStyles({
             color: 'rgba(255,255,255,0)',
         },
     },
-    buttonMenuRoot: {
-        height: 34,
-        width: 34,
-        borderRadius: 100,
-        transition: 'none',
-        color: 'rgba(255,255,255,0)',
-        '&:hover': {
-            background: 'rgba(255,255,255,0)',
-        },
-    },
     menuList: {
         padding: 0,
         borderTop: '2px solid #131315',
@@ -87,22 +77,13 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
 
     return (
         <>
-            <Button
-                ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                onClick={() => setOpen(prevOpen => !prevOpen)}
-                classes={{
-                    label: classes.styledSelectBox,
-                    root: classes.buttonMenuRoot,
-                }}
-            >
+            <div className={classes.styledSelectBox} onClick={() => setOpen(prevOpen => !prevOpen)}>
                 <span>{locale}</span>
                 <ArrowDropDownIcon classes={{
                     root: open && classes.arrowAnimate,
                 }}
                 />
-            </Button>
+            </div>
             <Popper
                 open={open}
                 anchorEl={anchorRef.current}

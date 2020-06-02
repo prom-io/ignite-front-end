@@ -58,7 +58,6 @@ p
   width: 100%
   max-height: 49px
   min-height: 49px !important
-  max-width: 840px
   padding-right: 0px !important
   @media (min-width: 1245px)
     max-width: 1100px
@@ -138,13 +137,13 @@ p
   min-width: 32px
   width: 32px
   height: 38px
-  background-image: url('/logo.png')
+  background-image: url('/logo.svg')
   background-repeat: no-repeat
   background-size: auto
   background-position: center
   box-sizing: border-box
 .content-container
-  padding-top: 55px !important
+  padding-top: 52px !important
   @media (min-width: 952px)
     padding-top: 0 !important
     width: 100% !important
@@ -156,7 +155,7 @@ p
     max-width: 600px !important
 .mobile_header
   width: 100%
-  height: 60px
+  height: 50px
   position: fixed
   left: 0
   top: 0
@@ -190,6 +189,8 @@ p
 .expand_drawer_button
   position: fixed !important
   z-index: 9999 !important
+  @media (min-width: 960px)
+    padding: 6px 12px
 .navigation_drawer_menu
   z-index: 99999 !important
 
@@ -298,7 +299,6 @@ p
       color: #FF5C01
 .user_profile_container
   width: 256px
-  height: 300px
   display: flex
   flex-direction: column
   cursor: default
@@ -315,9 +315,9 @@ p
   border: 1px solid #F1EBE8
   box-sizing: border-box
   width: 256px
-  min-height: 300px
+  min-height: 290px
   height: auto
-  padding-bottom: 15px
+  padding-bottom: 4px
   border-radius: 4px
   display: flex
   flex-wrap: wrap
@@ -333,7 +333,7 @@ p
 .user-card-top
   display: flex
   justify-content: center
-  padding-top: 30px
+  padding-top: 36px
   img
     max-width: 94px
 // .user-card-bottom
@@ -679,7 +679,7 @@ p
 
 .user-profile-header
   max-width: 256px !important
-  height: 388px !important
+  height: 376px !important
   padding: 0 !important
   background: #FBF7F6
   border: 1px solid #F1EBE8
@@ -690,7 +690,7 @@ p
     max-width: 600px !important
     // height: 360px !important
     // margin-bottom: 20px !important
-    margin-top: 60px !important
+    margin-top: 50px !important
     height: 450px !important
 
 .user-profile-header-content
@@ -741,7 +741,7 @@ p
     font-size: 12px
     line-height: 14px
     text-align: center
-    // color: #A2A2A2
+    color: #A2A2A2
 
 .user-profile-header-content-bottom-follow-button
   width: 202px
@@ -769,19 +769,16 @@ p
 .user-profile-content-container
   max-width: auto !important
   width: 100% !important
-  padding: 0 !important
   margin-bottom: 70px !important
-  margin-left: 30px !important
   max-width: 600px !important
   @media (max-width: 960px)
     margin-left: 0px !important
     position: relative
-    top: -120px
+    top: -100px
 .user-profile-info
   padding-left: 6px
   margin-bottom: 8px
   &:first-child
-    margin-top: 20px
     margin-bottom: 10px !important
   &:nth-child(2)
     margin-bottom: 6px !important
@@ -796,7 +793,6 @@ p
 .static-page-container
   width: auto
   min-height: 100%
-  padding: 32px 15px 50px 15px
   max-width: 100%
   display: flex
   justify-content: center
@@ -978,7 +974,9 @@ p
   border-top: 1px solid #F1EBE8
   border-right: 1px solid #F1EBE8
   border-left: 1px solid #F1EBE8
-  border-radius: 0px !important
   overflow: visible !important
+  border-radius: 0 !important
+  &:first-child
+    border-radius: 4px 4px 0 0 !important
   &:last-child
     border-bottom: 1px solid #F1EBE8

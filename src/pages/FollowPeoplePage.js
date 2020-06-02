@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
-import UserCard from '../components/UserCard';
+import { UserCard } from '../components/UserCard';
 import { FollowPeopleContainer } from '../Follow/components';
 import '../styles/App.sass';
 

@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     styledSelectBox: {
         display: 'flex',
         justifyContent: 'center',
@@ -32,6 +32,14 @@ const useStyles = makeStyles({
             left: 35,
             marginLeft: '10px',
         },
+    },
+    styledSelectOpen: {
+        [theme.breakpoints.down('sm')]: {
+            '&:hover': {
+                background: 'rgba(255,255,255,0)',
+                color: '#A2A2A2',
+            },
+        }
     },
     styleMenuItem: {
         width: 'auto',
@@ -57,14 +65,17 @@ const useStyles = makeStyles({
             background: 'rgba(255,255,255,0)',
         },
     },
+    buttonMenuLabel: {
+        width: 'auto'
+    },
     menuList: {
         padding: 0,
-        borderTop: "2px solid #131315"
+        width: '118px'
     },
     arrowAnimate: {
         transform: "rotate(180deg)"
     }
-});
+}));
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
     const classes = useStyles();
@@ -91,12 +102,13 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                 aria-haspopup="true"
                 onClick={() => setOpen(prevOpen => !prevOpen)}
                 classes={{
-                    label: classes.styledSelectBox,
+                    label: classes.buttonMenuLabel,
                     root: classes.buttonMenuRoot,
                 }}
             >
-                <span>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
+                <span className={open ? classes.styledSelectBox : `${classes.styledSelectBox} ${classes.styledSelectOpen}`}>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
                 <ArrowDropDownIcon
+                  style={{color:'#A2A2A2'}}
                     classes={{
                         root: open && classes.arrowAnimate
                     }}

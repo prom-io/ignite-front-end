@@ -22,13 +22,24 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     styledCheckbox: {
+        margin: 0,
+        padding: 0,
+        borderRadius: 100,
+        width: 34,
+        height: 34,
         '&.MuiCheckbox-root': {
             color: 'rgba(0, 0, 0, 0.35)',
         },
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
-    correctBorderRadius: {
-        borderRadius: 0,
-    },
+    cardActionSpacing: {
+        '& > :not(:first-child)':{
+            marginLeft: '25px',
+        }
+    }
 });
 
 const _StatusBottom = ({
@@ -62,7 +73,7 @@ const _StatusBottom = ({
 
     return (
         <ClickEventPropagationStopper>
-            <CardActions className="status-list-bottom-container">
+            <CardActions className="status-list-bottom-container" classes={{spacing: classes.cardActionSpacing}}>
                 <ClickEventPropagationStopper>
                     <CommentsButton status={status} />
                 </ClickEventPropagationStopper>
@@ -81,7 +92,7 @@ const _StatusBottom = ({
                                     checkedIcon={<FavoriteIcon color="primary" />}
                                     checked={favourited}
                                     onChange={() => onFavouriteClick(statusId, !favourited)}
-                                    className={classes.styledCheckbox}
+                                    classes={{root:classes.styledCheckbox}}
                                 />
                             )}
                         <Typography variant="body1" color={favourited ? 'primary' : 'textSecondary'}>
@@ -94,7 +105,6 @@ const _StatusBottom = ({
                         <ClickEventPropagationStopper>
                             <IconButton
                                 ref={anchorRef}
-                                className={classes.correctBorderRadius}
                                 onClick={event => {
                                     handleToggle(event);
                                 }}

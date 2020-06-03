@@ -51,6 +51,7 @@ const _StatusBottom = ({
     btfsInfo,
     repostPending,
     canBeReposted,
+    currentUserIsAuthor,
     status,
     l,
 }) => {
@@ -81,6 +82,7 @@ const _StatusBottom = ({
                     status={status}
                     repostPending={repostPending}
                     canBeReposted={canBeReposted}
+                    currentUserIsAuthor={currentUserIsAuthor}
                 />
                 <div>
                     <ClickEventPropagationStopper className="status-list-bottom-box">

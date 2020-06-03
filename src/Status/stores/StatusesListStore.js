@@ -104,6 +104,7 @@ export class StatusesListStore {
                     } else{
                         url = `${this.baseUrl}?since_id=${minId}`;
                     }
+                    console.log(url)
                     axiosInstance.get(url)
                         .then(({data}) => {
                             if (data.length !== 0) {
@@ -126,6 +127,7 @@ export class StatusesListStore {
                     } else {
                         url = `${this.baseUrl}?max_id=${maxId}`
                     }
+                    console.log(url)
                     axiosInstance.get(url)
                         .then(({data}) => {
                             if (data.length !== 0) {
@@ -148,7 +150,7 @@ export class StatusesListStore {
                 } else {
                     url = `${this.baseUrl}`;
                 }
-
+                console.log(url)
                 axiosInstance.get(`${url}`)
                     .then(({data}) => {
                         if (data.length !== 0) {

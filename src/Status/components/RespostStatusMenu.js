@@ -7,7 +7,7 @@ import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
-const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }) => {
+const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIsAuthor, currentUser }) => {
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -33,7 +33,7 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }
                         ref={anchorRef}
                         onClick={handleToggle}
                     >
-                        <RepostIcon />
+                        <RepostIcon reposted={!canBeReposted && !currentUserIsAuthor}/>
                     </IconButton>
                 )}
             <Typography variant="body1" color="textSecondary">

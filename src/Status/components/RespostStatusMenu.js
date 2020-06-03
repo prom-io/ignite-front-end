@@ -33,7 +33,7 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIs
                         ref={anchorRef}
                         onClick={handleToggle}
                     >
-                        <RepostIcon reposted={!canBeReposted && !currentUserIsAuthor}/>
+                        <RepostIcon reposted={currentUser && !canBeReposted && !currentUserIsAuthor}/>
                     </IconButton>
                 )}
             <Typography variant="body1" color="textSecondary">

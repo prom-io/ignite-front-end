@@ -92,7 +92,9 @@ const useExistingWalletTranslations = {
 
 export const SignUp = observer(() => {
     const classes = useStyles();
-    const { generateWallet, pending } = useStore().walletGeneration;
+    const { walletGeneration, genericAuthorizationDialog } = useStore();
+    const { generateWallet, pending } = walletGeneration;
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
     const { l, locale } = useLocalization();
 
     return (
@@ -126,6 +128,7 @@ export const SignUp = observer(() => {
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={() => setGenericAuthorizationDialogType('createAccount')}
                 >
                     {l('sign-up.use-own-wallet')}
                 </Button>

@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const KeyCopyBlock = ({ children, title, textToCopy }) => {
+export const KeyCopyBlock = ({ children, title, textToCopy, disabled }) => {
     const classes = useStyles();
 
     return (
@@ -39,7 +39,7 @@ export const KeyCopyBlock = ({ children, title, textToCopy }) => {
                 <div className={classes.titleBold}>{title}</div>
                 <span className={classes.keyValue}>{children}</span>
             </div>
-            <CopyToClipboardButton textToCopy={textToCopy} />
+            <CopyToClipboardButton textToCopy={textToCopy} disabled={disabled} />
         </div>
     );
 };

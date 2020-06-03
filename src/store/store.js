@@ -4,6 +4,8 @@ import {
     GenericAuthorizationDialogStore,
     GenerateWalletStore,
     SignUpStore,
+    GenerateHashStore,
+    VerifyHashStore,
 } from '../Authorization/stores';
 import {
     CreateStatusStore,
@@ -61,6 +63,8 @@ const websocket = new WebsocketStore(authorization, notifications);
 const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
 const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
 const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog);
+const hashGeneration = new GenerateHashStore();
+const hashVerification = new VerifyHashStore();
 
 export const store = {
     authorization,
@@ -92,4 +96,6 @@ export const store = {
     websocket,
     genericAuthorizationDialog,
     walletGeneration,
+    hashGeneration,
+    hashVerification,
 };

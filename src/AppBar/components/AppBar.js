@@ -122,7 +122,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
     </>
 );
 
-console.log(111)
+console.log(111);
 
 const mapMobxToProps = ({ store, authorization, login }) => ({
     routerStore: store,

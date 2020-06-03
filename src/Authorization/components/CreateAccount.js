@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Bold',
         fontSize: '20px',
@@ -41,6 +42,8 @@ const useStyles = makeStyles(theme => ({
 
 export const CreateAccount = () => {
     const classes = useStyles();
+    const { genericAuthorizationDialog } = useStore();
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
     return (
         <DialogContent>
             <span className={classes.contentDescription}>
@@ -60,11 +63,17 @@ export const CreateAccount = () => {
                 classes={{
                     root: classes.button,
                 }}
+                onClick={() => setGenericAuthorizationDialogType('generateHash')}
             >
                 Generate Hashcode
             </Button>
 
-            <div className={classes.link}>I will create the hashcode on my own</div>
+            <div
+                className={classes.link}
+                onClick={() => setGenericAuthorizationDialogType('verifyHash')}
+            >
+                I will create the hashcode on my own
+            </div>
 
             <div className={classes.notes}>
                 <a>Note:</a>

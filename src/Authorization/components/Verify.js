@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import CustomDialogTitle from './CustomDialogTitle';
+import { Button, CircularProgress, DialogContent, makeStyles, TextField } from '@material-ui/core';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentBlock: {
         margin: '16px 0 30px 0',
         fontFamily: 'Museo Sans Cyrl Regular',
@@ -28,27 +27,35 @@ const useStyles = makeStyles(theme => ({
 
 export const Verify = () => {
     const classes = useStyles();
+    const { hashVerification } = useStore();
+    const { setTransactionId, pending, transactionId, verifyHash } = hashVerification;
+
     return (
         <DialogContent>
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="Ethereum Txn Hash" />
-
+                <TextField
+                    id="standard-basic"
+                    label="Ethereum Txn Hash"
+                    onChange={event => setTransactionId(event.target.value)}
+                    value={transactionId}
+                />
                 <div className={classes.contentBlock}>
                     Publish a record to Ethereum blockchain that contains the
                     necessary hashcode and enter it’s Txn Hash here. We will create an Ignite account connected to that ETH wallet.
                 </div>
-
                 <Button
                     variant="contained"
                     color="primary"
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={verifyHash}
+                    disabled={pending}
                 >
+                    {pending && <CircularProgress size={25} color="primary" />}
                     Verify hash
                 </Button>
             </form>
-
             <div className={classes.notes}>
                 <a>Note:</a>
                 {' '}

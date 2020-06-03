@@ -153,7 +153,7 @@ export const CreateWallet = observer(() => {
                 disabled={signUpButtonDisabled}
                 onClick={doSignUp}
             >
-                {pending && <CircularProgress size={20} color="primary"/>}
+                {pending && <CircularProgress size={20} color="primary" />}
                 {l('sign-up')}
             </Button>
         </DialogContent>

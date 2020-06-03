@@ -1,7 +1,7 @@
 import React from 'react';
-import {observer} from 'mobx-react';
-import {Button} from '@material-ui/core';
-import {useLocalization, useStore} from '../../store/hooks';
+import { observer } from 'mobx-react';
+import { Button } from '@material-ui/core';
+import { useLocalization, useStore } from '../../store/hooks';
 
 export const OpenLoginDialogButton = observer(() => {
     const { setGenericAuthorizationDialogOpen, setGenericAuthorizationDialogType } = useStore().genericAuthorizationDialog;
@@ -24,4 +24,3 @@ export const OpenLoginDialogButton = observer(() => {
         </Button>
     );
 });
-

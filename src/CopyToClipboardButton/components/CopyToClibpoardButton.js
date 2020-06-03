@@ -12,11 +12,11 @@ const useStyles = makeStyles(theme => ({
     tooltipIcon: {
         height: '100%',
         cursor: 'pointer',
-        padding: 0
+        padding: 0,
     },
 }));
 
-export const CopyToClipboardButton = ({ textToCopy, darkTooltip = false, iconColor = '#A2A2A2' }) => {
+export const CopyToClipboardButton = ({ textToCopy, darkTooltip = false, iconColor = '#A2A2A2', disabled = false }) => {
     const classes = useStyles();
     const [copied, setCopied] = useState(false);
 
@@ -27,12 +27,18 @@ export const CopyToClipboardButton = ({ textToCopy, darkTooltip = false, iconCol
         [copied],
     );
 
+    const handleCopy = () => {
+        if (!disabled) {
+            setCopied(true);
+        }
+    };
+
     const tooltipClasses = darkTooltip ? null : { tooltip: classes.lightTooltip };
 
     return (
         <CopyToClipboard
             text={textToCopy}
-            onCopy={() => setCopied(true)}
+            onCopy={handleCopy}
         >
             <Tooltip
                 title="Copied!"

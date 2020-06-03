@@ -9,7 +9,7 @@ import { StaticPageLinks } from '../components/StaticPageLinks';
 
 const useStyles = makeStyles(theme => ({
   marginRootContainer: {
-    marginTop: '90px'
+    marginTop: '24px'
   },
   prometeusLink: {
     color: '#FF5C01',

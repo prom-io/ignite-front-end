@@ -6,9 +6,9 @@ import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
 
 const _UsersList = ({ users, routerStore }) => (
-    <List>
+    <List style={{padding: 0}}>
         {users.map(user => (
-            <ListItem role="div">
+            <ListItem role="div" style={{ borderBottom: "1px solid #F1EBE8" }}>
                 <ListItemAvatar>
                     <Avatar src={user.avatar || 'http://localhost:3000/avatars/original/missing.png'} />
                 </ListItemAvatar>

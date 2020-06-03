@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
     buttonRoot: {
         marginTop: '10px',
+        marginBottom: '24px'
     }
 }));
 

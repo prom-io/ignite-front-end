@@ -340,10 +340,12 @@ p
 .paddingBottomRoot
   padding-bottom: 120px
   // @media screen and ( max-width: 960px )
-.user-card-username
+.user-card-info
   display: flex
   flex-direction: column
   align-items: center
+  padding-left: 20px
+  padding-right: 20px
   h4
     font-family: Museo Sans Cyrl Regular
     font-style: normal
@@ -362,18 +364,24 @@ p
     line-height: 14px
     text-align: center
     color: #A2A2A2
+    margin: 0 0 10px 0
+  h5
+    font-family: Museo Sans Cyrl Regular
+    font-style: normal
+    font-weight: 300
+    font-size: 15px
+    line-height: 20px
+    text-align: center
     margin: 0
 .user-card-statistic
   display: flex
   justify-content: center
-  div
+  a
     width: 33%
-    // border: 1px solid yellow
     text-align: center
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: flex-start
+    text-decoration: none
+    &:hover p
+      color: #1C1C1C
   h5
     margin: 5px 0
     font-family: Museo Sans Cyrl Regular
@@ -681,10 +689,7 @@ p
   max-width: 256px !important
   height: 376px !important
   padding: 0 !important
-  background: #FBF7F6
-  border: 1px solid #F1EBE8
   box-sizing: border-box
-  border-radius: 4px
   @media screen and( max-width: 960px )
     margin-right: 0 !important
     max-width: 600px !important
@@ -695,7 +700,9 @@ p
 
 .user-profile-header-content
   max-width: 256px !important
-  height: 300px !important
+  background: #FBF7F6
+  border: 1px solid #F1EBE8
+  border-radius: 4px
   @media ( max-width: 960px )
     &.another-user
       width: 100% !important
@@ -749,8 +756,7 @@ p
   display: flex
   justify-content: center
   margin-top: 16px
-  // background: #FF5C01
-  // border-radius: 30px
+  margin-bottom: 24px
   button
     background: #FF5C01
     border-radius: 30px

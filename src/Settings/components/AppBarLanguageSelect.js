@@ -50,11 +50,6 @@ const useStyles = makeStyles({
             color: 'rgba(255,255,255,0)',
         },
     },
-    buttonMenuLabel: {
-        display: 'flex',
-        width: 'auto',
-        color: '#A2A2A2',
-    },
     buttonMenuRoot: {
         transition: 'none',
         color: 'rgba(255,255,255,0)',
@@ -64,20 +59,20 @@ const useStyles = makeStyles({
     },
     menuList: {
         padding: 0,
-        borderTop: '2px solid #131315',
+        borderTop: "2px solid #131315"
     },
     arrowAnimate: {
-        transform: 'rotate(180deg)',
-    },
+        transform: "rotate(180deg)"
+    }
 });
 
-const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
+const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
     const handleListKeyDown = event => {
-        if (event.key === 'Tab') {
+        if (event.key === "Tab") {
             event.preventDefault();
             setOpen(false);
         }
@@ -96,13 +91,15 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                 aria-haspopup="true"
                 onClick={() => setOpen(prevOpen => !prevOpen)}
                 classes={{
+                    label: classes.styledSelectBox,
                     root: classes.buttonMenuRoot,
                 }}
             >
-                <span  className={classes.styledSelectBox}>{locale}</span>
-                <ArrowDropDownIcon classes={{
-                    root: open && classes.arrowAnimate,
-                }}
+                <span>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
+                <ArrowDropDownIcon
+                    classes={{
+                        root: open && classes.arrowAnimate
+                    }}
                 />
             </Button>
             <Popper

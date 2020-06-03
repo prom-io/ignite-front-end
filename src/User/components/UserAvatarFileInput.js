@@ -4,12 +4,17 @@ import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core'
 import { Photo } from '@material-ui/icons';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     avatarAttachmentContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+      
+      [theme.breakpoints.down('sm')]: {
+        background:'#FFFBF8',
+        padding: '8px 24px'
+      },
     },
 }));
 

@@ -4,7 +4,6 @@ import { inject } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { Routes } from '../routes';
 import { DescriptionLinks } from '../components/DescriptionLinks';
-import BinanceBanner from '../images/binance-banner.jpg';
 
 
 const useStyles = makeStyles(theme => ({

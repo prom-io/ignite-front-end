@@ -7,14 +7,7 @@ import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
-const useStyles = makeStyles({
-    correctBorderRadius: {
-        borderRadius: 0,
-    },
-});
-
-const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }) => {
-    const classes = useStyles();
+const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIsAuthor, currentUser }) => {
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -39,9 +32,8 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }
                     <IconButton
                         ref={anchorRef}
                         onClick={handleToggle}
-                        className={classes.correctBorderRadius}
                     >
-                        <RepostIcon />
+                        <RepostIcon reposted={!canBeReposted && !currentUserIsAuthor}/>
                     </IconButton>
                 )}
             <Typography variant="body1" color="textSecondary">

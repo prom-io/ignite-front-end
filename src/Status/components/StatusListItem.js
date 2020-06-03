@@ -54,6 +54,7 @@ const _StatusListItem = ({
                 btfsInfo={status.btfs_info}
                 repostPending={repostPending}
                 canBeReposted={status.can_be_reposted}
+                currentUserIsAuthor={currentUserIsAuthor}
                 status={status}
             />
         </Card>

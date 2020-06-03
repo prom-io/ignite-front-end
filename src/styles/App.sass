@@ -64,7 +64,8 @@ p
     padding-right: 24px !important
   @media (max-width: 960px)
     padding: 0 !important
-    position: static !important
+    position: fixed !important
+    bottom: 0
     background: #FFFBF8
   & > button
     padding: 5px
@@ -156,7 +157,7 @@ p
 .mobile_header
   width: 100%
   height: 50px
-  position: fixed
+  position: absolute
   left: 0
   top: 0
   border: 1px solid #F1EBE8
@@ -175,7 +176,7 @@ p
     cursor: pointer
     outline: none
 .open_login_dialog_button
-  position: fixed !important
+  position: absolute !important
   top: 11px
   left: -11px
   font-style: normal
@@ -798,7 +799,7 @@ p
   flex-wrap: wrap
   align-items: flex-start
   @media (max-width: 556px)
-    padding-top: 70px
+    padding: 20px
   div
     width: 100%
     display: flex

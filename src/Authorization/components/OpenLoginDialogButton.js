@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     buttonMargin: {
         [theme.breakpoints.down('sm')]: {
             marginLeft: '30px',
+            lineHeight: 'normal',
         },
     }
 }));

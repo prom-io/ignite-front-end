@@ -17,7 +17,13 @@ const useStyles = makeStyles(theme => ({
         fontSize: "20px",
         lineHeight: "24px",
         marginBottom: "24px"
-    }
+    },
+    containerRoot: {
+        marginTop: '70px',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: 0,
+        }
+    },
 }));
 
 export const NotificationsPage = observer(() => {
@@ -27,10 +33,8 @@ export const NotificationsPage = observer(() => {
 
     return (
         <Grid container>
-            <Grid item xs={12}>
-                <AppBar currentActiveRoute="notifications" />
-            </Grid>
-            <Grid item xs={12}>
+            <AppBar currentActiveRoute="notifications" />
+            <Grid item xs={12} classes={{root:classes.containerRoot}}>
                 <Layout>
                     <Grid container className="content-container">
                         <Grid item md={3} className="left-banners-container">

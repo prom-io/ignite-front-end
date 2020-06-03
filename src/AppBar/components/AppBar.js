@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     height: 50,
-    width: '100%',
+    width: '90%',
     maxWidth: '1170px',
     margin: 'auto',
   },

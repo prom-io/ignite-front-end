@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "20px",
         lineHeight: "24px",
         marginBottom: "24px"
-    }
+    },
 }));
 
 export const NotificationsPage = observer(() => {
@@ -27,9 +27,7 @@ export const NotificationsPage = observer(() => {
 
     return (
         <Grid container>
-            <Grid item xs={12}>
-                <AppBar currentActiveRoute="notifications" />
-            </Grid>
+            <AppBar currentActiveRoute="notifications" />
             <Grid item xs={12}>
                 <Layout>
                     <Grid container className="content-container">

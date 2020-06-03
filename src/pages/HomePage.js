@@ -16,12 +16,11 @@ import {
 } from '../PrometeusDescription';
 import { WhoToFollow, FollowDialog } from '../Follow/components';
 import '../styles/App.sass';
+import { makeStyles } from '@material-ui/core/styles';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
-        <Grid item xs={12}>
-            <AppBar currentActiveRoute="home" />
-        </Grid>
+      <AppBar currentActiveRoute="home" />
         <Grid item xs={12}>
             <Layout>
                 <Grid container className="content-container">

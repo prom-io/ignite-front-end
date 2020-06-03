@@ -5,8 +5,14 @@ import { EditIcon } from '../../icons/EditIcon';
 
 const userStyles = makeStyles(theme => ({
     openCreateStatusDialogButton: {
+        width: '34px',
+        height: '34px',
         backgroundColor: theme.palette.primary.main,
-        marginLeft: 0,
+        margin: '0 16px',
+        '&>span': {
+            width: '34px',
+            height: '34px',
+        }
     },
 }));
 
@@ -15,7 +21,7 @@ const _OpenCreateStatusDialogButton = ({ setCreateStatusDialogOpen }) => {
 
     return (
         <IconButton
-            className={classes.openCreateStatusDialogButton}
+            classes={{root:classes.openCreateStatusDialogButton}}
             onClick={() => setCreateStatusDialogOpen(true)}
         >
             <EditIcon />

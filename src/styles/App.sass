@@ -239,7 +239,6 @@ p
 .select-language
   height: 34px
   width: 34px
-  border: 1px solid #F1EBE8
   border-radius: 100%
   display: flex
   justify-content: center
@@ -650,12 +649,15 @@ p
   background: #FEFDFD
   box-shadow: 0px 0px 10px rgba(28, 28, 28, 0.2)
   border-radius: 4px
-  top: 0
-  left: 0
+  top: 10px
+  left: -50px
   z-index: 2
   min-width: 150px
   width: 200px
   padding: 5px 20px
+  @media (max-width: 680px)
+    width: 170px
+    left: -150px
 .status-modal-box-item
   display: flex
   height: 40px

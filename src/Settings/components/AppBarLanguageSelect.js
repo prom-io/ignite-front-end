@@ -15,11 +15,15 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     styledSelectBox: {
-        border: 'none',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #F1EBE8',
         height: 34,
         width: 34,
         borderRadius: 100,
-        color: 'rgba(0, 0, 0, 0.87)',
+        color: '#A2A2A2',
+        fontFamily: 'Museo Sans Cyrl Regular',
         '&:hover': {
             borderRadius: '100%',
             background: '#FFDECC',
@@ -27,9 +31,6 @@ const useStyles = makeStyles({
         '& svg': {
             left: 35,
             marginLeft: '10px',
-        },
-        '& span': {
-            marginLeft: '34px',
         },
     },
     styleMenuItem: {
@@ -49,10 +50,12 @@ const useStyles = makeStyles({
             color: 'rgba(255,255,255,0)',
         },
     },
+    buttonMenuLabel: {
+        display: 'flex',
+        width: 'auto',
+        color: '#A2A2A2',
+    },
     buttonMenuRoot: {
-        height: 34,
-        width: 34,
-        borderRadius: 100,
         transition: 'none',
         color: 'rgba(255,255,255,0)',
         '&:hover': {
@@ -93,11 +96,10 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale, l }) => {
                 aria-haspopup="true"
                 onClick={() => setOpen(prevOpen => !prevOpen)}
                 classes={{
-                    label: classes.styledSelectBox,
                     root: classes.buttonMenuRoot,
                 }}
             >
-                <span>{locale}</span>
+                <span  className={classes.styledSelectBox}>{locale}</span>
                 <ArrowDropDownIcon classes={{
                     root: open && classes.arrowAnimate,
                 }}

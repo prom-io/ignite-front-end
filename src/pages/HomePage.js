@@ -18,19 +18,10 @@ import { WhoToFollow, FollowDialog } from '../Follow/components';
 import '../styles/App.sass';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  containerRoot: {
-    marginTop: '70px',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 0,
-    }
-  },
-}));
-
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
       <AppBar currentActiveRoute="home" />
-        <Grid item xs={12} classes={{root:useStyles().containerRoot}}>
+        <Grid item xs={12}>
             <Layout>
                 <Grid container className="content-container">
                     <Grid item md={3} className="left-banners-container">

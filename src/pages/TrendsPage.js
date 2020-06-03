@@ -10,12 +10,11 @@ import {
 } from "../PrometeusDescription";
 import { Layout } from "../Layout";
 import { LoginForm } from "../Authorization/components";
+import { makeStyles } from '@material-ui/core/styles';
 
 const _TrendsPage = ({ currentUser, l }) => (
     <Grid container>
-        <Grid item xs={12}>
-            <AppBar currentActiveRoute="trends" />
-        </Grid>
+        <AppBar currentActiveRoute="trends" />
         <Grid item xs={12}>
             <Layout>
                 <Grid container className="content-container">

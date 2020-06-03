@@ -7,10 +7,25 @@ import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
+const useStyles = makeStyles({
+    styledIconButton: {
+        margin: 0,
+        padding: 0,
+        borderRadius: 100,
+        width: 34,
+        height: 34,
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
+});
+
 const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIsAuthor, currentUser }) => {
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    const classes = useStyles();
 
     const handleToggle = () => {
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -32,6 +47,7 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIs
                     <IconButton
                         ref={anchorRef}
                         onClick={handleToggle}
+                        classes={{root:classes.styledIconButton}}
                     >
                         <RepostIcon reposted={currentUser && !canBeReposted && !currentUserIsAuthor}/>
                     </IconButton>

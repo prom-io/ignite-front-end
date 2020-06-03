@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const _TermsAndPolicesPage = ({ l }) => (
     <div className="static-page">
         <AppBar currentActiveRoute="terms" />
-        <div className={`static-page-container ${useStyles().containerRoot}`}>
+        <div className='static-page-container'>
             <div>
                 <div className="static-page-logo-container">
                     <img src="/page_img/terms_of_service_page.svg" />

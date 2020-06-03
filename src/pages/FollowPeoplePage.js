@@ -6,13 +6,12 @@ import { Layout } from '../Layout';
 import { UserCard } from '../components/UserCard';
 import { FollowPeopleContainer } from '../Follow/components';
 import '../styles/App.sass';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const FollowPeoplePage = () => (
     <Grid container>
-        <Grid item xs={12}>
-            <AppBar />
-        </Grid>
-        <Grid item xs={12}>
+        <AppBar />
+        <Grid item xs={12} >
             <Layout>
                 <Grid container spacing={2} className="content-container">
                     <Grid item md={3} className="left-banners-container">

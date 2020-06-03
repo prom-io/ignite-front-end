@@ -35,6 +35,17 @@ const useStyles = makeStyles({
             borderRadius: 30,
         },
     },
+    styledIconButton: {
+        margin: 0,
+        padding: 0,
+        borderRadius: 100,
+        width: 34,
+        height: 34,
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
     cardActionSpacing: {
         '& > :not(:first-child)':{
             marginLeft: '25px',
@@ -110,6 +121,7 @@ const _StatusBottom = ({
                                 onClick={event => {
                                     handleToggle(event);
                                 }}
+                                classes={{root: classes.styledIconButton}}
                                 disableRipple
                             >
                                 <AnotherShareIcon />

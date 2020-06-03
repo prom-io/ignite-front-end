@@ -41,19 +41,20 @@ export const NotificationsPage = observer(() => {
                             spacing={28}
                             lg={9}
                             className="right-content-container"
-                            style={{width: '100%'}}
+                            style={{ width: "100%" }}
                         >
-                            {!currentUser && (
+                            {!currentUser ? (
                                 <Grid item className="login-form-container">
                                     <LoginForm />
                                 </Grid>
+                            ) : (
+                                <Typography
+                                    className={classes.notificationsTitle}
+                                    variant="h6"
+                                >
+                                    {l("appbar.notifications")}
+                                </Typography>
                             )}
-                            <Typography
-                                className={classes.notificationsTitle}
-                                variant="h6"
-                            >
-                                {l("appbar.notifications")}
-                            </Typography>
                             <NotificationsList />
                         </Grid>
                         <Grid item md={3} className="right-banners-container">

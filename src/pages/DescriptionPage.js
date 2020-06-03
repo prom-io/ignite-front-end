@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const pageHeight = document.documentElement.clientHeight;
-console.log(pageHeight);
 
 
 const _DescriptionPage = ({ routerStore }) => {

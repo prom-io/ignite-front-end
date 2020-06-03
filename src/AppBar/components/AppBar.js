@@ -19,6 +19,7 @@ import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
 import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
 import { SignUpDialog } from '../../SignUp/components';
+import { AppBarLogo } from './';
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => (
     <>
@@ -30,13 +31,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
             className="app-bar"
             position="fixed"
         >
-            <a
-                href="http://ignite.so"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <div className="header-logo" />
-            </a>
+            <AppBarLogo />
             <Toolbar className="tool-bar">
                 <div style={{ flexGrow: 1 }} className="tool-bar_list">
                     <AppBarLink

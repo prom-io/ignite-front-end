@@ -5,7 +5,6 @@ import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
 import { UserProfileTimeline } from '../../Status/components';
-import { UserProfileInfo } from './UserInfo';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
@@ -70,20 +69,13 @@ const _UserProfileContainer = ({
                     onTabSelected={setActiveTab}
                     username={user.username}
                     displayName={user.display_name}
+                    bio={user.bio}
                     currentUser={currentUser}
                     createdAt={new Date(user.created_at)}
                 />
                 <DescriptionNetworkBanner />
             </Grid>
             <Grid item className="user-profile-content-container">
-                <Grid className="user-profile-info">
-                    <UserProfileInfo
-                        createdAt={new Date(user.created_at)}
-                        username={user.username}
-                        displayName={user.display_name}
-                        bio={user.bio}
-                    />
-                </Grid>
                 {tabContent}
             </Grid>
             <Grid item className="right-banners-container">

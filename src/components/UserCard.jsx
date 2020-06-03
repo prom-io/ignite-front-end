@@ -14,6 +14,7 @@ const _UserCard = ({
     src,
     username,
     displayName,
+    bio,
     posts,
     followers,
     following,
@@ -41,9 +42,10 @@ const _UserCard = ({
                     </div>
                 </Link>
                 <div className="user-card-bottom user-card-content-box">
-                    <div className="user-card-username">
+                    <div className="user-card-info">
                         <h4>{lineBreak(username)}</h4>
                         <p>{lineBreak(displayName)}</p>
+                        {bio && <h5>{bio}</h5>}
                     </div>
 
                     <Grid className="user-profile-header-content-bottom">
@@ -52,11 +54,6 @@ const _UserCard = ({
                             className="user-profile-header-content-bottom-follows user-card-statistic"
                         >
                             <Link
-                                style={{
-                                    width: "33%",
-                                    textAlign: "center",
-                                    textDecoration: "none"
-                                }}
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
@@ -70,11 +67,6 @@ const _UserCard = ({
                                 </Typography>
                             </Link>
                             <Link
-                                style={{
-                                    width: "33%",
-                                    textAlign: "center",
-                                    textDecoration: "none"
-                                }}
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
@@ -88,11 +80,6 @@ const _UserCard = ({
                                 </Typography>
                             </Link>
                             <Link
-                                style={{
-                                    width: "33%",
-                                    textAlign: "center",
-                                    textDecoration: "none"
-                                }}
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
@@ -135,6 +122,7 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     src: userCard.user && userCard.user.avatar,
     username: userCard.user && userCard.user.username,
     displayName: userCard.user && userCard.user.display_name,
+    bio: userCard.user && userCard.user.bio,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
     following: userCard.user && userCard.user.follows_count

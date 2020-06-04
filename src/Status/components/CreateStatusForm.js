@@ -21,8 +21,6 @@ const useStyles = makeStyles(theme => ({
         background: '#F1EBE8',
     },
     remainingCharactersCounter: {
-        background: '#FBF7F6',
-        justifyContent: 'space-between',
         padding: '7px 10px',
     },
     createStatusButtonWrapper: {
@@ -40,7 +38,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(2),
     },
     cardActionsStyled: {
-        display: 'flsex',
+        display: 'flex',
         padding: '8px 15px',
     },
     customTextarea: {
@@ -60,6 +58,11 @@ const useStyles = makeStyles(theme => ({
             borderBottom: 'none',
         },
     },
+    containerRoot: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexWrap: 'nowrap',
+    }
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -147,8 +150,7 @@ const _CreateStatusForm = ({
                         <img src="/pic-smile-disabled.png" />
                     </div>
                 </Grid>
-                <Grid container justify="flex-end">
-                    <Grid item xs={12} className="create-status-form-counter-container">
+                <Grid container classes={{root: classes.containerRoot}}>
                         <div className={classes.remainingCharactersCounter}>
                             <Typography
                                 variant="body1"
@@ -157,8 +159,6 @@ const _CreateStatusForm = ({
                                 {charactersRemaining}
                             </Typography>
                         </div>
-                    </Grid>
-                    <Grid item xs={12} className="create-status-form-button-container">
                         {!hideSendButton && (
                             <Button
                                 variant="contained"
@@ -171,7 +171,6 @@ const _CreateStatusForm = ({
                                 {l('status.send')}
                             </Button>
                         )}
-                    </Grid>
                 </Grid>
             </CardActions>
             <div className={classes.mediaAttachmentsContainer}>

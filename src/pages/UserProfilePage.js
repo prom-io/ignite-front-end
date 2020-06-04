@@ -4,12 +4,11 @@ import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
 import { UpdateUserProfileDialog, UserProfileContainer } from '../User/components';
 import { StatusBtfsInfoDialog } from '../Status/components';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const UserProfilePage = () => (
     <Grid container>
-        <Grid item xs={12}>
-            <AppBar currentActiveRoute="none" />
-        </Grid>
+      <AppBar currentActiveRoute="none"/>
         <Grid item xs={12}>
             <Layout>
                 <UserProfileContainer />

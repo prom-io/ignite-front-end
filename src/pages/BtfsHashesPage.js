@@ -19,9 +19,7 @@ export const BtfsHashesPage = () => {
 
     return (
         <Grid container>
-            <Grid item xs={12}>
-                <AppBar currentActiveRoute="btfs" />
-            </Grid>
+            <AppBar currentActiveRoute="btfs" />
             <Grid item xs={12}>
                 <Layout>
                     <div className={classes.centered}>

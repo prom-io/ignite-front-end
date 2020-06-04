@@ -8,16 +8,24 @@ import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
 const useStyles = makeStyles({
-    correctBorderRadius: {
-        borderRadius: 0,
+    styledIconButton: {
+        margin: 0,
+        padding: 0,
+        borderRadius: 100,
+        width: 34,
+        height: 34,
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
 });
 
-const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }) => {
-    const classes = useStyles();
+const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIsAuthor, currentUser }) => {
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    const classes = useStyles();
 
     const handleToggle = () => {
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -39,9 +47,9 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }
                     <IconButton
                         ref={anchorRef}
                         onClick={handleToggle}
-                        className={classes.correctBorderRadius}
+                        classes={{root:classes.styledIconButton}}
                     >
-                        <RepostIcon />
+                        <RepostIcon reposted={currentUser && !canBeReposted && !currentUserIsAuthor}/>
                     </IconButton>
                 )}
             <Typography variant="body1" color="textSecondary">

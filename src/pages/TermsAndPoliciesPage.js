@@ -3,13 +3,21 @@ import { Grid } from '@material-ui/core';
 import { AppBar } from '../AppBar/components';
 import { StaticPageFooter } from '../components/StaticPageFooter';
 import { localized } from '../localization/components';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    containerRoot: {
+        marginTop: '70px',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: 0,
+        }
+    },
+}));
 
 const _TermsAndPolicesPage = ({ l }) => (
     <div className="static-page">
-        <Grid item xs={12}>
-            <AppBar currentActiveRoute="terms" />
-        </Grid>
-        <div className="static-page-container">
+        <AppBar currentActiveRoute="terms" />
+        <div className='static-page-container'>
             <div>
                 <div className="static-page-logo-container">
                     <img src="/page_img/terms_of_service_page.svg" />

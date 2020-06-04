@@ -21,6 +21,15 @@ export class StatusesListStore {
     @observable
     hasMore = true;
 
+    @observable
+    currentStatusId = undefined;
+
+    @observable
+    currentStatusUsername = undefined;
+
+    @observable
+    unfollowDialogOpen = false;
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
@@ -148,7 +157,6 @@ export class StatusesListStore {
                 } else {
                     url = `${this.baseUrl}`;
                 }
-
                 axiosInstance.get(`${url}`)
                     .then(({data}) => {
                         if (data.length !== 0) {
@@ -215,7 +223,8 @@ export class StatusesListStore {
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
-                .then(() => {
+            .then(() => {
+                    this.authorizationStore.currentUser.follows_count += 1;
                     this.statuses = this.statuses.map(status => {
                         if (status.account.id === authorId) {
                             status.account.following = true;
@@ -240,25 +249,31 @@ export class StatusesListStore {
     };
 
     @action
-    unfollowStatusAuthor = id => {
+    unfollowStatusAuthor = () => {
         if (this.authorizationStore.accessToken) {
-            const authorId = this.statuses.filter(status => status.id === id)
+            const authorId = this.statuses.filter(status => status.id === this.currentStatusId)
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`)
                 .then(() => {
-                    this.statuses = this.statuses.map(status => {
-                        if (status.account.id === authorId) {
-                            status.account.following = false;
-                        }
-                        return status;
-                    });
+                    this.unfollowDialogOpen = false;
+                    this.unfollowStatusAuthorByAuthorId(authorId);
                     this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
                         statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(authorId);
                     });
+                    this.authorizationStore.currentUser.follows_count -= 1;
+                    this.reset();
+                    this.fetchStatuses();
                 });
         }
-    };
+    }
+
+    @action
+    unfollowStatusAuthorWithDialog = (statusId, username) => {
+        this.currentStatusId = statusId;
+        this.currentStatusUsername = username;
+        this.unfollowDialogOpen = true;
+    }
 
     @action
     unfollowStatusAuthorByAuthorId = authorId => {
@@ -297,8 +312,21 @@ export class StatusesListStore {
     };
 
     @action
+    setCurrentStatusId = currentStatusId => {
+        this.currentStatusId = currentStatusId;
+    };
+
+    @action
+    setUnfollowDialogOpen = unfollowDialogOpen => {
+        this.unfollowDialogOpen = unfollowDialogOpen;
+    };
+
+    @action
     reset = () => {
         this.statuses = [];
+        this.currentStatusId = undefined;
+        this.currentStatusUsername = undefined;
+        this.unfollowDialogOpen = false;
         this.pending = false;
     };
 

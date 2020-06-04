@@ -102,7 +102,8 @@ export class CreateStatusStore {
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
-
+                    this.referredStatus.can_be_reposted = false;
+                    
                     this.referredStatus = undefined;
                     this.statusReferenceType = undefined;
                 })

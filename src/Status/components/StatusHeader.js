@@ -144,6 +144,7 @@ const _StatusHeader = ({
                     <StatusMenu
                         onUnfollowRequest={onUnfollowRequest}
                         onFollowRequest={onFollowRequest}
+                        username={username}
                         statusId={statusId}
                         currentUserFollowsAuthor={currentUserFollowsAuthor}
                         currentUserIsAuthor={currentUserIsAuthor}

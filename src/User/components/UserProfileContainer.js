@@ -1,11 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, Grid, makeStyles } from '@material-ui/core';
+import { CircularProgress, Grid, Hidden, makeStyles } from '@material-ui/core';
 import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
 import { UserProfileTimeline } from '../../Status/components';
-import { UserProfileInfo } from './UserInfo';
+import { WhoToFollow } from '../../Follow/components/WhoToFollow';
+import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
+import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -53,8 +55,8 @@ const _UserProfileContainer = ({
     }
 
     return (
-        <Grid container spacing={2} className="user-profile-container">
-            <Grid item xs={12} className="user-profile-header">
+        <Grid container className="content-container">
+            <Grid item className="user-profile-header">
                 <UserProfileHeader
                     followers={user.followers_count}
                     following={user.follows_count}
@@ -67,20 +69,23 @@ const _UserProfileContainer = ({
                     onTabSelected={setActiveTab}
                     username={user.username}
                     displayName={user.display_name}
+                    bio={user.bio}
                     currentUser={currentUser}
                     createdAt={new Date(user.created_at)}
                 />
+                <DescriptionNetworkBanner />
             </Grid>
-            <Grid item xs={12} md={7} className="user-profile-content-container">
-                <Grid className="user-profile-info">
-                    <UserProfileInfo
-                        createdAt={new Date(user.created_at)}
-                        username={user.username}
-                        displayName={user.display_name}
-                        bio={user.bio}
-                    />
-                </Grid>
+            <Grid item className="user-profile-content-container">
                 {tabContent}
+            </Grid>
+            <Grid item className="right-banners-container">
+                {currentUser ? (
+                  <Hidden only={['md']}>
+                      <WhoToFollow />
+                  </Hidden>
+                ) : (
+                  <ExploreOurFeaturesDescription />
+                )}
             </Grid>
         </Grid>
     );

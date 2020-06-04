@@ -2,7 +2,7 @@ export * from './WhoToFollow';
 export * from './WhoToFollowList';
 export * from './SideBarList';
 export * from './FollowButton';
-export * from './FollowDialog';
+export * from './UnfollowDialog';
 export * from './FollowPeopleContainer';
 export * from './FollowPeopleInput';
 export * from './FollowPeopleList';

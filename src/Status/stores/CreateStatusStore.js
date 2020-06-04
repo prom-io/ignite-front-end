@@ -98,7 +98,6 @@ export class CreateStatusStore {
                 status_reference_type: this.statusReferenceType
             })
                 .then(({data}) => {
-                    console.log(data)
                     this.createdStatus = data;
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();

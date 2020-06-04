@@ -4,6 +4,22 @@ import { Avatar, CardHeader, List, ListItem, ListItemAvatar, Typography, Hidden 
 import { Link } from 'mobx-router';
 import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    cardHeader: {
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                width: '80%',
+                overflowX: 'hidden',
+                '&:after': {
+                    content: "'...'",
+                }
+            }
+        },
+    }
+}));
 
 const _UsersList = ({ users, routerStore }) => (
     <List style={{padding: 0}}>
@@ -12,7 +28,7 @@ const _UsersList = ({ users, routerStore }) => (
                 <ListItemAvatar>
                     <Avatar src={user.avatar || 'http://localhost:3000/avatars/original/missing.png'} />
                 </ListItemAvatar>
-                <CardHeader
+                <CardHeader classes={{root: useStyles().cardHeader}}
                     title={(
                         <Link
                             view={Routes.userProfile}

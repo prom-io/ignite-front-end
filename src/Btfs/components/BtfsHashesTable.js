@@ -7,6 +7,7 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
+        marginTop: '50px',
         overflow: 'auto',
     },
     link: {

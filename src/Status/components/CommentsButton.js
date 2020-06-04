@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     styledIconButton: {
         margin: 0,
         padding: 0,
-        borderRadius: 100,
+        borderRadius: 30,
         width: 34,
         height: 34,
         '&:hover': {

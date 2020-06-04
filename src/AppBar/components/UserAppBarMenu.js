@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
         color: 'inherit',
     },
     avatarIconButton: {
+        padding: 0,
         width: '34px',
         height: '34px',
         '&>span': {

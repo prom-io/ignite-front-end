@@ -1,11 +1,18 @@
-import React, { Fragment, useRef, useState } from 'react';
-import { ClickAwayListener, IconButton, Popper, Typography, CircularProgress, makeStyles } from '@material-ui/core';
-import { inject, observer } from 'mobx-react';
-import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
-import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
-import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
-import { RepostIcon } from '../../icons/RepostIcon';
-import { UndoRepostMenuItem } from './UndoRepostMenuItem';
+import React, { Fragment, useRef, useState } from "react";
+import {
+    ClickAwayListener,
+    IconButton,
+    Popper,
+    Typography,
+    CircularProgress,
+    makeStyles
+} from "@material-ui/core";
+import { inject, observer } from "mobx-react";
+import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
+import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import { RepostIcon } from "../../icons/RepostIcon";
+import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -14,15 +21,20 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        '&:hover': {
-            background: 'rgba(255, 92, 1, 0.2)',
-            borderRadius: 30,
-        },
-    },
+        "&:hover": {
+            background: "rgba(255, 92, 1, 0.2)",
+            borderRadius: 30
+        }
+    }
 });
 
-const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIsAuthor, currentUser }) => {
-
+const _RepostStatusMenu = ({
+    status,
+    repostPending,
+    canBeReposted,
+    currentUserIsAuthor,
+    currentUser
+}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
@@ -41,24 +53,36 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIs
 
     return (
         <div className="status-list-bottom-box">
-            {repostPending
-                ? <CircularProgress size={20} color="primary" />
-                : (
-                    <IconButton
-                        ref={anchorRef}
-                        onClick={handleToggle}
-                        classes={{root:classes.styledIconButton}}
-                    >
-                        <RepostIcon reposted={currentUser && !canBeReposted && !currentUserIsAuthor}/>
-                    </IconButton>
-                )}
+            {repostPending ? (
+                <CircularProgress size={20} color="primary" />
+            ) : (
+                <IconButton
+                    ref={anchorRef}
+                    onClick={handleToggle}
+                    classes={{ root: classes.styledIconButton }}
+                >
+                    <RepostIcon
+                        reposted={
+                            currentUser && !canBeReposted && !currentUserIsAuthor
+                        }
+                    />
+                </IconButton>
+            )}
             <Typography variant="body1" color="textSecondary">
                 {status.reposts_count}
             </Typography>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
+            <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+            >
                 <ClickEventPropagationStopper>
                     <ClickAwayListener onClickAway={handleClose}>
-                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                        <div
+                            className="status-list-bottom-box-modal"
+                            onClick={handleClose}
+                        >
                             {canBeReposted && (
                                 <>
                                     <ClickEventPropagationStopper>
@@ -75,7 +99,9 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIs
                                     </ClickEventPropagationStopper>
                                 </>
                             )}
-                            {!canBeReposted && <UndoRepostMenuItem onClick={handleClose} />}
+                            {!canBeReposted && (
+                                <UndoRepostMenuItem onClick={handleClose} />
+                            )}
                         </div>
                     </ClickAwayListener>
                 </ClickEventPropagationStopper>
@@ -85,7 +111,7 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUserIs
 };
 
 const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser,
+    currentUser: authorization.currentUser
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

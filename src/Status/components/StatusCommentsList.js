@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
+import { UnfollowDialog } from '../../Follow/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -19,11 +20,15 @@ const _StatusCommentsList = ({
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
-    unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog,
     fetchStatuses,
     pending,
     currentUser,
     hasMore,
+    currentStatusUsername,
+    unfollowStatusAuthor,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen,
     l,
 }) => {
     const classes = useStyles();
@@ -46,13 +51,19 @@ const _StatusCommentsList = ({
                     pending={pending}
                     onNextPageRequest={fetchStatuses}
                     onFollowRequest={followStatusAuthor}
-                    onUnfollowRequest={unfollowStatusAuthor}
+                    onUnfollowRequest={unfollowStatusAuthorWithDialog}
                     currentUser={currentUser}
                     displayMenu={Boolean(currentUser)}
                     statusLikePendingMap={statusLikePendingMap}
                     repostsPendingMap={repostsPendingMap}
                     hideThreadLinks
                     hasMore={hasMore}
+                />
+                <UnfollowDialog 
+                    username={currentStatusUsername} 
+                    unfollowAction={unfollowStatusAuthor}
+                    unfollowDialogOpen={unfollowDialogOpen}
+                    setUnfollowDialogOpen={setUnfollowDialogOpen}
                 />
             </Grid>
         </Grid>
@@ -65,12 +76,16 @@ const mapMobxToProps = ({ statusComments, authorization, createStatus }) => ({
     favouriteStatus: statusComments.favouriteStatus,
     unfavouriteStatus: statusComments.unfavouriteStatus,
     followStatusAuthor: statusComments.followStatusAuthor,
-    unfollowStatusAuthor: statusComments.unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog: statusComments.unfollowStatusAuthorWithDialog,
     pending: statusComments.pending,
     fetchStatuses: statusComments.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
     hasMore: statusComments.hasMore,
+    currentStatusUsername: statusComments.currentStatusUsername,
+    unfollowStatusAuthor: statusComments.unfollowStatusAuthor,
+    setUnfollowDialogOpen: statusComments.setUnfollowDialogOpen,
+    unfollowDialogOpen: statusComments.unfollowDialogOpen
 });
 
 export const StatusCommentsList = localized(

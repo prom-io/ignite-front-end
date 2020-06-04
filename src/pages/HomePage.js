@@ -14,7 +14,7 @@ import {
     PrometeusDescription,
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
-import { WhoToFollow, FollowDialog } from '../Follow/components';
+import { WhoToFollow } from '../Follow/components';
 import '../styles/App.sass';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
@@ -57,7 +57,6 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
             </Layout>
         </Grid>
         <StatusBtfsInfoDialog />
-        <FollowDialog />
     </Grid>
 );
 

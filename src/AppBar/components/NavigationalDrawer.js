@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main,
         marginLeft: 15,
         marginTop: 20,
+        textDecoration: 'none',
         fontStyle: 'normal',
         fontWeight: '600 !important',
         fontSize: '15px',

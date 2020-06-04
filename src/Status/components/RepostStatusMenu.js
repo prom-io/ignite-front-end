@@ -1,18 +1,18 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from 'react';
 import {
     ClickAwayListener,
     IconButton,
     Popper,
     Typography,
     CircularProgress,
-    makeStyles
-} from "@material-ui/core";
-import { inject, observer } from "mobx-react";
-import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
-import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { RepostIcon } from "../../icons/RepostIcon";
-import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+    makeStyles,
+} from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
+import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
+import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { RepostIcon } from '../../icons/RepostIcon';
+import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -21,11 +21,11 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
-    }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
 });
 
 const _RepostStatusMenu = ({
@@ -33,7 +33,7 @@ const _RepostStatusMenu = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    currentUser
+    currentUser,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -111,7 +111,7 @@ const _RepostStatusMenu = ({
 };
 
 const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

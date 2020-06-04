@@ -1,16 +1,16 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import { inject, observer } from "mobx-react";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 
-import { localized } from "../localization/components";
-import { AppBar } from "../AppBar/components";
+import { makeStyles } from '@material-ui/core/styles';
+import { localized } from '../localization/components';
+import { AppBar } from '../AppBar/components';
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
-import { Layout } from "../Layout";
-import { LoginForm } from "../Authorization/components";
-import { makeStyles } from '@material-ui/core/styles';
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
 
 const _TrendsPage = ({ currentUser, l }) => (
     <Grid container>
@@ -36,12 +36,12 @@ const _TrendsPage = ({ currentUser, l }) => (
                             <div className="static-page-container">
                                 <div className="static-page-logo-container">
                                     <img src="/page_img/trends_page.svg" />
-                                    <h1>{l("appbar.trends")}</h1>
+                                    <h1>{l('appbar.trends')}</h1>
                                 </div>
                                 <div>
-                                    <p>{l("trends.first-paragraph")}</p>
-                                    <p>{l("trends.second-paragraph")}</p>
-                                    <p>{l("trends.third-paragraph")}</p>
+                                    <p>{l('trends.first-paragraph')}</p>
+                                    <p>{l('trends.second-paragraph')}</p>
+                                    <p>{l('trends.third-paragraph')}</p>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ const _TrendsPage = ({ currentUser, l }) => (
 );
 
 const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const TrendsPage = localized(inject(mapMobxToProps)(observer(_TrendsPage)));

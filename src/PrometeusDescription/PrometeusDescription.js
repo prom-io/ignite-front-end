@@ -16,9 +16,9 @@ const useStyles = makeStyles(theme => ({
     prometeusLink: {
         color: theme.palette.primary.main,
     },
-  marginTop: {
-      marginTop: '20px',
-  }
+    marginTop: {
+        marginTop: '20px',
+    },
 }));
 
 const tryOurNetworkTranslations = {
@@ -66,7 +66,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
                 {currentUser ? <UserCard isLogin /> : <DescriptionUnauthBanner />}
             </Grid>
 
-            <Grid classes={{root: classes.marginTop}}>
+            <Grid classes={{ root: classes.marginTop }}>
                 {currentUser ? '' : <DescriptionStoaBanner />}
             </Grid>
 

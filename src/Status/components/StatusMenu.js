@@ -27,14 +27,14 @@ const useStyles = makeStyles({
     },
 });
 
-const _StatusMenu = ({ 
-    currentUserFollowsAuthor, 
-    currentUserIsAuthor, 
-    username, 
-    statusId, 
-    onFollowRequest, 
-    onUnfollowRequest, 
-    l 
+const _StatusMenu = ({
+    currentUserFollowsAuthor,
+    currentUserIsAuthor,
+    username,
+    statusId,
+    onFollowRequest,
+    onUnfollowRequest,
+    l,
 }) => {
     const classes = useStyles();
 
@@ -115,8 +115,8 @@ const _StatusMenu = ({
                                         disabled={currentUserIsAuthor}
                                         onClick={event => {
                                             if (!currentUserIsAuthor) {
-                                                currentUserFollowsAuthor 
-                                                    ? onUnfollowRequest(statusId, username) 
+                                                currentUserFollowsAuthor
+                                                    ? onUnfollowRequest(statusId, username)
                                                     : onFollowRequest(statusId);
                                                 handleClose(event);
                                             }

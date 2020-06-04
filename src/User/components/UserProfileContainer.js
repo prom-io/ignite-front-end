@@ -80,11 +80,11 @@ const _UserProfileContainer = ({
             </Grid>
             <Grid item className="right-banners-container">
                 {currentUser ? (
-                  <Hidden only={['md']}>
-                      <WhoToFollow />
-                  </Hidden>
+                    <Hidden only={['md']}>
+                        <WhoToFollow />
+                    </Hidden>
                 ) : (
-                  <ExploreOurFeaturesDescription />
+                    <ExploreOurFeaturesDescription />
                 )}
             </Grid>
         </Grid>

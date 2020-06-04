@@ -1,17 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
     ClickAwayListener,
     IconButton,
     Popper,
     Typography,
-    makeStyles
-} from "@material-ui/core";
-import { inject, observer } from "mobx-react";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { LetterIcon } from "../../icons/LetterIcon";
-import { ShareIcon } from "../../icons/ShareIcon";
-import { AnotherShareIcon } from "../../icons/AnotherShareIcon";
-import { localized } from "../../localization/components";
+    makeStyles,
+} from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { LetterIcon } from '../../icons/LetterIcon';
+import { ShareIcon } from '../../icons/ShareIcon';
+import { AnotherShareIcon } from '../../icons/AnotherShareIcon';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -20,11 +20,11 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
-    }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
 });
 
 const _ShareStatusMenu = ({ currentUser, l }) => {
@@ -76,7 +76,7 @@ const _ShareStatusMenu = ({ currentUser, l }) => {
                             >
                                 <LetterIcon />
                                 <Typography variant="body1" color="textSecondary">
-                                    {l("status.send-in-message")}
+                                    {l('status.send-in-message')}
                                 </Typography>
                             </div>
                             <div
@@ -85,7 +85,7 @@ const _ShareStatusMenu = ({ currentUser, l }) => {
                             >
                                 <ShareIcon />
                                 <Typography variant="body1" color="textSecondary">
-                                    {l("status.copy-link")}
+                                    {l('status.copy-link')}
                                 </Typography>
                             </div>
                         </div>
@@ -97,9 +97,9 @@ const _ShareStatusMenu = ({ currentUser, l }) => {
 };
 
 const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const ShareStatusMenu = localized(
-    inject(mampMobxToProps)(observer(_ShareStatusMenu))
+    inject(mampMobxToProps)(observer(_ShareStatusMenu)),
 );

@@ -13,7 +13,7 @@ const userStyles = makeStyles(theme => ({
         '&>span': {
             width: '34px',
             height: '34px',
-        }
+        },
     },
 }));
 
@@ -22,7 +22,7 @@ const _OpenCreateStatusDialogButton = ({ setCreateStatusDialogOpen }) => {
 
     return (
         <IconButton
-            classes={{root:classes.openCreateStatusDialogButton}}
+            classes={{ root: classes.openCreateStatusDialogButton }}
             onClick={() => setCreateStatusDialogOpen(true)}
         >
             <EditIcon />

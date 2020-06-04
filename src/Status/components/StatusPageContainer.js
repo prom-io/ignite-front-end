@@ -82,8 +82,8 @@ const _StatusPageContainer = ({
                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     displayMenu={Boolean(currentUser)}
                 />
-                <UnfollowDialog 
-                    username={currentStatusUsername} 
+                <UnfollowDialog
+                    username={currentStatusUsername}
                     unfollowAction={unfollowStatusAuthor}
                     unfollowDialogOpen={unfollowDialogOpen}
                     setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -110,7 +110,7 @@ const mapMobxToProps = ({ statusPage, authorization }) => ({
     currentStatusUsername: statusPage.currentStatusUsername,
     unfollowStatusAuthor: statusPage.unfollowStatusAuthor,
     setUnfollowDialogOpen: statusPage.setUnfollowDialogOpen,
-    unfollowDialogOpen: statusPage.unfollowDialogOpen
+    unfollowDialogOpen: statusPage.unfollowDialogOpen,
 });
 
 export const StatusPageContainer = localized(

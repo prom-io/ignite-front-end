@@ -1,8 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button } from '@material-ui/core';
-import { localized } from '../../localization/components';
 import { makeStyles } from '@material-ui/core/styles';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     buttonMargin: {
@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
             marginLeft: '30px',
             lineHeight: 'normal',
         },
-    }
+    },
 }));
 
 const _OpenLoginDialogButton = ({ setLoginDialogOpen, l }) => (
@@ -20,7 +20,7 @@ const _OpenLoginDialogButton = ({ setLoginDialogOpen, l }) => (
         variant="contained"
         disableElevation
         color="primary"
-        classes={{root:useStyles().buttonMargin}}
+        classes={{ root: useStyles().buttonMargin }}
     >
         <strong>{l('authorization.login')}</strong>
     </Button>

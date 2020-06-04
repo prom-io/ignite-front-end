@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Avatar, Dialog } from "@material-ui/core";
+import React, { useState } from 'react';
+import { Avatar, Dialog } from '@material-ui/core';
 
 export const UserProfileAvatar = ({ avatarUrl }) => {
     const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ export const UserProfileAvatar = ({ avatarUrl }) => {
                 style={{
                     width: 94,
                     height: 94,
-                    cursor: "pointer"
+                    cursor: 'pointer',
                 }}
             />
             <Dialog open={open} onClose={handleClose}>
@@ -28,7 +28,7 @@ export const UserProfileAvatar = ({ avatarUrl }) => {
                     src={avatarUrl}
                     alt=""
                     style={{
-                        width: "100%"
+                        width: '100%',
                     }}
                 />
             </Dialog>

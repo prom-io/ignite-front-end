@@ -38,7 +38,7 @@ const _WhoToFollowList = ({
                 users={whoToFollowItems.slice(0, viewCount)}
                 actionWithFollow={actionWithFollow}
             />
-            <UnfollowDialog 
+            <UnfollowDialog
                 username={selectedUser.username}
                 unfollowAction={unfollowUser}
                 unfollowDialogOpen={unfollowDialogOpen}

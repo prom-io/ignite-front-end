@@ -47,7 +47,7 @@ const _FollowPeopleList = ({
                     />
                 ))}
             </InfiniteScroll>
-            <UnfollowDialog 
+            <UnfollowDialog
                 username={selectedUser.username}
                 unfollowAction={unfollowUser}
                 unfollowDialogOpen={unfollowDialogOpen}

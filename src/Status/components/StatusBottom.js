@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
     CardActions,
     Checkbox,
     CircularProgress,
     Typography,
-    makeStyles
-} from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { OpenStatusBtfsInfoDialogButton } from "./OpenStatusBtfsInfoDialogButton";
-import { RepostStatusMenu } from "./RepostStatusMenu";
-import { ShareStatusMenu } from "./ShareStatusMenu";
-import { CommentsButton } from "./CommentsButton";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+    makeStyles,
+} from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
+import { RepostStatusMenu } from './RepostStatusMenu';
+import { ShareStatusMenu } from './ShareStatusMenu';
+import { CommentsButton } from './CommentsButton';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -21,19 +21,19 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&.MuiCheckbox-root": {
-            color: "rgba(0, 0, 0, 0.35)"
+        '&.MuiCheckbox-root': {
+            color: 'rgba(0, 0, 0, 0.35)',
         },
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
     cardActionSpacing: {
-        "& > :not(:first-child)": {
-            marginLeft: "25px"
-        }
-    }
+        '& > :not(:first-child)': {
+            marginLeft: '25px',
+        },
+    },
 });
 
 const _StatusBottom = ({
@@ -46,7 +46,7 @@ const _StatusBottom = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    status
+    status,
 }) => {
     const classes = useStyles();
 
@@ -74,15 +74,13 @@ const _StatusBottom = ({
                                 icon={<FavoriteBorderIcon />}
                                 checkedIcon={<FavoriteIcon color="primary" />}
                                 checked={favourited}
-                                onChange={() =>
-                                    onFavouriteClick(statusId, !favourited)
-                                }
+                                onChange={() => onFavouriteClick(statusId, !favourited)}
                                 classes={{ root: classes.styledCheckbox }}
                             />
                         )}
                         <Typography
                             variant="body1"
-                            color={favourited ? "primary" : "textSecondary"}
+                            color={favourited ? 'primary' : 'textSecondary'}
                         >
                             {favouritesCount}
                         </Typography>

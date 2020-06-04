@@ -1,16 +1,16 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import { inject, observer } from "mobx-react";
+import React from 'react';
+import { Grid } from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 
-import { localized } from "../localization/components";
-import { AppBar } from "../AppBar/components";
+import { localized } from '../localization/components';
+import { AppBar } from '../AppBar/components';
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
-import { Layout } from "../Layout";
-import { LoginForm } from "../Authorization/components";
-import { UserCard } from "../components/UserCard";
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
+import { UserCard } from '../components/UserCard';
 
 const _ChatPage = ({ currentUser, l }) => (
     <Grid container>
@@ -41,8 +41,8 @@ const _ChatPage = ({ currentUser, l }) => (
                                     <h1>PrompTalk Chat</h1>
                                 </div>
                                 <div>
-                                    <p>{l("chat.description.first-paragraph")}</p>
-                                    <p>{l("chat.description.second-paragraph")}</p>
+                                    <p>{l('chat.description.first-paragraph')}</p>
+                                    <p>{l('chat.description.second-paragraph')}</p>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ const _ChatPage = ({ currentUser, l }) => (
 );
 
 const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const ChatPage = localized(inject(mapMobxToProps)(observer(_ChatPage)));

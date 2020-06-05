@@ -4,11 +4,13 @@ import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import { UnfollowDialog } from '../../Follow/components';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '50px',
         display: 'table',
     },
     gridItemOverridePadding: {
@@ -44,7 +46,7 @@ const _HomeTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <CircularProgress size={20} className={classes.centered} />
+      ? <div className={classes.centered}><FadeLoader color={'#FF5C01'} css={'transform: scale(0.5)'}/></div>
         : (
             <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">

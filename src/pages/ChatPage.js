@@ -10,9 +10,38 @@ import {
 } from "../PrometeusDescription";
 import { Layout } from "../Layout";
 import { LoginForm } from "../Authorization/components";
-import { UserCard } from "../components/UserCard";
+import { makeStyles } from '@material-ui/core/styles';
+import { IgniteChatPage } from '../icons/IgniteChatPage';
 
-const _ChatPage = ({ currentUser, l }) => (
+const useStyles = makeStyles(theme => ({
+    chatError: {
+        border: '1px solid #F1EBE8',
+        borderBottom: 'none',
+        height: '100%',
+        padding: '0 30px',
+    },
+    chatErrorInfo: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '65px',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+        lineHeight: '26px',
+        color: '#A2A2A2',
+        '& h1': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: '#1C1C1C',
+        },
+    },
+}));
+
+const _ChatPage = ({ currentUser, l }) => {
+    const classes = useStyles();
+    return (
     <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="chat" />
@@ -36,13 +65,15 @@ const _ChatPage = ({ currentUser, l }) => (
                         )}
                         <div className="static-page">
                             <div className="static-page-container">
-                                <div className="static-page-logo-container">
-                                    <img src="/page_img/Ignite_chat_page.svg" />
-                                    <h1>PrompTalk Chat</h1>
-                                </div>
-                                <div>
-                                    <p>{l("chat.description.first-paragraph")}</p>
-                                    <p>{l("chat.description.second-paragraph")}</p>
+                                <div className={classes.chatError}>
+                                    <div className={classes.chatErrorInfo}>
+                                        <IgniteChatPage color={'#A2A2A2'}/>
+                                        <h1>PrompTalk Chat</h1>
+                                    </div>
+                                    <div>
+                                        <p>{l("chat.description.first-paragraph")}</p>
+                                        <p>{l("chat.description.second-paragraph")}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +85,7 @@ const _ChatPage = ({ currentUser, l }) => (
             </Layout>
         </Grid>
     </Grid>
-);
+)};
 
 const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser

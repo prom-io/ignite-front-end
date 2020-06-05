@@ -15,6 +15,7 @@ import { AttachImageInput } from './AttachImageInput';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -167,7 +168,7 @@ const _CreateStatusForm = ({
                                 onClick={createStatus}
                                 disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                             >
-                                {pending && <CircularProgress size={15} />}
+                                {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
                                 {l('status.send')}
                             </Button>
                         )}

@@ -8,6 +8,7 @@ import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -50,7 +51,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-            <CircularProgress size={50} color="primary" className={classes.centered} />
+          <div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>
         );
     }
 

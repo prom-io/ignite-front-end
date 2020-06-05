@@ -13,6 +13,9 @@ const userStyles = makeStyles(theme => ({
         '&>span': {
             width: '34px',
             height: '34px',
+        },
+        '&:hover': {
+            backgroundColor: theme.palette.primary.main,
         }
     },
 }));

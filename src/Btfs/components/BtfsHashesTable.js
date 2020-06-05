@@ -4,6 +4,7 @@ import { Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Car
 import { format } from 'date-fns';
 import { trimString } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
@@ -33,7 +34,7 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
     const classes = useStyles();
 
     if (pending) {
-        return <CircularProgress size={25} color="primary" className={classes.centered} />;
+        return <div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>;
     } if (error) {
         return (
             <Typography>

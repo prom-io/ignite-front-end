@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core';
 import { Photo } from '@material-ui/icons';
 import { localized } from '../../localization/components';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
   avatarAttachmentPhoto: {
@@ -77,7 +78,7 @@ const _UserAvatarFileInput = ({
             classes={{root:classes.avatarUploadButton}}
           >
             {avatarFileContainer && avatarFileContainer.pending
-              ? <CircularProgress size={15} color="primary" />
+              ? <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
               : <Photo style={{color:'#fff'}}/>}
             <input
               type="file"

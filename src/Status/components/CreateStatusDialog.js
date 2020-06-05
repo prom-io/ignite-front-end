@@ -13,6 +13,7 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { CreateStatusForm } from './CreateStatusForm';
 import { localized } from '../../localization/components';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     createStatusButton: {
@@ -65,7 +66,7 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <CircularProgress size={15} />}
+                    {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
                     {l('status.send')}
                 </Button>
             </DialogTitle>

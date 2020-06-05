@@ -3,6 +3,7 @@ import { CircularProgress, Typography, Hidden, makeStyles } from '@material-ui/c
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { StatusListItem } from './StatusListItem';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -34,7 +35,7 @@ export const StatusList = ({
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
-                loader={<CircularProgress size={15} color="primary" className={classes.centered} />}
+                loader={<div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >

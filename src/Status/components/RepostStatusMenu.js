@@ -13,6 +13,7 @@ import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
 import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 import { RepostIcon } from "../../icons/RepostIcon";
 import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -54,7 +55,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-                <CircularProgress size={20} color="primary" />
+              <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
             ) : (
                 <IconButton
                     ref={anchorRef}

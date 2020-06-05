@@ -13,6 +13,7 @@ import { RepostStatusMenu } from "./RepostStatusMenu";
 import { ShareStatusMenu } from "./ShareStatusMenu";
 import { CommentsButton } from "./CommentsButton";
 import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -33,6 +34,13 @@ const useStyles = makeStyles({
         "& > :not(:first-child)": {
             marginLeft: "25px"
         }
+    },
+    progress: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 34,
+        height: 34,
     }
 });
 
@@ -68,7 +76,9 @@ const _StatusBottom = ({
                 <div>
                     <ClickEventPropagationStopper className="status-list-bottom-box">
                         {statusLikePending ? (
-                            <CircularProgress size={20} color="primary" />
+                          <div className={classes.progress}>
+                              <FadeLoader css={'transform: scale(0.3); top:5px; left:5px'} color={'#FF5C01'}/>
+                          </div>
                         ) : (
                             <Checkbox
                                 icon={<FavoriteBorderIcon />}

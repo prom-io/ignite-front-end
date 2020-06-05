@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -42,7 +43,7 @@ const _GlobalTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <CircularProgress size={40} className={classes.centered} />
+        ? <div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>
         : (
             <Grid container>
                 {currentUser && (

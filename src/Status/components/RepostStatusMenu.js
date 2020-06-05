@@ -78,7 +78,11 @@ const _RepostStatusMenu = ({
                 transition
             >
                 <ClickEventPropagationStopper>
-                    <ClickAwayListener onClickAway={handleClose}>
+                    <ClickAwayListener
+                        onClickAway={handleClose}
+                        touchEvent="onTouchStart"
+                        mouseEvent="onMouseDown"
+                    >
                         <div
                             className="status-list-bottom-box-modal"
                             onClick={handleClose}

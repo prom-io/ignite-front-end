@@ -65,7 +65,11 @@ const _ShareStatusMenu = ({ currentUser, l }) => {
                     role={undefined}
                     transition
                 >
-                    <ClickAwayListener onClickAway={handleClose}>
+                    <ClickAwayListener
+                        onClickAway={handleClose}
+                        touchEvent="onTouchStart"
+                        mouseEvent="onMouseDown"
+                    >
                         <div
                             className="status-list-bottom-box-modal"
                             onClick={handleClose}

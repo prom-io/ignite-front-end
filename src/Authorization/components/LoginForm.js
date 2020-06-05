@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
-import { localized } from '../../localization/components';
 import { FadeLoader } from 'react-spinners';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -116,7 +116,7 @@ const _LoginForm = ({
                     disabled={pending}
                     fullWidth
                 >
-                    {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
                     {l('authorization.login')}
                 </Button>
             )}

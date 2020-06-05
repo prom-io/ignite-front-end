@@ -11,16 +11,16 @@ export const orange = createMuiTheme({
             root: {
                 '&:hover': {
                     backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                }
-            }
+                },
+            },
         },
         MuiListItem: {
-            button:{
+            button: {
                 '&:hover': {
                     backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                }
-            }
-        }
+                },
+            },
+        },
     },
     palette: {
         common: {

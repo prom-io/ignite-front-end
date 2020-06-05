@@ -11,11 +11,11 @@ import {
     TextField,
     Typography,
 } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { AttachImageInput } from './AttachImageInput';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
-import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         flexWrap: 'nowrap',
-    }
+    },
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -151,27 +151,27 @@ const _CreateStatusForm = ({
                         <img src="/pic-smile-disabled.png" />
                     </div>
                 </Grid>
-                <Grid container classes={{root: classes.containerRoot}}>
-                        <div className={classes.remainingCharactersCounter}>
-                            <Typography
-                                variant="body1"
-                                color="textSecondary"
-                            >
-                                {charactersRemaining}
-                            </Typography>
-                        </div>
-                        {!hideSendButton && (
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.createStatusButton}
-                                onClick={createStatus}
-                                disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
-                            >
-                                {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
-                                {l('status.send')}
-                            </Button>
-                        )}
+                <Grid container classes={{ root: classes.containerRoot }}>
+                    <div className={classes.remainingCharactersCounter}>
+                        <Typography
+                            variant="body1"
+                            color="textSecondary"
+                        >
+                            {charactersRemaining}
+                        </Typography>
+                    </div>
+                    {!hideSendButton && (
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.createStatusButton}
+                            onClick={createStatus}
+                            disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        >
+                            {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                            {l('status.send')}
+                        </Button>
+                    )}
                 </Grid>
             </CardActions>
             <div className={classes.mediaAttachmentsContainer}>

@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
             color: '#6483C0',
         },
         '& p': {
-            margin: 0
-        }
+            margin: 0,
+        },
     },
     replyingToLabel: {
         color: '#A2A2A2 !important',
@@ -98,8 +98,7 @@ const _StatusBody = ({
                 className={classes.statusText}
             >
                 {/* <Markdown source={text} /> */}
-                {text.split('\n').map((line, i) =>
-                    line ? <p key={i}>{line}</p> : <br key={i} />)}
+                {text.split('\n').map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}

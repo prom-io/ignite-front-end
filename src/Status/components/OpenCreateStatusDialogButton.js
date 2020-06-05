@@ -16,7 +16,7 @@ const userStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.primary.main,
-        }
+        },
     },
 }));
 
@@ -25,7 +25,7 @@ const _OpenCreateStatusDialogButton = ({ setCreateStatusDialogOpen }) => {
 
     return (
         <IconButton
-            classes={{root:classes.openCreateStatusDialogButton}}
+            classes={{ root: classes.openCreateStatusDialogButton }}
             onClick={() => setCreateStatusDialogOpen(true)}
         >
             <EditIcon />

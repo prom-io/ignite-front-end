@@ -134,7 +134,7 @@ const _SignUpDialog = ({
                         color="primary"
                         variant="contained"
                     >
-                        {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
+                        {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
                         Sign up for private beta testing
                     </Button>
                     <Button

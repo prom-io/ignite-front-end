@@ -1,19 +1,19 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from 'react';
 import {
     ClickAwayListener,
     IconButton,
     Popper,
     Typography,
     CircularProgress,
-    makeStyles
-} from "@material-ui/core";
-import { inject, observer } from "mobx-react";
-import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
-import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { RepostIcon } from "../../icons/RepostIcon";
-import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+    makeStyles,
+} from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 import { FadeLoader } from 'react-spinners';
+import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
+import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { RepostIcon } from '../../icons/RepostIcon';
+import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -55,7 +55,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-              <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
+                <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
             ) : (
                 <IconButton
                     ref={anchorRef}
@@ -116,7 +116,7 @@ const _RepostStatusMenu = ({
 };
 
 const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

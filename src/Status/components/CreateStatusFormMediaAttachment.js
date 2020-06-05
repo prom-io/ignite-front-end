@@ -53,7 +53,7 @@ export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => 
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
+                    <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
                 </div>
             )}
         </div>

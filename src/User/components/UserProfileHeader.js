@@ -72,8 +72,7 @@ const _UserProfileHeader = ({
                             <p>{addLineBreak(displayName)}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
-                                    {bio.split('\n').map((line, i) =>
-                                        line ? <p key={i}>{line}</p> : <br key={i} />)}
+                                    {bio.split('\n').map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
                                 </div>
                             )}
                         </div>

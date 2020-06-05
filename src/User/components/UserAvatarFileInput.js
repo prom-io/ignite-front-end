@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core';
 import { Photo } from '@material-ui/icons';
-import { localized } from '../../localization/components';
 import { FadeLoader } from 'react-spinners';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     avatarAttachmentPhoto: {
@@ -62,39 +62,39 @@ const _UserAvatarFileInput = ({
     };
 
     return (
-      <div className={classes.avatarAttachmentContainer}>
-        <div className={classes.avatarAttachmentPhoto}>
-          <Avatar
-            style={{
-              width: 80,
-              height: 80,
-            }}
-            src={avatarFileContainer ? avatarFileContainer.url : user.avatar}
-          />
-          <Button
-            disabled={avatarFileContainer && avatarFileContainer.pending}
-            component="label"
-            variant="outlined"
-            classes={{root:classes.avatarUploadButton}}
-          >
-            {avatarFileContainer && avatarFileContainer.pending
-              ? <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
-              : <Photo style={{color:'#fff'}}/>}
-            <input
-              type="file"
-              value={value}
-              style={{ display: 'none' }}
-              accept="image/png, image/jpg, image/jpeg"
-              onClick={() => setValue('')}
-              onChange={event => handleFileAttachment(event.target.files)}
-            />
-          </Button>
+        <div className={classes.avatarAttachmentContainer}>
+            <div className={classes.avatarAttachmentPhoto}>
+                <Avatar
+                    style={{
+                        width: 80,
+                        height: 80,
+                    }}
+                    src={avatarFileContainer ? avatarFileContainer.url : user.avatar}
+                />
+                <Button
+                    disabled={avatarFileContainer && avatarFileContainer.pending}
+                    component="label"
+                    variant="outlined"
+                    classes={{ root: classes.avatarUploadButton }}
+                >
+                    {avatarFileContainer && avatarFileContainer.pending
+                        ? <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                        : <Photo style={{ color: '#fff' }} />}
+                    <input
+                        type="file"
+                        value={value}
+                        style={{ display: 'none' }}
+                        accept="image/png, image/jpg, image/jpeg"
+                        onClick={() => setValue('')}
+                        onChange={event => handleFileAttachment(event.target.files)}
+                    />
+                </Button>
+            </div>
+            <div className={classes.avatarAttachmentDescription}>
+                <p>Wallet</p>
+                <span>{lineBreak(displayName)}</span>
+            </div>
         </div>
-        <div className={classes.avatarAttachmentDescription}>
-          <p>Wallet</p>
-          <span>{lineBreak(displayName)}</span>
-        </div>
-      </div>
     );
 };
 

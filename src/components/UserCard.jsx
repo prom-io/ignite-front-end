@@ -48,10 +48,8 @@ const _UserCard = ({
                         {bio && (
                             <div className="user-card-info-bio">
                                 {bio
-                                    .split("\n")
-                                    .map((line, i) =>
-                                        line ? <p key={i}>{line}</p> : <br key={i} />
-                                    )}
+                                    .split('\n')
+                                    .map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
                             </div>
                         )}
                     </div>

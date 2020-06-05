@@ -45,7 +45,15 @@ const _UserCard = ({
                     <div className="user-card-info">
                         <h4>{lineBreak(username)}</h4>
                         <p>{lineBreak(displayName)}</p>
-                        {bio && <h5>{bio}</h5>}
+                        {bio && (
+                            <div className="user-card-info-bio">
+                                {bio
+                                    .split("\n")
+                                    .map((line, i) =>
+                                        line ? <p key={i}>{line}</p> : <br key={i} />
+                                    )}
+                            </div>
+                        )}
                     </div>
 
                     <Grid className="user-profile-header-content-bottom">

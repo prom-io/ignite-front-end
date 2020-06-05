@@ -127,6 +127,7 @@ export const en = {
     'user.update-profile': 'Update profile',
     'user.update-profile.save-changes': 'Save changes',
     'user.update-profile.close': 'Close',
+    'user.edit-profile': 'Edit profile',
     'notification.new-post': 'published new post',
     'notification.reply': 'replied to your post',
     'notification.like': 'liked your post',

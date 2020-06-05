@@ -7,4 +7,7 @@ export * from './UserProfileTab';
 export * from './UserProfileContainer';
 export * from './OpenUpdateUserProfileDialogButton';
 export * from './UpdateUserProfileDialog';
+export * from './UpdateUserContainer';
+export * from './UpdateUserProfile';
+export * from './UpdateUserPassword';
 export * from './UserAvatarFileInput';

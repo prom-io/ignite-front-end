@@ -127,6 +127,7 @@ export const ko = {
     'user.update-profile': '프로필 사진 업데이트',
     'user.update-profile.save-changes': '변경 내용 저장한다',
     'user.update-profile.close': '닫다',
+    'user.edit-profile': 'Edit profile',
     'description.unauth-banner.unblockable': '봉쇄하지 못한다',
     'description.unauth-banner.unblockable.description': '블록체인을 금지할 수 없는 한 Ignite 또한 금지할 수 없음',
     'description.unauth-banner.Censorship-free': '심사를 면제한다',

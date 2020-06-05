@@ -13,6 +13,7 @@ import {
     TermsAndPoliciesPage,
     TrendsPage,
     UserProfilePage,
+    UserEditPage
 } from '../pages';
 import { store } from '../store';
 
@@ -74,6 +75,17 @@ export const Routes = {
         },
         onExit: () => {
             store.followPeople.reset();
+        },
+    }),
+    userEdit: new Route({
+        path: '/edit-profile',
+        component: <UserEditPage />,
+        beforeEnter: () => {
+            // store.authorization.fetchCurrentUser();
+            // store.userProfile.fetchUserByUsername("0x2129f63A5B51569C7f2801E4101c4bB755323b12");
+        },
+        onExit: () => {
+            // store.userProfileUpdate.resetForm();
         },
     }),
     trends: new Route({

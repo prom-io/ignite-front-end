@@ -87,7 +87,7 @@ const _TrendsPage = ({ currentUser, l }) => {
 )};
 
 const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const TrendsPage = localized(inject(mapMobxToProps)(observer(_TrendsPage)));

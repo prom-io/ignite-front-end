@@ -1,15 +1,15 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { Button, makeStyles } from "@material-ui/core";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Button, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     btnLogo: {
         padding: 0,
-        minWidth: "unset",
-        "&:hover": {
-            backgroundColor: "unset"
-        }
-    }
+        minWidth: 'unset',
+        '&:hover': {
+            backgroundColor: 'unset',
+        },
+    },
 }));
 
 const _AppBarLogo = ({ timelineSwitcher, notifications }) => {
@@ -17,10 +17,10 @@ const _AppBarLogo = ({ timelineSwitcher, notifications }) => {
 
     const handleClickOnLogo = () => {
         const path = window.location.pathname;
-        if (path === "/") {
+        if (path === '/') {
             timelineSwitcher.selectedTimeline.reset();
             timelineSwitcher.selectedTimeline.fetchStatuses();
-        } else if (path === "/notifications") {
+        } else if (path === '/notifications') {
             notifications.reset();
             notifications.fetchNotifications();
         }
@@ -34,8 +34,8 @@ const _AppBarLogo = ({ timelineSwitcher, notifications }) => {
 };
 
 const mapMobxToProps = ({ timelineSwitcher, notifications }) => ({
-    timelineSwitcher: timelineSwitcher,
-    notifications: notifications
+    timelineSwitcher,
+    notifications,
 });
 
 export const AppBarLogo = inject(mapMobxToProps)(observer(_AppBarLogo));

@@ -22,13 +22,13 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&.MuiCheckbox-root": {
-            color: "rgba(0, 0, 0, 0.35)"
+        '&.MuiCheckbox-root': {
+            color: 'rgba(0, 0, 0, 0.35)',
         },
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
     cardActionSpacing: {
         "& > :not(:first-child)": {
@@ -54,7 +54,7 @@ const _StatusBottom = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    status
+    status,
 }) => {
     const classes = useStyles();
 
@@ -84,15 +84,13 @@ const _StatusBottom = ({
                                 icon={<FavoriteBorderIcon />}
                                 checkedIcon={<FavoriteIcon color="primary" />}
                                 checked={favourited}
-                                onChange={() =>
-                                    onFavouriteClick(statusId, !favourited)
-                                }
+                                onChange={() => onFavouriteClick(statusId, !favourited)}
                                 classes={{ root: classes.styledCheckbox }}
                             />
                         )}
                         <Typography
                             variant="body1"
-                            color={favourited ? "primary" : "textSecondary"}
+                            color={favourited ? 'primary' : 'textSecondary'}
                         >
                             {favouritesCount}
                         </Typography>

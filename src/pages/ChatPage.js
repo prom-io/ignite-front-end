@@ -13,35 +13,7 @@ import { LoginForm } from "../Authorization/components";
 import { makeStyles } from '@material-ui/core/styles';
 import { IgniteChatPage } from '../icons/IgniteChatPage';
 
-const useStyles = makeStyles(theme => ({
-    chatError: {
-        border: '1px solid #F1EBE8',
-        borderBottom: 'none',
-        height: '100%',
-        padding: '0 30px',
-    },
-    chatErrorInfo: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '65px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: '#A2A2A2',
-        '& h1': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: '#1C1C1C',
-        },
-    },
-}));
-
-const _ChatPage = ({ currentUser, l }) => {
-    const classes = useStyles();
-    return (
+const _ChatPage = ({ currentUser, l }) => (
     <Grid container>
         <Grid item xs={12}>
             <AppBar currentActiveRoute="chat" />
@@ -85,7 +57,7 @@ const _ChatPage = ({ currentUser, l }) => {
             </Layout>
         </Grid>
     </Grid>
-)};
+);
 
 const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser

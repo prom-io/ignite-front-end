@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.down('sm')]: {
             marginLeft: '40px',
-            padding:' 13px 24px',
+            padding: ' 13px 24px',
         },
     },
     dialogContentRoot: {

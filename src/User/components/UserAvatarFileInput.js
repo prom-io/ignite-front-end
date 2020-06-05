@@ -6,43 +6,43 @@ import { localized } from '../../localization/components';
 import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
-  avatarAttachmentPhoto: {
+    avatarAttachmentPhoto: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
     },
-  avatarAttachmentContainer: {
-    [theme.breakpoints.down('sm')]: {
-      background:'#FFFBF8',
-      padding: '8px 24px'
+    avatarAttachmentContainer: {
+        [theme.breakpoints.down('sm')]: {
+            background: '#FFFBF8',
+            padding: '8px 24px',
+        },
     },
-  },
-  avatarUploadButton:{
-    position: 'absolute',
-    width: '80px',
-    height: '80px',
-    borderRadius: '80px',
-    background: 'rgba(34, 34, 34, 0.8)',
-  },
-  avatarAttachmentDescription: {
-    marginTop: '24px',
-    '& p': {
-      margin: 0,
-      color: '#A2A2A2',
-      fontSize: '12px',
-      fontFamily: 'Museo Sans Cyrl Regular',
+    avatarUploadButton: {
+        position: 'absolute',
+        width: '80px',
+        height: '80px',
+        borderRadius: '80px',
+        background: 'rgba(34, 34, 34, 0.8)',
     },
-    '& span': {
-      marginTop: '8px',
-      color: '#1C1C1C',
-      fontSize: '16px',
-      fontFamily: 'Museo Sans Cyrl Bold',
-    }
-  },
+    avatarAttachmentDescription: {
+        marginTop: '24px',
+        '& p': {
+            margin: 0,
+            color: '#A2A2A2',
+            fontSize: '12px',
+            fontFamily: 'Museo Sans Cyrl Regular',
+        },
+        '& span': {
+            marginTop: '8px',
+            color: '#1C1C1C',
+            fontSize: '16px',
+            fontFamily: 'Museo Sans Cyrl Bold',
+        },
+    },
 }));
 
-const lineBreak = param => param.slice(0, 21) + " " + param.slice(21);
+const lineBreak = param => `${param.slice(0, 21)} ${param.slice(21)}`;
 
 const _UserAvatarFileInput = ({
     user,

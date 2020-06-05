@@ -22,11 +22,11 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
-    }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
 });
 
 const _RepostStatusMenu = ({
@@ -34,7 +34,7 @@ const _RepostStatusMenu = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    currentUser
+    currentUser,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);

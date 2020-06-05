@@ -60,8 +60,8 @@ const _StatusCommentsList = ({
                     hideThreadLinks
                     hasMore={hasMore}
                 />
-                <UnfollowDialog 
-                    username={currentStatusUsername} 
+                <UnfollowDialog
+                    username={currentStatusUsername}
                     unfollowAction={unfollowStatusAuthor}
                     unfollowDialogOpen={unfollowDialogOpen}
                     setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -86,7 +86,7 @@ const mapMobxToProps = ({ statusComments, authorization, createStatus }) => ({
     currentStatusUsername: statusComments.currentStatusUsername,
     unfollowStatusAuthor: statusComments.unfollowStatusAuthor,
     setUnfollowDialogOpen: statusComments.setUnfollowDialogOpen,
-    unfollowDialogOpen: statusComments.unfollowDialogOpen
+    unfollowDialogOpen: statusComments.unfollowDialogOpen,
 });
 
 export const StatusCommentsList = localized(

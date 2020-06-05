@@ -41,7 +41,7 @@ const _HomeTimeline = ({
     currentStatusUsername,
     unfollowStatusAuthor,
     setUnfollowDialogOpen,
-    unfollowDialogOpen
+    unfollowDialogOpen,
 }) => {
     const classes = useStyles();
 
@@ -66,8 +66,8 @@ const _HomeTimeline = ({
                         repostsPendingMap={repostsPendingMap}
                         hasMore={hasMore}
                     />
-                    <UnfollowDialog 
-                        username={currentStatusUsername} 
+                    <UnfollowDialog
+                        username={currentStatusUsername}
                         unfollowAction={unfollowStatusAuthor}
                         unfollowDialogOpen={unfollowDialogOpen}
                         setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -92,7 +92,7 @@ const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     currentStatusUsername: homeTimeline.currentStatusUsername,
     unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,
     setUnfollowDialogOpen: homeTimeline.setUnfollowDialogOpen,
-    unfollowDialogOpen: homeTimeline.unfollowDialogOpen
+    unfollowDialogOpen: homeTimeline.unfollowDialogOpen,
 });
 
 export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

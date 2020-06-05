@@ -114,6 +114,7 @@ const _UpdateUserProfileDialog = ({
                     fullWidth
                     margin="dense"
                     multiline
+                    rowsMax={3}
                   />
               </div>
           </DialogContent>

@@ -98,7 +98,7 @@ const _StatusBottom = ({
                         </Typography>
                     </ClickEventPropagationStopper>
                 </div>
-                <ShareStatusMenu />
+                <ShareStatusMenu status={status} />
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo} />
                 </ClickEventPropagationStopper>

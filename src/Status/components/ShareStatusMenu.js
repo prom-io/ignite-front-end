@@ -3,15 +3,13 @@ import {
     ClickAwayListener,
     IconButton,
     Popper,
-    Typography,
     makeStyles
 } from "@material-ui/core";
-import { inject, observer } from "mobx-react";
 import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { LetterIcon } from "../../icons/LetterIcon";
-import { ShareIcon } from "../../icons/ShareIcon";
 import { AnotherShareIcon } from "../../icons/AnotherShareIcon";
-import { localized } from "../../localization/components";
+import { ShareWithLink } from "./ShareWithLink";
+import { ShareToItem } from "./ShareToItem";
+import { useAuthorization } from "../../store";
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -27,10 +25,11 @@ const useStyles = makeStyles({
     }
 });
 
-const _ShareStatusMenu = ({ currentUser, l }) => {
+export const ShareStatusMenu = ({ status }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
+    const { currentUser } = useAuthorization();
 
     const handleToggle = () => {
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -65,45 +64,48 @@ const _ShareStatusMenu = ({ currentUser, l }) => {
                     role={undefined}
                     transition
                 >
-                    <ClickAwayListener
-                        onClickAway={handleClose}
-                        touchEvent="onTouchStart"
-                        mouseEvent="onMouseDown"
-                    >
-                        <div
-                            className="status-list-bottom-box-modal"
-                            onClick={handleClose}
+                    <ClickEventPropagationStopper>
+                        <ClickAwayListener
+                            onClickAway={handleClose}
+                            touchEvent="onTouchStart"
+                            mouseEvent="onMouseDown"
                         >
                             <div
-                                className="status-modal-box-item"
+                                className="status-list-bottom-box-modal"
                                 onClick={handleClose}
                             >
-                                <LetterIcon />
-                                <Typography variant="body1" color="textSecondary">
-                                    {l("status.send-in-message")}
-                                </Typography>
+                                <ClickEventPropagationStopper>
+                                    <ShareWithLink
+                                        status={status}
+                                        setOpen={setOpen}
+                                    />
+                                </ClickEventPropagationStopper>
+                                <ClickEventPropagationStopper>
+                                    <ShareToItem
+                                        to="Facebook"
+                                        status={status}
+                                        setOpen={setOpen}
+                                    />
+                                </ClickEventPropagationStopper>
+                                <ClickEventPropagationStopper>
+                                    <ShareToItem
+                                        to="Twitter"
+                                        status={status}
+                                        setOpen={setOpen}
+                                    />
+                                </ClickEventPropagationStopper>
+                                <ClickEventPropagationStopper>
+                                    <ShareToItem
+                                        to="LinkedIn"
+                                        status={status}
+                                        setOpen={setOpen}
+                                    />
+                                </ClickEventPropagationStopper>
                             </div>
-                            <div
-                                className="status-modal-box-item"
-                                onClick={handleClose}
-                            >
-                                <ShareIcon />
-                                <Typography variant="body1" color="textSecondary">
-                                    {l("status.copy-link")}
-                                </Typography>
-                            </div>
-                        </div>
-                    </ClickAwayListener>
+                        </ClickAwayListener>
+                    </ClickEventPropagationStopper>
                 </Popper>
             </div>
         </ClickEventPropagationStopper>
     );
 };
-
-const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
-});
-
-export const ShareStatusMenu = localized(
-    inject(mampMobxToProps)(observer(_ShareStatusMenu))
-);

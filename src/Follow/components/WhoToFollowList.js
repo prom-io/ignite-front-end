@@ -33,14 +33,14 @@ const _WhoToFollowList = ({
     }, []);
 
     return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
-      <div className={classes.centered}><FadeLoader color={'#FF5C01'} css={'transform: scale(0.5)'}/></div>
+      <div className={classes.centered}><FadeLoader color={'#FF5C01'} css={'transform: scale(0.5); top: 10px; left: 10px'}/></div>
     ) : (
         <>
             <SideBarList
                 users={whoToFollowItems.slice(0, viewCount)}
                 actionWithFollow={actionWithFollow}
             />
-            <UnfollowDialog 
+            <UnfollowDialog
                 username={selectedUser.username}
                 unfollowAction={unfollowUser}
                 unfollowDialogOpen={unfollowDialogOpen}

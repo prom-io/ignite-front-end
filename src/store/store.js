@@ -1,3 +1,4 @@
+import Web3 from 'web3';
 import {
     AuthorizationStore,
     LoginStore,
@@ -6,6 +7,7 @@ import {
     SignUpStore,
     GenerateHashStore,
     VerifyHashStore,
+    PasswordChangeStore,
 } from '../Authorization/stores';
 import {
     CreateStatusStore,
@@ -65,6 +67,7 @@ const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
 const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog);
 const hashGeneration = new GenerateHashStore();
 const hashVerification = new VerifyHashStore();
+const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 
 export const store = {
     authorization,
@@ -98,4 +101,5 @@ export const store = {
     walletGeneration,
     hashGeneration,
     hashVerification,
+    passwordChange,
 };

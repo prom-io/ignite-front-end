@@ -130,9 +130,21 @@ export const LoginForm = observer(({
                     }}
                     disabled={pending}
                 >
-                    {l('sign-up.beta-testing')}
+                    {l('sign-up')}
                 </Button>
             )}
+            <Button
+                variant="text"
+                color="primary"
+                fullWidth
+                className={classes.signUpButton}
+                onClick={() => {
+                    setGenericAuthorizationDialogOpen(true);
+                    setGenericAuthorizationDialogType('forgotPassword');
+                }}
+            >
+                {l('authorization.login.forgot-your-password')}
+            </Button>
         </>
     );
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, DialogContent } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { observer } from 'mobx-react';
+import { Button, DialogContent, makeStyles, TextField } from '@material-ui/core';
+import { useLocalization, useStore } from '../../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     dialogRoot: {
         margin: '24px 62px 40px 62px',
     },
@@ -25,8 +24,17 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ResetPassword = () => {
+export const ResetPassword = observer(() => {
     const classes = useStyles();
+    const { l } = useLocalization();
+    const { passwordChange, genericAuthorizationDialog } = useStore();
+    const { setFormValue, formErrors, passwordChangeForm } = passwordChange;
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+    const continueButtonDisabled = !(passwordChangeForm.walletAddress
+        && passwordChangeForm.privateKey
+        && !formErrors.walletAddress
+        && !formErrors.privateKey
+    );
 
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
@@ -34,18 +42,32 @@ export const ResetPassword = () => {
                 To continue the password reset procedure, enter the Wallet address and the Password recovery key (Private key)
             </span>
             <form className={classes.form} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="Wallet Address" />
-                <TextField id="standard-basic" label="Private Key" />
+                <TextField
+                    label="Wallet Address"
+                    value={passwordChangeForm.walletAddress}
+                    onChange={event => setFormValue('walletAddress', event.target.value)}
+                    error={Boolean(formErrors.walletAddress)}
+                    helperText={formErrors.walletAddress && l(formErrors.walletAddress)}
+                />
+                <TextField
+                    label="Private Key"
+                    value={passwordChangeForm.privateKey}
+                    onChange={event => setFormValue('privateKey', event.target.value)}
+                    error={Boolean(formErrors.privateKey)}
+                    helperText={formErrors.privateKey && l(formErrors.privateKey)}
+                />
                 <Button
                     variant="contained"
                     color="primary"
                     classes={{
                         root: classes.button,
                     }}
+                    disabled={continueButtonDisabled}
+                    onClick={() => setGenericAuthorizationDialogType('changePassword')}
                 >
                     Continue
                 </Button>
             </form>
         </DialogContent>
     );
-};
+});

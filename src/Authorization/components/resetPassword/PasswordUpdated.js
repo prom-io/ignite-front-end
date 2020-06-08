@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, DialogContent } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { observer } from 'mobx-react';
+import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { useStore, useLocalization } from '../../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         paddingBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -35,8 +35,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const PasswordUpdated = () => {
+export const PasswordUpdated = observer(() => {
     const classes = useStyles();
+    const { passwordChange, genericAuthorizationDialog } = useStore();
+    const { passwordChangeForm } = passwordChange;
+    const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
+
     return (
         <DialogContent>
             <div className={classes.contentDescription}>
@@ -45,7 +49,7 @@ export const PasswordUpdated = () => {
 
             <div className={classes.contentBlock}>
                 <p>Your login is</p>
-                <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                <span>{passwordChangeForm.walletAddress}</span>
 
                 <Button
                     variant="contained"
@@ -53,10 +57,11 @@ export const PasswordUpdated = () => {
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={() => setGenericAuthorizationDialogOpen(false)}
                 >
                     Ok
                 </Button>
             </div>
         </DialogContent>
     );
-};
+});

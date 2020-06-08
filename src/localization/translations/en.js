@@ -42,7 +42,7 @@ export const en = {
     'authorization.login.error.invalid-credentials.password': 'Unknown combination of wallet address and password',
     'authorization.login.error.unknown': 'Unknown error occurred when tried to log in. Server responded with {responseStatus} status',
     'authorization.login.error.no-response': 'Error occurred when tried to log in: no response from server',
-    'sign-up': 'Sign up for ignite',
+    'sign-up': 'Sign up',
     'sign-up.beta-testing': 'Sign up for private beta testing',
     'chat.description.first-paragraph': "Prometeus Team plans to create and develop the encrypted peer to peer chat messaging service as part of the functionality of Ignite service. All the messages will be encrypted on the user's device and cannot be read by us. All the messages will be deleted after 30 days.",
     'chat.description.second-paragraph': 'Our general purpose is to build distributed tools to support global Freedom Of Speech. We support free speech, individual liberty and the free flow of information online. We believe that the future of online publishing is decentralized and open. We believe that users of social networks should be able to control their social media experience on their own terms, rather than the terms set down by Big Tech.',
@@ -191,4 +191,5 @@ export const en = {
     'sign-up.hash-code.not-generated': 'Hashcode not generated',
     'sign-up.hash-code.saved': 'I have saved the hashcode to publish it later in a record in Ethereum blockchain',
     'sign-up.continue': 'Continue',
+    'authorization.login.forgot-your-password': 'Forgot your password?'
 };

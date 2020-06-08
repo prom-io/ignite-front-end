@@ -1,8 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { useStore } from '../../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -36,8 +37,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ForgotPassword = () => {
+export const ForgotPassword = observer(() => {
     const classes = useStyles();
+    const { genericAuthorizationDialog } = useStore();
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
             <span className={classes.contentDescription}>
@@ -55,11 +59,11 @@ export const ForgotPassword = () => {
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={() => setGenericAuthorizationDialogType('resetPassword')}
                 >
                     Enter the key
                 </Button>
             </div>
-
             <div className={classes.contentBlock}>
                 <div>
                     <span>
@@ -80,4 +84,4 @@ export const ForgotPassword = () => {
             </div>
         </DialogContent>
     );
-};
+});

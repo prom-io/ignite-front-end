@@ -63,8 +63,6 @@ export const InputPasswordGroup = ({
     const theme = useTheme();
     const { l } = useLocalization();
 
-    console.log(formErrors.password);
-
     const handleChange = (prop) => (event) => {
         onValueChange(prop, event.target.value);
     };

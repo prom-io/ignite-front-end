@@ -186,4 +186,9 @@ export const en = {
     'authorization.reset-password': 'Reset password',
     'authorization.change-password': 'Change Your Password',
     'authorization.password-updated': 'Password Updated',
+    'sign-up.create-password': 'Please create password for your new account',
+    'sign-up.hash-code': 'A hashcode for this password',
+    'sign-up.hash-code.not-generated': 'Hashcode not generated',
+    'sign-up.hash-code.saved': 'I have saved the hashcode to publish it later in a record in Ethereum blockchain',
+    'sign-up.continue': 'Continue',
 };

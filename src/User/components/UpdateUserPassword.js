@@ -25,6 +25,10 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 600,
             fontSize: "20px",
             lineHeight: "24px"
+        },
+        [theme.breakpoints.down("sm")]: {
+            marginBottom: '50px',
+            padding: "34px",
         }
     },
     alignItemsUnset: {

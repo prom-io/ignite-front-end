@@ -9,12 +9,15 @@ import { Layout } from "../Layout";
 import { LoginForm } from "../Authorization/components";
 import { useAuthorization, useLocalization } from "../store/hooks";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     editTitle: {
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "24px",
-        marginBottom: "24px"
+        marginBottom: "24px",
+        [theme.breakpoints.down('sm')]: {
+           display: 'none',
+        },
     }
 }));
 

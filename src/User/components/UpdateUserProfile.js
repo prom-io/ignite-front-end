@@ -17,12 +17,17 @@ const useStyles = makeStyles(theme => ({
         background: "#fff",
         marginBottom: "8px",
         padding: "24px 24px 45px 24px",
-        display: "flex"
+        display: "flex",
+        [theme.breakpoints.down('sm')]: {
+            flexDirection:'column'
+        },
     },
     updateUserProfileInfo: {
         zIndex: 1,
         maxWidth: "345px",
+        marginLeft: '20px',
         [theme.breakpoints.down("sm")]: {
+            marginLeft: '0',
             maxWidth: "unset"
         }
     },

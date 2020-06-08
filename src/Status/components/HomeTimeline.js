@@ -5,6 +5,7 @@ import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import { UnfollowDialog } from '../../Follow/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -44,9 +45,10 @@ const _HomeTimeline = ({
     unfollowDialogOpen,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><FadeLoader color="#FF5C01" css="transform: scale(0.5)" /></div>
+        ? <div className={classes.centered}><FadeLoader color={theme.palette.primary.main}  css="transform: scale(0.5)" /></div>
         : (
             <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">

@@ -29,11 +29,12 @@ export class LoginStore {
     }
 
     @action
-    doLogin = () => {
+    doLogin = (isRemember) => {
         this.submissionError = undefined;
         axiosInstance.post("/api/v3/auth/login", {...this.loginForm})
             .then(({data}) => {
-                this.authorizationStore.setAccessToken(data.access_token);
+                console.log('isRemember = ', isRemember);
+                isRemember ? this.authorizationStore.setAccessToken(data.access_token) : this.authorizationStore.setTempAccessToken(data.access_token);
                 this.loginForm = {
                     username: "",
                     password: ""

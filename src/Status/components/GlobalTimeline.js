@@ -4,6 +4,7 @@ import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -41,9 +42,10 @@ const _GlobalTimeline = ({
     hasMore,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>
+        ? <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
         : (
             <Grid container>
                 {currentUser && (

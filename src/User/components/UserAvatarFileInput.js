@@ -4,6 +4,7 @@ import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core'
 import { Photo } from '@material-ui/icons';
 import { FadeLoader } from 'react-spinners';
 import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     avatarAttachmentPhoto: {
@@ -52,6 +53,7 @@ const _UserAvatarFileInput = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     const [value, setValue] = useState(undefined);
 
@@ -78,7 +80,7 @@ const _UserAvatarFileInput = ({
                     classes={{ root: classes.avatarUploadButton }}
                 >
                     {avatarFileContainer && avatarFileContainer.pending
-                        ? <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                        ? <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
                         : <Photo style={{ color: '#fff' }} />}
                     <input
                         type="file"

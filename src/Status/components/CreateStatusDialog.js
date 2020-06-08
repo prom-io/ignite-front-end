@@ -14,6 +14,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { FadeLoader } from 'react-spinners';
 import { CreateStatusForm } from './CreateStatusForm';
 import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     createStatusButton: {
@@ -35,6 +36,7 @@ const _CreateStatusDialog = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Dialog
@@ -66,7 +68,7 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
                     {l('status.send')}
                 </Button>
             </DialogTitle>

@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { withSnackbar } from 'notistack';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     signUpFormContent: {
@@ -69,6 +70,7 @@ const _SignUpDialog = ({
     onLoginButtonClick,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     const handleLoginButtonClick = () => {
         setSignUpDialogOpen(false);
@@ -134,7 +136,7 @@ const _SignUpDialog = ({
                         color="primary"
                         variant="contained"
                     >
-                        {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                        {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
                         Sign up for private beta testing
                     </Button>
                     <Button

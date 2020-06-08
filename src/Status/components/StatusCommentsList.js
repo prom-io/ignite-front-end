@@ -5,6 +5,7 @@ import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -33,6 +34,7 @@ const _StatusCommentsList = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Grid container spacing={2}>
@@ -42,7 +44,7 @@ const _StatusCommentsList = ({
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-                {pending && statuses.length === 0 && <div className={classes.centered}><FadeLoader color="#FF5C01" /></div>}
+                {pending && statuses.length === 0 && <div className={classes.centered}><FadeLoader color={theme.palette.primary.main} /></div>}
             </Grid>
             <Grid item xs={12}>
                 {statuses.length === 0 && !pending && <Typography color="textSecondary">{l('status.no-comments')}</Typography>}

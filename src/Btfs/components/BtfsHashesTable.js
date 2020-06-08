@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { FadeLoader } from 'react-spinners';
 import { trimString } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
@@ -32,9 +33,10 @@ const getErrorLabel = error => {
 
 const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     if (pending) {
-        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>;
+        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>;
     } if (error) {
         return (
             <Typography>

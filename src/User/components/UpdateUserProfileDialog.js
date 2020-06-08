@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FadeLoader } from 'react-spinners';
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     dialogTitleRoot: {
@@ -60,6 +61,7 @@ const _UpdateUserProfileDialog = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Dialog
@@ -88,7 +90,7 @@ const _UpdateUserProfileDialog = ({
                             endAdornment: (
                                 checkingUsernameAvailability && (
                                     <InputAdornment position="end">
-                                        <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                                        <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
                                     </InputAdornment>
                                 )
                             ),
@@ -132,7 +134,7 @@ const _UpdateUserProfileDialog = ({
                     onClick={updateUser}
                     disabled={pending || checkingUsernameAvailability || avatarUploadPending}
                 >
-                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
                     {l('user.update-profile.save-changes')}
                 </Button>
             </DialogActions>

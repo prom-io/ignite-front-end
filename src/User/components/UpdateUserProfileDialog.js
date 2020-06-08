@@ -12,6 +12,7 @@ import {
     withMobileDialog,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { FadeLoader } from 'react-spinners';
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
 
@@ -87,7 +88,7 @@ const _UpdateUserProfileDialog = ({
                             endAdornment: (
                                 checkingUsernameAvailability && (
                                     <InputAdornment position="end">
-                                        <CircularProgress size={15} color="primary" />
+                                        <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
                                     </InputAdornment>
                                 )
                             ),
@@ -113,6 +114,7 @@ const _UpdateUserProfileDialog = ({
                         fullWidth
                         margin="dense"
                         multiline
+                        rowsMax={3}
                     />
                 </div>
             </DialogContent>
@@ -130,7 +132,7 @@ const _UpdateUserProfileDialog = ({
                     onClick={updateUser}
                     disabled={pending || checkingUsernameAvailability || avatarUploadPending}
                 >
-                    {pending && <CircularProgress size={15} color="primary" />}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
                     {l('user.update-profile.save-changes')}
                 </Button>
             </DialogActions>

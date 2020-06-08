@@ -8,6 +8,7 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
+import { FadeLoader } from 'react-spinners';
 import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
 import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
@@ -54,7 +55,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-                <CircularProgress size={20} color="primary" />
+                <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
             ) : (
                 <IconButton
                     ref={anchorRef}
@@ -78,7 +79,11 @@ const _RepostStatusMenu = ({
                 transition
             >
                 <ClickEventPropagationStopper>
-                    <ClickAwayListener onClickAway={handleClose}>
+                    <ClickAwayListener
+                        onClickAway={handleClose}
+                        touchEvent="onTouchStart"
+                        mouseEvent="onMouseDown"
+                    >
                         <div
                             className="status-list-bottom-box-modal"
                             onClick={handleClose}

@@ -96,7 +96,11 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                             style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                         >
                             <Paper>
-                                <ClickAwayListener onClickAway={handleClose}>
+                                <ClickAwayListener
+                                    onClickAway={handleClose}
+                                    touchEvent="onTouchStart"
+                                    mouseEvent="onMouseDown"
+                                >
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Link
                                             view={Routes.userProfile}

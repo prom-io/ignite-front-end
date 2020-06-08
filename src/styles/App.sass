@@ -366,14 +366,16 @@ p
     text-align: center
     color: #A2A2A2
     margin: 0 0 10px 0
-  h5
+  &-bio
     font-family: Museo Sans Cyrl Regular
     font-style: normal
     font-weight: 300
-    font-size: 15px
-    line-height: 20px
     text-align: center
-    margin: 0
+    p
+      font-size: 15px
+      line-height: 20px
+      color: #1C1C1C
+      margin: 0
 .user-card-statistic
   display: flex
   justify-content: center
@@ -604,6 +606,7 @@ p
   padding-left: 65px !important
   padding-bottom: 15px !important
   p
+    margin-left: 2px
     font-family: Museo Sans Cyrl Regular
     font-style: normal
     font-weight: normal
@@ -685,8 +688,8 @@ p
   height: 376px !important
   padding: 0 !important
   box-sizing: border-box
-  @media screen and( max-width: 960px )
-    margin-right: 0 !important
+  @media screen and( max-width: 960px)
+    margin: 0 auto !important
     max-width: 600px !important
     // height: 360px !important
     // margin-bottom: 20px !important
@@ -771,7 +774,7 @@ p
   margin-bottom: 70px !important
   max-width: 600px !important
   @media (max-width: 960px)
-    margin-left: 0px !important
+    margin: 0 auto 10px auto !important
     position: relative
 .user-profile-info
   padding-left: 6px
@@ -808,12 +811,14 @@ p
     p
       width: 100%
       font-family: Museo Sans Cyrl Regular
+      margin: 0
       font-style: normal
       font-weight: 300
       font-size: 15px
       line-height: 26px
-      color: #1C1C1C
+      color: #A2A2A2
       text-align: left
+
       span
         font-weight: 600
         color: $main

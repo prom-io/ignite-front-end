@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Card, CardHeader, CardContent, makeStyles, Typography } from '@material-ui/core';
 import { format } from 'date-fns';
+import { FadeLoader } from 'react-spinners';
 import { trimString } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
 
@@ -33,7 +34,7 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
     const classes = useStyles();
 
     if (pending) {
-        return <CircularProgress size={25} color="primary" className={classes.centered} />;
+        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>;
     } if (error) {
         return (
             <Typography>

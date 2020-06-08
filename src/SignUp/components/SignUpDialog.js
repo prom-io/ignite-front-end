@@ -11,6 +11,7 @@ import {
     Typography,
 } from '@material-ui/core';
 import { withSnackbar } from 'notistack';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     signUpFormContent: {
@@ -133,7 +134,7 @@ const _SignUpDialog = ({
                         color="primary"
                         variant="contained"
                     >
-                        {pending && <CircularProgress size={15} color="primary" />}
+                        {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
                         Sign up for private beta testing
                     </Button>
                     <Button

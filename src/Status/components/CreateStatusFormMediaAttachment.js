@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, IconButton, CircularProgress } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -52,7 +53,7 @@ export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => 
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <CircularProgress size={40} style={{ color: 'white' }} />
+                    <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
                 </div>
             )}
         </div>

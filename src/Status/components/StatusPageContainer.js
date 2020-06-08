@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
 import { localized } from '../../localization/components';
@@ -44,7 +45,7 @@ const _StatusPageContainer = ({
     const classes = useStyles();
 
     if (pending) {
-        return <CircularProgress size={25} color="primary" className={classes.centered} />;
+        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>;
     }
 
     if (error) {

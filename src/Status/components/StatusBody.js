@@ -4,6 +4,7 @@ import { Link } from 'mobx-router';
 import { CardContent, makeStyles, Typography, useTheme } from '@material-ui/core';
 import ReplyIcon from '@material-ui/icons/Reply';
 import Markdown from 'react-markdown';
+import breaks from 'remark-breaks';
 import { StatusMediaAttachments } from './StatusMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
@@ -97,8 +98,7 @@ const _StatusBody = ({
                 variant="body1"
                 className={classes.statusText}
             >
-                {/* <Markdown source={text} /> */}
-                {text.split('\n').map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
+                <Markdown source={text} plugins={[breaks]} />
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}

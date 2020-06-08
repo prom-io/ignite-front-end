@@ -1,34 +1,43 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { localized } from '../../localization/components';
+import React from "react";
+import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+import { Routes } from "../../routes";
+import { localized } from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
-    buttonRoot: {
-        marginTop: '10px',
-        marginBottom: '24px',
-    },
+    editButtonWrapper: {
+        marginTop: "10px",
+        marginBottom: "24px",
+        textDecoration: "none"
+    }
 }));
 
-const _OpenUpdateUserProfileDialogButton = ({ setUpdateUserProfileDialogOpen, l }) => {
+const _OpenUpdateUserProfileDialogButton = ({ routerStore, l }) => {
     const classes = useStyles();
+
     return (
-        <Button
-            color="primary"
-            variant="outlined"
-            classes={{ root: classes.buttonRoot }}
-            onClick={() => setUpdateUserProfileDialogOpen(true)}
+        <Link
+            className={classes.editButtonWrapper}
+            store={routerStore}
+            view={Routes.userEdit}
         >
-            {l('user.update-profile')}
-        </Button>
+            <Button
+                color="primary"
+                variant="outlined"
+            >
+                {l("user.update-profile")}
+            </Button>
+        </Link>
     );
 };
 
-const mapMobxToProps = ({ userProfileUpdate }) => ({
-    setUpdateUserProfileDialogOpen: userProfileUpdate.setUpdateUserProfileDialogOpen,
+const mapMobxToProps = ({ store }) => ({
+    routerStore: store
 });
 
 export const OpenUpdateUserProfileDialogButton = localized(
-    inject(mapMobxToProps)(observer(_OpenUpdateUserProfileDialogButton)),
+    inject(mapMobxToProps)(observer(_OpenUpdateUserProfileDialogButton))
 );

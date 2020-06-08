@@ -43,13 +43,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const lineBreak = param => `${param.slice(0, 21)} ${param.slice(21)}`;
-
 const _UserAvatarFileInput = ({
-    user,
+    currentUser,
     avatarFileContainer,
     uploadFile,
-    displayName,
     l,
 }) => {
     const classes = useStyles();
@@ -68,10 +65,14 @@ const _UserAvatarFileInput = ({
             <div className={classes.avatarAttachmentPhoto}>
                 <Avatar
                     style={{
-                        width: 80,
-                        height: 80,
+                        width: 120,
+                        height: 120
                     }}
-                    src={avatarFileContainer ? avatarFileContainer.url : user.avatar}
+                    src={
+                        avatarFileContainer
+                            ? avatarFileContainer.url
+                            : currentUser.avatar
+                    }
                 />
                 <Button
                     disabled={avatarFileContainer && avatarFileContainer.pending}
@@ -92,21 +93,16 @@ const _UserAvatarFileInput = ({
                     />
                 </Button>
             </div>
-            <div className={classes.avatarAttachmentDescription}>
-                <p>Wallet</p>
-                <span>{lineBreak(displayName)}</span>
-            </div>
         </div>
     );
 };
 
-const mapMobxToProps = ({ userAvatarUpload, userProfileUpdate }) => ({
-    user: userProfileUpdate.user,
+const mapMobxToProps = ({ authorization, userAvatarUpload }) => ({
+    currentUser: authorization.currentUser,
     avatarFileContainer: userAvatarUpload.avatarFileContainer,
-    uploadFile: userAvatarUpload.uploadFile,
-    displayName: userProfileUpdate.user && userProfileUpdate.user.display_name,
+    uploadFile: userAvatarUpload.uploadFile
 });
 
-export const UserAvatarFileInput = localized(
-    inject(mapMobxToProps)(observer(_UserAvatarFileInput)),
+export const UserAvatarFileInput = inject(mapMobxToProps)(
+    observer(_UserAvatarFileInput)
 );

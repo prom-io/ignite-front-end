@@ -1,11 +1,13 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Link } from 'mobx-router';
-import { Avatar, Grid, Typography } from '@material-ui/core';
-import { localized } from '../localization/components';
-import { Routes } from '../routes';
+import React from "react";
+import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
+import Markdown from "react-markdown";
+import breaks from "remark-breaks";
+import { Avatar, Grid, Typography } from "@material-ui/core";
 
-const lineBreak = param => `${param.slice(0, 21)} ${param.slice(21)}`;
+import { localized } from "../localization/components";
+import { Routes } from "../routes";
+import { addLineBreak } from "../utils/string-utils";
 
 const _UserCard = ({
     currentUser,
@@ -43,13 +45,11 @@ const _UserCard = ({
                 </Link>
                 <div className="user-card-bottom user-card-content-box">
                     <div className="user-card-info">
-                        <h4>{lineBreak(username)}</h4>
-                        <p>{lineBreak(displayName)}</p>
+                        <h4>{addLineBreak(username)}</h4>
+                        <p>{addLineBreak(displayName)}</p>
                         {bio && (
                             <div className="user-card-info-bio">
-                                {bio
-                                    .split('\n')
-                                    .map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
+                                <Markdown source={bio} plugins={[breaks]} />
                             </div>
                         )}
                     </div>

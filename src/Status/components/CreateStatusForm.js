@@ -16,6 +16,7 @@ import { AttachImageInput } from './AttachImageInput';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -96,6 +97,7 @@ const _CreateStatusForm = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
@@ -168,7 +170,7 @@ const _CreateStatusForm = ({
                             onClick={createStatus}
                             disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         >
-                            {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                            {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
                             {l('status.send')}
                         </Button>
                     )}

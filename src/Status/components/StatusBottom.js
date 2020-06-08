@@ -14,6 +14,7 @@ import { RepostStatusMenu } from './RepostStatusMenu';
 import { ShareStatusMenu } from './ShareStatusMenu';
 import { CommentsButton } from './CommentsButton';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -57,6 +58,7 @@ const _StatusBottom = ({
     status,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <ClickEventPropagationStopper>
@@ -77,7 +79,7 @@ const _StatusBottom = ({
                     <ClickEventPropagationStopper className="status-list-bottom-box">
                         {statusLikePending ? (
                             <div className={classes.progress}>
-                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color="#FF5C01" />
+                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color={theme.palette.primary.main} />
                             </div>
                         ) : (
                             <Checkbox

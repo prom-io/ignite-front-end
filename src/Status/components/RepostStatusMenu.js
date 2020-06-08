@@ -14,6 +14,7 @@ import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -39,6 +40,7 @@ const _RepostStatusMenu = ({
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
+    const theme = useTheme();
 
     const handleToggle = () => {
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -55,7 +57,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-                <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
             ) : (
                 <IconButton
                     ref={anchorRef}

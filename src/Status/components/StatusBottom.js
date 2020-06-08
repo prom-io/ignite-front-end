@@ -56,9 +56,19 @@ const _StatusBottom = ({
     canBeReposted,
     currentUserIsAuthor,
     status,
+    currentUser,
+    setLoginDialogOpen
 }) => {
     const classes = useStyles();
     const theme = useTheme();
+    
+    const handleFavoriteClick = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return
+        }
+        onFavouriteClick(statusId, !favourited)
+    };
 
     return (
         <ClickEventPropagationStopper>
@@ -86,7 +96,7 @@ const _StatusBottom = ({
                                 icon={<FavoriteBorderIcon />}
                                 checkedIcon={<FavoriteIcon color="primary" />}
                                 checked={favourited}
-                                onChange={() => onFavouriteClick(statusId, !favourited)}
+                                onChange={handleFavoriteClick}
                                 classes={{ root: classes.styledCheckbox }}
                             />
                         )}

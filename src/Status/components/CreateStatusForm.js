@@ -21,9 +21,7 @@ const useStyles = makeStyles(theme => ({
         background: '#F1EBE8',
     },
     remainingCharactersCounter: {
-        background: '#FBF7F6',
-        justifyContent: 'space-between',
-        marginRight: 16,
+        padding: '7px 10px',
     },
     createStatusButtonWrapper: {
         paddingTop: 15,
@@ -61,13 +59,10 @@ const useStyles = makeStyles(theme => ({
             borderBottom: 'none',
         },
     },
-    textArea: {
-        width: '516px',
-        overflowY: 'auto',
-    },
-    avatarIconMini: {
-        width: 35,
-        height: 35,
+    containerRoot: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexWrap: 'nowrap',
     },
 }));
 
@@ -156,31 +151,27 @@ const _CreateStatusForm = ({
                         <img src="/pic-smile-disabled.png" />
                     </div>
                 </Grid>
-                <Grid container justify="flex-end">
-                    <Grid item className="create-status-form-counter-container">
-                        <div className={classes.remainingCharactersCounter}>
-                            <Typography
-                                variant="body1"
-                                color="textSecondary"
-                            >
-                                {charactersRemaining}
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item className="create-status-form-button-container">
-                        {!hideSendButton && (
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.createStatusButton}
-                                onClick={createStatus}
-                                disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
-                            >
-                                {pending && <CircularProgress size={15} />}
-                                {l('status.send')}
-                            </Button>
-                        )}
-                    </Grid>
+                <Grid container classes={{ root: classes.containerRoot }}>
+                    <div className={classes.remainingCharactersCounter}>
+                        <Typography
+                            variant="body1"
+                            color="textSecondary"
+                        >
+                            {charactersRemaining}
+                        </Typography>
+                    </div>
+                    {!hideSendButton && (
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.createStatusButton}
+                            onClick={createStatus}
+                            disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        >
+                            {pending && <CircularProgress size={15} />}
+                            {l('status.send')}
+                        </Button>
+                    )}
                 </Grid>
             </CardActions>
             <div className={classes.mediaAttachmentsContainer}>

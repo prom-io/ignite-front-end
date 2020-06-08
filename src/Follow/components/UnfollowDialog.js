@@ -1,5 +1,4 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import {
     Button,
     Dialog,
@@ -76,9 +75,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _FollowDialog = ({
-    selectedUser,
-    unfollowUser,
+const _UnfollowDialog = ({
+    username,
+    unfollowAction,
     unfollowDialogOpen,
     setUnfollowDialogOpen,
     l,
@@ -98,7 +97,7 @@ const _FollowDialog = ({
                     {l('user.profile.follow')}
                     {' '}
                     @
-                    {selectedUser.username}
+                    {username}
                     ?
                 </DialogTitle>
                 <DialogContent className={classes.unfollowDialogContent}>
@@ -120,7 +119,7 @@ const _FollowDialog = ({
                     <Button
                         variant="text"
                         className={classes.unfollowButton}
-                        onClick={unfollowUser}
+                        onClick={unfollowAction}
                     >
                         {l('user.profile.unfollow')}
                     </Button>
@@ -130,13 +129,4 @@ const _FollowDialog = ({
     );
 };
 
-const mapMobxToProps = ({ followAction }) => ({
-    selectedUser: followAction.selectedUser,
-    unfollowUser: followAction.unfollowUser,
-    setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
-    unfollowDialogOpen: followAction.unfollowDialogOpen,
-});
-
-export const FollowDialog = localized(
-    inject(mapMobxToProps)(observer(_FollowDialog)),
-);
+export const UnfollowDialog = localized(_UnfollowDialog);

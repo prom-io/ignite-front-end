@@ -6,6 +6,7 @@ import { Link } from 'mobx-router';
 import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
 import { FollowButton } from '.';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 
 const useStyles = makeStyles(theme => ({
     followPeopleItem: {
@@ -13,6 +14,11 @@ const useStyles = makeStyles(theme => ({
         padding: 16,
         border: '1px solid #F1EBE8',
         borderTop: 'none',
+        textDecoration: 'none',
+
+        '&:hover': {
+            background: '#FFFBF8',
+        },
     },
     followPeopleItemAvatar: {
         marginRight: 12,
@@ -34,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
 
-        '& a': {
+        '& p': {
             fontWeight: 600,
             fontSize: '15px',
             lineHeight: '18px',
@@ -55,44 +61,40 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.followPeopleItem} key={user.id}>
-            <Link
-                view={Routes.userProfile}
-                params={{ username: user.id }}
-                store={routerStore}
-            >
-                <Avatar
-                    className={classes.followPeopleItemAvatar}
-                    src={
-                        user.avatar
-                        || 'http://localhost:3000/avatars/original/missing.png'
-                    }
-                />
-            </Link>
+        <Link
+            className={classes.followPeopleItem}
+            key={user.id}
+            view={Routes.userProfile}
+            params={{ username: user.id }}
+            store={routerStore}
+        >
+            <Avatar
+                className={classes.followPeopleItemAvatar}
+                src={
+                    user.avatar
+                    || 'http://localhost:3000/avatars/original/missing.png'
+                }
+            />
             <div className={classes.followPeopleItemContent}>
                 <div className={classes.followPeopleItemRow}>
                     <Typography>
-                        <Link
-                            view={Routes.userProfile}
-                            params={{ username: user.id }}
-                            store={routerStore}
-                        >
-                            <div>{trimString(user.display_name, 24)}</div>
-                        </Link>
+                        <div>{trimString(user.display_name, 24)}</div>
                         <small>
                             @
                             {trimString(user.username, 24)}
                         </small>
                     </Typography>
-                    <FollowButton
-                        user={user}
-                        actionWithFollow={actionWithFollow}
-                        size="lg"
-                    />
+                    <ClickEventPropagationStopper>
+                        <FollowButton
+                            user={user}
+                            actionWithFollow={actionWithFollow}
+                            size="lg"
+                        />
+                    </ClickEventPropagationStopper>
                 </div>
                 <p>{user.bio}</p>
             </div>
-        </div>
+        </Link>
     );
 };
 

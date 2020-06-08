@@ -41,7 +41,7 @@ const _UserProfileTimeline = ({
     return pending && statuses.length === 0
         ? <CircularProgress size={20} className={classes.centered} />
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item className={classes.profileCreateStatusForm}>
                         <CreateStatusForm />

@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
+import { UnfollowDialog } from '../../Follow/components';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -31,11 +32,15 @@ const _HomeTimeline = ({
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
-    unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog,
     fetchStatuses,
     pending,
     currentUser,
     hasMore,
+    currentStatusUsername,
+    unfollowStatusAuthor,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen,
 }) => {
     const classes = useStyles();
 
@@ -53,12 +58,18 @@ const _HomeTimeline = ({
                         pending={pending}
                         onNextPageRequest={fetchStatuses}
                         onFollowRequest={followStatusAuthor}
-                        onUnfollowRequest={unfollowStatusAuthor}
+                        onUnfollowRequest={unfollowStatusAuthorWithDialog}
                         currentUser={currentUser}
                         displayMenu={Boolean(currentUser)}
                         statusLikePendingMap={statusLikePendingMap}
                         repostsPendingMap={repostsPendingMap}
                         hasMore={hasMore}
+                    />
+                    <UnfollowDialog
+                        username={currentStatusUsername}
+                        unfollowAction={unfollowStatusAuthor}
+                        unfollowDialogOpen={unfollowDialogOpen}
+                        setUnfollowDialogOpen={setUnfollowDialogOpen}
                     />
                 </Grid>
             </Grid>
@@ -71,12 +82,16 @@ const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     favouriteStatus: homeTimeline.favouriteStatus,
     unfavouriteStatus: homeTimeline.unfavouriteStatus,
     followStatusAuthor: homeTimeline.followStatusAuthor,
-    unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog: homeTimeline.unfollowStatusAuthorWithDialog,
     pending: homeTimeline.pending,
     fetchStatuses: homeTimeline.fetchStatuses,
     currentUser: authorization.currentUser,
     repostsPendingMap: createStatus.pendingRepostsMap,
     hasMore: homeTimeline.hasMore,
+    currentStatusUsername: homeTimeline.currentStatusUsername,
+    unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,
+    setUnfollowDialogOpen: homeTimeline.setUnfollowDialogOpen,
+    unfollowDialogOpen: homeTimeline.unfollowDialogOpen,
 });
 
 export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

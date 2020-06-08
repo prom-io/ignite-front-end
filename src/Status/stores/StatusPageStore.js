@@ -17,6 +17,15 @@ export class StatusPageStore {
     @observable
     statusAuthorSubscriptionPending = false;
 
+    @observable
+    currentStatusId = undefined;
+
+    @observable
+    currentStatusUsername = undefined;
+
+    @observable
+    unfollowDialogOpen = false;
+
     authorizationStore = undefined;
     createStatusStore = undefined;
 
@@ -92,6 +101,7 @@ export class StatusPageStore {
                     if (this.status.id === statusId) {
                         this.status.account.following = true;
                     }
+                    this.authorizationStore.currentUser.follows_count += 1;
                 })
                 .finally(() => this.statusAuthorSubscriptionPending = false)
         }
@@ -104,13 +114,22 @@ export class StatusPageStore {
             const statusId = this.status.id;
             axiosInstance.post(`/api/v1/accounts/${this.status.account.id}/unfollow`)
                 .then(() => {
+                    this.unfollowDialogOpen = false;
                     if (this.status.id === statusId) {
                         this.status.account.following = false;
                     }
+                    this.authorizationStore.currentUser.follows_count -= 1;
                 })
                 .finally(() => this.statusAuthorSubscriptionPending = false)
         }
     };
+
+    @action
+    unfollowStatusAuthorWithDialog = (statusId, username) => {
+        this.currentStatusId = statusId;
+        this.currentStatusUsername = username;
+        this.unfollowDialogOpen = true;
+    }
 
     @action
     increaseCommentsCount = statusId => {
@@ -120,6 +139,16 @@ export class StatusPageStore {
                 comments_count: this.status.comments_count + 1
             }
         }
+    };
+
+    @action
+    setCurrentStatusId = currentStatusId => {
+        this.currentStatusId = currentStatusId;
+    };
+
+    @action
+    setUnfollowDialogOpen = unfollowDialogOpen => {
+        this.unfollowDialogOpen = unfollowDialogOpen;
     };
 
     @action

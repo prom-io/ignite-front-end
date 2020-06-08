@@ -1,17 +1,29 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { localized } from '../../localization/components';
 
-const _OpenUpdateUserProfileDialogButton = ({ setUpdateUserProfileDialogOpen, l }) => (
-    <Button
-        color="primary"
-        variant="outlined"
-        onClick={() => setUpdateUserProfileDialogOpen(true)}
-    >
-        {l('user.update-profile')}
-    </Button>
-);
+const useStyles = makeStyles(() => ({
+    buttonRoot: {
+        marginTop: '10px',
+        marginBottom: '24px',
+    },
+}));
+
+const _OpenUpdateUserProfileDialogButton = ({ setUpdateUserProfileDialogOpen, l }) => {
+    const classes = useStyles();
+    return (
+        <Button
+            color="primary"
+            variant="outlined"
+            classes={{ root: classes.buttonRoot }}
+            onClick={() => setUpdateUserProfileDialogOpen(true)}
+        >
+            {l('user.update-profile')}
+        </Button>
+    );
+};
 
 const mapMobxToProps = ({ userProfileUpdate }) => ({
     setUpdateUserProfileDialogOpen: userProfileUpdate.setUpdateUserProfileDialogOpen,

@@ -24,10 +24,18 @@ const useStyles = makeStyles(() => ({
         textDecoration: 'none',
         color: 'inherit',
     },
-    avatarRoot: {
-        height: 34,
-        width: 34,
-        border: '1px solid #F1EBE8',
+    avatarIconButton: {
+        padding: 0,
+        width: '34px',
+        height: '34px',
+        '&>span': {
+            width: '34px',
+            height: '34px',
+        },
+    },
+    avatarIcon: {
+        width: '34px',
+        height: '34px',
     },
 }));
 
@@ -77,14 +85,9 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
                     onClick={handleToggle}
-                    className="user-app-bar-menu-button"
+                    classes={{ root: classes.avatarIconButton }}
                 >
-                    <Avatar
-                        src={currentUser.avatar}
-                        classes={{
-                            root: classes.avatarRoot,
-                        }}
-                    />
+                    <Avatar classes={{ root: classes.avatarIcon }} src={currentUser.avatar} style={{ border: '1px solid #F1EBE8' }} />
                 </IconButton>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (

@@ -5,6 +5,7 @@ import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
 import { localized } from '../../localization/components';
 import { BackButton } from '../../components/BackButton';
+import { UnfollowDialog } from '../../Follow/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -29,12 +30,15 @@ const _StatusPageContainer = ({
     pending,
     error,
     statusLikePending,
-    statusAuthorSubscriptionPending,
     currentUser,
     followStatusAuthor,
-    unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog,
     favouriteStatus,
     unfavouriteStatus,
+    currentStatusUsername,
+    unfollowStatusAuthor,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen,
     l,
 }) => {
     const classes = useStyles();
@@ -72,11 +76,17 @@ const _StatusPageContainer = ({
                 <StatusListItem
                     status={status}
                     statusLikePending={statusLikePending}
-                    onUnfollowRequest={unfollowStatusAuthor}
+                    onUnfollowRequest={unfollowStatusAuthorWithDialog}
                     onFollowRequest={followStatusAuthor}
                     onFavouriteStatusChange={handleFavouriteStatusChange}
                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     displayMenu={Boolean(currentUser)}
+                />
+                <UnfollowDialog
+                    username={currentStatusUsername}
+                    unfollowAction={unfollowStatusAuthor}
+                    unfollowDialogOpen={unfollowDialogOpen}
+                    setUnfollowDialogOpen={setUnfollowDialogOpen}
                 />
             </Grid>
             <Grid item>
@@ -94,9 +104,13 @@ const mapMobxToProps = ({ statusPage, authorization }) => ({
     statusAuthorSubscriptionPending: statusPage.statusAuthorSubscriptionPending,
     currentUser: authorization.currentUser,
     followStatusAuthor: statusPage.followStatusAuthor,
-    unfollowStatusAuthor: statusPage.unfollowStatusAuthor,
+    unfollowStatusAuthorWithDialog: statusPage.unfollowStatusAuthorWithDialog,
     favouriteStatus: statusPage.favouriteStatus,
     unfavouriteStatus: statusPage.unfavouriteStatus,
+    currentStatusUsername: statusPage.currentStatusUsername,
+    unfollowStatusAuthor: statusPage.unfollowStatusAuthor,
+    setUnfollowDialogOpen: statusPage.setUnfollowDialogOpen,
+    unfollowDialogOpen: statusPage.unfollowDialogOpen,
 });
 
 export const StatusPageContainer = localized(

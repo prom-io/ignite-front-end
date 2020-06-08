@@ -3,15 +3,14 @@ import { Grid } from '@material-ui/core';
 
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
-import UserCard from '../components/UserCard';
+import { UserCard } from '../components/UserCard';
 import { FollowPeopleContainer } from '../Follow/components';
 import '../styles/App.sass';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const FollowPeoplePage = () => (
     <Grid container>
-        <Grid item xs={12}>
-            <AppBar />
-        </Grid>
+        <AppBar />
         <Grid item xs={12}>
             <Layout>
                 <Grid container spacing={2} className="content-container">

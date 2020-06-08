@@ -1,10 +1,23 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
 
+const useStyles = makeStyles(theme => ({
+    buttonMargin: {
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '30px',
+            lineHeight: 'normal',
+        },
+    },
+}));
+
 export const OpenLoginDialogButton = observer(() => {
-    const { setGenericAuthorizationDialogOpen, setGenericAuthorizationDialogType } = useStore().genericAuthorizationDialog;
+    const classes = useStyles();
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = useStore().genericAuthorizationDialog;
     const { l } = useLocalization();
 
     const handleClick = () => {
@@ -14,7 +27,7 @@ export const OpenLoginDialogButton = observer(() => {
 
     return (
         <Button
-            className="open_login_dialog_button"
+            className={classes.bottomMargin}
             onClick={handleClick}
             variant="contained"
             disableElevation

@@ -1,5 +1,12 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { ClickAwayListener, IconButton, Popper, Typography, CircularProgress, makeStyles } from '@material-ui/core';
+import {
+    ClickAwayListener,
+    IconButton,
+    Popper,
+    Typography,
+    CircularProgress,
+    makeStyles,
+} from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
 import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
@@ -8,16 +15,29 @@ import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
 
 const useStyles = makeStyles({
-    correctBorderRadius: {
-        borderRadius: 0,
+    styledIconButton: {
+        margin: 0,
+        padding: 0,
+        borderRadius: 100,
+        width: 34,
+        height: 34,
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
 });
 
-const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }) => {
-    const classes = useStyles();
-
+const _RepostStatusMenu = ({
+    status,
+    repostPending,
+    canBeReposted,
+    currentUserIsAuthor,
+    currentUser,
+}) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    const classes = useStyles();
 
     const handleToggle = () => {
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -33,24 +53,36 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }
 
     return (
         <div className="status-list-bottom-box">
-            {repostPending
-                ? <CircularProgress size={20} color="primary" />
-                : (
-                    <IconButton
-                        ref={anchorRef}
-                        onClick={handleToggle}
-                        className={classes.correctBorderRadius}
-                    >
-                        <RepostIcon />
-                    </IconButton>
-                )}
+            {repostPending ? (
+                <CircularProgress size={20} color="primary" />
+            ) : (
+                <IconButton
+                    ref={anchorRef}
+                    onClick={handleToggle}
+                    classes={{ root: classes.styledIconButton }}
+                >
+                    <RepostIcon
+                        reposted={
+                            currentUser && !canBeReposted && !currentUserIsAuthor
+                        }
+                    />
+                </IconButton>
+            )}
             <Typography variant="body1" color="textSecondary">
                 {status.reposts_count}
             </Typography>
-            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
+            <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+            >
                 <ClickEventPropagationStopper>
                     <ClickAwayListener onClickAway={handleClose}>
-                        <div className="status-list-bottom-box-modal" onClick={handleClose}>
+                        <div
+                            className="status-list-bottom-box-modal"
+                            onClick={handleClose}
+                        >
                             {canBeReposted && (
                                 <>
                                     <ClickEventPropagationStopper>
@@ -67,7 +99,9 @@ const _RepostStatusMenu = ({ status, repostPending, canBeReposted, currentUser }
                                     </ClickEventPropagationStopper>
                                 </>
                             )}
-                            {!canBeReposted && <UndoRepostMenuItem onClick={handleClose} />}
+                            {!canBeReposted && (
+                                <UndoRepostMenuItem onClick={handleClose} />
+                            )}
                         </div>
                     </ClickAwayListener>
                 </ClickEventPropagationStopper>

@@ -114,6 +114,16 @@ export const Routes = {
         beforeEnter: (route, params) => {
             store.userCard.setDisplayMode('userByAddress');
             store.userProfile.fetchUserByUsername(params.username);
+            if (params.tab === 'followers') {
+                store.userProfile.setActiveTab('followers');
+                store.userFollowers.fetchUserFollowers(params.username);
+            } else if (params.tab === 'following') {
+                store.userProfile.setActiveTab('following');
+                store.userFollowing.fetchFollowing(params.username);
+            } else {
+                store.userProfile.setActiveTab('posts');
+                store.userProfileTimeline.fetchStatuses(params.username);
+            }
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',
                 subscribeToStatusAuthor: () => {

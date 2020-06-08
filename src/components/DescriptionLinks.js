@@ -6,7 +6,7 @@ import { LogoutMenuItem } from '../Authorization/components';
 import { localized } from '../localization/components';
 
 const _DescriptionLinks = ({ routerStore, l }) => {
-    const Prometeus = '{Prometeus}';
+    const Prometeus = ' {Prometeus}';
 
     const links = {
         termsOfService: l('description-links.terms-of-service'),

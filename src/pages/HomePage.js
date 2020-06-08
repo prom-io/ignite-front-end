@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, Hidden } from '@material-ui/core';
 
+import { makeStyles } from '@material-ui/core/styles';
 import { AppBar } from '../AppBar/components';
 import { LoginForm } from '../Authorization/components';
 import { Layout } from '../Layout';
@@ -14,15 +15,13 @@ import {
     PrometeusDescription,
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
-import { WhoToFollow, FollowDialog } from '../Follow/components';
+import { WhoToFollow } from '../Follow/components';
 import '../styles/App.sass';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
-        <Grid item>
-            <AppBar currentActiveRoute="home" />
-        </Grid>
-        <Grid item style={{ width: '100%' }}>
+        <AppBar currentActiveRoute="home" />
+        <Grid item xs={12}>
             <Layout>
                 <Grid container className="content-container">
                     <Grid item md={3} className="left-banners-container">
@@ -57,7 +56,6 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
             </Layout>
         </Grid>
         <StatusBtfsInfoDialog />
-        <FollowDialog />
     </Grid>
 );
 

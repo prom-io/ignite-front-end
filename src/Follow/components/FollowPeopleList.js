@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { FollowPeopleItem } from '.';
+import { FollowPeopleItem, UnfollowDialog } from '.';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -18,6 +18,10 @@ const _FollowPeopleList = ({
     fetchFollowPeople,
     followPeopleItems,
     actionWithFollow,
+    selectedUser,
+    unfollowUser,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen,
 }) => {
     const classes = useStyles();
 
@@ -43,6 +47,12 @@ const _FollowPeopleList = ({
                     />
                 ))}
             </InfiniteScroll>
+            <UnfollowDialog
+                username={selectedUser.username}
+                unfollowAction={unfollowUser}
+                unfollowDialogOpen={unfollowDialogOpen}
+                setUnfollowDialogOpen={setUnfollowDialogOpen}
+            />
         </div>
     );
 };
@@ -51,6 +61,10 @@ const mapMobxToProps = ({ followPeople, followAction }) => ({
     fetchFollowPeople: followPeople.fetchFollowPeople,
     followPeopleItems: followPeople.followPeopleItems,
     actionWithFollow: followAction.actionWithFollow,
+    selectedUser: followAction.selectedUser,
+    unfollowUser: followAction.unfollowUser,
+    setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen,
 });
 
 export const FollowPeopleList = inject(mapMobxToProps)(observer(_FollowPeopleList));

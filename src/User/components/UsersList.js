@@ -2,17 +2,34 @@ import React, { Fragment } from 'react';
 import { inject } from 'mobx-react';
 import { Avatar, CardHeader, List, ListItem, ListItemAvatar, Typography, Hidden } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import { makeStyles } from '@material-ui/core/styles';
 import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
 
+
+const useStyles = makeStyles((theme) => ({
+    cardHeader: {
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                width: '80%',
+                overflowX: 'hidden',
+                '&:after': {
+                    content: "'...'",
+                },
+            },
+        },
+    },
+}));
+
 const _UsersList = ({ users, routerStore }) => (
-    <List>
+    <List style={{ padding: 0 }}>
         {users.map(user => (
-            <ListItem role="div">
+            <ListItem role="div" style={{ borderBottom: '1px solid #F1EBE8' }}>
                 <ListItemAvatar>
                     <Avatar src={user.avatar || 'http://localhost:3000/avatars/original/missing.png'} />
                 </ListItemAvatar>
                 <CardHeader
+                    classes={{ root: useStyles().cardHeader }}
                     title={(
                         <Link
                             view={Routes.userProfile}

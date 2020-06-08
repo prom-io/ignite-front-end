@@ -19,6 +19,7 @@ const _UserProfileHeader = ({
     onTabSelected,
     username,
     displayName,
+    bio,
     createdAt,
     currentUser,
     l,
@@ -65,10 +66,11 @@ const _UserProfileHeader = ({
                     <Grid item className="justify-content-center">
                         <UserProfileAvatar avatarUrl={avatar} />
                     </Grid>
-                    <Grid item>
-                        <div className="user-card-username">
+                    <Grid item xs={12}>
+                        <div className="user-card-info">
                             <h4>{addLineBreak(username)}</h4>
-                            <p>{addLineBreak(displayName) }</p>
+                            <p>{addLineBreak(displayName)}</p>
+                            {bio && <h5>{bio}</h5>}
                         </div>
                     </Grid>
                 </Grid>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
-import { FollowPeopleInput, FollowPeopleList, FollowDialog } from '.';
+import { FollowPeopleInput, FollowPeopleList } from '.';
 import { BackButton } from '../../components/BackButton';
 
 export const FollowPeopleContainer = () => (
@@ -10,7 +10,6 @@ export const FollowPeopleContainer = () => (
             <BackButton title="follow-people" toHome />
             <FollowPeopleInput />
             <FollowPeopleList />
-            <FollowDialog />
         </Grid>
     </Grid>
 );

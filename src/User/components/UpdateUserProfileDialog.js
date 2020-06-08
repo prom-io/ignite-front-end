@@ -11,8 +11,38 @@ import {
     TextField,
     withMobileDialog,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
+
+const useStyles = makeStyles(theme => ({
+    dialogTitleRoot: {
+        '& h2': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '15px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '40px',
+            padding: ' 13px 24px',
+        },
+    },
+    dialogContentRoot: {
+        borderTop: '1px solid #F1EBE8',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0',
+        },
+    },
+    dialogContent: {
+        [theme.breakpoints.down('sm')]: {
+            padding: '8px 24px',
+        },
+    },
+    textFieldRoot: {
+        maxHeight: '72px',
+        marginTop: '16px',
+    },
+}));
+
 
 const _UpdateUserProfileDialog = ({
     updateUserProfileForm,
@@ -27,78 +57,86 @@ const _UpdateUserProfileDialog = ({
     setUpdateUserProfileDialogOpen,
     fullScreen,
     l,
-}) => (
-    <Dialog
-        open={updateUserProfileDialogOpen}
-        onClose={() => setUpdateUserProfileDialogOpen(false)}
-        fullScreen={fullScreen}
-        fullWidth
-        maxWidth="md"
-    >
-        <DialogTitle>
-            {l('user.update-profile')}
-        </DialogTitle>
-        <DialogContent>
-            <UserAvatarFileInput />
-            <TextField
-                label={l('user.username')}
-                value={updateUserProfileForm.username}
-                onChange={event => setFormValue('username', event.target.value)}
-                error={Boolean(formErrors.username)}
-                helperText={formErrors.username && l(formErrors.username)}
-                fullWidth
-                margin="dense"
-                InputProps={{
-                    endAdornment: (
-                        checkingUsernameAvailability && (
-                            <InputAdornment position="end">
-                                <CircularProgress size={15} color="primary" />
-                            </InputAdornment>
-                        )
-                    ),
-                }}
-            />
-            <TextField
-                label={l('user.display-name')}
-                value={updateUserProfileForm.displayName}
-                onChange={event => setFormValue('displayName', event.target.value)}
-                error={Boolean(formErrors.displayName)}
-                helperText={formErrors.displayName && l(formErrors.displayName)}
-                fullWidth
-                margin="dense"
-            />
-            <TextField
-                label={l('user.bio')}
-                value={updateUserProfileForm.bio || ''}
-                onChange={event => setFormValue('bio', event.target.value)}
-                error={Boolean(formErrors.bio)}
-                helperText={formErrors.bio && l(formErrors.bio)}
-                fullWidth
-                margin="dense"
-                multiline
-                rows={4}
-            />
-        </DialogContent>
-        <DialogActions>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => setUpdateUserProfileDialogOpen(false)}
-            >
-                {l('user.update-profile.close')}
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={updateUser}
-                disabled={pending || checkingUsernameAvailability || avatarUploadPending}
-            >
-                {pending && <CircularProgress size={15} color="primary" />}
-                {l('user.update-profile.save-changes')}
-            </Button>
-        </DialogActions>
-    </Dialog>
-);
+}) => {
+    const classes = useStyles();
+
+    return (
+        <Dialog
+            open={updateUserProfileDialogOpen}
+            onClose={() => setUpdateUserProfileDialogOpen(false)}
+            fullScreen={fullScreen}
+            fullWidth
+            maxWidth="md"
+        >
+            <DialogTitle classes={{ root: classes.dialogTitleRoot }}>
+                {l('user.update-profile')}
+            </DialogTitle>
+            <DialogContent classes={{ root: classes.dialogContentRoot }}>
+                <UserAvatarFileInput />
+                <div className={classes.dialogContent}>
+                    <TextField
+                        label={l('user.username')}
+                        value={updateUserProfileForm.username}
+                        onChange={event => setFormValue('username', event.target.value)}
+                        error={Boolean(formErrors.username)}
+                        helperText={formErrors.username && l(formErrors.username)}
+                        classes={{ root: classes.textFieldRoot }}
+                        fullWidth
+                        margin="dense"
+                        InputProps={{
+                            endAdornment: (
+                                checkingUsernameAvailability && (
+                                    <InputAdornment position="end">
+                                        <CircularProgress size={15} color="primary" />
+                                    </InputAdornment>
+                                )
+                            ),
+                        }}
+                    />
+                    <TextField
+                        label={l('user.display-name')}
+                        value={updateUserProfileForm.displayName}
+                        onChange={event => setFormValue('displayName', event.target.value)}
+                        error={Boolean(formErrors.displayName)}
+                        helperText={formErrors.displayName && l(formErrors.displayName)}
+                        classes={{ root: classes.textFieldRoot }}
+                        fullWidth
+                        margin="dense"
+                    />
+                    <TextField
+                        label={l('user.bio')}
+                        value={updateUserProfileForm.bio || ''}
+                        onChange={event => setFormValue('bio', event.target.value)}
+                        error={Boolean(formErrors.bio)}
+                        helperText={formErrors.bio && l(formErrors.bio)}
+                        classes={{ root: classes.textFieldRoot }}
+                        fullWidth
+                        margin="dense"
+                        multiline
+                    />
+                </div>
+            </DialogContent>
+            <DialogActions>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() => setUpdateUserProfileDialogOpen(false)}
+                >
+                    {l('user.update-profile.close')}
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={updateUser}
+                    disabled={pending || checkingUsernameAvailability || avatarUploadPending}
+                >
+                    {pending && <CircularProgress size={15} color="primary" />}
+                    {l('user.update-profile.save-changes')}
+                </Button>
+            </DialogActions>
+        </Dialog>
+    );
+};
 
 const mapMobxToProps = ({ userProfileUpdate }) => ({
     updateUserProfileForm: userProfileUpdate.updateUserProfileForm,

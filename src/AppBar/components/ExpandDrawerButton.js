@@ -1,12 +1,30 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { IconButton, Avatar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-const _ExpandDrawerButton = ({ setDrawerExpanded, currentUser }) => (
-    <IconButton onClick={() => setDrawerExpanded(true)} className="expand_drawer_button">
-        <Avatar src={currentUser.avatar} />
-    </IconButton>
-);
+const useStyles = makeStyles(theme => ({
+    iconButtonRoot: {
+        [theme.breakpoints.down('sm')]: {
+            padding: '9px 18px',
+        },
+    },
+    avatarRoot: {
+        [theme.breakpoints.down('sm')]: {
+            width: '34px',
+            height: '34px',
+        },
+    },
+}));
+
+const _ExpandDrawerButton = ({ setDrawerExpanded, currentUser }) => {
+    const classes = useStyles();
+    return (
+        <IconButton onClick={() => setDrawerExpanded(true)} classes={{ root: classes.iconButtonRoot }} className="expand_drawer_button">
+            <Avatar src={currentUser.avatar} classes={{ root: classes.avatarRoot }} />
+        </IconButton>
+    );
+};
 
 const mapMobxToProps = ({ drawer, authorization }) => ({
     setDrawerExpanded: drawer.setDrawerExpanded,

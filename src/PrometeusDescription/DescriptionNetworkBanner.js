@@ -8,6 +8,12 @@ import { BtfsIcon } from '../icons/BtfsIcon';
 import { StaticPageLinks } from '../components/StaticPageLinks';
 
 const useStyles = makeStyles(theme => ({
+    marginRootContainer: {
+        marginTop: '24px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
+    },
     prometeusLink: {
         color: '#FF5C01',
     },
@@ -30,30 +36,28 @@ const useStyles = makeStyles(theme => ({
             lineHeight: '18px !important',
         },
         '& span': {
-            color: '#1C1C1C !important',
-            fontWeight: '300 !important',
+            color: '#1C1C1C',
+            fontWeight: '300',
             '&:hover': {
-                color: '#FF5C01 !important',
+                color: '#FF5C01',
             },
         },
     },
     styledText: {
-        fontFamily: 'Museo Sans Cyrl Regular !important',
-        fontStyle: 'normal !important',
-        fontWeight: '300 !important',
-        fontSize: '15px !important',
-        lineHeight: '23px !important',
-        color: '#A2A2A2 !important',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+        lineHeight: '23px',
+        color: '#1C1C1C',
     },
     descriprionLinks: {
         marginTop: 4,
         '& p': {
-            fontFamily: 'Museo Sans Cyrl Regular !important',
-            fontStyle: 'normal !important',
-            fontWeight: '300 !important',
-            fontSize: '15px !important',
-            lineHeight: '23px !important',
-            color: '#A2A2A2 !important',
+            fontFamily: 'Museo Sans Cyrl Regular',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            fontSize: '15px',
+            lineHeight: '23px',
+            color: '#A2A2A2',
             margin: '0 0 6px 0',
         },
     },
@@ -61,10 +65,10 @@ const useStyles = makeStyles(theme => ({
 
 const tryOurNetworkTranslations = {
     en: ({ classes }) => (
-        <Typography className={classes.styledText}>
-            Try
+        <Typography classes={{ root: classes.styledText }}>
+            Try our
             {' '}
-            <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Stoa</a>
+            <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>
             , which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
         </Typography>
     ),
@@ -78,7 +82,7 @@ const tryOurNetworkTranslations = {
     ),
 };
 
-const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
+const _DescriptionNetworkBanner = ({ routerStore, l, locale, theme }) => {
     const classes = useStyles();
 
     const Prometeus = '{Prometeus}';
@@ -90,14 +94,13 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale, theme }) => {
     };
 
     return (
-        <Grid container spacing={2} className={classes.bannerContainer}>
+        <Grid container classes={{ root: classes.marginRootContainer }}>
             <div className={classes.descriptionStoa}>{tryOurNetworkTranslations[locale]({ classes })}</div>
             <div className={classes.exploreLink}>
                 <Hidden smDown>
                     <AppBarLink
                         text={l('appbar.explore-btfs')}
                         targetView={Routes.btfs}
-                        // active={currentActiveRoute === "btfs"}
                         icon={<BtfsIcon color="#FF5C01" />}
                         routerStore={routerStore}
                         viewParameters={{}}
@@ -137,6 +140,6 @@ const mapMobxToProps = ({ store }) => ({
     routerStore: store,
 });
 
-export const DescriptionStoaBanner = localized(
-    inject(mapMobxToProps)(observer(_DescriptionStoaBanner)),
+export const DescriptionNetworkBanner = localized(
+    inject(mapMobxToProps)(observer(_DescriptionNetworkBanner)),
 );

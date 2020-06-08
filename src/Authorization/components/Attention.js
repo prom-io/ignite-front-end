@@ -102,6 +102,7 @@ const makeOneHundredPercentSureTranslations = {
     en: () => (
         <>
             Make
+            {' '}
             <span>100%</span>
             {' '}
             sure that you really saved all this info in a safe place
@@ -121,6 +122,7 @@ const privateKeyLossTranslations = {
     en: () => (
         <>
             If you lose your Private Key, you will
+            {' '}
             <span>never</span>
             {' '}
             recover the password

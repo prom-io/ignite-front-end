@@ -65,9 +65,11 @@ const termsOfServiceAgreementTranslations = {
     en: () => (
         <span>
             I am over 16 years old and have read and understood the
+            {' '}
             <a href="/terms-and-policy" target="_blank" rel="noreferrer noopener">Terms of Use</a>
             {' '}
             and
+            {' '}
             <a href="/terms-and-policy">Privacy Policy</a>
             .
         </span>

@@ -88,13 +88,19 @@ export class SignUpStore {
 
     @action
     validateForm = () => {
-        this.formErrors.password = validatePassword(this.signUpForm.password);
+        this.formErrors = {
+            ...this.formErrors,
+            password: validatePassword(this.signUpForm.password)
+        };
 
         if (!this.formErrors.password) {
-            this.formErrors.passwordConfirmation = validatePasswordConfirmation(
-                this.formErrors.passwordConfirmation,
-                this.formErrors.password
-            )
+            this.formErrors = {
+                ...this.formErrors,
+                passwordConfirmation: validatePasswordConfirmation(
+                    this.signUpForm.passwordConfirmation,
+                    this.signUpForm.password
+                )
+            };
         }
 
         const {password, passwordConfirmation} = this.formErrors;

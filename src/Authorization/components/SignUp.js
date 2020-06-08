@@ -57,6 +57,7 @@ const igniteDescriptionTranslations = {
             {' '}
             is a decentralized social network, based on blockchain technology.
             You have to use a special ID named
+            {' '}
             <a>blockchain wallet address</a>
             {' '}
             to sign up.

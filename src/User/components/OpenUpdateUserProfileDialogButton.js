@@ -11,7 +11,19 @@ const useStyles = makeStyles(() => ({
     editButtonWrapper: {
         marginTop: "10px",
         marginBottom: "24px",
-        textDecoration: "none"
+        textDecoration: "none",
+        maxWidth: "204px",
+        height: "40px",
+        width: "100%",
+        
+        "& button": {
+            width: "100%",
+            height: "40px",
+            borderRadius: "30px",
+            fontWeight: 600,
+            fontSize: "15px",
+            lineHeight: "18px"
+        }
     }
 }));
 
@@ -26,7 +38,7 @@ const _OpenUpdateUserProfileDialogButton = ({ routerStore, l }) => {
         >
             <Button
                 color="primary"
-                variant="outlined"
+                variant="contained"
             >
                 {l("user.update-profile")}
             </Button>

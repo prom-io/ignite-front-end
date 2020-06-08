@@ -1,12 +1,12 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
+import { CircularProgress, Typography, makeStyles, Grid, useTheme } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
 import { localized } from '../../localization/components';
 import { BackButton } from '../../components/BackButton';
 import { UnfollowDialog } from '../../Follow/components';
-import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -43,9 +43,10 @@ const _StatusPageContainer = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     if (pending) {
-        return <div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>;
+        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>;
     }
 
     if (error) {
@@ -83,8 +84,8 @@ const _StatusPageContainer = ({
                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     displayMenu={Boolean(currentUser)}
                 />
-                <UnfollowDialog 
-                    username={currentStatusUsername} 
+                <UnfollowDialog
+                    username={currentStatusUsername}
                     unfollowAction={unfollowStatusAuthor}
                     unfollowDialogOpen={unfollowDialogOpen}
                     setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -111,7 +112,7 @@ const mapMobxToProps = ({ statusPage, authorization }) => ({
     currentStatusUsername: statusPage.currentStatusUsername,
     unfollowStatusAuthor: statusPage.unfollowStatusAuthor,
     setUnfollowDialogOpen: statusPage.setUnfollowDialogOpen,
-    unfollowDialogOpen: statusPage.unfollowDialogOpen
+    unfollowDialogOpen: statusPage.unfollowDialogOpen,
 });
 
 export const StatusPageContainer = localized(

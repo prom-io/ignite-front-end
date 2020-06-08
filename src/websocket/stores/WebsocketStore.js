@@ -27,8 +27,9 @@ export class WebsocketStore {
             this.socketIoClient.disconnect();
         }
 
-        if (localStorage.getItem("accessToken")) {
-            this.socketIoClient = SocketIo.connect(`${process.env.REACT_APP_API_BASE_URL}?access_token=${localStorage.getItem("accessToken")}`, {
+        const token = localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken")
+        if (token) {
+            this.socketIoClient = SocketIo.connect(`${process.env.REACT_APP_API_BASE_URL}?access_token=${token}`, {
                 path: "/api/v1/websocket",
                 transports: ["websocket"]
             });

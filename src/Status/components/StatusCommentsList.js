@@ -1,10 +1,11 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
-import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -33,6 +34,7 @@ const _StatusCommentsList = ({
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Grid container spacing={2}>
@@ -42,7 +44,7 @@ const _StatusCommentsList = ({
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-                {pending && statuses.length === 0 && <div className={classes.centered}><FadeLoader color={'#FF5C01'} /></div>}
+                {pending && statuses.length === 0 && <div className={classes.centered}><FadeLoader color={theme.palette.primary.main} /></div>}
             </Grid>
             <Grid item xs={12}>
                 {statuses.length === 0 && !pending && <Typography color="textSecondary">{l('status.no-comments')}</Typography>}
@@ -60,8 +62,8 @@ const _StatusCommentsList = ({
                     hideThreadLinks
                     hasMore={hasMore}
                 />
-                <UnfollowDialog 
-                    username={currentStatusUsername} 
+                <UnfollowDialog
+                    username={currentStatusUsername}
                     unfollowAction={unfollowStatusAuthor}
                     unfollowDialogOpen={unfollowDialogOpen}
                     setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -86,7 +88,7 @@ const mapMobxToProps = ({ statusComments, authorization, createStatus }) => ({
     currentStatusUsername: statusComments.currentStatusUsername,
     unfollowStatusAuthor: statusComments.unfollowStatusAuthor,
     setUnfollowDialogOpen: statusComments.setUnfollowDialogOpen,
-    unfollowDialogOpen: statusComments.unfollowDialogOpen
+    unfollowDialogOpen: statusComments.unfollowDialogOpen,
 });
 
 export const StatusCommentsList = localized(

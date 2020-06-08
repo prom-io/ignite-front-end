@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
-import { SideBarList, UnfollowDialog } from '.';
 import { FadeLoader } from 'react-spinners';
+import { SideBarList, UnfollowDialog } from '.';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -26,6 +27,7 @@ const _WhoToFollowList = ({
     unfollowDialogOpen,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
     const viewCount = isMobile ? 3 : 5;
 
     useEffect(() => {
@@ -33,14 +35,14 @@ const _WhoToFollowList = ({
     }, []);
 
     return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
-      <div className={classes.centered}><FadeLoader color={'#FF5C01'} css={'transform: scale(0.5)'}/></div>
+        <div className={classes.centered}><FadeLoader color={theme.palette.primary.main} css="transform: scale(0.5); top: 10px; left: 10px" /></div>
     ) : (
         <>
             <SideBarList
                 users={whoToFollowItems.slice(0, viewCount)}
                 actionWithFollow={actionWithFollow}
             />
-            <UnfollowDialog 
+            <UnfollowDialog
                 username={selectedUser.username}
                 unfollowAction={unfollowUser}
                 unfollowDialogOpen={unfollowDialogOpen}

@@ -1,19 +1,20 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from 'react';
 import {
     ClickAwayListener,
     IconButton,
     Popper,
     Typography,
     CircularProgress,
-    makeStyles
-} from "@material-ui/core";
-import { inject, observer } from "mobx-react";
-import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
-import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { RepostIcon } from "../../icons/RepostIcon";
-import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+    makeStyles,
+} from '@material-ui/core';
+import { inject, observer } from 'mobx-react';
 import { FadeLoader } from 'react-spinners';
+import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
+import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { RepostIcon } from '../../icons/RepostIcon';
+import { UndoRepostMenuItem } from './UndoRepostMenuItem';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -22,11 +23,11 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
-    }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
 });
 
 const _RepostStatusMenu = ({
@@ -34,13 +35,19 @@ const _RepostStatusMenu = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    currentUser
+    currentUser,
+    setLoginDialogOpen
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
+    const theme = useTheme();
 
     const handleToggle = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return
+        }
         setOpen(prevOpen => currentUser && !prevOpen);
     };
 
@@ -55,7 +62,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-              <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>
+                <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
             ) : (
                 <IconButton
                     ref={anchorRef}
@@ -115,8 +122,9 @@ const _RepostStatusMenu = ({
     );
 };
 
-const mampMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+const mampMobxToProps = ({ authorization, login }) => ({
+    currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

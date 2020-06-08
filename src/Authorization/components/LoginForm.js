@@ -1,8 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
-import { localized } from '../../localization/components';
 import { FadeLoader } from 'react-spinners';
+import { localized } from '../../localization/components';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -29,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: '##FFFFFF',
-        marginTop: '36px',
+        marginTop: '30px',
     },
     signUpButton: {
         maxWidth: 374,
@@ -57,6 +60,19 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
+    secondaryButtonsGroup: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        maxWidth: '375px',
+        margin: '16px auto 0 auto',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+    },
+    forgotPassword: {
+        color: '#A2A2A2',
+        cursor: 'pointer',
+    }
 }));
 
 const getLabelFromSubmissionError = (error, l) => {
@@ -83,7 +99,9 @@ const _LoginForm = ({
     l,
 }) => {
     const classes = useStyles();
-
+    const theme = useTheme();
+    const [isRemember, setIsRemember] = useState(false);
+    
     const content = (
         <>
             <TextField
@@ -107,16 +125,24 @@ const _LoginForm = ({
                     {getLabelFromSubmissionError(submissionError, l)}
                 </Typography>
             )}
+            <div className={classes.secondaryButtonsGroup}>
+                <FormControlLabel
+                  color="primary"
+                  control={<Checkbox checked={isRemember} color="primary" onChange={()=>setIsRemember(!isRemember)} name="remember" />}
+                  label="Remember me"
+                />
+                <a className={classes.forgotPassword}>Forgot password?</a>
+            </div>
             {!hideLoginButton && (
                 <Button
                     className={classes.loginButton}
                     color="primary"
                     variant="contained"
-                    onClick={doLogin}
+                    onClick={()=>doLogin(isRemember)}
                     disabled={pending}
                     fullWidth
                 >
-                    {pending && <FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/>}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
                     {l('authorization.login')}
                 </Button>
             )}

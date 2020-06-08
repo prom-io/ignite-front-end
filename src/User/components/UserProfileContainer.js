@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, Hidden, makeStyles } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
@@ -8,7 +9,7 @@ import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
-import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -31,6 +32,7 @@ const _UserProfileContainer = ({
     currentUser,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     let tabContent;
 
@@ -51,7 +53,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-          <div className={classes.centered}><FadeLoader css={'transform: scale(0.5)'} color={'#FF5C01'}/></div>
+            <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
         );
     }
 
@@ -81,11 +83,11 @@ const _UserProfileContainer = ({
             </Grid>
             <Grid item className="right-banners-container">
                 {currentUser ? (
-                  <Hidden only={['md']}>
-                      <WhoToFollow />
-                  </Hidden>
+                    <Hidden only={['md']}>
+                        <WhoToFollow />
+                    </Hidden>
                 ) : (
-                  <ExploreOurFeaturesDescription />
+                    <ExploreOurFeaturesDescription />
                 )}
             </Grid>
         </Grid>

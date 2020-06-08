@@ -1,17 +1,17 @@
-import React from "react";
-import { MenuItem, ListItemIcon, ListItemText, makeStyles } from "@material-ui/core";
+import React from 'react';
+import { MenuItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 
-import { ShareIcon } from "../../icons/ShareIcon";
-import { useLocalization } from "../../store/hooks";
+import { ShareIcon } from '../../icons/ShareIcon';
+import { useLocalization } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     menuItemGutters: {
-        paddingLeft: 0
+        paddingLeft: 0,
     },
     listItemIconRoot: {
         minWidth: 15,
-        marginRight: 8
-    }
+        marginRight: 8,
+    },
 }));
 
 export const ShareWithLink = ({ status, setOpen }) => {
@@ -19,11 +19,11 @@ export const ShareWithLink = ({ status, setOpen }) => {
     const { l } = useLocalization();
 
     const copyToClipboard = () => {
-        const textField = document.createElement("textarea");
+        const textField = document.createElement('textarea');
         textField.innerText = `${window.location.origin}/status/${status.id}`;
         document.body.appendChild(textField);
         textField.select();
-        document.execCommand("copy");
+        document.execCommand('copy');
         textField.remove();
 
         if (setOpen) {
@@ -34,18 +34,18 @@ export const ShareWithLink = ({ status, setOpen }) => {
     return (
         <MenuItem
             classes={{
-                gutters: classes.menuItemGutters
+                gutters: classes.menuItemGutters,
             }}
             onClick={copyToClipboard}
         >
             <ListItemIcon
                 classes={{
-                    root: classes.listItemIconRoot
+                    root: classes.listItemIconRoot,
                 }}
             >
                 <ShareIcon />
             </ListItemIcon>
-            <ListItemText>{l("status.copy-link")}</ListItemText>
+            <ListItemText>{l('status.copy-link')}</ListItemText>
         </MenuItem>
     );
 };

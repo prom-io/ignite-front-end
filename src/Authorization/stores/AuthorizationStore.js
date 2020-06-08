@@ -6,7 +6,7 @@ export class AuthorizationStore {
     currentUser = undefined;
 
     @observable
-    accessToken = localStorage.getItem("accessToken");
+    accessToken = localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
 
     @observable
     fetchingCurrentUser = false;
@@ -17,10 +17,17 @@ export class AuthorizationStore {
         this.accessToken = accessToken;
         this.fetchCurrentUser();
     };
+    
+    @action
+    setTempAccessToken = accessToken => {
+        sessionStorage.setItem("accessToken", accessToken);
+        this.accessToken = accessToken;
+        this.fetchCurrentUser();
+    };
 
     @action
     fetchCurrentUser = () => {
-        if (localStorage.getItem("accessToken")) {
+        if (localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken")) {
             this.fetchingCurrentUser = true;
             axiosInstance.get("/api/v1/accounts/current")
                 .then(({data}) => this.currentUser = data)

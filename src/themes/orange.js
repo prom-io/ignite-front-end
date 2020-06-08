@@ -7,6 +7,20 @@ export const orange = createMuiTheme({
                 background: 'rgba(255,255,255,0)',
             },
         },
+        MuiIconButton: {
+            root: {
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
+                },
+            },
+        },
+        MuiListItem: {
+            button: {
+                '&:hover': {
+                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
+                },
+            },
+        },
     },
     palette: {
         common: {

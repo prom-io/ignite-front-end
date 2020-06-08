@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
             color: '#6483C0',
         },
         '& p': {
-            margin: 0
-        }
+            margin: 0,
+        },
     },
     replyingToLabel: {
         color: '#A2A2A2 !important',

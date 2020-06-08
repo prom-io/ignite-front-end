@@ -17,6 +17,10 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '18px',
     },
+    swipeableDrawerRoot: {
+        overflowY: 'scroll',
+      '-webkit-overflow-scrolling': 'touch',
+    }
 }));
 
 const ImportantInfo = '{Important info}';
@@ -33,22 +37,27 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
             PaperProps={{
                 style: {
                     width: 256,
+                    overflowY: 'scroll',
+                    display: 'block',
+                    '-webkit-overflow-scrolling': 'touch',
+                    backgroundColor: '#FFFBF8',
                 },
             }}
             BackdropProps={{
                 style: {
-                    backgroundColor: 'rgba(0,0,0,0)',
+                    backgroundColor: 'rgba(0,0,0,0.4)',
                 },
             }}
         >
             <Link
                 view={Routes.description}
                 store={routerStore}
-                className={classes.importantInfoLink}
+                style={{textDecoration: 'none'}}
             >
                 <Typography
                     variant="body1"
                     color="primary"
+                    classes={{root: classes.importantInfoLink}}
                     onClick={() => setDrawerExpanded(false)}
                 >
                     <strong>{ImportantInfo}</strong>

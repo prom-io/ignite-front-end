@@ -24,12 +24,13 @@ const useStyles = makeStyles({
     },
 });
 
-const _CommentsButton = ({ status, setCreateStatusDialogOpen, setReferredStatus, setStatusReferenceType, currentUser }) => {
+const _CommentsButton = ({ status, setCreateStatusDialogOpen, setReferredStatus, setStatusReferenceType, currentUser, setLoginDialogOpen }) => {
     const classes = useStyles();
 
     const handleClick = () => {
         if (!currentUser) {
-            return;
+            setLoginDialogOpen(true);
+            return
         }
 
         setReferredStatus(status);
@@ -50,11 +51,12 @@ const _CommentsButton = ({ status, setCreateStatusDialogOpen, setReferredStatus,
     );
 };
 
-const mapMobxToProps = ({ createStatus, authorization }) => ({
+const mapMobxToProps = ({ createStatus, authorization, login }) => ({
     currentUser: authorization.currentUser,
     setReferredStatus: createStatus.setReferredStatus,
     setStatusReferenceType: createStatus.setStatusReferenceType,
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen,
+    setLoginDialogOpen: login.setLoginDialogOpen,
 });
 
 export const CommentsButton = inject(mapMobxToProps)(observer(_CommentsButton));

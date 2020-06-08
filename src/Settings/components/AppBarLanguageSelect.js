@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
                 background: 'rgba(255,255,255,0)',
                 color: '#A2A2A2',
             },
-        }
+        },
     },
     styleMenuItem: {
         width: 'auto',
@@ -66,15 +66,15 @@ const useStyles = makeStyles(theme => ({
         },
     },
     buttonMenuLabel: {
-        width: 'auto'
+        width: 'auto',
     },
     menuList: {
         padding: 0,
-        width: '118px'
+        width: '118px',
     },
     arrowAnimate: {
-        transform: "rotate(180deg)"
-    }
+        transform: 'rotate(180deg)',
+    },
 }));
 
 const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
@@ -83,7 +83,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
     const anchorRef = React.useRef(null);
 
     const handleListKeyDown = event => {
-        if (event.key === "Tab") {
+        if (event.key === 'Tab') {
             event.preventDefault();
             setOpen(false);
         }
@@ -108,9 +108,9 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
             >
                 <span className={open ? classes.styledSelectBox : `${classes.styledSelectBox} ${classes.styledSelectOpen}`}>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
                 <ArrowDropDownIcon
-                  style={{color:'#A2A2A2'}}
+                    style={{ color: '#A2A2A2' }}
                     classes={{
-                        root: open && classes.arrowAnimate
+                        root: open && classes.arrowAnimate,
                     }}
                 />
             </Button>
@@ -132,9 +132,9 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                         }}
                     >
                         <Paper>
-                            <ClickAwayListener 
-                                onClickAway={() => setOpen(false)} 
-                                touchEvent="onTouchStart" 
+                            <ClickAwayListener
+                                onClickAway={() => setOpen(false)}
+                                touchEvent="onTouchStart"
                                 mouseEvent="onMouseDown"
                             >
                                 <MenuList

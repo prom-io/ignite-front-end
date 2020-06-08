@@ -19,6 +19,8 @@ const _StatusListItem = ({
     link = false,
     routerStore,
     hideThreadLink,
+    currentUser,
+    setLoginDialogOpen
 }) => {
     const content = (
         <Card
@@ -56,6 +58,8 @@ const _StatusListItem = ({
                 canBeReposted={status.can_be_reposted}
                 currentUserIsAuthor={currentUserIsAuthor}
                 status={status}
+                currentUser={currentUser}
+                setLoginDialogOpen={setLoginDialogOpen}
             />
         </Card>
     );
@@ -78,8 +82,10 @@ const _StatusListItem = ({
     return content;
 };
 
-const mapMobxToProps = ({ store }) => ({
+const mapMobxToProps = ({ store, authorization, login }) => ({
     routerStore: store,
+    currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen,
 });
 
 export const StatusListItem = inject(mapMobxToProps)(_StatusListItem);

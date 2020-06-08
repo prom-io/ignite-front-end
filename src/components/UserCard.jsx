@@ -20,7 +20,7 @@ const _UserCard = ({
     posts,
     followers,
     following,
-    l
+    l,
 }) => (
     <div className="user-profile-card">
         {isLogin ? (
@@ -38,7 +38,7 @@ const _UserCard = ({
                                 height: 90,
                                 minWidth: 90,
                                 minHeight: 90,
-                                border: "1px solid #F1EBE8"
+                                border: '1px solid #F1EBE8',
                             }}
                         />
                     </div>
@@ -56,7 +56,7 @@ const _UserCard = ({
 
                     <Grid className="user-profile-header-content-bottom">
                         <Grid
-                            style={{ display: "flex", padding: 20 }}
+                            style={{ display: 'flex', padding: 20 }}
                             className="user-profile-header-content-bottom-follows user-card-statistic"
                         >
                             <Link
@@ -64,12 +64,12 @@ const _UserCard = ({
                                 view={Routes.userProfile}
                                 params={{
                                     username: currentUser.id,
-                                    tab: "posts"
+                                    tab: 'posts',
                                 }}
                             >
                                 <Typography variant="h6">{posts}</Typography>
                                 <Typography variant="body1">
-                                    {l("user.profile.posts")}
+                                    {l('user.profile.posts')}
                                 </Typography>
                             </Link>
                             <Link
@@ -77,12 +77,12 @@ const _UserCard = ({
                                 view={Routes.userProfile}
                                 params={{
                                     username: currentUser.id,
-                                    tab: "followers"
+                                    tab: 'followers',
                                 }}
                             >
                                 <Typography variant="h6">{followers}</Typography>
                                 <Typography variant="body1">
-                                    {l("user.profile.followers")}
+                                    {l('user.profile.followers')}
                                 </Typography>
                             </Link>
                             <Link
@@ -90,12 +90,12 @@ const _UserCard = ({
                                 view={Routes.userProfile}
                                 params={{
                                     username: currentUser.id,
-                                    tab: "following"
+                                    tab: 'following',
                                 }}
                             >
                                 <Typography variant="h6">{following}</Typography>
                                 <Typography variant="body1">
-                                    {l("user.profile.following")}
+                                    {l('user.profile.following')}
                                 </Typography>
                             </Link>
                         </Grid>
@@ -106,15 +106,15 @@ const _UserCard = ({
             <div className="user-card-notauth-box">
                 <div className="user-card-notauth">
                     <img src="/user-card-search.png" alt="" />
-                    <p>{l("user.card.follow-your-interests")}</p>
+                    <p>{l('user.card.follow-your-interests')}</p>
                 </div>
                 <div className="user-card-notauth">
                     <img src="/user-card-friend.png" alt="" />
-                    <p>{l("user.card.hear-what-people-talking-about")}</p>
+                    <p>{l('user.card.hear-what-people-talking-about')}</p>
                 </div>
                 <div className="user-card-notauth">
                     <img src="/user-card-search.png" alt="" />
-                    <p>{l("user.card.join-the-conversation")}</p>
+                    <p>{l('user.card.join-the-conversation')}</p>
                 </div>
             </div>
         )}
@@ -131,7 +131,7 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     bio: userCard.user && userCard.user.bio,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
-    following: userCard.user && userCard.user.follows_count
+    following: userCard.user && userCard.user.follows_count,
 });
 
 export const UserCard = localized(inject(mapMobxToProps)(observer(_UserCard)));

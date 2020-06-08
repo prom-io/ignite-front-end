@@ -1,19 +1,20 @@
-import React from "react";
+import React from 'react';
 import {
     CardActions,
     Checkbox,
     CircularProgress,
     Typography,
-    makeStyles
-} from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { OpenStatusBtfsInfoDialogButton } from "./OpenStatusBtfsInfoDialogButton";
-import { RepostStatusMenu } from "./RepostStatusMenu";
-import { ShareStatusMenu } from "./ShareStatusMenu";
-import { CommentsButton } from "./CommentsButton";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+    makeStyles,
+} from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { FadeLoader } from 'react-spinners';
+import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
+import { RepostStatusMenu } from './RepostStatusMenu';
+import { ShareStatusMenu } from './ShareStatusMenu';
+import { CommentsButton } from './CommentsButton';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -22,18 +23,18 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&.MuiCheckbox-root": {
-            color: "rgba(0, 0, 0, 0.35)"
+        '&.MuiCheckbox-root': {
+            color: 'rgba(0, 0, 0, 0.35)',
         },
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
     },
     cardActionSpacing: {
-        "& > :not(:first-child)": {
-            marginLeft: "25px"
-        }
+        '& > :not(:first-child)': {
+            marginLeft: '25px',
+        },
     },
     progress: {
         display: 'flex',
@@ -41,7 +42,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         width: 34,
         height: 34,
-    }
+    },
 });
 
 const _StatusBottom = ({
@@ -54,9 +55,20 @@ const _StatusBottom = ({
     repostPending,
     canBeReposted,
     currentUserIsAuthor,
-    status
+    status,
+    currentUser,
+    setLoginDialogOpen
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
+    
+    const handleFavoriteClick = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return
+        }
+        onFavouriteClick(statusId, !favourited)
+    };
 
     return (
         <ClickEventPropagationStopper>
@@ -76,23 +88,21 @@ const _StatusBottom = ({
                 <div>
                     <ClickEventPropagationStopper className="status-list-bottom-box">
                         {statusLikePending ? (
-                          <div className={classes.progress}>
-                              <FadeLoader css={'transform: scale(0.3); top:5px; left:5px'} color={'#FF5C01'}/>
-                          </div>
+                            <div className={classes.progress}>
+                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color={theme.palette.primary.main} />
+                            </div>
                         ) : (
                             <Checkbox
                                 icon={<FavoriteBorderIcon />}
                                 checkedIcon={<FavoriteIcon color="primary" />}
                                 checked={favourited}
-                                onChange={() =>
-                                    onFavouriteClick(statusId, !favourited)
-                                }
+                                onChange={handleFavoriteClick}
                                 classes={{ root: classes.styledCheckbox }}
                             />
                         )}
                         <Typography
                             variant="body1"
-                            color={favourited ? "primary" : "textSecondary"}
+                            color={favourited ? 'primary' : 'textSecondary'}
                         >
                             {favouritesCount}
                         </Typography>

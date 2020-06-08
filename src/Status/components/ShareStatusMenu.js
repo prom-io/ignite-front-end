@@ -1,15 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
     ClickAwayListener,
     IconButton,
     Popper,
-    makeStyles
-} from "@material-ui/core";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { AnotherShareIcon } from "../../icons/AnotherShareIcon";
-import { ShareWithLink } from "./ShareWithLink";
-import { ShareToItem } from "./ShareToItem";
-import { useAuthorization } from "../../store";
+    makeStyles,
+} from '@material-ui/core';
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { AnotherShareIcon } from '../../icons/AnotherShareIcon';
+import { ShareWithLink } from './ShareWithLink';
+import { ShareToItem } from './ShareToItem';
+import { useAuthorization } from '../../store';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -18,11 +18,11 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        "&:hover": {
-            background: "rgba(255, 92, 1, 0.2)",
-            borderRadius: 30
-        }
-    }
+        '&:hover': {
+            background: 'rgba(255, 92, 1, 0.2)',
+            borderRadius: 30,
+        },
+    },
 });
 
 export const ShareStatusMenu = ({ status }) => {

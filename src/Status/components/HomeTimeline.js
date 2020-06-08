@@ -1,10 +1,11 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import { UnfollowDialog } from '../../Follow/components';
-import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -41,12 +42,13 @@ const _HomeTimeline = ({
     currentStatusUsername,
     unfollowStatusAuthor,
     setUnfollowDialogOpen,
-    unfollowDialogOpen
+    unfollowDialogOpen,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return pending && statuses.length === 0
-      ? <div className={classes.centered}><FadeLoader color={'#FF5C01'} css={'transform: scale(0.5)'}/></div>
+        ? <div className={classes.centered}><FadeLoader color={theme.palette.primary.main}  css="transform: scale(0.5)" /></div>
         : (
             <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
@@ -66,8 +68,8 @@ const _HomeTimeline = ({
                         repostsPendingMap={repostsPendingMap}
                         hasMore={hasMore}
                     />
-                    <UnfollowDialog 
-                        username={currentStatusUsername} 
+                    <UnfollowDialog
+                        username={currentStatusUsername}
                         unfollowAction={unfollowStatusAuthor}
                         unfollowDialogOpen={unfollowDialogOpen}
                         setUnfollowDialogOpen={setUnfollowDialogOpen}
@@ -92,7 +94,7 @@ const mapMobxToProps = ({ homeTimeline, authorization, createStatus }) => ({
     currentStatusUsername: homeTimeline.currentStatusUsername,
     unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,
     setUnfollowDialogOpen: homeTimeline.setUnfollowDialogOpen,
-    unfollowDialogOpen: homeTimeline.unfollowDialogOpen
+    unfollowDialogOpen: homeTimeline.unfollowDialogOpen,
 });
 
 export const HomeTimeline = inject(mapMobxToProps)(observer(_HomeTimeline));

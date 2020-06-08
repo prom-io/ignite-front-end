@@ -33,7 +33,7 @@ const _UsersList = ({ users, routerStore }) => (
                     title={(
                         <Link
                             view={Routes.userProfile}
-                            params={{ username: user.id }}
+                            params={{ username: user.username }}
                             store={routerStore}
                             style={{
                                 color: 'inherit',

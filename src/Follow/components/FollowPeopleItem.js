@@ -59,13 +59,14 @@ const useStyles = makeStyles(theme => ({
 
 const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
     const classes = useStyles();
+    console.log(user);
 
     return (
         <Link
             className={classes.followPeopleItem}
             key={user.id}
             view={Routes.userProfile}
-            params={{ username: user.id }}
+            params={{ username: user.username }}
             store={routerStore}
         >
             <Avatar

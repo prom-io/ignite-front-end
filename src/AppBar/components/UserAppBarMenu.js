@@ -104,7 +104,7 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <Link
                                             view={Routes.userProfile}
-                                            params={{ username: currentUser.id }}
+                                            params={{ username: currentUser.username }}
                                             store={routerStore}
                                             className={classes.undecoratedLink}
                                         >

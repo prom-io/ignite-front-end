@@ -52,12 +52,12 @@ const useStyles = makeStyles(() => ({
 
 const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
     const classes = useStyles();
-
+    
     return users.map(user => (
         <div className={classes.whoToFollowBodyItem} key={user.id}>
             <Link
                 view={Routes.userProfile}
-                params={{ username: user.id }}
+                params={{ username: user.username }}
                 store={routerStore}
             >
                 <Avatar
@@ -71,7 +71,7 @@ const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
             <div className={classes.whoToFollowBodyItemContent}>
                 <Link
                     view={Routes.userProfile}
-                    params={{ username: user.id }}
+                    params={{ username: user.username }}
                     store={routerStore}
                 >
                     <h3>{trimString(user.display_name, 24)}</h3>

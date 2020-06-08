@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { CircularProgress, Typography, Hidden, makeStyles } from '@material-ui/core';
+import { Typography, Hidden, makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { FadeLoader } from 'react-spinners';
 import { StatusListItem } from './StatusListItem';

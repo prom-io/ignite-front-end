@@ -36,6 +36,7 @@ const _RepostStatusMenu = ({
     canBeReposted,
     currentUserIsAuthor,
     currentUser,
+    setLoginDialogOpen
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -43,6 +44,10 @@ const _RepostStatusMenu = ({
     const theme = useTheme();
 
     const handleToggle = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return
+        }
         setOpen(prevOpen => currentUser && !prevOpen);
     };
 
@@ -117,8 +122,9 @@ const _RepostStatusMenu = ({
     );
 };
 
-const mampMobxToProps = ({ authorization }) => ({
+const mampMobxToProps = ({ authorization, login }) => ({
     currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

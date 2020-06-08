@@ -63,7 +63,7 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                 avatar={(
                     <Link
                         view={Routes.userProfile}
-                        params={{ username: user.id }}
+                        params={{ username: user.username }}
                         store={routerStore}
                         className={classes.undecoratedLink}
                     >
@@ -81,7 +81,7 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                         <Typography className={classes.notificationTitleTypography}>
                             <Link
                                 view={Routes.userProfile}
-                                params={{ username: user.id }}
+                                params={{ username: user.username }}
                                 store={routerStore}
                                 className={classes.userLink}
                             >

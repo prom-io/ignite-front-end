@@ -26,7 +26,7 @@ const _UserCard = ({
                 <Link
                     store={routerStore}
                     view={Routes.userProfile}
-                    params={{ username: currentUser.id }}
+                    params={{ username: username }}
                 >
                     <div className="user-card-top user-card-content-box">
                         <Avatar

@@ -21,8 +21,8 @@ const useStyles = makeStyles(theme => ({
     },
     avatarUploadButton: {
         position: 'absolute',
-        width: '80px',
-        height: '80px',
+        width: '120px',
+        height: '120px',
         borderRadius: '80px',
         background: 'rgba(34, 34, 34, 0.8)',
     },

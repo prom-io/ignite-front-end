@@ -32,7 +32,10 @@ const useStyles = makeStyles(theme => ({
         }
     },
     alignItemsUnset: {
-        alignItems: "unset"
+        alignItems: "unset",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: 'column'
+        }
     },
     updateUserPasswordOpen: {
         boxSizing: "border-box",
@@ -47,7 +50,10 @@ const useStyles = makeStyles(theme => ({
     },
     updateUserPasswordForm: {
         maxWidth: "344px",
-        width: "100%"
+        width: "100%",
+        [theme.breakpoints.down("sm")]: {
+            maxWidth: 'unset'
+        }
     },
     updateUserPasswordFormActions: {
         marginTop: "40px",

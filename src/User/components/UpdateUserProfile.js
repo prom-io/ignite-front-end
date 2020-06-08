@@ -18,16 +18,16 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "8px",
         padding: "24px 24px 45px 24px",
         display: "flex",
-        [theme.breakpoints.down('sm')]: {
-            flexDirection:'column'
-        },
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column"
+        }
     },
     updateUserProfileInfo: {
         zIndex: 1,
         maxWidth: "345px",
-        marginLeft: '20px',
+        marginLeft: "20px",
         [theme.breakpoints.down("sm")]: {
-            marginLeft: '0',
+            marginLeft: "0",
             maxWidth: "unset"
         }
     },
@@ -48,7 +48,19 @@ const useStyles = makeStyles(theme => ({
         }
     },
     updateUserProfileField: {
-        marginTop: "45px"
+        marginTop: "15px",
+
+        "& span": {
+            display: "block",
+            textAlign: "right",
+            fontFamily: "Museo Sans Cyrl Regular",
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "12px",
+            lineHeight: "14px",
+            textAlign: "right",
+            color: "#A2A2A2"
+        }
     },
     updateUserProfileButton: {
         marginTop: "60px",
@@ -85,58 +97,66 @@ const _UpdateUserProfile = ({
             <div className={classes.updateUserProfileInfo}>
                 <div className={classes.updateUserProfileWallet}>
                     <p>Wallet</p>
-                    <Typography variant="h5">
-                        {currentUser.id}
-                    </Typography>
+                    <Typography variant="h5">{currentUser.id}</Typography>
                 </div>
-                <TextField
-                    className={classes.updateUserProfileField}
-                    label={l("user.username")}
-                    placeholder="Add your username"
-                    value={updateUserProfileForm.username}
-                    onChange={event => setFormValue("username", event.target.value)}
-                    error={Boolean(formErrors.username)}
-                    helperText={formErrors.username && l(formErrors.username)}
-                    margin="dense"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    fullWidth
-                />
-                <TextField
-                    className={classes.updateUserProfileField}
-                    label={l("user.display-name")}
-                    placeholder="Add your displayed name"
-                    value={updateUserProfileForm.displayName}
-                    onChange={event =>
-                        setFormValue("displayName", event.target.value)
-                    }
-                    error={Boolean(formErrors.displayName)}
-                    helperText={
-                        formErrors.displayName && l(formErrors.displayName)
-                    }
-                    margin="dense"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    fullWidth
-                />
-                <TextField
-                    className={classes.updateUserProfileField}
-                    label={l("user.bio")}
-                    placeholder="Add your bio"
-                    value={updateUserProfileForm.bio || ""}
-                    onChange={event => setFormValue("bio", event.target.value)}
-                    error={Boolean(formErrors.bio)}
-                    helperText={formErrors.bio && l(formErrors.bio)}
-                    rowsMax={3}
-                    margin="dense"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
-                    fullWidth
-                    multiline
-                />
+                <div className={classes.updateUserProfileField} style={{ marginTop: "40px"}}>
+                    <TextField
+                        label={l("user.username")}
+                        placeholder="Add your username"
+                        value={updateUserProfileForm.username}
+                        onChange={event =>
+                            setFormValue("username", event.target.value)
+                        }
+                        error={Boolean(formErrors.username)}
+                        helperText={formErrors.username && l(formErrors.username)}
+                        margin="dense"
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        fullWidth
+                    />
+                    <span>{updateUserProfileForm.username.length}/50</span>
+                </div>
+                <div className={classes.updateUserProfileField}>
+                    <TextField
+                        className={classes.updateUserProfileField}
+                        label={l("user.display-name")}
+                        placeholder="Add your displayed name"
+                        value={updateUserProfileForm.displayName}
+                        onChange={event =>
+                            setFormValue("displayName", event.target.value)
+                        }
+                        error={Boolean(formErrors.displayName)}
+                        helperText={
+                            formErrors.displayName && l(formErrors.displayName)
+                        }
+                        margin="dense"
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        fullWidth
+                    />
+                    <span>{updateUserProfileForm.displayName.length}/50</span>
+                </div>
+                <div className={classes.updateUserProfileField}>
+                    <TextField
+                        className={classes.updateUserProfileField}
+                        label={l("user.bio")}
+                        placeholder="Add your bio"
+                        value={updateUserProfileForm.bio || ""}
+                        onChange={event => setFormValue("bio", event.target.value)}
+                        error={Boolean(formErrors.bio)}
+                        helperText={formErrors.bio && l(formErrors.bio)}
+                        rowsMax={3}
+                        margin="dense"
+                        InputLabelProps={{
+                            shrink: true
+                        }}
+                        fullWidth
+                        multiline
+                    />
+                    <span>{updateUserProfileForm.bio.length}/160</span>
+                </div>
                 <div className={classes.updateUserProfileButton}>
                     <Button
                         variant="contained"

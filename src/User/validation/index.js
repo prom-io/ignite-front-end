@@ -8,7 +8,7 @@ export const validateUsername = username => {
         return 'user.username.cant-be-empty';
     }
 
-    if (username.length > 30) {
+    if (username.length > 50) {
         return 'user.username.is-too-long';
     }
 
@@ -36,7 +36,7 @@ export const validateBio = bio => {
         return undefined;
     }
 
-    if (bio.length > 400) {
+    if (bio.length > 160) {
         return 'user.bio.is-too-long';
     }
 

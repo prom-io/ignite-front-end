@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -114,7 +115,7 @@ export const LoginForm = observer(({
                     disabled={pending}
                     fullWidth
                 >
-                    {pending && <CircularProgress size={14} color="primary" />}
+                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
                     {l('authorization.login')}
                 </Button>
             )}

@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
+import { FadeLoader } from 'react-spinners';
 import { SideBarList, UnfollowDialog } from '.';
 
 const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '10px',
         display: 'table',
     },
 }));
@@ -31,7 +33,7 @@ const _WhoToFollowList = ({
     }, []);
 
     return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
-        <CircularProgress size={15} className={classes.centered} />
+        <div className={classes.centered}><FadeLoader color="#FF5C01" css="transform: scale(0.5); top: 10px; left: 10px" /></div>
     ) : (
         <>
             <SideBarList

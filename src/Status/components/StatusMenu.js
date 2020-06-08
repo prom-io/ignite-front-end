@@ -93,7 +93,7 @@ const _StatusMenu = ({
                         style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                     >
                         <Paper className={classes.paper}>
-                            <ClickAwayListener onClickAway={handleClose}>
+                            <ClickAwayListener onClickAway={handleClose} touchEvent="onTouchStart" mouseEvent="onMouseDown">
                                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                     <MenuItem disabled>
                                         <ListItemIcon>

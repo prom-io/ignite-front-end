@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, Hidden, makeStyles } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
@@ -50,7 +51,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-            <CircularProgress size={50} color="primary" className={classes.centered} />
+            <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>
         );
     }
 

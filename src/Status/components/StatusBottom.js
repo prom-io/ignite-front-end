@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { FadeLoader } from 'react-spinners';
 import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
 import { RepostStatusMenu } from './RepostStatusMenu';
 import { ShareStatusMenu } from './ShareStatusMenu';
@@ -33,6 +34,13 @@ const useStyles = makeStyles({
         '& > :not(:first-child)': {
             marginLeft: '25px',
         },
+    },
+    progress: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 34,
+        height: 34,
     },
 });
 
@@ -68,7 +76,9 @@ const _StatusBottom = ({
                 <div>
                     <ClickEventPropagationStopper className="status-list-bottom-box">
                         {statusLikePending ? (
-                            <CircularProgress size={20} color="primary" />
+                            <div className={classes.progress}>
+                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color="#FF5C01" />
+                            </div>
                         ) : (
                             <Checkbox
                                 icon={<FavoriteBorderIcon />}
@@ -86,7 +96,7 @@ const _StatusBottom = ({
                         </Typography>
                     </ClickEventPropagationStopper>
                 </div>
-                <ShareStatusMenu />
+                <ShareStatusMenu status={status} />
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo} />
                 </ClickEventPropagationStopper>

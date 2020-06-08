@@ -8,7 +8,10 @@ const useStyles = makeStyles(theme => ({
         marginTop: '70px',
         [theme.breakpoints.down('md')]: {
             width: '100%',
-            maxWidth: '900px',
+            maxWidth: '920px',
+        },
+        [theme.breakpoints.between('952', '959')]: {
+            marginTop: '70px !important',
         },
         [theme.breakpoints.down('sm')]: {
             width: '100%',

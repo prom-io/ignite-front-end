@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
@@ -40,8 +41,8 @@ const _StatusCommentsList = ({
                     {l('status.comments')}
                 </Typography>
             </Grid>
-            <Grid item>
-                {pending && statuses.length === 0 && <CircularProgress size={20} className={classes.centered} />}
+            <Grid item xs={12}>
+                {pending && statuses.length === 0 && <div className={classes.centered}><FadeLoader color="#FF5C01" /></div>}
             </Grid>
             <Grid item>
                 {statuses.length === 0 && !pending && <Typography color="textSecondary">{l('status.no-comments')}</Typography>}

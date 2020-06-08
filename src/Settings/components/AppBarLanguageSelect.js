@@ -132,7 +132,11 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                         }}
                     >
                         <Paper>
-                            <ClickAwayListener onClickAway={() => setOpen(false)}>
+                            <ClickAwayListener
+                                onClickAway={() => setOpen(false)}
+                                touchEvent="onTouchStart"
+                                mouseEvent="onMouseDown"
+                            >
                                 <MenuList
                                     autoFocusItem={open}
                                     id="menu-list-grow"

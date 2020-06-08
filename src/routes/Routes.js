@@ -81,11 +81,9 @@ export const Routes = {
         path: '/edit-profile',
         component: <UserEditPage />,
         beforeEnter: () => {
-            // store.authorization.fetchCurrentUser();
-            // store.userProfile.fetchUserByUsername("0x2129f63A5B51569C7f2801E4101c4bB755323b12");
         },
         onExit: () => {
-            // store.userProfileUpdate.resetForm();
+            store.userProfileUpdate.resetForm();
         },
     }),
     trends: new Route({

@@ -1,6 +1,12 @@
 import {action, reaction, observable, computed} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
-import {validateBio, validateDisplayName, validateUsername} from "../validation";
+import {
+    validateBio, 
+    validateDisplayName, 
+    validateUsername, 
+    validateIsCurrentPassword,
+    validatePassword
+} from "../validation";
 
 export class UpdateUserProfileStore {
     @observable
@@ -17,9 +23,6 @@ export class UpdateUserProfileStore {
         displayName: undefined,
         bio: undefined
     };
-
-    @observable
-    updateUserProfileDialogOpen = false;
 
     @observable
     pending = false;
@@ -60,7 +63,7 @@ export class UpdateUserProfileStore {
         this.userProfileStore = userProfileStore;
 
         reaction(
-            () => this.user,
+            () => this.currentUser,
             () => this.resetForm()
         );
 
@@ -109,21 +112,12 @@ export class UpdateUserProfileStore {
     };
 
     @action
-    setUpdateUserProfileDialogOpen = updateUserProfileDialogOpen => {
-        this.updateUserProfileDialogOpen = updateUserProfileDialogOpen;
-    };
-
-    @action
     updateUser = () => {
-        if (!this.currentUser || !this.user) {
+        if (!this.currentUser) {
             return;
         }
 
         if (!this.validateForm()) {
-            return;
-        }
-
-        if (this.currentUser.id !== this.user.id) {
             return;
         }
 
@@ -137,17 +131,37 @@ export class UpdateUserProfileStore {
         })
             .then(({data}) => {
                 this.userProfileStore.setUser(data);
-                this.setUpdateUserProfileDialogOpen(false);
 
                 if (this.currentUser) {
                     this.authorizationStore.setCurrentUser({
                         ...this.currentUser,
                         username: data.username,
                         display_name: data.display_name,
+                        bio: data.bio,
                         avatar: data.avatar
                     });
                 }
             })
+            .catch(error => this.submissionError = error)
+            .finally(() => this.pending = false);
+    };
+
+    @action
+    updateUserPassword = () => {
+        if (!this.currentUser) {
+            return;
+        }
+
+        if (!this.validatePasswordForm()) {
+            return;
+        }
+
+        this.pending = true;
+
+        axiosInstance.put(`/api/v1/accounts/${this.currentUser.id}`, {
+            password: this.updateUserProfileForm.password
+        })
+            .then(({data}) => {})
             .catch(error => this.submissionError = error)
             .finally(() => this.pending = false);
     };
@@ -171,6 +185,21 @@ export class UpdateUserProfileStore {
     };
 
     @action
+    validatePasswordForm = () => {
+        this.formErrors = {
+            password: validateIsCurrentPassword(
+                null,
+                this.updateUserProfileForm.password
+            ),
+            new_password: validatePassword(this.updateUserProfileForm.new_password)
+        };
+
+        const {password, new_password} = this.formErrors;
+
+        return Boolean(!(password || new_password));
+    };
+
+    @action
     checkUsernameAvailability = () => {
         const username = this.updateUserProfileForm.username;
         this.checkingUsernameAvailability = true;
@@ -187,16 +216,20 @@ export class UpdateUserProfileStore {
     @action
     resetForm = () => {
         this.updateUserProfileForm = {
-            username: this.user ? this.user.username : "",
-            displayName: this.user ? this.user.display_name : "",
+            username: this.user ? this.user.username : this.currentUser ? this.currentUser.username : "",
+            displayName: this.user ? this.user.display_name : this.currentUser ? this.currentUser.display_name : "",
             avatarId: undefined,
-            bio: this.user ? this.user.bio : undefined
+            bio: this.user ? this.user.bio : this.currentUser ? this.currentUser.bio : undefined,
+            password: undefined,
+            new_password:  undefined
         };
         this.uploadUserAvatarStore.reset();
         setTimeout(() => this.formErrors = {
             username: undefined,
             displayName: undefined,
-            bio: undefined
+            bio: undefined,
+            password: undefined,
+            new_password: undefined
         })
     }
 }

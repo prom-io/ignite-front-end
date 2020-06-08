@@ -1,6 +1,12 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { Button, InputAdornment, TextField, makeStyles } from "@material-ui/core";
+import {
+    Button,
+    InputAdornment,
+    Typography,
+    TextField,
+    makeStyles
+} from "@material-ui/core";
 import { FadeLoader } from "react-spinners";
 
 import { UserAvatarFileInput } from "./UserAvatarFileInput";
@@ -10,12 +16,53 @@ const useStyles = makeStyles(theme => ({
     updateUserProfile: {
         background: "#fff",
         marginBottom: "8px",
-        padding: "24px",
+        padding: "24px 24px 45px 24px",
         display: "flex"
+    },
+    updateUserProfileInfo: {
+        zIndex: 1,
+        maxWidth: "345px",
+        [theme.breakpoints.down("sm")]: {
+            maxWidth: "unset"
+        }
+    },
+    updateUserProfileWallet: {
+        "& p": {
+            fontWeight: 300,
+            fontSize: "12px",
+            lineHeight: "14px",
+            color: "#A2A2A2",
+            margin: "0 0 8px 0"
+        },
+        "& h5": {
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "19px",
+            color: "#1C1C1C",
+            wordWrap: "break-word"
+        }
+    },
+    updateUserProfileField: {
+        marginTop: "45px"
+    },
+    updateUserProfileButton: {
+        marginTop: "60px",
+        textAlign: "right",
+
+        "& button": {
+            boxSizing: "border-box",
+            fontSize: "15px",
+            fontWeight: 600,
+            height: "40px",
+            borderRadius: "30px",
+            padding: "11px 35px",
+            lineHeight: "18px"
+        }
     }
 }));
 
 const _UpdateUserProfile = ({
+    currentUser,
     updateUserProfileForm,
     formErrors,
     pending,
@@ -30,79 +77,88 @@ const _UpdateUserProfile = ({
     return (
         <div className={classes.updateUserProfile}>
             <UserAvatarFileInput />
-            <div>
+            <div className={classes.updateUserProfileInfo}>
                 <div className={classes.updateUserProfileWallet}>
                     <p>Wallet</p>
-                    <h5>0x9687DF9460CD2333d18d85C1b768eFa5f5DfDf3c</h5>
+                    <Typography variant="h5">
+                        {currentUser.id}
+                    </Typography>
                 </div>
                 <TextField
+                    className={classes.updateUserProfileField}
                     label={l("user.username")}
+                    placeholder="Add your username"
                     value={updateUserProfileForm.username}
                     onChange={event => setFormValue("username", event.target.value)}
                     error={Boolean(formErrors.username)}
                     helperText={formErrors.username && l(formErrors.username)}
-                    classes={{ root: classes.textFieldRoot }}
-                    fullWidth
                     margin="dense"
-                    InputProps={{
-                        endAdornment: checkingUsernameAvailability && (
-                            <InputAdornment position="end">
-                                <FadeLoader
-                                    css={"transform: scale(0.5)"}
-                                    color={"#FF5C01"}
-                                />
-                            </InputAdornment>
-                        )
+                    InputLabelProps={{
+                        shrink: true
                     }}
+                    fullWidth
                 />
                 <TextField
+                    className={classes.updateUserProfileField}
                     label={l("user.display-name")}
+                    placeholder="Add your displayed name"
                     value={updateUserProfileForm.displayName}
                     onChange={event =>
                         setFormValue("displayName", event.target.value)
                     }
                     error={Boolean(formErrors.displayName)}
-                    helperText={formErrors.displayName && l(formErrors.displayName)}
-                    classes={{ root: classes.textFieldRoot }}
-                    fullWidth
+                    helperText={
+                        formErrors.displayName && l(formErrors.displayName)
+                    }
                     margin="dense"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    fullWidth
                 />
                 <TextField
+                    className={classes.updateUserProfileField}
                     label={l("user.bio")}
+                    placeholder="Add your bio"
                     value={updateUserProfileForm.bio || ""}
                     onChange={event => setFormValue("bio", event.target.value)}
                     error={Boolean(formErrors.bio)}
                     helperText={formErrors.bio && l(formErrors.bio)}
-                    classes={{ root: classes.textFieldRoot }}
-                    fullWidth
-                    margin="dense"
-                    multiline
                     rowsMax={3}
+                    margin="dense"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    fullWidth
+                    multiline
                 />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={updateUser}
-                    disabled={
-                        pending ||
-                        checkingUsernameAvailability ||
-                        avatarUploadPending
-                    }
-                >
-                    {pending && (
-                        <FadeLoader
-                            css={"transform: scale(0.5)"}
-                            color={"#FF5C01"}
-                        />
-                    )}
-                    {l("user.update-profile.save-changes")}
-                </Button>
+                <div className={classes.updateUserProfileButton}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={updateUser}
+                        disabled={
+                            pending ||
+                            checkingUsernameAvailability ||
+                            avatarUploadPending
+                        }
+                    >
+                        {pending && (
+                            <FadeLoader
+                                css={"transform: scale(0.5)"}
+                                color={"#FF5C01"}
+                            />
+                        )}
+                        {l("user.update-profile.save")}
+                    </Button>
+                </div>
             </div>
         </div>
     );
 };
 
 const mapMobxToProps = ({ userProfileUpdate }) => ({
+    currentUser: userProfileUpdate.currentUser,
     updateUserProfileForm: userProfileUpdate.updateUserProfileForm,
     formErrors: userProfileUpdate.formErrors,
     submissionError: userProfileUpdate.submissionError,

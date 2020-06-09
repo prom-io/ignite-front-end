@@ -4,7 +4,7 @@ export * from './UserProfilePage';
 export * from './UserEditPage';
 export * from './NotificationsPage';
 export * from './ChatPage';
-export * from './TrendsPage';
+export * from './TopicsPage';
 export * from './TermsAndPoliciesPage';
 export * from './DescriptionPage';
 export * from './StatusPage';

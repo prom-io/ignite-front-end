@@ -53,7 +53,7 @@ export const en = {
     'appbar.home': 'Home',
     'appbar.notifications': 'Notifications',
     'appbar.chat': 'Chat',
-    'appbar.trends': 'Trends',
+    'appbar.topics': 'Topics',
     'appbar.search': 'Search',
     'appbar.explore-btfs': 'Explore BTFS',
     'description-links.privacy-policy': 'Privacy policy',

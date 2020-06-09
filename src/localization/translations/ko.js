@@ -53,7 +53,7 @@ export const ko = {
     'appbar.home': '홈',
     'appbar.notifications': '알림',
     'appbar.chat': '채팅',
-    'appbar.trends': '트렌드',
+    'appbar.topics': '트렌드',
     'appbar.search': '검색',
     'appbar.explore-btfs': 'BTFS 탐색',
     'description-links.privacy-policy': '개인 정보 보호 정책',

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     userProfileActiveTab: {
-        borderBottom: `2px solid ${theme.primary.main}`,
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
         cursor: 'pointer',
         flex: '1 1 auto',
         color: theme.palette.text.main,

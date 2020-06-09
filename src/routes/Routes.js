@@ -11,7 +11,7 @@ import {
     StatusPage,
     FollowPeoplePage,
     TermsAndPoliciesPage,
-    TrendsPage,
+    TopicsPage,
     UserProfilePage,
     UserEditPage,
 } from '../pages';
@@ -58,7 +58,7 @@ export const Routes = {
         path: '/chat',
         component: <ChatPage />,
         beforeEnter: () => {
-
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },
@@ -86,11 +86,11 @@ export const Routes = {
             store.userProfileUpdate.resetForm();
         },
     }),
-    trends: new Route({
-        path: '/trends',
-        component: <TrendsPage />,
+    topics: new Route({
+        path: '/topics',
+        component: <TopicsPage />,
         beforeEnter: () => {
-
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },
@@ -166,6 +166,7 @@ export const Routes = {
             store.statusComments.setOnlyAddCommentsToStatus(params.id);
             store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
             store.statusComments.fetchStatuses();
+            store.userCard.setDisplayMode('currentUser');
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);

@@ -70,6 +70,7 @@ export const Routes = {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
                 store.followPeople.fetchFollowPeople();
             }
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.followPeople.reset();
@@ -79,6 +80,7 @@ export const Routes = {
         path: '/edit-profile',
         component: <UserEditPage />,
         beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.userProfileUpdate.resetForm();

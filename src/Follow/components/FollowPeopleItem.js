@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
     const classes = useStyles();
-    console.log(user);
 
     return (
         <Link

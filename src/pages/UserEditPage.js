@@ -4,9 +4,12 @@ import { observer } from "mobx-react";
 
 import { AppBar } from "../AppBar/components";
 import { UpdateUserContainer } from "../User/components";
-import { UserCard } from "../components/UserCard";
 import { Layout } from "../Layout";
 import { LoginForm } from "../Authorization/components";
+import {
+    PrometeusDescription,
+    ExploreOurFeaturesDescription
+} from "../PrometeusDescription";
 import { useAuthorization, useLocalization } from "../store/hooks";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +36,7 @@ export const UserEditPage = observer(() => {
                 <Layout>
                     <Grid container className="content-container">
                         <Grid item md={3} className="left-banners-container">
-                            <UserCard isLogin />
+                            <PrometeusDescription />
                         </Grid>
                         <Grid
                             item
@@ -58,7 +61,9 @@ export const UserEditPage = observer(() => {
                                 </>
                             )}
                         </Grid>
-                        <Grid item md={3} className="right-banners-container"></Grid>
+                        <Grid item md={3} className="right-banners-container">
+                            {!currentUser && <ExploreOurFeaturesDescription />}
+                        </Grid>
                     </Grid>
                 </Layout>
             </Grid>

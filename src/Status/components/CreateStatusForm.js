@@ -20,7 +20,7 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
-        background: '#F1EBE8',
+        background: theme.palette.border.main,
     },
     remainingCharactersCounter: {
         padding: '7px 10px',

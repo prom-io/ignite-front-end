@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Button,
-    InputAdornment,
     Typography,
     TextField,
     makeStyles,
@@ -14,7 +13,7 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     updateUserProfile: {
-        background: '#fff',
+        background: theme.palette.background.paper,
         marginBottom: '8px',
         padding: '24px 24px 45px 24px',
         display: 'flex',
@@ -36,20 +35,19 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 300,
             fontSize: '12px',
             lineHeight: '14px',
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
             margin: '0 0 8px 0',
         },
         '& h5': {
             fontWeight: 600,
             fontSize: '16px',
             lineHeight: '19px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             wordWrap: 'break-word',
         },
     },
     updateUserProfileField: {
         marginTop: '15px',
-
         '& span': {
             display: 'block',
             textAlign: 'right',
@@ -58,7 +56,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 300,
             fontSize: '12px',
             lineHeight: '14px',
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
         },
     },
     updateUserProfileButton: {

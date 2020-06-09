@@ -15,7 +15,7 @@ import { IgniteChatPage } from '../icons/IgniteChatPage';
 
 const useStyles = makeStyles(theme => ({
     chatError: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
         padding: '0 30px',

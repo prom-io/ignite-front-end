@@ -19,16 +19,16 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '300',
         fontSize: '15px',
         lineHeight: '23px',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
         '& a': {
-            color: '#6483C0',
+            color: theme.palette.secondary.status,
         },
         '& p': {
             margin: 0,
         },
     },
     replyingToLabel: {
-        color: '#A2A2A2 !important',
+        color: theme.palette.text.secondary,
     },
     replyToContainer: {
         marginBottom: theme.spacing(1),
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
     replyingToLink: {
         textDecoration: 'none',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         marginLeft: 5,
     },
     threadLink: {
@@ -77,7 +77,7 @@ const _StatusBody = ({
                             // marginBottom: 4,
                         }}
                     >
-                        <Typography className={classes.replyingToLabel}>
+                        <Typography classes={{root:classes.replyingToLabel}}>
                             {l('status.replying-to')}
                         </Typography>
                         <Link

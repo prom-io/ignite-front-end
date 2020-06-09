@@ -15,7 +15,7 @@ import { IgniteTrendPage } from '../icons/IgniteTrendPage';
 
 const useStyles = makeStyles(theme => ({
     trendError: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
         padding: '0 30px',
@@ -29,12 +29,12 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         '& h1': {
             fontFamily: 'Museo Sans Cyrl Bold',
             fontSize: '20px',
             margin: '24px 0 4px 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));

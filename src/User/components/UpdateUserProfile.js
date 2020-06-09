@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 300,
             fontSize: '12px',
             lineHeight: '14px',
-            textAlign: 'right',
             color: '#A2A2A2',
         },
     },

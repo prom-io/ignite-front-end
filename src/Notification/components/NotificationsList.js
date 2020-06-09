@@ -1,11 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, makeStyles, Typography, useTheme } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
 import { useStore, useAuthorization, useLocalization } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -95,6 +96,8 @@ const noNotifications = {
 
 export const NotificationsList = observer(() => {
     const classes = useStyles();
+    const theme = useTheme();
+    
     const notificationsStore = useStore().notifications;
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
     const { currentUser } = useAuthorization();
@@ -122,11 +125,7 @@ export const NotificationsList = observer(() => {
                 next={fetchNotifications}
                 hasMore={hasMore}
                 loader={(
-                    <CircularProgress
-                        size={25}
-                        color="primary"
-                        className={classes.centered}
-                    />
+                  <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
                 )}
                 dataLength={notifications.length}
                 style={{ overflowY: 'hidden' }}

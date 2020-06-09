@@ -3,8 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles, useTheme } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { FollowPeopleItem, UnfollowDialog } from '.';
 import { FadeLoader } from 'react-spinners';
+import { FollowPeopleItem, UnfollowDialog } from '.';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -33,7 +33,7 @@ const _FollowPeopleList = ({
                 next={fetchFollowPeople}
                 hasMore
                 loader={(
-                  <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
+                    <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
                 )}
                 dataLength={followPeopleItems.length}
                 style={{ overflowY: 'hidden' }}

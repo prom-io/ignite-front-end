@@ -13,7 +13,7 @@ import {
     TermsAndPoliciesPage,
     TrendsPage,
     UserProfilePage,
-    UserEditPage
+    UserEditPage,
 } from '../pages';
 import { store } from '../store';
 

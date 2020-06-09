@@ -3,8 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core';
 import { Photo } from '@material-ui/icons';
 import { FadeLoader } from 'react-spinners';
-import { localized } from '../../localization/components';
 import useTheme from '@material-ui/core/styles/useTheme';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     avatarAttachmentPhoto: {
@@ -66,7 +66,7 @@ const _UserAvatarFileInput = ({
                 <Avatar
                     style={{
                         width: 120,
-                        height: 120
+                        height: 120,
                     }}
                     src={
                         avatarFileContainer
@@ -100,9 +100,9 @@ const _UserAvatarFileInput = ({
 const mapMobxToProps = ({ authorization, userAvatarUpload }) => ({
     currentUser: authorization.currentUser,
     avatarFileContainer: userAvatarUpload.avatarFileContainer,
-    uploadFile: userAvatarUpload.uploadFile
+    uploadFile: userAvatarUpload.uploadFile,
 });
 
 export const UserAvatarFileInput = inject(mapMobxToProps)(
-    observer(_UserAvatarFileInput)
+    observer(_UserAvatarFileInput),
 );

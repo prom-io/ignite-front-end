@@ -18,9 +18,9 @@ const useStyles = makeStyles(() => ({
         textDecoration: 'none',
         color: 'inherit',
     },
-  listRoot: {
-    minHeight: '300px',
-  }
+    listRoot: {
+        minHeight: '300px',
+    },
 }));
 
 const _DrawerMenu = ({
@@ -46,7 +46,7 @@ const _DrawerMenu = ({
     }
 
     return (
-        <MenuList classes={{root: classes.listRoot}}>
+        <MenuList classes={{ root: classes.listRoot }}>
             <Link
                 view={Routes.userProfile}
                 params={{ username: currentUser.username }}

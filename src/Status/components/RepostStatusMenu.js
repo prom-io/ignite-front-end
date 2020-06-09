@@ -9,12 +9,12 @@ import {
 } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
 import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -36,7 +36,7 @@ const _RepostStatusMenu = ({
     canBeReposted,
     currentUserIsAuthor,
     currentUser,
-    setLoginDialogOpen
+    setLoginDialogOpen,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -46,7 +46,7 @@ const _RepostStatusMenu = ({
     const handleToggle = () => {
         if (!currentUser) {
             setLoginDialogOpen(true);
-            return
+            return;
         }
         setOpen(prevOpen => currentUser && !prevOpen);
     };

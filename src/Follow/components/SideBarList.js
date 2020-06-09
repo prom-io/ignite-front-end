@@ -52,7 +52,7 @@ const useStyles = makeStyles(() => ({
 
 const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
     const classes = useStyles();
-    
+
     return users.map(user => (
         <div className={classes.whoToFollowBodyItem} key={user.id}>
             <Link

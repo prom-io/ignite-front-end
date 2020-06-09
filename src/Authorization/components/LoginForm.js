@@ -2,10 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
-import { localized } from '../../localization/components';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import useTheme from '@material-ui/core/styles/useTheme';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -73,9 +73,9 @@ const useStyles = makeStyles(theme => ({
         color: '#A2A2A2',
         cursor: 'pointer',
         '&:hover': {
-            color: '#1C1C1C'
-        }
-    }
+            color: '#1C1C1C',
+        },
+    },
 }));
 
 const getLabelFromSubmissionError = (error, l) => {
@@ -104,7 +104,7 @@ const _LoginForm = ({
     const classes = useStyles();
     const theme = useTheme();
     const [isRemember, setIsRemember] = useState(false);
-    
+
     const content = (
         <>
             <TextField
@@ -130,9 +130,9 @@ const _LoginForm = ({
             )}
             <div className={classes.secondaryButtonsGroup}>
                 <FormControlLabel
-                  color="primary"
-                  control={<Checkbox checked={isRemember} color="primary" onChange={()=>setIsRemember(!isRemember)} name="remember" />}
-                  label="Remember me"
+                    color="primary"
+                    control={<Checkbox checked={isRemember} color="primary" onChange={() => setIsRemember(!isRemember)} name="remember" />}
+                    label="Remember me"
                 />
                 <a className={classes.forgotPassword}>Forgot password?</a>
             </div>
@@ -141,7 +141,7 @@ const _LoginForm = ({
                     className={classes.loginButton}
                     color="primary"
                     variant="contained"
-                    onClick={()=>doLogin(isRemember)}
+                    onClick={() => doLogin(isRemember)}
                     disabled={pending}
                     fullWidth
                 >

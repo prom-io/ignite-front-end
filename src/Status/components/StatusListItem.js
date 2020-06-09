@@ -20,7 +20,7 @@ const _StatusListItem = ({
     routerStore,
     hideThreadLink,
     currentUser,
-    setLoginDialogOpen
+    setLoginDialogOpen,
 }) => {
     const content = (
         <Card

@@ -9,12 +9,12 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
 import { RepostStatusMenu } from './RepostStatusMenu';
 import { ShareStatusMenu } from './ShareStatusMenu';
 import { CommentsButton } from './CommentsButton';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -57,17 +57,17 @@ const _StatusBottom = ({
     currentUserIsAuthor,
     status,
     currentUser,
-    setLoginDialogOpen
+    setLoginDialogOpen,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-    
+
     const handleFavoriteClick = () => {
         if (!currentUser) {
             setLoginDialogOpen(true);
-            return
+            return;
         }
-        onFavouriteClick(statusId, !favourited)
+        onFavouriteClick(statusId, !favourited);
     };
 
     return (

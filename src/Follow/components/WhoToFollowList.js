@@ -3,8 +3,8 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
 import { FadeLoader } from 'react-spinners';
-import { SideBarList, UnfollowDialog } from '.';
 import useTheme from '@material-ui/core/styles/useTheme';
+import { SideBarList, UnfollowDialog } from '.';
 
 const useStyles = makeStyles(() => ({
     centered: {

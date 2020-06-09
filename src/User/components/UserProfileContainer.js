@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, Hidden, makeStyles } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
@@ -9,7 +10,6 @@ import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
         marginRight: 'auto',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
-            marginTop: '50px'
+            marginTop: '50px',
         },
     },
 }));

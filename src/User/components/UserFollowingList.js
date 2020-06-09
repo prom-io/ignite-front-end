@@ -2,8 +2,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Card, CircularProgress, makeStyles } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
-import { UsersList } from './UsersList';
 import useTheme from '@material-ui/core/styles/useTheme';
+import { UsersList } from './UsersList';
 
 const useStyles = makeStyles(() => ({
     centered: {

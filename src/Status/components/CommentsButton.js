@@ -30,7 +30,7 @@ const _CommentsButton = ({ status, setCreateStatusDialogOpen, setReferredStatus,
     const handleClick = () => {
         if (!currentUser) {
             setLoginDialogOpen(true);
-            return
+            return;
         }
 
         setReferredStatus(status);

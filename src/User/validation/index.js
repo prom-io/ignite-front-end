@@ -53,7 +53,7 @@ export const validateIsCurrentPassword = (currentPassword, password) => {
     }
 
     return undefined;
-}
+};
 
 export const validatePassword = password => {
     if (isStringEmpty(password)) {
@@ -69,4 +69,4 @@ export const validatePassword = password => {
     }
 
     return undefined;
-}
+};

@@ -1,27 +1,27 @@
-import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
-import { observer } from "mobx-react";
+import React from 'react';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
+import { observer } from 'mobx-react';
 
-import { AppBar } from "../AppBar/components";
-import { UpdateUserContainer } from "../User/components";
-import { Layout } from "../Layout";
-import { LoginForm } from "../Authorization/components";
+import { AppBar } from '../AppBar/components';
+import { UpdateUserContainer } from '../User/components';
+import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
-import { useAuthorization, useLocalization } from "../store/hooks";
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { useAuthorization, useLocalization } from '../store/hooks';
 
 const useStyles = makeStyles((theme) => ({
     editTitle: {
         fontWeight: 600,
-        fontSize: "20px",
-        lineHeight: "24px",
-        marginBottom: "24px",
+        fontSize: '20px',
+        lineHeight: '24px',
+        marginBottom: '24px',
         [theme.breakpoints.down('sm')]: {
-           display: 'none',
+            display: 'none',
         },
-    }
+    },
 }));
 
 export const UserEditPage = observer(() => {
@@ -43,7 +43,7 @@ export const UserEditPage = observer(() => {
                             spacing={28}
                             lg={9}
                             className="right-content-container"
-                            style={{ width: "100%" }}
+                            style={{ width: '100%' }}
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
@@ -55,7 +55,7 @@ export const UserEditPage = observer(() => {
                                         className={classes.editTitle}
                                         variant="h6"
                                     >
-                                        {l("user.edit-profile")}
+                                        {l('user.edit-profile')}
                                     </Typography>
                                     <UpdateUserContainer />
                                 </>

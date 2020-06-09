@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
     TextField,
     InputAdornment,
     IconButton,
-    makeStyles
-} from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+    makeStyles,
+} from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
-import { useLocalization } from "../../store/hooks";
+import { useLocalization } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     iconButton: {
-        padding: 0
-    }
+        padding: 0,
+    },
 }));
 
 const UserPasswordField = ({ label, value, errors, setFormValue }) => {
@@ -23,7 +23,7 @@ const UserPasswordField = ({ label, value, errors, setFormValue }) => {
     return (
         <TextField
             label={l(label)}
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             value={value}
             onChange={setFormValue}
             error={Boolean(errors)}
@@ -39,7 +39,7 @@ const UserPasswordField = ({ label, value, errors, setFormValue }) => {
                             {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
-                )
+                ),
             }}
             fullWidth
         />

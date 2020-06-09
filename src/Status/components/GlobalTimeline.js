@@ -2,9 +2,9 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     centered: {

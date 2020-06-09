@@ -1,13 +1,13 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { Link } from "mobx-router";
-import Markdown from "react-markdown";
-import breaks from "remark-breaks";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Link } from 'mobx-router';
+import Markdown from 'react-markdown';
+import breaks from 'remark-breaks';
+import { Avatar, Grid, Typography } from '@material-ui/core';
 
-import { localized } from "../localization/components";
-import { Routes } from "../routes";
-import { addLineBreak } from "../utils/string-utils";
+import { localized } from '../localization/components';
+import { Routes } from '../routes';
+import { addLineBreak } from '../utils/string-utils';
 
 const _UserCard = ({
     currentUser,
@@ -28,7 +28,7 @@ const _UserCard = ({
                 <Link
                     store={routerStore}
                     view={Routes.userProfile}
-                    params={{ username: username }}
+                    params={{ username }}
                 >
                     <div className="user-card-top user-card-content-box">
                         <Avatar

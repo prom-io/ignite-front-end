@@ -3,9 +3,9 @@ import { inject, observer } from 'mobx-react';
 import { Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Card, CardHeader, CardContent, makeStyles, Typography } from '@material-ui/core';
 import { format } from 'date-fns';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { trimString } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {

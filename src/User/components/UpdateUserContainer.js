@@ -1,26 +1,26 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core";
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
 
-import { UpdateUserProfile, UpdateUserPassword } from "./";
+import { UpdateUserProfile, UpdateUserPassword } from '.';
 
 const useStyles = makeStyles(theme => ({
     updateUserContainer: {
-        position: "relative",
-        border: "1px solid #F1EBE8",
-        borderRadius: "4px",
-        background: "#F1EBE8",
+        position: 'relative',
+        border: '1px solid #F1EBE8',
+        borderRadius: '4px',
+        background: '#F1EBE8',
     },
     updateUserContainerBackground: {
-        position: "absolute",
+        position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
-        height: "108px",
-        background: "#FFFBF8",
+        height: '108px',
+        background: '#FFFBF8',
         [theme.breakpoints.down('sm')]: {
-            height:'245px'
+            height: '245px',
         },
-    }
+    },
 }));
 
 export const UpdateUserContainer = () => {

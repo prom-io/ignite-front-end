@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
     },
     swipeableDrawerRoot: {
         overflowY: 'scroll',
-      '-webkit-overflow-scrolling': 'touch',
-    }
+        '-webkit-overflow-scrolling': 'touch',
+    },
 }));
 
 const ImportantInfo = '{Important info}';
@@ -52,12 +52,12 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
             <Link
                 view={Routes.description}
                 store={routerStore}
-                style={{textDecoration: 'none'}}
+                style={{ textDecoration: 'none' }}
             >
                 <Typography
                     variant="body1"
                     color="primary"
-                    classes={{root: classes.importantInfoLink}}
+                    classes={{ root: classes.importantInfoLink }}
                     onClick={() => setDrawerExpanded(false)}
                 >
                     <strong>{ImportantInfo}</strong>

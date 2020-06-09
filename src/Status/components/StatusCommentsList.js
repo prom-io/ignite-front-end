@@ -2,10 +2,10 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(() => ({
     centered: {

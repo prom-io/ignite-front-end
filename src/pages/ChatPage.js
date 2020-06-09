@@ -42,50 +42,51 @@ const useStyles = makeStyles(theme => ({
 const _ChatPage = ({ currentUser, l }) => {
     const classes = useStyles();
     return (
-    <Grid container>
-        <Grid item xs={12}>
-            <AppBar currentActiveRoute="chat" />
-        </Grid>
-        <Grid item xs={12}>
-            <Layout>
-                <Grid container className="content-container">
-                    <Grid item md={3} className="left-banners-container">
-                        <PrometeusDescription />
-                    </Grid>
-                    <Grid
-                        item
-                        spacing={28}
-                        lg={9}
-                        className="right-content-container"
-                    >
-                        {!currentUser && (
-                            <Grid item className="login-form-container">
-                                <LoginForm />
-                            </Grid>
-                        )}
-                        <div className="static-page">
-                            <div className="static-page-container">
-                                <div className={classes.chatError}>
-                                    <div className={classes.chatErrorInfo}>
-                                        <IgniteChatPage color="#A2A2A2" />
-                                        <h1>PrompTalk Chat</h1>
-                                    </div>
-                                    <div>
-                                        <p>{l('chat.description.first-paragraph')}</p>
-                                        <p>{l('chat.description.second-paragraph')}</p>
+        <Grid container>
+            <Grid item xs={12}>
+                <AppBar currentActiveRoute="chat" />
+            </Grid>
+            <Grid item xs={12}>
+                <Layout>
+                    <Grid container className="content-container">
+                        <Grid item md={3} className="left-banners-container">
+                            <PrometeusDescription />
+                        </Grid>
+                        <Grid
+                            item
+                            spacing={28}
+                            lg={9}
+                            className="right-content-container"
+                        >
+                            {!currentUser && (
+                                <Grid item className="login-form-container">
+                                    <LoginForm />
+                                </Grid>
+                            )}
+                            <div className="static-page">
+                                <div className="static-page-container">
+                                    <div className={classes.chatError}>
+                                        <div className={classes.chatErrorInfo}>
+                                            <IgniteChatPage color="#A2A2A2" />
+                                            <h1>PrompTalk Chat</h1>
+                                        </div>
+                                        <div>
+                                            <p>{l('chat.description.first-paragraph')}</p>
+                                            <p>{l('chat.description.second-paragraph')}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Grid>
+                        <Grid item md={3} className="right-banners-container">
+                            <ExploreOurFeaturesDescription />
+                        </Grid>
                     </Grid>
-                    <Grid item md={3} className="right-banners-container">
-                        <ExploreOurFeaturesDescription />
-                    </Grid>
-                </Grid>
-            </Layout>
+                </Layout>
+            </Grid>
         </Grid>
-    </Grid>
-)};
+    );
+};
 
 const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser,

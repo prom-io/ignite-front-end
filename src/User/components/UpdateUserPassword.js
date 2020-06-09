@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Button,
     TextField,
@@ -7,73 +7,73 @@ import {
     Typography,
     InputAdornment,
     IconButton,
-    makeStyles
-} from "@material-ui/core";
+    makeStyles,
+} from '@material-ui/core';
 
-import UserPasswordField from "./UserPasswordField";
-import { localized } from "../../localization/components";
+import UserPasswordField from './UserPasswordField';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {
-        background: "#fff",
-        padding: "34px 48px 40px 34px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        background: '#fff',
+        padding: '34px 48px 40px 34px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
 
-        "& h5": {
+        '& h5': {
             fontWeight: 600,
-            fontSize: "20px",
-            lineHeight: "24px"
+            fontSize: '20px',
+            lineHeight: '24px',
         },
-        [theme.breakpoints.down("sm")]: {
+        [theme.breakpoints.down('sm')]: {
             marginBottom: '50px',
-            padding: "34px",
-        }
+            padding: '34px',
+        },
     },
     alignItemsUnset: {
-        alignItems: "unset",
-        [theme.breakpoints.down("sm")]: {
-            flexDirection: 'column'
-        }
+        alignItems: 'unset',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+        },
     },
     updateUserPasswordOpen: {
-        boxSizing: "border-box",
-        padding: "11px 25px",
-        height: "40px",
+        boxSizing: 'border-box',
+        padding: '11px 25px',
+        height: '40px',
         border: `1px solid ${theme.palette.primary.main}`,
-        borderRadius: "30px",
+        borderRadius: '30px',
         fontWeight: 600,
-        fontSize: "15px",
-        lineHeight: "18px",
-        color: theme.palette.primary.main
+        fontSize: '15px',
+        lineHeight: '18px',
+        color: theme.palette.primary.main,
     },
     updateUserPasswordForm: {
-        maxWidth: "344px",
-        width: "100%",
-        [theme.breakpoints.down("sm")]: {
-            maxWidth: 'unset'
-        }
+        maxWidth: '344px',
+        width: '100%',
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: 'unset',
+        },
     },
     updateUserPasswordFormActions: {
-        marginTop: "40px",
-        display: "flex",
-        justifyContent: "space-between"
+        marginTop: '40px',
+        display: 'flex',
+        justifyContent: 'space-between',
     },
     updateUserPasswordChange: {
-        padding: "11px 26px",
-        height: "40px",
-        borderRadius: "30px",
+        padding: '11px 26px',
+        height: '40px',
+        borderRadius: '30px',
         fontWeight: 600,
-        fontSize: "15px",
-        lineHeight: "18px"
+        fontSize: '15px',
+        lineHeight: '18px',
     },
     updateUserPasswordCancel: {
         color: theme.palette.primary.main,
         fontWeight: 300,
-        fontSize: "15px",
-        lineHeight: "18px"
-    }
+        fontSize: '15px',
+        lineHeight: '18px',
+    },
 }));
 
 const _UpdateUserPassword = ({
@@ -82,7 +82,7 @@ const _UpdateUserPassword = ({
     pending,
     updateUserPassword,
     setFormValue,
-    l
+    l,
 }) => {
     const classes = useStyles();
     const [openChangePass, setOpenChangePass] = useState(false);
@@ -91,33 +91,29 @@ const _UpdateUserPassword = ({
         <div
             className={[
                 classes.updateUserPassword,
-                openChangePass && classes.alignItemsUnset
-            ].join(" ")}
+                openChangePass && classes.alignItemsUnset,
+            ].join(' ')}
         >
-            <Typography variant="h5">{l("authorization.login.password")}</Typography>
+            <Typography variant="h5">{l('authorization.login.password')}</Typography>
             {!openChangePass ? (
                 <Button
                     className={classes.updateUserPasswordOpen}
                     onClick={() => setOpenChangePass(true)}
                 >
-                    {l("user.change")}
+                    {l('user.change')}
                 </Button>
             ) : (
                 <div className={classes.updateUserPasswordForm}>
                     <UserPasswordField
                         label="authorization.login.password"
                         value={updateUserProfileForm.password}
-                        setFormValue={event =>
-                            setFormValue("password", event.target.value)
-                        }
+                        setFormValue={event => setFormValue('password', event.target.value)}
                         errors={formErrors.password}
                     />
                     <UserPasswordField
                         label="authorization.login.new-password"
                         value={updateUserProfileForm.new_password}
-                        setFormValue={event =>
-                            setFormValue("new_password", event.target.value)
-                        }
+                        setFormValue={event => setFormValue('new_password', event.target.value)}
                         errors={formErrors.new_password}
                     />
                     <div className={classes.updateUserPasswordFormActions}>
@@ -128,13 +124,13 @@ const _UpdateUserPassword = ({
                             onClick={updateUserPassword}
                             disabled={pending}
                         >
-                            {l("user.change-password")}
+                            {l('user.change-password')}
                         </Button>
                         <Button
                             className={classes.updateUserPasswordCancel}
                             onClick={() => setOpenChangePass(false)}
                         >
-                            {l("user.profile.cancel")}
+                            {l('user.profile.cancel')}
                         </Button>
                     </div>
                 </div>
@@ -149,9 +145,9 @@ const mapMobxToProps = ({ userProfileUpdate }) => ({
     submissionError: userProfileUpdate.submissionError,
     pending: userProfileUpdate.pending,
     setFormValue: userProfileUpdate.setFormValue,
-    updateUserPassword: userProfileUpdate.updateUserPassword
+    updateUserPassword: userProfileUpdate.updateUserPassword,
 });
 
 export const UpdateUserPassword = localized(
-    inject(mapMobxToProps)(observer(_UpdateUserPassword))
+    inject(mapMobxToProps)(observer(_UpdateUserPassword)),
 );

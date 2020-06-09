@@ -9,9 +9,9 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
-        backgroundColor: '#FFFBF8',
+        backgroundColor: theme.palette.background.light,
         boxShadow: 'none',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px 4px 0px 0px',
         paddingBottom: '8px',
     },
@@ -70,10 +70,10 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
     },
     forgotPassword: {
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         cursor: 'pointer',
         '&:hover': {
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));

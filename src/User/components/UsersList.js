@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const _UsersList = ({ users, routerStore }) => (
     <List style={{ padding: 0 }}>
         {users.map(user => (
-            <ListItem role="div" style={{ borderBottom: '1px solid #F1EBE8' }}>
+            <ListItem role="div" style={{ borderBottom: `1px solid ${theme.palette.border.main}` }}>
                 <ListItemAvatar>
                     <Avatar src={user.avatar || 'http://localhost:3000/avatars/original/missing.png'} />
                 </ListItemAvatar>

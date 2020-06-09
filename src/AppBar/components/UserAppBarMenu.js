@@ -12,7 +12,7 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper,
+    Popper, useTheme
 } from '@material-ui/core';
 import { Link } from 'mobx-router';
 import { Routes } from '../../routes';
@@ -41,6 +41,7 @@ const useStyles = makeStyles(() => ({
 
 const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
     const classes = useStyles();
+    const theme = useTheme();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -87,7 +88,7 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                     onClick={handleToggle}
                     classes={{ root: classes.avatarIconButton }}
                 >
-                    <Avatar classes={{ root: classes.avatarIcon }} src={currentUser.avatar} style={{ border: '1px solid #F1EBE8' }} />
+                    <Avatar classes={{ root: classes.avatarIcon }} src={currentUser.avatar} style={{ border: `1px solid ${theme.palette.border.main}` }} />
                 </IconButton>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (

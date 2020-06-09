@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     notificationLeftMargin: {
-        backgroundColor: '#FFFBF8',
+        backgroundColor: theme.palette.background.light,
         paddingLeft: theme.spacing(6),
     },
 }));

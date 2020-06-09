@@ -7,7 +7,6 @@ import {
     withMobileDialog,
     makeStyles,
     TextField,
-    CircularProgress,
     Typography,
 } from '@material-ui/core';
 import { withSnackbar } from 'notistack';
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '20px',
         lineHeight: '24px',
         textAlign: 'center',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
     },
     signUpDialogButton: {
         maxWidth: 374,

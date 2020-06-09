@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main,
     },
     noNotificationsContainer: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
     },
     noNotificationsContent: {
         display: 'flex',
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: theme.spacing(2),
     },
     notificationsError: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
     },
@@ -43,12 +43,12 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         '& p': {
             fontFamily: 'Museo Sans Cyrl Bold',
             fontSize: '20px',
             margin: '24px 0 4px 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));

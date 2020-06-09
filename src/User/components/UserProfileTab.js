@@ -1,19 +1,19 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     userProfileTab: {
         cursor: 'pointer',
         flex: '1 1 auto',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
     },
     userProfileActiveTab: {
-        borderBottom: '2px solid #FF5C01',
+        borderBottom: `2px solid ${theme.primary.main}`,
         cursor: 'pointer',
         flex: '1 1 auto',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
         '&.MuiTypography-colorTextSecondary p': {
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));

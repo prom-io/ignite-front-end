@@ -8,6 +8,7 @@ import { Avatar, Grid, Typography } from '@material-ui/core';
 import { localized } from '../localization/components';
 import { Routes } from '../routes';
 import { addLineBreak } from '../utils/string-utils';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const _UserCard = ({
     currentUser,
@@ -21,7 +22,10 @@ const _UserCard = ({
     followers,
     following,
     l,
-}) => (
+}) => {
+    const theme = useTheme();
+    
+    return (
     <div className="user-profile-card">
         {isLogin ? (
             <>
@@ -38,7 +42,7 @@ const _UserCard = ({
                                 height: 90,
                                 minWidth: 90,
                                 minHeight: 90,
-                                border: '1px solid #F1EBE8',
+                                border: `1px solid ${theme.palette.border.main}`,
                             }}
                         />
                     </div>
@@ -119,7 +123,7 @@ const _UserCard = ({
             </div>
         )}
     </div>
-);
+)};
 
 const mapMobxToProps = ({ authorization, userCard, store }) => ({
     currentUser: authorization.currentUser,

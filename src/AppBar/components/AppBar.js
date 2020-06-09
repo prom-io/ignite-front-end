@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 'none',
     },
     headerContainer: {
-        borderBottom: '1px solid #F1EBE8',
+        borderBottom: `1px solid ${theme.palette.border.main}`,
         background: '#fff',
         boxShadow: 'none',
         minHeight: '50px',
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
             justifyContent: 'space-around',
             height: 50,
             width: '100%',
-            background: '#FFFBF8',
+            background: theme.palette.background.light,
             zIndex: 10,
         },
     },

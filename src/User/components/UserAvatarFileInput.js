@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
     avatarAttachmentContainer: {
         [theme.breakpoints.down('sm')]: {
-            background: '#FFFBF8',
+            background: theme.palette.background.light,
             padding: '8px 24px',
         },
     },
@@ -30,13 +30,13 @@ const useStyles = makeStyles(theme => ({
         marginTop: '24px',
         '& p': {
             margin: 0,
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
             fontSize: '12px',
             fontFamily: 'Museo Sans Cyrl Regular',
         },
         '& span': {
             marginTop: '8px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             fontSize: '16px',
             fontFamily: 'Museo Sans Cyrl Bold',
         },

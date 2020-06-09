@@ -38,8 +38,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'flex-end',
     },
     iconContainer: props => ({
-        backgroundColor: '#FFFBF8',
-        borderRight: '1px solid #F1EBE8',
+        backgroundColor: theme.palette.background.light,
+        borderRight: `1px solid ${theme.palette.border.main}`,
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2) + props.pixelsToAddToIconRightPadding,
         alignItems: 'center',

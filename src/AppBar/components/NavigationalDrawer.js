@@ -5,6 +5,7 @@ import { Link } from 'mobx-router';
 import { DrawerMenu } from './DrawerMenu';
 import { DrawerUserInfo } from './DrawerUserInfo';
 import { Routes } from '../../routes';
+import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     importantInfoLink: {
@@ -27,6 +28,7 @@ const ImportantInfo = '{Important info}';
 
 const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <SwipeableDrawer
@@ -40,7 +42,7 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
                     overflowY: 'scroll',
                     display: 'block',
                     '-webkit-overflow-scrolling': 'touch',
-                    backgroundColor: '#FFFBF8',
+                    backgroundColor: theme.palette.background.light,
                 },
             }}
             BackdropProps={{

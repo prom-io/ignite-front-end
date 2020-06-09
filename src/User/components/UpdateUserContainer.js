@@ -6,9 +6,9 @@ import { UpdateUserProfile, UpdateUserPassword } from '.';
 const useStyles = makeStyles(theme => ({
     updateUserContainer: {
         position: 'relative',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px',
-        background: '#F1EBE8',
+        background: theme.palette.border.main,
     },
     updateUserContainerBackground: {
         position: 'absolute',
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         left: 0,
         right: 0,
         height: '108px',
-        background: '#FFFBF8',
+        background: theme.palette.background.light,
         [theme.breakpoints.down('sm')]: {
             height: '245px',
         },

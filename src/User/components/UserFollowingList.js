@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
     cardContainer: {
         boxShadow: 'none',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
     },
 }));
 

@@ -11,13 +11,13 @@ import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
 import useTheme from '@material-ui/core/styles/useTheme';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
-            marginTop: '50px',
+            marginTop: '50px'
         },
     },
 }));

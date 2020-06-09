@@ -5,7 +5,7 @@ import { FadeLoader } from 'react-spinners';
 import useTheme from '@material-ui/core/styles/useTheme';
 import { UsersList } from './UsersList';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',

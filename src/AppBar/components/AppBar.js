@@ -110,13 +110,13 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                                 hidden={Boolean(window.AndroidCallback)}
                             />
                             <AppBarLink
-                                text={l('appbar.trends')}
-                                targetView={Routes.trends}
-                                active={currentActiveRoute === 'trends'}
-                                icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
+                                text={l('appbar.topics')}
+                                targetView={Routes.topics}
+                                active={currentActiveRoute === 'topics'}
+                                icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
                                 routerStore={routerStore}
                                 viewParameters={{}}
-                                id="trendsLink"
+                                id="topicsLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
                         </div>
@@ -195,13 +195,13 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                     hidden={Boolean(window.AndroidCallback)}
                 />
                 <AppBarLink
-                    text={l('appbar.trends')}
-                    targetView={Routes.trends}
-                    active={currentActiveRoute === 'trends'}
-                    icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
+                    text={l('appbar.topics')}
+                    targetView={Routes.topics}
+                    active={currentActiveRoute === 'topics'}
+                    icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
                     routerStore={routerStore}
                     viewParameters={{}}
-                    id="trendsLink"
+                    id="topicsLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
             </nav>

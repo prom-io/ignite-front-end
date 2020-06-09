@@ -39,11 +39,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _TrendsPage = ({ currentUser, l }) => {
+const _TopicsPage = ({ currentUser, l }) => {
     const classes = useStyles();
     return (
         <Grid container>
-            <AppBar currentActiveRoute="trends" />
+            <AppBar currentActiveRoute="topics" />
             <Grid item xs={12}>
                 <Layout>
                     <Grid container className="content-container">
@@ -66,7 +66,7 @@ const _TrendsPage = ({ currentUser, l }) => {
                                     <div className={classes.trendError}>
                                         <div className={classes.trendErrorInfo}>
                                             <IgniteTrendPage color="#A2A2A2" />
-                                            <h1>{l('appbar.trends')}</h1>
+                                            <h1>{l('appbar.topics')}</h1>
                                         </div>
                                         <div>
                                             <p>{l('trends.first-paragraph')}</p>
@@ -91,4 +91,4 @@ const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser,
 });
 
-export const TrendsPage = localized(inject(mapMobxToProps)(observer(_TrendsPage)));
+export const TopicsPage = localized(inject(mapMobxToProps)(observer(_TopicsPage)));

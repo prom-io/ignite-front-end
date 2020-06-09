@@ -155,7 +155,7 @@ const _UpdateUserProfile = ({
                         fullWidth
                         multiline
                     />
-                    <span>{updateUserProfileForm.bio.length}/160</span>
+                    <span>{updateUserProfileForm.bio ? updateUserProfileForm.bio.length : 0}/160</span>
                 </div>
                 <div className={classes.updateUserProfileButton}>
                     <Button

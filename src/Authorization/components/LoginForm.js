@@ -72,6 +72,9 @@ const useStyles = makeStyles(theme => ({
     forgotPassword: {
         color: '#A2A2A2',
         cursor: 'pointer',
+        '&:hover': {
+            color: '#1C1C1C',
+        }
     }
 }));
 

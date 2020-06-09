@@ -41,6 +41,7 @@ export class AuthorizationStore {
         this.currentUser = undefined;
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
+        sessionStorage.removeItem("accessToken");
 
         //logout for Android webview
         console.log("Checking AndroidCallback presence");

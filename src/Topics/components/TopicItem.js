@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import ArrowDropDownIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles(theme => ({
     topicItemBody: {
@@ -26,7 +26,10 @@ const useStyles = makeStyles(theme => ({
     },
     topicItemFooter: {
         color: theme.palette.text.secondary
-    }
+    },
+    arrowAnimate: {
+        transform: 'rotate(180deg)',
+    },
 }));
 
 export const TopicItem = ({ topic }) => {

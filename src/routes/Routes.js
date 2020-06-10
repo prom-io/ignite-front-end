@@ -92,11 +92,16 @@ export const Routes = {
         component: <TopicsPage />,
         beforeEnter: () => {
             store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchAllStatuses();
             store.userCard.setDisplayMode('currentUser');
         },
-        onExit: () => {
-            store.topicsPopular.reset();
+        beforeExit: () => {
             store.topicStatuses.reset();
+            store.topicsPopular.reset();
+        },
+        onExit: () => {
+            // store.topicStatuses.reset();
+            // store.topicsPopular.reset();
         },
     }),
     topic: new Route({

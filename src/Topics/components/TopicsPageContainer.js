@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, makeStyles } from "@material-ui/core";
 
+import { TopicStatusList } from "./TopicStatusList";
 import { useLocalization } from "../../store/hooks";
 
 const useStyles = makeStyles(() => ({
@@ -21,6 +22,7 @@ export const TopicsPageContainer = () => {
             <Typography className={classes.topicsTitle} variant="h6">
                 {l("appbar.topics")}
             </Typography>
+            <TopicStatusList />
         </div>
     );
 };

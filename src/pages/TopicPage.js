@@ -8,6 +8,7 @@ import {
     ExploreOurFeaturesDescription,
     PrometeusDescription
 } from "../PrometeusDescription";
+import { LoginForm } from "../Authorization/components";
 import { Layout } from "../Layout";
 import { useAuthorization } from "../store/hooks";
 
@@ -17,7 +18,7 @@ export const TopicPage = observer(() => {
     return (
         <Grid container>
             <Grid item xs={12}>
-                <AppBar />
+                <AppBar currentActiveRoute="topics" />
             </Grid>
             <Grid item xs={12}>
                 <Layout>
@@ -31,8 +32,13 @@ export const TopicPage = observer(() => {
                             lg={9}
                             className="right-content-container"
                         >
-                            {/* <TopicPageContainer /> */}
-                            Topic
+                            {!currentUser ? (
+                                <Grid item className="login-form-container">
+                                    <LoginForm />
+                                </Grid>
+                            ) : (
+                                <TopicPageContainer />
+                            )}
                         </Grid>
                         <Grid item md={3} className="right-banners-container">
                             {currentUser ? (

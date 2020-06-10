@@ -1,1 +1,2 @@
-export * from './TopicsStore';
+export * from './TopicsPopularStore';
+export * from './TopicStatusesStore';

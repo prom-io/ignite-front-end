@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
 import { FadeLoader } from "react-spinners";
 
-import { TopicItem } from "./TopicItem";
+import { TopicPopularItem } from "./TopicPopularItem";
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -15,15 +15,11 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _TopicsPopularList = ({ fetchTopicsPopular, topicsPopularItems, pending }) => {
+const _TopicsPopularList = ({ topicsPopularItems, pending }) => {
     const classes = useStyles();
     const theme = useTheme();
 
-    useEffect(() => {
-        fetchTopicsPopular();
-    }, []);
-
-    return topicsPopularItems.length === 0 && pending ? (
+    return pending ? (
         <div className={classes.centered}>
             <FadeLoader
                 color={theme.palette.primary.main}
@@ -31,14 +27,15 @@ const _TopicsPopularList = ({ fetchTopicsPopular, topicsPopularItems, pending })
             />
         </div>
     ) : (
-        topicsPopularItems.map(topic => <TopicItem key={topic.id} topic={topic} />)
+        topicsPopularItems.map(topic => (
+            <TopicPopularItem key={topic.id} topic={topic} />
+        ))
     );
 };
 
-const mapMobxToProps = ({ topics }) => ({
-    fetchTopicsPopular: topics.fetchTopicsPopular,
-    topicsPopularItems: topics.topicsPopularItems,
-    pending: topics.pending
+const mapMobxToProps = ({ topicsPopular }) => ({
+    topicsPopularItems: topicsPopular.topicsPopularItems,
+    pending: topicsPopular.pending
 });
 
 export const TopicsPopularList = inject(mapMobxToProps)(

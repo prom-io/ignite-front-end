@@ -91,32 +91,28 @@ export const Routes = {
         path: '/topics',
         component: <TopicsPage />,
         beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular();
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
+            store.topicsPopular.reset();
+            store.topicStatuses.reset();
         },
     }),
     topic: new Route({
         path: '/topic/:id',
         component: <TopicPage />,
         beforeEnter: (route, params) => {
-            // store.statusPage.fetchStatus(params.id);
-            // store.statusComments.reset();
-            // store.statusComments.setOnlyAddCommentsToStatus(params.id);
-            // store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
-            // store.statusComments.fetchStatuses();
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchStatusesOnTopic(params.id);
             store.userCard.setDisplayMode('currentUser');
         },
         onParamsChange: (route, params) => {
-            // store.statusPage.fetchStatus(params.id);
-            // store.statusComments.reset();
-            // store.statusComments.setOnlyAddCommentsToStatus(params.id);
-            // store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
-            // store.statusComments.fetchStatuses();
+            store.topicStatuses.fetchStatusesOnTopic(params.id);
         },
         onExit: () => {
-            // store.statusPage.reset();
-            // store.statusComments.reset();
+            store.topicsPopular.reset();
+            store.topicStatuses.reset();
         },
     }),
     terms: new Route({

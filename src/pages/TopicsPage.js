@@ -3,7 +3,7 @@ import { Grid, Hidden } from "@material-ui/core";
 import { observer } from "mobx-react";
 
 import { AppBar } from "../AppBar/components";
-import { TopicPageContainer, TopicsPopular } from "../Topics/components";
+import { TopicsPageContainer, TopicsPopular } from "../Topics/components";
 import {
     PrometeusDescription,
     ExploreOurFeaturesDescription
@@ -30,12 +30,13 @@ export const TopicsPage = observer(() => {
                             lg={9}
                             className="right-content-container"
                         >
-                            {!currentUser && (
+                            {!currentUser ? (
                                 <Grid item className="login-form-container">
                                     <LoginForm />
                                 </Grid>
+                            ) : (
+                                <TopicsPageContainer />
                             )}
-                            Topics
                         </Grid>
                         <Grid item md={3} className="right-banners-container">
                             {currentUser ? (

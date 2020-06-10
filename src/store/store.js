@@ -26,7 +26,7 @@ import { DrawerStore } from '../AppBar/stores';
 import { LocaleStore } from '../localization/stores';
 import { BtfsHashesStore } from '../Btfs/stores';
 import { NotificationsStore } from '../Notification/stores';
-import { TopicsStore } from '../Topics/stores';
+import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
 import { WebsocketStore } from '../websocket/stores';
 
 const authorization = new AuthorizationStore();
@@ -55,7 +55,8 @@ const statusComments = new StatusesListStore(authorization, createStatus, undefi
 const userAvatarUpload = new UploadUserAvatarStore();
 const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile);
 const notifications = new NotificationsStore(authorization);
-const topics = new TopicsStore(authorization);
+const topicStatuses = new TopicStatusesStore(authorization);
+const topicsPopular = new TopicsPopularStore(authorization);
 const websocket = new WebsocketStore(authorization, notifications);
 
 export const store = {
@@ -85,6 +86,7 @@ export const store = {
     userAvatarUpload,
     userProfileUpdate,
     notifications,
-    topics,
+    topicStatuses,
+    topicsPopular,
     websocket,
 };

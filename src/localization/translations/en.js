@@ -122,6 +122,7 @@ export const en = {
     'user.username.has-already-been-taken': 'This username has already been taken',
     'user.display-name': 'Displayed name',
     'user.display-name.is-too-long': 'Displayed name is too long',
+    'user.language': 'Language',
     'user.bio': 'Bio',
     'user.bio.is-too-long': 'Bio is too long',
     'user.upload-avatar': 'Upload avatar',

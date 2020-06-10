@@ -122,6 +122,7 @@ export const ko = {
     'user.username.has-already-been-taken': '아이디 이름은 이미 사용되고 있습니다',
     'user.display-name': '표시된 이름',
     'user.display-name.is-too-long': '표시되는 이름이 너무 깁니다',
+    'user.language': 'Language',
     'user.bio': '개인소개',
     'user.bio.is-too-long': '개인소개가 너무 길다',
     'user.upload-avatar': '프로필 업로드',

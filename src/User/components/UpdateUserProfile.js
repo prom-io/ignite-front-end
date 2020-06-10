@@ -4,6 +4,7 @@ import {
     Button,
     Typography,
     TextField,
+    MenuItem,
     makeStyles,
 } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
@@ -136,6 +137,28 @@ const _UpdateUserProfile = ({
                         {updateUserProfileForm.displayName.length}
                         /50
                     </span>
+                </div>
+                <div className={classes.updateUserProfileField}>
+                    <TextField
+                        className={classes.updateUserProfileField}
+                        label={l('user.language')}
+                        placeholder="Select your language"
+                        value={updateUserProfileForm.language || "en"}
+                        onChange={event => setFormValue('language', event.target.value)}
+                        margin="dense"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        select
+                        fullWidth
+                    >
+                        <MenuItem value="en">
+                            English
+                        </MenuItem>
+                        <MenuItem value="ko">
+                            Korean
+                        </MenuItem>
+                    </TextField>
                 </div>
                 <div className={classes.updateUserProfileField}>
                     <TextField

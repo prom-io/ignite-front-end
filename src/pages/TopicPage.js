@@ -5,19 +5,20 @@ import { observer } from "mobx-react";
 import { AppBar } from "../AppBar/components";
 import { TopicPageContainer, TopicsPopular } from "../Topics/components";
 import {
-    PrometeusDescription,
-    ExploreOurFeaturesDescription
+    ExploreOurFeaturesDescription,
+    PrometeusDescription
 } from "../PrometeusDescription";
-import { LoginForm } from "../Authorization/components";
 import { Layout } from "../Layout";
 import { useAuthorization } from "../store/hooks";
 
-export const TopicsPage = observer(() => {
+export const TopicPage = observer(() => {
     const { currentUser } = useAuthorization();
 
     return (
         <Grid container>
-            <AppBar currentActiveRoute="topics" />
+            <Grid item xs={12}>
+                <AppBar />
+            </Grid>
             <Grid item xs={12}>
                 <Layout>
                     <Grid container className="content-container">
@@ -26,16 +27,12 @@ export const TopicsPage = observer(() => {
                         </Grid>
                         <Grid
                             item
-                            spacing={28}
+                            xs={12}
                             lg={9}
                             className="right-content-container"
                         >
-                            {!currentUser && (
-                                <Grid item className="login-form-container">
-                                    <LoginForm />
-                                </Grid>
-                            )}
-                            Topics
+                            {/* <TopicPageContainer /> */}
+                            Topic
                         </Grid>
                         <Grid item md={3} className="right-banners-container">
                             {currentUser ? (

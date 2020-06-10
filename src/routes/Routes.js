@@ -12,6 +12,7 @@ import {
     FollowPeoplePage,
     TermsAndPoliciesPage,
     TopicsPage,
+    TopicPage,
     UserProfilePage,
     UserEditPage,
 } from '../pages';
@@ -93,6 +94,29 @@ export const Routes = {
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
+        },
+    }),
+    topic: new Route({
+        path: '/topic/:id',
+        component: <TopicPage />,
+        beforeEnter: (route, params) => {
+            // store.statusPage.fetchStatus(params.id);
+            // store.statusComments.reset();
+            // store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            // store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            // store.statusComments.fetchStatuses();
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onParamsChange: (route, params) => {
+            // store.statusPage.fetchStatus(params.id);
+            // store.statusComments.reset();
+            // store.statusComments.setOnlyAddCommentsToStatus(params.id);
+            // store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
+            // store.statusComments.fetchStatuses();
+        },
+        onExit: () => {
+            // store.statusPage.reset();
+            // store.statusComments.reset();
         },
     }),
     terms: new Route({

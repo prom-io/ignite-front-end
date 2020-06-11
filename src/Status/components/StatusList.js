@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import { Typography, Hidden, makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
 import { StatusListItem } from './StatusListItem';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -29,15 +28,14 @@ export const StatusList = ({
     hasMore,
 }) => {
     const classes = useStyles({ radius: 55 });
-    const theme = useTheme();
-
+    
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
             {header && statuses.length !== 0 && <Typography variant="h6">{header}</Typography>}
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
-                loader={<div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>}
+                loader={<div className={classes.centered}><Loader size={'md'} /></div>}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >

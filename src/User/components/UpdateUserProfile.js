@@ -7,10 +7,10 @@ import {
     MenuItem,
     makeStyles,
 } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
 
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     updateUserProfile: {
@@ -203,10 +203,7 @@ const _UpdateUserProfile = ({
                         }
                     >
                         {pending && (
-                            <FadeLoader
-                                css="transform: scale(0.5)"
-                                color="#FF5C01"
-                            />
+                            <Loader size={'md'} />
                         )}
                         {l('user.update-profile.save')}
                     </Button>

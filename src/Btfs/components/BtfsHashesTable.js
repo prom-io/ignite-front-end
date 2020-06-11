@@ -1,11 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Card, CardHeader, CardContent, makeStyles, Typography } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableBody, Card, CardHeader, CardContent, makeStyles, Typography } from '@material-ui/core';
 import { format } from 'date-fns';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
 import { trimString } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
@@ -33,10 +32,9 @@ const getErrorLabel = error => {
 
 const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     if (pending) {
-        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>;
+        return <div className={classes.centered}><Loader size={'md'}/></div>;
     } if (error) {
         return (
             <Typography>

@@ -4,17 +4,15 @@ import {
     IconButton,
     Popper,
     Typography,
-    CircularProgress,
     makeStyles,
 } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
 import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
 import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -41,7 +39,6 @@ const _RepostStatusMenu = ({
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
-    const theme = useTheme();
 
     const handleToggle = () => {
         if (!currentUser) {
@@ -62,7 +59,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-                <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
+              <Loader size={'md'}/>
             ) : (
                 <IconButton
                     ref={anchorRef}

@@ -7,13 +7,22 @@ import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
 import { StatusListItem } from "../../Status/components/StatusListItem";
+import TopicsHashButton from '../../Topics/components/TopicsHashButton';
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: "-2px"
+        marginBottom: "-2px",
+        [theme.breakpoints.down('sm')]: {
+            position: 'fixed',
+            width: '100%',
+            top: 50,
+            background: theme.palette.background.paper,
+            borderBottom: `1px solid ${theme.palette.border.main}`,
+            zIndex: 20,
+        },
     },
     topicListHeaderSwitcher: {
         display: "flex"
@@ -87,6 +96,12 @@ const _TopicStatusList = ({
                     <MenuIcon />
                 </div>
             </div>
+            
+           {/* ---------------тут будет скролл с кнопками -------*/}
+           <div>
+               <TopicsHashButton>#hash</TopicsHashButton>
+           </div>
+            
             <InfiniteScroll
                 next={fetchAllStatuses}
                 loader={

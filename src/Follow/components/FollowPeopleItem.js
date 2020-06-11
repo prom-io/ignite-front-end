@@ -12,12 +12,12 @@ const useStyles = makeStyles(theme => ({
     followPeopleItem: {
         display: 'flex',
         padding: 16,
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderTop: 'none',
         textDecoration: 'none',
 
         '&:hover': {
-            background: '#FFFBF8',
+            background: theme.palette.background.light,
         },
     },
     followPeopleItemAvatar: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
             fontSize: '13px',
             lineHeight: '16px',
             margin: '4px 0 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
     followPeopleItemRow: {
@@ -45,14 +45,14 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px',
             lineHeight: '18px',
             textDecoration: 'none',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
 
         '& small': {
             fontWeight: 300,
             fontSize: '15px',
             lineHeight: '18px',
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
         },
     },
 }));
@@ -65,7 +65,7 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
             className={classes.followPeopleItem}
             key={user.id}
             view={Routes.userProfile}
-            params={{ username: user.id }}
+            params={{ username: user.username }}
             store={routerStore}
         >
             <Avatar

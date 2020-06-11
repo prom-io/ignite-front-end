@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { SwipeableDrawer, makeStyles, Typography } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { DrawerMenu } from './DrawerMenu';
 import { DrawerUserInfo } from './DrawerUserInfo';
 import { Routes } from '../../routes';
@@ -17,12 +18,17 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '18px',
     },
+    swipeableDrawerRoot: {
+        overflowY: 'scroll',
+        '-webkit-overflow-scrolling': 'touch',
+    },
 }));
 
 const ImportantInfo = '{Important info}';
 
 const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <SwipeableDrawer
@@ -33,22 +39,27 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
             PaperProps={{
                 style: {
                     width: 256,
+                    overflowY: 'scroll',
+                    display: 'block',
+                    '-webkit-overflow-scrolling': 'touch',
+                    backgroundColor: theme.palette.background.light,
                 },
             }}
             BackdropProps={{
                 style: {
-                    backgroundColor: 'rgba(0,0,0,0)',
+                    backgroundColor: 'rgba(0,0,0,0.4)',
                 },
             }}
         >
             <Link
                 view={Routes.description}
                 store={routerStore}
-                className={classes.importantInfoLink}
+                style={{ textDecoration: 'none' }}
             >
                 <Typography
                     variant="body1"
                     color="primary"
+                    classes={{ root: classes.importantInfoLink }}
                     onClick={() => setDrawerExpanded(false)}
                 >
                     <strong>{ImportantInfo}</strong>

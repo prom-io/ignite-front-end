@@ -1,12 +1,13 @@
 import {observable, action} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
+import {store} from "../../store";
 
 export class AuthorizationStore {
     @observable
     currentUser = undefined;
 
     @observable
-    accessToken = localStorage.getItem("accessToken");
+    accessToken = localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
 
     @observable
     fetchingCurrentUser = false;
@@ -17,10 +18,17 @@ export class AuthorizationStore {
         this.accessToken = accessToken;
         this.fetchCurrentUser();
     };
+    
+    @action
+    setTempAccessToken = accessToken => {
+        sessionStorage.setItem("accessToken", accessToken);
+        this.accessToken = accessToken;
+        this.fetchCurrentUser();
+    };
 
     @action
     fetchCurrentUser = () => {
-        if (localStorage.getItem("accessToken")) {
+        if (localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken")) {
             this.fetchingCurrentUser = true;
             axiosInstance.get("/api/v1/accounts/current")
                 .then(({data}) => this.currentUser = data)
@@ -30,18 +38,16 @@ export class AuthorizationStore {
 
     @action
     doLogout = () => {
-        console.log("Doing logout");
         this.currentUser = undefined;
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
+        sessionStorage.removeItem("accessToken");
+        store.timelineSwitcher.setCurrentTimeline("global");
 
-        //logout for Android webview
-        console.log("Checking AndroidCallback presence");
         if (window.AndroidCallback) {
-            console.log("AndroidCallback is present, doing logout for webview");
             window.AndroidCallback.logout();
         } else {
-            console.log("AndroidCallback is not present");
+        
         }
     };
 

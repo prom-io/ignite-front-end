@@ -8,10 +8,10 @@ import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     repostedStatus: {
         display: 'flex',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
     },
     repostedStatusNoBorders: {
         display: 'flex',

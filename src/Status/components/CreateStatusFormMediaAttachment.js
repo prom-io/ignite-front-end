@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { makeStyles, IconButton, CircularProgress } from '@material-ui/core';
+import { makeStyles, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { FadeLoader } from 'react-spinners';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -53,7 +53,7 @@ export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => 
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                    <Loader size="md" />
                 </div>
             )}
         </div>

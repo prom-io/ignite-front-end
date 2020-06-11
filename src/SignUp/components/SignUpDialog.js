@@ -7,11 +7,10 @@ import {
     withMobileDialog,
     makeStyles,
     TextField,
-    CircularProgress,
     Typography,
 } from '@material-ui/core';
 import { withSnackbar } from 'notistack';
-import { FadeLoader } from 'react-spinners';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     signUpFormContent: {
@@ -27,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '20px',
         lineHeight: '24px',
         textAlign: 'center',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
     },
     signUpDialogButton: {
         maxWidth: 374,
@@ -134,7 +133,7 @@ const _SignUpDialog = ({
                         color="primary"
                         variant="contained"
                     >
-                        {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                        {pending && <Loader size="md" />}
                         Sign up for private beta testing
                     </Button>
                     <Button

@@ -1,11 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
 import { useStore, useAuthorization, useLocalization } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main,
     },
     noNotificationsContainer: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
     },
     noNotificationsContent: {
         display: 'flex',
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: theme.spacing(2),
     },
     notificationsError: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
     },
@@ -42,12 +43,12 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         '& p': {
             fontFamily: 'Museo Sans Cyrl Bold',
             fontSize: '20px',
             margin: '24px 0 4px 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));
@@ -95,6 +96,7 @@ const noNotifications = {
 
 export const NotificationsList = observer(() => {
     const classes = useStyles();
+
     const notificationsStore = useStore().notifications;
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
     const { currentUser } = useAuthorization();
@@ -122,11 +124,7 @@ export const NotificationsList = observer(() => {
                 next={fetchNotifications}
                 hasMore={hasMore}
                 loader={(
-                    <CircularProgress
-                        size={25}
-                        color="primary"
-                        className={classes.centered}
-                    />
+                    <div className={classes.centered}><Loader size="md" /></div>
                 )}
                 dataLength={notifications.length}
                 style={{ overflowY: 'hidden' }}

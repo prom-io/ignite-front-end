@@ -9,12 +9,12 @@ import { WhoToFollowList } from './WhoToFollowList';
 
 const useStyles = makeStyles(theme => ({
     whoToFollow: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         background: '#FBF7F6',
         borderRadius: '4px',
     },
     whoToFollowMobileWrapper: {
-        background: '#F1EBE8',
+        background: theme.palette.border.main,
     },
     whoToFollowMobile: {
         margin: '8px 0',
@@ -24,12 +24,12 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
 
         '& > div': {
-            background: '#fff',
+            background: theme.palette.background.paper,
             borderRadius: '0px',
         },
     },
     whoToFollowHeader: {
-        borderBottom: '1px solid #F1EBE8',
+        borderBottom: `1px solid ${theme.palette.border.main}`,
 
         '& h3': {
             padding: '16px',
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 700,
             fontSize: '20px',
             lineHeight: '24px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
     whoToFollowBody: {},

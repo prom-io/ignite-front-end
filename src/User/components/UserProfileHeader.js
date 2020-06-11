@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { format } from 'date-fns';
+import Markdown from 'react-markdown';
+import breaks from 'remark-breaks';
 import { UserProfileAvatar } from './UserProfileAvatar';
 import { UserProfileTab } from './UserProfileTab';
 import { addLineBreak } from '../../utils/string-utils';
@@ -72,7 +74,7 @@ const _UserProfileHeader = ({
                             <p>{addLineBreak(displayName)}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
-                                    {bio.split('\n').map((line, i) => (line ? <p key={i}>{line}</p> : <br key={i} />))}
+                                    <Markdown source={bio} plugins={[breaks]} />
                                 </div>
                             )}
                         </div>

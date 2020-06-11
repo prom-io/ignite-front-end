@@ -1,9 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
 import { FollowPeopleItem, UnfollowDialog } from '.';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -31,11 +31,7 @@ const _FollowPeopleList = ({
                 next={fetchFollowPeople}
                 hasMore
                 loader={(
-                    <CircularProgress
-                        size={15}
-                        color="primary"
-                        className={classes.centered}
-                    />
+                    <div className={classes.centered}><Loader size="md" /></div>
                 )}
                 dataLength={followPeopleItems.length}
                 style={{ overflowY: 'hidden' }}

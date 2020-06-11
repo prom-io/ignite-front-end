@@ -5,13 +5,13 @@ import { Button, Typography, makeStyles } from '@material-ui/core';
 import { localized } from '../../localization/components';
 import { SuccessFollowIcon } from '../../icons/SuccessFollowIcon';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     followInputWrapper: {
         marginTop: 16,
         boxSizing: 'border-box',
         background: '#fbf7f6',
         padding: 16,
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px 4px 0px 0px',
         height: 96,
     },
@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
             height: 42,
             width: '100%',
             borderRadius: 30,
-            border: '1px solid #F1EBE8',
+            border: `1px solid ${theme.palette.border.main}`,
             outline: 'none',
             padding: '0 105px 0 24px',
         },

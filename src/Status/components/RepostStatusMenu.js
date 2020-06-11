@@ -4,16 +4,15 @@ import {
     IconButton,
     Popper,
     Typography,
-    CircularProgress,
     makeStyles,
 } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-import { FadeLoader } from 'react-spinners';
 import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
 import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { RepostIcon } from '../../icons/RepostIcon';
 import { UndoRepostMenuItem } from './UndoRepostMenuItem';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -35,12 +34,17 @@ const _RepostStatusMenu = ({
     canBeReposted,
     currentUserIsAuthor,
     currentUser,
+    setLoginDialogOpen,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const classes = useStyles();
 
     const handleToggle = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return;
+        }
         setOpen(prevOpen => currentUser && !prevOpen);
     };
 
@@ -55,7 +59,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-                <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                <Loader size="md" />
             ) : (
                 <IconButton
                     ref={anchorRef}
@@ -115,8 +119,9 @@ const _RepostStatusMenu = ({
     );
 };
 
-const mampMobxToProps = ({ authorization }) => ({
+const mampMobxToProps = ({ authorization, login }) => ({
     currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

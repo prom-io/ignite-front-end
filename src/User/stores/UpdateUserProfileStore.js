@@ -14,6 +14,7 @@ export class UpdateUserProfileStore {
         username: "",
         displayName: "",
         avatarId: undefined,
+        language: "",
         bio: ""
     };
 
@@ -127,7 +128,8 @@ export class UpdateUserProfileStore {
             username: this.updateUserProfileForm.username,
             display_name: this.updateUserProfileForm.displayName,
             avatar_id: this.updateUserProfileForm.avatarId,
-            bio: this.updateUserProfileForm.bio
+            bio: this.updateUserProfileForm.bio,
+            language: this.updateUserProfileForm.language
         })
             .then(({data}) => {
                 this.userProfileStore.setUser(data);
@@ -220,6 +222,7 @@ export class UpdateUserProfileStore {
             displayName: this.user ? this.user.display_name : this.currentUser ? this.currentUser.display_name : "",
             avatarId: undefined,
             bio: this.user ? this.user.bio : this.currentUser ? this.currentUser.bio : undefined,
+            language: this.user ? this.user.language : this.currentUser ? this.currentUser.language : undefined,
             password: undefined,
             new_password:  undefined
         };
@@ -228,6 +231,7 @@ export class UpdateUserProfileStore {
             username: undefined,
             displayName: undefined,
             bio: undefined,
+            language: undefined,
             password: undefined,
             new_password: undefined
         })

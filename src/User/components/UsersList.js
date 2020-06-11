@@ -11,9 +11,13 @@ const useStyles = makeStyles((theme) => ({
     cardHeader: {
         [theme.breakpoints.down('sm')]: {
             '& span': {
-                width: '80%',
-                overflowX: 'hidden',
-                '&:after': {
+                '& p': {
+                    maxWidth:'200px',
+                    overflowX: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                },
+                '& p:after': {
                     content: "'...'",
                 },
             },
@@ -40,6 +44,7 @@ const _UsersList = ({ users, routerStore }) => {
                                 store={routerStore}
                                 style={{
                                     color: 'inherit',
+                                    display: 'flex'
                                 }}
                             >
                                 <Hidden xsDown>

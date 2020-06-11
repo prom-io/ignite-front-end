@@ -1,11 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -34,7 +33,6 @@ const _StatusCommentsList = ({
     l,
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <Grid container spacing={2}>
@@ -45,8 +43,7 @@ const _StatusCommentsList = ({
             </Grid>
             <Grid item xs={12}>
                 { pending && statuses.length === 0 ?
-                  <div className={ classes.centered }><FadeLoader css="transform: scale(0.5)"
-                                                                  color={ theme.palette.primary.main }/></div>
+                  <div className={ classes.centered }><Loader size={'md'} /></div>
                   :
                   statuses.length === 0 && !pending ?
                     <Typography color="textSecondary">{ l('status.no-comments') }</Typography> :

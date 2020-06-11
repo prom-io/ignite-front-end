@@ -64,10 +64,10 @@ const useStyles = makeStyles(theme => ({
             overflowX: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            '&:after':{
+            '&:after': {
                 content: "'...'",
-            }
-        }
+            },
+        },
     },
     updateUserProfileButton: {
         marginTop: '60px',
@@ -152,7 +152,7 @@ const _UpdateUserProfile = ({
                         className={classes.updateUserProfileField}
                         label={l('user.language')}
                         placeholder="Select your language"
-                        value={updateUserProfileForm.language || "en"}
+                        value={updateUserProfileForm.language || 'en'}
                         onChange={event => setFormValue('language', event.target.value)}
                         margin="dense"
                         InputLabelProps={{
@@ -203,7 +203,7 @@ const _UpdateUserProfile = ({
                         }
                     >
                         {pending && (
-                            <Loader size={'md'} />
+                            <Loader size="md" />
                         )}
                         {l('user.update-profile.save')}
                     </Button>

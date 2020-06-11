@@ -42,34 +42,34 @@ const _StatusCommentsList = ({
                 </Typography>
             </Grid>
             <Grid item xs={12}>
-                { pending && statuses.length === 0 ?
-                  <div className={ classes.centered }><Loader size={'md'} /></div>
-                  :
-                  statuses.length === 0 && !pending ?
-                    <Typography color="textSecondary">{ l('status.no-comments') }</Typography> :
-                    <>
-                        <StatusList
-                          statuses={ statuses }
-                          onFavouriteClick={ (statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId)) }
-                          pending={ pending }
-                          onNextPageRequest={ fetchStatuses }
-                          onFollowRequest={ followStatusAuthor }
-                          onUnfollowRequest={ unfollowStatusAuthorWithDialog }
-                          currentUser={ currentUser }
-                          displayMenu={ Boolean(currentUser) }
-                          statusLikePendingMap={ statusLikePendingMap }
-                          repostsPendingMap={ repostsPendingMap }
-                          hideThreadLinks
-                          hasMore={ hasMore }
-                        />
-                        <UnfollowDialog
-                          username={ currentStatusUsername }
-                          unfollowAction={ unfollowStatusAuthor }
-                          unfollowDialogOpen={ unfollowDialogOpen }
-                          setUnfollowDialogOpen={ setUnfollowDialogOpen }
-                        />
-                    </>
-                }
+                { pending && statuses.length === 0
+                    ? <div className={classes.centered}><Loader size="md" /></div>
+                    : statuses.length === 0 && !pending
+                        ? <Typography color="textSecondary">{ l('status.no-comments') }</Typography>
+                        : (
+                            <>
+                                <StatusList
+                                    statuses={statuses}
+                                    onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}
+                                    pending={pending}
+                                    onNextPageRequest={fetchStatuses}
+                                    onFollowRequest={followStatusAuthor}
+                                    onUnfollowRequest={unfollowStatusAuthorWithDialog}
+                                    currentUser={currentUser}
+                                    displayMenu={Boolean(currentUser)}
+                                    statusLikePendingMap={statusLikePendingMap}
+                                    repostsPendingMap={repostsPendingMap}
+                                    hideThreadLinks
+                                    hasMore={hasMore}
+                                />
+                                <UnfollowDialog
+                                    username={currentStatusUsername}
+                                    unfollowAction={unfollowStatusAuthor}
+                                    unfollowDialogOpen={unfollowDialogOpen}
+                                    setUnfollowDialogOpen={setUnfollowDialogOpen}
+                                />
+                            </>
+                        )}
             </Grid>
         </Grid>
     );

@@ -31,7 +31,7 @@ const _FollowPeopleList = ({
                 next={fetchFollowPeople}
                 hasMore
                 loader={(
-                    <div className={classes.centered}><Loader size={'md'}/></div>
+                    <div className={classes.centered}><Loader size="md" /></div>
                 )}
                 dataLength={followPeopleItems.length}
                 style={{ overflowY: 'hidden' }}

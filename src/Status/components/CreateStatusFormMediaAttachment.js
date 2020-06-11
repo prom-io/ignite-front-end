@@ -53,7 +53,7 @@ export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => 
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <Loader size={'md'}/>
+                    <Loader size="md" />
                 </div>
             )}
         </div>

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             '& span': {
                 '& p': {
-                    maxWidth:'200px',
+                    maxWidth: '200px',
                     overflowX: 'hidden',
                     whiteSpace: 'nowrap',
                     textOverflow: 'ellipsis',
@@ -44,7 +44,7 @@ const _UsersList = ({ users, routerStore }) => {
                                 store={routerStore}
                                 style={{
                                     color: 'inherit',
-                                    display: 'flex'
+                                    display: 'flex',
                                 }}
                             >
                                 <Hidden xsDown>
@@ -73,7 +73,7 @@ const _UsersList = ({ users, routerStore }) => {
                 </ListItem>
             ))}
         </List>
-    )
+    );
 };
 
 const mapMobxToProps = ({ store }) => ({

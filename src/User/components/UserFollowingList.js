@@ -20,7 +20,7 @@ const _UserFollowingList = ({ following, pending }) => {
     const classes = useStyles();
 
     return following.length === 0 && pending
-        ? <div className={classes.centered}><Loader size={'md'}/></div>
+        ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Card className={classes.cardContainer}>
                 <UsersList users={following} />

@@ -133,7 +133,7 @@ const _SignUpDialog = ({
                         color="primary"
                         variant="contained"
                     >
-                        {pending && <Loader size={'md'}/>}
+                        {pending && <Loader size="md" />}
                         Sign up for private beta testing
                     </Button>
                     <Button

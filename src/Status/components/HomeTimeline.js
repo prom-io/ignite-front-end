@@ -44,9 +44,9 @@ const _HomeTimeline = ({
     unfollowDialogOpen,
 }) => {
     const classes = useStyles();
-    
+
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><Loader size={'md'} /></div>
+        ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">

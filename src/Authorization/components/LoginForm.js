@@ -143,7 +143,7 @@ const _LoginForm = ({
                     disabled={pending}
                     fullWidth
                 >
-                    {pending && <Loader size={'md'} />}
+                    {pending && <Loader size="md" />}
                     {l('authorization.login')}
                 </Button>
             )}

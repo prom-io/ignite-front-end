@@ -12,7 +12,7 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper, useTheme
+    Popper, useTheme,
 } from '@material-ui/core';
 import { Link } from 'mobx-router';
 import { Routes } from '../../routes';

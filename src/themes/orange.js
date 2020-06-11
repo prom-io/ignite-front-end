@@ -30,7 +30,7 @@ export const orange = createMuiTheme({
         background: {
             paper: '#fff',
             default: '#fafafa',
-            light: '#FFFBF8'
+            light: '#FFFBF8',
         },
         primary: {
             light: '#ff9c00',
@@ -59,8 +59,8 @@ export const orange = createMuiTheme({
             hint: 'rgba(0, 0, 0, 0.38)',
         },
         border: {
-            main: '#F1EBE8'
-        }
+            main: '#F1EBE8',
+        },
     },
     typography: {
         button: {

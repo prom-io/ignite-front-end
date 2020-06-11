@@ -77,7 +77,7 @@ const _StatusBody = ({
                             // marginBottom: 4,
                         }}
                     >
-                        <Typography classes={{root:classes.replyingToLabel}}>
+                        <Typography classes={{ root: classes.replyingToLabel }}>
                             {l('status.replying-to')}
                         </Typography>
                         <Link

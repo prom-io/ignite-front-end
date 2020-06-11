@@ -124,7 +124,7 @@ export const NotificationsList = observer(() => {
                 next={fetchNotifications}
                 hasMore={hasMore}
                 loader={(
-                    <div className={classes.centered}><Loader size={'md'}/></div>
+                    <div className={classes.centered}><Loader size="md" /></div>
                 )}
                 dataLength={notifications.length}
                 style={{ overflowY: 'hidden' }}

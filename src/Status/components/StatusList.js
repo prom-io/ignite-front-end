@@ -28,14 +28,14 @@ export const StatusList = ({
     hasMore,
 }) => {
     const classes = useStyles({ radius: 55 });
-    
+
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
             {header && statuses.length !== 0 && <Typography variant="h6">{header}</Typography>}
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
-                loader={<div className={classes.centered}><Loader size={'md'} /></div>}
+                loader={<div className={classes.centered}><Loader size="md" /></div>}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >

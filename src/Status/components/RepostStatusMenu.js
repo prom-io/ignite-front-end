@@ -59,7 +59,7 @@ const _RepostStatusMenu = ({
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-              <Loader size={'md'}/>
+                <Loader size="md" />
             ) : (
                 <IconButton
                     ref={anchorRef}

@@ -80,7 +80,7 @@ const _UserAvatarFileInput = ({
                     classes={{ root: classes.avatarUploadButton }}
                 >
                     {avatarFileContainer && avatarFileContainer.pending
-                        ? <Loader size={'md'}/>
+                        ? <Loader size="md" />
                         : <Photo style={{ color: '#fff' }} />}
                     <input
                         type="file"

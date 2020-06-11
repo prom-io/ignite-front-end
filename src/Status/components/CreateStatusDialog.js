@@ -65,7 +65,7 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <Loader size={'md'} />}
+                    {pending && <Loader size="md" />}
                     {l('status.send')}
                 </Button>
             </DialogTitle>

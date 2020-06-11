@@ -167,7 +167,7 @@ const _CreateStatusForm = ({
                             onClick={createStatus}
                             disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         >
-                            {pending && <Loader size={'md'}/>}
+                            {pending && <Loader size="md" />}
                             {l('status.send')}
                         </Button>
                     )}

@@ -54,7 +54,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-            <div className={classes.centered}><Loader size={'md'}/></div>
+            <div className={classes.centered}><Loader size="md" /></div>
         );
     }
 

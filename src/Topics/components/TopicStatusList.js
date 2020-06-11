@@ -5,11 +5,25 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FadeLoader } from "react-spinners";
 
+import { MenuIcon } from "../../icons/MenuIcon";
 import { StatusListItem } from "../../Status/components/StatusListItem";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "-2px"
+    },
+    topicListHeaderSwitcher: {
         display: "flex"
+    },
+    topicListHeaderMenu: {
+        display: "none",
+        marginRight: "15px",
+        [theme.breakpoints.down("sm")]: {
+            display: "block"
+        }
     },
     topicListHeaderItem: {
         cursor: "pointer",
@@ -47,25 +61,30 @@ const _TopicStatusList = ({
     const theme = useTheme();
 
     return (
-        <div className={classes.topicList}>
+        <>
             <div className={classes.topicListHeader}>
-                <div
-                    className={[
-                        classes.topicListHeaderItem,
-                        activeTab === "hot" ? classes.topicItemActive : ""
-                    ].join(" ")}
-                    onClick={() => changeTabAndFetchStatuses("hot")}
-                >
-                    Hot
+                <div className={classes.topicListHeaderSwitcher}>
+                    <div
+                        className={[
+                            classes.topicListHeaderItem,
+                            activeTab === "hot" ? classes.topicItemActive : ""
+                        ].join(" ")}
+                        onClick={() => changeTabAndFetchStatuses("hot")}
+                    >
+                        Hot
+                    </div>
+                    <div
+                        className={[
+                            classes.topicListHeaderItem,
+                            activeTab === "fresh" ? classes.topicItemActive : ""
+                        ].join(" ")}
+                        onClick={() => changeTabAndFetchStatuses("fresh")}
+                    >
+                        Fresh
+                    </div>
                 </div>
-                <div
-                    className={[
-                        classes.topicListHeaderItem,
-                        activeTab === "fresh" ? classes.topicItemActive : ""
-                    ].join(" ")}
-                    onClick={() => changeTabAndFetchStatuses("fresh")}
-                >
-                    Fresh
+                <div className={classes.topicListHeaderMenu}>
+                    <MenuIcon />
                 </div>
             </div>
             <InfiniteScroll
@@ -103,7 +122,7 @@ const _TopicStatusList = ({
                     />
                 ))}
             </InfiniteScroll>
-        </div>
+        </>
     );
 };
 
@@ -117,7 +136,7 @@ const mapMobxToProps = ({ authorization, topicStatuses }) => ({
     fetchAllStatuses: topicStatuses.fetchAllStatuses,
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
-    followStatusAuthor: topicStatuses.followStatusAuthor,
+    followStatusAuthor: topicStatuses.followStatusAuthor
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

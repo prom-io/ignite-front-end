@@ -18,11 +18,11 @@ export const TopicsPageContainer = () => {
     const { l } = useLocalization();
 
     return (
-        <div>
+        <>
             <Typography className={classes.topicsTitle} variant="h6">
                 {l("appbar.topics")}
             </Typography>
             <TopicStatusList />
-        </div>
+        </>
     );
 };

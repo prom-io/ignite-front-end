@@ -6,17 +6,24 @@ import { BackButton } from "../../components/BackButton";
 import { TopicStatusList } from "./TopicStatusList";
 import { useStore, useLocalization } from "../../store/hooks";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     topicTitle: {
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     followTopicButton: {
         fontWeight: 600,
         fontSize: "15px",
-        lineHeight: "18px",
-        padding: "8px 34px",
-        borderRadius: "30px"
+        lineHeight: "0px",
+        height: "34px",
+        width: "114px",
+        borderRadius: "30px",
+        [theme.breakpoints.down("sm")]: {
+            height: "28px",
+            width: "90px",
+            marginRight: "15px"
+        }
     }
 }));
 
@@ -27,7 +34,7 @@ export const TopicPageContainer = observer(() => {
     const { currentTopicId, followTopic } = topicStatuses;
 
     return (
-        <div>
+        <>
             <div className={classes.topicTitle}>
                 <BackButton params={currentTopicId} toTopics />
                 <Button
@@ -40,6 +47,6 @@ export const TopicPageContainer = observer(() => {
                 </Button>
             </div>
             <TopicStatusList />
-        </div>
+        </>
     );
 });

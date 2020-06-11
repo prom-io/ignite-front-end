@@ -113,6 +113,7 @@ export const Routes = {
             store.userCard.setDisplayMode('currentUser');
         },
         onParamsChange: (route, params) => {
+            store.topicStatuses.resetStatuses();
             store.topicStatuses.fetchStatusesOnTopic(params.id);
         },
         onExit: () => {

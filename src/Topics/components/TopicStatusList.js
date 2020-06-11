@@ -1,6 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
+import useTheme from "@material-ui/core/styles/useTheme";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { FadeLoader } from "react-spinners";
+
+import { StatusListItem } from "../../Status/components/StatusListItem";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
@@ -19,11 +24,27 @@ const useStyles = makeStyles(theme => ({
     topicItemActive: {
         color: theme.palette.primary.main,
         borderBottom: "3px solid"
+    },
+    centered: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        display: "table"
     }
 }));
 
-const _TopicStatusList = ({ activeTab, changeTabAndFetchStatuses }) => {
+const _TopicStatusList = ({
+    currentUser,
+    activeTab,
+    statusesOnTopic,
+    statusLikePendingMap,
+    changeTabAndFetchStatuses,
+    fetchAllStatuses,
+    favouriteStatus,
+    unfavouriteStatus,
+    followStatusAuthor
+}) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <div className={classes.topicList}>
@@ -47,13 +68,56 @@ const _TopicStatusList = ({ activeTab, changeTabAndFetchStatuses }) => {
                     Fresh
                 </div>
             </div>
+            <InfiniteScroll
+                next={fetchAllStatuses}
+                loader={
+                    <div className={classes.centered}>
+                        <FadeLoader
+                            css="transform: scale(0.5)"
+                            color={theme.palette.primary.main}
+                        />
+                    </div>
+                }
+                dataLength={statusesOnTopic.length}
+                style={{ overflowY: "hidden" }}
+                hasMore={true}
+            >
+                {statusesOnTopic.map(status => (
+                    <StatusListItem
+                        key={status.id}
+                        status={status}
+                        onFavouriteStatusChange={(statusId, favourited) =>
+                            favourited
+                                ? favouriteStatus(statusId)
+                                : unfavouriteStatus(statusId)
+                        }
+                        onFollowRequest={followStatusAuthor}
+                        // onUnfollowRequest={onUnfollowRequest}
+                        displayMenu={Boolean(currentUser)}
+                        currentUserIsAuthor={
+                            currentUser && currentUser.id === status.account.id
+                        }
+                        statusLikePending={statusLikePendingMap[status.id]}
+                        // repostPending={repostsPendingMap[status.id]}
+                        link
+                    />
+                ))}
+            </InfiniteScroll>
         </div>
     );
 };
 
-const mapMobxToProps = ({ topicStatuses }) => ({
+const mapMobxToProps = ({ authorization, topicStatuses }) => ({
+    currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
-    changeTabAndFetchStatuses: topicStatuses.changeTabAndFetchStatuses
+    statusesOnTopic: topicStatuses.statusesOnTopic,
+    statusLikePendingMap: topicStatuses.statusLikePendingMap,
+    changeTabAndFetchStatuses: topicStatuses.changeTabAndFetchStatuses,
+    fetchStatusesOnTopic: topicStatuses.fetchStatusesOnTopic,
+    fetchAllStatuses: topicStatuses.fetchAllStatuses,
+    favouriteStatus: topicStatuses.favouriteStatus,
+    unfavouriteStatus: topicStatuses.unfavouriteStatus,
+    followStatusAuthor: topicStatuses.followStatusAuthor,
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

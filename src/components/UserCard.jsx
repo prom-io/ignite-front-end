@@ -67,7 +67,7 @@ const _UserCard = ({
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
-                                    username: currentUser.id,
+                                    username: currentUser.username,
                                     tab: 'posts',
                                 }}
                             >
@@ -80,7 +80,7 @@ const _UserCard = ({
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
-                                    username: currentUser.id,
+                                    username: currentUser.username,
                                     tab: 'followers',
                                 }}
                             >
@@ -93,7 +93,7 @@ const _UserCard = ({
                                 store={routerStore}
                                 view={Routes.userProfile}
                                 params={{
-                                    username: currentUser.id,
+                                    username: currentUser.username,
                                     tab: 'following',
                                 }}
                             >

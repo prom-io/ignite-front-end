@@ -58,6 +58,15 @@ const useStyles = makeStyles(theme => ({
             lineHeight: '14px',
             color: theme.palette.text.secondary,
         },
+        '& input[value]:not(:focus)': {
+            maxWidth: '340px',
+            overflowX: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            '&:after':{
+                content: "'...'",
+            }
+        }
     },
     updateUserProfileButton: {
         marginTop: '60px',

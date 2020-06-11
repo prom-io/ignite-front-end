@@ -126,13 +126,13 @@ export const Routes = {
             store.userProfile.fetchUserByUsername(params.username);
             if (params.tab === 'followers') {
                 store.userProfile.setActiveTab('followers');
-                store.userFollowers.fetchUserFollowers(params.username);
+                store.userFollowers.fetchUserFollowers(params.id);
             } else if (params.tab === 'following') {
                 store.userProfile.setActiveTab('following');
-                store.userFollowing.fetchFollowing(params.username);
+                store.userFollowing.fetchFollowing(params.id);
             } else {
                 store.userProfile.setActiveTab('posts');
-                store.userProfileTimeline.fetchStatuses(params.username);
+                store.userProfileTimeline.fetchStatuses(params.id);
             }
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',

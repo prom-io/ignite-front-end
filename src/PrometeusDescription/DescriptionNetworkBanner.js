@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
         margin: '17px 0 19px 0',
         width: '100%',
         height: 51,
-        borderTop: '1px solid #F1EBE8',
-        borderBottom: '1px solid #F1EBE8',
+        borderTop: `1px solid ${theme.palette.border.main}`,
+        borderBottom: `1px solid ${theme.palette.border.main}`,
         display: 'flex',
         alignItems: 'center',
         '& p': {
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
             lineHeight: '18px !important',
         },
         '& span': {
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             fontWeight: '300',
             '&:hover': {
                 color: '#FF5C01',
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '23px',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
     },
     descriprionLinks: {
         marginTop: 4,

@@ -11,8 +11,9 @@ import {
     StatusPage,
     FollowPeoplePage,
     TermsAndPoliciesPage,
-    TrendsPage,
+    TopicsPage,
     UserProfilePage,
+    UserEditPage,
 } from '../pages';
 import { store } from '../store';
 
@@ -57,7 +58,7 @@ export const Routes = {
         path: '/chat',
         component: <ChatPage />,
         beforeEnter: () => {
-
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },
@@ -65,22 +66,31 @@ export const Routes = {
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,
-        beforeEnter: (route, params, st) => {
-            // if (!store.authorization.currentUser) {
-            //     st.router.goTo(Routes.home, {});
-            // } else {
-            store.followPeople.fetchFollowPeople();
-            // }
+        beforeEnter: () => {
+            if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
+                store.followPeople.fetchFollowPeople();
+            }
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.followPeople.reset();
         },
     }),
-    trends: new Route({
-        path: '/trends',
-        component: <TrendsPage />,
+    userEdit: new Route({
+        path: '/edit-profile',
+        component: <UserEditPage />,
         beforeEnter: () => {
-
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onExit: () => {
+            store.userProfileUpdate.resetForm();
+        },
+    }),
+    topics: new Route({
+        path: '/topics',
+        component: <TopicsPage />,
+        beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
         },
@@ -156,6 +166,7 @@ export const Routes = {
             store.statusComments.setOnlyAddCommentsToStatus(params.id);
             store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
             store.statusComments.fetchStatuses();
+            store.userCard.setDisplayMode('currentUser');
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);

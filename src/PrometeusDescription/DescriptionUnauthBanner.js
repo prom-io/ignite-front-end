@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     },
     bannerContainer: {
         padding: '0 24px',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         boxSizing: 'border-box',
         borderRadius: 4,
         display: 'flex',
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     baseLine: {
         width: '100%',
         height: 1,
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         boxSizing: 'border-box',
     },
     bannerHeader: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
             fontStyle: 'normal',
             fontWeight: 700,
             fontSize: 15,
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             lineHeight: '22px',
             margin: '5px 0 0 8px',
         },
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
         fontStyle: 'normal',
         fontWeight: 300,
         fontSize: 15,
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         margin: '12px 0 0 0',
         lineHeight: '22px',
     },

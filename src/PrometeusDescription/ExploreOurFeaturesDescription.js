@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
     exploreCard: {
         padding: '16px 0 0 0',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px',
         '& h3': {
             paddingLeft: 16,
@@ -35,18 +35,20 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 700,
             fontSize: '20px',
             lineHeight: '24px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             margin: '0 0 16px 0',
         },
     },
     exploreCardBody: {
-
+        [theme.breakpoints.down('md')]: {
+            display: 'none',
+        },
     },
     exploreCardBodyBox: {
         display: 'flex',
         justifyContent: 'flex-start',
         boxSizing: 'border-box',
-        borderTop: '1px solid #F1EBE8',
+        borderTop: `1px solid ${theme.palette.border.main}`,
         height: 84,
         padding: '0 16px',
         '& p': {
@@ -58,7 +60,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 300,
             fontSize: '15px',
             lineHeight: '18px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
     exploreCardImgBox: {
@@ -76,7 +78,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
     const classes = useStyles();
 
     return (
-        <Grid container spacing={2} className="description-container-right">
+        <Grid container spacing={2} className={`description-container-right ${classes.exploreCardBody}`}>
 
             <Grid className="user_profile_container">
                 <div className={classes.exploreCard}>

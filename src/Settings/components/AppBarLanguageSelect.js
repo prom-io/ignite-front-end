@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         height: 34,
         width: 34,
         borderRadius: 100,

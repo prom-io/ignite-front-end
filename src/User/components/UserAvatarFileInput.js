@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core';
+import { Avatar, Button, makeStyles } from '@material-ui/core';
 import { Photo } from '@material-ui/icons';
-import { FadeLoader } from 'react-spinners';
-import { localized } from '../../localization/components';
+import useTheme from '@material-ui/core/styles/useTheme';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     avatarAttachmentPhoto: {
@@ -14,14 +14,14 @@ const useStyles = makeStyles(theme => ({
     },
     avatarAttachmentContainer: {
         [theme.breakpoints.down('sm')]: {
-            background: '#FFFBF8',
+            background: theme.palette.background.light,
             padding: '8px 24px',
         },
     },
     avatarUploadButton: {
         position: 'absolute',
-        width: '80px',
-        height: '80px',
+        width: '120px',
+        height: '120px',
         borderRadius: '80px',
         background: 'rgba(34, 34, 34, 0.8)',
     },
@@ -29,29 +29,27 @@ const useStyles = makeStyles(theme => ({
         marginTop: '24px',
         '& p': {
             margin: 0,
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
             fontSize: '12px',
             fontFamily: 'Museo Sans Cyrl Regular',
         },
         '& span': {
             marginTop: '8px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             fontSize: '16px',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
     },
 }));
 
-const lineBreak = param => `${param.slice(0, 21)} ${param.slice(21)}`;
-
 const _UserAvatarFileInput = ({
-    user,
+    currentUser,
     avatarFileContainer,
     uploadFile,
-    displayName,
     l,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     const [value, setValue] = useState(undefined);
 
@@ -66,10 +64,14 @@ const _UserAvatarFileInput = ({
             <div className={classes.avatarAttachmentPhoto}>
                 <Avatar
                     style={{
-                        width: 80,
-                        height: 80,
+                        width: 120,
+                        height: 120,
                     }}
-                    src={avatarFileContainer ? avatarFileContainer.url : user.avatar}
+                    src={
+                        avatarFileContainer
+                            ? avatarFileContainer.url
+                            : currentUser.avatar
+                    }
                 />
                 <Button
                     disabled={avatarFileContainer && avatarFileContainer.pending}
@@ -78,7 +80,7 @@ const _UserAvatarFileInput = ({
                     classes={{ root: classes.avatarUploadButton }}
                 >
                     {avatarFileContainer && avatarFileContainer.pending
-                        ? <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />
+                        ? <Loader size="md" />
                         : <Photo style={{ color: '#fff' }} />}
                     <input
                         type="file"
@@ -90,21 +92,16 @@ const _UserAvatarFileInput = ({
                     />
                 </Button>
             </div>
-            <div className={classes.avatarAttachmentDescription}>
-                <p>Wallet</p>
-                <span>{lineBreak(displayName)}</span>
-            </div>
         </div>
     );
 };
 
-const mapMobxToProps = ({ userAvatarUpload, userProfileUpdate }) => ({
-    user: userProfileUpdate.user,
+const mapMobxToProps = ({ authorization, userAvatarUpload }) => ({
+    currentUser: authorization.currentUser,
     avatarFileContainer: userAvatarUpload.avatarFileContainer,
     uploadFile: userAvatarUpload.uploadFile,
-    displayName: userProfileUpdate.user && userProfileUpdate.user.display_name,
 });
 
-export const UserAvatarFileInput = localized(
-    inject(mapMobxToProps)(observer(_UserAvatarFileInput)),
+export const UserAvatarFileInput = inject(mapMobxToProps)(
+    observer(_UserAvatarFileInput),
 );

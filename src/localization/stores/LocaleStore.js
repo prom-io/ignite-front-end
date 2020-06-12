@@ -1,7 +1,8 @@
 import {action, observable, computed} from "mobx";
-import {en, ko} from "../translations";
 import englishDateFnsLocale from "date-fns/locale/en-US";
 import koreanDateFnsLocale from "date-fns/locale/ko";
+import {en, ko} from "../translations";
+import {axiosInstance} from "../../api/axios-instance";
 
 const dateFnsLocalesMap = {
     en: englishDateFnsLocale,
@@ -32,6 +33,8 @@ export class LocaleStore {
         ko
     };
 
+    authorizationStore = undefined;
+
     @computed
     get selectedLanguage() {
         return this.selectedLanguageContainer.selectedLanguage;
@@ -47,12 +50,25 @@ export class LocaleStore {
         return dateFnsLocalesMap[this.selectedLanguage];
     }
 
+    @computed
+    get currentUser() {
+        return this.authorizationStore.currentUser;
+    }
+
+    constructor(authorizationStore) {
+        this.authorizationStore = authorizationStore;
+    }
+
     @action
-    setSelectedLanguage = language => {
+    setSelectedLanguage = (language, abortCallingBackendApi = false) => {
         localStorage.setItem("language", language);
         this.selectedLanguageContainer = {
             ...this.selectedLanguageContainer,
             selectedLanguage: language
+        };
+
+        if (!abortCallingBackendApi && this.currentUser) {
+            axiosInstance.put("/api/v1/accounts/preferences", {language});
         }
     }
 }

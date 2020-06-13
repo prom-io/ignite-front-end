@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 import { localized } from '../localization/components';
 import { AppBar } from '../AppBar/components';

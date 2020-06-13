@@ -30,6 +30,7 @@ export const orange = createMuiTheme({
         background: {
             paper: '#fff',
             default: '#fafafa',
+            light: '#FFFBF8',
         },
         primary: {
             light: '#ff9c00',
@@ -42,6 +43,7 @@ export const orange = createMuiTheme({
             main: 'rgba(21, 101, 192, 1)',
             dark: 'rgba(0, 60, 143, 1)',
             contrastText: '#fff',
+            status: '#6483C0',
         },
         error: {
             light: '#e57373',
@@ -50,10 +52,14 @@ export const orange = createMuiTheme({
             contrastText: '#fff',
         },
         text: {
+            main: '#1C1C1C',
+            secondary: '#A2A2A2',
             primary: 'rgba(0, 0, 0, 0.87)',
-            secondary: 'rgba(0, 0, 0, 0.54)',
             disabled: 'rgba(0, 0, 0, 0.38)',
             hint: 'rgba(0, 0, 0, 0.38)',
+        },
+        border: {
+            main: '#F1EBE8',
         },
     },
     typography: {

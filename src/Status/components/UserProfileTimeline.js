@@ -1,15 +1,18 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
+import { makeStyles, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '30px',
+        },
     },
     profileCreateStatusForm: {
         paddingBottom: '0 !important',
@@ -40,7 +43,7 @@ const _UserProfileTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>
+        ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (

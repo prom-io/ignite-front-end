@@ -38,8 +38,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'flex-end',
     },
     iconContainer: props => ({
-        backgroundColor: '#FFFBF8',
-        borderRight: '1px solid #F1EBE8',
+        backgroundColor: theme.palette.background.light,
+        borderRight: `1px solid ${theme.palette.border.main}`,
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2) + props.pixelsToAddToIconRightPadding,
         alignItems: 'center',
@@ -63,7 +63,7 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                 avatar={(
                     <Link
                         view={Routes.userProfile}
-                        params={{ username: user.id }}
+                        params={{ username: user.username }}
                         store={routerStore}
                         className={classes.undecoratedLink}
                     >
@@ -81,7 +81,7 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                         <Typography className={classes.notificationTitleTypography}>
                             <Link
                                 view={Routes.userProfile}
-                                params={{ username: user.id }}
+                                params={{ username: user.username }}
                                 store={routerStore}
                                 className={classes.userLink}
                             >

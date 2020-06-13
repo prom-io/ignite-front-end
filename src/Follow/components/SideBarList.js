@@ -7,10 +7,10 @@ import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
 import { FollowButton } from '.';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     whoToFollowBodyItem: {
         padding: '12px 16px',
-        borderBottom: '1px solid #F1EBE8',
+        borderBottom: `1px solid ${theme.palette.border.main}`,
         display: 'flex',
 
         '& a': {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     whoToFollowBodyItemAvatar: {
         width: '24px',
         height: '24px',
-        borderBottom: '1px solid #F1EBE8',
+        borderBottom: `1px solid ${theme.palette.border.main}`,
     },
     whoToFollowBodyItemContent: {
         fontFamily: 'Museo Sans Cyrl Regular',
@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
             fontSize: '15px',
             lineHeight: '18px',
             margin: '0 0 4px 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
 
         '& small': {
@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
             fontWeight: 300,
             fontSize: '12px',
             lineHeight: '14px',
-            color: '#A2A2A2',
+            color: theme.palette.text.secondary,
         },
     },
 }));
@@ -57,7 +57,7 @@ const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
         <div className={classes.whoToFollowBodyItem} key={user.id}>
             <Link
                 view={Routes.userProfile}
-                params={{ username: user.id }}
+                params={{ username: user.username }}
                 store={routerStore}
             >
                 <Avatar
@@ -71,7 +71,7 @@ const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
             <div className={classes.whoToFollowBodyItemContent}>
                 <Link
                     view={Routes.userProfile}
-                    params={{ username: user.id }}
+                    params={{ username: user.username }}
                     store={routerStore}
                 >
                     <h3>{trimString(user.display_name, 24)}</h3>

@@ -13,7 +13,7 @@ import { IgniteTrendPage } from '../icons/IgniteTrendPage';
 
 const useStyles = makeStyles(theme => ({
     trendError: {
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
         padding: '0 30px',
@@ -27,21 +27,21 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
-        color: '#A2A2A2',
+        color: theme.palette.text.secondary,
         '& h1': {
             fontFamily: 'Museo Sans Cyrl Bold',
             fontSize: '20px',
             margin: '24px 0 4px 0',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
 }));
 
-const _TrendsPage = ({ currentUser, l }) => {
+const _TopicsPage = ({ currentUser, l }) => {
     const classes = useStyles();
     return (
         <Grid container>
-            <AppBar currentActiveRoute="trends" />
+            <AppBar currentActiveRoute="topics" />
             <Grid item xs={12}>
                 <Layout>
                     <Grid container className="content-container">
@@ -64,7 +64,7 @@ const _TrendsPage = ({ currentUser, l }) => {
                                     <div className={classes.trendError}>
                                         <div className={classes.trendErrorInfo}>
                                             <IgniteTrendPage color="#A2A2A2" />
-                                            <h1>{l('appbar.trends')}</h1>
+                                            <h1>{l('appbar.topics')}</h1>
                                         </div>
                                         <div>
                                             <p>{l('trends.first-paragraph')}</p>
@@ -89,4 +89,4 @@ const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser,
 });
 
-export const TrendsPage = localized(inject(mapMobxToProps)(observer(_TrendsPage)));
+export const TopicsPage = localized(inject(mapMobxToProps)(observer(_TopicsPage)));

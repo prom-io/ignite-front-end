@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, Card, CardContent, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Checkbox, FormControlLabel, makeStyles, TextField, Typography } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
-import { FadeLoader } from 'react-spinners';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
-        backgroundColor: '#FFFBF8',
+        backgroundColor: theme.palette.background.light,
         boxShadow: 'none',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px 4px 0px 0px',
         paddingBottom: '8px',
     },
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
         textAlign: 'center',
         color: '##FFFFFF',
-        marginTop: '36px',
+        marginTop: '30px',
     },
     signUpButton: {
         maxWidth: 374,
@@ -57,6 +57,22 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
+    secondaryButtonsGroup: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        maxWidth: '375px',
+        margin: '16px auto 0 auto',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+    },
+    forgotPassword: {
+        color: theme.palette.text.secondary,
+        cursor: 'pointer',
+        '&:hover': {
+            color: theme.palette.text.main,
+        },
+    },
 }));
 
 const getLabelFromSubmissionError = (error, l) => {
@@ -82,6 +98,7 @@ export const LoginForm = observer(({
         setGenericAuthorizationDialogType,
     } = genericAuthorizationDialog;
     const { l } = useLocalization();
+    const [isRemember, setIsRemember] = useState(false);
 
     const content = (
         <>
@@ -106,16 +123,24 @@ export const LoginForm = observer(({
                     {getLabelFromSubmissionError(submissionError, l)}
                 </Typography>
             )}
+            <div className={classes.secondaryButtonsGroup}>
+                <FormControlLabel
+                    color="primary"
+                    control={<Checkbox checked={isRemember} color="primary" onChange={() => setIsRemember(!isRemember)} name="remember" />}
+                    label="Remember me"
+                />
+                <a className={classes.forgotPassword}>Forgot password?</a>
+            </div>
             {!hideLoginButton && (
                 <Button
                     className={classes.loginButton}
                     color="primary"
                     variant="contained"
-                    onClick={doLogin}
+                    onClick={() => doLogin(isRemember)}
                     disabled={pending}
                     fullWidth
                 >
-                    {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                    {pending && <Loader size="md" />}
                     {l('authorization.login')}
                 </Button>
             )}

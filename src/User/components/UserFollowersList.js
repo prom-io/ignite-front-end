@@ -1,10 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Card, CircularProgress, makeStyles } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
+import { Card, makeStyles } from '@material-ui/core';
 import { UsersList } from './UsersList';
+import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
     cardContainer: {
         boxShadow: 'none',
-        border: '1px solid #F1EBE8',
+        border: `1px solid ${theme.palette.border.main}`,
     },
 }));
 
@@ -21,7 +21,7 @@ const _UserFollowersList = ({ followers, pending }) => {
     const classes = useStyles();
 
     return followers.length === 0 && pending
-        ? <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>
+        ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Card className={classes.cardContainer}>
                 <UsersList users={followers} />

@@ -9,6 +9,7 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
 import { RepostStatusMenu } from './RepostStatusMenu';
 import { ShareStatusMenu } from './ShareStatusMenu';
@@ -55,8 +56,19 @@ const _StatusBottom = ({
     canBeReposted,
     currentUserIsAuthor,
     status,
+    currentUser,
+    setLoginDialogOpen,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
+
+    const handleFavoriteClick = () => {
+        if (!currentUser) {
+            setLoginDialogOpen(true);
+            return;
+        }
+        onFavouriteClick(statusId, !favourited);
+    };
 
     return (
         <ClickEventPropagationStopper>
@@ -77,14 +89,14 @@ const _StatusBottom = ({
                     <ClickEventPropagationStopper className="status-list-bottom-box">
                         {statusLikePending ? (
                             <div className={classes.progress}>
-                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color="#FF5C01" />
+                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color={theme.palette.primary.main} />
                             </div>
                         ) : (
                             <Checkbox
                                 icon={<FavoriteBorderIcon />}
                                 checkedIcon={<FavoriteIcon color="primary" />}
                                 checked={favourited}
-                                onChange={() => onFavouriteClick(statusId, !favourited)}
+                                onChange={handleFavoriteClick}
                                 classes={{ root: classes.styledCheckbox }}
                             />
                         )}

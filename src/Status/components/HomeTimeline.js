@@ -1,10 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
+import { makeStyles, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import { UnfollowDialog } from '../../Follow/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -47,7 +47,7 @@ const _HomeTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><FadeLoader color="#FF5C01" css="transform: scale(0.5)" /></div>
+        ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Grid container spacing={2}>
                 <Grid item className={classes.gridItemBottomSpacing} className="create_status_form_mobile">

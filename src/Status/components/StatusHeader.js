@@ -62,7 +62,7 @@ const _StatusHeader = ({
                     <Link
                         store={routerStore}
                         view={Routes.userProfile}
-                        params={{ username: userId }}
+                        params={{ username }}
                         style={{
                             textDecoration: 'none',
                             color: 'inherit',
@@ -78,7 +78,7 @@ const _StatusHeader = ({
                         <Link
                             store={routerStore}
                             view={Routes.userProfile}
-                            params={{ username: userId }}
+                            params={{ username }}
                         >
                             <Hidden xsDown>
                                 <Typography>
@@ -112,7 +112,7 @@ const _StatusHeader = ({
                         <Link
                             store={routerStore}
                             view={Routes.userProfile}
-                            params={{ username: userId }}
+                            params={{ username }}
                             style={{
                                 textDecoration: 'none',
                                 color: 'inherit',

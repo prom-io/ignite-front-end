@@ -1,12 +1,12 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, Typography, makeStyles, Grid } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
+import { Typography, makeStyles, Grid } from '@material-ui/core';
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
 import { localized } from '../../localization/components';
 import { BackButton } from '../../components/BackButton';
 import { UnfollowDialog } from '../../Follow/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -45,7 +45,7 @@ const _StatusPageContainer = ({
     const classes = useStyles();
 
     if (pending) {
-        return <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color="#FF5C01" /></div>;
+        return <div className={classes.centered}><Loader size="md" /></div>;
     }
 
     if (error) {

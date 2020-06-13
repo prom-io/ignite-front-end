@@ -26,7 +26,7 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-if (localStorage.getItem('accessToken')) {
+if (localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken')) {
     store.authorization.fetchCurrentUser();
 }
 

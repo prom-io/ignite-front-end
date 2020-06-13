@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 600,
             fontSize: '20px',
             lineHeight: '24px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
             marginBottom: 0,
         },
     },
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
             fontWeight: 300,
             fontSize: '15px',
             lineHeight: '26px',
-            color: '#1C1C1C',
+            color: theme.palette.text.main,
         },
     },
     dialogActionsButton: {

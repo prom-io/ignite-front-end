@@ -22,14 +22,15 @@ import { OpenLoginDialogButton, GenericAuthorizationDialog } from '../../Authori
 import { AppBarLogo } from '.';
 
 const useStyles = makeStyles(theme => ({
-    headerContainer: {
-        position: 'fixed',
-        top: 0,
-        height: 50,
-        width: '100%',
-        borderBottom: '1px solid #F1EBE8',
+    appBarContainer: {
         background: '#fff',
-        zIndex: 10,
+        boxShadow: 'none',
+    },
+    headerContainer: {
+        borderBottom: `1px solid ${theme.palette.border.main}`,
+        background: '#fff',
+        boxShadow: 'none',
+        minHeight: '50px',
     },
     navStyle: {
         display: 'flex',
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
             justifyContent: 'space-around',
             height: 50,
             width: '100%',
-            background: '#FFFBF8',
+            background: theme.palette.background.light,
             zIndex: 10,
         },
     },
@@ -69,76 +70,77 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
     const classes = useStyles();
     return (
         <>
-            <div className={classes.headerContainer}>
-                <Hidden mdUp>
-                    {currentUser ? <ExpandDrawerButton /> : <div />}
-                </Hidden>
-                <nav className={classes.navStyle}>
-                    <div className={classes.navItemList}>
-                        <AppBarLogo />
-                        <AppBarLink
-                            text={l('appbar.home')}
-                            targetView={Routes.home}
-                            active={currentActiveRoute === 'home'}
-                            icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="homeLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                        <AppBarLink
-                            text={l('appbar.notifications')}
-                            targetView={Routes.notifications}
-                            active={currentActiveRoute === 'notifications'}
-                            icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="notificationsLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                        <AppBarLink
-                            text={l('appbar.chat')}
-                            targetView={Routes.chat}
-                            active={currentActiveRoute === 'chat'}
-                            icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="chatLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                        <AppBarLink
-                            text={l('appbar.trends')}
-                            targetView={Routes.trends}
-                            active={currentActiveRoute === 'trends'}
-                            icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
-                            routerStore={routerStore}
-                            viewParameters={{}}
-                            id="trendsLink"
-                            hidden={Boolean(window.AndroidCallback)}
-                        />
-                    </div>
-                    <div className={classes.navSecondary}>
-                        {/* <input type="text"
-                   placeholder={l("appbar.search")}
-                   disabled
-                   className="app-bar-search-field"
-            /> */}
-                        <Hidden smDown>
-                            <UserAppBarMenu />
-                        </Hidden>
-                        {currentUser ? (
+            <MuiAppBar classes={{ root: classes.appBarContainer }}>
+                <Toolbar classes={{ root: classes.headerContainer }}>
+                    <Hidden mdUp>
+                        {currentUser ? <ExpandDrawerButton /> : <div />}
+                    </Hidden>
+                    <nav className={classes.navStyle}>
+                        <div className={classes.navItemList}>
+                            <AppBarLogo />
+                            <AppBarLink
+                                text={l('appbar.home')}
+                                targetView={Routes.home}
+                                active={currentActiveRoute === 'home'}
+                                icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="homeLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l('appbar.notifications')}
+                                targetView={Routes.notifications}
+                                active={currentActiveRoute === 'notifications'}
+                                icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="notificationsLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l('appbar.chat')}
+                                targetView={Routes.chat}
+                                active={currentActiveRoute === 'chat'}
+                                icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="chatLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l('appbar.topics')}
+                                targetView={Routes.topics}
+                                active={currentActiveRoute === 'topics'}
+                                icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="topicsLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                        </div>
+                        <div className={classes.navSecondary}>
+                            {/* <input type="text"
+                                   placeholder={l("appbar.search")}
+                                   disabled
+                                   className="app-bar-search-field"
+                            /> */}
                             <Hidden smDown>
-                                <OpenCreateStatusDialogButton />
+                                <UserAppBarMenu />
                             </Hidden>
-                        )
-                            : <div />}
-                        {!currentUser && (<OpenLoginDialogButton />)}
-                        <Hidden smDown>
-                            <div className="select-language">
-                                <AppBarLanguageSelect />
-                            </div>
-                        </Hidden>
-
+                            {currentUser ? (
+                                <Hidden smDown>
+                                    <OpenCreateStatusDialogButton />
+                                </Hidden>
+                            )
+                                : <div />}
+                            {!currentUser && (<OpenLoginDialogButton />)}
+                            <Hidden smDown>
+                                <div className="select-language">
+                                    <AppBarLanguageSelect />
+                                </div>
+                            </Hidden>
+                        </div>
                         <div className="mobile_header">
                             <GenericAuthorizationDialog />
                             {/* <img src="/search.png" /> */}
@@ -146,21 +148,17 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                                 <AppBarLanguageSelect />
                             </div>
                         </div>
-                    </div>
-                    {/* <Hidden smDown>
-            <Toolbar />
-          </Hidden> */}
-                    <Hidden mdUp>
-                        {currentUser ? (
-                            <OpenCreateStatusDialogFloatingActionButton />
-                        )
-                            : <div />}
-                    </Hidden>
-                    <NavigationalDrawer />
-                    <CreateStatusDialog />
-                </nav>
-            </div>
-
+                        <Hidden mdUp>
+                            {currentUser ? (
+                                <OpenCreateStatusDialogFloatingActionButton />
+                            )
+                                : <div />}
+                        </Hidden>
+                        <NavigationalDrawer />
+                        <CreateStatusDialog />
+                    </nav>
+                </Toolbar>
+            </MuiAppBar>
             <nav className={classes.mobileNav}>
                 <AppBarLink
                     text={l('appbar.home')}
@@ -193,13 +191,13 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                     hidden={Boolean(window.AndroidCallback)}
                 />
                 <AppBarLink
-                    text={l('appbar.trends')}
-                    targetView={Routes.trends}
-                    active={currentActiveRoute === 'trends'}
-                    icon={<TrendsIcon color={currentActiveRoute === 'trends' && theme.palette.primary.main} />}
+                    text={l('appbar.topics')}
+                    targetView={Routes.topics}
+                    active={currentActiveRoute === 'topics'}
+                    icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
                     routerStore={routerStore}
                     viewParameters={{}}
-                    id="trendsLink"
+                    id="topicsLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
             </nav>

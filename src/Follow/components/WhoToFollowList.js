@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
 import { FadeLoader } from 'react-spinners';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { SideBarList, UnfollowDialog } from '.';
 
 const useStyles = makeStyles(() => ({
@@ -26,6 +27,7 @@ const _WhoToFollowList = ({
     unfollowDialogOpen,
 }) => {
     const classes = useStyles();
+    const theme = useTheme();
     const viewCount = isMobile ? 3 : 5;
 
     useEffect(() => {
@@ -33,7 +35,7 @@ const _WhoToFollowList = ({
     }, []);
 
     return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
-        <div className={classes.centered}><FadeLoader color="#FF5C01" css="transform: scale(0.5); top: 10px; left: 10px" /></div>
+        <div className={classes.centered}><FadeLoader color={theme.palette.primary.main} css="transform: scale(0.5); top: 10px; left: 10px" /></div>
     ) : (
         <>
             <SideBarList

@@ -5,21 +5,20 @@ import {
     Button,
     Card,
     CardActions,
-    CircularProgress,
     Grid,
     makeStyles,
     TextField,
     Typography,
 } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
 import { AttachImageInput } from './AttachImageInput';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
-        background: '#F1EBE8',
+        background: theme.palette.border.main,
     },
     remainingCharactersCounter: {
         padding: '7px 10px',
@@ -169,7 +168,7 @@ const _CreateStatusForm = ({
                             onClick={createStatus}
                             disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         >
-                            {pending && <FadeLoader css="transform: scale(0.5)" color="#FF5C01" />}
+                            {pending && <Loader size="md" />}
                             {l('status.send')}
                         </Button>
                     )}

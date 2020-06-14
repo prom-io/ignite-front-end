@@ -65,7 +65,7 @@ const _UserProfileHeader = ({
         <Grid container className="user-profile-header-content another-user">
             <Grid className="user-profile-header-content-top">
                 <Grid container>
-                    <Grid item className="justify-content-center">
+                    <Grid item xs={12} className="justify-content-center">
                         <UserProfileAvatar avatarUrl={avatar} />
                     </Grid>
                     <Grid item xs={12}>

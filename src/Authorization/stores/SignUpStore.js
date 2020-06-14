@@ -26,15 +26,17 @@ export class SignUpStore {
 
     generateWalletStore = undefined;
     genericAuthorizationDialogStore = undefined;
+    localeStore = undefined;
 
     @computed
     get generatedWallet() {
         return this.generateWalletStore.generatedWallet;
     }
 
-    constructor(generateWalletStore, genericAuthorizationDialogStore) {
+    constructor(generateWalletStore, genericAuthorizationDialogStore, localeStore) {
         this.generateWalletStore = generateWalletStore;
         this.genericAuthorizationDialogStore = genericAuthorizationDialogStore;
+        this.localeStore = localeStore;
 
         reaction(
             () => this.signUpForm.password,
@@ -76,7 +78,8 @@ export class SignUpStore {
             password: this.signUpForm.password,
             password_confirmation: this.signUpForm.passwordConfirmation,
             wallet_address: this.generatedWallet.address,
-            private_key: this.generatedWallet.privateKey
+            private_key: this.generatedWallet.privateKey,
+            language: this.localeStore.selectedLanguage || 'en'
         })
             .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogType('attention'))
             .catch(error => {

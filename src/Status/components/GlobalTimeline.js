@@ -47,7 +47,7 @@ const _GlobalTimeline = ({
         : (
             <Grid container>
                 {currentUser && (
-                    <Grid item className={classes.paddingCorective}>
+                    <Grid item xs={12} className={classes.paddingCorective}>
                         <CreateStatusForm />
                     </Grid>
                 )}

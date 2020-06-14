@@ -129,7 +129,15 @@ export const LoginForm = observer(({
                     control={<Checkbox checked={isRemember} color="primary" onChange={() => setIsRemember(!isRemember)} name="remember" />}
                     label="Remember me"
                 />
-                <a className={classes.forgotPassword}>Forgot password?</a>
+                <a
+                    className={classes.forgotPassword}
+                    onClick={() => {
+                        setGenericAuthorizationDialogOpen(true);
+                        setGenericAuthorizationDialogType('forgotPassword');
+                    }}
+                >
+                    {l('authorization.login.forgot-password')}
+                </a>
             </div>
             {!hideLoginButton && (
                 <Button
@@ -159,18 +167,6 @@ export const LoginForm = observer(({
                     {l('sign-up')}
                 </Button>
             )}
-            <Button
-                variant="text"
-                color="primary"
-                fullWidth
-                className={classes.signUpButton}
-                onClick={() => {
-                    setGenericAuthorizationDialogOpen(true);
-                    setGenericAuthorizationDialogType('forgotPassword');
-                }}
-            >
-                {l('authorization.login.forgot-your-password')}
-            </Button>
         </>
     );
 

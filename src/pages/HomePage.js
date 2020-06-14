@@ -30,7 +30,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     <Grid item spacing={28} lg={9} className="right-content-container">
                         <Grid container spacing={2}>
                             {!currentUser && (
-                                <Grid item className="login-form-container">
+                                <Grid item xs={12} className="login-form-container">
                                     <LoginForm />
                                 </Grid>
                             )}

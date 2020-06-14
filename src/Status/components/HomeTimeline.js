@@ -50,7 +50,7 @@ const _HomeTimeline = ({
         ? <div className={classes.centered}><Loader size="md" /></div>
         : (
             <Grid container spacing={2}>
-                <Grid item className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
+                <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <CreateStatusForm />
                 </Grid>
                 <Grid item className={classes.gridItemOverridePadding}>

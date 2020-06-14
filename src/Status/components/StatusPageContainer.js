@@ -70,10 +70,10 @@ const _StatusPageContainer = ({
 
     return (
         <Grid container spacing={2}>
-            <Grid xs={12}>
+            <Grid item xs={12}>
                 <BackButton title="post" style={{ marginLeft: '10px' }} />
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
                 <StatusListItem
                     status={status}
                     statusLikePending={statusLikePending}
@@ -90,7 +90,7 @@ const _StatusPageContainer = ({
                     setUnfollowDialogOpen={setUnfollowDialogOpen}
                 />
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
                 <StatusCommentsList />
             </Grid>
         </Grid>

@@ -70,7 +70,6 @@ const _StatusCommentsList = ({
                                 />
                             </>
                         )}
->>>>>>> 5ccc7a58e122da92e603fdd60f355783763dfa48
             </Grid>
         </Grid>
     );

@@ -47,11 +47,11 @@ const _UserProfileTimeline = ({
         : (
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
-                    <Grid item className={classes.profileCreateStatusForm}>
+                    <Grid item xs={12} className={classes.profileCreateStatusForm}>
                         <CreateStatusForm />
                     </Grid>
                 )}
-                <Grid item className={classes.profileStatusList}>
+                <Grid item xs={12} className={classes.profileStatusList}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

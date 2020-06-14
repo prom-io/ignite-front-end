@@ -203,5 +203,6 @@ export const en = {
     'sign-up.hash-code.not-generated': 'Hashcode not generated',
     'sign-up.hash-code.saved': 'I have saved the hashcode to publish it later in a record in Ethereum blockchain',
     'sign-up.continue': 'Continue',
-    'authorization.login.forgot-your-password': 'Forgot your password?'
+    'authorization.login.forgot-password': 'Forgot password?',
+    'authorization.login.forgot-your-password': 'Forgot your password?',
 };

@@ -162,6 +162,9 @@ export const ko = {
     'sign-up.wallet-address': '지갑 주소(로그인)',
     'sign-up.password': '비밀번호',
     'sign-up.confirm-password': '비밀번호 확인해주세요',
+    'sign-up.password.empty': 'Password can\'t be empty',
+    'sign-up.password.not-strong': 'Password is not strong enough',
+    'sign-up.password.mismatch': 'Password mismatch',
     'sign-up.password.requirements': '암호는 최소 8자 이상이어야 하며 대/소문자가 혼합되어야 하며 숫자 또는 기호를 포함해야 합니다',
     'sign-up.password.generate-strong-password': '강력한 비밀번호를 만들어주세요',
     'sign-up.private-key': '개인 키(암호 복구 키)',
@@ -201,4 +204,5 @@ export const ko = {
     'sign-up.continue': 'Continue',
     'authorization.login.forgot-password': 'Forgot password?',
     'authorization.login.forgot-your-password': 'Forgot your password?',
+    'authorization.set-new-password': 'Set a new password for your Ignite account',
 };

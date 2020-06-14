@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
 import { InputPasswordGroup } from '../InputPasswordGroup';
-import { useStore } from '../../../store/hooks';
+import { useStore, useLocalization } from '../../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     dialogRoot: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 
 export const ChangePassword = observer(() => {
     const classes = useStyles();
+    const { l } = useLocalization();
     const { passwordChange } = useStore();
     const {
         passwordChangeForm,
@@ -37,9 +38,9 @@ export const ChangePassword = observer(() => {
 
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
-            <span className={classes.titleBold}>Set a new password for your Ignite account</span>
+            <span className={classes.titleBold}>{l('authorization.set-new-password')}</span>
             <InputPasswordGroup
-                title="Password"
+                title={l('password')}
                 formValues={passwordChangeForm}
                 onValueChange={setFormValue}
                 formErrors={formErrors}
@@ -56,7 +57,7 @@ export const ChangePassword = observer(() => {
                 onClick={changePassword}
             >
                 {pending && <CircularProgress size={25} color="primary" />}
-                Continue
+                {l('sign-up.continue')}
             </Button>
         </DialogContent>
     );

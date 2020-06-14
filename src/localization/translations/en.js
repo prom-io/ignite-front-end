@@ -205,4 +205,5 @@ export const en = {
     'sign-up.continue': 'Continue',
     'authorization.login.forgot-password': 'Forgot password?',
     'authorization.login.forgot-your-password': 'Forgot your password?',
+    'authorization.set-new-password': 'Set a new password for your Ignite account',
 };

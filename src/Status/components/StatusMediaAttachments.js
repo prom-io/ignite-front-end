@@ -6,6 +6,9 @@ import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper
 const useStyles = makeStyles(theme => ({
     isMobileStatusImage: {
         "& img": {
+            maxWidth: "100%",
+            marginLeft: "unset !important",
+
             [theme.breakpoints.down("450")]: {
                 width: "100% !important",
                 height: "100% !important",

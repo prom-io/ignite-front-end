@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import { AppBar as MuiAppBar, Hidden, Toolbar, withTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomHomeOutlinedIcon from '../../components/CustomHomeOutlinedIcon';
+import CustomHomeOutlinedIcon from '../../icons/CustomHomeOutlinedIcon';
 import { AppBarLink } from './AppBarLink';
 import { UserAppBarMenu } from './UserAppBarMenu';
 import { Routes } from '../../routes';

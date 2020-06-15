@@ -10,10 +10,24 @@ import {
 } from "../PrometeusDescription";
 import { LoginForm } from "../Authorization/components";
 import { Layout } from "../Layout";
-import { useAuthorization } from "../store/hooks";
+import { useAuthorization, useStore } from '../store/hooks';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles(() => ({
+    mobileTopicsPopular: {
+        position: "absolute",
+        left: 0,
+        width: "100%",
+        height: "100%"
+    },
+}));
+
 
 export const TopicPage = observer(() => {
     const { currentUser } = useAuthorization();
+    const { isTopicsMenuOpen } = useStore().topicsPopular;
+    const classes = useStyles();
+    
+    console.log(isTopicsMenuOpen);
 
     return (
         <Grid container>
@@ -40,11 +54,10 @@ export const TopicPage = observer(() => {
                                 <TopicPageContainer />
                             )}
                         </Grid>
-                        <Grid item md={3} className="right-banners-container">
+                        <Grid item md={3} className={`right-banners-container ${
+                          isTopicsMenuOpen && classes.mobileTopicsPopular}`}>
                             {currentUser ? (
-                                <Hidden only={["md"]}>
-                                    <TopicsPopular />
-                                </Hidden>
+                              <TopicsPopular />
                             ) : (
                                 <ExploreOurFeaturesDescription />
                             )}

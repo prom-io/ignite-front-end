@@ -78,8 +78,6 @@ const _TopicStatusList = ({
     const classes = useStyles();
     const theme = useTheme();
 
-    console.log(setIsTopicsMenuOpen);
-
     return (
         <>
             <div className={classes.topicListHeader}>

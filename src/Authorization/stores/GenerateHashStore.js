@@ -42,6 +42,8 @@ export class GenerateHashStore {
                 );
                 if (this.validateForm()) {
                     this.generateHash();
+                } else {
+                    this.generatedHash = undefined;
                 }
             }
         )

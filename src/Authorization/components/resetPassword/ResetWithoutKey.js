@@ -1,8 +1,10 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { HashVerificationMode } from '../../stores';
+import { useStore, useLocalization } from '../../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentBlock: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -34,8 +36,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ResetWithoutKey = () => {
+export const ResetWithoutKey = observer(() => {
     const classes = useStyles();
+    const { genericAuthorizationDialog, hashVerification } = useStore();
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+    const { setHashVerificationMode } = hashVerification;
+
     return (
         <DialogContent>
             <div className={classes.contentBlock}>
@@ -44,18 +50,25 @@ export const ResetWithoutKey = () => {
                 Ethereum blockchain that contains the hashcode (to the password).
                 We can help you generate a hashcode for your password or you can do this on your own.
             </div>
-
             <Button
                 variant="contained"
                 color="primary"
                 classes={{
                     root: classes.button,
                 }}
+                onClick={() => setGenericAuthorizationDialogType('changePasswordWithHash')}
             >
                 Generate Hashcode
             </Button>
-
-            <div className={classes.link}>I will create the hashcode on my own</div>
+            <div
+                className={classes.link}
+                onClick={() => {
+                    setHashVerificationMode(HashVerificationMode.RESET_PASSWORD);
+                    setGenericAuthorizationDialogType('verifyHash');
+                }}
+            >
+                I will create t+he hashcode on my own
+            </div>
 
             <div className={classes.notes}>
                 <a>Note:</a>
@@ -65,4 +78,4 @@ export const ResetWithoutKey = () => {
             </div>
         </DialogContent>
     );
-};
+});

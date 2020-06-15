@@ -78,6 +78,7 @@ export const ForgotPassword = observer(() => {
                     classes={{
                         root: classes.button,
                     }}
+                    onClick={() => setGenericAuthorizationDialogType('resetWithoutKey')}
                 >
                     Enter Txn hash
                 </Button>

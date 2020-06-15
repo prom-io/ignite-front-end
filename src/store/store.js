@@ -66,7 +66,7 @@ const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
 const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
 const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog, localization);
 const hashGeneration = new GenerateHashStore();
-const hashVerification = new VerifyHashStore();
+const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
 const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 
 export const store = {

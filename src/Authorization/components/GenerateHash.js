@@ -4,6 +4,7 @@ import { Button, DialogContent, makeStyles } from '@material-ui/core';
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
+import { HashVerificationMode } from '../stores';
 import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles(() => ({
 export const GenerateHash = observer(() => {
     const classes = useStyles();
     const [hashCodeSaved, setHashCodeSaved] = useState(false);
-    const { hashGeneration, genericAuthorizationDialog } = useStore();
+    const { hashGeneration, genericAuthorizationDialog, hashVerification } = useStore();
     const {
         setFormValue,
         passwordForm,
@@ -34,6 +35,7 @@ export const GenerateHash = observer(() => {
         setShowPassword,
     } = hashGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+    const { setHashVerificationMode } = hashVerification;
     const { l } = useLocalization();
 
     return (
@@ -69,7 +71,10 @@ export const GenerateHash = observer(() => {
                     root: classes.button,
                 }}
                 disabled={!hashCodeSaved}
-                onClick={() => setGenericAuthorizationDialogType('verifyHash')}
+                onClick={() => {
+                    setHashVerificationMode(HashVerificationMode.SIGN_UP);
+                    setGenericAuthorizationDialogType('verifyHash');
+                }}
             >
                 {l('sign-up.continue')}
             </Button>

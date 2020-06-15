@@ -1,8 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import CustomDialogTitle from './CustomDialogTitle';
+import { useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         paddingBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -40,12 +41,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const ErrorVerify = () => {
+export const ErrorVerify = observer(() => {
     const classes = useStyles();
+    const { hashVerification, genericAuthorizationDialog } = useStore();
+    const { transactionId, error } = hashVerification;
+    const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
+
     return (
         <DialogContent>
             <div className={classes.contentDescription}>
-                Your password does not fit to the hashcode from the transaction. Please contact us on
+                Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
                 <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
                 {' '}
                 or
@@ -56,27 +61,31 @@ export const ErrorVerify = () => {
             <div className={classes.content}>
                 <div className={classes.contentBlock}>
                     <p>Your Tx Id is</p>
-                    <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                    <span>{transactionId}</span>
                 </div>
-                <div className={classes.contentBlock}>
-                    <p>Your Wallet Address is</p>
-                    <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
-                </div>
-                <div className={classes.contentBlock}>
-                    <p>Your Hashcode is</p>
-                    <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
-                </div>
+                {error && error.wallet_address && (
+                    <div className={classes.contentBlock}>
+                        <p>Your Wallet Address is</p>
+                        <span>{error.wallet_address}</span>
+                    </div>
+                )}
+                {error && error.hash && (
+                    <div className={classes.contentBlock}>
+                        <p>Your Hashcode is</p>
+                        <span>{error.hash}</span>
+                    </div>
+                )}
             </div>
-
             <Button
                 variant="contained"
                 color="primary"
                 classes={{
                     root: classes.button,
                 }}
+                onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
                 Enjoy
             </Button>
         </DialogContent>
     );
-};
+});

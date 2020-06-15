@@ -1,9 +1,10 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, DialogContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { useStore } from '../../../store/hooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     contentDescription: {
         paddingBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -54,8 +55,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const PasswordUpdatedError = () => {
+export const PasswordUpdatedError = observer(() => {
     const classes = useStyles();
+    const { passwordChange, genericAuthorizationDialog } = useStore();
+    const { passwordChangeForm } = passwordChange;
+    const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
+
     return (
         <DialogContent>
             <div className={classes.contentDescription}>
@@ -67,22 +72,20 @@ export const PasswordUpdatedError = () => {
                 <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
                 . We’ll do our best to fix the problem.
             </div>
-
             <div className={classes.contentBlock}>
                 <p>Your login is</p>
-                <span>0xCBC41d42518F6614bcaf4C82587B19001af2E12F</span>
+                <span>{passwordChangeForm.walletAddress}</span>
             </div>
-
             <Button
                 variant="contained"
                 color="primary"
                 classes={{
                     root: classes.button,
                 }}
+                onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
                 Ok
             </Button>
-
             <div className={classes.notes}>
                 <a>Note:</a>
                 {' '}
@@ -91,10 +94,9 @@ export const PasswordUpdatedError = () => {
                 We will not ask about your IP address and location, but sometime it may help...
                 so we would highly appreciate it if you could provide us with that info.
             </div>
-
             <div className={classes.descriptionBold}>
                 Sorry for the inconvenience.
             </div>
         </DialogContent>
     );
-};
+});

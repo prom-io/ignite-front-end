@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { Button, CircularProgress, DialogContent, makeStyles, TextField } from '@material-ui/core';
 import { useStore } from '../../store/hooks';
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const Verify = () => {
+export const Verify = observer(() => {
     const classes = useStyles();
     const { hashVerification } = useStore();
     const { setTransactionId, pending, transactionId, verifyHash } = hashVerification;
@@ -64,4 +65,4 @@ export const Verify = () => {
             </div>
         </DialogContent>
     );
-};
+});

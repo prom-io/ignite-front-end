@@ -37,7 +37,6 @@ import { NotificationsStore } from '../Notification/stores';
 import { WebsocketStore } from '../websocket/stores';
 
 const authorization = new AuthorizationStore();
-const login = new LoginStore(authorization);
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
 const createStatus = new CreateStatusStore(uploadMediaAttachments);
 const globalTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/global', false, true);
@@ -63,6 +62,7 @@ const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUp
 const notifications = new NotificationsStore(authorization);
 const websocket = new WebsocketStore(authorization, notifications);
 const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
+const login = new LoginStore(authorization, genericAuthorizationDialog);
 const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
 const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog, localization);
 const hashGeneration = new GenerateHashStore();

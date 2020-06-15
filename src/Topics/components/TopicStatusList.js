@@ -1,4 +1,4 @@
-import React from "react";
+import React  from 'react';
 import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
@@ -52,6 +52,14 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    hashBtnBlock: {
+        display: 'flex',
+        flexDirection: 'flex-start',
+        alignItems: 'center',
+        height: '83px',
+        padding: '0 15px',
+        marginTop: '50px',
     }
 }));
 
@@ -64,10 +72,12 @@ const _TopicStatusList = ({
     fetchAllStatuses,
     favouriteStatus,
     unfavouriteStatus,
-    followStatusAuthor
+    followStatusAuthor,
+    setIsTopicsMenuOpen
 }) => {
     const classes = useStyles();
     const theme = useTheme();
+    
 
     return (
         <>
@@ -92,14 +102,14 @@ const _TopicStatusList = ({
                         Fresh
                     </div>
                 </div>
-                <div className={classes.topicListHeaderMenu}>
+                <div className={classes.topicListHeaderMenu} onClick={()=>setIsTopicsMenuOpen(true)}>
                     <MenuIcon />
                 </div>
             </div>
             
            {/* ---------------тут будет скролл с кнопками -------*/}
-           <div>
-               <TopicsHashButton>#hash</TopicsHashButton>
+           <div className={classes.hashBtnBlock}>
+               <TopicsHashButton>Long Tag #4</TopicsHashButton>
            </div>
             
             <InfiniteScroll

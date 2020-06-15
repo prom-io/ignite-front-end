@@ -1,4 +1,4 @@
-import React from "react";
+import React  from 'react';
 import { observer } from "mobx-react";
 import { Grid, makeStyles } from "@material-ui/core";
 
@@ -24,15 +24,19 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.main
         }
     },
-    topicsPopularBody: {}
+    topicsPopularBody: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%'
+    }
 }));
 
-export const TopicsPopular = observer(() => {
+export const TopicsPopular = observer(({isTopicsMenuOpen}) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
     return (
-        <Grid container spacing={2} className="description-container-right">
+        <Grid container spacing={2} className={`description-container-right ${isTopicsMenuOpen && classes.topicsPopularBody}`}>
             <Grid className="user_profile_container">
                 <div className={classes.topicsPopular}>
                     <div className={classes.topicsPopularHeader}>

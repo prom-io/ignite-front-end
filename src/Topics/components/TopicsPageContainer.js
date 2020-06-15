@@ -16,16 +16,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const TopicsPageContainer = () => {
+export const TopicsPageContainer = ({setIsTopicsMenuOpen}) => {
     const classes = useStyles();
     const { l } = useLocalization();
+  console.log(setIsTopicsMenuOpen);
 
     return (
         <>
             <Typography className={classes.topicsTitle} variant="h6">
                 {l("appbar.topics")}
             </Typography>
-            <TopicStatusList />
+            <TopicStatusList setIsTopicsMenuOpen={setIsTopicsMenuOpen}/>
         </>
     );
 };

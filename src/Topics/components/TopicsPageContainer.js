@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         lineHeight: "24px",
         marginBottom: "24px",
       [theme.breakpoints.down('sm')]: {
-       display: 'none',
+       opacity: 0,
       },
     }
 }));

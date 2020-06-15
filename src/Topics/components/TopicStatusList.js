@@ -1,6 +1,6 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Hidden } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FadeLoader } from "react-spinners";
@@ -54,12 +54,16 @@ const useStyles = makeStyles(theme => ({
         display: "table"
     },
     hashBtnBlock: {
-        display: "flex",
-        flexDirection: "flex-start",
+        display: "none",
+        justifyContent: "flex-start",
         alignItems: "center",
         height: "83px",
-        padding: "0 15px",
-        marginTop: "50px"
+        padding: "0 0 0 15px",
+        whiteSpace: 'nowrap',
+        overflowX: 'scroll',
+        [theme.breakpoints.down('sm')]: {
+            display: "flex",
+        },
     }
 }));
 
@@ -110,9 +114,13 @@ const _TopicStatusList = ({
             </div>
 
             {/* ---------------тут будет скролл с кнопками -------*/}
-            <div className={classes.hashBtnBlock}>
-                <TopicsHashButton>Long Tag #4</TopicsHashButton>
-            </div>
+                <div className={classes.hashBtnBlock}>
+                    <TopicsHashButton>Long Tag #4</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #1</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #50</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #3</TopicsHashButton>
+                </div>
+            
 
             <InfiniteScroll
                 next={fetchAllStatuses}

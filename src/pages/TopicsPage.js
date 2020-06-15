@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     mobileTopicsPopular: {
-        position: "absolute",
+        position: "fixed",
         display: 'flex',
         background: theme.palette.background.paper,
         left: 0,

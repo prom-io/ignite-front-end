@@ -43,7 +43,7 @@ export const TopicsPopular = observer(() => {
             <Grid className="user_profile_container">
                 <div className={classes.topicsPopular}>
                     <div className={classes.topicsPopularHeader}>
-                        <Hidden only={["sm"]}>
+                        <Hidden lgUp>
                             <IconButton
                               onClick={() => setIsTopicsMenuOpen(false)}
                             >

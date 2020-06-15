@@ -7,6 +7,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '8px 16px',
+    marginRight: '4px',
     borderRadius: '30px',
     fontFamily: 'Museo Sans Cyrl Regular',
     backgroundColor: theme.palette.text.main,

@@ -4,10 +4,10 @@ import { Button, DialogContent, makeStyles } from '@material-ui/core';
 import { InputPasswordGroup } from '../InputPasswordGroup';
 import { KeyCopyBlock } from '../KeyCopyBlock';
 import { _Checkbox } from '../_Checkbox';
-import { useStore, useLocalization } from "../../../store/hooks";
-import {HashVerificationMode} from "../../stores";
+import { useStore, useLocalization } from '../../../store/hooks';
+import { HashVerificationMode } from '../../stores';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',

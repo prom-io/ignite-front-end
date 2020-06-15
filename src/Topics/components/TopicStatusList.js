@@ -73,11 +73,11 @@ const _TopicStatusList = ({
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
-    setIsTopicsMenuOpen
+    setIsTopicsMenuOpen,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-
+    
     return (
         <>
             <div className={classes.topicListHeader}>
@@ -164,7 +164,7 @@ const mapMobxToProps = ({ authorization, topicStatuses, topicsPopular }) => ({
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
     followStatusAuthor: topicStatuses.followStatusAuthor,
-    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen
+    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen,
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

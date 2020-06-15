@@ -2,7 +2,14 @@ import React from 'react';
 import Gallery from 'react-grid-gallery';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 
-export const StatusMediaAttachments = ({ mediaAttachments }) => {
+const statusOnlyImage = () => {
+    return {
+        width: "100%",
+        height: "100%"
+    };
+}
+
+export const StatusMediaAttachments = ({ mediaAttachments, isOnlyImage }) => {
     const gallery = mediaAttachments.map(mediaAttachment => ({
         src: mediaAttachment.url,
         thumbnail: mediaAttachment.url,
@@ -17,6 +24,8 @@ export const StatusMediaAttachments = ({ mediaAttachments }) => {
                     <Gallery
                         images={gallery}
                         enableImageSelection={false}
+                        thumbnailStyle={isOnlyImage && statusOnlyImage}
+                        tileViewportStyle={isOnlyImage && statusOnlyImage}
                         showLightboxThumbnails
                     />
                 </ClickEventPropagationStopper>

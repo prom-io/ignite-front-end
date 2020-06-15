@@ -1,19 +1,28 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Hidden } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
 import { StatusListItem } from "../../Status/components/StatusListItem";
+import TopicsHashButton from "../../Topics/components/TopicsHashButton";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: "-2px"
+        marginBottom: "-2px",
+        [theme.breakpoints.down("sm")]: {
+            position: "fixed",
+            width: "100%",
+            top: 50,
+            background: theme.palette.background.paper,
+            borderBottom: `1px solid ${theme.palette.border.main}`,
+            zIndex: 20
+        }
     },
     topicListHeaderSwitcher: {
         display: "flex"
@@ -43,6 +52,18 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
+    },
+    hashBtnBlock: {
+        display: "none",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        height: "83px",
+        padding: "0 0 0 15px",
+        whiteSpace: 'nowrap',
+        overflowX: 'scroll',
+        [theme.breakpoints.down('sm')]: {
+            display: "flex",
+        },
     }
 }));
 
@@ -55,11 +76,12 @@ const _TopicStatusList = ({
     fetchAllStatuses,
     favouriteStatus,
     unfavouriteStatus,
-    followStatusAuthor
+    followStatusAuthor,
+    setIsTopicsMenuOpen,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-
+    
     return (
         <>
             <div className={classes.topicListHeader}>
@@ -83,10 +105,23 @@ const _TopicStatusList = ({
                         Fresh
                     </div>
                 </div>
-                <div className={classes.topicListHeaderMenu}>
+                <div
+                    className={classes.topicListHeaderMenu}
+                    onClick={() => setIsTopicsMenuOpen(true)}
+                >
                     <MenuIcon />
                 </div>
             </div>
+
+            {/* ---------------тут будет скролл с кнопками -------*/}
+                <div className={classes.hashBtnBlock}>
+                    <TopicsHashButton>Long Tag #4</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #1</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #50</TopicsHashButton>
+                    <TopicsHashButton>Long Tag #3</TopicsHashButton>
+                </div>
+            
+
             <InfiniteScroll
                 next={fetchAllStatuses}
                 loader={
@@ -126,7 +161,7 @@ const _TopicStatusList = ({
     );
 };
 
-const mapMobxToProps = ({ authorization, topicStatuses }) => ({
+const mapMobxToProps = ({ authorization, topicStatuses, topicsPopular }) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
     statusesOnTopic: topicStatuses.statusesOnTopic,
@@ -136,7 +171,8 @@ const mapMobxToProps = ({ authorization, topicStatuses }) => ({
     fetchAllStatuses: topicStatuses.fetchAllStatuses,
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
-    followStatusAuthor: topicStatuses.followStatusAuthor
+    followStatusAuthor: topicStatuses.followStatusAuthor,
+    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen,
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

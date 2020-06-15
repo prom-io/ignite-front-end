@@ -6,6 +6,9 @@ export class TopicsPopularStore {
     topicsPopularItems = [];
 
     @observable
+    isTopicsMenuOpen = false;
+
+    @observable
     pending = false;
 
     authorizationStore = undefined;
@@ -65,8 +68,14 @@ export class TopicsPopularStore {
     };
 
     @action
+    setIsTopicsMenuOpen = isTopicsMenuOpen => {
+        this.isTopicsMenuOpen = isTopicsMenuOpen;
+    };
+
+    @action
     reset = () => {
         this.topicsPopularItems = [];
+        this.isTopicsMenuOpen = false;
         // this.pending = false;
     };
 }

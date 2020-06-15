@@ -1,9 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, Hidden, IconButton, makeStyles } from '@material-ui/core';
 
 import { TopicsPopularList } from "./TopicsPopularList";
-import { useLocalization } from "../../store/hooks";
+import { useLocalization, useStore } from '../../store/hooks';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles(theme => ({
     topicsPopular: {
@@ -22,20 +23,33 @@ const useStyles = makeStyles(theme => ({
             fontSize: "20px",
             lineHeight: "24px",
             color: theme.palette.text.main
-        }
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+        },
     },
-    topicsPopularBody: {}
 }));
 
 export const TopicsPopular = observer(() => {
     const classes = useStyles();
     const { l } = useLocalization();
+    const { setIsTopicsMenuOpen } = useStore().topicsPopular;
 
     return (
-        <Grid container spacing={2} className="description-container-right">
+        <Grid
+            container
+            spacing={2}
+            className={"description-container-right"}>
             <Grid className="user_profile_container">
                 <div className={classes.topicsPopular}>
                     <div className={classes.topicsPopularHeader}>
+                        <Hidden lgUp>
+                            <IconButton
+                              onClick={() => setIsTopicsMenuOpen(false)}
+                            >
+                                <ArrowBackIcon />
+                            </IconButton>
+                        </Hidden>
                         <h3>{l("topics.card.popular")}</h3>
                     </div>
                     <div className={classes.topicsPopularBody}>

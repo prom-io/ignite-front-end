@@ -38,19 +38,18 @@ const useStyles = makeStyles(() => ({
 export const PasswordUpdated = observer(() => {
     const classes = useStyles();
     const { passwordChange, genericAuthorizationDialog } = useStore();
+    const { l } = useLocalization();
     const { passwordChangeForm } = passwordChange;
     const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
 
     return (
         <DialogContent>
             <div className={classes.contentDescription}>
-                Your password has been successfully changed. Use your new password to log in.
+                {l('password-recovery.success')}
             </div>
-
             <div className={classes.contentBlock}>
-                <p>Your login is</p>
+                <p>{l('sign-up.your-login-is')}</p>
                 <span>{passwordChangeForm.walletAddress}</span>
-
                 <Button
                     variant="contained"
                     color="primary"
@@ -59,7 +58,7 @@ export const PasswordUpdated = observer(() => {
                     }}
                     onClick={() => setGenericAuthorizationDialogOpen(false)}
                 >
-                    Ok
+                    {l('sign-up.ok')}
                 </Button>
             </div>
         </DialogContent>

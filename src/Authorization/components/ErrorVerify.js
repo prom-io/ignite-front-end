@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import { useStore } from '../../store/hooks';
+import { useStore, useLocalization } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -41,37 +41,55 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const errorTranslations = {
+    en: (classes) => (
+        <div className={classes.contentDescription}>
+            Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
+            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+            {' '}
+            or
+            {' '}
+            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+            .
+        </div>
+    ),
+    ko: (classes) => (
+        <div className={classes.contentDescription}>
+            Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
+            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+            {' '}
+            or
+            {' '}
+            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+            .
+        </div>
+    ),
+};
+
 export const ErrorVerify = observer(() => {
     const classes = useStyles();
     const { hashVerification, genericAuthorizationDialog } = useStore();
+    const { l, locale } = useLocalization();
     const { transactionId, error } = hashVerification;
     const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
 
     return (
         <DialogContent>
-            <div className={classes.contentDescription}>
-                Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
-                <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
-                {' '}
-                or
-                <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
-                .
-            </div>
-
+            {errorTranslations[locale](classes)}
             <div className={classes.content}>
                 <div className={classes.contentBlock}>
-                    <p>Your Tx Id is</p>
+                    <p>{l('your-transaction-id')}</p>
                     <span>{transactionId}</span>
                 </div>
                 {error && error.wallet_address && (
                     <div className={classes.contentBlock}>
-                        <p>Your Wallet Address is</p>
+                        <p>{l('your-wallet-address')}</p>
                         <span>{error.wallet_address}</span>
                     </div>
                 )}
                 {error && error.hash && (
                     <div className={classes.contentBlock}>
-                        <p>Your Hashcode is</p>
+                        <p>{l('your-hash-code')}</p>
                         <span>{error.hash}</span>
                     </div>
                 )}
@@ -84,7 +102,7 @@ export const ErrorVerify = observer(() => {
                 }}
                 onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
-                Enjoy
+                {l('sign-up.enjoy')}
             </Button>
         </DialogContent>
     );

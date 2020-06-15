@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import { useStore } from '../../../store/hooks';
+import { useStore, useLocalization } from '../../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -37,21 +37,41 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const publishTransactionTranslations = {
+    en: () => (
+        <span>
+            Publish a record to Ethereum blockchain
+            <br />
+            (for advanced users only)
+        </span>
+    ),
+    ko: () => (
+        <span>
+            Publish a record to Ethereum blockchain
+            <br />
+            (for advanced users only)
+        </span>
+    ),
+};
+
 export const ForgotPassword = observer(() => {
     const classes = useStyles();
     const { genericAuthorizationDialog } = useStore();
+    const { l, locale } = useLocalization();
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
             <span className={classes.contentDescription}>
-                We need to verify that you really are the owner of the Ignite account,
-                which password you forgot but trying to reclaim access to it.
+                {l('password-recovery.verification-is-needed')}
             </span>
             <div className={classes.contentBlock}>
                 <div>
-                    <p>Recommended option:</p>
-                    <span>Enter the password recovery key (Private key)</span>
+                    <p>
+                        {l('sign-up.options.recommended-option')}
+                        :
+                    </p>
+                    <span>{l('password-recovery.options.private-key')}</span>
                 </div>
                 <Button
                     variant="contained"
@@ -61,16 +81,12 @@ export const ForgotPassword = observer(() => {
                     }}
                     onClick={() => setGenericAuthorizationDialogType('resetPassword')}
                 >
-                    Enter the key
+                    {l('password-recovery.enter-key')}
                 </Button>
             </div>
             <div className={classes.contentBlock}>
                 <div>
-                    <span>
-                        Publish a record to Ethereum blockchain
-                        <br />
-                        (for advanced users only)
-                    </span>
+                    {publishTransactionTranslations[locale]()}
                 </div>
                 <Button
                     variant="outlined"
@@ -80,7 +96,7 @@ export const ForgotPassword = observer(() => {
                     }}
                     onClick={() => setGenericAuthorizationDialogType('resetWithoutKey')}
                 >
-                    Enter Txn hash
+                    {l('password-recovery.enter-transaction-hash')}
                 </Button>
             </div>
         </DialogContent>

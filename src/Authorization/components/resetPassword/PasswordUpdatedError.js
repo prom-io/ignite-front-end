@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, DialogContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useStore } from '../../../store/hooks';
+import { useStore, useLocalization } from '../../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -55,25 +55,45 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const errorTranslations = {
+    en: (classes) => (
+        <div className={classes.contentDescription}>
+            Something seems to go wrong…  Please contact us on
+            {' '}
+            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+            {' '}
+            or
+            {' '}
+            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+            . We’ll do our best to fix the problem.
+        </div>
+    ),
+    ko: (classes) => (
+        <div className={classes.contentDescription}>
+            Something seems to go wrong…  Please contact us on
+            {' '}
+            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+            {' '}
+            or
+            {' '}
+            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+            . We’ll do our best to fix the problem.
+        </div>
+    ),
+};
+
 export const PasswordUpdatedError = observer(() => {
     const classes = useStyles();
     const { passwordChange, genericAuthorizationDialog } = useStore();
+    const { locale, l } = useLocalization();
     const { passwordChangeForm } = passwordChange;
     const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
 
     return (
         <DialogContent>
-            <div className={classes.contentDescription}>
-                Something seems to go wrong…  Please contact us on
-                {' '}
-                <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
-                {' '}
-                or
-                <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
-                . We’ll do our best to fix the problem.
-            </div>
+            {errorTranslations[locale](classes)}
             <div className={classes.contentBlock}>
-                <p>Your login is</p>
+                <p>{l('sign-up.your-login-is')}</p>
                 <span>{passwordChangeForm.walletAddress}</span>
             </div>
             <Button
@@ -84,18 +104,15 @@ export const PasswordUpdatedError = observer(() => {
                 }}
                 onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
-                Ok
+                {l('sign-up.ok')}
             </Button>
             <div className={classes.notes}>
-                <a>Note:</a>
+                <a>{l('sign-up.note')}</a>
                 {' '}
-                Please keep your login (Wallet Address) and be ready to provide us with it.
-                Time and date, as well as your device and browser info will be also useful.
-                We will not ask about your IP address and location, but sometime it may help...
-                so we would highly appreciate it if you could provide us with that info.
+                {l('sign-up.keep-your-login')}
             </div>
             <div className={classes.descriptionBold}>
-                Sorry for the inconvenience.
+                {l('sign-up.sorry')}
             </div>
         </DialogContent>
     );

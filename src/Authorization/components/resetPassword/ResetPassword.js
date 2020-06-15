@@ -39,18 +39,18 @@ export const ResetPassword = observer(() => {
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
             <span className={classes.contentDescription}>
-                To continue the password reset procedure, enter the Wallet address and the Password recovery key (Private key)
+                {l('password-recovery.instructions')}
             </span>
             <form className={classes.form} noValidate autoComplete="off">
                 <TextField
-                    label="Wallet Address"
+                    label={l('password-recovery.wallet-address')}
                     value={passwordChangeForm.walletAddress}
                     onChange={event => setFormValue('walletAddress', event.target.value)}
                     error={Boolean(formErrors.walletAddress)}
                     helperText={formErrors.walletAddress && l(formErrors.walletAddress)}
                 />
                 <TextField
-                    label="Private Key"
+                    label={l('password-recovery.private-key')}
                     value={passwordChangeForm.privateKey}
                     onChange={event => setFormValue('privateKey', event.target.value)}
                     error={Boolean(formErrors.privateKey)}
@@ -65,7 +65,7 @@ export const ResetPassword = observer(() => {
                     disabled={continueButtonDisabled}
                     onClick={() => setGenericAuthorizationDialogType('changePassword')}
                 >
-                    Continue
+                    {l('sign-up.continue')}
                 </Button>
             </form>
         </DialogContent>

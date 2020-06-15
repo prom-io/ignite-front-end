@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
@@ -7,7 +7,7 @@ import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
 import { StatusListItem } from "../../Status/components/StatusListItem";
-import TopicsHashButton from '../../Topics/components/TopicsHashButton';
+import TopicsHashButton from "../../Topics/components/TopicsHashButton";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
@@ -15,14 +15,14 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: "-2px",
-        [theme.breakpoints.down('sm')]: {
-            position: 'fixed',
-            width: '100%',
+        [theme.breakpoints.down("sm")]: {
+            position: "fixed",
+            width: "100%",
             top: 50,
             background: theme.palette.background.paper,
             borderBottom: `1px solid ${theme.palette.border.main}`,
-            zIndex: 20,
-        },
+            zIndex: 20
+        }
     },
     topicListHeaderSwitcher: {
         display: "flex"
@@ -54,12 +54,12 @@ const useStyles = makeStyles(theme => ({
         display: "table"
     },
     hashBtnBlock: {
-        display: 'flex',
-        flexDirection: 'flex-start',
-        alignItems: 'center',
-        height: '83px',
-        padding: '0 15px',
-        marginTop: '50px',
+        display: "flex",
+        flexDirection: "flex-start",
+        alignItems: "center",
+        height: "83px",
+        padding: "0 15px",
+        marginTop: "50px"
     }
 }));
 
@@ -77,7 +77,8 @@ const _TopicStatusList = ({
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-    
+
+    console.log(setIsTopicsMenuOpen);
 
     return (
         <>
@@ -102,16 +103,19 @@ const _TopicStatusList = ({
                         Fresh
                     </div>
                 </div>
-                <div className={classes.topicListHeaderMenu} onClick={()=>setIsTopicsMenuOpen(true)}>
+                <div
+                    className={classes.topicListHeaderMenu}
+                    onClick={() => setIsTopicsMenuOpen(true)}
+                >
                     <MenuIcon />
                 </div>
             </div>
-            
-           {/* ---------------тут будет скролл с кнопками -------*/}
-           <div className={classes.hashBtnBlock}>
-               <TopicsHashButton>Long Tag #4</TopicsHashButton>
-           </div>
-            
+
+            {/* ---------------тут будет скролл с кнопками -------*/}
+            <div className={classes.hashBtnBlock}>
+                <TopicsHashButton>Long Tag #4</TopicsHashButton>
+            </div>
+
             <InfiniteScroll
                 next={fetchAllStatuses}
                 loader={
@@ -151,7 +155,7 @@ const _TopicStatusList = ({
     );
 };
 
-const mapMobxToProps = ({ authorization, topicStatuses }) => ({
+const mapMobxToProps = ({ authorization, topicStatuses, topicsPopular }) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
     statusesOnTopic: topicStatuses.statusesOnTopic,
@@ -161,7 +165,8 @@ const mapMobxToProps = ({ authorization, topicStatuses }) => ({
     fetchAllStatuses: topicStatuses.fetchAllStatuses,
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
-    followStatusAuthor: topicStatuses.followStatusAuthor
+    followStatusAuthor: topicStatuses.followStatusAuthor,
+    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

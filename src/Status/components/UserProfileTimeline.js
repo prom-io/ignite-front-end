@@ -48,7 +48,9 @@ const _UserProfileTimeline = ({
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item xs={12} className={classes.profileCreateStatusForm}>
-                        <CreateStatusForm />
+                        <Hidden smDown>
+                            <CreateStatusForm />
+                        </Hidden>
                     </Grid>
                 )}
                 <Grid item xs={12} className={classes.profileStatusList}>

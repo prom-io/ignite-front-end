@@ -4,7 +4,7 @@ import { useTheme } from '@material-ui/core';
 
 const sizeEnum = {
     lg: 'transform: scale(1)',
-    md: 'transform: scale(0.5)',
+    md: 'transform: scale(0.2)',
     sm: 'transform: scale(0.2)',
 };
 

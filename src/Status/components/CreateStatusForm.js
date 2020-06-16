@@ -11,6 +11,8 @@ import {
     Typography,
 } from '@material-ui/core';
 import { AttachImageInput } from './AttachImageInput';
+import { EmojiInput } from './EmojiInput';
+import { EmojiPicker } from './EmojiPicker';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
@@ -62,7 +64,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         flexWrap: 'nowrap',
-    },
+    }
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -91,6 +93,7 @@ const _CreateStatusForm = ({
     statusReferenceType,
     setReferredStatus,
     setStatusReferenceType,
+    setEmojiPickerVisible,
     mediaAttachmentUploadPending,
     l,
 }) => {
@@ -147,7 +150,7 @@ const _CreateStatusForm = ({
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
-                        <img src="/pic-smile-disabled.png" />
+                        <EmojiInput setEmojiPickerVisible={setEmojiPickerVisible} />
                     </div>
                 </Grid>
                 <Grid container classes={{ root: classes.containerRoot }}>
@@ -179,6 +182,7 @@ const _CreateStatusForm = ({
                     onDelete={removeMediaAttachment}
                 />
             </div>
+            <EmojiPicker />
         </Card>
     );
 };
@@ -189,6 +193,7 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
     content: createStatus.content,
     pending: createStatus.pending,
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
+    setEmojiPickerVisible: createStatus.setEmojiPickerVisible,
     currentUserAvatar: authorization.currentUser
         ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
         : 'http://localhost:3000/avatars/original/missing.png',

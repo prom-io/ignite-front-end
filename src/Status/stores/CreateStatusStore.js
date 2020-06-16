@@ -26,6 +26,9 @@ export class CreateStatusStore {
     createStatusDialogOpen = false;
 
     @observable
+    emojiPickerVisible = false;
+
+    @observable
     inputExpanded = false;
 
     @observable
@@ -129,4 +132,18 @@ export class CreateStatusStore {
     setStatusReferenceType = statusReferenceType => {
         this.statusReferenceType = statusReferenceType;
     }
+
+    @action
+    setEmojiPickerVisible = emojiPickerVisible => {
+        this.emojiPickerVisible = emojiPickerVisible;
+    }
+
+    @action
+    addEmoji = e => {
+        let newContent = this.content + e.native;
+        if (STATUS_TEXT_LENGTH_LIMIT - newContent.length >= 0) {
+            this.content = newContent;
+            this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - newContent.length;
+        }
+    };
 }

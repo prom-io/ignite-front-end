@@ -63,7 +63,9 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Museo Sans Cyrl Bold',
     },
     value: {
+        maxWidth: '390px',
         marginTop: 8,
+        overflowWrap: 'break-word',
         fontFamily: 'Museo Sans Cyrl Regular',
     },
     button: {

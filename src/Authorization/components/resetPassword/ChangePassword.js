@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
 import { InputPasswordGroup } from '../InputPasswordGroup';
 import { useStore, useLocalization } from '../../../store/hooks';
+import Loader from '../../../components/Loader';
 
 const useStyles = makeStyles(() => ({
     dialogRoot: {
@@ -56,7 +57,7 @@ export const ChangePassword = observer(() => {
                 disabled={pending}
                 onClick={changePassword}
             >
-                {pending && <CircularProgress size={25} color="primary" />}
+                {pending && <Loader size={'sm'}/>}
                 {l('sign-up.continue')}
             </Button>
         </DialogContent>

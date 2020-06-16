@@ -1,7 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, CircularProgress, DialogContent, makeStyles, TextField } from '@material-ui/core';
+import { Button, CircularProgress, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
 import { useStore } from '../../store/hooks';
+import Loader from '../../components/Loader';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     contentBlock: {
@@ -28,6 +30,7 @@ const useStyles = makeStyles(() => ({
 
 export const Verify = observer(() => {
     const classes = useStyles();
+    const theme = useTheme();
     const { hashVerification } = useStore();
     const { setTransactionId, pending, transactionId, verifyHash } = hashVerification;
 
@@ -53,7 +56,7 @@ export const Verify = observer(() => {
                     onClick={verifyHash}
                     disabled={pending}
                 >
-                    {pending && <CircularProgress size={25} color="primary" />}
+                    {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.4); top: -4px; left: 74px" /> }
                     Verify hash
                 </Button>
             </form>

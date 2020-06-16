@@ -49,6 +49,9 @@ const useStyles = makeStyles(theme => ({
     },
     errorLabel: {
         color: theme.palette.error.main,
+        maxWidth: '375px',
+        margin: 'auto',
+        fontSize: '15px',
     },
     loginInput: {
         display: 'flex',

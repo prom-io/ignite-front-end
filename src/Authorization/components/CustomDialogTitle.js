@@ -20,9 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
     logoIcon: {
         marginLeft: 32,
-    },
-    text: {
-        marginLeft: 24,
+        marginRight: 28,
     },
     closeIcon: {
         cursor: 'pointer',
@@ -55,7 +53,7 @@ const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
                             <div className="header-logo" />
                         </a>
                     )}
-                <span className={classes.text}>{title}</span>
+                <span>{title}</span>
             </div>
             <IconButton
                 aria-label="close"

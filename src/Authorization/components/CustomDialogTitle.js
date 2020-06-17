@@ -19,8 +19,10 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     logoIcon: {
-        marginLeft: 32,
+      marginLeft: 32,
+      '& svg': {
         marginRight: 28,
+      }
     },
     closeIcon: {
         cursor: 'pointer',

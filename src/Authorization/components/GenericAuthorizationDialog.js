@@ -69,7 +69,7 @@ const dialogType = {
     verifyHash: {
         id: 'verifyHash',
         component: <Verify />,
-        title: 'Verify hashcode',
+        title: 'sign-up.verify-hash-code',
         type: 'default',
     },
     verifyError: {

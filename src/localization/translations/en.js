@@ -137,7 +137,7 @@ export const en = {
     'sign-up.sorry': 'Sorry for the inconvenience.',
     'sign-up.success': 'Wow! You have just signed up to Ignite: the most exciting decentralized social network in the world!',
     'sign-up.use-own-wallet': 'Use own wallet',
-    'sign-up.verify-hash-code': 'Verify hashcode',
+    'sign-up.verify-hash-code': 'Verify hash code',
     'sign-up.wallet-address': 'Wallet address (Login)',
     'sign-up.wallet-created': 'Wallet created',
     'sign-up.wallet-generation.success': 'Your blockchain wallet and private key were successfully created. <strong>Please save</strong> the wallet address and private key and keep them in a safe place.',

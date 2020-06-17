@@ -47,9 +47,9 @@ const publishTransactionTranslations = {
     ),
     ko: () => (
         <span>
-            Publish a record to Ethereum blockchain
+            이더리움 블록체인에 레코드 게시해요
             <br />
-            (for advanced users only)
+            (고급 사용자 전용입니다)
         </span>
     ),
 };

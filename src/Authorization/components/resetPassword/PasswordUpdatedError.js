@@ -70,14 +70,14 @@ const errorTranslations = {
     ),
     ko: (classes) => (
         <div className={classes.contentDescription}>
-            Something seems to go wrong…  Please contact us on
+            뭔가 잘못 된 것 같아요… 연락주세요
             {' '}
             <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
             {' '}
-            or
+            아니면
             {' '}
             <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
-            . We’ll do our best to fix the problem.
+            . 우리는 최선을 다해 문제를 해결하겠습니다
         </div>
     ),
 };

@@ -43,7 +43,7 @@ export const NotificationsPage = observer(() => {
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
-                                    <LoginForm />
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             ) : (
                                 <Typography

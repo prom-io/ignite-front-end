@@ -33,7 +33,7 @@ export const FollowPeoplePage = observer(() => {
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
-                                    <LoginForm />
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             ) : (
                                 <FollowPeopleContainer />

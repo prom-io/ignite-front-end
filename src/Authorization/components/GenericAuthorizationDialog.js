@@ -21,13 +21,14 @@ import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 import { useLocalization, useStore } from '../../store/hooks';
 import { LoginForm } from './LoginForm';
+import { makeStyles } from '@material-ui/core/styles';
 
 /** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
     signUp: {
         id: 'signUp',
         component: <SignUp />,
-        title: 'sing-up',
+        title: 'sign-up',
         type: 'default', // в зависимости от type меняеться иконка в dialogHeader. Возможные варианты: default, attention
     },
     createWallet: {
@@ -45,7 +46,7 @@ const dialogType = {
     welcome: {
         id: 'welcome',
         component: <Welcome />,
-        title: 'sign-up.welcome',
+        title: 'sign-up.welcome-to-ignite',
         type: 'default',
     },
     errorAuthorization: {
@@ -57,7 +58,7 @@ const dialogType = {
     createAccount: {
         id: 'createAccount',
         component: <CreateAccount />,
-        title: 'sign-up.create-an-account',
+        title: 'sign-up.create-account',
         type: 'default',
     },
     generateHash: {
@@ -69,7 +70,7 @@ const dialogType = {
     verifyHash: {
         id: 'verifyHash',
         component: <Verify />,
-        title: 'Verify hashcode',
+        title: 'sign-up.verify-hash-code',
         type: 'default',
     },
     verifyError: {
@@ -134,6 +135,12 @@ const dialogType = {
     },
 };
 
+const useStyles = makeStyles(() => ({
+    dialogPaperWidthSm: {
+        maxWidth: '648px',
+    }
+}));
+
 const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
     const {
         genericAuthorizationDialogOpen,
@@ -141,6 +148,8 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
         genericAuthorizationDialogType,
     } = useStore().genericAuthorizationDialog;
     const { l } = useLocalization();
+    
+    const classes = useStyles();
 
     return (
         <Dialog
@@ -149,6 +158,7 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
             fullScreen={fullScreen}
             fullWidth
             scroll="body"
+            classes={{paperWidthSm: classes.dialogPaperWidthSm}}
         >
             <CustomDialogTitle
                 title={l(dialogType[genericAuthorizationDialogType].title)}

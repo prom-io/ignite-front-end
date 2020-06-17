@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',
+        marginTop: '-30px',
     },
     button: {
         width: '187px',

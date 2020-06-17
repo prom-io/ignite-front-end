@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
+import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -16,12 +17,13 @@ const useStyles = makeStyles(() => ({
         },
     },
     contentBlock: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        borderTop: '1px solid #F1EBE8',
-        marginTop: '32px',
-        paddingTop: '32px',
-        fontFamily: 'Museo Sans Cyrl Regular',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderTop: '1px solid #F1EBE8',
+      marginTop: '32px',
+      paddingTop: '32px',
+      fontFamily: 'Museo Sans Cyrl Regular',
         '&>div': {
             width: '234px',
         },
@@ -93,6 +95,7 @@ const useExistingWalletTranslations = {
 
 export const SignUp = observer(() => {
     const classes = useStyles();
+    const theme = useTheme();
     const { walletGeneration, genericAuthorizationDialog } = useStore();
     const { generateWallet, pending } = walletGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
@@ -115,7 +118,7 @@ export const SignUp = observer(() => {
                     onClick={generateWallet}
                     disabled={pending}
                 >
-                    {pending && <CircularProgress size={40} style={{ height: '100%' }} />}
+                    {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.5); top: 10px; left: 74px" />}
                     {l('sign-up.options.new-wallet')}
                 </Button>
             </div>

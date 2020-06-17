@@ -70,7 +70,7 @@ const _CreateStatusDialog = ({
                 </Button>
             </DialogTitle>
             <DialogContent>
-                <CreateStatusForm hideSendButton />
+                <CreateStatusForm hideSendButton isDialogEmojiPicker/>
             </DialogContent>
         </Dialog>
     );

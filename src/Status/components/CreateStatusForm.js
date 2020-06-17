@@ -13,6 +13,7 @@ import {
 import { AttachImageInput } from './AttachImageInput';
 import { EmojiInput } from './EmojiInput';
 import { EmojiPicker } from './EmojiPicker';
+import { EmojiPickerDialog } from './EmojiPickerDialog';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
@@ -89,11 +90,13 @@ const _CreateStatusForm = ({
     removeMediaAttachment,
     uploadedAttachments,
     hideSendButton = false,
+    isDialogEmojiPicker = false,
     referredStatus,
     statusReferenceType,
     setReferredStatus,
     setStatusReferenceType,
     setEmojiPickerVisible,
+    setEmojiPickerDialogVisible,
     mediaAttachmentUploadPending,
     l,
 }) => {
@@ -150,7 +153,11 @@ const _CreateStatusForm = ({
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
-                        <EmojiInput setEmojiPickerVisible={setEmojiPickerVisible} />
+                        <EmojiInput 
+                            setEmojiPickerVisible={setEmojiPickerVisible} 
+                            setEmojiPickerDialogVisible={setEmojiPickerDialogVisible} 
+                            isDialogEmojiPicker={isDialogEmojiPicker} 
+                        />
                     </div>
                 </Grid>
                 <Grid container classes={{ root: classes.containerRoot }}>
@@ -182,7 +189,7 @@ const _CreateStatusForm = ({
                     onDelete={removeMediaAttachment}
                 />
             </div>
-            <EmojiPicker />
+            {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
     );
 };
@@ -194,6 +201,7 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
     pending: createStatus.pending,
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     setEmojiPickerVisible: createStatus.setEmojiPickerVisible,
+    setEmojiPickerDialogVisible: createStatus.setEmojiPickerDialogVisible,
     currentUserAvatar: authorization.currentUser
         ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
         : 'http://localhost:3000/avatars/original/missing.png',

@@ -39,7 +39,7 @@ const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSign
                     hideSignUpButton
                     disableCard
                 />
-                <Button
+                {/* <Button
                     variant="text"
                     className={classes.dialogSecondaryAction}
                     onClick={() => {
@@ -48,7 +48,7 @@ const _LoginDialog = ({ loginDialogOpen, setLoginDialogOpen, fullScreen, setSign
                     }}
                 >
                     Sign up
-                </Button>
+                </Button> */}
                 <Button
                     variant="text"
                     className={classes.dialogSecondaryAction}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Dialog, withMobileDialog } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { UpdatePasswordError } from './resetPassword/UpdatePasswordError';
 import CustomDialogTitle from './CustomDialogTitle';
 import { SignUp } from './SignUp';
@@ -21,7 +22,6 @@ import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 import { useLocalization, useStore } from '../../store/hooks';
 import { LoginForm } from './LoginForm';
-import { makeStyles } from '@material-ui/core/styles';
 
 /** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
@@ -138,7 +138,7 @@ const dialogType = {
 const useStyles = makeStyles(() => ({
     dialogPaperWidthSm: {
         maxWidth: '648px',
-    }
+    },
 }));
 
 const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
@@ -148,7 +148,7 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
         genericAuthorizationDialogType,
     } = useStore().genericAuthorizationDialog;
     const { l } = useLocalization();
-    
+
     const classes = useStyles();
 
     return (
@@ -158,7 +158,7 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
             fullScreen={fullScreen}
             fullWidth
             scroll="body"
-            classes={{paperWidthSm: classes.dialogPaperWidthSm}}
+            classes={{ paperWidthSm: classes.dialogPaperWidthSm }}
         >
             <CustomDialogTitle
                 title={l(dialogType[genericAuthorizationDialogType].title)}

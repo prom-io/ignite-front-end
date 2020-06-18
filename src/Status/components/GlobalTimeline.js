@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Hidden, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import Loader from '../../components/Loader';

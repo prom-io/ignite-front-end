@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '50px',
+        marginTop: '150px',
         display: 'table',
     },
     cardContainer: {
@@ -21,7 +21,7 @@ const _UserFollowersList = ({ followers, pending }) => {
     const classes = useStyles();
 
     return followers.length === 0 && pending
-        ? <div className={classes.centered}><Loader size="md" /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Card className={classes.cardContainer}>
                 <UsersList users={followers} />

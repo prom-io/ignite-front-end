@@ -150,7 +150,7 @@ const _UpdateUserProfile = ({
                 <div className={classes.updateUserProfileField}>
                     <TextField
                         className={classes.updateUserProfileField}
-                        label={l('user.language')}
+                        label={l('settings.language')}
                         placeholder="Select your language"
                         value={updateUserProfileForm.language || 'en'}
                         onChange={event => setFormValue('language', event.target.value)}
@@ -162,10 +162,10 @@ const _UpdateUserProfile = ({
                         fullWidth
                     >
                         <MenuItem value="en">
-                            English
+                            {l('settings.language.english')}
                         </MenuItem>
                         <MenuItem value="ko">
-                            Korean
+                            {l('settings.language.korean')}
                         </MenuItem>
                     </TextField>
                 </div>
@@ -203,7 +203,7 @@ const _UpdateUserProfile = ({
                         }
                     >
                         {pending && (
-                            <Loader size="md" />
+                            <Loader size="lg" />
                         )}
                         {l('user.update-profile.save')}
                     </Button>

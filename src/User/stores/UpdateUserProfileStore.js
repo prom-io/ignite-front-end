@@ -37,6 +37,7 @@ export class UpdateUserProfileStore {
     authorizationStore = undefined;
     uploadUserAvatarStore = undefined;
     userProfileStore = undefined;
+    localeStore = undefined;
 
     @computed
     get currentUser() {
@@ -58,10 +59,16 @@ export class UpdateUserProfileStore {
         return this.uploadUserAvatarStore.avatarFileContainer && this.uploadUserAvatarStore.avatarFileContainer.pending;
     }
 
-    constructor(authorizationStore, uploadUserAvatarStore, userProfileStore) {
+    @computed
+    get currentLanguage() {
+        return this.localeStore.selectedLanguage;
+    }
+
+    constructor(authorizationStore, uploadUserAvatarStore, userProfileStore, localeStore) {
         this.authorizationStore = authorizationStore;
         this.uploadUserAvatarStore = uploadUserAvatarStore;
         this.userProfileStore = userProfileStore;
+        this.localeStore = localeStore;
 
         reaction(
             () => this.currentUser,
@@ -129,9 +136,12 @@ export class UpdateUserProfileStore {
             display_name: this.updateUserProfileForm.displayName,
             avatar_id: this.updateUserProfileForm.avatarId,
             bio: this.updateUserProfileForm.bio,
-            language: this.updateUserProfileForm.language
+            preferences: {
+                language: this.updateUserProfileForm.language
+            }
         })
             .then(({data}) => {
+                this.localeStore.setSelectedLanguage(this.updateUserProfileForm.language, true);
                 this.userProfileStore.setUser(data);
 
                 if (this.currentUser) {
@@ -222,7 +232,7 @@ export class UpdateUserProfileStore {
             displayName: this.user ? this.user.display_name : this.currentUser ? this.currentUser.display_name : "",
             avatarId: undefined,
             bio: this.user ? this.user.bio : this.currentUser ? this.currentUser.bio : undefined,
-            language: this.user ? this.user.language : this.currentUser ? this.currentUser.language : undefined,
+            language: this.localeStore.selectedLanguage,
             password: undefined,
             new_password:  undefined
         };

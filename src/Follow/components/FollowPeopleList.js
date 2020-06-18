@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
     },
     followListWrapper: {},
@@ -31,7 +32,7 @@ const _FollowPeopleList = ({
                 next={fetchFollowPeople}
                 hasMore
                 loader={(
-                    <div className={classes.centered}><Loader size="md" /></div>
+                    <div className={classes.centered}><Loader size="lg" /></div>
                 )}
                 dataLength={followPeopleItems.length}
                 style={{ overflowY: 'hidden' }}

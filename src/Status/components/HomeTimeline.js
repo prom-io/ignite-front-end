@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '50px',
+        marginTop: '150px',
         display: 'table',
     },
     gridItemOverridePadding: {
@@ -46,7 +46,7 @@ const _HomeTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><Loader size="md" /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">

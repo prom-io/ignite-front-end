@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     },
     cardHeaderRoot: {
         display: 'flex',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     iconContainer: props => ({
         backgroundColor: theme.palette.background.light,
@@ -47,7 +47,6 @@ const useStyles = makeStyles(theme => ({
     }),
     cardHeaderAvatar: {
         marginRight: 0,
-        paddingBottom: theme.spacing(1),
     },
 }));
 

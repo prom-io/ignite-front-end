@@ -24,10 +24,6 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 100,
         color: '#A2A2A2',
         fontFamily: 'Museo Sans Cyrl Regular',
-        '&:hover': {
-            borderRadius: '100%',
-            background: '#FFDECC',
-        },
         '& svg': {
             left: 35,
             marginLeft: '10px',
@@ -67,6 +63,12 @@ const useStyles = makeStyles(theme => ({
     },
     buttonMenuLabel: {
         width: 'auto',
+        '&:hover': {
+            '& span': {
+                borderRadius: '100%',
+                background: '#FFDECC',
+            }
+        },
     },
     menuList: {
         padding: 0,
@@ -93,9 +95,16 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
         setSelectedLanguage(currentLang);
         setOpen(false);
     };
+    
+    console.log('open = ',open);
 
     return (
         <>
+            <ClickAwayListener
+              onClickAway={() => setOpen(false)}
+              touchEvent="onTouchStart"
+              mouseEvent="onMouseDown"
+            >
             <Button
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
@@ -114,6 +123,7 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                     }}
                 />
             </Button>
+            </ClickAwayListener>
             <Popper
                 open={open}
                 anchorEl={anchorRef.current}
@@ -132,11 +142,6 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                         }}
                     >
                         <Paper>
-                            <ClickAwayListener
-                                onClickAway={() => setOpen(false)}
-                                touchEvent="onTouchStart"
-                                mouseEvent="onMouseDown"
-                            >
                                 <MenuList
                                     autoFocusItem={open}
                                     id="menu-list-grow"
@@ -158,11 +163,11 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                                         Korean
                                     </MenuItem>
                                 </MenuList>
-                            </ClickAwayListener>
                         </Paper>
                     </Grow>
                 )}
             </Popper>
+            
         </>
     );
 };

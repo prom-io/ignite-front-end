@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     emojiPickerDialog: {
         zIndex: 3,
         position: "absolute",
-        top: "160px",
+        bottom: "-200px",
         left: "100px",
         [theme.breakpoints.down("xs")]: {
             left: 0

@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1500,
         [theme.breakpoints.down('sm')]: {
             top: '0px',
+            overflowY: 'scroll',
         },
     },
     statusFormDialogTitle: {

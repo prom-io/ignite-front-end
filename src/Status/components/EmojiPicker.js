@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
     emojiPicker: {
         zIndex: 3,
         position: "absolute",
-        top: "160px",
-        left: "100px",
+        bottom: '-330px',
+        left: '100px',
         [theme.breakpoints.down("xs")]: {
             left: 0
         },

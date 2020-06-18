@@ -99,8 +99,16 @@ export const NotificationsList = observer(() => {
 
     const notificationsStore = useStore().notifications;
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
-    const { currentUser } = useAuthorization();
+    const { currentUser, fetchingCurrentUser } = useAuthorization();
     const { locale } = useLocalization();
+
+    if (fetchingCurrentUser) {
+        return (
+            <div className={classes.centered}>
+                <Loader size="md" />
+            </div>
+        );
+    }
 
     if (!currentUser) {
         return (

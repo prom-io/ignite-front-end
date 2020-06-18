@@ -29,6 +29,9 @@ export class CreateStatusStore {
     emojiPickerVisible = false;
 
     @observable
+    emojiPickerDialogVisible = false;
+
+    @observable
     inputExpanded = false;
 
     @observable
@@ -136,6 +139,11 @@ export class CreateStatusStore {
     @action
     setEmojiPickerVisible = emojiPickerVisible => {
         this.emojiPickerVisible = emojiPickerVisible;
+    }
+
+    @action
+    setEmojiPickerDialogVisible = emojiPickerDialogVisible => {
+        this.emojiPickerDialogVisible = emojiPickerDialogVisible;
     }
 
     @action

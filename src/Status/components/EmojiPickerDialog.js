@@ -6,11 +6,11 @@ import { Picker } from "emoji-mart";
 import { useStore } from "../../store/hooks";
 
 const useStyles = makeStyles(theme => ({
-    emojiPicker: {
+    emojiPickerDialog: {
         zIndex: 3,
         position: "absolute",
-        bottom: '-330px',
-        left: '100px',
+        bottom: "-200px",
+        left: "100px",
         [theme.breakpoints.down("xs")]: {
             left: 0
         },
@@ -21,24 +21,30 @@ const useStyles = makeStyles(theme => ({
             }
         },
 
+        "& .emoji-mart-scroll": {
+            height: "140px"
+        },
+
         "& .emoji-mart-bar .emoji-mart-preview": {
             display: "none"
         }
     }
 }));
 
-export const EmojiPicker = observer(() => {
+export const EmojiPickerDialog = observer(() => {
     const classes = useStyles();
     const {
-        emojiPickerVisible,
+        emojiPickerDialogVisible,
         addEmoji,
-        setEmojiPickerVisible
+        setEmojiPickerDialogVisible
     } = useStore().createStatus;
 
     return (
-        emojiPickerVisible && (
-            <ClickAwayListener onClickAway={() => setEmojiPickerVisible(false)}>
-                <div className={classes.emojiPicker}>
+        emojiPickerDialogVisible && (
+            <ClickAwayListener
+                onClickAway={() => setEmojiPickerDialogVisible(false)}
+            >
+                <div className={classes.emojiPickerDialog}>
                     <Picker
                         onSelect={emoji => addEmoji(emoji)}
                         set="apple"

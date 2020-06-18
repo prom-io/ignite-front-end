@@ -14,12 +14,32 @@ import { CreateStatusForm } from './CreateStatusForm';
 import { localized } from '../../localization/components';
 import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     createStatusButton: {
         borderRadius: 30,
         float: 'right',
         width: '114px',
     },
+    statusFormDialog: {
+        top: '-50px',
+        overflow: 'unset',
+        zIndex: 1500,
+        [theme.breakpoints.down('sm')]: {
+            top: '0px',
+            overflowY: 'scroll',
+        },
+    },
+    statusFormDialogTitle: {
+        padding: '16px 24px 0 24px',
+        '& h2':{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+        },
+    },
+    statusFormDialogContent: {
+        overflow: 'unset',
+    }
 }));
 
 const _CreateStatusDialog = ({
@@ -40,18 +60,19 @@ const _CreateStatusDialog = ({
             open={createStatusDialogOpen}
             onClose={() => setCreateStatusDialogOpen(false)}
             fullScreen={fullScreen}
-            style={{
-                zIndex: 15000000000,
-            }}
+            scroll={'body'}
             fullWidth
             maxWidth="md"
+            classes={{
+                paper: classes.statusFormDialog
+            }}
             BackdropProps={{
                 style: {
                     backgroundColor: 'rgba(44,44,44,0.84)',
                 },
             }}
         >
-            <DialogTitle>
+            <DialogTitle classes={{root: classes.statusFormDialogTitle}}>
                 <IconButton
                     onClick={() => setCreateStatusDialogOpen(false)}
                     disabled={pending}
@@ -69,8 +90,8 @@ const _CreateStatusDialog = ({
                     {l('status.send')}
                 </Button>
             </DialogTitle>
-            <DialogContent>
-                <CreateStatusForm hideSendButton />
+            <DialogContent classes={{root: classes.statusFormDialogContent}}>
+                <CreateStatusForm hideSendButton isDialogEmojiPicker/>
             </DialogContent>
         </Dialog>
     );

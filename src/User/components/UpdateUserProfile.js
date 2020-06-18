@@ -203,7 +203,7 @@ const _UpdateUserProfile = ({
                         }
                     >
                         {pending && (
-                            <Loader size="md" />
+                            <Loader size="lg" />
                         )}
                         {l('user.update-profile.save')}
                     </Button>

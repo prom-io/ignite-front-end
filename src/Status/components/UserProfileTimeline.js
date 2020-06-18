@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
             marginTop: '30px',
@@ -43,7 +44,7 @@ const _UserProfileTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><Loader size="md" /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (

@@ -15,56 +15,57 @@ import { ExpandDrawerButton } from './ExpandDrawerButton';
 import { NavigationalDrawer } from './NavigationalDrawer';
 import { BellIcon } from '../../icons/BellIcon';
 import { ChatIcon } from '../../icons/ChatIcon';
-import { TrendsIcon } from '../../icons/TrendsIcon';
 import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
 import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
 import { SignUpDialog } from '../../SignUp/components';
 import { AppBarLogo } from '.';
+import { TopicsIcon } from '../../icons/TopicsIcon';
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
         background: '#fff',
         boxShadow: 'none',
     },
-    headerContainer: {
-        borderBottom: `1px solid ${theme.palette.border.main}`,
-        background: '#fff',
-        boxShadow: 'none',
-        minHeight: '50px',
+  headerContainer: {
+    borderBottom: `1px solid ${theme.palette.border.main}`,
+    background: '#fff',
+    boxShadow: 'none',
+    minHeight: '50px',
+  },
+  navStyle: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: 50,
+    width: '90%',
+    maxWidth: '1170px',
+    margin: 'auto',
+  },
+  navItemList: {
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
     },
-    navStyle: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        height: 50,
-        width: '90%',
-        maxWidth: '1170px',
-        margin: 'auto',
+  },
+  mobileNav: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      position: 'fixed',
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'space-around',
+      height: 50,
+      width: '100%',
+      background: theme.palette.background.light,
+      zIndex: 10,
     },
-    navItemList: {
-        display: 'flex',
-        [theme.breakpoints.down('sm')]: {
-            display: 'none',
-        },
-    },
-    mobileNav: {
-        display: 'none',
-        [theme.breakpoints.down('sm')]: {
-            position: 'fixed',
-            bottom: 0,
-            display: 'flex',
-            justifyContent: 'space-around',
-            height: 50,
-            width: '100%',
-            background: theme.palette.background.light,
-            zIndex: 10,
-        },
-    },
-    navSecondary: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
+  },
+  navSecondary: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    minWidth: 170,
+  },
 }));
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => {
@@ -113,7 +114,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                                 text={l('appbar.topics')}
                                 targetView={Routes.topics}
                                 active={currentActiveRoute === 'topics'}
-                                icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
+                                icon={<TopicsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
                                 routerStore={routerStore}
                                 viewParameters={{}}
                                 id="topicsLink"
@@ -198,7 +199,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                     text={l('appbar.topics')}
                     targetView={Routes.topics}
                     active={currentActiveRoute === 'topics'}
-                    icon={<TrendsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
+                    icon={<TopicsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
                     routerStore={routerStore}
                     viewParameters={{}}
                     id="topicsLink"

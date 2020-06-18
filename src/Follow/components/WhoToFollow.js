@@ -10,7 +10,7 @@ import { WhoToFollowList } from './WhoToFollowList';
 const useStyles = makeStyles(theme => ({
     whoToFollow: {
         border: `1px solid ${theme.palette.border.main}`,
-        background: '#FBF7F6',
+        background: theme.palette.background.light,
         borderRadius: '4px',
     },
     whoToFollowMobileWrapper: {

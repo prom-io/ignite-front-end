@@ -7,7 +7,7 @@ import { UserProfileAvatar } from './UserProfileAvatar';
 import { UserProfileTab } from './UserProfileTab';
 import { addLineBreak } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
-import { OpenUpdateUserProfileDialogButton } from './OpenUpdateUserProfileDialogButton';
+import { UpdateUserProfileButton } from './UpdateUserProfileButton';
 
 const _UserProfileHeader = ({
     avatar,
@@ -57,7 +57,7 @@ const _UserProfileHeader = ({
                     </Grid>
                 );
         } else {
-            profileButton = <OpenUpdateUserProfileDialogButton />;
+            profileButton = <UpdateUserProfileButton />;
         }
     }
 
@@ -70,8 +70,8 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <h4>{addLineBreak(username)}</h4>
-                            <p>{addLineBreak(displayName)}</p>
+                            <h4>{addLineBreak(displayName)}</h4>
+                            <p>{addLineBreak(username)}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />

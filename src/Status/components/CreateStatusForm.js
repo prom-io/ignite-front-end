@@ -183,12 +183,14 @@ const _CreateStatusForm = ({
                     )}
                 </Grid>
             </CardActions>
-            <div className={classes.mediaAttachmentsContainer}>
-                <CreateStatusFormMediaAttachments
-                    mediaAttachmentsFiles={mediaAttachmentsFiles}
-                    onDelete={removeMediaAttachment}
-                />
-            </div>
+            {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0 && 
+                <div className={classes.mediaAttachmentsContainer}>
+                    <CreateStatusFormMediaAttachments
+                        mediaAttachmentsFiles={mediaAttachmentsFiles}
+                        onDelete={removeMediaAttachment}
+                        />
+                </div>
+            }
             {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
     );

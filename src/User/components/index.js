@@ -5,7 +5,7 @@ export * from './UserProfileAvatar';
 export * from './UserProfileHeader';
 export * from './UserProfileTab';
 export * from './UserProfileContainer';
-export * from './OpenUpdateUserProfileDialogButton';
+export * from './UpdateUserProfileButton';
 export * from './UpdateUserContainer';
 export * from './UpdateUserProfile';
 export * from './UpdateUserPassword';

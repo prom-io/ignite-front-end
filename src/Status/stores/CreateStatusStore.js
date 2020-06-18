@@ -148,7 +148,14 @@ export class CreateStatusStore {
 
     @action
     addEmoji = e => {
-        let newContent = this.content + e.native;
+        // let newContent = this.content + e.native;
+        
+        let sym = e.unified.split('-')
+        let codesArray = []
+        sym.forEach(el => codesArray.push('0x' + el))
+        let emoji = String.fromCodePoint(...codesArray)
+        let newContent = this.content + emoji;
+
         if (STATUS_TEXT_LENGTH_LIMIT - newContent.length >= 0) {
             this.content = newContent;
             this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - newContent.length;

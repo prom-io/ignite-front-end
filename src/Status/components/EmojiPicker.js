@@ -41,8 +41,10 @@ export const EmojiPicker = observer(() => {
                 <div className={classes.emojiPicker}>
                     <Picker
                         onSelect={emoji => addEmoji(emoji)}
-                        set="apple"
+                        color="#FF5C01"
+                        emojiSize={20}
                         showPreview={false}
+                        native
                     />
                 </div>
             </ClickAwayListener>

@@ -45,7 +45,7 @@ const _StatusPageContainer = ({
     const classes = useStyles();
 
     if (pending) {
-        return <div className={classes.centered}><Loader size="md" /></div>;
+        return <div className={classes.centered}><Loader size="lg" /></div>;
     }
 
     if (error) {

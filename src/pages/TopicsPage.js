@@ -46,7 +46,7 @@ export const TopicsPage = observer(() => {
                             lg={9}
                             className="right-content-container"
                         >
-                            {!currentUser && (
+                            {!currentUser ? (
                                 <Grid item className="login-form-container">
                                     <LoginForm />
                                 </Grid>

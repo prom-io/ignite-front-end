@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         height: '100%',
         width: '100%',
+        marginTop: '150px'
     },
 }));
 
@@ -34,7 +35,7 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
     const classes = useStyles();
 
     if (pending) {
-        return <div className={classes.centered}><Loader size="md" /></div>;
+        return <div className={classes.centered}><Loader size="lg" /></div>;
     } if (error) {
         return (
             <Typography>

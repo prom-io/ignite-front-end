@@ -16,6 +16,7 @@
     "customize-cra": "^0.9.1",
     "date-fns": "^2.9.0",
     "dotenv": "^8.2.0",
+    "emoji-picker-react": "^3.2.1",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mobx": "^5.15.4",

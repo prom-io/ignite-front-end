@@ -35,7 +35,7 @@ export const StatusList = ({
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
-                loader={<div className={classes.centered}><Loader size="md" /></div>}
+                loader={<div className={classes.centered}><Loader size="lg" /></div>}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >

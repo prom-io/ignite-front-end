@@ -34,7 +34,7 @@ export const en = {
     'follow.people.success': 'You have successfully followed',
     'follow.people.already': 'You already following this user',
     'unfollow.dialog.warning': 'Posts of this author will no longer show up in your home timeline. You can still view his/her profile.',
-    'authorization.login': 'Login',
+    'authorization.login': 'Log in',
     'authorization.login.wallet-address': 'Wallet address',
     'authorization.login.private-key': 'Private key',
     'authorization.login.password': 'Password',

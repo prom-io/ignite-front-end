@@ -498,9 +498,11 @@ p
   @media (min-width: 960px)
     display: block
 .create-status-form
+  position: relative
+  overflow: unset !important
   // display: none
   box-shadow: none !important
-  background-color: #F1EBE8 !important
+  background-color: #FFFBF8 !important
   border: 1px solid #F1EBE8
   box-sizing: border-box
   @media (min-width: 960px)
@@ -536,6 +538,9 @@ p
     width: 20px
     height: 20px
 
+.repostedStatusContainer
+  width: 100%
+
 .statusCardBox
   border-top: 1px solid #F1EBE8
   border-right: 1px solid #F1EBE8
@@ -544,6 +549,8 @@ p
   overflow: visible !important
   &:hover
     background: #FFFBF8
+    .repostedStatusContainer
+      background: #FFFBF8
   &:last-child
     border-bottom: 1px solid #F1EBE8
 
@@ -694,7 +701,7 @@ p
 
 .user-profile-header-content
   max-width: 256px !important
-  background: #FBF7F6
+  background: $user-card-bg
   border: 1px solid #F1EBE8
   border-radius: 4px
   @media ( max-width: 960px )
@@ -772,7 +779,7 @@ p
   margin-bottom: 70px !important
   max-width: 600px !important
   @media (max-width: 960px)
-    margin: 0 auto 10px auto !important
+    margin: 0 auto 40px auto !important
     position: relative
 .user-profile-info
   padding-left: 6px
@@ -797,8 +804,8 @@ p
   justify-content: center
   flex-wrap: wrap
   align-items: flex-start
-  @media (max-width: 556px)
-    padding: 20px
+  //@media (max-width: 556px)
+  //  padding: 20px
   div
     width: 100%
     display: flex

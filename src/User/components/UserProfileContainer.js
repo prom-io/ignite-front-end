@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
             marginTop: '50px',
@@ -54,7 +55,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-            <div className={classes.centered}><Loader size="md" /></div>
+            <div className={classes.centered}><Loader size="lg" /></div>
         );
     }
 

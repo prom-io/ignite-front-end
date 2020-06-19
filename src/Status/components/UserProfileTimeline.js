@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Hidden, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import Loader from '../../components/Loader';
@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
             marginTop: '30px',
@@ -43,12 +44,14 @@ const _UserProfileTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><Loader size="md" /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item xs={12} className={classes.profileCreateStatusForm}>
-                        <CreateStatusForm />
+                        <Hidden smDown>
+                            <CreateStatusForm />
+                        </Hidden>
                     </Grid>
                 )}
                 <Grid item xs={12} className={classes.profileStatusList}>

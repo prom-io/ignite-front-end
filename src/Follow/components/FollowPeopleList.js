@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '150px',
+        marginTop: '50px',
         display: 'table',
     },
     followListWrapper: {},

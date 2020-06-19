@@ -11,7 +11,7 @@ import { localized } from '../../localization/components';
 const useStyles = makeStyles((theme) => ({
     repostedStatus: {
         display: 'flex',
-        border: 'none',
+        border: `1px solid ${theme.palette.border.main}`,
         backgroundColor: theme.palette.background.paper,
     },
     repostedStatusNoBorders: {

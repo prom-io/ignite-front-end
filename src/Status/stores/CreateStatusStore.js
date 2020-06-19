@@ -148,8 +148,6 @@ export class CreateStatusStore {
 
     @action
     addEmoji = e => {
-        // let newContent = this.content + e.native;
-        
         let sym = e.unified.split('-')
         let codesArray = []
         sym.forEach(el => codesArray.push('0x' + el))

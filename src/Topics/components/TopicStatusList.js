@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
         height: "83px",
         padding: "0 0 0 15px",
         whiteSpace: 'nowrap',
-        overflowX: 'scroll',
+        overflowX: 'auto',
         [theme.breakpoints.down('sm')]: {
             display: "flex",
         },

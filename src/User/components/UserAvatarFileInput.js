@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Avatar, Button, CircularProgress, makeStyles } from '@material-ui/core';
+import { Avatar, Button, makeStyles } from '@material-ui/core';
 import { Photo } from '@material-ui/icons';
-import { FadeLoader } from 'react-spinners';
 import useTheme from '@material-ui/core/styles/useTheme';
-import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     avatarAttachmentPhoto: {
@@ -81,7 +80,7 @@ const _UserAvatarFileInput = ({
                     classes={{ root: classes.avatarUploadButton }}
                 >
                     {avatarFileContainer && avatarFileContainer.pending
-                        ? <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
+                        ? <Loader size="md" />
                         : <Photo style={{ color: '#fff' }} />}
                     <input
                         type="file"

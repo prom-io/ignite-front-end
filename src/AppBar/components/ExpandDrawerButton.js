@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     iconButtonRoot: {
         [theme.breakpoints.down('sm')]: {
-            padding: '9px 18px',
+            padding: '9px 0',
         },
     },
     avatarRoot: {

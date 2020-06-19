@@ -4,12 +4,13 @@ import {
     Button,
     Typography,
     TextField,
+    MenuItem,
     makeStyles,
 } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
 
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     updateUserProfile: {
@@ -57,6 +58,15 @@ const useStyles = makeStyles(theme => ({
             fontSize: '12px',
             lineHeight: '14px',
             color: theme.palette.text.secondary,
+        },
+        '& input[value]:not(:focus)': {
+            maxWidth: '340px',
+            overflowX: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            '&:after': {
+                content: "'...'",
+            },
         },
     },
     updateUserProfileButton: {
@@ -140,6 +150,28 @@ const _UpdateUserProfile = ({
                 <div className={classes.updateUserProfileField}>
                     <TextField
                         className={classes.updateUserProfileField}
+                        label={l('settings.language')}
+                        placeholder="Select your language"
+                        value={updateUserProfileForm.language || 'en'}
+                        onChange={event => setFormValue('language', event.target.value)}
+                        margin="dense"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        select
+                        fullWidth
+                    >
+                        <MenuItem value="en">
+                            {l('settings.language.english')}
+                        </MenuItem>
+                        <MenuItem value="ko">
+                            {l('settings.language.korean')}
+                        </MenuItem>
+                    </TextField>
+                </div>
+                <div className={classes.updateUserProfileField}>
+                    <TextField
+                        className={classes.updateUserProfileField}
                         label={l('user.bio')}
                         placeholder="Add your bio"
                         value={updateUserProfileForm.bio || ''}
@@ -171,10 +203,7 @@ const _UpdateUserProfile = ({
                         }
                     >
                         {pending && (
-                            <FadeLoader
-                                css="transform: scale(0.5)"
-                                color="#FF5C01"
-                            />
+                            <Loader size="md" css={'position:absolute; top:0; left: 34px'}/>
                         )}
                         {l('user.update-profile.save')}
                     </Button>

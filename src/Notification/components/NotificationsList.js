@@ -1,12 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Typography, useTheme } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { FadeLoader } from 'react-spinners';
 import { Notification } from './Notification';
 import { useStore, useAuthorization, useLocalization } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -33,12 +33,14 @@ const useStyles = makeStyles(theme => ({
         border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
+        padding: '0 30px',
     },
     notificationsErrorInfo: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: 'center',
         marginTop: '65px',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -96,7 +98,6 @@ const noNotifications = {
 
 export const NotificationsList = observer(() => {
     const classes = useStyles();
-    const theme = useTheme();
 
     const notificationsStore = useStore().notifications;
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
@@ -125,7 +126,7 @@ export const NotificationsList = observer(() => {
                 next={fetchNotifications}
                 hasMore={hasMore}
                 loader={(
-                    <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
+                    <div className={classes.centered}><Loader size="md" /></div>
                 )}
                 dataLength={notifications.length}
                 style={{ overflowY: 'hidden' }}

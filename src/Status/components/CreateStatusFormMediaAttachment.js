@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { makeStyles, IconButton, CircularProgress } from '@material-ui/core';
+import { makeStyles, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -23,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => {
     const [hovered, setHovered] = useState(false);
     const classes = useStyles();
-    const theme = useTheme();
 
     const hoveredStyle = {
         backgroundImage: `url(${fileContainer.url})`,
@@ -55,7 +53,7 @@ export const CreateStatusFormMediaAttachment = ({ fileContainer, onDelete }) => 
             )}
             {fileContainer.pending && (
                 <div className={classes.centered}>
-                    <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />
+                    <Loader size="md" />
                 </div>
             )}
         </div>

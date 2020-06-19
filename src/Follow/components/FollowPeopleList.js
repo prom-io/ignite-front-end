@@ -1,15 +1,15 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles, useTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
-import { FadeLoader } from 'react-spinners';
 import { FollowPeopleItem, UnfollowDialog } from '.';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '50px',
         display: 'table',
     },
     followListWrapper: {},
@@ -25,7 +25,6 @@ const _FollowPeopleList = ({
     unfollowDialogOpen,
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <div className={classes.followListWrapper}>
@@ -33,7 +32,7 @@ const _FollowPeopleList = ({
                 next={fetchFollowPeople}
                 hasMore
                 loader={(
-                    <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
+                    <div className={classes.centered}><Loader size="lg" /></div>
                 )}
                 dataLength={followPeopleItems.length}
                 style={{ overflowY: 'hidden' }}

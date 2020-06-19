@@ -6,10 +6,14 @@ import { AppBar } from "../AppBar/components";
 import { TopicsPageContainer, TopicsPopular } from "../Topics/components";
 import {
     PrometeusDescription,
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
+import { IgniteTrendPage } from '../icons/IgniteTrendPage';
+import { TopicsIcon } from '../icons/TopicsIcon';
     ExploreOurFeaturesDescription
 } from "../PrometeusDescription";
-import { LoginForm } from "../Authorization/components";
-import { Layout } from "../Layout";
 import { useAuthorization, useStore } from '../store/hooks';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -47,7 +51,7 @@ export const TopicsPage = observer(() => {
                             lg={9}
                             className="right-content-container"
                         >
-                            {!currentUser ? (
+                            {!currentUser && (
                                 <Grid item className="login-form-container">
                                     <LoginForm />
                                 </Grid>

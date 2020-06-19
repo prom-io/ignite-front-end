@@ -1,8 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, Grid, Hidden, makeStyles } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
+import { Grid, Hidden, makeStyles } from '@material-ui/core';
 import { UserProfileHeader } from './UserProfileHeader';
 import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
@@ -10,11 +8,13 @@ import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
             marginTop: '50px',
@@ -35,7 +35,6 @@ const _UserProfileContainer = ({
     currentUser,
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     let tabContent;
 
@@ -56,7 +55,7 @@ const _UserProfileContainer = ({
 
     if (fetchingUser || !user) {
         return (
-            <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
+            <div className={classes.centered}><Loader size="lg" /></div>
         );
     }
 

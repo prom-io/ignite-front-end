@@ -2,10 +2,10 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { SwipeableDrawer, makeStyles, Typography } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import useTheme from '@material-ui/core/styles/useTheme';
 import { DrawerMenu } from './DrawerMenu';
 import { DrawerUserInfo } from './DrawerUserInfo';
 import { Routes } from '../../routes';
-import useTheme from '@material-ui/core/styles/useTheme';
 
 const useStyles = makeStyles(theme => ({
     importantInfoLink: {

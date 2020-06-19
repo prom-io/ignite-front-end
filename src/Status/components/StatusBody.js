@@ -77,7 +77,7 @@ const _StatusBody = ({
                             // marginBottom: 4,
                         }}
                     >
-                        <Typography classes={{root:classes.replyingToLabel}}>
+                        <Typography classes={{ root: classes.replyingToLabel }}>
                             {l('status.replying-to')}
                         </Typography>
                         <Link
@@ -100,7 +100,7 @@ const _StatusBody = ({
             >
                 <Markdown source={text} plugins={[breaks]} />
             </Typography>
-            <StatusMediaAttachments mediaAttachments={mediaAttachments} />
+            <StatusMediaAttachments mediaAttachments={mediaAttachments} isOnlyImage={!text} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}
             {nestedReferredStatusId && nestedReferredStatusReferenceType === 'REPOST' && (
                 <ClickEventPropagationStopper>

@@ -8,12 +8,26 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         color: theme.palette.text.primary,
         marginRight: '20px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '25%',
+            marginRight: '0',
+        },
     },
     appBarLinkActive: {
         textDecoration: 'none',
         display: 'flex',
         color: theme.palette.primary.main,
         marginRight: '20px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '25%',
+            marginRight: '0',
+        },
     },
     appBarLinkTextContainer: {
         display: 'flex',

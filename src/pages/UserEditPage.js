@@ -46,7 +46,7 @@ export const UserEditPage = observer(() => {
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
-                                    <LoginForm />
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             ) : (
                                 <>

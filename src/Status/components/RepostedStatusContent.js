@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     repostedStatus: {
         display: 'flex',
         border: `1px solid ${theme.palette.border.main}`,
+        backgroundColor: theme.palette.background.paper,
     },
     repostedStatusNoBorders: {
         display: 'flex',
@@ -33,7 +34,7 @@ const _RepostedStatusContent = ({
 
     return (
         <div className={hideBorders ? classes.repostedStatusNoBorders : classes.repostedStatus}>
-            <div>
+            <div className={'repostedStatusContainer'}>
                 <StatusHeader
                     username={repostedStatus.account.username}
                     userId={repostedStatus.account.id}

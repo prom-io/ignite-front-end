@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Button,
-    CircularProgress,
     Dialog,
     DialogContent,
     DialogTitle,
@@ -11,17 +10,38 @@ import {
     withMobileDialog,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
 import { CreateStatusForm } from './CreateStatusForm';
 import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     createStatusButton: {
         borderRadius: 30,
         float: 'right',
         width: '114px',
     },
+    statusFormDialog: {
+        top: '-50px',
+        overflow: 'unset',
+        zIndex: 1500,
+        [theme.breakpoints.down('sm')]: {
+            top: '0px',
+            overflowY: 'scroll',
+        },
+    },
+    statusFormDialogTitle: {
+        padding: '16px 24px 0 24px',
+        '& h2':{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+        },
+    },
+    statusFormDialogContent: {
+        overflow: 'unset',
+        border: 'none',
+        padding: 0,
+    }
 }));
 
 const _CreateStatusDialog = ({
@@ -36,25 +56,25 @@ const _CreateStatusDialog = ({
     l,
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <Dialog
             open={createStatusDialogOpen}
             onClose={() => setCreateStatusDialogOpen(false)}
             fullScreen={fullScreen}
-            style={{
-                zIndex: 15000000000,
-            }}
+            scroll={'body'}
             fullWidth
             maxWidth="md"
+            classes={{
+                paper: classes.statusFormDialog
+            }}
             BackdropProps={{
                 style: {
                     backgroundColor: 'rgba(44,44,44,0.84)',
                 },
             }}
         >
-            <DialogTitle>
+            <DialogTitle classes={{root: classes.statusFormDialogTitle}}>
                 <IconButton
                     onClick={() => setCreateStatusDialogOpen(false)}
                     disabled={pending}
@@ -68,12 +88,12 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} />}
+                    {pending && <Loader size="md" css={'position:absolute; top: -2px; left: 40px'}/>}
                     {l('status.send')}
                 </Button>
             </DialogTitle>
-            <DialogContent>
-                <CreateStatusForm hideSendButton />
+            <DialogContent classes={{root: classes.statusFormDialogContent}}>
+                <CreateStatusForm hideSendButton isDialogEmojiPicker/>
             </DialogContent>
         </Dialog>
     );

@@ -1,15 +1,15 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles, Grid } from '@material-ui/core';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
+import { makeStyles, Hidden, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '150px',
         display: 'table',
         [theme.breakpoints.down('sm')]: {
             marginTop: '30px',
@@ -23,9 +23,6 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('md')]: {
             padding: '0px !important',
             paddingBottom: `${theme.spacing(1)}px !important`,
-        },
-        [theme.breakpoints.down('sm')]: {
-            marginTop: '46px',
         },
     },
 }));
@@ -45,15 +42,16 @@ const _UserProfileTimeline = ({
     hasMore,
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><FadeLoader css="transform: scale(0.5)" color={theme.palette.primary.main} /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item xs={12} className={classes.profileCreateStatusForm}>
-                        <CreateStatusForm />
+                        <Hidden smDown>
+                            <CreateStatusForm />
+                        </Hidden>
                     </Grid>
                 )}
                 <Grid item xs={12} className={classes.profileStatusList}>

@@ -65,6 +65,11 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         flexWrap: 'nowrap',
+    },
+    customTextareaContainer: {
+        display: 'flex',
+        width: '100%',
+        padding: '14px'
     }
 }));
 
@@ -104,18 +109,13 @@ const _CreateStatusForm = ({
 
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
-            <Grid
-                container
-                style={{
-                    padding: '25px 15px 0px',
-                }}
-            >
+            <Grid container>
                 {referredStatus && (
                     <Grid item xs={12}>
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')
-                                : `${l('status.replying-to')}: `}
+                                : ``}
                         </Typography>
                         <RepostedStatusContent
                             repostedStatus={referredStatus}
@@ -127,10 +127,8 @@ const _CreateStatusForm = ({
                         />
                     </Grid>
                 )}
-                <Grid item xs={1}>
+                <div className={classes.customTextareaContainer}>
                     <Avatar src={currentUserAvatar} className="avatar-mini" />
-                </Grid>
-                <Grid item xs={11}>
                     <TextField
                         placeholder={l('status.placeholder')}
                         multiline
@@ -141,7 +139,7 @@ const _CreateStatusForm = ({
                         value={content}
                         className={classes.customTextarea}
                     />
-                </Grid>
+                </div>
             </Grid>
             <CardActions className={classes.cardActionsStyled}>
                 <Grid container justify="flex-start">

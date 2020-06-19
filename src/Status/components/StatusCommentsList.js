@@ -12,6 +12,9 @@ const useStyles = makeStyles(() => ({
         marginRight: 'auto',
         display: 'table',
     },
+    commentListContainer: {
+        marginBottom: '50px',
+    }
 }));
 
 const _StatusCommentsList = ({
@@ -35,7 +38,7 @@ const _StatusCommentsList = ({
     const classes = useStyles();
 
     return (
-        <Grid container spacing={2}>
+        <Grid container classes={{root: classes.commentListContainer}}>
             <Grid item xs={12}>
                 <Typography variant="h6">
                     {l('status.comments')}

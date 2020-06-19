@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
     },
     statusFormDialogContent: {
         overflow: 'unset',
+        border: 'none',
+        padding: 0,
     }
 }));
 
@@ -86,7 +88,7 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <Loader size="md" />}
+                    {pending && <Loader size="md" css={'position:absolute; top: -2px; left: 40px'}/>}
                     {l('status.send')}
                 </Button>
             </DialogTitle>

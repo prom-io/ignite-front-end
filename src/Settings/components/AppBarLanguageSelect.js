@@ -95,8 +95,6 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
         setSelectedLanguage(currentLang);
         setOpen(false);
     };
-    
-    console.log('open = ',open);
 
     return (
         <>

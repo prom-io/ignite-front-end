@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { ClickAwayListener, makeStyles } from "@material-ui/core";
-import { Picker } from "emoji-mart";
+import Picker from "emoji-picker-react";
 
 import { useStore } from "../../store/hooks";
 
@@ -9,20 +9,17 @@ const useStyles = makeStyles(theme => ({
     emojiPicker: {
         zIndex: 3,
         position: "absolute",
-        bottom: '-345px',
-        left: '100px',
+        left: "100px",
+        bottom: "-310px",
         [theme.breakpoints.down("xs")]: {
             left: 0
         },
 
-        "& .emoji-mart": {
+        "& .emoji-picker-react": {
+            boxShadow: "none",
             [theme.breakpoints.down("xs")]: {
                 width: "100% !important"
             }
-        },
-
-        "& .emoji-mart-bar .emoji-mart-preview": {
-            display: "none"
         }
     }
 }));
@@ -35,16 +32,19 @@ export const EmojiPicker = observer(() => {
         setEmojiPickerVisible
     } = useStore().createStatus;
 
+    const onEmojiClick = (event, emoji) => {
+        addEmoji(emoji);
+    };
+
     return (
         emojiPickerVisible && (
             <ClickAwayListener onClickAway={() => setEmojiPickerVisible(false)}>
                 <div className={classes.emojiPicker}>
                     <Picker
-                        onSelect={emoji => addEmoji(emoji)}
-                        color="#FF5C01"
-                        emojiSize={20}
-                        showPreview={false}
-                        native
+                        onEmojiClick={onEmojiClick}
+                        groupNames={{ smileys_people: "PEOPLE" }}
+                        disableAutoFocus
+                        preload
                     />
                 </div>
             </ClickAwayListener>

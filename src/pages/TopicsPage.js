@@ -1,19 +1,14 @@
 import React from "react";
 import { Grid, Hidden } from "@material-ui/core";
 import { observer } from "mobx-react";
-
 import { AppBar } from "../AppBar/components";
-import { TopicsPageContainer, TopicsPopular } from "../Topics/components";
+import {TopicsPopular } from "../Topics/components";
 import {
     PrometeusDescription,
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { IgniteTrendPage } from '../icons/IgniteTrendPage';
-import { TopicsIcon } from '../icons/TopicsIcon';
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
 import { useAuthorization, useStore } from '../store/hooks';
 import { makeStyles } from '@material-ui/core/styles';
 

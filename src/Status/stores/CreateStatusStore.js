@@ -26,6 +26,12 @@ export class CreateStatusStore {
     createStatusDialogOpen = false;
 
     @observable
+    emojiPickerVisible = false;
+
+    @observable
+    emojiPickerDialogVisible = false;
+
+    @observable
     inputExpanded = false;
 
     @observable
@@ -129,4 +135,28 @@ export class CreateStatusStore {
     setStatusReferenceType = statusReferenceType => {
         this.statusReferenceType = statusReferenceType;
     }
+
+    @action
+    setEmojiPickerVisible = emojiPickerVisible => {
+        this.emojiPickerVisible = emojiPickerVisible;
+    }
+
+    @action
+    setEmojiPickerDialogVisible = emojiPickerDialogVisible => {
+        this.emojiPickerDialogVisible = emojiPickerDialogVisible;
+    }
+
+    @action
+    addEmoji = e => {
+        let sym = e.unified.split('-')
+        let codesArray = []
+        sym.forEach(el => codesArray.push('0x' + el))
+        let emoji = String.fromCodePoint(...codesArray)
+        let newContent = this.content + emoji;
+
+        if (STATUS_TEXT_LENGTH_LIMIT - newContent.length >= 0) {
+            this.content = newContent;
+            this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - newContent.length;
+        }
+    };
 }

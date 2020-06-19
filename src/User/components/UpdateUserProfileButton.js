@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     editButtonWrapper: {
         marginTop: '10px',
         marginBottom: '24px',
@@ -17,9 +17,12 @@ const useStyles = makeStyles(() => ({
         width: '100%',
 
         '& button': {
+            textTransform: "capitalize",
             width: '100%',
             height: '40px',
+            border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: '30px',
+            background: 'transparent',
             fontWeight: 600,
             fontSize: '15px',
             lineHeight: '18px',
@@ -27,7 +30,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const _OpenUpdateUserProfileDialogButton = ({ routerStore, l }) => {
+const _UpdateUserProfileButton = ({ routerStore, l }) => {
     const classes = useStyles();
 
     return (
@@ -38,9 +41,9 @@ const _OpenUpdateUserProfileDialogButton = ({ routerStore, l }) => {
         >
             <Button
                 color="primary"
-                variant="contained"
+                variant="text"
             >
-                {l('user.update-profile')}
+                {l('user.edit-profile')}
             </Button>
         </Link>
     );
@@ -50,6 +53,6 @@ const mapMobxToProps = ({ store }) => ({
     routerStore: store,
 });
 
-export const OpenUpdateUserProfileDialogButton = localized(
-    inject(mapMobxToProps)(observer(_OpenUpdateUserProfileDialogButton)),
+export const UpdateUserProfileButton = localized(
+    inject(mapMobxToProps)(observer(_UpdateUserProfileButton)),
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Hidden, Grid } from '@material-ui/core';
 import { StatusList } from './StatusList';
 import { CreateStatusForm } from './CreateStatusForm';
 import { UnfollowDialog } from '../../Follow/components';
@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '50px',
+        marginTop: '150px',
         display: 'table',
     },
     gridItemOverridePadding: {
@@ -47,11 +47,13 @@ const _HomeTimeline = ({
     const classes = useStyles();
 
     return pending && statuses.length === 0
-        ? <div className={classes.centered}><Loader size="md" /></div>
+        ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
             <Grid container spacing={2}>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
-                    <CreateStatusForm />
+                    <Hidden smDown>
+                        <CreateStatusForm />
+                    </Hidden>
                 </Grid>
                 <Grid item className={classes.gridItemOverridePadding}>
                     <StatusList

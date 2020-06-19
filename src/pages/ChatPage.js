@@ -60,7 +60,7 @@ const _ChatPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm />
+                                    <LoginForm/>
                                 </Grid>
                             )}
                             <div className="static-page">

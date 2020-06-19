@@ -125,14 +125,14 @@ export const Routes = {
             store.userCard.setDisplayMode('userByAddress');
             store.userProfile.fetchUserByUsername(params.username);
             if (params.tab === 'followers') {
-                store.userProfile.setActiveTab('followers');
-                store.userFollowers.fetchUserFollowers(params.username);
+                store.userProfile.activeTab = 'followers';
+                store.userFollowers.fetchUserFollowers(params.id);
             } else if (params.tab === 'following') {
-                store.userProfile.setActiveTab('following');
-                store.userFollowing.fetchFollowing(params.username);
+                store.userProfile.activeTab = 'following';
+                store.userFollowing.fetchFollowing(params.id);
             } else {
-                store.userProfile.setActiveTab('posts');
-                store.userProfileTimeline.fetchStatuses(params.username);
+                store.userProfile.activeTab = 'posts';
+                store.userProfileTimeline.fetchStatuses(params.id);
             }
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',

@@ -33,12 +33,14 @@ const useStyles = makeStyles(theme => ({
         border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
         height: '100%',
+        padding: '0 30px',
     },
     notificationsErrorInfo: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        textAlign: 'center',
         marginTop: '65px',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -99,8 +101,16 @@ export const NotificationsList = observer(() => {
 
     const notificationsStore = useStore().notifications;
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
-    const { currentUser } = useAuthorization();
+    const { currentUser, fetchingCurrentUser } = useAuthorization();
     const { locale } = useLocalization();
+
+    if (fetchingCurrentUser) {
+        return (
+            <div className={classes.centered}>
+                <Loader size="md" />
+            </div>
+        );
+    }
 
     if (!currentUser) {
         return (

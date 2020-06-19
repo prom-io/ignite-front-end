@@ -11,6 +11,9 @@ import {
     Typography,
 } from '@material-ui/core';
 import { AttachImageInput } from './AttachImageInput';
+import { EmojiInput } from './EmojiInput';
+import { EmojiPicker } from './EmojiPicker';
+import { EmojiPickerDialog } from './EmojiPickerDialog';
 import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
@@ -64,6 +67,11 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'flex-end',
         flexWrap: 'nowrap',
     },
+    customTextareaContainer: {
+        display: 'flex',
+        width: '100%',
+        padding: '14px'
+    }
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -88,10 +96,13 @@ const _CreateStatusForm = ({
     removeMediaAttachment,
     uploadedAttachments,
     hideSendButton = false,
+    isDialogEmojiPicker = false,
     referredStatus,
     statusReferenceType,
     setReferredStatus,
     setStatusReferenceType,
+    setEmojiPickerVisible,
+    setEmojiPickerDialogVisible,
     mediaAttachmentUploadPending,
     l,
 }) => {
@@ -99,18 +110,13 @@ const _CreateStatusForm = ({
 
     return (
         <Card className={classes.createStatusFormCard} className="create-status-form">
-            <Grid
-                container
-                style={{
-                    padding: '18px 15px 0px',
-                }}
-            >
+            <Grid container>
                 {referredStatus && (
                     <Grid item>
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')
-                                : `${l('status.replying-to')}: `}
+                                : ``}
                         </Typography>
                         <RepostedStatusContent
                             repostedStatus={referredStatus}
@@ -122,10 +128,8 @@ const _CreateStatusForm = ({
                         />
                     </Grid>
                 )}
-                <Grid item className={classes.avatarIconMini}>
+                <div className={classes.customTextareaContainer}>
                     <Avatar src={currentUserAvatar} className="avatar-mini" />
-                </Grid>
-                <Grid item className={classes.textArea}>
                     <TextField
                         placeholder={l('status.placeholder')}
                         multiline
@@ -136,7 +140,7 @@ const _CreateStatusForm = ({
                         value={content}
                         className={classes.customTextarea}
                     />
-                </Grid>
+                </div>
             </Grid>
             <CardActions className={classes.cardActionsStyled}>
                 <Grid container justify="flex-start">
@@ -148,7 +152,11 @@ const _CreateStatusForm = ({
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
-                        <img src="/pic-smile-disabled.png" />
+                        <EmojiInput 
+                            setEmojiPickerVisible={setEmojiPickerVisible} 
+                            setEmojiPickerDialogVisible={setEmojiPickerDialogVisible} 
+                            isDialogEmojiPicker={isDialogEmojiPicker} 
+                        />
                     </div>
                 </Grid>
                 <Grid container classes={{ root: classes.containerRoot }}>
@@ -174,12 +182,15 @@ const _CreateStatusForm = ({
                     )}
                 </Grid>
             </CardActions>
-            <div className={classes.mediaAttachmentsContainer}>
-                <CreateStatusFormMediaAttachments
-                    mediaAttachmentsFiles={mediaAttachmentsFiles}
-                    onDelete={removeMediaAttachment}
-                />
-            </div>
+            {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0 && 
+                <div className={classes.mediaAttachmentsContainer}>
+                    <CreateStatusFormMediaAttachments
+                        mediaAttachmentsFiles={mediaAttachmentsFiles}
+                        onDelete={removeMediaAttachment}
+                        />
+                </div>
+            }
+            {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
     );
 };
@@ -190,6 +201,8 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
     content: createStatus.content,
     pending: createStatus.pending,
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
+    setEmojiPickerVisible: createStatus.setEmojiPickerVisible,
+    setEmojiPickerDialogVisible: createStatus.setEmojiPickerDialogVisible,
     currentUserAvatar: authorization.currentUser
         ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
         : 'http://localhost:3000/avatars/original/missing.png',

@@ -8,11 +8,11 @@ const sizeEnum = {
     sm: 'transform: scale(0.2)',
 };
 
-const Loader = ({ size, color }) => {
+const Loader = ({ size, color, css }) => {
     const theme = useTheme();
 
     return (
-        <FadeLoader css={sizeEnum[size]} color={color || theme.palette.primary.main} />
+        <FadeLoader css={`${sizeEnum[size]}; ${css}`} color={color || theme.palette.primary.main} />
     );
 };
 

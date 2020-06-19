@@ -10,6 +10,7 @@ import {
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import { IgniteTrendPage } from '../icons/IgniteTrendPage';
+import { TopicsIcon } from '../icons/TopicsIcon';
 
 const useStyles = makeStyles(theme => ({
     trendError: {
@@ -56,14 +57,15 @@ const _TopicsPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm />
+                                    <LoginForm/>
                                 </Grid>
                             )}
                             <div className="static-page">
                                 <div className="static-page-container">
                                     <div className={classes.trendError}>
                                         <div className={classes.trendErrorInfo}>
-                                            <IgniteTrendPage color="#A2A2A2" />
+                                            <TopicsIcon color="#A2A2A2" transform={3}/>
+                                           {/* <IgniteTrendPage color="#A2A2A2" />*/}
                                             <h1>{l('appbar.topics')}</h1>
                                         </div>
                                         <div>

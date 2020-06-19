@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     followInputWrapper: {
         marginTop: 16,
         boxSizing: 'border-box',
-        background: '#fbf7f6',
+        background: theme.palette.background.light,
         padding: 16,
         border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px 4px 0px 0px',

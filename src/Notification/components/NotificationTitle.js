@@ -5,6 +5,7 @@ import { Avatar, CardHeader, makeStyles, Typography } from '@material-ui/core';
 import { Routes } from '../../routes';
 import { SmallEllipseIcon } from '../../icons/SmallEllipseIcon';
 import { getCreatedAtLabel } from '../../utils/date-utlis';
+import { trimString } from "../../utils/string-utils";
 
 const useStyles = makeStyles(theme => ({
     userLink: {
@@ -85,7 +86,7 @@ const _NotificationTitle = ({ user, actionLabel, icon, createdAt, dateFnsLocale,
                                 className={classes.userLink}
                             >
                                 @
-                                {user.username}
+                                {trimString(user.username, 25)}
                             </Link>
                             {' '}
                             {actionLabel}

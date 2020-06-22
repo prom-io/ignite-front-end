@@ -53,6 +53,9 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.main,
         },
     },
+    notificationMarginTop: {
+        marginTop: '10px'
+    }
 }));
 
 const noNotifications = {
@@ -129,7 +132,7 @@ export const NotificationsList = observer(() => {
     }
 
     return (
-        <div id="notificationsList" className="paddingBottomRoot">
+        <div id="notificationsList" className={`paddingBottomRoot ${classes.notificationMarginTop}`}>
             <InfiniteScroll
                 next={fetchNotifications}
                 hasMore={hasMore}

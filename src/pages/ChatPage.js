@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '65px',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
@@ -67,7 +66,7 @@ const _ChatPage = ({ currentUser, l }) => {
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <IgniteChatPage color="#A2A2A2" />
+                                            <div className={'ignite-chat-page'} />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
                                         <div>

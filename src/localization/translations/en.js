@@ -120,7 +120,7 @@ export const en = {
     'sign-up.note': 'Note',
     'sign-up.ok': 'Ok',
     'sign-up.oops': 'Oops!',
-    'sign-up.options.new-wallet': 'Create a new blockchain wallet',
+    'sign-up.options.new-wallet': 'Create Wallet',
     'sign-up.options.recommended-option': 'Recommended option',
     'sign-up.options.use-existing-wallet': 'Use an existing wallet (for advanced users only)',
     'sign-up.options.use-existing-wallet.note': 'This option is suitable for blockchain experienced users only, It will require you to make a record to the Ethereum blockchain using your existing ERC 20 wallet.',

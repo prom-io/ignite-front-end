@@ -32,9 +32,6 @@ const useStyles = makeStyles(() => ({
     button: {
         width: '187px',
     },
-    dialogRoot: {
-        margin: '24px 62px 40px 62px',
-    },
 }));
 
 const publishTransactionTranslations = {

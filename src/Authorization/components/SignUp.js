@@ -118,7 +118,7 @@ export const SignUp = observer(() => {
                     onClick={generateWallet}
                     disabled={pending}
                 >
-                    {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.5); top: 10px; left: 74px" />}
+                    {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.5); top: -2px; left: 74px" />}
                     {l('sign-up.options.new-wallet')}
                 </Button>
             </div>

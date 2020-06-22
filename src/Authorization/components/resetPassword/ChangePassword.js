@@ -57,7 +57,7 @@ export const ChangePassword = observer(() => {
                 disabled={pending}
                 onClick={changePassword}
             >
-                {pending && <Loader size={'sm'}/>}
+                {pending && <Loader size={'md'} css="position: absolute; transform: scale(0.5); top: -2px; left: 74px" />}
                 {l('sign-up.continue')}
             </Button>
         </DialogContent>

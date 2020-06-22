@@ -9,9 +9,12 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '22px',
-        color: '#1C1C1C',
+        color: theme.palette.text.main,
         '&>div': {
             marginLeft: '16px',
+            '& a': {
+                color: theme.palette.text.main,
+            }
         },
     },
     checkbox: {

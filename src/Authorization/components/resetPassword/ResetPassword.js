@@ -4,9 +4,6 @@ import { Button, DialogContent, makeStyles, TextField } from '@material-ui/core'
 import { useLocalization, useStore } from '../../../store/hooks';
 
 const useStyles = makeStyles(() => ({
-    dialogRoot: {
-        margin: '24px 62px 40px 62px',
-    },
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',

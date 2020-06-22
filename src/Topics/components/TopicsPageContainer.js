@@ -3,6 +3,7 @@ import { Typography, makeStyles } from "@material-ui/core";
 
 import { TopicStatusList } from "./TopicStatusList";
 import { useLocalization } from "../../store/hooks";
+import { BackButton } from '../../components/BackButton';
 
 const useStyles = makeStyles((theme) => ({
     topicsTitle: {
@@ -22,10 +23,8 @@ export const TopicsPageContainer = () => {
 
     return (
         <>
-            <Typography className={classes.topicsTitle} variant="h6">
-                {l("appbar.topics")}
-            </Typography>
-            <TopicStatusList />
+          <BackButton title="appbar.topics"/>
+          <TopicStatusList />
         </>
     );
 };

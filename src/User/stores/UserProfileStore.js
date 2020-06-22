@@ -1,4 +1,4 @@
-import {observable, action, reaction} from "mobx";
+import {observable, action, reaction, toJS} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class UserProfileStore {
@@ -133,6 +133,7 @@ export class UserProfileStore {
 
     @action
     reset = () => {
+        this.userStatusesStore.reset();
         this.username = undefined;
         this.user = undefined;
         this.pending = false;

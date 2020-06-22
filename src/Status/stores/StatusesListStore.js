@@ -37,18 +37,20 @@ export class StatusesListStore {
     statusAuthorUnsubscriptionListeners = [];
     reverseOrder = false;
     sendLanguage = false;
+    dynamicBaseUrl = false;
 
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false) {
+    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false, dynamicBaseUrl = false) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
         this.reverseOrder = reverseOrder;
         this.sendLanguage = sendLanguage;
+        this.dynamicBaseUrl = dynamicBaseUrl;
 
         this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
 
@@ -98,6 +100,8 @@ export class StatusesListStore {
     @action
     fetchStatuses = () => {
         this.pending = true;
+
+        console.log(`Fetching statuses by base url ${this.baseUrl}`);
 
         if (this.baseUrl) {
             if (this.statuses.length !== 0) {
@@ -323,6 +327,10 @@ export class StatusesListStore {
 
     @action
     reset = () => {
+        if (this.dynamicBaseUrl) {
+            this.baseUrl = undefined;
+        }
+
         this.statuses = [];
         this.currentStatusId = undefined;
         this.currentStatusUsername = undefined;

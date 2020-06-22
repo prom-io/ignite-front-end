@@ -1,4 +1,4 @@
-import {observable, action} from "mobx";
+import {observable, action, reaction} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 import {store} from "../../store";
 
@@ -11,6 +11,21 @@ export class AuthorizationStore {
 
     @observable
     fetchingCurrentUser = false;
+
+    createStatusStore = undefined;
+
+    constructor(createStatusStore) {
+        this.createStatusStore = createStatusStore;
+
+        reaction(
+            () => this.createStatusStore.createdStatus,
+            createdStatus => {
+                if (createdStatus) {
+                    this.setStatusesCount(this.currentUser.statuses_count + 1);
+                }
+            }
+        );
+    }
 
     @action
     setAccessToken = accessToken => {

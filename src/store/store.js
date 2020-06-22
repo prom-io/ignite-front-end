@@ -36,15 +36,15 @@ import { BtfsHashesStore } from '../Btfs/stores';
 import { NotificationsStore } from '../Notification/stores';
 import { WebsocketStore } from '../websocket/stores';
 
-const authorization = new AuthorizationStore();
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
 const createStatus = new CreateStatusStore(uploadMediaAttachments);
+const authorization = new AuthorizationStore(createStatus);
 const globalTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/global', false, true);
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();
 const userFollowing = new UserFollowingStore();
 const userProfileTimeline = new StatusesListStore(authorization, createStatus, undefined, false, false, true);
-const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing);
+const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing, createStatus);
 const followAction = new FollowActionStore(authorization);
 const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);

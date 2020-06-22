@@ -228,7 +228,7 @@ export class StatusesListStore {
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
             .then(() => {
-                    this.authorizationStore.currentUser.follows_count += 1;
+                this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count + 1);
                     this.statuses = this.statuses.map(status => {
                         if (status.account.id === authorId) {
                             status.account.following = true;
@@ -249,7 +249,7 @@ export class StatusesListStore {
                 status.account.following = true;
             }
             return status;
-        })
+        });
     };
 
     @action
@@ -265,19 +265,19 @@ export class StatusesListStore {
                     this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
                         statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(authorId);
                     });
-                    this.authorizationStore.currentUser.follows_count -= 1;
+                    this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count - 1);
                     this.reset();
                     this.fetchStatuses();
                 });
         }
-    }
+    };
 
     @action
     unfollowStatusAuthorWithDialog = (statusId, username) => {
         this.currentStatusId = statusId;
         this.currentStatusUsername = username;
         this.unfollowDialogOpen = true;
-    }
+    };
 
     @action
     unfollowStatusAuthorByAuthorId = authorId => {

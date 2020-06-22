@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const _BackButton = ({ title, toHome, routerStore, l }) => {
+const _BackButton = ({ title, toHome, toTopics, params, routerStore, l }) => {
     const classes = useStyles();
 
     return (
@@ -47,6 +47,8 @@ const _BackButton = ({ title, toHome, routerStore, l }) => {
                 onClick={() => {
                     if (toHome) {
                         routerStore.router.goTo(Routes.home);
+                    } else if (toTopics) {
+                        routerStore.router.goTo(Routes.topics);
                     } else {
                         window.history.back();
                     }
@@ -56,7 +58,9 @@ const _BackButton = ({ title, toHome, routerStore, l }) => {
                 <ArrowBackIcon />
             </div>
             <Typography>
-                <h2 className={classes.backButtonTitle}>{l(title)}</h2>
+                <h2 className={classes.backButtonTitle}>
+                    {toTopics ? `${l('topics.tag')} #${params}` : l(title)}
+                </h2>
             </Typography>
         </div>
     );

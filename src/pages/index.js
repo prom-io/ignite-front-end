@@ -5,6 +5,7 @@ export * from './UserEditPage';
 export * from './NotificationsPage';
 export * from './ChatPage';
 export * from './TopicsPage';
+export * from './TopicPage';
 export * from './TermsAndPoliciesPage';
 export * from './DescriptionPage';
 export * from './StatusPage';

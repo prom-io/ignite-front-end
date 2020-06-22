@@ -43,7 +43,6 @@ export const UserEditPage = observer(() => {
                             spacing={28}
                             lg={9}
                             className="right-content-container"
-                            style={{ width: '100%' }}
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">

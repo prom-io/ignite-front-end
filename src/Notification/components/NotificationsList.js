@@ -78,7 +78,7 @@ const noNotifications = {
             </div>
         </div>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <div className={classes.noNotificationsContainer}>
             <div className={classes.noNotificationsContent}>
                 <SadIconLarge />

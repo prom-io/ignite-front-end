@@ -1,4 +1,4 @@
-export const ko = {
+export const kr = {
     'status.send': '보내요',
     'status.placeholder': '어떻게 생각해요?',
     'status.images-attachments-limit': '{limit}개 이상의 이미지를 추가할 수 없어요',

@@ -71,7 +71,7 @@ export class FollowPeopleStore {
     fetchFollowPeople = () => {
         this.pending = true;
         let language = localStorage.getItem("language");
-        if (language !== "en" && language !== "ko") {
+        if (language !== "en" && language !== "kr") {
             language = "en";
         }
         axiosInstance

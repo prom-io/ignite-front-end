@@ -25,7 +25,7 @@ const translationsMap = {
             <Link className={classes.postLink} view={Routes.status} params={{ id: statusId }} store={routerStore}>post</Link>
         </span>
     ),
-    ko: ({ classes, routerStore, statusId }) => (
+    kr: ({ classes, routerStore, statusId }) => (
         <span>
             <Link className={classes.postLink} view={Routes.status} params={{ id: statusId }} store={routerStore}>게시물</Link>
             {' '}

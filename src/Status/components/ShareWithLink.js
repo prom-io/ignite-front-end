@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { MenuItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 
 import { ShareIcon } from '../../icons/ShareIcon';
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const ShareWithLink = ({ status, setOpen }) => {
+export const ShareWithLink = observer(({ status, setOpen }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -48,4 +49,4 @@ export const ShareWithLink = ({ status, setOpen }) => {
             <ListItemText>{l('status.copy-link')}</ListItemText>
         </MenuItem>
     );
-};
+});

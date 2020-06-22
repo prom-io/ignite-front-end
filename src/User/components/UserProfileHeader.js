@@ -8,6 +8,8 @@ import { UserProfileTab } from './UserProfileTab';
 import { addLineBreak } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
 import { UpdateUserProfileButton } from './UpdateUserProfileButton';
+import {useRouter, useStore} from '../../store/hooks';
+import { Routes } from '../../routes';
 
 const _UserProfileHeader = ({
     avatar,
@@ -27,6 +29,8 @@ const _UserProfileHeader = ({
     l,
     dateFnsLocale,
 }) => {
+    const store = useRouter();
+
     let profileButton = null;
 
     if (currentUser) {
@@ -88,18 +92,33 @@ const _UserProfileHeader = ({
                         header={statuses}
                         subheader={l('user.profile.posts')}
                         onSelectActive={() => onTabSelected('posts')}
+                        linkProps={{
+                            view: Routes.userProfile,
+                            params: { username },
+                            store
+                        }}
                     />
                     <UserProfileTab
                         active={activeTab === 'followers'}
                         header={followers}
                         subheader={l('user.profile.followers')}
                         onSelectActive={() => onTabSelected('followers')}
+                        linkProps={{
+                            view: Routes.userFollowers,
+                            params: { username },
+                            store,
+                        }}
                     />
                     <UserProfileTab
                         active={activeTab === 'following'}
                         header={following}
                         subheader={l('user.profile.following')}
                         onSelectActive={() => onTabSelected('following')}
+                        linkProps={{
+                            view: Routes.userFollowing,
+                            params: { username },
+                            store,
+                        }}
                     />
                 </Grid>
                 <Grid item>

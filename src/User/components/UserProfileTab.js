@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
+import { Link } from 'mobx-router';
 
 const useStyles = makeStyles((theme) => ({
     userProfileTab: {
@@ -18,8 +19,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const UserProfileTab = ({ header, subheader, active, onSelectActive }) => {
+export const UserProfileTab = ({ header, subheader, active, onSelectActive, linkProps }) => {
     const classes = useStyles();
+
+    console.log(linkProps);
+
+    if (linkProps) {
+        return (
+            <Link
+                className={active ? classes.userProfileActiveTab : classes.userProfileTab}
+                style={{
+                    textDecoration: 'none',
+                }}
+                {...linkProps}
+            >
+                <Typography variant="h6">
+                    {header}
+                </Typography>
+                <Typography variant="body1">
+                    {subheader}
+                </Typography>
+            </Link>
+        );
+    }
 
     return (
         <div

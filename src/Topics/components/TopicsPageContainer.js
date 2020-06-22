@@ -23,7 +23,7 @@ export const TopicsPageContainer = () => {
 
     return (
         <>
-          <BackButton title="appbar.topics"/>
+          <BackButton title="appbar.topics" toHome/>
           <TopicStatusList />
         </>
     );

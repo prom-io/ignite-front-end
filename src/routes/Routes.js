@@ -122,6 +122,7 @@ export const Routes = {
         path: '/:username',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
+            store.userProfile.reset();
             store.userCard.setDisplayMode('userByAddress');
             store.userProfile.fetchUserByUsername(params.username);
             if (params.tab === 'followers') {

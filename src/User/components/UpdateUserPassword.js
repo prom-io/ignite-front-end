@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Button,
-    TextField,
-    Input,
     Typography,
-    InputAdornment,
-    IconButton,
     makeStyles,
 } from '@material-ui/core';
-
-import UserPasswordField from './UserPasswordField';
 import { localized } from '../../localization/components';
+import { useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {
@@ -85,9 +80,11 @@ const _UpdateUserPassword = ({
     l,
 }) => {
     const classes = useStyles();
-    const goToForgotPassword = () => {
-    
-    }
+  const { genericAuthorizationDialog } = useStore();
+  const {
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
+  } = genericAuthorizationDialog;
 
     return (
         <div
@@ -95,7 +92,10 @@ const _UpdateUserPassword = ({
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
                 <Button
                     className={classes.updateUserPasswordOpen}
-                    onClick={goToForgotPassword}
+                    onClick={() => {
+                      setGenericAuthorizationDialogOpen(true);
+                      setGenericAuthorizationDialogType('forgotPassword');
+                    }}
                 >
                     {l('user.change')}
                 </Button>

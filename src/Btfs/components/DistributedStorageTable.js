@@ -7,12 +7,10 @@ import {
     TableCell,
     TableBody,
     Card,
-    CardHeader,
     CardContent,
     makeStyles,
     Typography
 } from "@material-ui/core";
-import { format } from "date-fns";
 
 import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
@@ -65,12 +63,11 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _BtfsHashesTable = ({
-    btfsHashes,
+const _DistributedStorageTable = ({
+    distributedStorage,
     pending,
     error,
     l,
-    dateFnsLocale,
     currentActiveRoute
 }) => {
     const classes = useStyles();
@@ -86,60 +83,58 @@ const _BtfsHashesTable = ({
                                 <strong>{l("explorer.cid")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.soter-link")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.created-at")}</strong>
+                                <strong>{l("explorer.age")}</strong>
                             </TableCell>
                             <TableCell>
                                 <strong>{l("explorer.node-wallet")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.synced")}</strong>
+                                <strong>{l("explorer.soter-link")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {pending ? (
-                            <TableCell colSpan={5}>
+                            <TableCell colSpan={4}>
                                 <div className={classes.centered}>
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
                         ) : error ? (
-                            <Typography>{getErrorLabel(error)}</Typography>
-                        ) : btfsHashes.length === 0 ? (
-                            <Typography>{l("explorer.no-data")}</Typography>
+                            <TableCell colSpan={4}>
+                                <Typography>{getErrorLabel(error)}</Typography>
+                            </TableCell>
+                        ) : distributedStorage.length === 0 ? (
+                            <TableCell colSpan={4}>
+                                <Typography>{l("explorer.no-data")}</Typography>
+                            </TableCell>
                         ) : (
-                            btfsHashes.map(btfsHash => (
+                            distributedStorage.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={btfsHash.cid}
+                                            value={item.btfs_cid}
+                                            contentEditable={false}
+                                        />
+                                    </TableCell>
+                                    <TableCell>{item.age}</TableCell>
+                                    <TableCell>
+                                        <input
+                                            className={classes.tableInput}
+                                            value={item.node}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <a
-                                            href={btfsHash.soter_link}
+                                            href={item.soter_link}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.link}
                                         >
-                                            {trimString(btfsHash.soter_link, 25)}
+                                            {trimString(item.soter_link, 35)}
                                         </a>
-                                    </TableCell>
-                                    <TableCell>
-                                        {format(
-                                            new Date(btfsHash.created_at),
-                                            "dd MMMM yyyy HH:mm",
-                                            { locale: dateFnsLocale }
-                                        )}
-                                    </TableCell>
-                                    <TableCell>{btfsHash.peer_wallet}</TableCell>
-                                    <TableCell>
-                                        {btfsHash.synced ? "True" : "False"}
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -152,11 +147,11 @@ const _BtfsHashesTable = ({
 };
 
 const mapMoxToProps = ({ btfs }) => ({
-    btfsHashes: btfs.btfsHashes,
+    distributedStorage: btfs.distributedStorage,
     pending: btfs.pending,
     error: btfs.error
 });
 
-export const BtfsHashesTable = localized(
-    inject(mapMoxToProps)(observer(_BtfsHashesTable))
+export const DistributedStorageTable = localized(
+    inject(mapMoxToProps)(observer(_DistributedStorageTable))
 );

@@ -2,6 +2,10 @@ import React from 'react';
 import { Route } from 'mobx-router';
 import {
     BtfsHashesPage,
+    EthereumPlasmaPage,
+    DistributedStoragePage,
+    EthereumMainnetPage,
+    BinanceSmartChainPage,
     ChatPage,
     DescriptionPage,
     HomePage,
@@ -117,6 +121,26 @@ export const Routes = {
         path: '/btfs',
         component: <BtfsHashesPage />,
         beforeEnter: () => store.btfs.fetchBtfsHashes(),
+    }),
+    ethereumPlasma: new Route({
+        path: '/ethereum-plasma',
+        component: <EthereumPlasmaPage />,
+        beforeEnter: () => store.btfs.fetchEthereumPlasma(),
+    }),
+    distributedStorage: new Route({
+        path: '/distributed-storage',
+        component: <DistributedStoragePage />,
+        beforeEnter: () => store.btfs.fetchDistributedStorage(),
+    }),
+    ethereumMainnet: new Route({
+        path: '/ethereum mainnet',
+        component: <EthereumMainnetPage />,
+        beforeEnter: () => store.btfs.fetchEthereumMainne(),
+    }),
+    binanceSmartChain: new Route({
+        path: '/binance-smart-chain',
+        component: <BinanceSmartChainPage />,
+        beforeEnter: () => store.btfs.fetchBinanceSmartChain(),
     }),
     userProfile: new Route({
         path: '/:username',

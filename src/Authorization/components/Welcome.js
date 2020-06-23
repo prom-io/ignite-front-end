@@ -52,9 +52,18 @@ const useStyles = makeStyles(() => ({
 export const Welcome = () => {
     const classes = useStyles();
     const { l } = useLocalization();
-    const { genericAuthorizationDialog, walletGeneration } = useStore();
+    const { genericAuthorizationDialog, walletGeneration, hashVerification } = useStore();
     const { setGenericAuthorizationDialogOpen } = genericAuthorizationDialog;
     const { generatedWallet } = walletGeneration;
+    const { createdUser } = hashVerification;
+
+    let walletAddress;
+
+    if (generatedWallet) {
+        walletAddress = generatedWallet.address;
+    } else if (createdUser) {
+        walletAddress = createdUser.id;
+    }
 
     return (
         <DialogContent>
@@ -66,7 +75,7 @@ export const Welcome = () => {
                     {l('sign-up.your-login-is')}
                     :
                 </p>
-                <span>{generatedWallet.address}</span>
+                {walletAddress && walletAddress}
             </div>
             <Button
                 variant="contained"

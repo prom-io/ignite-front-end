@@ -55,6 +55,7 @@ export const GenerateHash = observer(() => {
             <KeyCopyBlock
                 title={l('sign-up.hash-code')}
                 disabled={!generatedHash}
+                textToCopy={generatedHash}
             >
                 {generatedHash || l('sign-up.hashcode.not-generated')}
             </KeyCopyBlock>

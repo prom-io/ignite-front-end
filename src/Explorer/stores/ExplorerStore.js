@@ -1,7 +1,7 @@
 import { observable, action } from "mobx";
 import { axiosInstance } from "../../api/axios-instance";
 
-export class BtfsHashesStore {
+export class ExplorerStore {
     @observable
     btfsHashes = [];
     ethereumPlasma = [];

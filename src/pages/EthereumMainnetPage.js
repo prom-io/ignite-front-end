@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Grid } from '@material-ui/core';
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
-import { EthereumMainnetTable } from '../Btfs/components';
+import { EthereumMainnetTable } from '../Explorer/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -23,7 +23,7 @@ export const EthereumMainnetPage = () => {
             <Grid item xs={12}>
                 <Layout>
                     <div className={classes.centered}>
-                        <EthereumMainnetTable currentActiveRoute="ethereum mainnet" />
+                        <EthereumMainnetTable currentActiveRoute="ethereum-mainnet" />
                     </div>
                 </Layout>
             </Grid>

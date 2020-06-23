@@ -120,27 +120,27 @@ export const Routes = {
     btfs: new Route({
         path: '/btfs',
         component: <BtfsHashesPage />,
-        beforeEnter: () => store.btfs.fetchBtfsHashes(),
+        beforeEnter: () => store.explorer.fetchBtfsHashes(),
     }),
     ethereumPlasma: new Route({
         path: '/ethereum-plasma',
         component: <EthereumPlasmaPage />,
-        beforeEnter: () => store.btfs.fetchEthereumPlasma(),
+        beforeEnter: () => store.explorer.fetchEthereumPlasma(),
     }),
     distributedStorage: new Route({
         path: '/distributed-storage',
         component: <DistributedStoragePage />,
-        beforeEnter: () => store.btfs.fetchDistributedStorage(),
+        beforeEnter: () => store.explorer.fetchDistributedStorage(),
     }),
     ethereumMainnet: new Route({
-        path: '/ethereum mainnet',
+        path: '/ethereum-mainnet',
         component: <EthereumMainnetPage />,
-        beforeEnter: () => store.btfs.fetchEthereumMainne(),
+        beforeEnter: () => store.explorer.fetchEthereumMainne(),
     }),
     binanceSmartChain: new Route({
         path: '/binance-smart-chain',
         component: <BinanceSmartChainPage />,
-        beforeEnter: () => store.btfs.fetchBinanceSmartChain(),
+        beforeEnter: () => store.explorer.fetchBinanceSmartChain(),
     }),
     userProfile: new Route({
         path: '/:username',

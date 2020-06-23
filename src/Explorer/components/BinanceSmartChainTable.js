@@ -7,14 +7,11 @@ import {
     TableCell,
     TableBody,
     Card,
-    CardHeader,
     CardContent,
     makeStyles,
     Typography
 } from "@material-ui/core";
-import { format } from "date-fns";
 
-import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
@@ -24,9 +21,6 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         marginTop: "50px",
         overflow: "auto"
-    },
-    link: {
-        color: theme.palette.primary.main
     },
     centered: {
         display: "flex",
@@ -65,12 +59,11 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _BtfsHashesTable = ({
-    btfsHashes,
+const _BinanceSmartChainTable = ({
+    binanceSmartChain,
     pending,
     error,
     l,
-    dateFnsLocale,
     currentActiveRoute
 }) => {
     const classes = useStyles();
@@ -83,63 +76,72 @@ const _BtfsHashesTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
+                                <strong>{l("explorer.txnId")}</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>{l("explorer.age")}</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>{l("explorer.from")}</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>{l("explorer.to")}</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>{l("explorer.value")}</strong>
+                            </TableCell>
+                            <TableCell>
                                 <strong>{l("explorer.cid")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.soter-link")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.created-at")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.node-wallet")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.synced")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {pending ? (
-                            <TableCell colSpan={5}>
+                            <TableCell colSpan={6}>
                                 <div className={classes.centered}>
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
                         ) : error ? (
-                            <Typography>{getErrorLabel(error)}</Typography>
-                        ) : btfsHashes.length === 0 ? (
-                            <Typography>{l("explorer.no-data")}</Typography>
+                            <TableCell colSpan={6}>
+                                <Typography>{getErrorLabel(error)}</Typography>
+                            </TableCell>
+                        ) : binanceSmartChain.length === 0 ? (
+                            <TableCell colSpan={6}>
+                                <Typography>{l("explorer.no-data")}</Typography>
+                            </TableCell>
                         ) : (
-                            btfsHashes.map(btfsHash => (
+                            binanceSmartChain.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={btfsHash.cid}
+                                            value={item.txnId}
+                                            contentEditable={false}
+                                        />
+                                    </TableCell>
+                                    <TableCell>{item.age}</TableCell>
+                                    <TableCell>
+                                        <input
+                                            className={classes.tableInput}
+                                            value={item.from}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <a
-                                            href={btfsHash.soter_link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={classes.link}
-                                        >
-                                            {trimString(btfsHash.soter_link, 25)}
-                                        </a>
+                                        <input
+                                            className={classes.tableInput}
+                                            value={item.to}
+                                            contentEditable={false}
+                                        />
                                     </TableCell>
+                                    <TableCell>{item.value}</TableCell>
                                     <TableCell>
-                                        {format(
-                                            new Date(btfsHash.created_at),
-                                            "dd MMMM yyyy HH:mm",
-                                            { locale: dateFnsLocale }
-                                        )}
-                                    </TableCell>
-                                    <TableCell>{btfsHash.peer_wallet}</TableCell>
-                                    <TableCell>
-                                        {btfsHash.synced ? "True" : "False"}
+                                        <input
+                                            className={classes.tableInput}
+                                            value={item.btfs_cid}
+                                            contentEditable={false}
+                                        />
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -151,12 +153,12 @@ const _BtfsHashesTable = ({
     );
 };
 
-const mapMoxToProps = ({ btfs }) => ({
-    btfsHashes: btfs.btfsHashes,
-    pending: btfs.pending,
-    error: btfs.error
+const mapMoxToProps = ({ explorer }) => ({
+    binanceSmartChain: explorer.binanceSmartChain,
+    pending: explorer.pending,
+    error: explorer.error
 });
 
-export const BtfsHashesTable = localized(
-    inject(mapMoxToProps)(observer(_BtfsHashesTable))
+export const BinanceSmartChainTable = localized(
+    inject(mapMoxToProps)(observer(_BinanceSmartChainTable))
 );

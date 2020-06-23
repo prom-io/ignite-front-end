@@ -12,6 +12,7 @@ import {
     Typography
 } from "@material-ui/core";
 
+import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         marginTop: "50px",
         overflow: "auto"
+    },
+    link: {
+        color: theme.palette.primary.main
     },
     centered: {
         display: "flex",
@@ -59,8 +63,8 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _BinanceSmartChainTable = ({
-    binanceSmartChain,
+const _DistributedStorageTable = ({
+    distributedStorage,
     pending,
     error,
     l,
@@ -76,47 +80,41 @@ const _BinanceSmartChainTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.txnId")}</strong>
+                                <strong>{l("explorer.cid")}</strong>
                             </TableCell>
                             <TableCell>
                                 <strong>{l("explorer.age")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.from")}</strong>
+                                <strong>{l("explorer.node-wallet")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.to")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.value")}</strong>
-                            </TableCell>
-                            <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l("explorer.soter-link")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {pending ? (
-                            <TableCell colSpan={6}>
+                            <TableCell colSpan={4}>
                                 <div className={classes.centered}>
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
                         ) : error ? (
-                            <TableCell colSpan={6}>
+                            <TableCell colSpan={4}>
                                 <Typography>{getErrorLabel(error)}</Typography>
                             </TableCell>
-                        ) : binanceSmartChain.length === 0 ? (
-                            <TableCell colSpan={6}>
+                        ) : distributedStorage.length === 0 ? (
+                            <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            binanceSmartChain.map(item => (
+                            distributedStorage.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.txnId}
+                                            value={item.btfs_cid}
                                             contentEditable={false}
                                         />
                                     </TableCell>
@@ -124,24 +122,19 @@ const _BinanceSmartChainTable = ({
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.from}
+                                            value={item.node}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <input
-                                            className={classes.tableInput}
-                                            value={item.to}
-                                            contentEditable={false}
-                                        />
-                                    </TableCell>
-                                    <TableCell>{item.value}</TableCell>
-                                    <TableCell>
-                                        <input
-                                            className={classes.tableInput}
-                                            value={item.btfs_cid}
-                                            contentEditable={false}
-                                        />
+                                        <a
+                                            href={item.soter_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={classes.link}
+                                        >
+                                            {trimString(item.soter_link, 35)}
+                                        </a>
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -153,12 +146,12 @@ const _BinanceSmartChainTable = ({
     );
 };
 
-const mapMoxToProps = ({ btfs }) => ({
-    binanceSmartChain: btfs.binanceSmartChain,
-    pending: btfs.pending,
-    error: btfs.error
+const mapMoxToProps = ({ explorer }) => ({
+    distributedStorage: explorer.distributedStorage,
+    pending: explorer.pending,
+    error: explorer.error
 });
 
-export const BinanceSmartChainTable = localized(
-    inject(mapMoxToProps)(observer(_BinanceSmartChainTable))
+export const DistributedStorageTable = localized(
+    inject(mapMoxToProps)(observer(_DistributedStorageTable))
 );

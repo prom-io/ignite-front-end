@@ -7,11 +7,14 @@ import {
     TableCell,
     TableBody,
     Card,
+    CardHeader,
     CardContent,
     makeStyles,
     Typography
 } from "@material-ui/core";
+import { format } from "date-fns";
 
+import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
@@ -21,6 +24,9 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         marginTop: "50px",
         overflow: "auto"
+    },
+    link: {
+        color: theme.palette.primary.main
     },
     centered: {
         display: "flex",
@@ -59,11 +65,12 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _EthereumMainnetTable = ({
-    ethereumMainne,
+const _BtfsHashesTable = ({
+    btfsHashes,
     pending,
     error,
     l,
+    dateFnsLocale,
     currentActiveRoute
 }) => {
     const classes = useStyles();
@@ -76,19 +83,19 @@ const _EthereumMainnetTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.txnId")}</strong>
+                                <strong>{l("explorer.cid")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.age")}</strong>
+                                <strong>{l("explorer.soter-link")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.from")}</strong>
+                                <strong>{l("explorer.created-at")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.to")}</strong>
+                                <strong>{l("explorer.node-wallet")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.value")}</strong>
+                                <strong>{l("explorer.synced")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -100,39 +107,40 @@ const _EthereumMainnetTable = ({
                                 </div>
                             </TableCell>
                         ) : error ? (
-                            <TableCell colSpan={5}>
-                                <Typography>{getErrorLabel(error)}</Typography>
-                            </TableCell>
-                        ) : ethereumMainne.length === 0 ? (
-                            <TableCell colSpan={5}>
-                                <Typography>{l("explorer.no-data")}</Typography>
-                            </TableCell>
+                            <Typography>{getErrorLabel(error)}</Typography>
+                        ) : btfsHashes.length === 0 ? (
+                            <Typography>{l("explorer.no-data")}</Typography>
                         ) : (
-                            ethereumMainne.map(item => (
+                            btfsHashes.map(btfsHash => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.txnId}
-                                            contentEditable={false}
-                                        />
-                                    </TableCell>
-                                    <TableCell>{item.age}</TableCell>
-                                    <TableCell>
-                                        <input
-                                            className={classes.tableInput}
-                                            value={item.from}
+                                            value={btfsHash.cid}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <input
-                                            className={classes.tableInput}
-                                            value={item.to}
-                                            contentEditable={false}
-                                        />
+                                        <a
+                                            href={btfsHash.soter_link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={classes.link}
+                                        >
+                                            {trimString(btfsHash.soter_link, 25)}
+                                        </a>
                                     </TableCell>
-                                    <TableCell>{item.value}</TableCell>
+                                    <TableCell>
+                                        {format(
+                                            new Date(btfsHash.created_at),
+                                            "dd MMMM yyyy HH:mm",
+                                            { locale: dateFnsLocale }
+                                        )}
+                                    </TableCell>
+                                    <TableCell>{btfsHash.peer_wallet}</TableCell>
+                                    <TableCell>
+                                        {btfsHash.synced ? "True" : "False"}
+                                    </TableCell>
                                 </TableRow>
                             ))
                         )}
@@ -143,12 +151,12 @@ const _EthereumMainnetTable = ({
     );
 };
 
-const mapMoxToProps = ({ btfs }) => ({
-    ethereumMainne: btfs.ethereumMainne,
-    pending: btfs.pending,
-    error: btfs.error
+const mapMoxToProps = ({ explorer }) => ({
+    btfsHashes: explorer.btfsHashes,
+    pending: explorer.pending,
+    error: explorer.error
 });
 
-export const EthereumMainnetTable = localized(
-    inject(mapMoxToProps)(observer(_EthereumMainnetTable))
+export const BtfsHashesTable = localized(
+    inject(mapMoxToProps)(observer(_BtfsHashesTable))
 );

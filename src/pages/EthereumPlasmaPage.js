@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Grid } from '@material-ui/core';
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
-import { EthereumPlasmaTable } from '../Btfs/components';
+import { EthereumPlasmaTable } from '../Explorer/components';
 
 const useStyles = makeStyles(() => ({
     centered: {

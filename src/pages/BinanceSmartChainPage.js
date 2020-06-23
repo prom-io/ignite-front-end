@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles, Grid } from "@material-ui/core";
 import { AppBar } from "../AppBar/components";
 import { Layout } from "../Layout";
-import { BinanceSmartChainTable } from "../Btfs/components";
+import { BinanceSmartChainTable } from "../Explorer/components";
 
 const useStyles = makeStyles(() => ({
     centered: {

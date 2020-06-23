@@ -59,8 +59,8 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _EthereumPlasmaTable = ({
-    ethereumPlasma,
+const _EthereumMainnetTable = ({
+    ethereumMainne,
     pending,
     error,
     l,
@@ -82,30 +82,33 @@ const _EthereumPlasmaTable = ({
                                 <strong>{l("explorer.age")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.node-wallet")}</strong>
+                                <strong>{l("explorer.from")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l("explorer.to")}</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>{l("explorer.value")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {pending ? (
-                            <TableCell colSpan={4}>
+                            <TableCell colSpan={5}>
                                 <div className={classes.centered}>
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
                         ) : error ? (
-                            <TableCell colSpan={4}>
+                            <TableCell colSpan={5}>
                                 <Typography>{getErrorLabel(error)}</Typography>
                             </TableCell>
-                        ) : ethereumPlasma.length === 0 ? (
-                            <TableCell colSpan={4}>
+                        ) : ethereumMainne.length === 0 ? (
+                            <TableCell colSpan={5}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            ethereumPlasma.map(item => (
+                            ethereumMainne.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
@@ -118,17 +121,18 @@ const _EthereumPlasmaTable = ({
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.node}
+                                            value={item.from}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.btfs_cid}
+                                            value={item.to}
                                             contentEditable={false}
                                         />
                                     </TableCell>
+                                    <TableCell>{item.value}</TableCell>
                                 </TableRow>
                             ))
                         )}
@@ -139,12 +143,12 @@ const _EthereumPlasmaTable = ({
     );
 };
 
-const mapMoxToProps = ({ btfs }) => ({
-    ethereumPlasma: btfs.ethereumPlasma,
-    pending: btfs.pending,
-    error: btfs.error
+const mapMoxToProps = ({ explorer }) => ({
+    ethereumMainne: explorer.ethereumMainne,
+    pending: explorer.pending,
+    error: explorer.error
 });
 
-export const EthereumPlasmaTable = localized(
-    inject(mapMoxToProps)(observer(_EthereumPlasmaTable))
+export const EthereumMainnetTable = localized(
+    inject(mapMoxToProps)(observer(_EthereumMainnetTable))
 );

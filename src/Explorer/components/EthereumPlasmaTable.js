@@ -12,7 +12,6 @@ import {
     Typography
 } from "@material-ui/core";
 
-import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
@@ -22,9 +21,6 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         marginTop: "50px",
         overflow: "auto"
-    },
-    link: {
-        color: theme.palette.primary.main
     },
     centered: {
         display: "flex",
@@ -63,8 +59,8 @@ const getErrorLabel = error => {
     return "Could not load BTFS hashes, server is unreachable";
 };
 
-const _DistributedStorageTable = ({
-    distributedStorage,
+const _EthereumPlasmaTable = ({
+    ethereumPlasma,
     pending,
     error,
     l,
@@ -80,7 +76,7 @@ const _DistributedStorageTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l("explorer.txnId")}</strong>
                             </TableCell>
                             <TableCell>
                                 <strong>{l("explorer.age")}</strong>
@@ -89,7 +85,7 @@ const _DistributedStorageTable = ({
                                 <strong>{l("explorer.node-wallet")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.soter-link")}</strong>
+                                <strong>{l("explorer.cid")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -104,17 +100,17 @@ const _DistributedStorageTable = ({
                             <TableCell colSpan={4}>
                                 <Typography>{getErrorLabel(error)}</Typography>
                             </TableCell>
-                        ) : distributedStorage.length === 0 ? (
+                        ) : ethereumPlasma.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            distributedStorage.map(item => (
+                            ethereumPlasma.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.btfs_cid}
+                                            value={item.txnId}
                                             contentEditable={false}
                                         />
                                     </TableCell>
@@ -127,14 +123,11 @@ const _DistributedStorageTable = ({
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <a
-                                            href={item.soter_link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={classes.link}
-                                        >
-                                            {trimString(item.soter_link, 35)}
-                                        </a>
+                                        <input
+                                            className={classes.tableInput}
+                                            value={item.btfs_cid}
+                                            contentEditable={false}
+                                        />
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -146,12 +139,12 @@ const _DistributedStorageTable = ({
     );
 };
 
-const mapMoxToProps = ({ btfs }) => ({
-    distributedStorage: btfs.distributedStorage,
-    pending: btfs.pending,
-    error: btfs.error
+const mapMoxToProps = ({ explorer }) => ({
+    ethereumPlasma: explorer.ethereumPlasma,
+    pending: explorer.pending,
+    error: explorer.error
 });
 
-export const DistributedStorageTable = localized(
-    inject(mapMoxToProps)(observer(_DistributedStorageTable))
+export const EthereumPlasmaTable = localized(
+    inject(mapMoxToProps)(observer(_EthereumPlasmaTable))
 );

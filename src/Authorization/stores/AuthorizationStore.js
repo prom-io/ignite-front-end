@@ -40,7 +40,6 @@ export class AuthorizationStore {
     doLogout = () => {
         this.currentUser = undefined;
         this.accessToken = undefined;
-        store.userProfileStore.user = undefined;
         localStorage.removeItem("accessToken");
         sessionStorage.removeItem("accessToken");
         store.timelineSwitcher.setCurrentTimeline("global");

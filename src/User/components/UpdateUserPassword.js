@@ -85,56 +85,20 @@ const _UpdateUserPassword = ({
     l,
 }) => {
     const classes = useStyles();
-    const [openChangePass, setOpenChangePass] = useState(false);
+    const goToForgotPassword = () => {
+    
+    }
 
     return (
         <div
-            className={[
-                classes.updateUserPassword,
-                openChangePass && classes.alignItemsUnset,
-            ].join(' ')}
-        >
+            className={ classes.updateUserPassword } >
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
-            {!openChangePass ? (
                 <Button
                     className={classes.updateUserPasswordOpen}
-                    onClick={() => setOpenChangePass(true)}
+                    onClick={goToForgotPassword}
                 >
                     {l('user.change')}
                 </Button>
-            ) : (
-                <div className={classes.updateUserPasswordForm}>
-                    <UserPasswordField
-                        label="authorization.login.password"
-                        value={updateUserProfileForm.password}
-                        setFormValue={event => setFormValue('password', event.target.value)}
-                        errors={formErrors.password}
-                    />
-                    <UserPasswordField
-                        label="authorization.login.new-password"
-                        value={updateUserProfileForm.new_password}
-                        setFormValue={event => setFormValue('new_password', event.target.value)}
-                        errors={formErrors.new_password}
-                    />
-                    <div className={classes.updateUserPasswordFormActions}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.updateUserPasswordChange}
-                            onClick={updateUserPassword}
-                            disabled={pending}
-                        >
-                            {l('user.change-password')}
-                        </Button>
-                        <Button
-                            className={classes.updateUserPasswordCancel}
-                            onClick={() => setOpenChangePass(false)}
-                        >
-                            {l('user.profile.cancel')}
-                        </Button>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

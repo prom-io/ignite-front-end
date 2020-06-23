@@ -10,6 +10,9 @@ const useStyles = makeStyles(theme => ({
     btfsHashesCard: {
         marginTop: '50px',
         overflow: 'auto',
+        '& td': {
+            maxWidth: '300px'
+        }
     },
     link: {
         color: theme.palette.primary.main,
@@ -22,6 +25,20 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         marginTop: '150px'
     },
+    btfsHash: {
+        maxWidth: '280px',
+        overflowX: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        '&:after': {
+            content: "'...'",
+        },
+        '&:hover': {
+            zIndex: 10,
+            background: theme.palette.background.paper,
+            overflowX: 'visible',
+        }
+    }
 }));
 
 const getErrorLabel = error => {
@@ -76,7 +93,7 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
                     <TableBody>
                         {btfsHashes.map(btfsHash => (
                             <TableRow>
-                                <TableCell>{btfsHash.cid}</TableCell>
+                                <TableCell classes={{root: classes.btfsHash}}>{btfsHash.cid}</TableCell>
                                 <TableCell>
                                     <a
                                         href={btfsHash.soter_link}

@@ -1,14 +1,16 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { Link } from "mobx-router";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { makeStyles } from '@material-ui/core';
 
+import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { Routes } from "../../routes";
 import { localized } from "../../localization/components";
+import { TopicPopularItemMenu } from "./TopicPopularItemMenu";
 
 const useStyles = makeStyles(theme => ({
     topicItemBody: {
+        position: "relative",
         textDecoration: "none",
         display: "flex",
         flexDirection: "column",
@@ -30,6 +32,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-between",
         width: "100%",
+        marginBottom: "4px",
 
         "& h6": {
             margin: 0,
@@ -40,15 +43,11 @@ const useStyles = makeStyles(theme => ({
     },
     topicItemFooter: {
         color: theme.palette.text.secondary
-    },
-    arrowAnimate: {
-        transform: "rotate(180deg)"
     }
 }));
 
 const _TopicPopularItem = ({ topic, routerStore, l }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <Link
@@ -59,14 +58,9 @@ const _TopicPopularItem = ({ topic, routerStore, l }) => {
         >
             <div className={classes.topicItemHeader}>
                 <h6>#{topic.title}</h6>
-                <ArrowDropDownIcon
-                    style={{ color: theme.palette.text.secondary }}
-                    // classes={{
-                    //     root:
-                    //         routerStore.router.params.id === topic.id &&
-                    //         classes.arrowAnimate
-                    // }}
-                />
+                <ClickEventPropagationStopper>
+                    <TopicPopularItemMenu topicId={topic.id} />
+                </ClickEventPropagationStopper>
             </div>
             <div className={classes.topicItemFooter}>
                 {topic.posts_count} {l("topics.card.posts")}

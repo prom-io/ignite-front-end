@@ -164,7 +164,7 @@ const _UpdateUserProfile = ({
                         <MenuItem value="en">
                             {l('settings.language.english')}
                         </MenuItem>
-                        <MenuItem value="ko">
+                        <MenuItem value="kr">
                             {l('settings.language.korean')}
                         </MenuItem>
                     </TextField>

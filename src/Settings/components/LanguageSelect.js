@@ -20,7 +20,7 @@ const _LanguageSelect = ({ setSelectedLanguage, locale, l }) => (
                     {l('settings.language.english')}
                 </ListItemText>
             </MenuItem>
-            <MenuItem value="ko">
+            <MenuItem value="kr">
                 <ListItemText>
                     {l('settings.language.korean')}
                 </ListItemText>

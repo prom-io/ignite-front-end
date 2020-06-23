@@ -1,4 +1,4 @@
-export const ko = {
+export const kr = {
     'status.send': '보내요',
     'status.placeholder': '어떻게 생각해요?',
     'status.images-attachments-limit': '{limit}개 이상의 이미지를 추가할 수 없어요',
@@ -23,12 +23,17 @@ export const ko = {
     'menu.logout': '로그아웃',
     'user.profile.posts': '게시물',
     'user.profile.following': '팔로인',
+    'user.profile.following.empty': 'You have no following yet.',
     'user.profile.followers': '팔로워',
+    'user.profile.followers.empty': 'You have no followers yet.',
     'user.profile.member-since': '이후 회원',
     'user.profile.follow': '팔로',
     'user.profile.unfollow': '언폴로우',
     'user.profile.followed': 'Followed',
     'user.profile.cancel': 'Cancel',
+    'user.alert.empty.part-1': '다른',
+    'user.alert.empty.part-2': '사용자',
+    'user.alert.empty.part-3': '에 대해 알아보고 대화를 시작하십시오',
     'follow.people.enter': 'Enter username or WalletAddress',
     'follow.people.not-found': 'User is not found. Be sure to enter the username correctly.',
     'follow.people.success': 'You have successfully followed',

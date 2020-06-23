@@ -32,7 +32,7 @@ import { WebsocketStore } from '../websocket/stores';
 const authorization = new AuthorizationStore();
 const login = new LoginStore(authorization);
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
-const createStatus = new CreateStatusStore(uploadMediaAttachments);
+const createStatus = new CreateStatusStore(uploadMediaAttachments, authorization);
 const globalTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/global', false, true);
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();

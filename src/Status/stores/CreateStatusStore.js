@@ -58,9 +58,11 @@ export class CreateStatusStore {
     }
 
     uploadMediaAttachmentsStore = undefined;
+    authorizationStore = undefined;
 
-    constructor(uploadMediaAttachmentsStore) {
+    constructor(uploadMediaAttachmentsStore, authorizationStore) {
         this.uploadMediaAttachmentsStore = uploadMediaAttachmentsStore;
+        this.authorizationStore = authorizationStore;
     }
 
     @action
@@ -104,6 +106,7 @@ export class CreateStatusStore {
                 status_reference_type: this.statusReferenceType
             })
                 .then(({data}) => {
+                    this.authorizationStore.currentUser.statuses_count += 1;
                     this.createdStatus = data;
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();

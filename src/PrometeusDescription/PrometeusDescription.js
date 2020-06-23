@@ -24,7 +24,7 @@ const tryOurNetworkTranslations = {
             , which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
         </Typography>
     ),
-    ko: ({ classes }) => (
+    kr: ({ classes }) => (
         <Typography variant="body2">
             를 사용해 보십시오. 계약 템플릿, 음악, 3D 모델, 소스 코드, 통계 또는 석사 논문 등 상상할 수 있는 모든 디지털 데이터를 구입하고 판매할 수 있는
             {' '}
@@ -42,7 +42,7 @@ const igniteDescriptionTranslations = {
             is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
         </Typography>
     ),
-    ko: () => (
+    kr: () => (
         <Typography variant="body2">
             <span>Ignite </span>
             은 Ethereum Plasma 기반의 '중앙집중화된 트위터' 솔루션으로, 불변적인 저장장치로 검열저항을 입증합니다.
@@ -61,7 +61,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
             </Grid>
 
             <Grid classes={{ root: classes.marginTop }}>
-                {currentUser ? '' : <DescriptionStoaBanner />}
+                <DescriptionStoaBanner />
             </Grid>
 
             {/* <Grid item xs={12}>

@@ -48,15 +48,19 @@ export class FollowPeopleStore {
 
                 const temp = [...this.followPeopleItems];
                 const selected = temp.find(item => item.id === data.id);
-                const index = temp.indexOf(selected);
-                const selectedUser = temp[index];
-                selectedUser.following = true;
-                this.followPeopleItems = [...temp];
-                this.followPeopleItems.splice(
-                    0,
-                    0,
-                    this.followPeopleItems.splice(index, 1)[0]
-                );
+                if (selected) {
+                    const index = temp.indexOf(selected);
+                    const selectedUser = temp[index];
+                    selectedUser.following = true;
+                    this.followPeopleItems = [...temp];
+                    this.followPeopleItems.splice(
+                        0,
+                        0,
+                        this.followPeopleItems.splice(index, 1)[0]
+                    );
+                } else {
+                    this.followPeopleItems.unshift(data);
+                }
             })
             .catch(err => {
                 if (err.response.status == 409) {
@@ -71,7 +75,7 @@ export class FollowPeopleStore {
     fetchFollowPeople = () => {
         this.pending = true;
         let language = localStorage.getItem("language");
-        if (language !== "en" && language !== "ko") {
+        if (language !== "en" && language !== "kr") {
             language = "en";
         }
         axiosInstance

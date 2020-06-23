@@ -4,7 +4,7 @@ import { Link } from "mobx-router";
 
 import { trimString } from "../../utils/string-utils";
 import { Routes } from "../../routes";
-import { FollowButton } from "../../Follow/components";
+import { UserFollowButton } from "./UserFollowButton";
 import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 
 const useStyles = makeStyles(theme => ({
@@ -86,16 +86,13 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore }) => {
             <div className={classes.usersListContent}>
                 <div className={classes.usersListRow}>
                     <Typography>
-                        {/* <div>{trimString(user.display_name, 24)}</div> */}
                         <div>{user.display_name}</div>
                         <small>@{user.username}</small>
                     </Typography>
                     <ClickEventPropagationStopper>
-                        {console.log(user)}
-                        <FollowButton
+                        <UserFollowButton
                             user={user}
                             actionWithFollow={actionWithFollow}
-                            size="lg"
                         />
                     </ClickEventPropagationStopper>
                 </div>

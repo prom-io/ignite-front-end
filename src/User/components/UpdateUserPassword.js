@@ -1,12 +1,11 @@
-import React  from 'react';
-import { inject, observer } from 'mobx-react';
+import React from 'react';
+import { observer } from 'mobx-react';
 import {
     Button,
     Typography,
     makeStyles,
 } from '@material-ui/core';
-import { localized } from '../../localization/components';
-import { useStore } from '../../store/hooks';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {
@@ -71,47 +70,29 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _UpdateUserPassword = ({
-    updateUserProfileForm,
-    formErrors,
-    pending,
-    updateUserPassword,
-    setFormValue,
-    l,
-}) => {
+export const UpdateUserPassword = observer(() => {
     const classes = useStyles();
-  const { genericAuthorizationDialog } = useStore();
-  const {
-    setGenericAuthorizationDialogOpen,
-    setGenericAuthorizationDialogType,
-  } = genericAuthorizationDialog;
+    const { l } = useLocalization();
+    const { genericAuthorizationDialog } = useStore();
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = genericAuthorizationDialog;
 
     return (
         <div
-            className={ classes.updateUserPassword } >
+            className={classes.updateUserPassword}
+        >
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
-                <Button
-                    className={classes.updateUserPasswordOpen}
-                    onClick={() => {
-                      setGenericAuthorizationDialogOpen(true);
-                      setGenericAuthorizationDialogType('forgotPassword');
-                    }}
-                >
-                    {l('user.change')}
-                </Button>
+            <Button
+                className={classes.updateUserPasswordOpen}
+                onClick={() => {
+                    setGenericAuthorizationDialogOpen(true);
+                    setGenericAuthorizationDialogType('forgotPassword');
+                }}
+            >
+                {l('user.change')}
+            </Button>
         </div>
     );
-};
-
-const mapMobxToProps = ({ userProfileUpdate }) => ({
-    updateUserProfileForm: userProfileUpdate.updateUserProfileForm,
-    formErrors: userProfileUpdate.formErrors,
-    submissionError: userProfileUpdate.submissionError,
-    pending: userProfileUpdate.pending,
-    setFormValue: userProfileUpdate.setFormValue,
-    updateUserPassword: userProfileUpdate.updateUserPassword,
 });
-
-export const UpdateUserPassword = localized(
-    inject(mapMobxToProps)(observer(_UpdateUserPassword)),
-);

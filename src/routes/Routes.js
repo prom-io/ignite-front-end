@@ -42,8 +42,8 @@ export const Routes = {
         path: '/en',
         component: <SetEnglishLanguageAndRedirectToHomePage />,
     }),
-    ko: new Route({
-        path: '/ko',
+    kr: new Route({
+        path: '/kr',
         component: <SetKoreanLanguageAndRedirectToHomePage />,
     }),
     notifications: new Route({

@@ -155,10 +155,10 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                                     </MenuItem>
                                     <MenuItem
                                         classes={{ root: classes.styleMenuItem }}
-                                        value="ko"
-                                        onClick={() => handleSelectLang('ko')}
+                                        value="kr"
+                                        onClick={() => handleSelectLang('kr')}
                                     >
-                                        Korean
+                                        한국어
                                     </MenuItem>
                                 </MenuList>
                         </Paper>

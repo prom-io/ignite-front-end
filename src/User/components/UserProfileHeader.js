@@ -26,6 +26,7 @@ const _UserProfileHeader = ({
     bio,
     createdAt,
     currentUser,
+    currentUserFollowingCount,
     l,
     dateFnsLocale,
 }) => {
@@ -74,8 +75,8 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <h4>{addLineBreak(displayName)}</h4>
-                            <p>{addLineBreak(username)}</p>
+                            <h4>{addLineBreak(username)}</h4>
+                            <p>{addLineBreak(displayName)}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -89,7 +90,7 @@ const _UserProfileHeader = ({
                 <Grid style={{ display: 'flex', padding: 20 }} className="user-profile-header-content-bottom-follows">
                     <UserProfileTab
                         active={activeTab === 'posts'}
-                        header={statuses}
+                        header={currentUser && currentUser.username === username ? currentUser.statuses_count : statuses}
                         subheader={l('user.profile.posts')}
                         onSelectActive={() => onTabSelected('posts')}
                         linkProps={{
@@ -100,7 +101,7 @@ const _UserProfileHeader = ({
                     />
                     <UserProfileTab
                         active={activeTab === 'followers'}
-                        header={followers}
+                        header={currentUser && currentUser.username === username ? currentUser.followers_count : followers}
                         subheader={l('user.profile.followers')}
                         onSelectActive={() => onTabSelected('followers')}
                         linkProps={{
@@ -111,7 +112,7 @@ const _UserProfileHeader = ({
                     />
                     <UserProfileTab
                         active={activeTab === 'following'}
-                        header={following}
+                        header={currentUser && currentUser.username === username ? currentUserFollowingCount : following}
                         subheader={l('user.profile.following')}
                         onSelectActive={() => onTabSelected('following')}
                         linkProps={{

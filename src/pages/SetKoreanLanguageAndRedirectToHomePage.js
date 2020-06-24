@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Routes } from '../routes';
 
 const _SetKoreanLanguageAndRedirectToHomePage = ({ localization, routerStore }) => {
-    localization.setSelectedLanguage('ko');
+    localization.setSelectedLanguage('kr');
     routerStore.router.goTo(Routes.home);
 
     return null;

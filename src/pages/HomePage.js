@@ -31,7 +31,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                         <Grid container spacing={2}>
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">
-                                    <LoginForm/>
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
                             <Grid item xs={12} md={9} className="right-content">

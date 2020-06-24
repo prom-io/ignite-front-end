@@ -14,6 +14,7 @@ import {
     TopicsPage,
     UserProfilePage,
     UserEditPage,
+    SignUpPage,
 } from '../pages';
 import { store } from '../store';
 
@@ -117,6 +118,10 @@ export const Routes = {
         path: '/btfs',
         component: <BtfsHashesPage />,
         beforeEnter: () => store.btfs.fetchBtfsHashes(),
+    }),
+    signUp: new Route({
+        path: '/sign-up',
+        component: <SignUpPage />,
     }),
     userProfile: new Route({
         path: '/:username',

@@ -129,7 +129,7 @@ const dialogType = {
     },
     login: {
         id: 'logIn',
-        component: <LoginForm />,
+        component: <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />,
         title: 'authorization.login',
         type: 'default',
     },

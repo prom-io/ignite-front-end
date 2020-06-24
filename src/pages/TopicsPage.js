@@ -1,8 +1,6 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
-
-import { makeStyles } from '@material-ui/core/styles';
 import { localized } from '../localization/components';
 import { AppBar } from '../AppBar/components';
 import {
@@ -59,7 +57,7 @@ const _TopicsPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
                             <div className="static-page">

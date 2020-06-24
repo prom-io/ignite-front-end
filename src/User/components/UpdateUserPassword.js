@@ -6,7 +6,7 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import { localized } from '../../localization/components';
-import { Routes } from '../../routes';
+import { useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {
@@ -81,20 +81,25 @@ const _UpdateUserPassword = ({
     routerStore
 }) => {
     const classes = useStyles();
-    const goToForgotPassword = () => {
-        routerStore.router.goTo(Routes.home)
-    };
+  const { genericAuthorizationDialog } = useStore();
+  const {
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
+  } = genericAuthorizationDialog;
 
     return (
         <div
-          className={ classes.updateUserPassword }>
+            className={ classes.updateUserPassword } >
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
-            <Button
-              className={classes.updateUserPasswordOpen}
-              onClick={goToForgotPassword}
-            >
-                {l('user.change')}
-            </Button>
+                <Button
+                    className={classes.updateUserPasswordOpen}
+                    onClick={() => {
+                      setGenericAuthorizationDialogOpen(true);
+                      setGenericAuthorizationDialogType('forgotPassword');
+                    }}
+                >
+                    {l('user.change')}
+                </Button>
         </div>
     );
 };

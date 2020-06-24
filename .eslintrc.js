@@ -17,6 +17,7 @@ module.exports = {
         },
         ecmaVersion: 11,
         sourceType: 'module',
+        experimentalDecorators: true,
     },
     plugins: [
         'react',

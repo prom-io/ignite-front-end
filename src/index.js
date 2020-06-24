@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { RouterStore, startRouter } from 'mobx-router';
 import * as serviceWorker from './serviceWorker';
 import { App } from './App';
-import { store } from './store';
+import { store, routerStore } from './store';
 import { Routes } from './routes';
 
 if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
@@ -12,10 +12,6 @@ if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
         logout: () => {},
     };
 }
-
-const routerStore = {
-    router: new RouterStore(),
-};
 
 startRouter(Routes, routerStore);
 

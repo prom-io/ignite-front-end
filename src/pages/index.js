@@ -12,3 +12,4 @@ export * from './BtfsHashesPage';
 export * from './SettingsPage';
 export * from './SetEnglishLanguageAndRedirectToHomePage';
 export * from './SetKoreanLanguageAndRedirectToHomePage';
+export * from './SignUpPage';

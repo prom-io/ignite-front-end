@@ -45,7 +45,8 @@ const useStyles = makeStyles(theme => ({
         padding: '8px 15px',
     },
     customTextarea: {
-        paddingLeft: 20,
+        paddingLeft: 12,
+        height: '102px',
         width: '95%',
         border: 'none',
         '& .MuiInput-underline:before': {
@@ -111,7 +112,7 @@ const _CreateStatusForm = ({
         <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container>
                 {referredStatus && (
-                    <Grid item xs={12}>
+                    <Grid item>
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')

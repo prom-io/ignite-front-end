@@ -54,7 +54,7 @@ const _GlobalTimeline = ({
                         </Hidden>
                     </Grid>
                 )}
-                <Grid item xs={12} className={classes.statusListBorderCorrective}>
+                <Grid item className={classes.statusListBorderCorrective}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

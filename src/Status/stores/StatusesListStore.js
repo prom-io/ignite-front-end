@@ -37,18 +37,20 @@ export class StatusesListStore {
     statusAuthorUnsubscriptionListeners = [];
     reverseOrder = false;
     sendLanguage = false;
+    dynamicBaseUrl = false;
 
     @computed
     get createdStatus() {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false) {
+    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false, dynamicBaseUrl = false) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
         this.baseUrl = baseUrl;
         this.reverseOrder = reverseOrder;
         this.sendLanguage = sendLanguage;
+        this.dynamicBaseUrl = dynamicBaseUrl;
 
         this.fetchStatuses = _.throttle(this.fetchStatuses, 5000);
 
@@ -98,6 +100,8 @@ export class StatusesListStore {
     @action
     fetchStatuses = () => {
         this.pending = true;
+
+        console.log(`Fetching statuses by base url ${this.baseUrl}`);
 
         if (this.baseUrl) {
             if (this.statuses.length !== 0) {
@@ -224,7 +228,7 @@ export class StatusesListStore {
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
             .then(() => {
-                    this.authorizationStore.currentUser.follows_count += 1;
+                this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count + 1);
                     this.statuses = this.statuses.map(status => {
                         if (status.account.id === authorId) {
                             status.account.following = true;
@@ -245,7 +249,7 @@ export class StatusesListStore {
                 status.account.following = true;
             }
             return status;
-        })
+        });
     };
 
     @action
@@ -261,19 +265,19 @@ export class StatusesListStore {
                     this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
                         statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(authorId);
                     });
-                    this.authorizationStore.currentUser.follows_count -= 1;
+                    this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count - 1);
                     this.reset();
                     this.fetchStatuses();
                 });
         }
-    }
+    };
 
     @action
     unfollowStatusAuthorWithDialog = (statusId, username) => {
         this.currentStatusId = statusId;
         this.currentStatusUsername = username;
         this.unfollowDialogOpen = true;
-    }
+    };
 
     @action
     unfollowStatusAuthorByAuthorId = authorId => {
@@ -323,6 +327,10 @@ export class StatusesListStore {
 
     @action
     reset = () => {
+        if (this.dynamicBaseUrl) {
+            this.baseUrl = undefined;
+        }
+
         this.statuses = [];
         this.currentStatusId = undefined;
         this.currentStatusUsername = undefined;

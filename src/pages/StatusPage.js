@@ -9,7 +9,7 @@ import { Layout } from '../Layout';
 
 const _StatusPage = ({ currentUser }) => (
     <Grid container>
-        <Grid item xs={12}>
+        <Grid item>
             <AppBar />
         </Grid>
         <Grid item xs={12}>

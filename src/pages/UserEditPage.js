@@ -47,7 +47,7 @@ export const UserEditPage = observer(() => {
                         >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton />
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             ) : (
                                 <>

@@ -17,8 +17,7 @@ import { BellIcon } from '../../icons/BellIcon';
 import { ChatIcon } from '../../icons/ChatIcon';
 import { AppBarLanguageSelect } from '../../Settings/components';
 import { localized } from '../../localization/components';
-import { OpenLoginDialogButton, LoginDialog } from '../../Authorization/components';
-import { SignUpDialog } from '../../SignUp/components';
+import { OpenLoginDialogButton, GenericAuthorizationDialog } from '../../Authorization/components';
 import { AppBarLogo } from '.';
 import { TopicsIcon } from '../../icons/TopicsIcon';
 
@@ -142,14 +141,12 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                                     <AppBarLanguageSelect />
                                 </div>
                             </Hidden>
-
-                            <div className="mobile_header">
-                                <LoginDialog />
-                                <SignUpDialog onLoginButtonClick={() => setLoginDialogOpen(true)} />
-                                {/* <img src="/search.png" /> */}
-                                <div className="select-language">
-                                    <AppBarLanguageSelect />
-                                </div>
+                        </div>
+                        <div className="mobile_header">
+                            <GenericAuthorizationDialog />
+                            {/* <img src="/search.png" /> */}
+                            <div className="select-language">
+                                <AppBarLanguageSelect />
                             </div>
                         </div>
                         <Hidden mdUp>
@@ -163,7 +160,6 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogO
                     </nav>
                 </Toolbar>
             </MuiAppBar>
-
             <nav className={classes.mobileNav}>
                 <AppBarLink
                     text={l('appbar.home')}

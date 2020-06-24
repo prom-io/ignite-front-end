@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const UsersListItem = ({ user, actionWithFollow, routerStore }) => {
+export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser }) => {
     const classes = useStyles();
 
     return (
@@ -90,10 +90,12 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore }) => {
                         <small>@{user.username}</small>
                     </Typography>
                     <ClickEventPropagationStopper>
-                        <UserFollowButton
-                            user={user}
-                            actionWithFollow={actionWithFollow}
-                        />
+                        {currentUser && 
+                            <UserFollowButton
+                                user={user}
+                                actionWithFollow={actionWithFollow}
+                            />
+                        }
                     </ClickEventPropagationStopper>
                 </div>
                 <p>{user.bio}</p>

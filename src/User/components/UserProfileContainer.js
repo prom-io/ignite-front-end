@@ -62,6 +62,7 @@ const _UserProfileContainer = ({
     return (
         <Grid container className="content-container">
             <Grid item className="user-profile-header">
+                {console.log(currentUser)}
                 <UserProfileHeader
                     followers={user.followers_count}
                     following={user.follows_count}
@@ -76,7 +77,7 @@ const _UserProfileContainer = ({
                     displayName={user.display_name}
                     bio={user.bio}
                     currentUser={currentUser}
-                    currentUserFollowingCount={currentUser.follows_count}
+                    currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}
                 />
                 <DescriptionNetworkBanner />

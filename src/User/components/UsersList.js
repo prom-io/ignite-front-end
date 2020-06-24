@@ -11,7 +11,8 @@ const _UsersList = ({
     selectedUser,
     unfollowUser,
     setUnfollowDialogOpen,
-    unfollowDialogOpen
+    unfollowDialogOpen,
+    currentUser
 }) => (
     <>
         {users.map(user => (
@@ -19,6 +20,7 @@ const _UsersList = ({
                 user={user}
                 actionWithFollow={actionWithFollow}
                 routerStore={routerStore}
+                currentUser={currentUser}
             />
         ))}
         <UnfollowDialog
@@ -30,13 +32,14 @@ const _UsersList = ({
     </>
 );
 
-const mapMobxToProps = ({ store, followAction }) => ({
+const mapMobxToProps = ({ store, followAction, authorization }) => ({
     routerStore: store,
     actionWithFollow: followAction.actionWithFollow,
     selectedUser: followAction.selectedUser,
     unfollowUser: followAction.unfollowUser,
     setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
     unfollowDialogOpen: followAction.unfollowDialogOpen,
+    currentUser: authorization.currentUser
 });
 
 export const UsersList = inject(mapMobxToProps)(_UsersList);

@@ -4,6 +4,7 @@ import generateRandomString from 'random-string';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useLocalization } from '../../store/hooks';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
+import * as mobx from 'mobx';
 
 const useStyles = makeStyles(theme => ({
     titleBold: {
@@ -106,6 +107,7 @@ export const InputPasswordGroup = ({
                                 <CopyToClipboardButton
                                     textToCopy={formValues.password}
                                     iconColor={theme.palette.primary.main}
+                                    disabled={!formValues.password}
                                 />
                             </InputAdornment>
                         ),

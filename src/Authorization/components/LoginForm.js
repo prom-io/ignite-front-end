@@ -1,8 +1,19 @@
 import React, { Fragment, useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, Card, CardContent, Checkbox, FormControlLabel, makeStyles, TextField, Typography } from '@material-ui/core';
+import {
+    Button,
+    Card,
+    CardContent,
+    Checkbox,
+    FormControl,
+    FormControlLabel, IconButton, InputAdornment,
+    makeStyles,
+    TextField,
+    Typography
+} from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -13,7 +24,7 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '8px',
     },
     loginCardContent: {
-        padding: '20px',
+        padding: '24px 60px',
     },
     loginButton: {
         maxWidth: 374,
@@ -49,13 +60,11 @@ const useStyles = makeStyles(theme => ({
     },
     errorLabel: {
         color: theme.palette.error.main,
-        maxWidth: '375px',
         margin: 'auto',
         fontSize: '15px',
     },
     loginInput: {
         display: 'flex',
-        maxWidth: '375px',
         width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -64,7 +73,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        maxWidth: '375px',
+        width: '100%',
         margin: '16px auto 0 auto',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -76,6 +85,15 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.main,
         },
     },
+    loginForm: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    iconButton: {
+        '&:hover': {
+            background: 'rgba(255,255,255,0)',
+        },
+    }
 }));
 
 const getLabelFromSubmissionError = (error, l) => {
@@ -102,22 +120,60 @@ export const LoginForm = observer(({
     } = genericAuthorizationDialog;
     const { l } = useLocalization();
     const [isRemember, setIsRemember] = useState(false);
+    const [passwordVisibility, setPasswordVisibility] = useState(false);
+    
+    
+    const handleClickShowPassword = () => {
+        setPasswordVisibility(!passwordVisibility);
+    };
+    
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const content = (
-        <>
-            <TextField
-                label={l('authorization.login.wallet-address')}
-                value={loginForm.username}
-                onChange={event => setFormValue('username', event.target.value)}
-                className={`input-default ${classes.loginInput}`}
-            />
-            <TextField
-                label={l('authorization.login.password')}
-                value={loginForm.password}
-                onChange={event => setFormValue('password', event.target.value)}
-                className={`input-default ${classes.loginInput}`}
-                type="password"
-            />
+        <div className={classes.loginForm}>
+            <FormControl>
+                <TextField
+                  label={l('authorization.login.wallet-address')}
+                  value={loginForm.username}
+                  onChange={event => setFormValue('username', event.target.value)}
+                  className={`input-default ${classes.loginInput}`}
+                  InputProps={{
+                      endAdornment: (
+                        <InputAdornment
+                          position="end"
+                          className={classes.copyPasswordInputAdornment}
+                        >
+                        </InputAdornment>
+                      ),
+                  }}
+                />
+            </FormControl>
+            <FormControl classes={{ root: classes.input }}>
+                <TextField
+                  label={l('authorization.login.password')}
+                  value={loginForm.password}
+                  onChange={event => setFormValue('password', event.target.value)}
+                  className={`input-default ${classes.loginInput}`}
+                  type={passwordVisibility ? 'text' : 'password'}
+                  InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              classes={{ root: classes.iconButton}}
+                            >
+                                {passwordVisibility ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                      ),
+                  }}
+                />
+            </FormControl>
+            
             {submissionError && (
                 <Typography
                     variant="body1"
@@ -170,7 +226,7 @@ export const LoginForm = observer(({
                     {l('sign-up')}
                 </Button>
             )}
-        </>
+        </div>
     );
 
     return (disableCard

@@ -37,15 +37,16 @@ const useStyles = makeStyles(() => ({
         },
     },
     notes: {
-        marginTop: '12px',
-        color: '#A2A2A2',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        lineHeight: '26px',
-        '& a': {
-            color: '#FF5C01',
-            cursor: 'pointer',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
+      marginTop: '12px',
+      color: '#A2A2A2',
+      fontSize: '15px',
+      fontFamily: 'Museo Sans Cyrl Regular',
+      lineHeight: '26px',
+      '& a': {
+        color: '#FF5C01',
+        cursor: 'pointer',
+        fontFamily: 'Museo Sans Cyrl Bold',
+      },
     },
     button: {
         width: '187px',
@@ -119,7 +120,7 @@ export const SignUp = observer(() => {
                     disabled={pending}
                 >
                     {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.5); top: -2px; left: 74px" />}
-                    {l('sign-up.options.new-wallet')}
+                    {l('sign-up.create-wallet')}
                 </Button>
             </div>
             <div className={classes.contentBlock}>

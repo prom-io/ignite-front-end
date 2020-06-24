@@ -5,7 +5,6 @@ import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
 import { useLocalization, useStore } from '../../store/hooks';
-import Loader from '../../components/Loader';
 import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
@@ -31,7 +30,7 @@ const useStyles = makeStyles(() => ({
     },
     button: {
         width: '187px',
-        marginTop: 40,
+        marginTop: 25,
         alignSelf: 'center',
     },
     content: {
@@ -107,7 +106,7 @@ export const CreateWallet = observer(() => {
     const { generatedWallet } = walletGeneration;
 
     const signUpButtonDisabled = (!agreedToPolicy || !savedEverything) || pending;
-
+    
     return (
         <DialogContent classes={{
             root: classes.dialogContentRoot,
@@ -126,7 +125,7 @@ export const CreateWallet = observer(() => {
                 formErrors={formErrors}
                 showPassword={showPassword}
                 onShowPasswordChange={setShowPassword}
-                title={l('password')}
+                title={l('sign-up.password')}
             />
             <KeyCopyBlock
                 title={l('sign-up.private-key')}

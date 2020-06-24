@@ -7,7 +7,6 @@ import Loader from '../../../components/Loader';
 
 const useStyles = makeStyles(() => ({
     dialogRoot: {
-        margin: '24px 62px 40px 62px',
         display: 'flex',
         flexDirection: 'column',
     },
@@ -41,7 +40,7 @@ export const ChangePassword = observer(() => {
         <DialogContent classes={{ root: classes.dialogRoot }}>
             <span className={classes.titleBold}>{l('authorization.set-new-password')}</span>
             <InputPasswordGroup
-                title={l('password')}
+                title={l('sign-up.password')}
                 formValues={passwordChangeForm}
                 onValueChange={setFormValue}
                 formErrors={formErrors}

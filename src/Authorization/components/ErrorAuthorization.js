@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '32px',
         marginBottom: 16,
         color: '#A2A2A2',
+        fontSize: '15px',
         fontFamily: 'Museo Sans Cyrl Regular',
         lineHeight: '26px',
         '& a': {

@@ -24,7 +24,6 @@ const useStyles = makeStyles(() => ({
         borderBottom: '1px solid #F1EBE8',
     },
     markList: {
-        marginTop: 24,
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '24px',
@@ -222,7 +221,7 @@ export const Attention = observer(() => {
             </div>
             <div className={classes.markList}>
                 <p className={classes.contentDescription}>
-                    {l('sign-up.please-do-not-lose-it')}
+                    {l('sign-up.please-do-not-lose it')}
                 </p>
                 <ul>
                     <li>

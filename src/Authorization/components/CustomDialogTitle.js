@@ -22,6 +22,11 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 32,
       '& svg': {
         marginRight: 28,
+      },
+      '& .header-logo': {
+        width: 37,
+        height: 61,
+        backgroundSize: '100%',
       }
     },
     closeIcon: {
@@ -37,6 +42,9 @@ const useStyles = makeStyles(theme => ({
             background: 'rgba(255, 92, 1, 0.2)',
         },
     },
+  titleHeaderText: {
+      padding: '12px 0',
+  }
 }));
 
 const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
@@ -55,7 +63,7 @@ const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
                             <div className="header-logo" />
                         </a>
                     )}
-                <span>{title}</span>
+                <span className={classes.titleHeaderText}>{title}</span>
             </div>
             <IconButton
                 aria-label="close"

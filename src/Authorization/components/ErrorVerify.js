@@ -102,7 +102,7 @@ export const ErrorVerify = observer(() => {
                 }}
                 onClick={() => setGenericAuthorizationDialogOpen(false)}
             >
-                {l('sign-up.enjoy')}
+                {l('sign-up.ok')}
             </Button>
         </DialogContent>
     );

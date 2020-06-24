@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     checkboxGroup: {
         display: 'flex',
-        marginBottom: '6px',
+        marginBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '22px',

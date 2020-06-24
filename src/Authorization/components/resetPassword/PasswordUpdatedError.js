@@ -39,15 +39,16 @@ const useStyles = makeStyles(() => ({
         fontSize: '15px',
     },
     notes: {
-        marginTop: '12px',
-        color: '#A2A2A2',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        lineHeight: '26px',
-        '& a': {
-            color: '#FF5C01',
-            cursor: 'pointer',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
+      marginTop: '12px',
+      color: '#A2A2A2',
+      fontSize: '15px',
+      fontFamily: 'Museo Sans Cyrl Regular',
+      lineHeight: '26px',
+      '& a': {
+        color: '#FF5C01',
+        cursor: 'pointer',
+        fontFamily: 'Museo Sans Cyrl Bold',
+      },
     },
     button: {
         width: '187px',

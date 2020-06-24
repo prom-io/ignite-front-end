@@ -24,9 +24,11 @@ const useStyles = makeStyles(() => ({
             lineHeight: '18px',
         },
         '& span': {
-            marginTop: 8,
             fontSize: '15px',
         },
+    },
+    contentBlockDescription: {
+      marginTop: 8,
     },
     button: {
         width: '187px',
@@ -49,7 +51,7 @@ export const PasswordUpdated = observer(() => {
             </div>
             <div className={classes.contentBlock}>
                 <p>{l('sign-up.your-login-is')}</p>
-                <span>{passwordChangeForm.walletAddress}</span>
+                <span className={classes.contentBlockDescription}>{passwordChangeForm.walletAddress}</span>
                 <Button
                     variant="contained"
                     color="primary"

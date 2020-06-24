@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     notes: {
         marginTop: '24px',
         color: '#A2A2A2',
+        fontSize: '15px',
         fontFamily: 'Museo Sans Cyrl Regular',
         lineHeight: '26px',
         '& a': {

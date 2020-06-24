@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     },
     button: {
         width: '187px',
-        marginTop: 40,
+        marginTop: 24,
         alignSelf: 'center',
     },
     checkbox: {

@@ -28,18 +28,21 @@ const useStyles = makeStyles(theme => ({
         fontSize: '20px',
         lineHeight: '24px',
     },
+    keyDisable: {
+        color:theme.palette.text.secondary
+    }
 }));
 
 export const KeyCopyBlock = ({ children, title, textToCopy, disabled }) => {
     const classes = useStyles();
-
+    
     return (
-        <div className={classes.key}>
+        <div className={`${classes.key} ${!children && classes.keyDisable}`}>
             <div className={classes.keyTitle}>
                 <div className={classes.titleBold}>{title}</div>
-                <span className={classes.keyValue}>{children}</span>
+                <span className={classes.keyValue}>{children || 'Hashcode not generated'}</span>
             </div>
-            <CopyToClipboardButton textToCopy={textToCopy} disabled={disabled} />
+            <CopyToClipboardButton textToCopy={textToCopy} disabled={disabled || !children} />
         </div>
     );
 };

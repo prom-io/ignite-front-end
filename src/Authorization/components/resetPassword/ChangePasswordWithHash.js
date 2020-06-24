@@ -47,7 +47,7 @@ export const ChangePasswordWithHash = observer(() => {
             root: classes.dialogContentRoot,
         }}
         >
-            <span className={classes.descriptionBold}>{l('authorization.new-password')}</span>
+            <span className={classes.descriptionBold}>{l('authorization.set-new-password')}</span>
             <InputPasswordGroup
                 formValues={passwordForm}
                 formErrors={formErrors}

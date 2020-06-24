@@ -21,7 +21,12 @@ const useStyles = makeStyles(theme => ({
     tableCard: {
         width: "100%",
         marginTop: "50px",
-        overflow: "auto"
+        overflow: "auto",
+        [theme.breakpoints.down('sm')]: {
+            '& td': {
+                minWidth: '200px',
+            }
+        }
     },
     link: {
         color: theme.palette.primary.main

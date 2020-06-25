@@ -10,6 +10,7 @@ import { localized } from '../../localization/components';
 import { UpdateUserProfileButton } from './UpdateUserProfileButton';
 import {useRouter, useStore} from '../../store/hooks';
 import { Routes } from '../../routes';
+import { UserProfileHeaderButton } from './UserProfileHeaderButton';
 
 const _UserProfileHeader = ({
     avatar,
@@ -39,14 +40,10 @@ const _UserProfileHeader = ({
             profileButton = currentUserFollows
                 ? (
                     <Grid className="user-profile-header-content-bottom-follow-button">
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => onUnfollowRequest(username)}
-                            disableElevation
-                        >
-                            {l('user.profile.unfollow')}
-                        </Button>
+                        <UserProfileHeaderButton 
+                            username={username} 
+                            onUnfollowRequest={onUnfollowRequest} 
+                        />
                     </Grid>
                 )
                 : (

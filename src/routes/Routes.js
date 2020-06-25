@@ -164,7 +164,7 @@ export const Routes = {
             }
 
             store.userFollowers.fetchUserFollowers(params.username);
-            store.userProfile.setActiveTab('followers');
+            store.userProfile.activeTab = 'followers';
         },
     }),
     userFollowing: new Route({
@@ -176,7 +176,7 @@ export const Routes = {
             }
 
             store.userFollowing.fetchFollowing(params.username);
-            store.userProfile.setActiveTab('following');
+            store.userProfile.activeTab = 'following';
         },
     }),
     status: new Route({

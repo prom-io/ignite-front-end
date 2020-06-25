@@ -62,7 +62,6 @@ const _UserProfileContainer = ({
     return (
         <Grid container className="content-container">
             <Grid item className="user-profile-header">
-                {console.log(currentUser)}
                 <UserProfileHeader
                     followers={user.followers_count}
                     following={user.follows_count}

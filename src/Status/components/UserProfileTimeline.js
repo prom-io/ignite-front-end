@@ -5,6 +5,7 @@ import { StatusList } from "./StatusList";
 import { CreateStatusForm } from "./CreateStatusForm";
 import Loader from "../../components/Loader";
 import { PenIcon } from "../../icons/PenIcon";
+import { LoginForm } from "../../Authorization/components";
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -74,51 +75,56 @@ const _UserProfileTimeline = ({
             <Loader size="lg" />
         </div>
     ) : (
-        <Grid container style={{ height: "100%" }}>
-            {currentUser &&
-                (currentUser.id === profileOwnerId ? (
+        <>
+            {!currentUser && (
+                <Grid item className="login-form-container">
+                    <LoginForm hideSignUpButton />
+                </Grid>
+            )}
+            <Grid container style={{ height: "100%" }}>
+                {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item xs={12} className={classes.profileCreateStatusForm}>
                         <Hidden smDown>
                             <CreateStatusForm />
                         </Hidden>
                     </Grid>
-                ) : (
-                    statuses.length === 0 && (
-                        <Grid item xs={12} style={{ height: "100%" }}>
-                            <div className={classes.profileNoPosts}>
-                                <div className={classes.profileNoPostsIcon}>
-                                    <PenIcon size="lg" />
-                                </div>
-                                <div className={classes.profileNoPostsTitle}>
-                                    No posts yet
-                                </div>
-                                <div className={classes.profileNoPostsSubtitle}>
-                                    User hasn’t posted anything yet
-                                </div>
+                )}
+                {statuses.length === 0 && (
+                    <Grid item xs={12} style={{ height: "100%" }}>
+                        <div className={classes.profileNoPosts}>
+                            <div className={classes.profileNoPostsIcon}>
+                                <PenIcon size="lg" />
                             </div>
-                        </Grid>
-                    )
-                ))}
-            <Grid item xs={12} className={classes.profileStatusList}>
-                <StatusList
-                    statuses={statuses}
-                    onFavouriteClick={(statusId, favourited) =>
-                        favourited
-                            ? favouriteStatus(statusId)
-                            : unfavouriteStatus(statusId)
-                    }
-                    pending={pending}
-                    onNextPageRequest={fetchStatuses}
-                    onFollowRequest={followStatusAuthor}
-                    onUnfollowRequest={unfollowStatusAuthor}
-                    displayMenu={Boolean(currentUser)}
-                    currentUser={currentUser}
-                    statusLikePendingMap={statusLikePendingMap}
-                    repostsPendingMap={repostsPendingMap}
-                    hasMore={hasMore}
-                />
+                            <div className={classes.profileNoPostsTitle}>
+                                No posts yet
+                            </div>
+                            <div className={classes.profileNoPostsSubtitle}>
+                                User hasn’t posted anything yet
+                            </div>
+                        </div>
+                    </Grid>
+                )}
+                <Grid item xs={12} className={classes.profileStatusList}>
+                    <StatusList
+                        statuses={statuses}
+                        onFavouriteClick={(statusId, favourited) =>
+                            favourited
+                                ? favouriteStatus(statusId)
+                                : unfavouriteStatus(statusId)
+                        }
+                        pending={pending}
+                        onNextPageRequest={fetchStatuses}
+                        onFollowRequest={followStatusAuthor}
+                        onUnfollowRequest={unfollowStatusAuthor}
+                        displayMenu={Boolean(currentUser)}
+                        currentUser={currentUser}
+                        statusLikePendingMap={statusLikePendingMap}
+                        repostsPendingMap={repostsPendingMap}
+                        hasMore={hasMore}
+                    />
+                </Grid>
             </Grid>
-        </Grid>
+        </>
     );
 };
 

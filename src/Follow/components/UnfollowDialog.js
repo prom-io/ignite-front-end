@@ -6,15 +6,27 @@ import {
     DialogContentText,
     DialogActions,
     DialogTitle,
+    IconButton,
     makeStyles,
 } from '@material-ui/core';
 
+import { ModalCloseIcon } from '../../icons/ModalCloseIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     unfollowDialog: {
+        position: "relative",
         maxWidth: '291px',
         padding: '52px 32px',
+    },
+    unfollowDialogCloseBtn: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        width: "40px",
+        height: "40px",
+        margin: "8px",
+        lineHeight: 0,
     },
     unfollowDialogTitle: {
         marginBottom: '24px',
@@ -93,8 +105,14 @@ const _UnfollowDialog = ({
             }}
         >
             <div className={classes.unfollowDialog}>
+                <IconButton 
+                    onClick={() => setUnfollowDialogOpen(false)} 
+                    className={classes.unfollowDialogCloseBtn}
+                >
+                    <ModalCloseIcon />
+                </IconButton>
                 <DialogTitle className={classes.unfollowDialogTitle}>
-                    {l('user.profile.follow')}
+                    {l('user.profile.unfollow')}
                     {' '}
                     @
                     {username}

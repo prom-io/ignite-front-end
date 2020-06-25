@@ -126,6 +126,11 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                                                 {l('menu.blocked-users')}
                                             </ListItemText>
                                         </MenuItem>
+                                        <MenuItem disabled>
+                                            <ListItemText>
+                                                {l('menu.settings')}
+                                            </ListItemText>
+                                        </MenuItem>
                                         <Link
                                             view={Routes.terms}
                                             store={routerStore}

@@ -155,6 +155,6 @@ export const kr = {
     'notifications.login-required': '알림을 보려면 먼저 로그인해주세요',
     'notification.repost': 'respoted your post',
     post: '게시물',
-    comments: 'Comments',
+    comment: 'Comment',
     'follow-people': 'Follow people',
 };

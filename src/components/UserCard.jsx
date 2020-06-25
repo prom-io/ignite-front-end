@@ -68,8 +68,7 @@ const _UserCard = ({
                                     view={Routes.userProfile}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
-                                        tab: 'posts',
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{posts}</Typography>
@@ -79,11 +78,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowers}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
-                                        tab: 'followers',
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{followers}</Typography>
@@ -93,11 +91,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowing}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
-                                        tab: 'following',
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{following}</Typography>

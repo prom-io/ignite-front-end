@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { observer } from 'mobx-react';
 import {
     TextField,
     InputAdornment,
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const UserPasswordField = ({ label, value, errors, setFormValue }) => {
+const UserPasswordField = observer(({ label, value, errors, setFormValue }) => {
     const classes = useStyles();
     const { l } = useLocalization();
     const [showPassword, setShowPassword] = useState(false);
@@ -44,6 +45,6 @@ const UserPasswordField = ({ label, value, errors, setFormValue }) => {
             fullWidth
         />
     );
-};
+});
 
 export default UserPasswordField;

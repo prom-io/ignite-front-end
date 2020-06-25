@@ -228,10 +228,10 @@ export class UpdateUserProfileStore {
     @action
     resetForm = () => {
         this.updateUserProfileForm = {
-            username: this.user ? this.user.username : this.currentUser ? this.currentUser.username : "",
-            displayName: this.user ? this.user.display_name : this.currentUser ? this.currentUser.display_name : "",
+            username: this.currentUser ? this.currentUser.username : "",
+            displayName:  this.currentUser ? this.currentUser.display_name : "",
             avatarId: undefined,
-            bio: this.user ? this.user.bio : this.currentUser ? this.currentUser.bio : undefined,
+            bio: this.currentUser ? this.currentUser.bio : undefined,
             language: this.localeStore.selectedLanguage,
             password: undefined,
             new_password:  undefined

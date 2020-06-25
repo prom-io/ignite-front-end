@@ -10,6 +10,7 @@ import {
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import { useAuthorization, useLocalization } from '../store/hooks';
+import { BackButton } from '../components/BackButton';
 
 const useStyles = makeStyles(theme => ({
     notificationsTitle: {
@@ -46,12 +47,7 @@ export const NotificationsPage = observer(() => {
                                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             ) : (
-                                <Typography
-                                    className={classes.notificationsTitle}
-                                    variant="h6"
-                                >
-                                    {l('appbar.notifications')}
-                                </Typography>
+                              <BackButton title={'appbar.notifications'} toHome/>
                             )}
                             <NotificationsList />
                         </Grid>

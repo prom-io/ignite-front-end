@@ -78,6 +78,7 @@ const _UpdateUserPassword = ({
     updateUserPassword,
     setFormValue,
     l,
+    routerStore
 }) => {
     const classes = useStyles();
   const { genericAuthorizationDialog } = useStore();
@@ -103,13 +104,14 @@ const _UpdateUserPassword = ({
     );
 };
 
-const mapMobxToProps = ({ userProfileUpdate }) => ({
+const mapMobxToProps = ({ userProfileUpdate, store }) => ({
     updateUserProfileForm: userProfileUpdate.updateUserProfileForm,
     formErrors: userProfileUpdate.formErrors,
     submissionError: userProfileUpdate.submissionError,
     pending: userProfileUpdate.pending,
     setFormValue: userProfileUpdate.setFormValue,
     updateUserPassword: userProfileUpdate.updateUserPassword,
+    routerStore: store,
 });
 
 export const UpdateUserPassword = localized(

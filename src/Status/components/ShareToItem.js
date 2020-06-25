@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { MenuItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import {
     FacebookShareButton,
@@ -24,7 +25,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const ShareToItem = ({ to, status, setOpen }) => {
+export const ShareToItem = observer(({ to, status, setOpen }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -102,4 +103,4 @@ export const ShareToItem = ({ to, status, setOpen }) => {
         );
     }
     }
-};
+});

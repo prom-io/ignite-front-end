@@ -110,7 +110,7 @@ export class StatusesListStore {
                     let url;
                     if (this.sendLanguage) {
                         let language = localStorage.getItem("language");
-                        if (language !== "en" && language !== "ko") {
+                        if (language !== "en" && language !== "kr") {
                             language = "en";
                         }
                         url = `${this.baseUrl}?since_id=${minId}&language=${language}`;
@@ -132,7 +132,7 @@ export class StatusesListStore {
 
                     if (this.sendLanguage) {
                         let language = localStorage.getItem("language");
-                        if (language !== "en" && language !== "ko") {
+                        if (language !== "en" && language !== "kr") {
                             language = "en";
                         }
                         url = `${this.baseUrl}?max_id=${maxId}&language=${language}`;
@@ -154,7 +154,7 @@ export class StatusesListStore {
 
                 if (this.sendLanguage) {
                     let language = localStorage.getItem("language");
-                    if (language !== "en" && language !== "ko") {
+                    if (language !== "en" && language !== "kr") {
                         language = "en";
                     }
                     url = `${this.baseUrl}?language=${language}`;

@@ -179,7 +179,6 @@ export const kr = {
     'trends.second-paragraph': '당신은 다른 소셜 네트워크의 몇몇 트렌드가 단어 또는 구 앞에 # 기호를 가지고 있다는 것을 알아차릴 수 있습니다. 이것은 해시태그라고 불리며, 사람들이 검색에서 대화를 따라갈 수 있도록 주제에 관한 것으로 표시하기 위해 게시물에 구체적으로 포함될 것입니다.',
     'trends.third-paragraph': '트렌드는 당신이 따르는 사람과 당신의 관심사, 그리고 당신의 위치( 언급된 경우)에 따라 당신에게 맞춰질 것입니다. 당신은 당신의 트렌드 설정에서 특정한 트렌드를 선택함으로써 당신에게 맞추어져 있지 않은 트렌드를 볼 수 있을 것입니다.',
     'unfollow.dialog.warning': 'Posts of this author will no longer show up in your home timeline. You can still view his/her profile.',
-    'unfollow.dialog.warning': 'Posts of this author will no longer show up in your home timeline. You can still view his/her profile.',
     'user.alert.empty.part-1': '다른',
     'user.alert.empty.part-2': '사용자',
     'user.alert.empty.part-3': '에 대해 알아보고 대화를 시작하십시오',

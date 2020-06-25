@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 
@@ -11,7 +11,6 @@ import {
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { IgniteChatPage } from '../icons/IgniteChatPage';
 
 const useStyles = makeStyles(theme => ({
     chatError: {

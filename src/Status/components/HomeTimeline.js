@@ -13,12 +13,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: '150px',
         display: 'table',
     },
-    gridItemOverridePadding: {
-        padding: '0 8px !important',
-        [theme.breakpoints.down('md')]: {
-            padding: '0px !important',
-        },
-    },
     gridItemBottomSpacing: {
         [theme.breakpoints.down('md')]: {
             padding: '0px !important',
@@ -49,13 +43,13 @@ const _HomeTimeline = ({
     return pending && statuses.length === 0
         ? <div className={classes.centered}><Loader size="lg" /></div>
         : (
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid item xs={12} className={classes.gridItemBottomSpacing} className="create_status_form_mobile">
                     <Hidden smDown>
                         <CreateStatusForm />
                     </Hidden>
                 </Grid>
-                <Grid item className={classes.gridItemOverridePadding}>
+                <Grid item>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

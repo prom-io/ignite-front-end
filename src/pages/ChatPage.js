@@ -11,7 +11,6 @@ import {
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { IgniteChatPage } from '../icons/IgniteChatPage';
 
 const useStyles = makeStyles(theme => ({
     chatError: {
@@ -36,22 +35,6 @@ const useStyles = makeStyles(theme => ({
             color: '#1C1C1C',
         },
     },
-    chatErrorDescription: {
-        "& p": {
-            textAlign: "center !important"
-        }
-    },
-    chatErrorImg: {
-        display: "block !important",
-        width: "90% !important",
-        position: "relative",
-        paddingTop: "55%",
-
-        "& svg": {
-            position: "absolute", 
-            top: 0
-        }
-    }
 }));
 
 const _ChatPage = ({ currentUser, l }) => {
@@ -82,12 +65,10 @@ const _ChatPage = ({ currentUser, l }) => {
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <div className={classes.chatErrorImg}>
-                                                <IgniteChatPage />
-                                            </div>
+                                            <div className={'ignite-chat-page'} />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
-                                        <div className={classes.chatErrorDescription}>
+                                        <div>
                                             <p>{l('chat.description.first-paragraph')}</p>
                                             <p>{l('chat.description.second-paragraph')}</p>
                                         </div>

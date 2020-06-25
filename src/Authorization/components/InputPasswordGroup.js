@@ -2,9 +2,9 @@ import React from 'react';
 import { FormControl, IconButton, InputAdornment, makeStyles, TextField, useTheme } from '@material-ui/core';
 import generateRandomString from 'random-string';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import * as mobx from 'mobx';
 import { useLocalization } from '../../store/hooks';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
-import * as mobx from 'mobx';
 
 const useStyles = makeStyles(theme => ({
     titleBold: {

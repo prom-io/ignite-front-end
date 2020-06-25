@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
             '& span': {
                 borderRadius: '100%',
                 background: '#FFDECC',
-            }
+            },
         },
     },
     menuList: {
@@ -99,28 +99,28 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
     return (
         <>
             <ClickAwayListener
-              onClickAway={() => setOpen(false)}
-              touchEvent="onTouchStart"
-              mouseEvent="onMouseDown"
+                onClickAway={() => setOpen(false)}
+                touchEvent="onTouchStart"
+                mouseEvent="onMouseDown"
             >
-            <Button
-                ref={anchorRef}
-                aria-controls={open ? 'menu-list-grow' : undefined}
-                aria-haspopup="true"
-                onClick={() => setOpen(prevOpen => !prevOpen)}
-                classes={{
-                    label: classes.buttonMenuLabel,
-                    root: classes.buttonMenuRoot,
-                }}
-            >
-                <span className={open ? classes.styledSelectBox : `${classes.styledSelectBox} ${classes.styledSelectOpen}`}>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
-                <ArrowDropDownIcon
-                    style={{ color: '#A2A2A2' }}
+                <Button
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={() => setOpen(prevOpen => !prevOpen)}
                     classes={{
-                        root: open && classes.arrowAnimate,
+                        label: classes.buttonMenuLabel,
+                        root: classes.buttonMenuRoot,
                     }}
-                />
-            </Button>
+                >
+                    <span className={open ? classes.styledSelectBox : `${classes.styledSelectBox} ${classes.styledSelectOpen}`}>{locale.charAt(0).toUpperCase() + locale.slice(1)}</span>
+                    <ArrowDropDownIcon
+                        style={{ color: '#A2A2A2' }}
+                        classes={{
+                            root: open && classes.arrowAnimate,
+                        }}
+                    />
+                </Button>
             </ClickAwayListener>
             <Popper
                 open={open}
@@ -140,32 +140,32 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
                         }}
                     >
                         <Paper>
-                                <MenuList
-                                    autoFocusItem={open}
-                                    id="menu-list-grow"
-                                    onKeyDown={handleListKeyDown}
-                                    classes={{ root: classes.menuList }}
+                            <MenuList
+                                autoFocusItem={open}
+                                id="menu-list-grow"
+                                onKeyDown={handleListKeyDown}
+                                classes={{ root: classes.menuList }}
+                            >
+                                <MenuItem
+                                    classes={{ root: classes.styleMenuItem }}
+                                    value="en"
+                                    onClick={() => handleSelectLang('en')}
                                 >
-                                    <MenuItem
-                                        classes={{ root: classes.styleMenuItem }}
-                                        value="en"
-                                        onClick={() => handleSelectLang('en')}
-                                    >
-                                        English
-                                    </MenuItem>
-                                    <MenuItem
-                                        classes={{ root: classes.styleMenuItem }}
-                                        value="kr"
-                                        onClick={() => handleSelectLang('kr')}
-                                    >
-                                        한국어
-                                    </MenuItem>
-                                </MenuList>
+                                    English
+                                </MenuItem>
+                                <MenuItem
+                                    classes={{ root: classes.styleMenuItem }}
+                                    value="kr"
+                                    onClick={() => handleSelectLang('kr')}
+                                >
+                                    한국어
+                                </MenuItem>
+                            </MenuList>
                         </Paper>
                     </Grow>
                 )}
             </Popper>
-            
+
         </>
     );
 };

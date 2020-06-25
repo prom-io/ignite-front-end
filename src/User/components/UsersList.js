@@ -1,8 +1,8 @@
-import React from "react";
-import { inject } from "mobx-react";
+import React from 'react';
+import { inject } from 'mobx-react';
 
-import { UsersListItem } from "./UsersListItem";
-import { UnfollowDialog } from "../../Follow/components";
+import { UsersListItem } from './UsersListItem';
+import { UnfollowDialog } from '../../Follow/components';
 
 const _UsersList = ({
     users,
@@ -12,7 +12,7 @@ const _UsersList = ({
     unfollowUser,
     setUnfollowDialogOpen,
     unfollowDialogOpen,
-    currentUser
+    currentUser,
 }) => (
     <>
         {users.map(user => (
@@ -39,7 +39,7 @@ const mapMobxToProps = ({ store, followAction, authorization }) => ({
     unfollowUser: followAction.unfollowUser,
     setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
     unfollowDialogOpen: followAction.unfollowDialogOpen,
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const UsersList = inject(mapMobxToProps)(_UsersList);

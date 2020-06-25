@@ -9,11 +9,11 @@ import {
     FormControlLabel, IconButton, InputAdornment,
     makeStyles,
     TextField,
-    Typography
+    Typography,
 } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useLocalization, useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             background: 'rgba(255,255,255,0)',
         },
-    }
+    },
 }));
 
 const getLabelFromSubmissionError = (error, l) => {
@@ -121,12 +121,12 @@ export const LoginForm = observer(({
     const { l } = useLocalization();
     const [isRemember, setIsRemember] = useState(false);
     const [passwordVisibility, setPasswordVisibility] = useState(false);
-    
-    
+
+
     const handleClickShowPassword = () => {
         setPasswordVisibility(!passwordVisibility);
     };
-    
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -135,45 +135,44 @@ export const LoginForm = observer(({
         <div className={classes.loginForm}>
             <FormControl>
                 <TextField
-                  label={l('authorization.login.wallet-address')}
-                  value={loginForm.username}
-                  onChange={event => setFormValue('username', event.target.value)}
-                  className={`input-default ${classes.loginInput}`}
-                  InputProps={{
-                      endAdornment: (
-                        <InputAdornment
-                          position="end"
-                          className={classes.copyPasswordInputAdornment}
-                        >
-                        </InputAdornment>
-                      ),
-                  }}
+                    label={l('authorization.login.wallet-address')}
+                    value={loginForm.username}
+                    onChange={event => setFormValue('username', event.target.value)}
+                    className={`input-default ${classes.loginInput}`}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment
+                                position="end"
+                                className={classes.copyPasswordInputAdornment}
+                            />
+                        ),
+                    }}
                 />
             </FormControl>
             <FormControl classes={{ root: classes.input }}>
                 <TextField
-                  label={l('authorization.login.password')}
-                  value={loginForm.password}
-                  onChange={event => setFormValue('password', event.target.value)}
-                  className={`input-default ${classes.loginInput}`}
-                  type={passwordVisibility ? 'text' : 'password'}
-                  InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                              classes={{ root: classes.iconButton}}
-                            >
-                                {passwordVisibility ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                      ),
-                  }}
+                    label={l('authorization.login.password')}
+                    value={loginForm.password}
+                    onChange={event => setFormValue('password', event.target.value)}
+                    className={`input-default ${classes.loginInput}`}
+                    type={passwordVisibility ? 'text' : 'password'}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    classes={{ root: classes.iconButton }}
+                                >
+                                    {passwordVisibility ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
             </FormControl>
-            
+
             {submissionError && (
                 <Typography
                     variant="body1"

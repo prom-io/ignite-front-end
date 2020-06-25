@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
             marginLeft: '16px',
             '& a': {
                 color: theme.palette.text.main,
-            }
+            },
         },
     },
     checkbox: {
@@ -27,8 +27,12 @@ export const _Checkbox = ({ children, ...props }) => {
     const classes = useStyles();
     return (
         <div className={`${classes.checkboxGroup} ${props.className}`}>
-            <Checkbox color="primary" classes={{ root: classes.checkbox }} checked={props.checked}
-                      onChange={() => props.onChange(!props.checked)} />
+            <Checkbox
+                color="primary"
+                classes={{ root: classes.checkbox }}
+                checked={props.checked}
+                onChange={() => props.onChange(!props.checked)}
+            />
             <div>{children}</div>
         </div>
     );

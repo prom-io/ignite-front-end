@@ -1,18 +1,18 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { makeStyles } from '@material-ui/core';
 
-import { UsersList } from "./UsersList";
-import { UserEmptyList } from "./UserEmptyList";
-import Loader from "../../components/Loader";
+import { UsersList } from './UsersList';
+import { UserEmptyList } from './UserEmptyList';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "150px",
-        display: "table"
-    }
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '150px',
+        display: 'table',
+    },
 }));
 
 const _UserFollowingList = ({ following, pending }) => {
@@ -31,9 +31,9 @@ const _UserFollowingList = ({ following, pending }) => {
 
 const mapMobxToProps = ({ userFollowing }) => ({
     pending: userFollowing.pending,
-    following: userFollowing.following
+    following: userFollowing.following,
 });
 
 export const UserFollowingList = inject(mapMobxToProps)(
-    observer(_UserFollowingList)
+    observer(_UserFollowingList),
 );

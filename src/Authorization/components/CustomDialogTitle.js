@@ -19,15 +19,15 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     },
     logoIcon: {
-      marginLeft: 32,
-      '& svg': {
-        marginRight: 28,
-      },
-      '& .header-logo': {
-        width: 37,
-        height: 61,
-        backgroundSize: '100%',
-      }
+        marginLeft: 32,
+        '& svg': {
+            marginRight: 28,
+        },
+        '& .header-logo': {
+            width: 37,
+            height: 61,
+            backgroundSize: '100%',
+        },
     },
     closeIcon: {
         cursor: 'pointer',
@@ -42,9 +42,9 @@ const useStyles = makeStyles(theme => ({
             background: 'rgba(255, 92, 1, 0.2)',
         },
     },
-  titleHeaderText: {
-      padding: '12px 0',
-  }
+    titleHeaderText: {
+        padding: '12px 0',
+    },
 }));
 
 const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {

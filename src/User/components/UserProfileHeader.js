@@ -8,7 +8,7 @@ import { UserProfileTab } from './UserProfileTab';
 import { addLineBreak } from '../../utils/string-utils';
 import { localized } from '../../localization/components';
 import { UpdateUserProfileButton } from './UpdateUserProfileButton';
-import {useRouter, useStore} from '../../store/hooks';
+import { useRouter, useStore } from '../../store/hooks';
 import { Routes } from '../../routes';
 import { UserProfileHeaderButton } from './UserProfileHeaderButton';
 
@@ -40,9 +40,9 @@ const _UserProfileHeader = ({
             profileButton = currentUserFollows
                 ? (
                     <Grid className="user-profile-header-content-bottom-follow-button">
-                        <UserProfileHeaderButton 
-                            username={username} 
-                            onUnfollowRequest={onUnfollowRequest} 
+                        <UserProfileHeaderButton
+                            username={username}
+                            onUnfollowRequest={onUnfollowRequest}
                         />
                     </Grid>
                 )
@@ -93,7 +93,7 @@ const _UserProfileHeader = ({
                         linkProps={{
                             view: Routes.userProfile,
                             params: { username },
-                            store
+                            store,
                         }}
                     />
                     <UserProfileTab

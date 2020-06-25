@@ -1,9 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, CircularProgress, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
+import { FadeLoader } from 'react-spinners';
 import { useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
-import { FadeLoader } from 'react-spinners';
 
 const useStyles = makeStyles(() => ({
     contentBlock: {

@@ -6,7 +6,7 @@ import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
 import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
     },
     commentListContainer: {
         marginBottom: '50px',
+        [theme.breakpoints.down('sm')]: {
+           padding: 15,
+        },
     }
 }));
 

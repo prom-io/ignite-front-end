@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 
@@ -36,6 +36,22 @@ const useStyles = makeStyles(theme => ({
             color: '#1C1C1C',
         },
     },
+    chatErrorDescription: {
+        "& p": {
+            textAlign: "center !important"
+        }
+    },
+    chatErrorImg: {
+        display: "block !important",
+        width: "90% !important",
+        position: "relative",
+        paddingTop: "55%",
+
+        "& svg": {
+            position: "absolute", 
+            top: 0
+        }
+    }
 }));
 
 const _ChatPage = ({ currentUser, l }) => {
@@ -66,10 +82,12 @@ const _ChatPage = ({ currentUser, l }) => {
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <div className={'ignite-chat-page'} />
+                                            <div className={classes.chatErrorImg}>
+                                                <IgniteChatPage />
+                                            </div>
                                             <h1>PrompTalk Chat</h1>
                                         </div>
-                                        <div>
+                                        <div className={classes.chatErrorDescription}>
                                             <p>{l('chat.description.first-paragraph')}</p>
                                             <p>{l('chat.description.second-paragraph')}</p>
                                         </div>

@@ -69,7 +69,7 @@ const _StatusPageContainer = ({
     }
 
     return (
-        <Grid container spacing={2}>
+        <Grid container>
             <Grid xs={12}>
                 <BackButton 
                     title={status && status.status_reference_type === "COMMENT" ? "comment" : "post"} 

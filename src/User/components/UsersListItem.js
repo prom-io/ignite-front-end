@@ -90,7 +90,7 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
                         <small>@{user.username}</small>
                     </Typography>
                     <ClickEventPropagationStopper>
-                        {currentUser && 
+                        {currentUser && currentUser.username !== user.username &&
                             <UserFollowButton
                                 user={user}
                                 actionWithFollow={actionWithFollow}

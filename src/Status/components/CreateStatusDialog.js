@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
     statusFormDialogTitle: {
         padding: '16px 24px 0 24px',
-        '& h2':{
+        '& h2': {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'unset',
         border: 'none',
         padding: 0,
-    }
+    },
 }));
 
 const _CreateStatusDialog = ({
@@ -62,11 +62,11 @@ const _CreateStatusDialog = ({
             open={createStatusDialogOpen}
             onClose={() => setCreateStatusDialogOpen(false)}
             fullScreen={fullScreen}
-            scroll={'body'}
+            scroll="body"
             fullWidth
             maxWidth="md"
             classes={{
-                paper: classes.statusFormDialog
+                paper: classes.statusFormDialog,
             }}
             BackdropProps={{
                 style: {
@@ -74,7 +74,7 @@ const _CreateStatusDialog = ({
                 },
             }}
         >
-            <DialogTitle classes={{root: classes.statusFormDialogTitle}}>
+            <DialogTitle classes={{ root: classes.statusFormDialogTitle }}>
                 <IconButton
                     onClick={() => setCreateStatusDialogOpen(false)}
                     disabled={pending}
@@ -88,12 +88,12 @@ const _CreateStatusDialog = ({
                     color="primary"
                     variant="contained"
                 >
-                    {pending && <Loader size="md" css={'position:absolute; top: -2px; left: 40px'}/>}
+                    {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
                     {l('status.send')}
                 </Button>
             </DialogTitle>
-            <DialogContent classes={{root: classes.statusFormDialogContent}}>
-                <CreateStatusForm hideSendButton isDialogEmojiPicker/>
+            <DialogContent classes={{ root: classes.statusFormDialogContent }}>
+                <CreateStatusForm hideSendButton isDialogEmojiPicker />
             </DialogContent>
         </Dialog>
     );

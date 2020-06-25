@@ -54,8 +54,8 @@ const useStyles = makeStyles(theme => ({
         },
     },
     notificationMarginTop: {
-        marginTop: '10px'
-    }
+        marginTop: '10px',
+    },
 }));
 
 const noNotifications = {

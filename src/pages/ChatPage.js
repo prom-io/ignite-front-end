@@ -59,14 +59,14 @@ const _ChatPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             )}
                             <div className="static-page">
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <div className={'ignite-chat-page'} />
+                                            <div className="ignite-chat-page" />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
                                         <div>

@@ -47,7 +47,7 @@ export const NotificationsPage = observer(() => {
                                     <LoginForm hideSignUpButton />
                                 </Grid>
                             ) : (
-                              <BackButton title={'appbar.notifications'} toHome/>
+                                <BackButton title="appbar.notifications" toHome />
                             )}
                             <NotificationsList />
                         </Grid>

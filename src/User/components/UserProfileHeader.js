@@ -36,9 +36,9 @@ const _UserProfileHeader = ({
             profileButton = currentUserFollows
                 ? (
                     <Grid className="user-profile-header-content-bottom-follow-button">
-                        <UserProfileHeaderButton 
-                            username={username} 
-                            onUnfollowRequest={onUnfollowRequest} 
+                        <UserProfileHeaderButton
+                            username={username}
+                            onUnfollowRequest={onUnfollowRequest}
                         />
                     </Grid>
                 )

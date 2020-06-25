@@ -27,45 +27,45 @@ const useStyles = makeStyles(theme => ({
         background: '#fff',
         boxShadow: 'none',
     },
-  headerContainer: {
-    borderBottom: `1px solid ${theme.palette.border.main}`,
-    background: '#fff',
-    boxShadow: 'none',
-    minHeight: '50px',
-  },
-  navStyle: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    height: 50,
-    width: '90%',
-    maxWidth: '1170px',
-    margin: 'auto',
-  },
-  navItemList: {
-    display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
+    headerContainer: {
+        borderBottom: `1px solid ${theme.palette.border.main}`,
+        background: '#fff',
+        boxShadow: 'none',
+        minHeight: '50px',
     },
-  },
-  mobileNav: {
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-      position: 'fixed',
-      bottom: 0,
-      display: 'flex',
-      justifyContent: 'space-around',
-      height: 50,
-      width: '100%',
-      background: theme.palette.background.light,
-      zIndex: 10,
+    navStyle: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        height: 50,
+        width: '90%',
+        maxWidth: '1170px',
+        margin: 'auto',
     },
-  },
-  navSecondary: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    minWidth: 170,
-  },
+    navItemList: {
+        display: 'flex',
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
+    },
+    mobileNav: {
+        display: 'none',
+        [theme.breakpoints.down('sm')]: {
+            position: 'fixed',
+            bottom: 0,
+            display: 'flex',
+            justifyContent: 'space-around',
+            height: 50,
+            width: '100%',
+            background: theme.palette.background.light,
+            zIndex: 10,
+        },
+    },
+    navSecondary: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        minWidth: 170,
+    },
 }));
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, setLoginDialogOpen, theme, l }) => {

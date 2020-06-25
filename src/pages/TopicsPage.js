@@ -59,15 +59,15 @@ const _TopicsPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             )}
                             <div className="static-page">
                                 <div className="static-page-container">
                                     <div className={classes.trendError}>
                                         <div className={classes.trendErrorInfo}>
-                                            <TopicsIcon color="#A2A2A2" transform={3}/>
-                                           {/* <IgniteTrendPage color="#A2A2A2" />*/}
+                                            <TopicsIcon color="#A2A2A2" transform={3} />
+                                            {/* <IgniteTrendPage color="#A2A2A2" /> */}
                                             <h1>{l('appbar.topics')}</h1>
                                         </div>
                                         <div>

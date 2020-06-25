@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Button,
@@ -78,20 +78,21 @@ const _UpdateUserPassword = ({
     updateUserPassword,
     setFormValue,
     l,
-    routerStore
+    routerStore,
 }) => {
     const classes = useStyles();
     const goToForgotPassword = () => {
-        routerStore.router.goTo(Routes.home)
+        routerStore.router.goTo(Routes.home);
     };
 
     return (
         <div
-          className={ classes.updateUserPassword }>
+            className={classes.updateUserPassword}
+        >
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
             <Button
-              className={classes.updateUserPasswordOpen}
-              onClick={goToForgotPassword}
+                className={classes.updateUserPasswordOpen}
+                onClick={goToForgotPassword}
             >
                 {l('user.change')}
             </Button>

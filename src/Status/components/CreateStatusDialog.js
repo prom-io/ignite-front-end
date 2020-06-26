@@ -6,6 +6,7 @@ import {
     DialogContent,
     DialogTitle,
     IconButton,
+    Hidden,
     makeStyles,
     withMobileDialog,
 } from '@material-ui/core';
@@ -81,19 +82,26 @@ const _CreateStatusDialog = ({
                 >
                     <ArrowBackIcon />
                 </IconButton>
-                <Button
-                    className={classes.createStatusButton}
-                    onClick={createStatus}
-                    disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
-                    color="primary"
-                    variant="contained"
-                >
-                    {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
-                    {l('status.send')}
-                </Button>
+                <Hidden mdUp>
+                    <Button
+                        className={classes.createStatusButton}
+                        onClick={createStatus}
+                        disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        color="primary"
+                        variant="contained"
+                    >
+                        {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
+                        {l('status.send')}
+                    </Button>
+                </Hidden>
             </DialogTitle>
             <DialogContent classes={{ root: classes.statusFormDialogContent }}>
-                <CreateStatusForm hideSendButton isDialogEmojiPicker />
+                <Hidden mdUp>
+                    <CreateStatusForm hideSendButton isDialogEmojiPicker />
+                </Hidden>
+                <Hidden smDown>
+                    <CreateStatusForm isDialogEmojiPicker />
+                </Hidden>
             </DialogContent>
         </Dialog>
     );

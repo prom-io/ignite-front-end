@@ -2,7 +2,6 @@ import React from 'react';
 import {
     CardActions,
     Checkbox,
-    CircularProgress,
     Typography,
     makeStyles,
 } from '@material-ui/core';
@@ -23,6 +22,10 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
+        '&>span': {
+            width: 24,
+            height: 24,
+        },
         '&.MuiCheckbox-root': {
             color: 'rgba(0, 0, 0, 0.35)',
         },

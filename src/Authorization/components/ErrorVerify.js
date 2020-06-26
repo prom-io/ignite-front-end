@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
         borderBottom: '1px solid #F1EBE8',
         '& a': {
             textDecoration: 'underline',
-            cursor: 'pointer',
+          
             fontFamily: 'Museo Sans Cyrl Bold',
         },
     },
@@ -44,13 +44,14 @@ const useStyles = makeStyles(() => ({
 const errorTranslations = {
     en: (classes) => (
         <div className={classes.contentDescription}>
-            Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
-            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
-            {' '}
-            or
-            {' '}
-            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
-            .
+          Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
+          {' '}
+          <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+          {' '}
+          or
+          {' '}
+          <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+          .
         </div>
     ),
     ko: (classes) => (

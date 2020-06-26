@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
         color: '#1C1C1C',
         '& a': {
             textDecoration: 'underline',
-            cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
     },

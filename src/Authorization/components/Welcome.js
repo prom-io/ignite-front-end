@@ -10,7 +10,6 @@ const useStyles = makeStyles(() => ({
         color: '#1C1C1C',
         '& a': {
             color: '#FF5C01',
-            cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
     },
@@ -23,6 +22,7 @@ const useStyles = makeStyles(() => ({
         fontFamily: 'Museo Sans Cyrl Regular',
         '& p': {
             margin: 0,
+            marginBottom: 10,
             fontFamily: 'Museo Sans Cyrl Bold',
             fontSize: '20px',
             lineHeight: '18px',

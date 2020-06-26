@@ -152,6 +152,7 @@ p
 .right-content-container
   max-width: auto !important
   padding: 0 !important
+  margin: 0 auto !important
   @media (min-width: 952px)
     max-width: 600px !important
   @media (max-width: 900px)
@@ -711,6 +712,7 @@ p
     &.another-user
       width: 100% !important
       max-width: 100% !important
+      min-width: 600px
 
 .user-profile-header-content-top
   width: 100%
@@ -725,10 +727,12 @@ p
 .user-profile-header-content-bottom
   width: 100%
   display: flex
+  flex-direction: column
   align-items: center
   flex-wrap: wrap
   box-sizing: border-box
   justify-content: center
+  padding: 0 20px
 .user-profile-header-content-bottom-follows
   width: 100%
   height: 40px

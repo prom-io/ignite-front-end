@@ -60,7 +60,7 @@ const _UserCard = ({
 
                         <Grid className="user-profile-header-content-bottom">
                             <Grid
-                                style={{ display: 'flex', padding: 20 }}
+                                style={{ display: 'flex', padding: '20px 0' }}
                                 className="user-profile-header-content-bottom-follows user-card-statistic"
                             >
                                 <Link

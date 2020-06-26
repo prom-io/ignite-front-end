@@ -90,6 +90,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
     },
     iconButton: {
+        '& svg': {
+            width: '24px',
+            height: '24px',
+        },
         '&:hover': {
             background: 'rgba(255,255,255,0)',
         },

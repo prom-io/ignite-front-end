@@ -33,12 +33,7 @@ export const ShareWithLink = observer(({ status, setOpen }) => {
     };
 
     return (
-        <MenuItem
-            classes={{
-                gutters: classes.menuItemGutters,
-            }}
-            onClick={copyToClipboard}
-        >
+        <MenuItem onClick={copyToClipboard}>
             <ListItemIcon
                 classes={{
                     root: classes.listItemIconRoot,

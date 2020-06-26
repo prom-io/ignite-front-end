@@ -5,14 +5,6 @@ import { StatusListItem } from './StatusListItem';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
-    centered: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'table',
-    },
-}));
-
 export const StatusList = ({
     statuses,
     onFavouriteClick,
@@ -27,15 +19,14 @@ export const StatusList = ({
     hideThreadLinks,
     hasMore,
 }) => {
-    const classes = useStyles({ radius: 55 });
-
+   
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
             {header && statuses.length !== 0 && <Typography variant="h6">{header}</Typography>}
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
-                loader={<div className={classes.centered}><Loader size="lg" /></div>}
+                loader={<Loader size="lg" />}
                 dataLength={statuses.length}
                 style={{ overflowY: 'hidden' }}
             >

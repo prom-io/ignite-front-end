@@ -14,6 +14,7 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useLocalization, useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
+import { EyeIcon } from '../../icons/EyeIcon';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -169,7 +170,7 @@ export const LoginForm = observer(({
                                     onMouseDown={handleMouseDownPassword}
                                     classes={{ root: classes.iconButton }}
                                 >
-                                    {passwordVisibility ? <Visibility /> : <VisibilityOff />}
+                                    {passwordVisibility ? <Visibility /> : <EyeIcon />}
                                 </IconButton>
                             </InputAdornment>
                         ),

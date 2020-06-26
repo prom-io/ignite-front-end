@@ -28,7 +28,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                         <PrometeusDescription />
                     </Grid>
                     <Grid item spacing={28} lg={9} className="right-content-container">
-                        <Grid container spacing={2}>
+                        <Grid container>
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">
                                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />

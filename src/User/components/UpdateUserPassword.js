@@ -1,12 +1,11 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import { observer } from 'mobx-react';
 import {
     Button,
     Typography,
     makeStyles,
 } from '@material-ui/core';
-import { localized } from '../../localization/components';
-import { useStore } from '../../store/hooks';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {
@@ -71,17 +70,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _UpdateUserPassword = ({
-    updateUserProfileForm,
-    formErrors,
-    pending,
-    updateUserPassword,
-    setFormValue,
-    l,
-    routerStore,
-}) => {
+export const UpdateUserPassword = observer(() => {
     const classes = useStyles();
     const { genericAuthorizationDialog } = useStore();
+    const { l } = useLocalization();
     const {
         setGenericAuthorizationDialogOpen,
         setGenericAuthorizationDialogType,
@@ -103,18 +95,4 @@ const _UpdateUserPassword = ({
             </Button>
         </div>
     );
-};
-
-const mapMobxToProps = ({ userProfileUpdate, store }) => ({
-    updateUserProfileForm: userProfileUpdate.updateUserProfileForm,
-    formErrors: userProfileUpdate.formErrors,
-    submissionError: userProfileUpdate.submissionError,
-    pending: userProfileUpdate.pending,
-    setFormValue: userProfileUpdate.setFormValue,
-    updateUserPassword: userProfileUpdate.updateUserPassword,
-    routerStore: store,
 });
-
-export const UpdateUserPassword = localized(
-    inject(mapMobxToProps)(observer(_UpdateUserPassword)),
-);

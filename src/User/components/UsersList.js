@@ -1,83 +1,45 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { inject } from 'mobx-react';
-import { Avatar, CardHeader, List, ListItem, ListItemAvatar, Typography, Hidden } from '@material-ui/core';
-import { Link } from 'mobx-router';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { trimString } from '../../utils/string-utils';
-import { Routes } from '../../routes';
 
+import { UsersListItem } from './UsersListItem';
+import { UnfollowDialog } from '../../Follow/components';
 
-const useStyles = makeStyles((theme) => ({
-    cardHeader: {
-        [theme.breakpoints.down('sm')]: {
-            '& span': {
-                '& p': {
-                    maxWidth: '200px',
-                    overflowX: 'hidden',
-                    whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis',
-                },
-                '& p:after': {
-                    content: "'...'",
-                },
-            },
-        },
-    },
-}));
+const _UsersList = ({
+    users,
+    routerStore,
+    actionWithFollow,
+    selectedUser,
+    unfollowUser,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen,
+    currentUser,
+}) => (
+    <>
+        {users.map(user => (
+            <UsersListItem
+                user={user}
+                actionWithFollow={actionWithFollow}
+                routerStore={routerStore}
+                currentUser={currentUser}
+            />
+        ))}
+        <UnfollowDialog
+            username={selectedUser.username}
+            unfollowAction={unfollowUser}
+            unfollowDialogOpen={unfollowDialogOpen}
+            setUnfollowDialogOpen={setUnfollowDialogOpen}
+        />
+    </>
+);
 
-const _UsersList = ({ users, routerStore }) => {
-    const theme = useTheme();
-
-    return (
-        <List style={{ padding: 0 }}>
-            {users.map(user => (
-                <ListItem role="div" style={{ borderBottom: `1px solid ${theme.palette.border.main}` }}>
-                    <ListItemAvatar>
-                        <Avatar src={user.avatar || 'http://localhost:3000/avatars/original/missing.png'} />
-                    </ListItemAvatar>
-                    <CardHeader
-                        classes={{ root: useStyles().cardHeader }}
-                        title={(
-                            <Link
-                                view={Routes.userProfile}
-                                params={{ username: user.username }}
-                                store={routerStore}
-                                style={{
-                                    color: 'inherit',
-                                    display: 'flex',
-                                }}
-                            >
-                                <Hidden xsDown>
-                                    <Typography>
-                                        <strong>{user.display_name}</strong>
-                                    </Typography>
-                                </Hidden>
-                                <Hidden smUp>
-                                    <Typography>
-                                        <strong>{trimString(user.display_name, 28)}</strong>
-                                    </Typography>
-                                </Hidden>
-                            </Link>
-                        )}
-                        subheader={(
-                            <>
-                                <Hidden xsDown>
-                                    {user.username}
-                                </Hidden>
-                                <Hidden smUp>
-                                    <strong>{trimString(user.username, 28)}</strong>
-                                </Hidden>
-                            </>
-                        )}
-                    />
-                </ListItem>
-            ))}
-        </List>
-    );
-};
-
-const mapMobxToProps = ({ store }) => ({
+const mapMobxToProps = ({ store, followAction, authorization }) => ({
     routerStore: store,
+    actionWithFollow: followAction.actionWithFollow,
+    selectedUser: followAction.selectedUser,
+    unfollowUser: followAction.unfollowUser,
+    setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen,
+    currentUser: authorization.currentUser,
 });
 
 export const UsersList = inject(mapMobxToProps)(_UsersList);

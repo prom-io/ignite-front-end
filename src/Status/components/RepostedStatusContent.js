@@ -34,7 +34,7 @@ const _RepostedStatusContent = ({
 
     return (
         <div className={hideBorders ? classes.repostedStatusNoBorders : classes.repostedStatus}>
-            <div className={'repostedStatusContainer'}>
+            <div className="repostedStatusContainer">
                 <StatusHeader
                     username={repostedStatus.account.username}
                     userId={repostedStatus.account.id}

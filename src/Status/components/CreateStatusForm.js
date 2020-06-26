@@ -69,8 +69,8 @@ const useStyles = makeStyles(theme => ({
     customTextareaContainer: {
         display: 'flex',
         width: '100%',
-        padding: '14px'
-    }
+        padding: '14px',
+    },
 }));
 
 const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
@@ -115,7 +115,7 @@ const _CreateStatusForm = ({
                         <Typography>
                             {statusReferenceType === 'REPOST'
                                 ? l('status.reposted-status')
-                                : ``}
+                                : ''}
                         </Typography>
                         <RepostedStatusContent
                             repostedStatus={referredStatus}
@@ -151,10 +151,10 @@ const _CreateStatusForm = ({
                         />
                         <img src="/pic-gif-disabled.png" />
                         <img src="/pic-list-disabled.png" />
-                        <EmojiInput 
-                            setEmojiPickerVisible={setEmojiPickerVisible} 
-                            setEmojiPickerDialogVisible={setEmojiPickerDialogVisible} 
-                            isDialogEmojiPicker={isDialogEmojiPicker} 
+                        <EmojiInput
+                            setEmojiPickerVisible={setEmojiPickerVisible}
+                            setEmojiPickerDialogVisible={setEmojiPickerDialogVisible}
+                            isDialogEmojiPicker={isDialogEmojiPicker}
                         />
                     </div>
                 </Grid>
@@ -175,20 +175,21 @@ const _CreateStatusForm = ({
                             onClick={createStatus}
                             disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
                         >
-                            {pending && <Loader size="md" />}
+                            {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
                             {l('status.send')}
                         </Button>
                     )}
                 </Grid>
             </CardActions>
-            {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0 && 
-                <div className={classes.mediaAttachmentsContainer}>
-                    <CreateStatusFormMediaAttachments
-                        mediaAttachmentsFiles={mediaAttachmentsFiles}
-                        onDelete={removeMediaAttachment}
+            {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0
+                && (
+                    <div className={classes.mediaAttachmentsContainer}>
+                        <CreateStatusFormMediaAttachments
+                            mediaAttachmentsFiles={mediaAttachmentsFiles}
+                            onDelete={removeMediaAttachment}
                         />
-                </div>
-            }
+                    </div>
+                )}
             {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
     );

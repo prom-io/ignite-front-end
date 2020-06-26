@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '65px',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
@@ -60,14 +59,14 @@ const _ChatPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton />
                                 </Grid>
                             )}
                             <div className="static-page">
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <IgniteChatPage color="#A2A2A2" />
+                                            <div className="ignite-chat-page" />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
                                         <div>

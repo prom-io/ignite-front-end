@@ -76,6 +76,7 @@ const _UserProfileContainer = ({
                     displayName={user.display_name}
                     bio={user.bio}
                     currentUser={currentUser}
+                    currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}
                 />
                 <DescriptionNetworkBanner />

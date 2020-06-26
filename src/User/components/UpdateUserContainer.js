@@ -30,7 +30,7 @@ export const UpdateUserContainer = () => {
         <div className={classes.updateUserContainer}>
             <div className={classes.updateUserContainerBackground} />
             <UpdateUserProfile />
-            {/*<UpdateUserPassword />*/}
+            <UpdateUserPassword />
         </div>
     );
 };

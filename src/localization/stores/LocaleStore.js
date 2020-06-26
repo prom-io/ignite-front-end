@@ -1,19 +1,19 @@
 import {action, observable, computed} from "mobx";
 import englishDateFnsLocale from "date-fns/locale/en-US";
 import koreanDateFnsLocale from "date-fns/locale/ko";
-import {en, ko} from "../translations";
+import {en, kr} from "../translations";
 import {axiosInstance} from "../../api/axios-instance";
 
 const dateFnsLocalesMap = {
     en: englishDateFnsLocale,
-    ko: koreanDateFnsLocale
+    kr: koreanDateFnsLocale
 };
 
 const getInitialLanguage = () => {
     const localStorageLanguage = localStorage.getItem("language");
 
     if (localStorageLanguage) {
-        if (localStorageLanguage === "en" || localStorageLanguage === "ko") {
+        if (localStorageLanguage === "en" || localStorageLanguage === "kr") {
             return localStorageLanguage;
         }
     }
@@ -30,7 +30,7 @@ export class LocaleStore {
     @observable
     labels = {
         en,
-        ko
+        kr
     };
 
     authorizationStore = undefined;

@@ -10,6 +10,7 @@ import {
     LinkedinIcon,
 } from 'react-share';
 
+import { trimString } from '../../utils/string-utils';
 import { useLocalization } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
@@ -58,6 +59,7 @@ export const ShareToItem = observer(({ to, status, setOpen }) => {
         return (
             <TwitterShareButton
                 url={`http://beta.ignite.so/status/${status.id}`}
+                title={trimString(status.content || status.referred_status.content, 200)}
                 className={classes.shareButton}
                 onClick={() => setOpen(false)}
             >
@@ -82,6 +84,9 @@ export const ShareToItem = observer(({ to, status, setOpen }) => {
         return (
             <LinkedinShareButton
                 url={`http://beta.ignite.so/status/${status.id}`}
+                summary={status.content}
+                title={status.content}
+                source={status.content}
                 className={classes.shareButton}
                 onClick={() => setOpen(false)}
             >

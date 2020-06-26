@@ -47,7 +47,7 @@ export const NotificationsPage = observer(() => {
                                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             ) : (
-                              <BackButton title={'appbar.notifications'} toHome/>
+                                <BackButton title="appbar.notifications" toHome />
                             )}
                             <NotificationsList />
                         </Grid>

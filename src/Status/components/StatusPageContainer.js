@@ -69,9 +69,12 @@ const _StatusPageContainer = ({
     }
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <BackButton title="post" style={{ marginLeft: '10px' }} />
+        <Grid container>
+            <Grid xs={12}>
+                <BackButton
+                    title={status && status.status_reference_type === 'COMMENT' ? 'comment' : 'post'}
+                    style={{ marginLeft: '10px' }}
+                />
             </Grid>
             <Grid item xs={12}>
                 <StatusListItem

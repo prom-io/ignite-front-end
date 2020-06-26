@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
         marginTop: '50px',
         overflow: 'auto',
         '& td': {
-            maxWidth: '300px'
-        }
+            maxWidth: '300px',
+        },
     },
     link: {
         color: theme.palette.primary.main,
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         height: '100%',
         width: '100%',
-        marginTop: '150px'
+        marginTop: '150px',
     },
     btfsCidInput: {
         border: 'none',
@@ -34,15 +34,15 @@ const useStyles = makeStyles(theme => ({
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
         '&:focus': {
-          outline: `1px solid ${theme.palette.border.main}`,
+            outline: `1px solid ${theme.palette.border.main}`,
         },
         '&:after': {
             content: "'...'",
         },
         '&:not(:focus):after': {
             content: '',
-        }
-    }
+        },
+    },
 }));
 
 const getErrorLabel = error => {
@@ -97,8 +97,8 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
                     <TableBody>
                         {btfsHashes.map(btfsHash => (
                             <TableRow>
-                                <TableCell classes={{root: classes.btfsCid}}>
-                                    <input className={classes.btfsCidInput} value={btfsHash.cid}  contentEditable={false}/>
+                                <TableCell classes={{ root: classes.btfsCid }}>
+                                    <input className={classes.btfsCidInput} value={btfsHash.cid} contentEditable={false} />
                                 </TableCell>
                                 <TableCell>
                                     <a

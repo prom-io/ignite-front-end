@@ -64,8 +64,8 @@ const _TopicsPage = ({ currentUser, l }) => {
                                 <div className="static-page-container">
                                     <div className={classes.trendError}>
                                         <div className={classes.trendErrorInfo}>
-                                            <TopicsIcon color="#A2A2A2" transform={3}/>
-                                           {/* <IgniteTrendPage color="#A2A2A2" />*/}
+                                            <TopicsIcon color="#A2A2A2" transform={3} />
+                                            {/* <IgniteTrendPage color="#A2A2A2" /> */}
                                             <h1>{l('appbar.topics')}</h1>
                                         </div>
                                         <div>

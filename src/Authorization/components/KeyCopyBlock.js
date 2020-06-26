@@ -29,13 +29,13 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '24px',
     },
     keyDisable: {
-        color:theme.palette.text.secondary
-    }
+        color: theme.palette.text.secondary,
+    },
 }));
 
 export const KeyCopyBlock = ({ children, title, textToCopy, disabled }) => {
     const classes = useStyles();
-    
+
     return (
         <div className={`${classes.key} ${!children && classes.keyDisable}`}>
             <div className={classes.keyTitle}>

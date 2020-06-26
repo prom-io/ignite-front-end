@@ -65,7 +65,7 @@ const _ChatPage = ({ currentUser, l }) => {
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <div className={'ignite-chat-page'} />
+                                            <div className="ignite-chat-page" />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
                                         <div>

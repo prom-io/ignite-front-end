@@ -5,41 +5,28 @@ import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(theme => ({
     followBtn: {
-        border: `1px solid ${theme.palette.primary.main}`,
         borderRadius: '30px',
-        padding: '5px 21px',
-        color: '#FF5C01',
-        width: '96px',
-        height: '32px',
         fontSize: '15px',
         fontWeight: 600,
         lineHeight: '18px',
 
-        [theme.breakpoints.down('md')]: {
-            width: '90px',
-        },
-
-        '&.follow': {
-            background: '#fff',
-        },
-
         '&.following': {
+            color: theme.palette.primary.main,
             border: 'none',
             background: 'rgba(255, 92, 1, 0.2)',
         },
 
         '&.unfollow': {
+            border: `1px solid ${theme.palette.primary.main}`,
             background: theme.palette.primary.main,
             color: '#fff',
         },
     },
 }));
 
-const _UserFollowButton = ({ user, actionWithFollow, l }) => {
+const _UserProfileHeaderButton = ({ username, onUnfollowRequest, l }) => {
     const classes = useStyles();
-    const [statusBtn, setStatusBtn] = useState(
-        user.following || user.followingForBtn ? 'following' : 'follow',
-    );
+    const [statusBtn, setStatusBtn] = useState('following');
 
     const handleMouseEnter = () => {
         if (statusBtn === 'following') {
@@ -49,9 +36,7 @@ const _UserFollowButton = ({ user, actionWithFollow, l }) => {
 
     const handleMouseLeave = () => {
         if (statusBtn === 'unfollow') {
-            setStatusBtn(
-                user.following || user.followingForBtn ? 'following' : 'follow',
-            );
+            setStatusBtn('following');
         }
     };
 
@@ -62,11 +47,12 @@ const _UserFollowButton = ({ user, actionWithFollow, l }) => {
             className={[classes.followBtn, statusBtn].join(' ')}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => actionWithFollow(user, setStatusBtn)}
+            onClick={() => onUnfollowRequest(username)}
+            disableElevation
         >
             {l(`user.profile.${statusBtn}`)}
         </Button>
     );
 };
 
-export const UserFollowButton = localized(_UserFollowButton);
+export const UserProfileHeaderButton = localized(_UserProfileHeaderButton);

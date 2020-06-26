@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
         },
     },
     contentBlockDescription: {
-      marginTop: 8,
+        marginTop: 8,
     },
     button: {
         width: '187px',

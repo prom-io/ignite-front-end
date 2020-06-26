@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Button,
@@ -78,28 +78,29 @@ const _UpdateUserPassword = ({
     updateUserPassword,
     setFormValue,
     l,
-    routerStore
+    routerStore,
 }) => {
     const classes = useStyles();
-  const { genericAuthorizationDialog } = useStore();
-  const {
-    setGenericAuthorizationDialogOpen,
-    setGenericAuthorizationDialogType,
-  } = genericAuthorizationDialog;
+    const { genericAuthorizationDialog } = useStore();
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = genericAuthorizationDialog;
 
     return (
         <div
-            className={ classes.updateUserPassword } >
+            className={classes.updateUserPassword}
+        >
             <Typography variant="h5">{l('authorization.login.password')}</Typography>
-                <Button
-                    className={classes.updateUserPasswordOpen}
-                    onClick={() => {
-                      setGenericAuthorizationDialogOpen(true);
-                      setGenericAuthorizationDialogType('forgotPassword');
-                    }}
-                >
-                    {l('user.change')}
-                </Button>
+            <Button
+                className={classes.updateUserPasswordOpen}
+                onClick={() => {
+                    setGenericAuthorizationDialogOpen(true);
+                    setGenericAuthorizationDialogType('forgotPassword');
+                }}
+            >
+                {l('user.change')}
+            </Button>
         </div>
     );
 };

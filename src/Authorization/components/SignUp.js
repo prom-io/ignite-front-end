@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
-import { useLocalization, useStore } from '../../store/hooks';
 import { FadeLoader } from 'react-spinners';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
     contentDescription: {
@@ -17,13 +17,13 @@ const useStyles = makeStyles(() => ({
         },
     },
     contentBlock: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderTop: '1px solid #F1EBE8',
-      marginTop: '32px',
-      paddingTop: '32px',
-      fontFamily: 'Museo Sans Cyrl Regular',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderTop: '1px solid #F1EBE8',
+        marginTop: '32px',
+        paddingTop: '32px',
+        fontFamily: 'Museo Sans Cyrl Regular',
         '&>div': {
             width: '234px',
         },
@@ -37,16 +37,16 @@ const useStyles = makeStyles(() => ({
         },
     },
     notes: {
-      marginTop: '12px',
-      color: '#A2A2A2',
-      fontSize: '15px',
-      fontFamily: 'Museo Sans Cyrl Regular',
-      lineHeight: '26px',
-      '& a': {
-        color: '#FF5C01',
-        cursor: 'pointer',
-        fontFamily: 'Museo Sans Cyrl Bold',
-      },
+        marginTop: '12px',
+        color: '#A2A2A2',
+        fontSize: '15px',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        lineHeight: '26px',
+        '& a': {
+            color: '#FF5C01',
+            cursor: 'pointer',
+            fontFamily: 'Museo Sans Cyrl Bold',
+        },
     },
     button: {
         width: '187px',

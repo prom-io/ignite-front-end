@@ -14,6 +14,7 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useLocalization, useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
+import { EyeIcon } from '../../icons/EyeIcon';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -90,6 +91,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
     },
     iconButton: {
+        '& svg': {
+            width: '24px',
+            height: '24px',
+        },
         '&:hover': {
             background: 'rgba(255,255,255,0)',
         },
@@ -165,7 +170,7 @@ export const LoginForm = observer(({
                                     onMouseDown={handleMouseDownPassword}
                                     classes={{ root: classes.iconButton }}
                                 >
-                                    {passwordVisibility ? <Visibility /> : <VisibilityOff />}
+                                    {passwordVisibility ? <Visibility /> : <EyeIcon />}
                                 </IconButton>
                             </InputAdornment>
                         ),

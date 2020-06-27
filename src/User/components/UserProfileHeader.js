@@ -84,7 +84,7 @@ const _UserProfileHeader = ({
                 </Grid>
             </Grid>
             <Grid className="user-profile-header-content-bottom">
-                <Grid style={{ display: 'flex', padding: 20 }} className="user-profile-header-content-bottom-follows">
+                <Grid style={{ display: 'flex', padding: '20px 0' }} className="user-profile-header-content-bottom-follows">
                     <UserProfileTab
                         active={activeTab === 'posts'}
                         header={currentUser && currentUser.username === username ? currentUser.statuses_count : statuses}

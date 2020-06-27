@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginTop: '20px',
         display: 'table',
     },
 }));

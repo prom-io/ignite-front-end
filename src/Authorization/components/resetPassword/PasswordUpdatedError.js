@@ -14,7 +14,6 @@ const useStyles = makeStyles(() => ({
         borderBottom: '1px solid #F1EBE8',
         '& a': {
             textDecoration: 'underline',
-            cursor: 'pointer',
         },
     },
     contentBlock: {

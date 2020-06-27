@@ -19,6 +19,14 @@ const useStyles = makeStyles(theme => ({
             paddingBottom: `${theme.spacing(1)}px !important`,
         },
     },
+    statusListBorderCorrective: {
+        padding: '0 !important',
+        width: '100%',
+        [theme.breakpoints.down('md')]: {
+            padding: '0px !important',
+            paddingBottom: `${theme.spacing(1)}px !important`,
+        },
+    },
 }));
 
 const _HomeTimeline = ({
@@ -49,7 +57,7 @@ const _HomeTimeline = ({
                         <CreateStatusForm />
                     </Hidden>
                 </Grid>
-                <Grid item>
+                <Grid item item className={classes.statusListBorderCorrective}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

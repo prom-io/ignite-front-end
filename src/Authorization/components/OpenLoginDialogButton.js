@@ -5,10 +5,7 @@ import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     buttonMargin: {
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: '30px',
-            lineHeight: 'normal',
-        },
+        margin: '0 16px 0 30px',
     },
 }));
 

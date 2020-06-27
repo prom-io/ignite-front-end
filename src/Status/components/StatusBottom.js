@@ -2,11 +2,9 @@ import React from 'react';
 import {
     CardActions,
     Checkbox,
-    CircularProgress,
     Typography,
     makeStyles,
 } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { FadeLoader } from 'react-spinners';
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -15,6 +13,7 @@ import { RepostStatusMenu } from './RepostStatusMenu';
 import { ShareStatusMenu } from './ShareStatusMenu';
 import { CommentsButton } from './CommentsButton';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { FavoriteIcon } from '../../icons/FavoriteIcon';
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -93,8 +92,8 @@ const _StatusBottom = ({
                             </div>
                         ) : (
                             <Checkbox
-                                icon={<FavoriteBorderIcon />}
-                                checkedIcon={<FavoriteIcon color="primary" />}
+                                icon={<FavoriteIcon color={favourited} />}
+                                checkedIcon={<FavoriteIcon type='primary' />}
                                 checked={favourited}
                                 onChange={handleFavoriteClick}
                                 classes={{ root: classes.styledCheckbox }}

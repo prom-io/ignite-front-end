@@ -208,6 +208,7 @@ export class TopicStatusesStore {
         this.statusesOnTopic = [];
         this.activeTab = "hot";
         this.pending = false;
+        this.hasMore = true;
     };
 
     @action

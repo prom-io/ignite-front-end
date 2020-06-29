@@ -7,7 +7,7 @@ import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
 import { StatusListItem } from "../../Status/components/StatusListItem";
-import TopicsHashButton from "../../Topics/components/TopicsHashButton";
+import { TopicsPopularScroll } from "./TopicsPopularScroll";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
@@ -52,18 +52,6 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table"
-    },
-    hashBtnBlock: {
-        display: "none",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        height: "83px",
-        padding: "0 0 0 15px",
-        whiteSpace: 'nowrap',
-        overflowX: 'auto',
-        [theme.breakpoints.down('sm')]: {
-            display: "flex",
-        },
     }
 }));
 
@@ -74,15 +62,16 @@ const _TopicStatusList = ({
     hasMore,
     statusesOnTopic,
     statusLikePendingMap,
+    repostsPendingMap,
     changeTabAndFetchStatuses,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
-    setIsTopicsMenuOpen,
+    setIsTopicsMenuOpen
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-    
+
     return (
         <>
             <div className={classes.topicListHeader}>
@@ -114,14 +103,7 @@ const _TopicStatusList = ({
                 </div>
             </div>
 
-            {/* ---------------тут будет скролл с кнопками -------*/}
-                <div className={classes.hashBtnBlock}>
-                    <TopicsHashButton>Long Tag #4</TopicsHashButton>
-                    <TopicsHashButton>Long Tag #1</TopicsHashButton>
-                    <TopicsHashButton>Long Tag #50</TopicsHashButton>
-                    <TopicsHashButton>Long Tag #3</TopicsHashButton>
-                </div>
-            
+            <TopicsPopularScroll />
 
             <InfiniteScroll
                 next={fetchAction}
@@ -153,7 +135,7 @@ const _TopicStatusList = ({
                             currentUser && currentUser.id === status.account.id
                         }
                         statusLikePending={statusLikePendingMap[status.id]}
-                        // repostPending={repostsPendingMap[status.id]}
+                        repostPending={repostsPendingMap[status.id]}
                         link
                     />
                 ))}
@@ -162,17 +144,23 @@ const _TopicStatusList = ({
     );
 };
 
-const mapMobxToProps = ({ authorization, topicStatuses, topicsPopular }) => ({
+const mapMobxToProps = ({
+    authorization,
+    topicStatuses,
+    topicsPopular,
+    createStatus
+}) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
     hasMore: topicStatuses.hasMore,
     statusesOnTopic: topicStatuses.statusesOnTopic,
     statusLikePendingMap: topicStatuses.statusLikePendingMap,
+    repostsPendingMap: createStatus.pendingRepostsMap,
     changeTabAndFetchStatuses: topicStatuses.changeTabAndFetchStatuses,
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
     followStatusAuthor: topicStatuses.followStatusAuthor,
-    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen,
+    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

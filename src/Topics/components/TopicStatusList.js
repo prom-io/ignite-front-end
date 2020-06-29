@@ -68,12 +68,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _TopicStatusList = ({
+    fetchAction,
     currentUser,
     activeTab,
+    hasMore,
     statusesOnTopic,
     statusLikePendingMap,
     changeTabAndFetchStatuses,
-    fetchAllStatuses,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
@@ -123,7 +124,7 @@ const _TopicStatusList = ({
             
 
             <InfiniteScroll
-                next={fetchAllStatuses}
+                next={fetchAction}
                 loader={
                     <div className={classes.centered}>
                         <FadeLoader
@@ -134,7 +135,7 @@ const _TopicStatusList = ({
                 }
                 dataLength={statusesOnTopic.length}
                 style={{ overflowY: "hidden" }}
-                hasMore={true}
+                hasMore={hasMore}
             >
                 {statusesOnTopic.map(status => (
                     <StatusListItem
@@ -164,11 +165,10 @@ const _TopicStatusList = ({
 const mapMobxToProps = ({ authorization, topicStatuses, topicsPopular }) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
+    hasMore: topicStatuses.hasMore,
     statusesOnTopic: topicStatuses.statusesOnTopic,
     statusLikePendingMap: topicStatuses.statusLikePendingMap,
     changeTabAndFetchStatuses: topicStatuses.changeTabAndFetchStatuses,
-    fetchStatusesOnTopic: topicStatuses.fetchStatusesOnTopic,
-    fetchAllStatuses: topicStatuses.fetchAllStatuses,
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
     followStatusAuthor: topicStatuses.followStatusAuthor,

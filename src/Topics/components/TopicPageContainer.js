@@ -1,10 +1,11 @@
 import React from "react";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 import { Button, makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
 import { TopicStatusList } from "./TopicStatusList";
-import { useStore, useLocalization } from "../../store/hooks";
+import { localized } from "../../localization/components";
+import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     topicTitle: {
@@ -27,16 +28,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const TopicPageContainer = observer(() => {
+const _TopicPageContainer = ({
+    followTopic,
+    fetchStatusesOnTopic,
+    routerStore,
+    l
+}) => {
     const classes = useStyles();
-    const { l } = useLocalization();
-    const topicStatuses = useStore().topicStatuses;
-    const { currentTopicId, followTopic } = topicStatuses;
 
     return (
         <>
             <div className={classes.topicTitle}>
-                <BackButton params={currentTopicId} toTopics />
+                <BackButton params={routerStore.router.params.title} toTopics />
                 <Button
                     className={classes.followTopicButton}
                     variant="contained"
@@ -46,7 +49,17 @@ export const TopicPageContainer = observer(() => {
                     {l("user.profile.follow")}
                 </Button>
             </div>
-            <TopicStatusList />
+            <TopicStatusList fetchAction={fetchStatusesOnTopic} />
         </>
     );
+};
+
+const mapMobxToProps = ({ topicStatuses, store }) => ({
+    followTopic: topicStatuses.followTopic,
+    fetchStatusesOnTopic: topicStatuses.fetchStatusesOnTopic,
+    routerStore: store
 });
+
+export const TopicPageContainer = localized(
+    inject(mapMobxToProps)(observer(_TopicPageContainer))
+);

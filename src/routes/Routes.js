@@ -98,25 +98,21 @@ export const Routes = {
         beforeExit: () => {
             store.topicStatuses.reset();
             store.topicsPopular.reset();
-        },
-        onExit: () => {
-            // store.topicStatuses.reset();
-            // store.topicsPopular.reset();
-        },
+        }
     }),
     topic: new Route({
-        path: '/topic/:id',
+        path: '/topic/:title',
         component: <TopicPage />,
         beforeEnter: (route, params) => {
             store.topicsPopular.fetchTopicsPopular();
-            store.topicStatuses.fetchStatusesOnTopic(params.id);
+            store.topicStatuses.fetchTopicInfo(params.title);
             store.userCard.setDisplayMode('currentUser');
         },
         onParamsChange: (route, params) => {
             store.topicStatuses.resetStatuses();
-            store.topicStatuses.fetchStatusesOnTopic(params.id);
+            store.topicStatuses.fetchTopicInfo(params.title);
         },
-        onExit: () => {
+        beforeExit: () => {
             store.topicsPopular.reset();
             store.topicStatuses.reset();
         },

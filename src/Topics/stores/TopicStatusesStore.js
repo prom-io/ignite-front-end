@@ -6,7 +6,7 @@ export class TopicStatusesStore {
     statusesOnTopic = [];
 
     @observable
-    currentTopicId = undefined;
+    currentTopic = {};
 
     @observable
     activeTab = "hot";
@@ -17,6 +17,9 @@ export class TopicStatusesStore {
     @observable
     pending = false;
 
+    @observable
+    hasMore = true;
+
     authorizationStore = undefined;
 
     constructor(authorizationStore) {
@@ -26,24 +29,51 @@ export class TopicStatusesStore {
     @action
     fetchAllStatuses = () => {
         this.pending = true;
-        console.log(`fetching all ${this.activeTab} statuses`);
+        let url;
+        let language = localStorage.getItem("language");
+        if (language !== "en" && language !== "kr") {
+            language = "en";
+        }
+        if (this.statusesOnTopic.length !== 0) {
+            const maxId = this.statusesOnTopic[this.statusesOnTopic.length - 1].id;
+            url = `/api/v1/statuses?only_with_hash_tags=true&laguage=${language}&type=${this.activeTab}&max_id=${maxId}`;
+        } else {
+            url = `/api/v1/statuses?only_with_hash_tags=true&laguage=${language}&type=${this.activeTab}`;
+        }
         axiosInstance
-            .get("/api/v1/timelines/global")
+            .get(url)
             .then(({ data }) => {
-                this.statusesOnTopic.push(...data);
+                if (data.length !== 0) {
+                    this.statusesOnTopic.push(...data);
+                } else {
+                    this.hasMore = false;
+                }
             })
             .finally(() => (this.pending = false));
     };
 
     @action
-    fetchStatusesOnTopic = id => {
-        this.currentTopicId = id;
+    fetchStatusesOnTopic = () => {
         this.pending = true;
-        console.log(`fetching ${this.activeTab} statuses on topic: ${id}`);
+        let url;
+        let language = localStorage.getItem("language");
+        if (language !== "en" && language !== "kr") {
+            language = "en";
+        }
+        if (this.statusesOnTopic.length !== 0) {
+            const maxId = this.statusesOnTopic[this.statusesOnTopic.length - 1].id;
+            url = `/api/v1/topics/${this.currentTopic.title}/statuses?laguage=${language}&type=${this.activeTab}&max_id=${maxId}`;
+        } else {
+            url = `/api/v1/topics/${this.currentTopic.title}/statuses?laguage=${language}&type=${this.activeTab}`;
+        }
         axiosInstance
-            .get("/api/v1/timelines/global")
+            .get(url)
             .then(({ data }) => {
-                this.statusesOnTopic.push(...data);
+                if (data.length !== 0) {
+                    this.statusesOnTopic.push(...data);
+                } else {
+                    this.hasMore = false;
+                }
             })
             .finally(() => (this.pending = false));
     };
@@ -52,16 +82,30 @@ export class TopicStatusesStore {
     changeTabAndFetchStatuses = activeTab => {
         this.activeTab = activeTab;
         this.statusesOnTopic = [];
-        if (!this.currentTopicId) {
+        if (!this.currentTopic.id) {
             this.fetchAllStatuses();
         } else {
-            this.fetchStatusesOnTopic(this.currentTopicId);
+            this.fetchStatusesOnTopic();
         }
     };
 
     @action
+    fetchTopicInfo = title => {
+        let language = localStorage.getItem("language");
+        if (language !== "en" && language !== "kr") {
+            language = "en";
+        }
+        axiosInstance
+            .get(`/api/v1/topics/${title}?language=${language}`)
+            .then(({ data }) => {
+                this.currentTopic = data;
+                this.fetchStatusesOnTopic();
+            });
+    };
+
+    @action
     followTopic = () => {
-        console.log("follow topic: ", this.currentTopicId);
+        console.log("follow topic: ", this.currentTopic.title);
     };
 
     @action
@@ -141,19 +185,18 @@ export class TopicStatusesStore {
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`).then(() => {
-                // this.unfollowDialogOpen = false;
                 this.statusesOnTopic = this.statusesOnTopic.map(status => {
                     if (status.account.id === authorId) {
                         status.account.following = false;
                     }
                     return status;
-                })
+                });
                 this.authorizationStore.currentUser.follows_count -= 1;
                 this.statusesOnTopic = [];
-                if (!this.currentTopicId) {
+                if (!this.currentTopic.id) {
                     this.fetchAllStatuses();
                 } else {
-                    this.fetchStatusesOnTopic(this.currentTopicId);
+                    this.fetchStatusesOnTopic();
                 }
             });
         }
@@ -161,7 +204,7 @@ export class TopicStatusesStore {
 
     @action
     reset = () => {
-        this.currentTopicId = undefined;
+        this.currentTopic = {};
         this.statusesOnTopic = [];
         this.activeTab = "hot";
         this.pending = false;

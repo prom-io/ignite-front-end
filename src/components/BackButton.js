@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const _BackButton = ({ title, toHome, toTopics, params, routerStore, l }) => {
     const classes = useStyles();
-    console.log('title', title);
     
     return (
         <div className={classes.backButtonWrapper}>

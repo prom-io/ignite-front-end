@@ -53,7 +53,7 @@ const _TopicPopularItem = ({ topic, routerStore, l }) => {
         <Link
             className={classes.topicItemBody}
             view={Routes.topic}
-            params={{ id: topic.id }}
+            params={{ title: topic.title }}
             store={routerStore}
         >
             <div className={classes.topicItemHeader}>

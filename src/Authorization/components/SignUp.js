@@ -4,7 +4,7 @@ import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
 import { useLocalization, useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
             color: '#FF5C01',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+      },
     },
     contentBlock: {
         display: 'flex',
@@ -34,6 +37,13 @@ const useStyles = makeStyles(() => ({
             fontSize: '15px',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+      [theme.breakpoints.down('sm')]: {
+        '& span': {
+          fontSize: '14px',
+        },
+        marginTop: '18px',
+        paddingTop: '18px',
+      },
     },
     notes: {
         marginTop: '12px',
@@ -46,6 +56,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: "14px",
+      }
     },
     button: {
         width: '187px',

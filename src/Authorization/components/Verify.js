@@ -5,12 +5,16 @@ import { FadeLoader } from 'react-spinners';
 import { useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentBlock: {
         margin: '16px 0 30px 0',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+            marginTop: '12px 0 24px 0',
+        },
     },
     notes: {
         marginTop: '24px',
@@ -23,6 +27,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "14px",
+        }
     },
     button: {
         width: '187px',

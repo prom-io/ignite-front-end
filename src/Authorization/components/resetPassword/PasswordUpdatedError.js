@@ -4,7 +4,7 @@ import { Button, DialogContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStore, useLocalization } from '../../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentDescription: {
         paddingBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -15,6 +15,9 @@ const useStyles = makeStyles(() => ({
         '& a': {
             textDecoration: 'underline',
         },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+      },
     },
     contentBlock: {
         display: 'flex',
@@ -31,6 +34,12 @@ const useStyles = makeStyles(() => ({
             marginTop: 8,
             fontSize: '15px',
         },
+      [theme.breakpoints.down('sm')]: {
+        '& span': {
+          fontSize: '14px',
+        },
+        marginTop: '18px',
+      },
     },
     descriptionBold: {
         margin: '16px 0',
@@ -48,6 +57,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: "14px",
+      }
     },
     button: {
         width: '187px',

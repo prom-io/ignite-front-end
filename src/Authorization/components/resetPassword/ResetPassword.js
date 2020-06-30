@@ -3,12 +3,15 @@ import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles, TextField } from '@material-ui/core';
 import { useLocalization, useStore } from '../../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
         color: '#1C1C1C',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     form: {
         display: 'flex',

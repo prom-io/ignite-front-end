@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
         background: '#FFFBF8',
         fontFamily: 'Museo Sans Cyrl Bold',
         fontSize: '28px',
+        [theme.breakpoints.down('sm')]: {
+            padding: '12px',
+            fontSize: '24px',
+        },
     },
     titleHeader: {
         display: 'flex',
@@ -27,6 +31,9 @@ const useStyles = makeStyles(theme => ({
             width: 37,
             height: 61,
             backgroundSize: '100%',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 0,
         },
     },
     closeIcon: {
@@ -60,7 +67,7 @@ const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
                     )
                     : (
                         <a rel="noopener noreferrer" className={classes.logoIcon}>
-                            <div className="header-logo" />
+                            <div className="header-logo" style={{display: 'block'}}/>
                         </a>
                     )}
                 <span className={classes.titleHeaderText}>{title}</span>

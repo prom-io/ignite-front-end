@@ -135,10 +135,17 @@ const dialogType = {
     },
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     dialogPaperWidthSm: {
         maxWidth: '648px',
     },
+    dialogPaperRoot: {
+        '& .MuiDialogContent-root':{
+            [theme.breakpoints.down('sm')]: {
+                padding: '24px 12px'
+            },
+        }
+    }
 }));
 
 const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
@@ -158,7 +165,7 @@ const _GenericAuthorizationDialog = observer(({ fullScreen }) => {
             fullScreen={fullScreen}
             fullWidth
             scroll="body"
-            classes={{ paperWidthSm: classes.dialogPaperWidthSm }}
+            classes={{ paperWidthSm: classes.dialogPaperWidthSm, root: classes.dialogPaperRoot }}
         >
             <CustomDialogTitle
                 title={l(dialogType[genericAuthorizationDialogType].title)}

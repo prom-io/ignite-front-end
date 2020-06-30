@@ -12,7 +12,10 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.primary.main,
             textDecoration: "underline",
             fontFamily: "Museo Sans Cyrl Bold"
-        }
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     contentBlock: {
         display: "flex",
@@ -30,7 +33,14 @@ const useStyles = makeStyles(theme => ({
         "& span": {
             marginTop: 8,
             fontSize: "15px"
-        }
+        },
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                fontSize: '14px',
+            },
+            marginTop: "12px",
+            paddingTop: "20px",
+        },
     },
     notes: {
         marginTop: "32px",
@@ -42,6 +52,9 @@ const useStyles = makeStyles(theme => ({
         "& a": {
             color: theme.palette.primary.main,
             fontFamily: "Museo Sans Cyrl Bold"
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "14px",
         }
     },
     button: {

@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     contentBlock: {
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
         borderTop: '1px solid #F1EBE8',
         marginTop: '32px',
         paddingTop: '32px',
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.down('sm')]: {
             '& span': {
-                fontSize: '14px',
+                fontSize: '12px',
             },
             marginTop: '18px',
             paddingTop: '18px',

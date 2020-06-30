@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     },
     loginCardContent: {
         padding: '24px 60px',
+        [theme.breakpoints.down('sm')]: {
+            padding: '24px 12px',
+        },
     },
     loginButton: {
         maxWidth: 374,

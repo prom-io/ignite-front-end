@@ -56,14 +56,16 @@ const _StatusBottom = ({
     currentUserIsAuthor,
     status,
     currentUser,
-    setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
 }) => {
     const classes = useStyles();
     const theme = useTheme();
 
     const handleFavoriteClick = () => {
         if (!currentUser) {
-            setLoginDialogOpen(true);
+            setGenericAuthorizationDialogOpen(true);
+            setGenericAuthorizationDialogType('login');
             return;
         }
         onFavouriteClick(statusId, !favourited);

@@ -150,17 +150,13 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                 </div>
               </div>
             </div>
-            <Hidden mdUp>
-              {currentUser ? (
-                  <OpenCreateStatusDialogFloatingActionButton />
-                )
-                : <div />}
-            </Hidden>
             <NavigationalDrawer />
             <CreateStatusDialog />
           </nav>
         </Toolbar>
       </MuiAppBar>
+      
+      { currentUser && <OpenCreateStatusDialogFloatingActionButton/> }
       
       <nav className={classes.mobileNav}>
         <AppBarLink

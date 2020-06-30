@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentDescription: {
         fontFamily: 'Museo Sans Cyrl Bold',
         fontSize: '15px',
@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
         '& a': {
             color: '#FF5C01',
             fontFamily: 'Museo Sans Cyrl Bold',
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
         },
     },
     contentBlock: {
@@ -31,6 +34,13 @@ const useStyles = makeStyles(() => ({
             marginTop: 8,
             fontSize: '15px',
         },
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                fontSize: '14px',
+            },
+            marginTop: '12px',
+            paddingTop: '20px',
+        },
     },
     notes: {
         marginTop: '32px',
@@ -43,6 +53,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "14px",
+        }
     },
     button: {
         width: '187px',

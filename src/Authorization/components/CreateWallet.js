@@ -7,7 +7,7 @@ import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
 import { useLocalization, useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',
@@ -19,6 +19,9 @@ const useStyles = makeStyles(() => ({
         color: '#1C1C1C',
         '& a': {
             color: '#FF5C01',
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
         },
     },
     loginInput: {

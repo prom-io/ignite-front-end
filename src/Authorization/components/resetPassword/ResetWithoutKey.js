@@ -4,11 +4,14 @@ import { Button, DialogContent, makeStyles } from '@material-ui/core';
 import { HashVerificationMode } from '../../stores';
 import { useStore, useLocalization } from '../../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentBlock: {
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
+      [theme.breakpoints.down('sm')]: {
+          fontSize: '14px',
+      },
     },
     notes: {
         margin: '12px 0',
@@ -21,6 +24,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: "14px",
+      }
     },
     button: {
         width: '187px',

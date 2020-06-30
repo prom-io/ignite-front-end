@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles } from '@material-ui/core';
 import { useStore, useLocalization } from '../../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     contentDescription: {
         paddingBottom: '16px',
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -11,6 +11,9 @@ const useStyles = makeStyles(() => ({
         lineHeight: '26px',
         color: '#1C1C1C',
         borderBottom: '1px solid #F1EBE8',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     contentBlock: {
         display: 'flex',
@@ -25,6 +28,12 @@ const useStyles = makeStyles(() => ({
         },
         '& span': {
             fontSize: '15px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                fontSize: '14px',
+            },
+            marginTop: '18px',
         },
     },
     contentBlockDescription: {

@@ -4,7 +4,7 @@ import { Button, Checkbox, DialogContent, makeStyles } from '@material-ui/core';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
 import { useLocalization, useStore } from '../../store/hooks';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     dialogContentRoot: {
         display: 'flex',
         flexDirection: 'column',
@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
         color: '#1C1C1C',
         '& span': {
             color: '#FF5C01',
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
         },
     },
     infoCheckingBlock: {
@@ -53,10 +56,12 @@ const useStyles = makeStyles(() => ({
         flexDirection: 'column',
         fontSize: 15,
         marginLeft: 24,
+        width: '90%'
     },
     checkboxTitle: {
         display: 'flex',
         alignItems: 'flex-start',
+        width: '90%',
     },
     title: {
         fontFamily: 'Museo Sans Cyrl Bold',
@@ -66,6 +71,9 @@ const useStyles = makeStyles(() => ({
         marginTop: 8,
         overflowWrap: 'break-word',
         fontFamily: 'Museo Sans Cyrl Regular',
+        [theme.breakpoints.down('sm')]: {
+            width: '84%'
+        },
     },
     button: {
         width: '187px',

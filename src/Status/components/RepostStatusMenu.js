@@ -34,7 +34,8 @@ const _RepostStatusMenu = ({
     canBeReposted,
     currentUserIsAuthor,
     currentUser,
-    setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -42,7 +43,8 @@ const _RepostStatusMenu = ({
 
     const handleToggle = () => {
         if (!currentUser) {
-            setLoginDialogOpen(true);
+            setGenericAuthorizationDialogOpen(true);
+            setGenericAuthorizationDialogType('login');
             return;
         }
         setOpen(prevOpen => currentUser && !prevOpen);
@@ -119,9 +121,10 @@ const _RepostStatusMenu = ({
     );
 };
 
-const mampMobxToProps = ({ authorization, login }) => ({
+const mampMobxToProps = ({ authorization, genericAuthorizationDialog }) => ({
     currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen: genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType: genericAuthorizationDialog.setGenericAuthorizationDialogType,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

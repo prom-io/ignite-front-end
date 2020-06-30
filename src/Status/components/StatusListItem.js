@@ -20,7 +20,8 @@ const _StatusListItem = ({
     routerStore,
     hideThreadLink,
     currentUser,
-    setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
 }) => {
     const content = (
         <Card
@@ -59,7 +60,8 @@ const _StatusListItem = ({
                 currentUserIsAuthor={currentUserIsAuthor}
                 status={status}
                 currentUser={currentUser}
-                setLoginDialogOpen={setLoginDialogOpen}
+                setGenericAuthorizationDialogOpen={setGenericAuthorizationDialogOpen}
+                setGenericAuthorizationDialogType={setGenericAuthorizationDialogType}
             />
         </Card>
     );
@@ -82,10 +84,11 @@ const _StatusListItem = ({
     return content;
 };
 
-const mapMobxToProps = ({ store, authorization, login }) => ({
+const mapMobxToProps = ({ store, authorization, genericAuthorizationDialog }) => ({
     routerStore: store,
     currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen: genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType: genericAuthorizationDialog.setGenericAuthorizationDialogType,
 });
 
 export const StatusListItem = inject(mapMobxToProps)(_StatusListItem);

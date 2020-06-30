@@ -20,6 +20,15 @@ export class TopicStatusesStore {
     @observable
     hasMore = true;
 
+    @observable
+    currentStatusId = undefined;
+
+    @observable
+    currentStatusUsername = undefined;
+
+    @observable
+    unfollowDialogOpen = false;
+
     authorizationStore = undefined;
 
     constructor(authorizationStore) {
@@ -178,6 +187,13 @@ export class TopicStatusesStore {
     };
 
     @action
+    unfollowStatusAuthorWithDialog = (statusId, username) => {
+        this.currentStatusId = statusId;
+        this.currentStatusUsername = username;
+        this.unfollowDialogOpen = true;
+    }
+
+    @action
     unfollowStatusAuthor = () => {
         if (this.authorizationStore.accessToken) {
             const authorId = this.statusesOnTopic
@@ -185,6 +201,7 @@ export class TopicStatusesStore {
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
             axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`).then(() => {
+                this.unfollowDialogOpen = false;
                 this.statusesOnTopic = this.statusesOnTopic.map(status => {
                     if (status.account.id === authorId) {
                         status.account.following = false;
@@ -192,14 +209,13 @@ export class TopicStatusesStore {
                     return status;
                 });
                 this.authorizationStore.currentUser.follows_count -= 1;
-                this.statusesOnTopic = [];
-                if (!this.currentTopic.id) {
-                    this.fetchAllStatuses();
-                } else {
-                    this.fetchStatusesOnTopic();
-                }
             });
         }
+    };
+
+    @action
+    setUnfollowDialogOpen = unfollowDialogOpen => {
+        this.unfollowDialogOpen = unfollowDialogOpen;
     };
 
     @action
@@ -209,6 +225,9 @@ export class TopicStatusesStore {
         this.activeTab = "hot";
         this.pending = false;
         this.hasMore = true;
+        this.currentStatusId = undefined;
+        this.currentStatusUsername = undefined;
+        this.unfollowDialogOpen = false;
     };
 
     @action

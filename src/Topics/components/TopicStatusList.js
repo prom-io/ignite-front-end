@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
+import { UnfollowDialog } from '../../Follow/components';
 import { StatusListItem } from "../../Status/components/StatusListItem";
 import { TopicsPopularScroll } from "./TopicsPopularScroll";
 
@@ -67,7 +68,13 @@ const _TopicStatusList = ({
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
-    setIsTopicsMenuOpen
+    setIsTopicsMenuOpen,
+
+    unfollowStatusAuthorWithDialog,
+    currentStatusUsername,
+    unfollowStatusAuthor,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -129,7 +136,7 @@ const _TopicStatusList = ({
                                 : unfavouriteStatus(statusId)
                         }
                         onFollowRequest={followStatusAuthor}
-                        // onUnfollowRequest={onUnfollowRequest}
+                        onUnfollowRequest={unfollowStatusAuthorWithDialog}
                         displayMenu={Boolean(currentUser)}
                         currentUserIsAuthor={
                             currentUser && currentUser.id === status.account.id
@@ -140,6 +147,13 @@ const _TopicStatusList = ({
                     />
                 ))}
             </InfiniteScroll>
+
+            <UnfollowDialog
+                username={currentStatusUsername}
+                unfollowAction={unfollowStatusAuthor}
+                unfollowDialogOpen={unfollowDialogOpen}
+                setUnfollowDialogOpen={setUnfollowDialogOpen}
+            />
         </>
     );
 };
@@ -160,7 +174,13 @@ const mapMobxToProps = ({
     favouriteStatus: topicStatuses.favouriteStatus,
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
     followStatusAuthor: topicStatuses.followStatusAuthor,
-    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen
+    setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen,
+
+    unfollowStatusAuthorWithDialog: topicStatuses.unfollowStatusAuthorWithDialog,
+    currentStatusUsername: topicStatuses.currentStatusUsername,
+    unfollowStatusAuthor: topicStatuses.unfollowStatusAuthor,
+    setUnfollowDialogOpen: topicStatuses.setUnfollowDialogOpen,
+    unfollowDialogOpen: topicStatuses.unfollowDialogOpen
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

@@ -1,10 +1,9 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
-import useTheme from "@material-ui/core/styles/useTheme";
-import { FadeLoader } from "react-spinners";
 
 import { TopicsHashButton } from "./TopicsHashButton";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -29,16 +28,12 @@ const useStyles = makeStyles(theme => ({
 
 const _TopicsPopularScroll = ({ topicsPopularItems, pending, routerStore }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <div className={classes.hashBtnBlock}>
             {pending ? (
                 <div className={classes.centered}>
-                    <FadeLoader
-                        color={theme.palette.primary.main}
-                        css="transform: scale(0.5); top: 10px; left: 10px"
-                    />
+                    <Loader size="md" />
                 </div>
             ) : (
                 topicsPopularItems.map(topic => (

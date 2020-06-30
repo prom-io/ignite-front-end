@@ -38,53 +38,75 @@ export class TopicStatusesStore {
     @action
     fetchAllStatuses = () => {
         this.pending = true;
-        let url;
         let language = localStorage.getItem("language");
         if (language !== "en" && language !== "kr") {
             language = "en";
         }
         if (this.statusesOnTopic.length !== 0) {
             const maxId = this.statusesOnTopic[this.statusesOnTopic.length - 1].id;
-            url = `/api/v1/statuses?only_with_hash_tags=true&laguage=${language}&type=${this.activeTab}&max_id=${maxId}`;
+            axiosInstance
+                .get(
+                    `/api/v1/statuses?only_with_hash_tags=true&language=${language}&type=${this.activeTab}&max_id=${maxId}`
+                )
+                .then(({ data }) => {
+                    if (data.length !== 0) {
+                        this.statusesOnTopic.push(...data);
+                    } else {
+                        this.hasMore = false;
+                    }
+                })
+                .finally(() => (this.pending = false));
         } else {
-            url = `/api/v1/statuses?only_with_hash_tags=true&laguage=${language}&type=${this.activeTab}`;
+            axiosInstance
+                .get(
+                    `/api/v1/statuses?only_with_hash_tags=true&language=${language}&type=${this.activeTab}`
+                )
+                .then(({ data }) => {
+                    if (data.length !== 0) {
+                        this.statusesOnTopic = data;
+                    } else {
+                        this.hasMore = false;
+                    }
+                })
+                .finally(() => (this.pending = false));
         }
-        axiosInstance
-            .get(url)
-            .then(({ data }) => {
-                if (data.length !== 0) {
-                    this.statusesOnTopic.push(...data);
-                } else {
-                    this.hasMore = false;
-                }
-            })
-            .finally(() => (this.pending = false));
     };
 
     @action
     fetchStatusesOnTopic = () => {
         this.pending = true;
-        let url;
         let language = localStorage.getItem("language");
         if (language !== "en" && language !== "kr") {
             language = "en";
         }
         if (this.statusesOnTopic.length !== 0) {
             const maxId = this.statusesOnTopic[this.statusesOnTopic.length - 1].id;
-            url = `/api/v1/topics/${this.currentTopic.title}/statuses?laguage=${language}&type=${this.activeTab}&max_id=${maxId}`;
+            axiosInstance
+                .get(
+                    `/api/v1/topics/${this.currentTopic.title}/statuses?language=${language}&type=${this.activeTab}&max_id=${maxId}`
+                )
+                .then(({ data }) => {
+                    if (data.length !== 0) {
+                        this.statusesOnTopic.push(...data);
+                    } else {
+                        this.hasMore = false;
+                    }
+                })
+                .finally(() => (this.pending = false));
         } else {
-            url = `/api/v1/topics/${this.currentTopic.title}/statuses?laguage=${language}&type=${this.activeTab}`;
+            axiosInstance
+                .get(
+                    `/api/v1/topics/${this.currentTopic.title}/statuses?language=${language}&type=${this.activeTab}`
+                )
+                .then(({ data }) => {
+                    if (data.length !== 0) {
+                        this.statusesOnTopic = data;
+                    } else {
+                        this.hasMore = false;
+                    }
+                })
+                .finally(() => (this.pending = false));
         }
-        axiosInstance
-            .get(url)
-            .then(({ data }) => {
-                if (data.length !== 0) {
-                    this.statusesOnTopic.push(...data);
-                } else {
-                    this.hasMore = false;
-                }
-            })
-            .finally(() => (this.pending = false));
     };
 
     @action
@@ -191,7 +213,7 @@ export class TopicStatusesStore {
         this.currentStatusId = statusId;
         this.currentStatusUsername = username;
         this.unfollowDialogOpen = true;
-    }
+    };
 
     @action
     unfollowStatusAuthor = () => {

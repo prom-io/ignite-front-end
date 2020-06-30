@@ -1,14 +1,13 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles, Hidden } from "@material-ui/core";
-import useTheme from "@material-ui/core/styles/useTheme";
+import { makeStyles } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FadeLoader } from "react-spinners";
 
 import { MenuIcon } from "../../icons/MenuIcon";
-import { UnfollowDialog } from '../../Follow/components';
+import { UnfollowDialog } from "../../Follow/components";
 import { StatusListItem } from "../../Status/components/StatusListItem";
 import { TopicsPopularScroll } from "./TopicsPopularScroll";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
@@ -60,6 +59,7 @@ const _TopicStatusList = ({
     fetchAction,
     currentUser,
     activeTab,
+    pending,
     hasMore,
     statusesOnTopic,
     statusLikePendingMap,
@@ -69,7 +69,6 @@ const _TopicStatusList = ({
     unfavouriteStatus,
     followStatusAuthor,
     setIsTopicsMenuOpen,
-
     unfollowStatusAuthorWithDialog,
     currentStatusUsername,
     unfollowStatusAuthor,
@@ -77,7 +76,6 @@ const _TopicStatusList = ({
     unfollowDialogOpen
 }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <>
@@ -112,41 +110,44 @@ const _TopicStatusList = ({
 
             <TopicsPopularScroll />
 
-            <InfiniteScroll
-                next={fetchAction}
-                loader={
-                    <div className={classes.centered}>
-                        <FadeLoader
-                            css="transform: scale(0.5)"
-                            color={theme.palette.primary.main}
+            {pending && statusesOnTopic.length === 0 ? (
+                <div className={classes.centered}>
+                    <Loader size="lg" />
+                </div>
+            ) : (
+                <InfiniteScroll
+                    next={fetchAction}
+                    loader={
+                        <div className={classes.centered}>
+                            <Loader size="lg" />
+                        </div>
+                    }
+                    dataLength={statusesOnTopic.length}
+                    style={{ overflowY: "hidden" }}
+                    hasMore={hasMore}
+                >
+                    {statusesOnTopic.map(status => (
+                        <StatusListItem
+                            key={status.id}
+                            status={status}
+                            onFavouriteStatusChange={(statusId, favourited) =>
+                                favourited
+                                    ? favouriteStatus(statusId)
+                                    : unfavouriteStatus(statusId)
+                            }
+                            onFollowRequest={followStatusAuthor}
+                            onUnfollowRequest={unfollowStatusAuthorWithDialog}
+                            displayMenu={Boolean(currentUser)}
+                            currentUserIsAuthor={
+                                currentUser && currentUser.id === status.account.id
+                            }
+                            statusLikePending={statusLikePendingMap[status.id]}
+                            repostPending={repostsPendingMap[status.id]}
+                            link
                         />
-                    </div>
-                }
-                dataLength={statusesOnTopic.length}
-                style={{ overflowY: "hidden" }}
-                hasMore={hasMore}
-            >
-                {statusesOnTopic.map(status => (
-                    <StatusListItem
-                        key={status.id}
-                        status={status}
-                        onFavouriteStatusChange={(statusId, favourited) =>
-                            favourited
-                                ? favouriteStatus(statusId)
-                                : unfavouriteStatus(statusId)
-                        }
-                        onFollowRequest={followStatusAuthor}
-                        onUnfollowRequest={unfollowStatusAuthorWithDialog}
-                        displayMenu={Boolean(currentUser)}
-                        currentUserIsAuthor={
-                            currentUser && currentUser.id === status.account.id
-                        }
-                        statusLikePending={statusLikePendingMap[status.id]}
-                        repostPending={repostsPendingMap[status.id]}
-                        link
-                    />
-                ))}
-            </InfiniteScroll>
+                    ))}
+                </InfiniteScroll>
+            )}
 
             <UnfollowDialog
                 username={currentStatusUsername}
@@ -166,6 +167,7 @@ const mapMobxToProps = ({
 }) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
+    pending: topicStatuses.pending,
     hasMore: topicStatuses.hasMore,
     statusesOnTopic: topicStatuses.statusesOnTopic,
     statusLikePendingMap: topicStatuses.statusLikePendingMap,
@@ -175,7 +177,6 @@ const mapMobxToProps = ({
     unfavouriteStatus: topicStatuses.unfavouriteStatus,
     followStatusAuthor: topicStatuses.followStatusAuthor,
     setIsTopicsMenuOpen: topicsPopular.setIsTopicsMenuOpen,
-
     unfollowStatusAuthorWithDialog: topicStatuses.unfollowStatusAuthorWithDialog,
     currentStatusUsername: topicStatuses.currentStatusUsername,
     unfollowStatusAuthor: topicStatuses.unfollowStatusAuthor,

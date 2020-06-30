@@ -21,6 +21,16 @@ export const orange = createMuiTheme({
                 },
             },
         },
+        MuiDialogContent: {
+            root: {
+                padding: '24px 64px 40px 64px',
+            },
+        },
+        MuiButton: {
+            root: {
+                borderRadius: '30px',
+            },
+        },
     },
     palette: {
         common: {

@@ -6,14 +6,14 @@ import { SettingsCard } from '../Settings/components';
 
 export const SettingsPage = () => (
     <Grid container>
-        <Grid item xs={12}>
+        <Grid item>
             <AppBar />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item>
             <Layout>
                 <Grid container spacing={2} className="content-container">
                     <Grid item md={3} />
-                    <Grid item xs={12} md={9} className="right-content-container">
+                    <Grid item md={9} className="right-content-container">
                         <SettingsCard />
                     </Grid>
                     <Grid item md={3} className="left-container" />

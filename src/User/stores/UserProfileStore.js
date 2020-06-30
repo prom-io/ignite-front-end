@@ -1,4 +1,4 @@
-import {observable, action, reaction} from "mobx";
+import {observable, action, reaction, toJS} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 
 export class UserProfileStore {
@@ -24,12 +24,14 @@ export class UserProfileStore {
     userStatusesStore = undefined;
     userFollowersStore = undefined;
     userFollowingStore = undefined;
+    createStatusStore = undefined;
 
-    constructor(authorizationStore, userStatusesStore, userFollowersStore, userFollowingStore) {
+    constructor(authorizationStore, userStatusesStore, userFollowersStore, userFollowingStore, createStatusStore) {
         this.authorizationStore = authorizationStore;
         this.userStatusesStore = userStatusesStore;
         this.userFollowersStore = userFollowersStore;
         this.userFollowingStore = userFollowingStore;
+        this.createStatusStore = createStatusStore;
 
         reaction(
             () => this.user,
@@ -37,6 +39,15 @@ export class UserProfileStore {
                 if (user) {
                     this.userStatusesStore.setBaseUrl(`/api/v1/accounts/${user.id}/statuses`);
                     this.userStatusesStore.fetchStatuses();
+                }
+            }
+        );
+
+        reaction(
+            () => this.createStatusStore.createdStatus,
+            createdStatus => {
+                if (createdStatus && this.user && this.user.id === createdStatus.account.id) {
+                    this.setStatusesCount(this.user.statuses_count + 1);
                 }
             }
         );
@@ -91,6 +102,7 @@ export class UserProfileStore {
                 this.user.following = true;
                 this.user.followers_count += 1;
                 this.userStatusesStore.followStatusAuthorByAuthorId(this.user.id);
+                this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count + 1);
             });
     };
 
@@ -101,6 +113,7 @@ export class UserProfileStore {
                 this.user.following = false;
                 this.user.followers_count -= 1;
                 this.userStatusesStore.unfollowStatusAuthorByAuthorId(this.user.id);
+                this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count - 1);
             });
     };
 
@@ -133,6 +146,7 @@ export class UserProfileStore {
 
     @action
     reset = () => {
+        this.userStatusesStore.reset();
         this.username = undefined;
         this.user = undefined;
         this.pending = false;

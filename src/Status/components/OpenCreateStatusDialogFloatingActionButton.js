@@ -6,9 +6,13 @@ import { EditIcon } from '../../icons/EditIcon';
 const useStyles = makeStyles(theme => ({
     fab: {
         position: 'fixed',
+        display: 'none',
         bottom: window.AndroidCallback ? theme.spacing(2) : theme.spacing(8),
         right: theme.spacing(2),
         zIndex: 1000,
+        [theme.breakpoints.down('sm')]: {
+            display: 'inline-flex',
+        },
     },
 }));
 

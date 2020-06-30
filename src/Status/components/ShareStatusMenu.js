@@ -72,6 +72,7 @@ export const ShareStatusMenu = ({ status }) => {
                         >
                             <div
                                 className="status-list-bottom-box-modal"
+                                style={{ padding: 0 }}
                                 onClick={handleClose}
                             >
                                 <ClickEventPropagationStopper>

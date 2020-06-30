@@ -1,10 +1,20 @@
 import React, { Fragment, useState } from 'react';
-import { inject, observer } from 'mobx-react';
-import { Button, Card, CardContent, makeStyles, TextField, Typography } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { localized } from '../../localization/components';
+import { observer } from 'mobx-react';
+import {
+    Button,
+    Card,
+    CardContent,
+    Checkbox,
+    FormControl,
+    FormControlLabel, IconButton, InputAdornment,
+    makeStyles,
+    TextField,
+    Typography,
+} from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { useLocalization, useStore } from '../../store/hooks';
 import Loader from '../../components/Loader';
+import { EyeIcon } from '../../icons/EyeIcon';
 
 const useStyles = makeStyles(theme => ({
     loginCard: {
@@ -15,7 +25,7 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '8px',
     },
     loginCardContent: {
-        padding: '20px',
+        padding: '24px 60px',
     },
     loginButton: {
         maxWidth: 374,
@@ -51,10 +61,11 @@ const useStyles = makeStyles(theme => ({
     },
     errorLabel: {
         color: theme.palette.error.main,
+        margin: 'auto',
+        fontSize: '15px',
     },
     loginInput: {
         display: 'flex',
-        maxWidth: '375px',
         width: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -63,7 +74,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        maxWidth: '375px',
+        width: '100%',
         margin: '16px auto 0 auto',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
@@ -73,6 +84,19 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer',
         '&:hover': {
             color: theme.palette.text.main,
+        },
+    },
+    loginForm: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    iconButton: {
+        '& svg': {
+            width: '24px',
+            height: '24px',
+        },
+        '&:hover': {
+            background: 'rgba(255,255,255,0)',
         },
     },
 }));
@@ -87,37 +111,73 @@ const getLabelFromSubmissionError = (error, l) => {
     return l('authorization.login.error.no-response');
 };
 
-const _LoginForm = ({
-    loginForm,
-    submissionError,
-    pending,
-    setFormValue,
-    doLogin,
-    setSignUpDialogOpen,
+export const LoginForm = observer(({
     hideLoginButton,
     hideSignUpButton,
     disableCard,
-    setLoginDialogOpen,
-    l,
 }) => {
     const classes = useStyles();
+    const { login, genericAuthorizationDialog } = useStore();
+    const { loginForm, submissionError, setFormValue, doLogin, pending } = login;
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = genericAuthorizationDialog;
+    const { l } = useLocalization();
     const [isRemember, setIsRemember] = useState(false);
+    const [passwordVisibility, setPasswordVisibility] = useState(false);
+
+
+    const handleClickShowPassword = () => {
+        setPasswordVisibility(!passwordVisibility);
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const content = (
-        <>
-            <TextField
-                label={l('authorization.login.wallet-address')}
-                value={loginForm.username}
-                onChange={event => setFormValue('username', event.target.value)}
-                className={`input-default ${classes.loginInput}`}
-            />
-            <TextField
-                label={l('authorization.login.password')}
-                value={loginForm.password}
-                onChange={event => setFormValue('password', event.target.value)}
-                className={`input-default ${classes.loginInput}`}
-                type="password"
-            />
+        <div className={classes.loginForm}>
+            <FormControl>
+                <TextField
+                    label={l('authorization.login.wallet-address')}
+                    value={loginForm.username}
+                    onChange={event => setFormValue('username', event.target.value)}
+                    className={`input-default ${classes.loginInput}`}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment
+                                position="end"
+                                className={classes.copyPasswordInputAdornment}
+                            />
+                        ),
+                    }}
+                />
+            </FormControl>
+            <FormControl classes={{ root: classes.input }}>
+                <TextField
+                    label={l('authorization.login.password')}
+                    value={loginForm.password}
+                    onChange={event => setFormValue('password', event.target.value)}
+                    className={`input-default ${classes.loginInput}`}
+                    type={passwordVisibility ? 'text' : 'password'}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    classes={{ root: classes.iconButton }}
+                                >
+                                    {passwordVisibility ? <Visibility /> : <EyeIcon />}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            </FormControl>
+
             {submissionError && (
                 <Typography
                     variant="body1"
@@ -132,7 +192,15 @@ const _LoginForm = ({
                     control={<Checkbox checked={isRemember} color="primary" onChange={() => setIsRemember(!isRemember)} name="remember" />}
                     label="Remember me"
                 />
-                <a className={classes.forgotPassword}>Forgot password?</a>
+                <a
+                    className={classes.forgotPassword}
+                    onClick={() => {
+                        setGenericAuthorizationDialogOpen(true);
+                        setGenericAuthorizationDialogType('forgotPassword');
+                    }}
+                >
+                    {l('authorization.login.forgot-password')}
+                </a>
             </div>
             {!hideLoginButton && (
                 <Button
@@ -154,15 +222,15 @@ const _LoginForm = ({
                     fullWidth
                     className={classes.signUpButton}
                     onClick={() => {
-                        setLoginDialogOpen(false);
-                        setSignUpDialogOpen(true);
+                        setGenericAuthorizationDialogOpen(true);
+                        setGenericAuthorizationDialogType('signUp');
                     }}
                     disabled={pending}
                 >
-                    {l('sign-up.beta-testing')}
+                    {l('sign-up')}
                 </Button>
             )}
-        </>
+        </div>
     );
 
     return (disableCard
@@ -177,18 +245,4 @@ const _LoginForm = ({
             </>
         )
     );
-};
-
-const mapMobxToProps = ({ login, signUp }) => ({
-    loginForm: login.loginForm,
-    pending: login.pending,
-    submissionError: login.submissionError,
-    setFormValue: login.setFormValue,
-    doLogin: login.doLogin,
-    setSignUpDialogOpen: signUp.setSignUpDialogOpen,
-    setLoginDialogOpen: login.setLoginDialogOpen,
 });
-
-export const LoginForm = localized(
-    inject(mapMobxToProps)(observer(_LoginForm)),
-);

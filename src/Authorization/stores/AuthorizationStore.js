@@ -1,4 +1,4 @@
-import {observable, action} from "mobx";
+import {observable, action, reaction} from "mobx";
 import {axiosInstance} from "../../api/axios-instance";
 import {store} from "../../store";
 
@@ -12,26 +12,47 @@ export class AuthorizationStore {
     @observable
     fetchingCurrentUser = false;
 
+    createStatusStore = undefined;
+
+    constructor(createStatusStore) {
+        this.createStatusStore = createStatusStore;
+
+        reaction(
+            () => this.createStatusStore.createdStatus,
+            createdStatus => {
+                if (createdStatus) {
+                    this.setStatusesCount(this.currentUser.statuses_count + 1);
+                }
+            }
+        );
+    }
+
     @action
     setAccessToken = accessToken => {
         localStorage.setItem("accessToken", accessToken);
         this.accessToken = accessToken;
-        this.fetchCurrentUser();
+        this.fetchCurrentUser(true);
     };
     
     @action
     setTempAccessToken = accessToken => {
         sessionStorage.setItem("accessToken", accessToken);
         this.accessToken = accessToken;
-        this.fetchCurrentUser();
+        this.fetchCurrentUser(true);
     };
 
     @action
-    fetchCurrentUser = () => {
+    fetchCurrentUser = isRedirect => {
         if (localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken")) {
             this.fetchingCurrentUser = true;
             axiosInstance.get("/api/v1/accounts/current")
-                .then(({data}) => this.currentUser = data)
+                .then(({data}) => {
+                    this.currentUser = data;
+                    if (isRedirect && (!data.avatar || data.id == data.username)) {
+                        // localStorage.setItem("firstAccess", true);
+                        window.location.pathname = '/edit-profile';
+                    }
+                })
                 .finally(() => this.fetchingCurrentUser = false);
         }
     };
@@ -42,6 +63,7 @@ export class AuthorizationStore {
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
         sessionStorage.removeItem("accessToken");
+        // localStorage.removeItem("firstAccess");
         store.timelineSwitcher.setCurrentTimeline("global");
 
         if (window.AndroidCallback) {

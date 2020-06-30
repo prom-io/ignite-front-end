@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 
@@ -11,7 +11,6 @@ import {
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { IgniteChatPage } from '../icons/IgniteChatPage';
 
 const useStyles = makeStyles(theme => ({
     chatError: {
@@ -59,14 +58,14 @@ const _ChatPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
                             <div className="static-page">
                                 <div className="static-page-container">
                                     <div className={classes.chatError}>
                                         <div className={classes.chatErrorInfo}>
-                                            <div className={'ignite-chat-page'} />
+                                            <div className="ignite-chat-page" />
                                             <h1>PrompTalk Chat</h1>
                                         </div>
                                         <div>

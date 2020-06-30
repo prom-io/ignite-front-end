@@ -60,7 +60,7 @@ const _UserCard = ({
 
                         <Grid className="user-profile-header-content-bottom">
                             <Grid
-                                style={{ display: 'flex', padding: 20 }}
+                                style={{ display: 'flex', padding: '20px 0' }}
                                 className="user-profile-header-content-bottom-follows user-card-statistic"
                             >
                                 <Link
@@ -69,7 +69,6 @@ const _UserCard = ({
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'posts',
                                     }}
                                 >
                                     <Typography variant="h6">{posts}</Typography>
@@ -79,11 +78,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowers}
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'followers',
                                     }}
                                 >
                                     <Typography variant="h6">{followers}</Typography>
@@ -93,11 +91,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowing}
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'following',
                                     }}
                                 >
                                     <Typography variant="h6">{following}</Typography>

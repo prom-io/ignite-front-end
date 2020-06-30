@@ -18,8 +18,6 @@ const pageHeight = document.documentElement.clientHeight;
 const _DescriptionPage = ({ routerStore }) => {
     const classes = useStyles();
 
-    const PrometeusNetwork = '{Prometeus Network}';
-
     return (
         <div className="description-page">
             <div className="arrow-go-home">
@@ -28,22 +26,22 @@ const _DescriptionPage = ({ routerStore }) => {
                 </Link>
             </div>
             <Grid container spacing={2} className="description-container">
-                <Grid item xs={12}>
+                <Grid item>
                     <Typography variant="body2">
                         Try
                         {' '}
-                        <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">{PrometeusNetwork}</a>
+                        <a className={classes.prometeusLink} href="https://prometeus.io" target="_blank noopener noreferrrer">Network</a>
                         , which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item>
                     <Typography variant="body2">
                         <span>Ignite </span>
                         {' '}
                         is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item>
                     <DescriptionLinks />
                 </Grid>
             </Grid>

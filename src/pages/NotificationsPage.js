@@ -11,6 +11,7 @@ import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
 import { useAuthorization, useLocalization } from '../store/hooks';
 import { BackButton } from '../components/BackButton';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({
     notificationsTitle: {
@@ -47,7 +48,9 @@ export const NotificationsPage = observer(() => {
                                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             ) : (
+                              <Hidden smDown>
                                 <BackButton title="appbar.notifications" toHome />
+                              </Hidden>
                             )}
                             <NotificationsList />
                         </Grid>

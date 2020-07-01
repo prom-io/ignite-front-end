@@ -154,7 +154,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
               <div className="mobile_header">
                 <GenericAuthorizationDialog />
                 {/* <img src="/search.png" /> */}
-                <span className={'mobile_header-title'}> {navTitleList[window.location.pathname]} </span>
+                <span className={'mobile_header-title'}> {currentUser && navTitleList[window.location.pathname]} </span>
                 <div className="select-language">
                   <AppBarLanguageSelect />
                 </div>

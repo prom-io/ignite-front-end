@@ -6,6 +6,7 @@ import { useLocalization, useStore } from '../../store/hooks';
 const useStyles = makeStyles(theme => ({
     buttonMargin: {
         margin: '0 16px 0 30px',
+        padding: '4px 16px',
     },
 }));
 
@@ -24,7 +25,8 @@ export const OpenLoginDialogButton = observer(() => {
 
     return (
         <Button
-            className={`${classes.buttonMargin} open_login_dialog_button`}
+            className={'open_login_dialog_button'}
+            classes={{root: classes.buttonMargin}}
             onClick={handleClick}
             variant="contained"
             disableElevation

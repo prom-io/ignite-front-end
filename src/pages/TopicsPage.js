@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
         borderBottom: 'none',
         height: '100%',
         padding: '0 30px',
+        paddingBottom: '50px'
     },
     trendErrorInfo: {
         display: 'flex',

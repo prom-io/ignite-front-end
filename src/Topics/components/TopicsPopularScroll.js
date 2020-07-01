@@ -32,19 +32,15 @@ const _TopicsPopularScroll = ({ topicsPopularItems, pending, routerStore }) => {
 
     return (
         <div className={classes.hashBtnBlock}>
-            {pending ? (
-                <div className={classes.centered}>
-                    <Loader size="md" />
-                </div>
-            ) : (
-                topicsPopularItems.map(topic => (
-                    <TopicsHashButton
-                        key={topic.id}
-                        topic={topic}
-                        routerStore={routerStore}
-                    />
-                ))
-            )}
+          {!pending &&
+          topicsPopularItems.map(topic => (
+            <TopicsHashButton
+              key={topic.id}
+              topic={topic}
+              routerStore={routerStore}
+            />
+          ))
+          }
         </div>
     );
 };

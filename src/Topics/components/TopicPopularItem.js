@@ -7,6 +7,7 @@ import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper
 import { Routes } from "../../routes";
 import { localized } from "../../localization/components";
 import { TopicPopularItemMenu } from "./TopicPopularItemMenu";
+import { useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     topicItemBody: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _TopicPopularItem = ({ topic, routerStore, l }) => {
+    const { setIsTopicsMenuOpen } = useStore().topicsPopular;
     const classes = useStyles();
 
     return (
@@ -56,7 +58,7 @@ const _TopicPopularItem = ({ topic, routerStore, l }) => {
             params={{ title: topic.title }}
             store={routerStore}
         >
-            <div className={classes.topicItemHeader}>
+            <div className={classes.topicItemHeader} onClick={()=>setIsTopicsMenuOpen(false)}>
                 <h6>#{topic.title}</h6>
                 <ClickEventPropagationStopper>
                     <TopicPopularItemMenu topicId={topic.id} />

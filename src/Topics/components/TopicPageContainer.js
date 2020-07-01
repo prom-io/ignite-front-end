@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignItems: "center",
         [theme.breakpoints.down('sm')]: {
-            position: 'absolute',
+            position: 'fixed',
             top: 0,
             width: '100%',
             zIndex: 1100,

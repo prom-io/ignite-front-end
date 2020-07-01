@@ -5,7 +5,8 @@ WORKDIR /app
 COPY . .
 
 RUN yarn install
+RUN yarn run build
 
 EXPOSE ${REACT_APP_PRODUCTION_PORT}
 
-CMD ["yarn", "run", "production"]
+CMD ["node", "server.js"]

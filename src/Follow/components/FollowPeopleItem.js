@@ -78,10 +78,10 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
             <div className={classes.followPeopleItemContent}>
                 <div className={classes.followPeopleItemRow}>
                     <Typography>
-                        <div>{trimString(user.display_name, 24)}</div>
+                        <div>{trimString(user.display_name, 12)}</div>
                         <small>
                             @
-                            {trimString(user.username, 24)}
+                            {trimString(user.username, 12)}
                         </small>
                     </Typography>
                     <ClickEventPropagationStopper>

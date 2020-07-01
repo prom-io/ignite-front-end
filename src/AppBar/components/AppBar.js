@@ -67,8 +67,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const navTitleList = {
+  '/': 'Home',
+  '/chat': 'Chat',
+  '/notification': 'Notification',
+  '/topics': 'Topics',
+  '/edit-profile': 'Edit Profile',
+};
+
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
   const classes = useStyles();
+  console.log(window.location.pathname);
   return (
     <>
       <MuiAppBar classes={{ root: classes.appBarContainer }}>
@@ -145,6 +154,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
               <div className="mobile_header">
                 <GenericAuthorizationDialog />
                 {/* <img src="/search.png" /> */}
+                <span className={'mobile_header-title'}> {navTitleList[window.location.pathname]} </span>
                 <div className="select-language">
                   <AppBarLanguageSelect />
                 </div>

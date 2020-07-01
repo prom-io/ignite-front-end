@@ -11,7 +11,14 @@ const useStyles = makeStyles(theme => ({
     topicTitle: {
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        [theme.breakpoints.down('sm')]: {
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+            zIndex: 1100,
+            background: theme.palette.background.paper
+        },
     },
     followTopicButton: {
         fontWeight: 600,
@@ -35,7 +42,8 @@ const _TopicPageContainer = ({
     l
 }) => {
     const classes = useStyles();
-
+    console.log(routerStore.router.params.title);
+    
     return (
         <>
             <div className={classes.topicTitle}>

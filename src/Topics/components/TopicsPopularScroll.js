@@ -10,9 +10,9 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: "10px",
-        display: "table"
+        display: "table",
     },
-    hashBtnBlock: {
+        hashBtnBlock: {
         display: "none",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
         whiteSpace: "nowrap",
         overflowX: "auto",
         [theme.breakpoints.down("sm")]: {
-            display: "flex"
+            display: "flex",
+            marginTop: '50px'
         }
     }
 }));

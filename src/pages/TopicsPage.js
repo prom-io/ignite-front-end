@@ -47,13 +47,12 @@ export const TopicsPage = observer(() => {
                         lg={9}
                         className="right-content-container"
                       >
-                          {!currentUser ? (
+                          {!currentUser &&
                             <Grid item className="login-form-container">
                                 <LoginForm />
                             </Grid>
-                          ) : (
-                            <TopicsPageContainer />
-                          )}
+                          }
+                          <TopicsPageContainer currentUser={currentUser}/>
                       </Grid>
                       <Grid item md={3} className={`right-banners-container ${isTopicsMenuOpen && classes.mobileTopicsPopular}`}>
                           {currentUser ? (

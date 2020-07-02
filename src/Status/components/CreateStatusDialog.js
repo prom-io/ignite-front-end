@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
             alignItems: 'center',
             justifyContent: 'space-between',
         },
+        [theme.breakpoints.down('sm')]: {
+            padding: '4px 12px',
+        },
     },
     statusFormDialogContent: {
         overflow: 'unset',

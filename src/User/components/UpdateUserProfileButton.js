@@ -10,7 +10,6 @@ import { localized } from '../../localization/components';
 const useStyles = makeStyles(theme => ({
     editButtonWrapper: {
         marginTop: '10px',
-        marginBottom: '24px',
         textDecoration: 'none',
         maxWidth: '204px',
         height: '40px',

@@ -17,6 +17,7 @@ import {
     SignUpPage,
 } from '../pages';
 import { store } from '../store';
+import { NotFound } from '../pages/NotFound';
 
 export const Routes = {
     home: new Route({
@@ -37,6 +38,10 @@ export const Routes = {
             store.timelineSwitcher.selectedTimeline.reset();
             store.whoToFollow.reset();
         },
+    }),
+    notFound: new Route({
+        path: '/404',
+        component: <NotFound/>
     }),
     en: new Route({
         path: '/en',
@@ -124,7 +129,7 @@ export const Routes = {
         component: <SignUpPage />,
     }),
     userProfile: new Route({
-        path: '/:username',
+        path: '/user/:username',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {
@@ -156,7 +161,7 @@ export const Routes = {
         },
     }),
     userFollowers: new Route({
-        path: '/:username/followers',
+        path: '/user/:username/followers',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {
@@ -168,7 +173,7 @@ export const Routes = {
         },
     }),
     userFollowing: new Route({
-        path: '/:username/following',
+        path: '/user/:username/following',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {

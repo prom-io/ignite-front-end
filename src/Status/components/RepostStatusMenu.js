@@ -47,14 +47,13 @@ const _RepostStatusMenu = ({
             setGenericAuthorizationDialogType('login');
             return;
         }
-        setOpen(prevOpen => currentUser && !prevOpen);
+        status.can_be_reposted && setOpen(prevOpen => currentUser && !prevOpen);
     };
 
     const handleClose = event => {
         if (event && anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
 

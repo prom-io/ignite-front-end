@@ -72,7 +72,7 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <h4>{addLineBreak(username)}</h4>
+                            <h4>{username}</h4>
                             <p>{addLineBreak(displayName)}</p>
                             {bio && (
                                 <div className="user-card-info-bio">

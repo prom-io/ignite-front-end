@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
-import { useStore, useAuthorization, useLocalization } from '../../store';
+import { useStore, useAuthorization, useLocalization, useRouter } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
 import Loader from '../../components/Loader';
@@ -76,7 +76,9 @@ const noNotifications = {
                     <Typography>
                         Get to know other
                         {' '}
-                        <a className={classes.link} onClick={()=>routerStore.router.goTo(Routes.home)}>users</a>
+                        <Link view={Routes.followPeople} store={routerStore}>
+                            <a className={classes.link}>users</a>
+                        </Link>
                         {' '}
                         to start a conversation
                     </Typography>
@@ -111,12 +113,10 @@ export const NotificationsList = observer(() => {
     const classes = useStyles();
 
     const notificationsStore = useStore().notifications;
-    const routerStore = useStore();
+    const routerStore = useRouter();
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
     const { currentUser, fetchingCurrentUser } = useAuthorization();
     const { locale } = useLocalization();
-   
-    console.log(routerStore);
 
     if (fetchingCurrentUser) {
         return (

@@ -12,6 +12,7 @@ import {
     FollowPeoplePage,
     TermsAndPoliciesPage,
     TopicsPage,
+    TopicPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
@@ -96,9 +97,30 @@ export const Routes = {
         path: '/topics',
         component: <TopicsPage />,
         beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchAllStatuses();
             store.userCard.setDisplayMode('currentUser');
         },
-        onExit: () => {
+        beforeExit: () => {
+            store.topicStatuses.reset();
+            store.topicsPopular.reset();
+        }
+    }),
+    topic: new Route({
+        path: '/topic/:title',
+        component: <TopicPage />,
+        beforeEnter: (route, params) => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchTopicInfo(params.title);
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onParamsChange: (route, params) => {
+            store.topicStatuses.resetStatuses();
+            store.topicStatuses.fetchTopicInfo(params.title);
+        },
+        beforeExit: () => {
+            store.topicsPopular.reset();
+            store.topicStatuses.reset();
         },
     }),
     terms: new Route({

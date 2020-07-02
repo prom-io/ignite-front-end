@@ -224,4 +224,5 @@ export const en = {
     post: 'Post',
     comment: 'Comment',
     'follow-people': 'Follow People',
+    'topics.card.popular': "Popular",
 };

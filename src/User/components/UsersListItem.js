@@ -63,6 +63,15 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.secondary,
         },
     },
+    userDisplayName: {
+        display: 'block',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: '140px',
+        },
+    }
 }));
 
 export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser }) => {
@@ -86,8 +95,8 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
             <div className={classes.usersListContent}>
                 <div className={classes.usersListRow}>
                     <Typography>
-                        <div>{user.display_name}</div>
-                        <small>
+                        <div className={classes.userDisplayName}>{user.display_name}</div>
+                        <small className={classes.userDisplayName}>
                             @
                             {user.username}
                         </small>

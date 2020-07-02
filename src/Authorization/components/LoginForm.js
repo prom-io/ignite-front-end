@@ -64,7 +64,6 @@ const useStyles = makeStyles(theme => ({
     },
     errorLabel: {
         color: theme.palette.error.main,
-        margin: 'auto',
         fontSize: '15px',
     },
     loginInput: {

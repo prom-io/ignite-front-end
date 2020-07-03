@@ -49,19 +49,15 @@ export const TopicsPage = observer(() => {
                       >
                           {!currentUser &&
                             <Grid item className="login-form-container">
-                                <LoginForm />
+                                <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                             </Grid>
                           }
                           <TopicsPageContainer currentUser={currentUser}/>
                       </Grid>
                       <Grid item md={3} className={`right-banners-container ${isTopicsMenuOpen && classes.mobileTopicsPopular}`}>
-                          {currentUser ? (
-                            <Hidden>
-                                <TopicsPopular />
-                            </Hidden>
-                          ) : (
-                            <ExploreOurFeaturesDescription />
-                          )}
+                          <Hidden>
+                              <TopicsPopular />
+                          </Hidden>
                       </Grid>
                   </Grid>
               </Layout>

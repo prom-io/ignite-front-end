@@ -225,4 +225,8 @@ export const en = {
     comment: 'Comment',
     'follow-people': 'Follow People',
     'topics.card.popular': "Popular",
+    'topics.card.menu.spam': "This trend is spam",
+    'topics.card.menu.harmful': "This trend is abusive or harmful",
+    'topics.card.menu.duplicate': "This trend is a duplicate",
+    'topics.card.menu.quality': "This trend is low quality",
 };

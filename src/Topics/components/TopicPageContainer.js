@@ -39,11 +39,17 @@ const _TopicPageContainer = ({
     followTopic,
     fetchStatusesOnTopic,
     routerStore,
+    currentUser,
     l
 }) => {
     const classes = useStyles();
     console.log(routerStore.router.params.title);
     
+    if (!currentUser) {
+        return (
+          <TopicStatusList fetchAction={fetchStatusesOnTopic} />
+        )
+    } else
     return (
         <>
             <div className={classes.topicTitle}>

@@ -13,7 +13,13 @@ if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
     };
 }
 
-startRouter(Routes, routerStore);
+startRouter(Routes, routerStore, {
+    notfound: () => {
+        if (window && !(window.location.href.indexOf(`${process.env.REACT_APP_API_BASE_URL}/user/`) > -1)) {
+            routerStore.router.goTo(Routes.notFound);
+        }
+    }
+});
 
 ReactDOM.render(
     <Provider store={routerStore} {...store} className="root">

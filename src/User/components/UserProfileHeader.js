@@ -72,8 +72,8 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <h4>{addLineBreak(username)}</h4>
-                            <p>{addLineBreak(displayName)}</p>
+                            <h4>{displayName}</h4>
+                            <p>{username}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -84,7 +84,7 @@ const _UserProfileHeader = ({
                 </Grid>
             </Grid>
             <Grid className="user-profile-header-content-bottom">
-                <Grid style={{ display: 'flex', padding: '20px 0' }} className="user-profile-header-content-bottom-follows">
+                <Grid className="user-profile-header-content-bottom-follows">
                     <UserProfileTab
                         active={activeTab === 'posts'}
                         header={currentUser && currentUser.username === username ? currentUser.statuses_count : statuses}

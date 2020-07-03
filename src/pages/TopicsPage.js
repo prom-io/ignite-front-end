@@ -1,95 +1,71 @@
-import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
-import { inject, observer } from 'mobx-react';
-import { localized } from '../localization/components';
-import { AppBar } from '../AppBar/components';
+import React from "react";
+import { Grid, Hidden } from "@material-ui/core";
+import { observer } from "mobx-react";
+
+import { AppBar } from "../AppBar/components";
+import { TopicsPageContainer, TopicsPopular } from "../Topics/components";
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription,
-} from '../PrometeusDescription';
-import { Layout } from '../Layout';
-import { LoginForm } from '../Authorization/components';
-import { IgniteTrendPage } from '../icons/IgniteTrendPage';
-import { TopicsIcon } from '../icons/TopicsIcon';
+    ExploreOurFeaturesDescription
+} from "../PrometeusDescription";
+import { LoginForm } from "../Authorization/components";
+import { Layout } from "../Layout";
+import { useAuthorization, useStore } from '../store/hooks';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    trendError: {
-        border: `1px solid ${theme.palette.border.main}`,
-        borderBottom: 'none',
-        height: '100%',
-        padding: '0 30px',
-        paddingBottom: '50px'
-    },
-    trendErrorInfo: {
+    mobileTopicsPopular: {
+        position: "fixed",
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '65px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: theme.palette.text.secondary,
-        '& h1': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: theme.palette.text.main,
-        },
-    },
+        background: theme.palette.background.paper,
+        left: 0,
+        top: 0,
+        width: "100%",
+        height: "calc(100% - 50px)",
+        zIndex: 9999,
+        overflowY: 'scroll',
+    }
 }));
 
-const _TopicsPage = ({ currentUser, l }) => {
+export const TopicsPage = observer(() => {
+    const { currentUser } = useAuthorization();
+    const { isTopicsMenuOpen } = useStore().topicsPopular;
     const classes = useStyles();
+    
     return (
-        <Grid container>
-            <AppBar currentActiveRoute="topics" />
-            <Grid item xs={12}>
-                <Layout>
-                    <Grid container className="content-container">
-                        <Grid item md={3} className="left-banners-container">
-                            <PrometeusDescription />
-                        </Grid>
-                        <Grid
-                            item
-                            spacing={28}
-                            lg={9}
-                            className="right-content-container"
-                        >
-                            {!currentUser && (
-                                <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
-                                </Grid>
-                            )}
-                            <div className="static-page">
-                                <div className="static-page-container">
-                                    <div className={classes.trendError}>
-                                        <div className={classes.trendErrorInfo}>
-                                            <TopicsIcon color="#A2A2A2" transform={3} />
-                                            {/* <IgniteTrendPage color="#A2A2A2" /> */}
-                                            <h1>{l('appbar.topics')}</h1>
-                                        </div>
-                                        <div>
-                                            <p>{l('trends.first-paragraph')}</p>
-                                            <p>{l('trends.second-paragraph')}</p>
-                                            <p>{l('trends.third-paragraph')}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Grid>
-                        <Grid item md={3} className="right-banners-container">
+      <Grid container>
+          <AppBar currentActiveRoute="topics" />
+          <Grid item xs={12}>
+              <Layout>
+                  <Grid container className="content-container">
+                      <Grid item md={3} className="left-banners-container">
+                          <PrometeusDescription />
+                      </Grid>
+                      <Grid
+                        item
+                        spacing={28}
+                        lg={9}
+                        className="right-content-container"
+                      >
+                          {!currentUser &&
+                            <Grid item className="login-form-container">
+                                <LoginForm />
+                            </Grid>
+                          }
+                          <TopicsPageContainer currentUser={currentUser}/>
+                      </Grid>
+                      <Grid item md={3} className={`right-banners-container ${isTopicsMenuOpen && classes.mobileTopicsPopular}`}>
+                          {currentUser ? (
+                            <Hidden>
+                                <TopicsPopular />
+                            </Hidden>
+                          ) : (
                             <ExploreOurFeaturesDescription />
-                        </Grid>
-                    </Grid>
-                </Layout>
-            </Grid>
-        </Grid>
+                          )}
+                      </Grid>
+                  </Grid>
+              </Layout>
+          </Grid>
+      </Grid>
     );
-};
-
-const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser,
 });
-
-export const TopicsPage = localized(inject(mapMobxToProps)(observer(_TopicsPage)));

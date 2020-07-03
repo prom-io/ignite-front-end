@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.down('sm')]: {
         '& span': {
           fontSize: '14px',
+          wordBreak: 'break-all',
         },
         marginTop: '18px',
       },

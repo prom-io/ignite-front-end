@@ -12,11 +12,13 @@ import {
     FollowPeoplePage,
     TermsAndPoliciesPage,
     TopicsPage,
+    TopicPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
 } from '../pages';
 import { store } from '../store';
+import { NotFound } from '../pages/NotFound';
 
 export const Routes = {
     home: new Route({
@@ -37,6 +39,10 @@ export const Routes = {
             store.timelineSwitcher.selectedTimeline.reset();
             store.whoToFollow.reset();
         },
+    }),
+    notFound: new Route({
+        path: '/404',
+        component: <NotFound/>
     }),
     en: new Route({
         path: '/en',
@@ -91,9 +97,30 @@ export const Routes = {
         path: '/topics',
         component: <TopicsPage />,
         beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchAllStatuses();
             store.userCard.setDisplayMode('currentUser');
         },
-        onExit: () => {
+        beforeExit: () => {
+            store.topicStatuses.reset();
+            store.topicsPopular.reset();
+        }
+    }),
+    topic: new Route({
+        path: '/topic/:title',
+        component: <TopicPage />,
+        beforeEnter: (route, params) => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchTopicInfo(params.title);
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onParamsChange: (route, params) => {
+            store.topicStatuses.resetStatuses();
+            store.topicStatuses.fetchTopicInfo(params.title);
+        },
+        beforeExit: () => {
+            store.topicsPopular.reset();
+            store.topicStatuses.reset();
         },
     }),
     terms: new Route({
@@ -124,7 +151,7 @@ export const Routes = {
         component: <SignUpPage />,
     }),
     userProfile: new Route({
-        path: '/:username',
+        path: '/user/:username',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {
@@ -156,7 +183,7 @@ export const Routes = {
         },
     }),
     userFollowers: new Route({
-        path: '/:username/followers',
+        path: '/user/:username/followers',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {
@@ -168,7 +195,7 @@ export const Routes = {
         },
     }),
     userFollowing: new Route({
-        path: '/:username/following',
+        path: '/user/:username/following',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
             if (!(store.userProfile.user && store.userProfile.username === params.username)) {

@@ -15,9 +15,20 @@ import { LoginForm } from '../Authorization/components';
 const useStyles = makeStyles(theme => ({
     chatError: {
         border: `1px solid ${theme.palette.border.main}`,
-        borderBottom: 'none',
         height: '100%',
-        padding: '0 30px',
+        padding: '30px',
+        textAlign: 'center',
+        '& h1': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: theme.palette.text.main,
+        },
+        '& p': {
+            color: theme.palette.text.secondary,
+            fontSize: '15px',
+            lineHeight: '26px',
+        }
     },
     chatErrorInfo: {
         display: 'flex',
@@ -28,12 +39,6 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '26px',
         color: '#A2A2A2',
-        '& h1': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: '#1C1C1C',
-        },
     },
 }));
 
@@ -61,18 +66,14 @@ const _ChatPage = ({ currentUser, l }) => {
                                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
-                            <div className="static-page">
-                                <div className="static-page-container">
-                                    <div className={classes.chatError}>
-                                        <div className={classes.chatErrorInfo}>
-                                            <div className="ignite-chat-page" />
-                                            <h1>PrompTalk Chat</h1>
-                                        </div>
-                                        <div>
-                                            <p>{l('chat.description.first-paragraph')}</p>
-                                            <p>{l('chat.description.second-paragraph')}</p>
-                                        </div>
-                                    </div>
+                            <div className={classes.chatError}>
+                                <div className={classes.chatErrorInfo}>
+                                    <div className="ignite-chat-page" />
+                                    <h1>PrompTalk Chat</h1>
+                                </div>
+                                <div>
+                                    <p>{l('chat.description.first-paragraph')}</p>
+                                    <p>{l('chat.description.second-paragraph')}</p>
                                 </div>
                             </div>
                         </Grid>

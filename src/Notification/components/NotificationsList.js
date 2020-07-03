@@ -3,10 +3,12 @@ import { observer } from 'mobx-react';
 import { makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from './Notification';
-import { useStore, useAuthorization, useLocalization } from '../../store';
+import { useStore, useAuthorization, useLocalization, useRouter } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
 import Loader from '../../components/Loader';
+import { Routes } from '../../routes';
+import { Link } from 'mobx-router';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -16,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
     link: {
         color: theme.palette.primary.main,
+        cursor: 'pointer',
     },
     noNotificationsContainer: {
         border: `1px solid ${theme.palette.border.main}`,
@@ -31,9 +34,8 @@ const useStyles = makeStyles(theme => ({
     },
     notificationsError: {
         border: `1px solid ${theme.palette.border.main}`,
-        borderBottom: 'none',
         height: '100%',
-        padding: '0 30px',
+        padding: '30px',
     },
     notificationsErrorInfo: {
         display: 'flex',
@@ -55,11 +57,15 @@ const useStyles = makeStyles(theme => ({
     },
     notificationMarginTop: {
         marginTop: '10px',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: 0,
+        },
     },
 }));
 
+
 const noNotifications = {
-    en: (classes) => (
+    en: (classes, routerStore) => (
         <div className={classes.noNotificationsContainer}>
             <div className={classes.noNotificationsContent}>
                 <SadIconLarge />
@@ -70,7 +76,9 @@ const noNotifications = {
                     <Typography>
                         Get to know other
                         {' '}
-                        <a href="#" className={classes.link}>users</a>
+                        <Link view={Routes.followPeople} store={routerStore}>
+                            <a className={classes.link}>users</a>
+                        </Link>
                         {' '}
                         to start a conversation
                     </Typography>
@@ -78,7 +86,7 @@ const noNotifications = {
             </div>
         </div>
     ),
-    kr: (classes) => (
+    kr: (classes,routerStore) => (
         <div className={classes.noNotificationsContainer}>
             <div className={classes.noNotificationsContent}>
                 <SadIconLarge />
@@ -89,7 +97,9 @@ const noNotifications = {
                     <Typography>
                         다른
                         {' '}
-                        <a href="#" className={classes.link}>사용자</a>
+                        <Link view={Routes.followPeople} store={routerStore}>
+                            <a className={classes.link}>users</a>
+                        </Link>
                         {' '}
                         에 대해 알아보고 대화를 시작하십시오.
                     </Typography>
@@ -103,6 +113,7 @@ export const NotificationsList = observer(() => {
     const classes = useStyles();
 
     const notificationsStore = useStore().notifications;
+    const routerStore = useRouter();
     const { notifications, fetchNotifications, hasMore } = notificationsStore;
     const { currentUser, fetchingCurrentUser } = useAuthorization();
     const { locale } = useLocalization();
@@ -128,7 +139,7 @@ export const NotificationsList = observer(() => {
     }
 
     if (notifications.length === 0 && !hasMore) {
-        return noNotifications[locale](classes);
+        return noNotifications[locale](classes,routerStore);
     }
 
     return (

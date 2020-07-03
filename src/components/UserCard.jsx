@@ -49,8 +49,8 @@ const _UserCard = ({
                     </Link>
                     <div className="user-card-bottom user-card-content-box">
                         <div className="user-card-info">
-                            <h4>{addLineBreak(username)}</h4>
-                            <p>{addLineBreak(displayName)}</p>
+                            <h4>{displayName}</h4>
+                            <p>{username}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -60,7 +60,6 @@ const _UserCard = ({
 
                         <Grid className="user-profile-header-content-bottom">
                             <Grid
-                                style={{ display: 'flex', padding: '20px 0' }}
                                 className="user-profile-header-content-bottom-follows user-card-statistic"
                             >
                                 <Link

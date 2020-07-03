@@ -1,5 +1,5 @@
 export const en = {
-    'status.reposted-status': 'Reposted status',
+    'status.reposted-status': 'Show this conversation',
     'terms-of-service': 'Terms of service',
     'terms-of-service.paragraph-1': 'Company and meet all of the foregoing eligibility requirements. If you do not meet all of these requirements, you must not access or use the Website.',
     'terms-of-service.paragraph-2': 'Please be aware of the Terms of Sale, Privacy Policy, and Copyright Policy which are incorporated into these Terms of Use by reference.',

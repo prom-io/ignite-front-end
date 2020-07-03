@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
             maxWidth: '300px',
         },
     },
+    btfsDate: {
+        minWidth: '150px',
+    },
     link: {
         color: theme.palette.primary.main,
     },
@@ -110,11 +113,11 @@ const _BtfsHashesTable = ({ btfsHashes, pending, error, l, dateFnsLocale }) => {
                                         {trimString(btfsHash.soter_link, 25)}
                                     </a>
                                 </TableCell>
-                                <TableCell>
+                                <TableCell classes={{ root: classes.btfsDate }}>
                                     {format(new Date(btfsHash.created_at), 'dd MMMM yyyy HH:mm', { locale: dateFnsLocale })}
                                 </TableCell>
-                                <TableCell>
-                                    {btfsHash.peer_wallet}
+                                <TableCell classes={{ root: classes.btfsCid }}>
+                                    <input className={classes.btfsCidInput} value={btfsHash.peer_wallet} contentEditable={false} />
                                 </TableCell>
                                 <TableCell>
                                     {btfsHash.synced ? 'True' : 'False'}

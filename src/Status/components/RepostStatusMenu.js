@@ -69,7 +69,7 @@ const _RepostStatusMenu = ({
                 >
                     <RepostIcon
                         reposted={
-                            currentUser && !canBeReposted && !currentUserIsAuthor
+                            currentUser && !canBeReposted && status.reposted && !currentUserIsAuthor
                         }
                     />
                 </IconButton>

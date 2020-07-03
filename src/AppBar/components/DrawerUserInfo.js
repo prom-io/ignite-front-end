@@ -18,14 +18,14 @@ const _DrawerUserInfo = ({ currentUser }) => {
                 />
                 <div className="sidebar-menu-user-info">
                     <Typography variant="body1" className="sidebar-menu-user-info-name">
-                        <strong>{lineBreak(currentUser.username)}</strong>
+                        <strong>{lineBreak(currentUser.display_name)}</strong>
                     </Typography>
                     <Typography
                         variant="body2"
                         color="textSecondary"
                         className="sidebar-menu-user-info-id"
                     >
-                        {lineBreak(currentUser.display_name)}
+                        {lineBreak(currentUser.username)}
                     </Typography>
                 </div>
                 <div className="sidebar-menu-user-info-count">

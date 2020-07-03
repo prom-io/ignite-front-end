@@ -17,6 +17,18 @@ const useStyles = makeStyles(theme => ({
         border: `1px solid ${theme.palette.border.main}`,
         height: '100%',
         padding: '30px',
+        textAlign: 'center',
+        '& h1': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: theme.palette.text.main,
+        },
+        '& p': {
+            color: theme.palette.text.secondary,
+            fontSize: '15px',
+            lineHeight: '26px',
+        }
     },
     chatErrorInfo: {
         display: 'flex',
@@ -27,12 +39,6 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '26px',
         color: '#A2A2A2',
-        '& h1': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: '#1C1C1C',
-        },
     },
 }));
 

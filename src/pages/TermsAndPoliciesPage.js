@@ -8,7 +8,7 @@ import { Layout } from '../Layout';
 const _TermsAndPolicesPage = ({ l }) => (
     <div className="static-page">
         <AppBar currentActiveRoute="terms" />
-            <Grid container className="content-container" style={{justifyContent: 'center', marginTop: '50px'}}>
+            <Grid container className="chat-container">
                 <div className="static-page-container">
                     <div>
                         <div className="static-page-logo-container">

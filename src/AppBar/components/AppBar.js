@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
 const navTitleList = {
   '/': 'Home',
   '/chat': 'Chat',
-  '/notification': 'Notification',
+  '/notifications': 'Notification',
   '/topics': 'Topics',
   '/edit-profile': 'Edit Profile',
 };

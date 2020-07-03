@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: theme.spacing(2),
         paddingRight: theme.spacing(2) + props.pixelsToAddToIconRightPadding,
         alignItems: 'center',
+        justifyContent: 'center',
         display: 'flex',
     }),
     cardHeaderAvatar: {

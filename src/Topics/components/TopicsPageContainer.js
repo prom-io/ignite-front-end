@@ -39,13 +39,7 @@ export const TopicsPageContainer = ({currentUser}) => {
     
     if (!currentUser) {
       return (
-            <div className={classes.topicsError}>
-              <div className={classes.topicsErrorInfo}>
-                <TopicsIcon transform={3} color="#A1A1A1"/>
-                <p>Nothing to display yet!</p>
-                <span>Please login or sign up to receive notifications</span>
-              </div>
-            </div>
+        <TopicStatusList fetchAction={fetchAllStatuses} />
       )
     } else  return (
         <>

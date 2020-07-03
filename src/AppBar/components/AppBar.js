@@ -77,7 +77,6 @@ const navTitleList = {
 
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
   const classes = useStyles();
-  console.log(window.location.pathname);
   return (
     <>
       <MuiAppBar classes={{ root: classes.appBarContainer }}>

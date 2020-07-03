@@ -47,7 +47,7 @@ const _RepostStatusMenu = ({
             setGenericAuthorizationDialogType('login');
             return;
         }
-        status.can_be_reposted && setOpen(prevOpen => currentUser && !prevOpen);
+        canBeReposted && setOpen(prevOpen => currentUser && !prevOpen);
     };
 
     const handleClose = event => {

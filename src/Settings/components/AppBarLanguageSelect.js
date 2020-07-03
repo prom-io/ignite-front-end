@@ -100,8 +100,8 @@ const _AppBarLanguageSelect = ({ setSelectedLanguage, locale }) => {
         <>
             <ClickAwayListener
                 onClickAway={() => setOpen(false)}
-                touchEvent="onTouchStart"
-                mouseEvent="onMouseDown"
+                touchEvent="onTouchEnd"
+                mouseEvent="onMouseUp"
             >
                 <Button
                     ref={anchorRef}

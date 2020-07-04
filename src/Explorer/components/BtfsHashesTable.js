@@ -110,8 +110,9 @@ const _BtfsHashesTable = ({
                         ) : error || tableHashes.length === 0 ? (
                             <Typography>{l("explorer.no-data")}</Typography>
                         ) : (
+                            tableHashes &&
                             tableHashes.map(item => (
-                                <TableRow>
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}

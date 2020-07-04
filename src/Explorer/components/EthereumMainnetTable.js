@@ -131,8 +131,9 @@ const _EthereumMainnetTable = ({
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
+                            tableHashes &&
                             tableHashes.data.map(item => (
-                                <TableRow>
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[

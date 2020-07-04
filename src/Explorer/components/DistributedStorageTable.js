@@ -132,6 +132,7 @@ const _DistributedStorageTable = ({
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
+                            tableHashes &&
                             tableHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>

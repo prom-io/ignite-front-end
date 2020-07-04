@@ -145,7 +145,7 @@ const _EthereumMainnetTable = ({
                                                 setModalIsOpen(
                                                     true,
                                                     "ethereum-mainnet",
-                                                    item.id
+                                                    item
                                                 )
                                             }
                                         />
@@ -154,14 +154,14 @@ const _EthereumMainnetTable = ({
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.from}
+                                            value={item.fullTransactionData.from}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.to}
+                                            value={item.fullTransactionData.to}
                                             contentEditable={false}
                                         />
                                     </TableCell>

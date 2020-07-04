@@ -146,7 +146,7 @@ const _DistributedStorageTable = ({
                                                 setModalIsOpen(
                                                     true,
                                                     "distributed-storage",
-                                                    item.id
+                                                    item
                                                 )
                                             }
                                         />

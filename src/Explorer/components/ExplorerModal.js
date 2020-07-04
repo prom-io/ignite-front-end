@@ -14,7 +14,6 @@ import {
     makeStyles
 } from "@material-ui/core";
 
-import Loader from "../../components/Loader";
 import { useStore, useLocalization } from "../../store";
 
 const useStyles = makeStyles(theme => ({
@@ -63,16 +62,6 @@ const useStyles = makeStyles(theme => ({
         margin: "15px",
         width: "100%",
         maxWidth: "775px"
-    },
-    centered: {
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-
-        "& > div": {
-            top: "15px",
-            left: "15px"
-        }
     },
     tableRowTitle: {
         fontWeight: 600,
@@ -155,15 +144,9 @@ const setContent = (classes, type, data) => {
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Status
-                        </TableCell>
-                        <TableCell>{data.status}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
                             Block
                         </TableCell>
-                        <TableCell>{data.block}</TableCell>
+                        <TableCell>{data.fullTransactionData.blockNumber}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>Age</TableCell>
@@ -171,23 +154,17 @@ const setContent = (classes, type, data) => {
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>From</TableCell>
-                        <TableCell>{data.from}</TableCell>
+                        <TableCell>{data.fullTransactionData.from}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>To</TableCell>
-                        <TableCell>{data.to}</TableCell>
+                        <TableCell>{data.fullTransactionData.to}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
                             Value
                         </TableCell>
                         <TableCell>{data.value}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            Transaction Fee
-                        </TableCell>
-                        <TableCell>{data.transactionFee}</TableCell>
                     </TableRow>
                 </>
             );
@@ -202,15 +179,9 @@ const setContent = (classes, type, data) => {
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Status
-                        </TableCell>
-                        <TableCell>{data.status}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
                             Block
                         </TableCell>
-                        <TableCell>{data.block}</TableCell>
+                        <TableCell>{data.fullTransactionData.blockNumber}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>Age</TableCell>
@@ -218,11 +189,11 @@ const setContent = (classes, type, data) => {
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>From</TableCell>
-                        <TableCell>{data.from}</TableCell>
+                        <TableCell>{data.fullTransactionData.from}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>To</TableCell>
-                        <TableCell>{data.to}</TableCell>
+                        <TableCell>{data.fullTransactionData.to}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
@@ -236,12 +207,6 @@ const setContent = (classes, type, data) => {
                         </TableCell>
                         <TableCell>{data.value}</TableCell>
                     </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            Transaction Fee
-                        </TableCell>
-                        <TableCell>{data.transactionFee}</TableCell>
-                    </TableRow>
                 </>
             );
         default:
@@ -253,7 +218,6 @@ export const ExplorerModal = observer(() => {
     const classes = useStyles();
     const {
         modalIsOpen,
-        detailsPending,
         modalDetails,
         typeDetails,
         setModalIsOpen
@@ -275,15 +239,9 @@ export const ExplorerModal = observer(() => {
                 <DialogContent className={classes.explorerDialogContent}>
                     <DialogContentText>
                         <Table stickyHeader aria-label="sticky table">
-                            {detailsPending ? (
-                                <div className={classes.centered}>
-                                    <Loader size="md" />
-                                </div>
-                            ) : (
-                                <TableBody>
-                                    {setContent(classes, typeDetails, modalDetails)}
-                                </TableBody>
-                            )}
+                            <TableBody>
+                                {setContent(classes, typeDetails, modalDetails)}
+                            </TableBody>
                         </Table>
                     </DialogContentText>
                 </DialogContent>

@@ -142,7 +142,7 @@ const _EthereumPlasmaTable = ({
                                                 setModalIsOpen(
                                                     true,
                                                     "ethereum-plasma",
-                                                    item.id
+                                                    item
                                                 )
                                             }
                                         />

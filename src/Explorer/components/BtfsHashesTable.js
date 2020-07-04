@@ -112,7 +112,7 @@ const _BtfsHashesTable = ({
                         ) : (
                             tableHashes &&
                             tableHashes.map(item => (
-                                <TableRow>
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}

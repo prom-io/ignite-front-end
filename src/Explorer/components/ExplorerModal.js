@@ -72,28 +72,32 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const setContent = (classes, type, data) => {
+const setContent = (classes, type, data, l) => {
     switch (type) {
         case "ethereum-plasma":
             return (
                 <>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            TxnId
+                            {l("explorer.txnId")}
                         </TableCell>
                         <TableCell>{data.transactionHash}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Age</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.age")}
+                        </TableCell>
                         <TableCell>{data.ago}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Node</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.node-wallet")}
+                        </TableCell>
                         <TableCell>{data.address}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            BTFS CID
+                            {l("explorer.cid")}
                         </TableCell>
                         <TableCell>{data.btfsCid}</TableCell>
                     </TableRow>
@@ -104,17 +108,19 @@ const setContent = (classes, type, data) => {
                 <>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            BTFS CID
+                            {l("explorer.cid")}
                         </TableCell>
                         <TableCell>{data.btfsCid}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Age</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.age")}
+                        </TableCell>
                         <TableCell>{data.ago}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Soter link
+                            {l("explorer.soter-link")}
                         </TableCell>
                         <TableCell>
                             <a
@@ -128,7 +134,9 @@ const setContent = (classes, type, data) => {
                         </TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Node</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.node-wallet")}
+                        </TableCell>
                         <TableCell>{data.address}</TableCell>
                     </TableRow>
                 </>
@@ -138,31 +146,37 @@ const setContent = (classes, type, data) => {
                 <>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            TxnId
+                            {l("explorer.txnId")}
                         </TableCell>
                         <TableCell>{data.transactionHash}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Block
+                            {l("explorer.block")}
                         </TableCell>
                         <TableCell>{data.fullTransactionData.blockNumber}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Age</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.age")}
+                        </TableCell>
                         <TableCell>{data.ago}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>From</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.from")}
+                        </TableCell>
                         <TableCell>{data.fullTransactionData.from}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>To</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.to")}
+                        </TableCell>
                         <TableCell>{data.fullTransactionData.to}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Value
+                            {l("explorer.value")}
                         </TableCell>
                         <TableCell>{data.value}</TableCell>
                     </TableRow>
@@ -173,37 +187,43 @@ const setContent = (classes, type, data) => {
                 <>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            TxnId
+                            {l("explorer.txnId")}
                         </TableCell>
                         <TableCell>{data.transactionHash}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Block
+                            {l("explorer.block")}
                         </TableCell>
                         <TableCell>{data.fullTransactionData.blockNumber}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>Age</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.age")}
+                        </TableCell>
                         <TableCell>{data.ago}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>From</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.from")}
+                        </TableCell>
                         <TableCell>{data.fullTransactionData.from}</TableCell>
                     </TableRow>
                     <TableRow>
-                        <TableCell className={classes.tableRowTitle}>To</TableCell>
+                        <TableCell className={classes.tableRowTitle}>
+                            {l("explorer.to")}
+                        </TableCell>
                         <TableCell>{data.fullTransactionData.to}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            BTFS CID
+                            {l("explorer.cid")}
                         </TableCell>
                         <TableCell>{data.btfsCid}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            Value
+                            {l("explorer.value")}
                         </TableCell>
                         <TableCell>{data.value}</TableCell>
                     </TableRow>
@@ -234,13 +254,13 @@ export const ExplorerModal = observer(() => {
         >
             <div className={classes.explorerDialog}>
                 <DialogTitle className={classes.explorerDialogTitle}>
-                    Details
+                    {l("explorer.modal.details")}
                 </DialogTitle>
                 <DialogContent className={classes.explorerDialogContent}>
                     <DialogContentText>
                         <Table stickyHeader aria-label="sticky table">
                             <TableBody>
-                                {setContent(classes, typeDetails, modalDetails)}
+                                {setContent(classes, typeDetails, modalDetails, l)}
                             </TableBody>
                         </Table>
                     </DialogContentText>

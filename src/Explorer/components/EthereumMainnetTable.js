@@ -133,7 +133,7 @@ const _EthereumMainnetTable = ({
                         ) : (
                             tableHashes &&
                             tableHashes.data.map(item => (
-                                <TableRow>
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[

@@ -131,7 +131,7 @@ const _BinanceSmartChainTable = ({
                         ) : (
                             tableHashes &&
                             tableHashes.data.map(item => (
-                                <TableRow>
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[

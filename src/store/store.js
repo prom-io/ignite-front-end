@@ -32,7 +32,7 @@ import {
 } from '../Follow/stores';
 import { DrawerStore } from '../AppBar/stores';
 import { LocaleStore } from '../localization/stores';
-import { BtfsHashesStore } from '../Btfs/stores';
+import { ExplorerStore } from '../Explorer/stores';
 import { NotificationsStore } from '../Notification/stores';
 import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
 import { WebsocketStore } from '../websocket/stores';
@@ -55,7 +55,7 @@ const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
 const statusPage = new StatusPageStore(authorization, createStatus);
 const localization = new LocaleStore(authorization);
-const btfs = new BtfsHashesStore();
+const explorer = new ExplorerStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
 const statusComments = new StatusesListStore(authorization, createStatus, undefined, true);
 const userAvatarUpload = new UploadUserAvatarStore();
@@ -93,7 +93,7 @@ export const store = {
     statusPage,
     uploadMediaAttachments,
     localization,
-    btfs,
+    explorer,
     statusBtfsInfo,
     statusComments,
     userAvatarUpload,

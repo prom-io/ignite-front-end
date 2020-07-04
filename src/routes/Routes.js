@@ -16,10 +16,13 @@ import {
     FollowPeoplePage,
     TermsAndPoliciesPage,
     TopicsPage,
+    TopicPage,
     UserProfilePage,
     UserEditPage,
+    SignUpPage,
 } from '../pages';
 import { store } from '../store';
+import { NotFound } from '../pages/NotFound';
 
 export const Routes = {
     home: new Route({
@@ -40,6 +43,10 @@ export const Routes = {
             store.timelineSwitcher.selectedTimeline.reset();
             store.whoToFollow.reset();
         },
+    }),
+    notFound: new Route({
+        path: '/404',
+        component: <NotFound/>
     }),
     en: new Route({
         path: '/en',
@@ -94,9 +101,30 @@ export const Routes = {
         path: '/topics',
         component: <TopicsPage />,
         beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchAllStatuses();
             store.userCard.setDisplayMode('currentUser');
         },
-        onExit: () => {
+        beforeExit: () => {
+            store.topicStatuses.reset();
+            store.topicsPopular.reset();
+        }
+    }),
+    topic: new Route({
+        path: '/topic/:title',
+        component: <TopicPage />,
+        beforeEnter: (route, params) => {
+            store.topicsPopular.fetchTopicsPopular();
+            store.topicStatuses.fetchTopicInfo(params.title);
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onParamsChange: (route, params) => {
+            store.topicStatuses.resetStatuses();
+            store.topicStatuses.fetchTopicInfo(params.title);
+        },
+        beforeExit: () => {
+            store.topicsPopular.reset();
+            store.topicStatuses.reset();
         },
     }),
     terms: new Route({
@@ -142,22 +170,20 @@ export const Routes = {
         component: <BinanceSmartChainPage />,
         beforeEnter: () => store.explorer.fetchBinanceSmartChain(),
     }),
+    signUp: new Route({
+        path: '/sign-up',
+        component: <SignUpPage />,
+    }),
     userProfile: new Route({
-        path: '/:username',
+        path: '/user/:username',
         component: <UserProfilePage />,
         beforeEnter: (route, params) => {
-            store.userCard.setDisplayMode('userByAddress');
-            store.userProfile.fetchUserByUsername(params.username);
-            if (params.tab === 'followers') {
-                store.userProfile.activeTab = 'followers';
-                store.userFollowers.fetchUserFollowers(params.id);
-            } else if (params.tab === 'following') {
-                store.userProfile.activeTab = 'following';
-                store.userFollowing.fetchFollowing(params.id);
-            } else {
-                store.userProfile.activeTab = 'posts';
-                store.userProfileTimeline.fetchStatuses(params.id);
+            if (!(store.userProfile.user && store.userProfile.username === params.username)) {
+                store.userProfile.reset();
+                store.userProfile.fetchUserByUsername(params.username);
             }
+            store.userCard.setDisplayMode('userByAddress');
+            store.userProfile.activeTab = 'posts';
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',
                 subscribeToStatusAuthor: () => {
@@ -172,13 +198,36 @@ export const Routes = {
             });
         },
         onExit: () => {
-            store.userProfile.reset();
             store.userProfileTimeline.removeStatusAuthorSubscriptionListener('userProfileAuthorSubscriptionListener');
             store.userProfileTimeline.removeStatusAuthorUnsubscriptionListener('userProfileAuthorUnsubscriptionListener');
         },
         onParamsChange: (route, params) => {
             store.userProfile.reset();
             store.userProfile.fetchUserByUsername(params.username);
+        },
+    }),
+    userFollowers: new Route({
+        path: '/user/:username/followers',
+        component: <UserProfilePage />,
+        beforeEnter: (route, params) => {
+            if (!(store.userProfile.user && store.userProfile.username === params.username)) {
+                store.userProfile.fetchUserByUsername(params.username);
+            }
+
+            store.userFollowers.fetchUserFollowers(params.username);
+            store.userProfile.activeTab = 'followers';
+        },
+    }),
+    userFollowing: new Route({
+        path: '/user/:username/following',
+        component: <UserProfilePage />,
+        beforeEnter: (route, params) => {
+            if (!(store.userProfile.user && store.userProfile.username === params.username)) {
+                store.userProfile.fetchUserByUsername(params.username);
+            }
+
+            store.userFollowing.fetchFollowing(params.username);
+            store.userProfile.activeTab = 'following';
         },
     }),
     status: new Route({

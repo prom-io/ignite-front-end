@@ -1,5 +1,14 @@
 import Web3 from 'web3';
-import { AuthorizationStore, LoginStore } from '../Authorization/stores';
+import {
+    AuthorizationStore,
+    LoginStore,
+    GenericAuthorizationDialogStore,
+    GenerateWalletStore,
+    SignUpStore,
+    GenerateHashStore,
+    VerifyHashStore,
+    PasswordChangeStore,
+} from '../Authorization/stores';
 import {
     CreateStatusStore,
     StatusBtfsInfoStore,
@@ -21,27 +30,25 @@ import {
     FollowPeopleStore,
     WhoToFollowStore,
 } from '../Follow/stores';
-import { SignUpStore } from '../SignUp/stores';
 import { DrawerStore } from '../AppBar/stores';
 import { LocaleStore } from '../localization/stores';
 import { ExplorerStore } from '../Explorer/stores';
 import { NotificationsStore } from '../Notification/stores';
+import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
 import { WebsocketStore } from '../websocket/stores';
 
-const authorization = new AuthorizationStore();
-const login = new LoginStore(authorization);
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
-const createStatus = new CreateStatusStore(uploadMediaAttachments, authorization);
+const createStatus = new CreateStatusStore(uploadMediaAttachments);
+const authorization = new AuthorizationStore(createStatus);
 const globalTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/global', false, true);
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();
 const userFollowing = new UserFollowingStore();
-const userProfileTimeline = new StatusesListStore(authorization, createStatus);
-const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing);
+const userProfileTimeline = new StatusesListStore(authorization, createStatus, undefined, false, false, true);
+const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing, createStatus);
 const followAction = new FollowActionStore(authorization);
 const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);
-const signUp = new SignUpStore(authorization, new Web3());
 const homeTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/home');
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
@@ -54,7 +61,16 @@ const statusComments = new StatusesListStore(authorization, createStatus, undefi
 const userAvatarUpload = new UploadUserAvatarStore();
 const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile, localization);
 const notifications = new NotificationsStore(authorization);
+const topicStatuses = new TopicStatusesStore(authorization);
+const topicsPopular = new TopicsPopularStore(authorization);
 const websocket = new WebsocketStore(authorization, notifications);
+const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
+const login = new LoginStore(authorization, genericAuthorizationDialog);
+const walletGeneration = new GenerateWalletStore(genericAuthorizationDialog);
+const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog, localization);
+const hashGeneration = new GenerateHashStore();
+const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
+const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 
 export const store = {
     authorization,
@@ -83,5 +99,12 @@ export const store = {
     userAvatarUpload,
     userProfileUpdate,
     notifications,
+    topicStatuses,
+    topicsPopular,
     websocket,
+    genericAuthorizationDialog,
+    walletGeneration,
+    hashGeneration,
+    hashVerification,
+    passwordChange,
 };

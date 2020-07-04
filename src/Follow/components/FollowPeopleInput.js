@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
         border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px 4px 0px 0px',
         height: 96,
+        [theme.breakpoints.down('sm')]: {
+            marginTop: 0,
+        },
     },
     followInputRow: {
         position: 'relative',

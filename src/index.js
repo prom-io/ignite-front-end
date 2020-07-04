@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { RouterStore, startRouter } from 'mobx-router';
 import * as serviceWorker from './serviceWorker';
 import { App } from './App';
-import { store } from './store';
+import { store, routerStore } from './store';
 import { Routes } from './routes';
 
 if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
@@ -13,11 +13,13 @@ if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
     };
 }
 
-const routerStore = {
-    router: new RouterStore(),
-};
-
-startRouter(Routes, routerStore);
+startRouter(Routes, routerStore, {
+    notfound: () => {
+        if (window && !(window.location.href.indexOf(`${process.env.REACT_APP_API_BASE_URL}/user/`) > -1)) {
+            routerStore.router.goTo(Routes.notFound);
+        }
+    }
+});
 
 ReactDOM.render(
     <Provider store={routerStore} {...store} className="root">

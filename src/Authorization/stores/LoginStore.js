@@ -23,9 +23,11 @@ export class LoginStore {
     };
 
     authorizationStore = undefined;
+    genericAuthorizationDialogStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, genericAuthorizationDialogStore) {
         this.authorizationStore = authorizationStore;
+        this.genericAuthorizationDialogStore = genericAuthorizationDialogStore;
     }
 
     @action
@@ -40,12 +42,16 @@ export class LoginStore {
                 };
                 this.setLoginDialogOpen(false);
             })
-            .catch(error => this.submissionError = error)
+            .catch(error => {
+                this.submissionError = error;
+                console.log(error);
+            })
             .finally(() => this.pending = false);
     };
 
     @action
     setLoginDialogOpen = loginDialogOpen => {
         this.loginDialogOpen = loginDialogOpen;
+        this.genericAuthorizationDialogStore.setGenericAuthorizationDialogOpen(false);
     };
 }

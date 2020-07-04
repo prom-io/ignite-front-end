@@ -6,6 +6,7 @@ import {
     DialogContent,
     DialogTitle,
     IconButton,
+    Hidden,
     makeStyles,
     withMobileDialog,
 } from '@material-ui/core';
@@ -27,21 +28,25 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             top: '0px',
             overflowY: 'scroll',
+            maxWidth: '100% !important',
         },
     },
     statusFormDialogTitle: {
         padding: '16px 24px 0 24px',
-        '& h2':{
+        '& h2': {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+        },
+        [theme.breakpoints.down('sm')]: {
+            padding: '4px 12px',
         },
     },
     statusFormDialogContent: {
         overflow: 'unset',
         border: 'none',
         padding: 0,
-    }
+    },
 }));
 
 const _CreateStatusDialog = ({
@@ -62,11 +67,11 @@ const _CreateStatusDialog = ({
             open={createStatusDialogOpen}
             onClose={() => setCreateStatusDialogOpen(false)}
             fullScreen={fullScreen}
-            scroll={'body'}
+            scroll="body"
             fullWidth
             maxWidth="md"
             classes={{
-                paper: classes.statusFormDialog
+                paper: classes.statusFormDialog,
             }}
             BackdropProps={{
                 style: {
@@ -74,26 +79,33 @@ const _CreateStatusDialog = ({
                 },
             }}
         >
-            <DialogTitle classes={{root: classes.statusFormDialogTitle}}>
+            <DialogTitle classes={{ root: classes.statusFormDialogTitle }}>
                 <IconButton
                     onClick={() => setCreateStatusDialogOpen(false)}
                     disabled={pending}
                 >
                     <ArrowBackIcon />
                 </IconButton>
-                <Button
-                    className={classes.createStatusButton}
-                    onClick={createStatus}
-                    disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
-                    color="primary"
-                    variant="contained"
-                >
-                    {pending && <Loader size="md" css={'position:absolute; top: -2px; left: 40px'}/>}
-                    {l('status.send')}
-                </Button>
+                <Hidden mdUp>
+                    <Button
+                        className={classes.createStatusButton}
+                        onClick={createStatus}
+                        disabled={pending || mediaAttachmentUploadPending || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        color="primary"
+                        variant="contained"
+                    >
+                        {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
+                        {l('status.send')}
+                    </Button>
+                </Hidden>
             </DialogTitle>
-            <DialogContent classes={{root: classes.statusFormDialogContent}}>
-                <CreateStatusForm hideSendButton isDialogEmojiPicker/>
+            <DialogContent classes={{ root: classes.statusFormDialogContent }}>
+                <Hidden mdUp>
+                    <CreateStatusForm hideSendButton isDialogEmojiPicker />
+                </Hidden>
+                <Hidden smDown>
+                    <CreateStatusForm isDialogEmojiPicker />
+                </Hidden>
             </DialogContent>
         </Dialog>
     );

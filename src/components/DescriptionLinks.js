@@ -25,6 +25,7 @@ const _DescriptionLinks = ({ routerStore, l }) => {
                         linkTekst={links.termsOfService}
                     />
                 </p>
+                <p>&bull;</p>
                 <p>
                     <StaticPageLinks
                         targetView={Routes.terms}
@@ -32,9 +33,9 @@ const _DescriptionLinks = ({ routerStore, l }) => {
                         linkTekst={links.privacyPolicy}
                     />
                 </p>
-                <p>&bull;</p>
+                {/*
                 <p>{l('menu.help-center')}</p>
-                <LogoutMenuItem onClick={handleClose} isMenuItem />
+                <LogoutMenuItem onClick={handleClose} isMenuItem /> */}
             </div>
             <div>
                 <p>

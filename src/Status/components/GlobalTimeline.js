@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
     statusListBorderCorrective: {
         padding: '0 !important',
+        width: '100%',
         [theme.breakpoints.down('md')]: {
             padding: '0px !important',
             paddingBottom: `${theme.spacing(1)}px !important`,
@@ -54,7 +55,7 @@ const _GlobalTimeline = ({
                         </Hidden>
                     </Grid>
                 )}
-                <Grid item xs={12} className={classes.statusListBorderCorrective}>
+                <Grid item className={classes.statusListBorderCorrective}>
                     <StatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) => (favourited ? favouriteStatus(statusId) : unfavouriteStatus(statusId))}

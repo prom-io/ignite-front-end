@@ -34,7 +34,8 @@ const _RepostStatusMenu = ({
     canBeReposted,
     currentUserIsAuthor,
     currentUser,
-    setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType,
 }) => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -42,24 +43,24 @@ const _RepostStatusMenu = ({
 
     const handleToggle = () => {
         if (!currentUser) {
-            setLoginDialogOpen(true);
+            setGenericAuthorizationDialogOpen(true);
+            setGenericAuthorizationDialogType('login');
             return;
         }
-        setOpen(prevOpen => currentUser && !prevOpen);
+        canBeReposted && setOpen(prevOpen => currentUser && !prevOpen);
     };
 
     const handleClose = event => {
         if (event && anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
 
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
-              <Loader css="transform: scale(0.3); top:5px; left:5px" />
+                <Loader css="transform: scale(0.3); top:5px; left:5px" />
             ) : (
                 <IconButton
                     ref={anchorRef}
@@ -68,7 +69,7 @@ const _RepostStatusMenu = ({
                 >
                     <RepostIcon
                         reposted={
-                            currentUser && !canBeReposted && !currentUserIsAuthor
+                            currentUser && !canBeReposted && status.reposted && !currentUserIsAuthor
                         }
                     />
                 </IconButton>
@@ -119,9 +120,10 @@ const _RepostStatusMenu = ({
     );
 };
 
-const mampMobxToProps = ({ authorization, login }) => ({
+const mampMobxToProps = ({ authorization, genericAuthorizationDialog }) => ({
     currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen,
+    setGenericAuthorizationDialogOpen: genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType: genericAuthorizationDialog.setGenericAuthorizationDialogType,
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

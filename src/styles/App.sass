@@ -152,8 +152,12 @@ p
 .right-content-container
   max-width: auto !important
   padding: 0 !important
+  margin: 0 auto !important
   @media (min-width: 952px)
     max-width: 600px !important
+  @media (max-width: 900px)
+    max-width: 100%
+    width: 100%
 .mobile_header
   width: 100%
   height: 50px
@@ -163,7 +167,7 @@ p
   border: 1px solid #F1EBE8
   background-color: #FEFDFD
   display: flex
-  justify-content: flex-end
+  justify-content: space-between
   align-items: center
   @media (min-width: 960px)
     display: none !important
@@ -175,6 +179,12 @@ p
     height: 24px
     cursor: pointer
     outline: none
+.mobile_header-title
+  margin-left: 70px
+  color: #1C1C1C
+  font-size: 18px
+  font-family: Museo Sans Cyrl Bold
+
 .open_login_dialog_button
   position: absolute !important
   top: 11px
@@ -240,18 +250,16 @@ p
 
 .select-language
   height: 34px
-  width: 34px
+  width: 64px
   border-radius: 100%
   display: flex
   justify-content: center
   align-items: center
-  margin-left: 16px
-  margin-right: 15px
   // &:active
   //   background: red !important
 
 .mobile_header .select-language
-  margin-right: 40px
+  margin-right: 0px
 
 .left-banners-container
   display: flex
@@ -317,7 +325,7 @@ p
   width: 256px
   min-height: 290px
   height: auto
-  padding-bottom: 4px
+  padding: 24px 20px
   border-radius: 4px
   display: flex
   flex-wrap: wrap
@@ -328,12 +336,9 @@ p
   width: 100%
   // border: 1px solid red
   // box-sizing: border-box
-.user-card-bottom
-  padding-top: 20px
 .user-card-top
   display: flex
   justify-content: center
-  padding-top: 36px
   img
     max-width: 94px
 // .user-card-bottom
@@ -344,8 +349,6 @@ p
   display: flex
   flex-direction: column
   align-items: center
-  padding-left: 20px
-  padding-right: 20px
   h4
     font-family: Museo Sans Cyrl Regular
     font-style: normal
@@ -354,7 +357,8 @@ p
     line-height: 24px
     text-align: center
     color: #1C1C1C
-    margin: 0 0 5px 0
+    margin: 20px 0 5px 0
+    word-break: break-word
   p
     max-width: 256px
     font-family: Museo Sans Cyrl Regular
@@ -365,6 +369,7 @@ p
     text-align: center
     color: #A2A2A2
     margin: 0 0 10px 0
+    word-break: break-word
   &-bio
     font-family: Museo Sans Cyrl Regular
     font-style: normal
@@ -704,6 +709,7 @@ p
   background: $user-card-bg
   border: 1px solid #F1EBE8
   border-radius: 4px
+  padding: 30px 20px
   @media ( max-width: 960px )
     &.another-user
       width: 100% !important
@@ -716,21 +722,22 @@ p
   justify-content: center
   align-items: center
   box-sizing: border-box
-  margin-top: 36px
-  h4
-    margin-top: 20px
+
 .user-profile-header-content-bottom
   width: 100%
   display: flex
+  flex-direction: column
   align-items: center
   flex-wrap: wrap
   box-sizing: border-box
   justify-content: center
 .user-profile-header-content-bottom-follows
+  display: flex
   width: 100%
   height: 40px
+  margin-top: 16px
   align-content: space-between
-  div
+  a
     width: 33%
     text-align: center
     &:hover > p
@@ -757,7 +764,6 @@ p
   display: flex
   justify-content: center
   margin-top: 16px
-  margin-bottom: 24px
   button
     background: #FF5C01
     border-radius: 30px
@@ -789,6 +795,7 @@ p
   &:nth-child(2)
     margin-bottom: 6px !important
 .user-profile-info-text
+  margin-top: 22px !important
   text-align: center
   font-family: Museo Sans Cyrl Regular, serif !important
   font-size: 12px !important
@@ -800,6 +807,7 @@ p
   width: auto
   min-height: 100%
   max-width: 100%
+  margin-top: 30px
   display: flex
   justify-content: center
   flex-wrap: wrap
@@ -813,6 +821,7 @@ p
     &:last-child
       flex-wrap: wrap
       max-width: 770px
+      margin-top: 30px
     p
       width: 100%
       font-family: Museo Sans Cyrl Regular
@@ -975,7 +984,7 @@ p
   background: none !important
 
 #lightboxBackdrop
-  z-index: 9999999999999
+  z-index: 1190
   font-family: Museo Sans Cyrl !important
 
 .notificationCardBox
@@ -991,7 +1000,26 @@ p
 
 .ignite-chat-page
   height: 18em
-  margin-top: 20px
-  background: url("/page_img/connected_world_wuay 1.png")
-  background-size: 100%
-  background-position: center
+  width: 100%
+  background: url("/page_img/connected_world_wuay 1.png") no-repeat center center
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+
+.not-found
+  height: 232px
+  width: 100%
+  max-width: 427px
+  background: url("/page_img/page_not_found.jpg") no-repeat center center
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+
+.chat-container
+  display: flex
+  flex-direction: column
+  justify-content: center
+  margin-top: 50px
+  padding: 0px 20px 50px 20px

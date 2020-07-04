@@ -10,14 +10,13 @@ import { localized } from '../../localization/components';
 const useStyles = makeStyles(theme => ({
     editButtonWrapper: {
         marginTop: '10px',
-        marginBottom: '24px',
         textDecoration: 'none',
         maxWidth: '204px',
         height: '40px',
         width: '100%',
 
         '& button': {
-            textTransform: "capitalize",
+            textTransform: 'capitalize',
             width: '100%',
             height: '40px',
             border: `1px solid ${theme.palette.primary.main}`,

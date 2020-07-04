@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, Hidden } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
 import { AppBar } from '../AppBar/components';
 import { LoginForm } from '../Authorization/components';
 import { Layout } from '../Layout';
@@ -27,11 +26,11 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item lg={9} xs={12} className="right-content-container">
-                        <Grid container spacing={2}>
+                    <Grid item spacing={28} lg={9} className="right-content-container">
+                        <Grid container>
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
                             <Grid item xs={12} md={9} className="right-content">

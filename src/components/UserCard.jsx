@@ -49,8 +49,8 @@ const _UserCard = ({
                     </Link>
                     <div className="user-card-bottom user-card-content-box">
                         <div className="user-card-info">
-                            <h4>{addLineBreak(username)}</h4>
-                            <p>{addLineBreak(displayName)}</p>
+                            <h4>{displayName}</h4>
+                            <p>{username}</p>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -60,7 +60,6 @@ const _UserCard = ({
 
                         <Grid className="user-profile-header-content-bottom">
                             <Grid
-                                style={{ display: 'flex', padding: 20 }}
                                 className="user-profile-header-content-bottom-follows user-card-statistic"
                             >
                                 <Link
@@ -69,7 +68,6 @@ const _UserCard = ({
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'posts',
                                     }}
                                 >
                                     <Typography variant="h6">{posts}</Typography>
@@ -79,11 +77,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowers}
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'followers',
                                     }}
                                 >
                                     <Typography variant="h6">{followers}</Typography>
@@ -93,11 +90,10 @@ const _UserCard = ({
                                 </Link>
                                 <Link
                                     store={routerStore}
-                                    view={Routes.userProfile}
+                                    view={Routes.userFollowing}
                                     params={{
                                         username: currentUser.username,
                                         id: currentUser.id,
-                                        tab: 'following',
                                     }}
                                 >
                                     <Typography variant="h6">{following}</Typography>

@@ -1,33 +1,38 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { localized } from '../../localization/components';
+import { observer } from 'mobx-react';
+import { Button, makeStyles } from '@material-ui/core';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     buttonMargin: {
-        [theme.breakpoints.down('sm')]: {
-            marginLeft: '30px',
-            lineHeight: 'normal',
-        },
+        margin: '0 16px 0 30px',
+        padding: '4px 16px',
     },
 }));
 
-const _OpenLoginDialogButton = ({ setLoginDialogOpen, l }) => (
-    <Button
-        className="open_login_dialog_button"
-        onClick={() => setLoginDialogOpen(true)}
-        variant="contained"
-        disableElevation
-        color="primary"
-        classes={{ root: useStyles().buttonMargin }}
-    >
-        <strong>{l('authorization.login')}</strong>
-    </Button>
-);
+export const OpenLoginDialogButton = observer(() => {
+    const classes = useStyles();
+    const {
+        setGenericAuthorizationDialogOpen,
+        setGenericAuthorizationDialogType,
+    } = useStore().genericAuthorizationDialog;
+    const { l } = useLocalization();
 
-const mapMobxToProps = ({ login }) => ({ setLoginDialogOpen: login.setLoginDialogOpen });
+    const handleClick = () => {
+        setGenericAuthorizationDialogType('login');
+        setGenericAuthorizationDialogOpen(true);
+    };
 
-export const OpenLoginDialogButton = localized(
-    inject(mapMobxToProps)(observer(_OpenLoginDialogButton)),
-);
+    return (
+        <Button
+            className={'open_login_dialog_button'}
+            classes={{root: classes.buttonMargin}}
+            onClick={handleClick}
+            variant="contained"
+            disableElevation
+            color="primary"
+        >
+            <strong>{l('authorization.login')}</strong>
+        </Button>
+    );
+});

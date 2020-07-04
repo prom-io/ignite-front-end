@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
 
@@ -11,14 +11,24 @@ import {
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
-import { IgniteChatPage } from '../icons/IgniteChatPage';
 
 const useStyles = makeStyles(theme => ({
     chatError: {
         border: `1px solid ${theme.palette.border.main}`,
-        borderBottom: 'none',
         height: '100%',
-        padding: '0 30px',
+        padding: '30px',
+        textAlign: 'center',
+        '& h1': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: theme.palette.text.main,
+        },
+        '& p': {
+            color: theme.palette.text.secondary,
+            fontSize: '15px',
+            lineHeight: '26px',
+        }
     },
     chatErrorInfo: {
         display: 'flex',
@@ -29,12 +39,6 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         lineHeight: '26px',
         color: '#A2A2A2',
-        '& h1': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: '#1C1C1C',
-        },
     },
 }));
 
@@ -59,21 +63,17 @@ const _ChatPage = ({ currentUser, l }) => {
                         >
                             {!currentUser && (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton/>
+                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                                 </Grid>
                             )}
-                            <div className="static-page">
-                                <div className="static-page-container">
-                                    <div className={classes.chatError}>
-                                        <div className={classes.chatErrorInfo}>
-                                            <div className={'ignite-chat-page'} />
-                                            <h1>PrompTalk Chat</h1>
-                                        </div>
-                                        <div>
-                                            <p>{l('chat.description.first-paragraph')}</p>
-                                            <p>{l('chat.description.second-paragraph')}</p>
-                                        </div>
-                                    </div>
+                            <div className={classes.chatError}>
+                                <div className={classes.chatErrorInfo}>
+                                    <div className="ignite-chat-page" />
+                                    <h1>PrompTalk Chat</h1>
+                                </div>
+                                <div>
+                                    <p>{l('chat.description.first-paragraph')}</p>
+                                    <p>{l('chat.description.second-paragraph')}</p>
                                 </div>
                             </div>
                         </Grid>

@@ -117,6 +117,13 @@ export const kr = {
     'trends.first-paragraph': 'Prometeus Team은 트렌드 서비스를 만들어 개발하여 사용자들에게 현재 서비스에서 논의되고 있는 내용에 대한 실시간 피드를 제공할 계획입니다. Ignite의 트렌드는 사람들이 움직이는 뉴스룸이 될 것입니다. 우리의 트렌드는 뉴스 발견을 게이트키퍼에서 벗어나 분산시키고 주류, 대안, 시민 기자들이 그들의 이야기를 세계와 공유할 수 있는 공정한 경쟁의 장을 만들 것입니다.',
     'trends.second-paragraph': '당신은 다른 소셜 네트워크의 몇몇 트렌드가 단어 또는 구 앞에 # 기호를 가지고 있다는 것을 알아차릴 수 있습니다. 이것은 해시태그라고 불리며, 사람들이 검색에서 대화를 따라갈 수 있도록 주제에 관한 것으로 표시하기 위해 게시물에 구체적으로 포함될 것입니다.',
     'trends.third-paragraph': '트렌드는 당신이 따르는 사람과 당신의 관심사, 그리고 당신의 위치( 언급된 경우)에 따라 당신에게 맞춰질 것입니다. 당신은 당신의 트렌드 설정에서 특정한 트렌드를 선택함으로써 당신에게 맞추어져 있지 않은 트렌드를 볼 수 있을 것입니다.',
+    'topics.tag': "Tag",
+    'topics.card.popular': "Popular",
+    'topics.card.posts': "posts",
+    'topics.card.menu.spam': "This trend is spam",
+    'topics.card.menu.harmful': "This trend is abusive or harmful",
+    'topics.card.menu.duplicate': "This trend is a duplicate",
+    'topics.card.menu.quality': "This trend is low quality",
     'status.reposted-comment': '다시 게시된 댓글',
     'menu.terms-and-policies': '이용약관',
     settings: '설정',
@@ -166,5 +173,6 @@ export const kr = {
     'notifications.login-required': '알림을 보려면 먼저 로그인해주세요',
     'notification.repost': 'respoted your post',
     post: '게시물',
-    'follow-people': 'Follow people'
+    comment: 'Comment',
+    'follow-people': 'Follow people',
 };

@@ -129,6 +129,7 @@ const _BinanceSmartChainTable = ({
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
+                            tableHashes &&
                             tableHashes.data.map(item => (
                                 <TableRow>
                                     <TableCell>

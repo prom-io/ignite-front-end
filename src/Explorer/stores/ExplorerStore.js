@@ -1,19 +1,28 @@
+import axios from "axios";
 import { observable, action } from "mobx";
 import { axiosInstance } from "../../api/axios-instance";
 
 export class ExplorerStore {
     @observable
-    btfsHashes = [];
-    ethereumPlasma = [];
-    distributedStorage = [];
-    ethereumMainne = [];
-    binanceSmartChain = [];
+    tableHashes = [];
 
     @observable
     pending = false;
 
     @observable
+    detailsPending = false;
+
+    @observable
     error = undefined;
+
+    @observable
+    modalIsOpen = false;
+
+    @observable
+    modalDetails = {};
+
+    @observable
+    typeDetails = undefined;
 
     @action
     fetchBtfsHashes = () => {
@@ -23,192 +32,111 @@ export class ExplorerStore {
         axiosInstance
             .get("/api/v3/btfs")
             .then(({ data }) => {
-                this.btfsHashes = data;
+                this.tableHashes = data;
                 this.pending = false;
             })
             .catch(error => (this.error = error));
     };
 
     @action
-    fetchEthereumPlasma = () => {
+    fetchEthereumPlasma = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
-        this.error = undefined;
 
-        setTimeout(() => {
-            this.ethereumPlasma = [
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                }
-            ];
-            this.pending = false;
-        }, 1500);
+        axios
+            .get(
+                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+            )
+            .then(({ data }) => {
+                this.tableHashes = data;
+            })
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
     };
 
     @action
-    fetchDistributedStorage = () => {
+    fetchDistributedStorage = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
-        this.error = undefined;
 
-        setTimeout(() => {
-            this.distributedStorage = [
-                {
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "soter_link": "https://sandbox.btfssoter.io/btfs/QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                },
-                {
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "soter_link": "https://sandbox.btfssoter.io/btfs/QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                },
-                {
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "soter_link": "https://sandbox.btfssoter.io/btfs/QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                },
-                {
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "soter_link": "https://sandbox.btfssoter.io/btfs/QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                },
-                {
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                    "age": "58 secs ago",
-                    "node": "0x194208845439fCA4297fF85deB1c71091e9f5f97",
-                    "soter_link": "https://sandbox.btfssoter.io/btfs/QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq",
-                }
-            ];
-            this.pending = false;
-        }, 1500);
+        axios
+            .get(
+                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+            )
+            .then(({ data }) => {
+                this.tableHashes = data;
+            })
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
     };
 
     @action
-    fetchEthereumMainne = () => {
+    fetchEthereumMainne = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
-        this.error = undefined;
 
-        setTimeout(() => {
-            this.ethereumMainne = [
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "0x5f5b176553e51171826d1a62e540bc30422c7717",
-                    "value": "0.2254"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "0x5f5b176553e51171826d1a62e540bc30422c7717",
-                    "value": "0.2254"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "0x5f5b176553e51171826d1a62e540bc30422c7717",
-                    "value": "0.2254"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "0x5f5b176553e51171826d1a62e540bc30422c7717",
-                    "value": "0.2254"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "0x5f5b176553e51171826d1a62e540bc30422c7717",
-                    "value": "0.2254"
-                },
-            ];
-            this.pending = false;
-        }, 1500);
+        axios
+            .get(
+                `http://188.166.18.41/api/v1/main-network/root-chain/all/${page}/${rowsPerPage}`
+            )
+            .then(({ data }) => {
+                this.tableHashes = data;
+            })
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
     };
 
     @action
-    fetchBinanceSmartChain = () => {
+    fetchBinanceSmartChain = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
-        this.error = undefined;
 
-        setTimeout(() => {
-            this.binanceSmartChain = [
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "none",
-                    "value": "0.2254",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "none",
-                    "value": "0.2254",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "none",
-                    "value": "0.2254",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "none",
-                    "value": "0.2254",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-                {
-                    "txnId": "0x8fb47870f1ae62acea47fdb66227d478d70caaa0afd28cddac56bc36a3508cd4",
-                    "age": "58 secs ago",
-                    "from": "0xffc9ee97a4c75543bac09dea769e6ecaed484dac",
-                    "to": "none",
-                    "value": "0.2254",
-                    "btfs_cid": "QmeLdR575fZvgEskZuZwno7SLMNrsVBgn4LsRe41SA2GWq"
-                },
-            ];
-            this.pending = false;
-        }, 1500);
+        axios
+            .get(
+                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+            )
+            .then(({ data }) => {
+                this.tableHashes = data;
+            })
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
+    };
+
+    @action
+    fetchDetails = (type, id) => {
+        this.detailsPending = true;
+        this.typeDetails = type;
+        let url;
+
+        switch (type) {
+            case "ethereum-plasma":
+                url = `plasma-network/cid-block/block/${id}`;
+                break;
+            case "distributed-storage":
+                url = `plasma-network/cid-block/block/${id}`;
+                break;
+            case "ethereum-mainnet":
+                url = `plasma-network/cid-block/block/${id}`;
+                break;
+            case "binance-smart-chain":
+                url = `binance-smart-chain-test-network/cid-chain/block/${id}`;
+                break;
+            default:
+                return;
+        }
+
+        axios
+            .get(`http://188.166.18.41/api/v1/${url}`)
+            .then(({ data }) => {
+                console.log(data)
+                this.modalDetails = data;
+            })
+            .catch(() => {})
+            .finally(() => (this.detailsPending = false));
+    };
+
+    @action
+    setModalIsOpen = (modalIsOpen, type, id) => {
+        this.modalIsOpen = modalIsOpen;
+        if (modalIsOpen) {
+            this.modalDetails = {};
+            this.fetchDetails(type, id);
+        }
     };
 }

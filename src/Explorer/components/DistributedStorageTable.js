@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import {
     Table,
@@ -6,6 +6,7 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    TablePagination,
     Card,
     CardContent,
     makeStyles,
@@ -16,17 +17,21 @@ import { trimString } from "../../utils/string-utils";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
+import { ExplorerModal } from "./ExplorerModal";
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
         width: "100%",
         marginTop: "50px",
         overflow: "auto",
-        [theme.breakpoints.down('sm')]: {
-            '& td': {
-                minWidth: '200px',
+        [theme.breakpoints.down("sm")]: {
+            "& td": {
+                minWidth: "200px"
             }
         }
+    },
+    tableCardContent: {
+        padding: 0
     },
     link: {
         color: theme.palette.primary.main
@@ -58,30 +63,47 @@ const useStyles = makeStyles(theme => ({
         "&:not(:focus):after": {
             content: ""
         }
+    },
+    linkToModal: {
+        color: theme.palette.primary.main,
+        textDecoration: "underline",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "none"
+        }
     }
 }));
 
-const getErrorLabel = error => {
-    if (error.response) {
-        return `Could not load BTFS hashes, server responded with ${error.reponse.status} status`;
-    }
-    return "Could not load BTFS hashes, server is unreachable";
-};
-
 const _DistributedStorageTable = ({
-    distributedStorage,
+    tableHashes,
     pending,
     error,
+    setModalIsOpen,
+    fetchDistributedStorage,
     l,
     currentActiveRoute
 }) => {
     const classes = useStyles();
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+        fetchDistributedStorage(newPage, rowsPerPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+        fetchDistributedStorage(0, +event.target.value);
+    };
 
     return (
         <Card className={classes.tableCard}>
+            <ExplorerModal />
             <ExplorerSwitcher activeTab={currentActiveRoute} />
-            <CardContent>
-                <Table>
+            <CardContent className={classes.tableCardContent}>
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -105,40 +127,49 @@ const _DistributedStorageTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error ? (
-                            <TableCell colSpan={4}>
-                                <Typography>{getErrorLabel(error)}</Typography>
-                            </TableCell>
-                        ) : distributedStorage.length === 0 ? (
+                        ) : error || tableHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            distributedStorage.map(item => (
-                                <TableRow>
+                            tableHashes.data.map(item => (
+                                <TableRow key={item.id}>
                                     <TableCell>
                                         <input
-                                            className={classes.tableInput}
-                                            value={item.btfs_cid}
+                                            className={[
+                                                classes.tableInput,
+                                                classes.linkToModal
+                                            ].join(" ")}
+                                            value={item.btfsCid}
                                             contentEditable={false}
+                                            onClick={() =>
+                                                setModalIsOpen(
+                                                    true,
+                                                    "distributed-storage",
+                                                    item.id
+                                                )
+                                            }
                                         />
                                     </TableCell>
-                                    <TableCell>{item.age}</TableCell>
+                                    <TableCell>{item.ago}</TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.node}
+                                            value={item.address}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <a
-                                            href={item.soter_link}
+                                            href={`https://sandbox.btfssoter.io/btfs/${item.btfsCid}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.link}
                                         >
-                                            {trimString(item.soter_link, 35)}
+                                            {trimString(
+                                                `https://sandbox.btfssoter.io/btfs/${item.btfsCid}`,
+                                                35
+                                            )}
                                         </a>
                                     </TableCell>
                                 </TableRow>
@@ -146,15 +177,26 @@ const _DistributedStorageTable = ({
                         )}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    component="div"
+                    count={tableHashes.count || 0}
+                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPage={rowsPerPage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                />
             </CardContent>
         </Card>
     );
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    distributedStorage: explorer.distributedStorage,
+    tableHashes: explorer.tableHashes,
     pending: explorer.pending,
-    error: explorer.error
+    error: explorer.error,
+    setModalIsOpen: explorer.setModalIsOpen,
+    fetchDistributedStorage: explorer.fetchDistributedStorage
 });
 
 export const DistributedStorageTable = localized(

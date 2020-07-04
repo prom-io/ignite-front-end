@@ -91,6 +91,7 @@ export const en = {
     'explorer.sync.status.synchronized': 'Synchronized',
     'explorer.sync.status.not-synchronized': 'Not synchronized',
     'explorer.close': 'Close',
+    'explorer.modal.ok': 'Ok',
     'prometeus.description.try-our-network': "Try our <a className={classes.prometeusLink} href=\"https://prometeus.io\" target=\"_blank noopener noreferrrer\">Network</a>, which allows to buy and sell any imaginable digital data: contract templates, music, 3D models, source codes, stats or your master's thesis – anything you can think of, saved in a file.",
     'ignite.description': "<span>Ignite </span> is Ethereum Plasma based 'decentralized twitter' solution with immutable storage to make it censorship proof.",
     'terms-of-service': 'Terms of service',
@@ -166,5 +167,5 @@ export const en = {
     'notifications.login-required': 'You have too log in to see your notifications',
     'notification.repost': 'respoted your post',
     post: 'Post',
-    'follow-people': 'Follow People',
+    'follow-people': 'Follow People'
 };

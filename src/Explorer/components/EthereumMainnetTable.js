@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import {
     Table,
@@ -6,6 +6,7 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    TablePagination,
     Card,
     CardContent,
     makeStyles,
@@ -15,15 +16,16 @@ import {
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
+import { ExplorerModal } from "./ExplorerModal";
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
         width: "100%",
         marginTop: "50px",
         overflow: "auto",
-        [theme.breakpoints.down('sm')]: {
-            '& td': {
-                minWidth: '200px',
+        [theme.breakpoints.down("sm")]: {
+            "& td": {
+                minWidth: "200px"
             }
         }
     },
@@ -33,6 +35,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         height: "100%",
         width: "100%"
+    },
+    tableCardContent: {
+        padding: 0
     },
     tableInput: {
         fontFamily: "Museo Sans Cyrl Regular",
@@ -54,30 +59,47 @@ const useStyles = makeStyles(theme => ({
         "&:not(:focus):after": {
             content: ""
         }
+    },
+    linkToModal: {
+        color: theme.palette.primary.main,
+        textDecoration: "underline",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "none"
+        }
     }
 }));
 
-const getErrorLabel = error => {
-    if (error.response) {
-        return `Could not load BTFS hashes, server responded with ${error.reponse.status} status`;
-    }
-    return "Could not load BTFS hashes, server is unreachable";
-};
-
 const _EthereumMainnetTable = ({
-    ethereumMainne,
+    tableHashes,
     pending,
     error,
+    setModalIsOpen,
+    fetchEthereumMainne,
     l,
     currentActiveRoute
 }) => {
     const classes = useStyles();
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+        fetchEthereumMainne(newPage, rowsPerPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+        fetchEthereumMainne(0, +event.target.value);
+    };
 
     return (
         <Card className={classes.tableCard}>
+            <ExplorerModal />
             <ExplorerSwitcher activeTab={currentActiveRoute} />
-            <CardContent>
-                <Table>
+            <CardContent className={classes.tableCardContent}>
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -104,25 +126,31 @@ const _EthereumMainnetTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error ? (
-                            <TableCell colSpan={5}>
-                                <Typography>{getErrorLabel(error)}</Typography>
-                            </TableCell>
-                        ) : ethereumMainne.length === 0 ? (
+                        ) : error || tableHashes.data.length === 0 ? (
                             <TableCell colSpan={5}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            ethereumMainne.map(item => (
+                            tableHashes.data.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
-                                            className={classes.tableInput}
-                                            value={item.txnId}
+                                            className={[
+                                                classes.tableInput,
+                                                classes.linkToModal
+                                            ].join(" ")}
+                                            value={item.transactionHash}
                                             contentEditable={false}
+                                            onClick={() =>
+                                                setModalIsOpen(
+                                                    true,
+                                                    "ethereum-mainnet",
+                                                    item.id
+                                                )
+                                            }
                                         />
                                     </TableCell>
-                                    <TableCell>{item.age}</TableCell>
+                                    <TableCell>{item.ago}</TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
@@ -143,15 +171,26 @@ const _EthereumMainnetTable = ({
                         )}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    component="div"
+                    count={tableHashes.count || 0}
+                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPage={rowsPerPage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                />
             </CardContent>
         </Card>
     );
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    ethereumMainne: explorer.ethereumMainne,
+    tableHashes: explorer.tableHashes,
     pending: explorer.pending,
-    error: explorer.error
+    error: explorer.error,
+    setModalIsOpen: explorer.setModalIsOpen,
+    fetchEthereumMainne: explorer.fetchEthereumMainne
 });
 
 export const EthereumMainnetTable = localized(

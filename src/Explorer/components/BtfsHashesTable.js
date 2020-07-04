@@ -24,11 +24,14 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         marginTop: "50px",
         overflow: "auto",
-        [theme.breakpoints.down('sm')]: {
-            '& td': {
-            minWidth: '200px',
+        [theme.breakpoints.down("sm")]: {
+            "& td": {
+                minWidth: "200px"
             }
         }
+    },
+    tableCardContent: {
+        padding: 0
     },
     link: {
         color: theme.palette.primary.main
@@ -63,15 +66,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const getErrorLabel = error => {
-    if (error.response) {
-        return `Could not load BTFS hashes, server responded with ${error.reponse.status} status`;
-    }
-    return "Could not load BTFS hashes, server is unreachable";
-};
-
 const _BtfsHashesTable = ({
-    btfsHashes,
+    tableHashes,
     pending,
     error,
     l,
@@ -83,8 +79,8 @@ const _BtfsHashesTable = ({
     return (
         <Card className={classes.tableCard}>
             <ExplorerSwitcher activeTab={currentActiveRoute} />
-            <CardContent>
-                <Table>
+            <CardContent className={classes.tableCardContent}>
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -111,40 +107,38 @@ const _BtfsHashesTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error ? (
-                            <Typography>{getErrorLabel(error)}</Typography>
-                        ) : btfsHashes.length === 0 ? (
+                        ) : error || tableHashes.length === 0 ? (
                             <Typography>{l("explorer.no-data")}</Typography>
                         ) : (
-                            btfsHashes.map(btfsHash => (
+                            tableHashes.map(item => (
                                 <TableRow>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={btfsHash.cid}
+                                            value={item.cid}
                                             contentEditable={false}
                                         />
                                     </TableCell>
                                     <TableCell>
                                         <a
-                                            href={btfsHash.soter_link}
+                                            href={item.soter_link}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.link}
                                         >
-                                            {trimString(btfsHash.soter_link, 25)}
+                                            {trimString(item.soter_link, 25)}
                                         </a>
                                     </TableCell>
                                     <TableCell>
                                         {format(
-                                            new Date(btfsHash.created_at),
+                                            new Date(item.created_at),
                                             "dd MMMM yyyy HH:mm",
                                             { locale: dateFnsLocale }
                                         )}
                                     </TableCell>
-                                    <TableCell>{btfsHash.peer_wallet}</TableCell>
+                                    <TableCell>{item.peer_wallet}</TableCell>
                                     <TableCell>
-                                        {btfsHash.synced ? "True" : "False"}
+                                        {item.synced ? "True" : "False"}
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -157,7 +151,7 @@ const _BtfsHashesTable = ({
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    btfsHashes: explorer.btfsHashes,
+    tableHashes: explorer.tableHashes,
     pending: explorer.pending,
     error: explorer.error
 });

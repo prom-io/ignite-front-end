@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import {
     Table,
@@ -6,6 +6,7 @@ import {
     TableRow,
     TableCell,
     TableBody,
+    TablePagination,
     Card,
     CardContent,
     makeStyles,
@@ -15,17 +16,21 @@ import {
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import { ExplorerSwitcher } from "./ExplorerSwitcher";
+import { ExplorerModal } from "./ExplorerModal";
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
         width: "100%",
         marginTop: "50px",
         overflow: "auto",
-        [theme.breakpoints.down('sm')]: {
-            '& td': {
-                minWidth: '200px',
+        [theme.breakpoints.down("sm")]: {
+            "& td": {
+                minWidth: "200px"
             }
         }
+    },
+    tableCardContent: {
+        padding: 0
     },
     centered: {
         display: "flex",
@@ -54,30 +59,47 @@ const useStyles = makeStyles(theme => ({
         "&:not(:focus):after": {
             content: ""
         }
+    },
+    linkToModal: {
+        color: theme.palette.primary.main,
+        textDecoration: "underline",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "none"
+        }
     }
 }));
 
-const getErrorLabel = error => {
-    if (error.response) {
-        return `Could not load BTFS hashes, server responded with ${error.reponse.status} status`;
-    }
-    return "Could not load BTFS hashes, server is unreachable";
-};
-
 const _EthereumPlasmaTable = ({
-    ethereumPlasma,
+    tableHashes,
     pending,
     error,
+    setModalIsOpen,
+    fetchEthereumPlasma,
     l,
     currentActiveRoute
 }) => {
     const classes = useStyles();
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+        fetchEthereumPlasma(newPage, rowsPerPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+        fetchEthereumPlasma(0, +event.target.value);
+    };
 
     return (
         <Card className={classes.tableCard}>
+            <ExplorerModal />
             <ExplorerSwitcher activeTab={currentActiveRoute} />
-            <CardContent>
-                <Table>
+            <CardContent className={classes.tableCardContent}>
+                <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -101,36 +123,42 @@ const _EthereumPlasmaTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error ? (
-                            <TableCell colSpan={4}>
-                                <Typography>{getErrorLabel(error)}</Typography>
-                            </TableCell>
-                        ) : ethereumPlasma.length === 0 ? (
+                        ) : error || tableHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            ethereumPlasma.map(item => (
-                                <TableRow>
+                            tableHashes.data.map(item => (
+                                <TableRow key={item.id}>
+                                    <TableCell>
+                                        <input
+                                            className={[
+                                                classes.tableInput,
+                                                classes.linkToModal
+                                            ].join(" ")}
+                                            value={item.transactionHash}
+                                            contentEditable={false}
+                                            onClick={() =>
+                                                setModalIsOpen(
+                                                    true,
+                                                    "ethereum-plasma",
+                                                    item.id
+                                                )
+                                            }
+                                        />
+                                    </TableCell>
+                                    <TableCell>{item.ago}</TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.txnId}
+                                            value={item.address}
                                             contentEditable={false}
                                         />
                                     </TableCell>
-                                    <TableCell>{item.age}</TableCell>
                                     <TableCell>
                                         <input
                                             className={classes.tableInput}
-                                            value={item.node}
-                                            contentEditable={false}
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <input
-                                            className={classes.tableInput}
-                                            value={item.btfs_cid}
+                                            value={item.btfsCid}
                                             contentEditable={false}
                                         />
                                     </TableCell>
@@ -139,15 +167,26 @@ const _EthereumPlasmaTable = ({
                         )}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    component="div"
+                    count={tableHashes.count || 0}
+                    rowsPerPageOptions={[10, 25, 100]}
+                    rowsPerPage={rowsPerPage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                />
             </CardContent>
         </Card>
     );
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    ethereumPlasma: explorer.ethereumPlasma,
+    tableHashes: explorer.tableHashes,
     pending: explorer.pending,
-    error: explorer.error
+    error: explorer.error,
+    setModalIsOpen: explorer.setModalIsOpen,
+    fetchEthereumPlasma: explorer.fetchEthereumPlasma
 });
 
 export const EthereumPlasmaTable = localized(

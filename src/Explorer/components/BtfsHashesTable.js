@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
         "&:not(:focus):after": {
             content: ""
         }
-    }
+    },
 }));
 
 const _BtfsHashesTable = ({

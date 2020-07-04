@@ -4,6 +4,16 @@ import { Tabs, Tab } from "@material-ui/core";
 
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+    tabsRoot: {
+        overflow:'visible'
+    },
+    tabScroller: {
+        overflow:'visible !important'
+    }
+}));
 
 const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
     const [value, setValue] = useState(activeTab);
@@ -29,6 +39,8 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
                 return Routes.home;
         }
     };
+    
+    const classes = useStyles();
 
     return (
         <div>
@@ -37,6 +49,7 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
                 onChange={handleChange}
                 indicatorColor="primary"
                 textColor="primary"
+                classes={{scroller: classes.tabScroller, root: classes.tabsRoot}}
             >
                 <Tab value="btfs" label={l("explorer.btfs-info")} />
                 <Tab value="ethereum-plasma" label={l("explorer.ethereum-plasma-info")} />

@@ -71,6 +71,10 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             textDecoration: "none"
         }
+    },
+    paginator: {
+        padding: '10px 0 !important',
+        marginBottom: 25,
     }
 }));
 
@@ -186,6 +190,7 @@ const _DistributedStorageTable = ({
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
+                    classes={{root: classes.paginator}}
                 />
             </CardContent>
         </Card>

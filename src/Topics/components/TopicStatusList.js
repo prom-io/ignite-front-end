@@ -51,7 +51,8 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
-        display: "table"
+        display: "table",
+        marginTop: '100px',
     }
 }));
 

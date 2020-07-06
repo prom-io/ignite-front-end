@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Grid } from '@material-ui/core';
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
-import { BtfsHashesTable } from '../Explorer/components';
+import { EthereumMainnetTable } from '../Explorer/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export const BtfsHashesPage = () => {
+export const EthereumMainnetPage = () => {
     const classes = useStyles();
 
     return (
@@ -23,7 +23,7 @@ export const BtfsHashesPage = () => {
             <Grid item xs={12}>
                 <Layout>
                     <div className={classes.centered}>
-                        <BtfsHashesTable currentActiveRoute="btfs" />
+                        <EthereumMainnetTable currentActiveRoute="ethereum-mainnet" />
                     </div>
                 </Layout>
             </Grid>

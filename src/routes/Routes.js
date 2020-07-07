@@ -36,12 +36,14 @@ export const Routes = {
                 store.timelineSwitcher.setCurrentTimeline('home');
             }
 
+            store.topicsPopular.fetchTopicsPopular(5);
             store.timelineSwitcher.selectedTimeline.fetchStatuses();
         },
         onExit: () => {
             store.timelineSwitcher.setSwitchOnUserChange(false);
             store.timelineSwitcher.selectedTimeline.reset();
             store.whoToFollow.reset();
+            store.topicsPopular.reset();
         },
     }),
     notFound: new Route({

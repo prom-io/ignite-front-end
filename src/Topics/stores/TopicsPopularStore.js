@@ -18,10 +18,10 @@ export class TopicsPopularStore {
     }
 
     @action
-    fetchTopicsPopular = () => {
+    fetchTopicsPopular = (count = 15) => {
         this.pending = true;
         axiosInstance
-            .get("/api/v1/topics?count=15")
+            .get(`/api/v1/topics?count=${count}`)
             .then(({ data }) => (this.topicsPopularItems = [...data]))
             .finally(() => (this.pending = false));
     };

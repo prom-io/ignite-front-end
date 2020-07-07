@@ -78,7 +78,7 @@ const igniteDescriptionTranslations = {
             to sign up.
         </span>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <span className={classes.contentDescription}>
             <a>Ignite </a>
             는 블록체인 기술을 기반으로 한 분산형 소셜 네트워크다. 가입하려면
@@ -97,7 +97,7 @@ const useExistingWalletTranslations = {
             (for advanced users only)
         </span>
     ),
-    ko: () => (
+    kr: () => (
         <span>
             기존 지갑 사용
             <br />

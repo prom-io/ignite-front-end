@@ -54,14 +54,14 @@ const _TopicPageContainer = ({
         <>
             <div className={classes.topicTitle}>
                 <BackButton params={routerStore.router.params.title} toTopics />
-                <Button
+                {/* <Button
                     className={classes.followTopicButton}
                     variant="contained"
                     color="primary"
                     onClick={followTopic}
                 >
                     {l("user.profile.follow")}
-                </Button>
+                </Button> */}
             </div>
             <TopicStatusList fetchAction={fetchStatusesOnTopic} />
         </>

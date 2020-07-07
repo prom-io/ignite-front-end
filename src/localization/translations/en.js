@@ -255,4 +255,5 @@ export const en = {
     'topics.card.menu.harmful': "This trend is abusive or harmful",
     'topics.card.menu.duplicate': "This trend is a duplicate",
     'topics.card.menu.quality': "This trend is low quality",
+    'topics.card.posts': "posts",
 };

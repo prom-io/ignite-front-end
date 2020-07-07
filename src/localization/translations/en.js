@@ -92,6 +92,7 @@ export const en = {
     'authorization.login.password': 'Password',
     'authorization.login.private-key': 'Private Key',
     'authorization.login.wallet-address': 'Wallet Address',
+    'authorization.login.remember-me': 'Remember me',
     'authorization.password-updated': 'Password Updated',
     'authorization.reset-password': 'Reset Password',
     'authorization.set-new-password': 'Set a new password for your Ignite account',

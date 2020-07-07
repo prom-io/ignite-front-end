@@ -192,7 +192,7 @@ export const LoginForm = observer(({
                 <FormControlLabel
                     color="primary"
                     control={<Checkbox checked={isRemember} color="primary" onChange={() => setIsRemember(!isRemember)} name="remember" />}
-                    label="Remember me"
+                    label={l("authorization.login.remember-me")}
                 />
                 <a
                     className={classes.forgotPassword}

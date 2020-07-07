@@ -14,9 +14,9 @@ const useStyles = makeStyles(theme => ({
             color: '#FF5C01',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-      },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     contentBlock: {
         display: 'flex',
@@ -37,13 +37,13 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
-      [theme.breakpoints.down('sm')]: {
-        '& span': {
-          fontSize: '14px',
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                fontSize: '14px',
+            },
+            marginTop: '18px',
+            paddingTop: '18px',
         },
-        marginTop: '18px',
-        paddingTop: '18px',
-      },
     },
     notes: {
         marginTop: '12px',
@@ -56,9 +56,9 @@ const useStyles = makeStyles(theme => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
-      [theme.breakpoints.down('sm')]: {
-        fontSize: "14px",
-      }
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     button: {
         width: '187px',
@@ -78,7 +78,7 @@ const igniteDescriptionTranslations = {
             to sign up.
         </span>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <span className={classes.contentDescription}>
             <a>Ignite </a>
             는 블록체인 기술을 기반으로 한 분산형 소셜 네트워크다. 가입하려면
@@ -97,7 +97,7 @@ const useExistingWalletTranslations = {
             (for advanced users only)
         </span>
     ),
-    ko: () => (
+    kr: () => (
         <span>
             기존 지갑 사용
             <br />

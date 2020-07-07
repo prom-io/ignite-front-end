@@ -1,9 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, CircularProgress, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
+import { Button, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
-import { useStore } from '../../store/hooks';
-import Loader from '../../components/Loader';
+import {useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     contentBlock: {
@@ -40,6 +39,7 @@ export const Verify = observer(() => {
     const classes = useStyles();
     const theme = useTheme();
     const { hashVerification } = useStore();
+    const { l } = useLocalization();
     const { setTransactionId, pending, transactionId, verifyHash } = hashVerification;
 
     return (
@@ -52,8 +52,7 @@ export const Verify = observer(() => {
                     value={transactionId}
                 />
                 <div className={classes.contentBlock}>
-                    Publish a record to Ethereum blockchain that contains the
-                    necessary hashcode and enter it’s Txn Hash here. We will create an Ignite account connected to that ETH wallet.
+                    {l('sign-up.hash.verification.publish-record')}
                 </div>
                 <Button
                     variant="contained"
@@ -65,14 +64,16 @@ export const Verify = observer(() => {
                     disabled={pending}
                 >
                     {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.4); top: -4px; left: 74px" /> }
-                    Verify hash
+                    {l('sign-up.hash.verification.verify-hash')}
                 </Button>
             </form>
             <div className={classes.notes}>
-                <a>Note:</a>
+                <a>
+                    {l('sign-up.note')}
+                    :
+                </a>
                 {' '}
-                If you’d like to generate a hashcode for it on your own,
-                please note that we use standard Niels Provos and David Mazières bcrypt password hashing function.
+                {l('sign-up.hash.verification.algorithm')}
             </div>
         </DialogContent>
     );

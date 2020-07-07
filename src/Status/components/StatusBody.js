@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { CardContent, makeStyles, Typography, useTheme } from '@material-ui/core';
 import ReplyIcon from '@material-ui/icons/Reply';
-import Markdown from 'react-markdown';
+import Markdown from 'react-markdown/with-html';
 import breaks from 'remark-breaks';
 import { StatusMediaAttachments } from './StatusMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
@@ -73,8 +73,7 @@ const _StatusBody = ({
                 <ClickEventPropagationStopper>
                     <div
                         style={{
-                            display: 'flex',
-                            // marginBottom: 4,
+                            display: 'flex'
                         }}
                     >
                         <Typography classes={{ root: classes.replyingToLabel }}>
@@ -98,7 +97,41 @@ const _StatusBody = ({
                 variant="body1"
                 className={classes.statusText}
             >
-                <Markdown source={text} plugins={[breaks]} />
+                {/* <Markdown 
+                    source={text} 
+                    plugins={[breaks]} 
+                /> */}
+                {/* <Markdown 
+                    source={text.replace(/#(\w+)/g, '<a href="/topic/$1">#$1</a>')} 
+                    plugins={[breaks]} 
+                    escapeHtml={false}
+                /> */}
+                <Markdown 
+                    source={text} 
+                    plugins={[breaks]} 
+                    renderers={{ 
+                        text: props => {
+                            const result = props.value.split(" ").map(item => {
+                                if (item[0] == "#") {
+                                    return (
+                                        <ClickEventPropagationStopper style={{ display: "inline-block" }}>
+                                            <Link
+                                                view={ Routes.topic }
+                                                params={{ title: item.substr(1) }}
+                                                store={ routerStore }
+                                                style={{ marginRight: "5px" }}
+                                            >
+                                                {item}
+                                            </Link>
+                                        </ClickEventPropagationStopper>
+                                    )
+                                } 
+                                return item + " ";
+                            })
+                            return result;
+                        },
+                    }}
+                />
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments} isOnlyImage={!text} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}

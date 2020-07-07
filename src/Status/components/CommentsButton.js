@@ -43,7 +43,7 @@ const _CommentsButton = ({ status, setCreateStatusDialogOpen, setReferredStatus,
     return (
         <div className={classes.styledComponentContainer}>
             <IconButton onClick={handleClick} className={classes.styledIconButton}>
-                <CommentIcon />
+                <CommentIcon commented={currentUser && status.commented} />
             </IconButton>
             <Typography>
                 {status.comments_count}

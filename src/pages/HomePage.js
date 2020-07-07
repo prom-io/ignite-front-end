@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, Hidden } from '@material-ui/core';
 
+import { TopicsPopular } from "../Topics/components";
 import { AppBar } from '../AppBar/components';
 import { LoginForm } from '../Authorization/components';
 import { Layout } from '../Layout';
@@ -45,6 +46,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     <Grid item md={3} className="right-banners-container">
                         {currentUser ? (
                             <Hidden only={['md']}>
+                                <TopicsPopular isNotFull />
                                 <WhoToFollow />
                             </Hidden>
                         ) : (

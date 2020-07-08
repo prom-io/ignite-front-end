@@ -25,14 +25,12 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
 
     const getRoute = route => {
         switch (route) {
-            case "btfs":
-                return Routes.btfs;
+            case "explorer":
+                return Routes.explorer;
             case "ethereum-plasma":
                 return Routes.ethereumPlasma;
             case "distributed-storage":
                 return Routes.distributedStorage;
-            case "ethereum-mainnet":
-                return Routes.ethereumMainnet;
             case "binance-smart-chain":
                 return Routes.binanceSmartChain;
             default:
@@ -51,10 +49,9 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
                 textColor="primary"
                 classes={{scroller: classes.tabScroller, root: classes.tabsRoot}}
             >
-                <Tab value="btfs" label={l("explorer.btfs-info")} />
+                <Tab value="explorer" label={l("explorer.btfs-info")} />
                 <Tab value="ethereum-plasma" label={l("explorer.ethereum-plasma-info")} />
                 <Tab value="distributed-storage" label={l("explorer.distributed-storage-info")} />
-                <Tab value="ethereum-mainnet" label={l("explorer.ethereum-mainnet-info")} />
                 <Tab value="binance-smart-chain" label={l("explorer.binance-smart-chain-info")} />
             </Tabs>
         </div>

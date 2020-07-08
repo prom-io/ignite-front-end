@@ -4,7 +4,6 @@ import {
     BtfsHashesPage,
     EthereumPlasmaPage,
     DistributedStoragePage,
-    EthereumMainnetPage,
     BinanceSmartChainPage,
     ChatPage,
     DescriptionPage,
@@ -147,8 +146,8 @@ export const Routes = {
         onExit: () => {
         },
     }),
-    btfs: new Route({
-        path: '/btfs',
+    explorer: new Route({
+        path: '/explorer',
         component: <BtfsHashesPage />,
         beforeEnter: () => store.explorer.fetchBtfsHashes(),
     }),
@@ -161,11 +160,6 @@ export const Routes = {
         path: '/distributed-storage',
         component: <DistributedStoragePage />,
         beforeEnter: () => store.explorer.fetchDistributedStorage(),
-    }),
-    ethereumMainnet: new Route({
-        path: '/ethereum-mainnet',
-        component: <EthereumMainnetPage />,
-        beforeEnter: () => store.explorer.fetchEthereumMainne(),
     }),
     binanceSmartChain: new Route({
         path: '/binance-smart-chain',

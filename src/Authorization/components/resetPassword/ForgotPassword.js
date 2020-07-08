@@ -53,7 +53,7 @@ const publishTransactionTranslations = {
             (for advanced users only)
         </span>
     ),
-    ko: () => (
+    kr: () => (
         <span>
             이더리움 블록체인에 레코드 게시해요
             <br />

@@ -55,7 +55,7 @@ const walletGenerationSuccessTranslations = {
             the wallet address and private key and keep them in a safe place.
         </span>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <span className={classes.contentDescription}>
             당신의 블록체인 지갑과 개인 키가 성공적으로 만들어졌다.
             <br />

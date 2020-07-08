@@ -120,16 +120,16 @@ const setContent = (classes, type, data, l) => {
                     </TableRow>
                     <TableRow>
                         <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.soter-link")}
+                            {l("explorer.arweave-link")}
                         </TableCell>
                         <TableCell>
                             <a
-                                href={`https://sandbox.btfssoter.io/btfs/${data.btfsCid}`}
+                                href={`https://arweave.net/${data.btfsCid}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={classes.link}
                             >
-                                {`https://sandbox.btfssoter.io/btfs/${data.btfsCid}`}
+                                {`https://arweave.net/${data.btfsCid}`}
                             </a>
                         </TableCell>
                     </TableRow>
@@ -138,47 +138,6 @@ const setContent = (classes, type, data, l) => {
                             {l("explorer.node-wallet")}
                         </TableCell>
                         <TableCell>{data.address}</TableCell>
-                    </TableRow>
-                </>
-            );
-        case "ethereum-mainnet":
-            return (
-                <>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.txnId")}
-                        </TableCell>
-                        <TableCell>{data.transactionHash}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.block")}
-                        </TableCell>
-                        <TableCell>{data.fullTransactionData.blockNumber}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.age")}
-                        </TableCell>
-                        <TableCell>{data.ago}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.from")}
-                        </TableCell>
-                        <TableCell>{data.fullTransactionData.from}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.to")}
-                        </TableCell>
-                        <TableCell>{data.fullTransactionData.to}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell className={classes.tableRowTitle}>
-                            {l("explorer.value")}
-                        </TableCell>
-                        <TableCell>{data.value}</TableCell>
                     </TableRow>
                 </>
             );

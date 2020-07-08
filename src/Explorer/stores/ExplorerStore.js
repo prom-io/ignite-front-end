@@ -38,6 +38,7 @@ export class ExplorerStore {
     @action
     fetchEthereumPlasma = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
+        this.error = undefined;
 
         axios
             .get(
@@ -53,6 +54,7 @@ export class ExplorerStore {
     @action
     fetchDistributedStorage = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
+        this.error = undefined;
 
         axios
             .get(
@@ -66,23 +68,9 @@ export class ExplorerStore {
     };
 
     @action
-    fetchEthereumMainne = (page = 0, rowsPerPage = 10) => {
-        this.pending = true;
-
-        axios
-            .get(
-                `https://st.ignite.so/api/v1/main-network/root-chain/all/${page}/${rowsPerPage}`
-            )
-            .then(({ data }) => {
-                this.tableHashes = data;
-            })
-            .catch(error => (this.error = error))
-            .finally(() => (this.pending = false));
-    };
-
-    @action
     fetchBinanceSmartChain = (page = 0, rowsPerPage = 10) => {
         this.pending = true;
+        this.error = undefined;
 
         axios
             .get(

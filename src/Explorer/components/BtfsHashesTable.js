@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
         "&:not(:focus):after": {
             content: ""
         }
-    },
+    }
 }));
 
 const _BtfsHashesTable = ({
@@ -87,7 +87,7 @@ const _BtfsHashesTable = ({
                                 <strong>{l("explorer.cid")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.soter-link")}</strong>
+                                <strong>{l("explorer.arweave-link")}</strong>
                             </TableCell>
                             <TableCell>
                                 <strong>{l("explorer.created-at")}</strong>
@@ -122,12 +122,15 @@ const _BtfsHashesTable = ({
                                     </TableCell>
                                     <TableCell>
                                         <a
-                                            href={item.soter_link}
+                                            href={`https://arweave.net/${item.cid}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.link}
                                         >
-                                            {trimString(item.soter_link, 25)}
+                                            {trimString(
+                                                `https://arweave.net/${item.cid}`,
+                                                25
+                                            )}
                                         </a>
                                     </TableCell>
                                     <TableCell>

@@ -12,6 +12,10 @@ export const validateUsername = username => {
         return 'user.username.is-too-long';
     }
 
+    if (username.includes("@")) {
+        return 'user.username.contains-invalid-characters';
+    }
+
     if (!USERNAME_REGEXP.test(username)) {
         return 'user.username.contains-invalid-characters';
     }

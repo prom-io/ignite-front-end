@@ -55,7 +55,7 @@ const walletGenerationSuccessTranslations = {
             the wallet address and private key and keep them in a safe place.
         </span>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <span className={classes.contentDescription}>
             당신의 블록체인 지갑과 개인 키가 성공적으로 만들어졌다.
             <br />
@@ -78,7 +78,7 @@ const termsOfServiceAgreementTranslations = {
             .
         </span>
     ),
-    ko: () => (
+    kr: () => (
         <>
             나는 16살이 넘었고
             <a href="/terms-and-policy" target="_blank" rel="noreferrer noopener">의 사용 약관</a>

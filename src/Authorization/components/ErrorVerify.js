@@ -64,7 +64,7 @@ const errorTranslations = {
           .
         </div>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <div className={classes.contentDescription}>
             Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
             <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>

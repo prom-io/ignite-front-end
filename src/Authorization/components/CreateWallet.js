@@ -78,7 +78,7 @@ const termsOfServiceAgreementTranslations = {
             .
         </span>
     ),
-    ko: () => (
+    kr: () => (
         <>
             나는 16살이 넘었고
             <a href="/terms-and-policy" target="_blank" rel="noreferrer noopener">의 사용 약관</a>

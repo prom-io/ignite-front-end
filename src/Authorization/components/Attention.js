@@ -96,7 +96,7 @@ const makeSureYouReallySavedTranslations = {
             saved this info:
         </p>
     ),
-    ko: (classes) => (
+    kr: (classes) => (
         <p className={classes.contentDescription}>
             다음 정보를
             {' '}
@@ -117,7 +117,7 @@ const makeOneHundredPercentSureTranslations = {
             sure that you really saved all this info in a safe place
         </>
     ),
-    ko: () => (
+    kr: () => (
         <>
             이 모든 정보를 안전한 곳에 저장했는지
             <span> 100%</span>
@@ -137,7 +137,7 @@ const privateKeyLossTranslations = {
             recover the password
         </>
     ),
-    ko: () => (
+    kr: () => (
         <>
             개인 키를 잃어버리면
             {' '}

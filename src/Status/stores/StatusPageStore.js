@@ -40,12 +40,15 @@ export class StatusPageStore {
                     if (status.status_reference_type === "REPOST") {
                         this.status = {
                             ...this.status,
-                            reposts_count: this.status.reposts_count + 1
+                            reposts_count: this.status.reposts_count + 1,
+                            can_be_reposted: false,
+                            reposted: true
                         }
                     } else {
                         this.status = {
                             ...this.status,
-                            comments_count: this.status.comments_count + 1
+                            comments_count: this.status.comments_count + 1,
+                            commented: true
                         }
                     }
                 }
@@ -130,16 +133,6 @@ export class StatusPageStore {
         this.currentStatusUsername = username;
         this.unfollowDialogOpen = true;
     }
-
-    @action
-    increaseCommentsCount = statusId => {
-        if (this.status && statusId === this.status.id) {
-            this.status = {
-                ...this.status,
-                comments_count: this.status.comments_count + 1
-            }
-        }
-    };
 
     @action
     setCurrentStatusId = currentStatusId => {

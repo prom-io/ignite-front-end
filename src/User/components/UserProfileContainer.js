@@ -7,7 +7,7 @@ import { UserFollowingList } from './UserFollowingList';
 import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
-import { DescriptionNetworkBanner } from '../../PrometeusDescription/DescriptionNetworkBanner';
+import { DescriptionStoaBanner } from '../../PrometeusDescription/DescriptionStoaBanner';
 import Loader from '../../components/Loader';
 
 const useStyles = makeStyles((theme) => ({
@@ -79,7 +79,7 @@ const _UserProfileContainer = ({
                     currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}
                 />
-                <DescriptionNetworkBanner />
+                <DescriptionStoaBanner />
             </Grid>
             <Grid item className="user-profile-content-container">
                 {tabContent}

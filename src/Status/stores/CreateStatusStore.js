@@ -108,7 +108,15 @@ export class CreateStatusStore {
                     this.setContent("");
                     this.uploadMediaAttachmentsStore.reset();
                     this.createStatusDialogOpen = false;
-                    this.referredStatus.can_be_reposted = false;
+                    
+                    if (this.statusReferenceType === "COMMENT") {
+                        this.referredStatus.commented = true;
+                        this.referredStatus.comments_count += 1;
+                    } else {
+                        this.referredStatus.can_be_reposted = false;
+                        this.referredStatus.reposted = true;
+                        this.referredStatus.reposts_count += 1;
+                    }
                     
                     this.referredStatus = undefined;
                     this.statusReferenceType = undefined;

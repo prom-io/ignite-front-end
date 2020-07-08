@@ -41,7 +41,7 @@ export class ExplorerStore {
 
         axios
             .get(
-                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+                `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
                 this.tableHashes = data;
@@ -56,7 +56,7 @@ export class ExplorerStore {
 
         axios
             .get(
-                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+                `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
                 this.tableHashes = data;
@@ -71,7 +71,7 @@ export class ExplorerStore {
 
         axios
             .get(
-                `http://188.166.18.41/api/v1/main-network/root-chain/all/${page}/${rowsPerPage}`
+                `https://st.ignite.so/api/v1/main-network/root-chain/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
                 this.tableHashes = data;
@@ -86,7 +86,7 @@ export class ExplorerStore {
 
         axios
             .get(
-                `http://188.166.18.41/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
+                `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
                 this.tableHashes = data;

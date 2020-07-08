@@ -79,14 +79,6 @@ export class StatusesListStore {
                             ...this.statuses
                         ];
                     }
-
-                    if (status.referred_status) {
-                        if (status.status_reference_type === "REPOST") {
-                            this.increaseRepostsCount(status.referred_status.id)
-                        } else {
-                            this.increaseCommentsCount(status.referred_status.id);
-                        }
-                    }
                 }
             }
         )
@@ -100,8 +92,6 @@ export class StatusesListStore {
     @action
     fetchStatuses = () => {
         this.pending = true;
-
-        console.log(`Fetching statuses by base url ${this.baseUrl}`);
 
         if (this.baseUrl) {
             if (this.statuses.length !== 0) {
@@ -284,26 +274,6 @@ export class StatusesListStore {
         this.statuses = this.statuses.map(status => {
             if (status.account.id === authorId) {
                 status.account.following = false;
-            }
-            return status;
-        })
-    };
-
-    @action
-    increaseRepostsCount = statusId => {
-        this.statuses = this.statuses.map(status => {
-            if (status.id === statusId) {
-                status.reposts_count += 1;
-            }
-            return status;
-        })
-    };
-
-    @action
-    increaseCommentsCount = statusId => {
-        this.statuses = this.statuses.map(status => {
-            if (status.id === statusId) {
-                status.comments_count += 1;
             }
             return status;
         })

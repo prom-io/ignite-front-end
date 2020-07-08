@@ -73,13 +73,13 @@ const useStyles = makeStyles(theme => ({
         }
     },
     paginator: {
-        padding: '10px 0 !important',
-        marginBottom: 25,
+        padding: "10px 0 !important",
+        marginBottom: 25
     }
 }));
 
 const _DistributedStorageTable = ({
-    tableHashes,
+    distributedHashes,
     pending,
     error,
     setModalIsOpen,
@@ -120,7 +120,7 @@ const _DistributedStorageTable = ({
                                 <strong>{l("explorer.node-wallet")}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.soter-link")}</strong>
+                                <strong>{l("explorer.arweave-link")}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -131,13 +131,13 @@ const _DistributedStorageTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error || tableHashes.data.length === 0 ? (
+                        ) : error || distributedHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            tableHashes &&
-                            tableHashes.data.map(item => (
+                            distributedHashes &&
+                            distributedHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
@@ -166,14 +166,14 @@ const _DistributedStorageTable = ({
                                     </TableCell>
                                     <TableCell>
                                         <a
-                                            href={`https://sandbox.btfssoter.io/btfs/${item.btfsCid}`}
+                                            href={`https://arweave.net/${item.btfsCid}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.link}
                                         >
                                             {trimString(
-                                                `https://sandbox.btfssoter.io/btfs/${item.btfsCid}`,
-                                                35
+                                                `https://arweave.net/${item.btfsCid}`,
+                                                40
                                             )}
                                         </a>
                                     </TableCell>
@@ -184,13 +184,13 @@ const _DistributedStorageTable = ({
                 </Table>
                 <TablePagination
                     component="div"
-                    count={tableHashes.count || 0}
+                    count={distributedHashes.count || 0}
                     rowsPerPageOptions={[10, 25, 100]}
                     rowsPerPage={rowsPerPage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
-                    classes={{root: classes.paginator}}
+                    classes={{ root: classes.paginator }}
                 />
             </CardContent>
         </Card>
@@ -198,8 +198,8 @@ const _DistributedStorageTable = ({
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    tableHashes: explorer.tableHashes,
-    pending: explorer.pending,
+    distributedHashes: explorer.distributedHashes,
+    pending: explorer.pending.distributed,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
     fetchDistributedStorage: explorer.fetchDistributedStorage

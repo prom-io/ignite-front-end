@@ -66,16 +66,16 @@ const _StatusBtfsInfoDialog = ({ btfsInfo, btfsInfoDialogOpen, setBtfsInfoDialog
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <strong>{l('btfs.soter-link')}</strong>
+                                <strong>{l('btfs.arweave-link')}</strong>
                             </TableCell>
                             <TableCell>
                                 <a
-                                    href={btfsInfo.soter_link}
+                                    href={`https://arweave.net/${btfsInfo.cid}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={classes.soterLink}
                                 >
-                                    {trimString(btfsInfo.soter_link, 55)}
+                                    {trimString(`https://arweave.net/${btfsInfo.cid}`, 55)}
                                 </a>
                             </TableCell>
                         </TableRow>

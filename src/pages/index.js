@@ -12,7 +12,6 @@ export * from './StatusPage';
 export * from './BtfsHashesPage';
 export * from './EthereumPlasmaPage';
 export * from './DistributedStoragePage';
-export * from './EthereumMainnetPage';
 export * from './BinanceSmartChainPage';
 export * from './SettingsPage';
 export * from './SetEnglishLanguageAndRedirectToHomePage';

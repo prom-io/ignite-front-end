@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _EthereumPlasmaTable = ({
-    tableHashes,
+    ethereumHashes,
     pending,
     error,
     setModalIsOpen,
@@ -127,13 +127,13 @@ const _EthereumPlasmaTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error || tableHashes.data.length === 0 ? (
+                        ) : error || ethereumHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            tableHashes &&
-                            tableHashes.data.map(item => (
+                            ethereumHashes &&
+                            ethereumHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
@@ -174,7 +174,7 @@ const _EthereumPlasmaTable = ({
                 </Table>
                 <TablePagination
                     component="div"
-                    count={tableHashes.count || 0}
+                    count={ethereumHashes.count || 0}
                     rowsPerPageOptions={[10, 25, 100]}
                     rowsPerPage={rowsPerPage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
@@ -188,8 +188,8 @@ const _EthereumPlasmaTable = ({
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    tableHashes: explorer.tableHashes,
-    pending: explorer.pending,
+    ethereumHashes: explorer.ethereumHashes,
+    pending: explorer.pending.ethereum,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
     fetchEthereumPlasma: explorer.fetchEthereumPlasma

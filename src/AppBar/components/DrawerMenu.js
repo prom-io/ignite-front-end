@@ -102,7 +102,7 @@ const _DrawerMenu = ({
                 </ListItemText>
             </MenuItem>
             <Link
-                view={Routes.btfs}
+                view={Routes.explorer}
                 store={routerStore}
                 className={classes.undecoratedLink}
             >

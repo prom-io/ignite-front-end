@@ -71,7 +71,7 @@ const _PrometeusDescription = ({ routerStore, l, locale, currentUser }) => {
                                 borderTop: "1px solid #F1EBE8"
             }}>
                 <Link store={routerStore}
-                      view={Routes.btfs}
+                      view={Routes.explorer}
                       style={{
                           textDecoration: "none",
                           color: "inherit",

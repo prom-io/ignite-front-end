@@ -23,7 +23,7 @@ export const BtfsHashesPage = () => {
             <Grid item xs={12}>
                 <Layout>
                     <div className={classes.centered}>
-                        <BtfsHashesTable currentActiveRoute="btfs" />
+                        <BtfsHashesTable currentActiveRoute="explorer" />
                     </div>
                 </Layout>
             </Grid>

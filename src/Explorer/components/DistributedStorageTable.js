@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _DistributedStorageTable = ({
-    tableHashes,
+    distributedHashes,
     pending,
     error,
     setModalIsOpen,
@@ -131,13 +131,13 @@ const _DistributedStorageTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error || tableHashes.data.length === 0 ? (
+                        ) : error || distributedHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
                                 <Typography>{l("explorer.no-data")}</Typography>
                             </TableCell>
                         ) : (
-                            tableHashes &&
-                            tableHashes.data.map(item => (
+                            distributedHashes &&
+                            distributedHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
@@ -184,7 +184,7 @@ const _DistributedStorageTable = ({
                 </Table>
                 <TablePagination
                     component="div"
-                    count={tableHashes.count || 0}
+                    count={distributedHashes.count || 0}
                     rowsPerPageOptions={[10, 25, 100]}
                     rowsPerPage={rowsPerPage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
@@ -198,8 +198,8 @@ const _DistributedStorageTable = ({
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    tableHashes: explorer.tableHashes,
-    pending: explorer.pending,
+    distributedHashes: explorer.distributedHashes,
+    pending: explorer.pending.distributed,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
     fetchDistributedStorage: explorer.fetchDistributedStorage

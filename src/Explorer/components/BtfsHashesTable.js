@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _BtfsHashesTable = ({
-    tableHashes,
+    btfsHashes,
     pending,
     error,
     l,
@@ -107,11 +107,11 @@ const _BtfsHashesTable = ({
                                     <Loader size="md" />
                                 </div>
                             </TableCell>
-                        ) : error || tableHashes.length === 0 ? (
+                        ) : error || btfsHashes.length === 0 ? (
                             <Typography>{l("explorer.no-data")}</Typography>
                         ) : (
-                            tableHashes &&
-                            tableHashes.map(item => (
+                            btfsHashes &&
+                            btfsHashes.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
@@ -155,8 +155,8 @@ const _BtfsHashesTable = ({
 };
 
 const mapMoxToProps = ({ explorer }) => ({
-    tableHashes: explorer.tableHashes,
-    pending: explorer.pending,
+    btfsHashes: explorer.btfsHashes,
+    pending: explorer.pending.btfs,
     error: explorer.error
 });
 

@@ -4,10 +4,18 @@ import { axiosInstance } from "../../api/axios-instance";
 
 export class ExplorerStore {
     @observable
-    tableHashes = [];
+    btfsHashes = [];
+    ethereumHashes = [];
+    distributedHashes = [];
+    binanceHashes = [];
 
     @observable
-    pending = false;
+    pending = {
+        btfs: false,
+        ethereum: false,
+        distributed: false,
+        binance: false
+    };
 
     @observable
     error = undefined;
@@ -23,21 +31,21 @@ export class ExplorerStore {
 
     @action
     fetchBtfsHashes = () => {
-        this.pending = true;
+        this.pending.btfs = true;
         this.error = undefined;
 
         axiosInstance
             .get("/api/v3/btfs")
             .then(({ data }) => {
-                this.tableHashes = data;
-                this.pending = false;
+                this.btfsHashes = data;
             })
-            .catch(error => (this.error = error));
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending.btfs = false));
     };
 
     @action
     fetchEthereumPlasma = (page = 0, rowsPerPage = 10) => {
-        this.pending = true;
+        this.pending.ethereum = true;
         this.error = undefined;
 
         axios
@@ -45,15 +53,15 @@ export class ExplorerStore {
                 `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
-                this.tableHashes = data;
+                this.ethereumHashes = data;
             })
             .catch(error => (this.error = error))
-            .finally(() => (this.pending = false));
+            .finally(() => (this.pending.ethereum = false));
     };
 
     @action
     fetchDistributedStorage = (page = 0, rowsPerPage = 10) => {
-        this.pending = true;
+        this.pending.distributed = true;
         this.error = undefined;
 
         axios
@@ -61,15 +69,15 @@ export class ExplorerStore {
                 `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
-                this.tableHashes = data;
+                this.distributedHashes = data;
             })
             .catch(error => (this.error = error))
-            .finally(() => (this.pending = false));
+            .finally(() => (this.pending.distributed = false));
     };
 
     @action
     fetchBinanceSmartChain = (page = 0, rowsPerPage = 10) => {
-        this.pending = true;
+        this.pending.binance = true;
         this.error = undefined;
 
         axios
@@ -77,10 +85,10 @@ export class ExplorerStore {
                 `https://st.ignite.so/api/v1/plasma-network/cid-block/all/${page}/${rowsPerPage}`
             )
             .then(({ data }) => {
-                this.tableHashes = data;
+                this.binanceHashes = data;
             })
             .catch(error => (this.error = error))
-            .finally(() => (this.pending = false));
+            .finally(() => (this.pending.binance = false));
     };
 
     @action

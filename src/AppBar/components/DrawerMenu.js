@@ -102,7 +102,7 @@ const _DrawerMenu = ({
                 </ListItemText>
             </MenuItem>
             <Link
-                view={Routes.explorer}
+                view={Routes.ethereumPlasma}
                 store={routerStore}
                 className={classes.undecoratedLink}
             >

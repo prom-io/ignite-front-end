@@ -9,7 +9,6 @@ export * from './TopicPage';
 export * from './TermsAndPoliciesPage';
 export * from './DescriptionPage';
 export * from './StatusPage';
-export * from './BtfsHashesPage';
 export * from './EthereumPlasmaPage';
 export * from './DistributedStoragePage';
 export * from './BinanceSmartChainPage';

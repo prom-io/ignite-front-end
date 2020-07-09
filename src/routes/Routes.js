@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'mobx-router';
 import {
-    BtfsHashesPage,
     EthereumPlasmaPage,
     DistributedStoragePage,
     BinanceSmartChainPage,
@@ -145,11 +144,6 @@ export const Routes = {
         },
         onExit: () => {
         },
-    }),
-    explorer: new Route({
-        path: '/explorer',
-        component: <BtfsHashesPage />,
-        beforeEnter: () => store.explorer.fetchBtfsHashes(),
     }),
     ethereumPlasma: new Route({
         path: '/ethereum-plasma',

@@ -110,7 +110,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale }) => {
                 <Hidden smDown>
                     <AppBarLink
                         text={l("appbar.explore-btfs")}
-                        targetView={Routes.explorer}
+                        targetView={Routes.ethereumPlasma}
                         icon={<BtfsIcon color="#FF5C01" />}
                         routerStore={routerStore}
                         viewParameters={{}}

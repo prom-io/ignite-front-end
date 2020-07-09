@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { inject } from "mobx-react";
 import { Tabs, Tab } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
     tabsRoot: {
@@ -25,8 +25,6 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
 
     const getRoute = route => {
         switch (route) {
-            case "explorer":
-                return Routes.explorer;
             case "ethereum-plasma":
                 return Routes.ethereumPlasma;
             case "distributed-storage":
@@ -49,7 +47,6 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
                 textColor="primary"
                 classes={{scroller: classes.tabScroller, root: classes.tabsRoot}}
             >
-                <Tab value="explorer" label={l("explorer.btfs-info")} />
                 <Tab value="ethereum-plasma" label={l("explorer.ethereum-plasma-info")} />
                 <Tab value="distributed-storage" label={l("explorer.distributed-storage-info")} />
                 <Tab value="binance-smart-chain" label={l("explorer.binance-smart-chain-info")} />

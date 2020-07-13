@@ -24,6 +24,9 @@ export class SignUpStore {
     @observable
     submissionError = undefined;
 
+    @observable
+    referenceId = undefined;
+
     generateWalletStore = undefined;
     genericAuthorizationDialogStore = undefined;
     localeStore = undefined;
@@ -66,6 +69,11 @@ export class SignUpStore {
     };
 
     @action
+    setReferenceId = referenceId => {
+        this.referenceId = referenceId;
+    };
+
+    @action
     doSignUp = () => {
         if (!this.validateForm()) {
             return;
@@ -79,14 +87,18 @@ export class SignUpStore {
             password_confirmation: this.signUpForm.passwordConfirmation,
             wallet_address: this.generatedWallet.address,
             private_key: this.generatedWallet.privateKey,
-            language: this.localeStore.selectedLanguage || 'en'
+            language: this.localeStore.selectedLanguage || 'en',
+            reference_id: this.referenceId,
         })
             .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogType('attention'))
             .catch(error => {
                 this.submissionError = error;
                 this.genericAuthorizationDialogStore.setGenericAuthorizationDialogType('attention');
             })
-            .finally(() => this.pending = false)
+            .finally(() => {
+                this.referenceId = undefined;
+                this.pending = false;
+            })
     };
 
     @action

@@ -163,6 +163,11 @@ export const Routes = {
     signUp: new Route({
         path: '/sign-up',
         component: <SignUpPage />,
+        beforeEnter: (route, params, routerStore, queryParams) => {
+            if (queryParams.reference_id) {
+                store.signUp.setReferenceId(queryParams.reference_id);
+            }
+        },
     }),
     userProfile: new Route({
         path: '/user/:username',

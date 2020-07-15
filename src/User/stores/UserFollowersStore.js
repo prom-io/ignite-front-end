@@ -43,6 +43,7 @@ export class UserFollowersStore {
 
     @action
     reset = () => {
+        this.page = 1;
         this.followers = [];
         this.pending = false;
         this.error = undefined;

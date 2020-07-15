@@ -43,6 +43,7 @@ export class UserFollowingStore {
 
     @action
     reset = () => {
+        this.page = 1;
         this.following = [];
         this.error = undefined;
         this.pending = false;

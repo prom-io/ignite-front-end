@@ -37,6 +37,14 @@ export class UserProfileStore {
             () => this.user,
             user => {
                 if (user) {
+                    if (this.userFollowersStore.idOrUsername !== user.id && this.userFollowersStore.idOrUsername !== user.username) {
+                        this.userFollowersStore.reset();
+                    }
+
+                    if (this.userFollowingStore.idOrUsername !== user.id && this.userFollowingStore.idOrUsername !== user.username) {
+                        this.userFollowingStore.reset();
+                    }
+
                     this.userStatusesStore.setBaseUrl(`/api/v1/accounts/${user.id}/statuses`);
                     this.userStatusesStore.fetchStatuses();
                 }

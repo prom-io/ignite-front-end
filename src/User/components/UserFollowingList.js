@@ -6,7 +6,7 @@ import { UsersList } from './UsersList';
 import { UserEmptyList } from './UserEmptyList';
 import Loader from '../../components/Loader';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const _UserFollowingList = ({ following, pending }) => {
+const _UserFollowingList = ({ following, pending, hasMore, fetchFollowing }) => {
     const classes = useStyles();
 
     return pending ? (
@@ -23,7 +23,7 @@ const _UserFollowingList = ({ following, pending }) => {
             <Loader size="lg" />
         </div>
     ) : following.length ? (
-        <UsersList users={following} />
+        <UsersList users={following} hasMore={hasMore} onNextPageRequest={fetchFollowing} />
     ) : (
         <UserEmptyList emptyTag="following" />
     );
@@ -32,6 +32,8 @@ const _UserFollowingList = ({ following, pending }) => {
 const mapMobxToProps = ({ userFollowing }) => ({
     pending: userFollowing.pending,
     following: userFollowing.following,
+    fetchFollowing: userFollowing.fetchFollowing,
+    hasMore: userFollowing.hasMore,
 });
 
 export const UserFollowingList = inject(mapMobxToProps)(

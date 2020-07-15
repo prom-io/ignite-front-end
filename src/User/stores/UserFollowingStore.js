@@ -11,12 +11,32 @@ export class UserFollowingStore {
     @observable
     error = undefined;
 
+    @observable
+    page = 1;
+
+    @observable
+    hasMore = true;
+
+    @observable
+    idOrUsername = undefined;
+
     @action
     fetchFollowing = idOrUsername => {
+        if (idOrUsername && this.idOrUsername !== idOrUsername) {
+            this.idOrUsername = idOrUsername;
+        }
+
         this.pending = true;
 
-        axiosInstance.get(`/api/v1/accounts/${idOrUsername}/following`)
-            .then(({data}) => this.following = data)
+        axiosInstance.get(`/api/v1/accounts/${this.idOrUsername}/following?page=${this.page}`)
+            .then(({data}) => {
+                if (data.length !== 0) {
+                    this.page = this.page + 1;
+                    this.following.push(...data);
+                } else {
+                    this.hasMore = false;
+                }
+            })
             .catch(error => this.error = error)
             .finally(() => this.pending = false)
     };
@@ -24,5 +44,9 @@ export class UserFollowingStore {
     @action
     reset = () => {
         this.following = [];
+        this.error = undefined;
+        this.pending = false;
+        this.hasMore = true;
+        this.idOrUsername = undefined;
     }
 }

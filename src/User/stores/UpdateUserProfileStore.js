@@ -182,7 +182,7 @@ export class UpdateUserProfileStore {
     validateForm = () => {
         const originalUsernameError = this.formErrors.username;
         this.formErrors = {
-            username: validateUsername(this.updateUserProfileForm.username),
+            username: this.currentUser.username !== this.updateUserProfileForm.username ? validateUsername(this.updateUserProfileForm.username) : undefined,
             displayName: validateDisplayName(this.updateUserProfileForm.displayName),
             bio: validateBio(this.updateUserProfileForm.bio)
         };

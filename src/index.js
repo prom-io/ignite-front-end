@@ -18,7 +18,7 @@ startRouter(Routes, routerStore, {
         if (window && !(window.location.href.indexOf(`${process.env.REACT_APP_API_BASE_URL}/user/`) > -1)) {
             routerStore.router.goTo(Routes.notFound);
         }
-    }
+    },
 });
 
 ReactDOM.render(

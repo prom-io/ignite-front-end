@@ -73,7 +73,7 @@ const _StatusBody = ({
                 <ClickEventPropagationStopper>
                     <div
                         style={{
-                            display: 'flex'
+                            display: 'flex',
                         }}
                     >
                         <Typography classes={{ root: classes.replyingToLabel }}>
@@ -97,37 +97,37 @@ const _StatusBody = ({
                 variant="body1"
                 className={classes.statusText}
             >
-                {/* <Markdown 
-                    source={text} 
-                    plugins={[breaks]} 
+                {/* <Markdown
+                    source={text}
+                    plugins={[breaks]}
                 /> */}
-                {/* <Markdown 
-                    source={text.replace(/#(\w+)/g, '<a href="/topic/$1">#$1</a>')} 
-                    plugins={[breaks]} 
+                {/* <Markdown
+                    source={text.replace(/#(\w+)/g, '<a href="/topic/$1">#$1</a>')}
+                    plugins={[breaks]}
                     escapeHtml={false}
                 /> */}
-                <Markdown 
-                    source={text} 
-                    plugins={[breaks]} 
-                    renderers={{ 
+                <Markdown
+                    source={text}
+                    plugins={[breaks]}
+                    renderers={{
                         text: props => {
-                            const result = props.value.split(" ").map(item => {
-                                if (item[0] == "#") {
+                            const result = props.value.split(' ').map(item => {
+                                if (item[0] === '#') {
                                     return (
-                                        <ClickEventPropagationStopper style={{ display: "inline-block" }}>
+                                        <ClickEventPropagationStopper style={{ display: 'inline-block' }}>
                                             <Link
-                                                view={ Routes.topic }
+                                                view={Routes.topic}
                                                 params={{ title: item.substr(1) }}
-                                                store={ routerStore }
-                                                style={{ marginRight: "5px" }}
+                                                store={routerStore}
+                                                style={{ marginRight: '5px' }}
                                             >
                                                 {item}
                                             </Link>
                                         </ClickEventPropagationStopper>
-                                    )
-                                } 
-                                return item + " ";
-                            })
+                                    );
+                                }
+                                return `${item} `;
+                            });
                             return result;
                         },
                     }}

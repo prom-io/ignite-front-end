@@ -9,19 +9,19 @@ const useStyles = makeStyles(theme => ({
         fontSize: '20px',
         lineHeight: '24px',
         color: '#1C1C1C',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-      },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     contentBlock: {
         margin: '16px 0 24px 0',
         fontFamily: 'Museo Sans Cyrl Regular',
         fontSize: '15px',
         lineHeight: '26px',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-        marginTop: '12px 0 24px 0',
-      },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+            marginTop: '12px 0 24px 0',
+        },
     },
     notes: {
         marginTop: '12px',
@@ -34,9 +34,9 @@ const useStyles = makeStyles(theme => ({
             cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
-      [theme.breakpoints.down('sm')]: {
-        fontSize: "14px",
-      }
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     button: {
         width: '187px',

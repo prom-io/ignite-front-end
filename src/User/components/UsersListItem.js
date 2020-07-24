@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             maxWidth: '140px',
         },
-    }
+    },
 }));
 
 export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser }) => {

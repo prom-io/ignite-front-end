@@ -67,7 +67,7 @@ const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
                     )
                     : (
                         <a rel="noopener noreferrer" className={classes.logoIcon}>
-                            <div className="header-logo" style={{display: 'block'}}/>
+                            <div className="header-logo" style={{ display: 'block' }} />
                         </a>
                     )}
                 <span className={classes.titleHeaderText}>{title}</span>

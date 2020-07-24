@@ -1,42 +1,42 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { ClickAwayListener, makeStyles } from "@material-ui/core";
-import Picker from "react-emojipicker";
+import React from 'react';
+import { observer } from 'mobx-react';
+import { ClickAwayListener, makeStyles } from '@material-ui/core';
+import Picker from 'react-emojipicker';
 
-import { useStore } from "../../store/hooks";
+import { useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     emojiPicker: {
         zIndex: 3,
-        position: "absolute",
-        left: "100px",
-        bottom: "-310px",
-        [theme.breakpoints.down("xs")]: {
-            left: 0
+        position: 'absolute',
+        left: '100px',
+        bottom: '-310px',
+        [theme.breakpoints.down('xs')]: {
+            left: 0,
         },
 
-        "& > div > div": {
-            height: "315px"
+        '& > div > div': {
+            height: '315px',
         },
 
-        "& > div > div > div": {
-            "&:first-child": {
-                width: "unset",
-                position: "absolute",
+        '& > div > div > div': {
+            '&:first-child': {
+                width: 'unset',
+                position: 'absolute',
                 top: 0,
-                left: 0
+                left: 0,
             },
-            "&:last-child": {
-                paddingLeft: "60px",
-                width: "unset"
-            }
+            '&:last-child': {
+                paddingLeft: '60px',
+                width: 'unset',
+            },
         },
 
-        "& span.ld-emoji img": {
-            width: "20px !important",
-            height: "20px !important"
-        }
-    }
+        '& span.ld-emoji img': {
+            width: '20px !important',
+            height: '20px !important',
+        },
+    },
 }));
 
 export const EmojiPicker = observer(() => {
@@ -44,7 +44,7 @@ export const EmojiPicker = observer(() => {
     const {
         emojiPickerVisible,
         addEmoji,
-        setEmojiPickerVisible
+        setEmojiPickerVisible,
     } = useStore().createStatus;
 
     const onEmojiClick = emoji => {

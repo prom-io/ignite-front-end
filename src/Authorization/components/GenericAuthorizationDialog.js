@@ -140,12 +140,12 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '648px',
     },
     dialogPaperRoot: {
-        '& .MuiDialogContent-root':{
+        '& .MuiDialogContent-root': {
             [theme.breakpoints.down('sm')]: {
-                padding: '24px 12px'
+                padding: '24px 12px',
             },
-        }
-    }
+        },
+    },
 }));
 
 const _GenericAuthorizationDialog = observer(({ fullScreen }) => {

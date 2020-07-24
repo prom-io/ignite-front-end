@@ -54,8 +54,8 @@ const useStyles = makeStyles(theme => ({
             fontFamily: 'Museo Sans Cyrl Bold',
         },
         [theme.breakpoints.down('sm')]: {
-            fontSize: "14px",
-        }
+            fontSize: '14px',
+        },
     },
     button: {
         width: '187px',

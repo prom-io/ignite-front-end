@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         fontSize: 15,
         marginLeft: 24,
-        width: '90%'
+        width: '90%',
     },
     checkboxTitle: {
         display: 'flex',
@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
         overflowWrap: 'break-word',
         fontFamily: 'Museo Sans Cyrl Regular',
         [theme.breakpoints.down('sm')]: {
-            width: '84%'
+            width: '84%',
         },
     },
     button: {

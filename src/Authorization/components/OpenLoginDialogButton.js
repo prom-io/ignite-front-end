@@ -25,8 +25,8 @@ export const OpenLoginDialogButton = observer(() => {
 
     return (
         <Button
-            className={'open_login_dialog_button'}
-            classes={{root: classes.buttonMargin}}
+            className="open_login_dialog_button"
+            classes={{ root: classes.buttonMargin }}
             onClick={handleClick}
             variant="contained"
             disableElevation

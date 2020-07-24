@@ -95,7 +95,7 @@ const _StatusBottom = ({
                         ) : (
                             <Checkbox
                                 icon={<FavoriteIcon color={favourited} />}
-                                checkedIcon={<FavoriteIcon type='primary' />}
+                                checkedIcon={<FavoriteIcon type="primary" />}
                                 checked={favourited}
                                 onChange={handleFavoriteClick}
                                 classes={{ root: classes.styledCheckbox }}

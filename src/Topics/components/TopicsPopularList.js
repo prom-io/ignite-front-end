@@ -1,18 +1,18 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
-import useTheme from "@material-ui/core/styles/useTheme";
-import { FadeLoader } from "react-spinners";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { makeStyles } from '@material-ui/core';
+import useTheme from '@material-ui/core/styles/useTheme';
+import { FadeLoader } from 'react-spinners';
 
-import { TopicPopularItem } from "./TopicPopularItem";
+import { TopicPopularItem } from './TopicPopularItem';
 
 const useStyles = makeStyles(() => ({
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "10px",
-        display: "table"
-    }
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '10px',
+        display: 'table',
+    },
 }));
 
 const _TopicsPopularList = ({ topicsPopularItems, pending }) => {
@@ -35,9 +35,9 @@ const _TopicsPopularList = ({ topicsPopularItems, pending }) => {
 
 const mapMobxToProps = ({ topicsPopular }) => ({
     topicsPopularItems: topicsPopular.topicsPopularItems,
-    pending: topicsPopular.pending
+    pending: topicsPopular.pending,
 });
 
 export const TopicsPopularList = inject(mapMobxToProps)(
-    observer(_TopicsPopularList)
+    observer(_TopicsPopularList),
 );

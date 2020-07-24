@@ -1,27 +1,42 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { ClickAwayListener, makeStyles } from '@material-ui/core';
-import Picker from 'emoji-picker-react';
+import React from "react";
+import { observer } from "mobx-react";
+import { ClickAwayListener, makeStyles } from "@material-ui/core";
+import Picker from "react-emojipicker";
 
-import { useStore } from '../../store/hooks';
+import { useStore } from "../../store/hooks";
 
 const useStyles = makeStyles(theme => ({
     emojiPicker: {
         zIndex: 3,
-        position: 'absolute',
-        left: '100px',
-        bottom: '-310px',
-        [theme.breakpoints.down('xs')]: {
-            left: 0,
+        position: "absolute",
+        left: "100px",
+        bottom: "-310px",
+        [theme.breakpoints.down("xs")]: {
+            left: 0
         },
 
-        '& .emoji-picker-react': {
-            boxShadow: 'none',
-            [theme.breakpoints.down('xs')]: {
-                width: '100% !important',
-            },
+        "& > div > div": {
+            height: "315px"
         },
-    },
+
+        "& > div > div > div": {
+            "&:first-child": {
+                width: "unset",
+                position: "absolute",
+                top: 0,
+                left: 0
+            },
+            "&:last-child": {
+                paddingLeft: "60px",
+                width: "unset"
+            }
+        },
+
+        "& span.ld-emoji img": {
+            width: "20px !important",
+            height: "20px !important"
+        }
+    }
 }));
 
 export const EmojiPicker = observer(() => {
@@ -29,10 +44,10 @@ export const EmojiPicker = observer(() => {
     const {
         emojiPickerVisible,
         addEmoji,
-        setEmojiPickerVisible,
+        setEmojiPickerVisible
     } = useStore().createStatus;
 
-    const onEmojiClick = (event, emoji) => {
+    const onEmojiClick = emoji => {
         addEmoji(emoji);
     };
 
@@ -40,12 +55,7 @@ export const EmojiPicker = observer(() => {
         emojiPickerVisible && (
             <ClickAwayListener onClickAway={() => setEmojiPickerVisible(false)}>
                 <div className={classes.emojiPicker}>
-                    <Picker
-                        onEmojiClick={onEmojiClick}
-                        groupNames={{ smileys_people: 'PEOPLE' }}
-                        disableAutoFocus
-                        preload
-                    />
+                    <Picker onEmojiSelected={onEmojiClick} />
                 </div>
             </ClickAwayListener>
         )

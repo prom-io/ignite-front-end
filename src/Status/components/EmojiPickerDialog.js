@@ -1,28 +1,46 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { ClickAwayListener, makeStyles } from '@material-ui/core';
-import Picker from 'emoji-picker-react';
+import React from "react";
+import { observer } from "mobx-react";
+import { ClickAwayListener, makeStyles } from "@material-ui/core";
+import Picker from "react-emojipicker";
 
-import { useStore } from '../../store/hooks';
+import { useStore } from "../../store/hooks";
 
 const useStyles = makeStyles(theme => ({
     emojiPickerDialog: {
         zIndex: 3,
-        position: 'absolute',
-        left: '100px',
-        bottom: '-230px',
-        [theme.breakpoints.down('xs')]: {
+        position: "absolute",
+        left: "100px",
+        bottom: "-305px",
+        [theme.breakpoints.down("xs")]: {
             left: 0,
+            bottom: "-318px"
         },
 
-        '& .emoji-picker-react': {
-            boxShadow: 'none',
-            height: '240px',
-            [theme.breakpoints.down('xs')]: {
-                width: '100% !important',
-            },
+        "& > div > div": {
+            height: "315px",
+            [theme.breakpoints.down("xs")]: {
+                width: "unset"
+            }
         },
-    },
+
+        "& > div > div > div": {
+            "&:first-child": {
+                width: "unset",
+                position: "absolute",
+                top: 0,
+                left: 0
+            },
+            "&:last-child": {
+                paddingLeft: "60px",
+                width: "unset"
+            }
+        },
+
+        "& span.ld-emoji img": {
+            width: "20px !important",
+            height: "20px !important"
+        }
+    }
 }));
 
 export const EmojiPickerDialog = observer(() => {
@@ -30,10 +48,10 @@ export const EmojiPickerDialog = observer(() => {
     const {
         emojiPickerDialogVisible,
         addEmoji,
-        setEmojiPickerDialogVisible,
+        setEmojiPickerDialogVisible
     } = useStore().createStatus;
 
-    const onEmojiClick = (event, emoji) => {
+    const onEmojiClick = emoji => {
         addEmoji(emoji);
     };
 
@@ -43,12 +61,7 @@ export const EmojiPickerDialog = observer(() => {
                 onClickAway={() => setEmojiPickerDialogVisible(false)}
             >
                 <div className={classes.emojiPickerDialog}>
-                    <Picker
-                        onEmojiClick={onEmojiClick}
-                        groupNames={{ smileys_people: 'PEOPLE' }}
-                        disableAutoFocus
-                        preload
-                    />
+                    <Picker onEmojiSelected={onEmojiClick} />
                 </div>
             </ClickAwayListener>
         )

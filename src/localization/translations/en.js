@@ -251,4 +251,5 @@ export const en = {
     'topics.card.menu.quality': "This trend is low quality",
     'topics.card.posts': "posts",
     post: 'Post',
+    'file.too-large': 'File must be 3Mb or smaller',
 };

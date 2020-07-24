@@ -247,4 +247,5 @@ export const kr = {
     comment: 'Comment',
     post: '게시물',
     settings: '설정',
+    'file.too-large': 'File must be 3MB or smaller',
 };

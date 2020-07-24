@@ -117,7 +117,7 @@ const _StatusBody = ({
                                         <ClickEventPropagationStopper style={{ display: 'inline-block' }}>
                                             <Link
                                                 view={Routes.topic}
-                                                params={{ title: item.substr(1) }}
+                                                params={{ title: encodeURIComponent(item.substr(1)) }}
                                                 store={routerStore}
                                                 style={{ marginRight: '5px' }}
                                             >

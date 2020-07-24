@@ -26,7 +26,7 @@ export const TopicsHashButton = ({ topic, routerStore }) => {
         <Link
             className={classes.topicsHashButton}
             view={Routes.topic}
-            params={{ title: topic.title }}
+            params={{ title: encodeURIComponent(topic.title) }}
             store={routerStore}
         >
             #

@@ -58,7 +58,7 @@ const _BackButton = ({ title, toHome, toTopics, params, routerStore, l }) => {
                 <ArrowBackIcon />
             </div>
             <Typography>
-                <h2 className={classes.backButtonTitle}>{l(title) || params}</h2>
+                <h2 className={classes.backButtonTitle}>{l(title) || decodeURIComponent(params)}</h2>
             </Typography>
         </div>
     );

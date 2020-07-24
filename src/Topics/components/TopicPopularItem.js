@@ -55,7 +55,7 @@ const _TopicPopularItem = ({ topic, routerStore, l }) => {
         <Link
             className={classes.topicItemBody}
             view={Routes.topic}
-            params={{ title: topic.title }}
+            params={{ title: encodeURIComponent(topic.title) }}
             store={routerStore}
         >
             <div className={classes.topicItemHeader} onClick={() => setIsTopicsMenuOpen(false)}>

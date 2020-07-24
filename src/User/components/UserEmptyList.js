@@ -1,9 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Link } from 'mobx-router';
 import { Typography, makeStyles } from '@material-ui/core';
 
 import { SadIconLarge } from '../../icons/SadIconLarge';
-import { useLocalization } from '../../store';
+import { useLocalization, useRouter } from '../../store';
+import { Routes } from '../../routes';
 
 const useStyles = makeStyles(theme => ({
     link: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 export const UserEmptyList = observer(({ emptyTag }) => {
     const classes = useStyles();
     const { l } = useLocalization();
+    const routerStore = useRouter();
 
     return (
         <div className={classes.emptyListContainer}>
@@ -38,9 +41,9 @@ export const UserEmptyList = observer(({ emptyTag }) => {
                     <Typography>
                         {l('user.alert.empty.part-1')}
                         {' '}
-                        <a href="#" className={classes.link}>
+                        <Link view={Routes.followPeople} store={routerStore} className={classes.link}>
                             {l('user.alert.empty.part-2')}
-                        </a>
+                        </Link>
                         {' '}
                         {l('user.alert.empty.part-3')}
                     </Typography>

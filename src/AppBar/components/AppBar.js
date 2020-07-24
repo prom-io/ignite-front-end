@@ -67,16 +67,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const navTitleList = {
-  '/': 'Home',
-  '/chat': 'Chat',
-  '/notifications': 'Notification',
-  '/topics': 'Topics',
-  '/edit-profile': 'Edit Profile',
-};
-
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
   const classes = useStyles();
+
+  const navTitleList = {
+    '/': l('appbar.home'),
+    '/chat': l('appbar.chat'),
+    '/notifications': l('appbar.notifications'),
+    '/topics': l('appbar.topics'),
+    '/edit-profile': l('appbar.edit-profile'),
+  };
+
   return (
     <>
       <MuiAppBar classes={{ root: classes.appBarContainer }}>

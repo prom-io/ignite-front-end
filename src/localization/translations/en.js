@@ -18,6 +18,7 @@ export const en = {
     'appbar.notifications': 'Notifications',
     'appbar.search': 'Search',
     'appbar.topics': 'Topics',
+    'appbar.edit-profile': 'Edit profile',
     'authorization.change-password': 'Change Your Password',
     'authorization.forgot-password': 'Forgot Your Password?',
     'authorization.login': 'Log in',

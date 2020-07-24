@@ -136,7 +136,20 @@ export class TopicStatusesStore {
 
     @action
     followTopic = () => {
-        console.log("follow topic: ", this.currentTopic.title);
+        axiosInstance
+            .post(`/api/v1/topics/${this.currentTopic.id}/follow`)
+            .then(() => {
+                this.currentTopic.following = true;
+            });
+    };
+
+    @action
+    unfollowTopic = () => {
+        axiosInstance
+            .delete(`/api/v1/topics/${this.currentTopic.id}/unfollow`)
+            .then(() => {
+                this.currentTopic.following = false;
+            });
     };
 
     @action

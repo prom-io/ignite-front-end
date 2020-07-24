@@ -1,21 +1,21 @@
-import React from "react";
-import { Grid, Hidden } from "@material-ui/core";
-import { observer } from "mobx-react";
+import React from 'react';
+import { Grid, Hidden } from '@material-ui/core';
+import { observer } from 'mobx-react';
 
-import { AppBar } from "../AppBar/components";
-import { TopicPageContainer, TopicsPopular } from "../Topics/components";
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar } from '../AppBar/components';
+import { TopicPageContainer, TopicsPopular } from '../Topics/components';
 import {
     ExploreOurFeaturesDescription,
-    PrometeusDescription
-} from "../PrometeusDescription";
-import { LoginForm } from "../Authorization/components";
-import { Layout } from "../Layout";
+    PrometeusDescription,
+} from '../PrometeusDescription';
+import { LoginForm } from '../Authorization/components';
+import { Layout } from '../Layout';
 import { useAuthorization, useStore } from '../store/hooks';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     mobileTopicsPopular: {
-        position: "fixed",
+        position: 'fixed',
         display: 'flex',
         background: theme.palette.background.paper,
         left: 0,
@@ -24,14 +24,14 @@ const useStyles = makeStyles(theme => ({
         height: "100%",
         zIndex: 1150,
         overflowY: 'scroll',
-    }
+    },
 }));
 
 export const TopicPage = observer(() => {
     const { currentUser } = useAuthorization();
     const { isTopicsMenuOpen } = useStore().topicsPopular;
     const classes = useStyles();
-    
+
     return (
         <Grid container>
             <Grid item xs={12}>
@@ -50,18 +50,18 @@ export const TopicPage = observer(() => {
                             className="right-content-container"
                         >
                             {!currentUser ? (
-                              <>
-                                <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
-                                </Grid>
-                                <TopicPageContainer currentUser={currentUser}/>
-                              </>
+                                <>
+                                    <Grid item className="login-form-container">
+                                        <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
+                                    </Grid>
+                                    <TopicPageContainer currentUser={currentUser} />
+                                </>
                             ) : (
-                                <TopicPageContainer currentUser={currentUser}/>
+                                <TopicPageContainer currentUser={currentUser} />
                             )}
                         </Grid>
                         <Grid item md={3} className={`right-banners-container ${isTopicsMenuOpen && classes.mobileTopicsPopular}`}>
-                            <Hidden only={["md"]}>
+                            <Hidden only={['md']}>
                                 <TopicsPopular />
                             </Hidden>
                         </Grid>

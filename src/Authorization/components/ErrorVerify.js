@@ -13,12 +13,12 @@ const useStyles = makeStyles(theme => ({
         borderBottom: '1px solid #F1EBE8',
         '& a': {
             textDecoration: 'underline',
-          
+
             fontFamily: 'Museo Sans Cyrl Bold',
         },
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '14px',
-      },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px',
+        },
     },
     contentBlock: {
         display: 'flex',
@@ -35,13 +35,13 @@ const useStyles = makeStyles(theme => ({
             marginTop: 8,
             fontSize: '15px',
         },
-      [theme.breakpoints.down('sm')]: {
-        '& span': {
-          fontSize: '14px',
-          wordBreak: 'break-all',
+        [theme.breakpoints.down('sm')]: {
+            '& span': {
+                fontSize: '14px',
+                wordBreak: 'break-all',
+            },
+            marginTop: '12px',
         },
-        marginTop: '12px',
-      },
     },
     button: {
         width: '187px',
@@ -54,14 +54,14 @@ const useStyles = makeStyles(theme => ({
 const errorTranslations = {
     en: (classes) => (
         <div className={classes.contentDescription}>
-          Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
-          {' '}
-          <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
-          {' '}
-          or
-          {' '}
-          <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
-          .
+            Error occurred when tried to extract wallet address and/or password hash from transaction. Please contact us on
+            {' '}
+            <a onClick={() => window.open('http://ignite.so/')}>Ignite.so</a>
+            {' '}
+            or
+            {' '}
+            <a onClick={() => window.open('http://prometeus.so/')}>Prometeus.io</a>
+            .
         </div>
     ),
     kr: (classes) => (

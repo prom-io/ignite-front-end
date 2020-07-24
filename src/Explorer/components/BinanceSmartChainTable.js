@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Table,
     TableHead,
@@ -10,63 +10,63 @@ import {
     Card,
     CardContent,
     makeStyles,
-    Typography
-} from "@material-ui/core";
+    Typography,
+} from '@material-ui/core';
 
-import { localized } from "../../localization/components";
-import Loader from "../../components/Loader";
-import { ExplorerSwitcher } from "./ExplorerSwitcher";
-import { ExplorerModal } from "./ExplorerModal";
+import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
+import { ExplorerSwitcher } from './ExplorerSwitcher';
+import { ExplorerModal } from './ExplorerModal';
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
-        width: "100%",
-        marginTop: "50px",
-        overflow: "auto"
+        width: '100%',
+        marginTop: '50px',
+        overflow: 'auto',
     },
     centered: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        width: "100%"
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
     },
     tableCardContent: {
-        padding: 0
+        padding: 0,
     },
     tableInput: {
-        fontFamily: "Museo Sans Cyrl Regular",
-        border: "none",
+        fontFamily: 'Museo Sans Cyrl Regular',
+        border: 'none',
         background: theme.palette.background.paper,
-        padding: "6px",
-        width: "100%",
-        fontSize: "0.875rem",
-        color: "rgba(0, 0, 0, 0.87)",
-        overflowX: "hidden",
-        whiteSpace: "nowrap",
-        textOverflow: "ellipsis",
-        "&:focus": {
-            outline: `1px solid ${theme.palette.border.main}`
+        padding: '6px',
+        width: '100%',
+        fontSize: '0.875rem',
+        color: 'rgba(0, 0, 0, 0.87)',
+        overflowX: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        '&:focus': {
+            outline: `1px solid ${theme.palette.border.main}`,
         },
-        "&:after": {
-            content: "'...'"
+        '&:after': {
+            content: "'...'",
         },
-        "&:not(:focus):after": {
-            content: ""
-        }
+        '&:not(:focus):after': {
+            content: '',
+        },
     },
     linkToModal: {
         color: theme.palette.primary.main,
-        textDecoration: "underline",
-        cursor: "pointer",
-        "&:hover": {
-            textDecoration: "none"
-        }
+        textDecoration: 'underline',
+        cursor: 'pointer',
+        '&:hover': {
+            textDecoration: 'none',
+        },
     },
     paginator: {
         padding: '10px 0 !important',
         marginBottom: 25,
-    }
+    },
 }));
 
 const _BinanceSmartChainTable = ({
@@ -76,7 +76,7 @@ const _BinanceSmartChainTable = ({
     setModalIsOpen,
     fetchBinanceSmartChain,
     l,
-    currentActiveRoute
+    currentActiveRoute,
 }) => {
     const classes = useStyles();
     const [page, setPage] = useState(0);
@@ -102,22 +102,22 @@ const _BinanceSmartChainTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.txnId")}</strong>
+                                <strong>{l('explorer.txnId')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.age")}</strong>
+                                <strong>{l('explorer.age')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.from")}</strong>
+                                <strong>{l('explorer.from')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.to")}</strong>
+                                <strong>{l('explorer.to')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.value")}</strong>
+                                <strong>{l('explorer.value')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l('explorer.cid')}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -130,27 +130,25 @@ const _BinanceSmartChainTable = ({
                             </TableCell>
                         ) : error || binanceHashes.data.length === 0 ? (
                             <TableCell colSpan={6}>
-                                <Typography>{l("explorer.no-data")}</Typography>
+                                <Typography>{l('explorer.no-data')}</Typography>
                             </TableCell>
                         ) : (
-                            binanceHashes &&
-                            binanceHashes.data.map(item => (
+                            binanceHashes
+                            && binanceHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[
                                                 classes.tableInput,
-                                                classes.linkToModal
-                                            ].join(" ")}
+                                                classes.linkToModal,
+                                            ].join(' ')}
                                             value={item.transactionHash}
                                             contentEditable={false}
-                                            onClick={() =>
-                                                setModalIsOpen(
-                                                    true,
-                                                    "binance-smart-chain",
-                                                    item
-                                                )
-                                            }
+                                            onClick={() => setModalIsOpen(
+                                                true,
+                                                'binance-smart-chain',
+                                                item,
+                                            )}
                                         />
                                     </TableCell>
                                     <TableCell>{item.ago}</TableCell>
@@ -189,7 +187,7 @@ const _BinanceSmartChainTable = ({
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
-                    classes={{root: classes.paginator}}
+                    classes={{ root: classes.paginator }}
                 />
             </CardContent>
         </Card>
@@ -201,9 +199,9 @@ const mapMoxToProps = ({ explorer }) => ({
     pending: explorer.pending.binance,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
-    fetchBinanceSmartChain: explorer.fetchBinanceSmartChain
+    fetchBinanceSmartChain: explorer.fetchBinanceSmartChain,
 });
 
 export const BinanceSmartChainTable = localized(
-    inject(mapMoxToProps)(observer(_BinanceSmartChainTable))
+    inject(mapMoxToProps)(observer(_BinanceSmartChainTable)),
 );

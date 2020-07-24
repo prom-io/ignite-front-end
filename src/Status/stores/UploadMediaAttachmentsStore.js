@@ -3,6 +3,8 @@ import randomString from "random-string";
 import {axiosInstance} from "../../api/axios-instance";
 import {FileContainer} from "../../utils/file-utils";
 
+const MAX_FILE_SIZE = 3145728;
+
 export class UploadMediaAttachmentsStore {
     @observable
     mediaAttachmentsFiles = [];
@@ -13,6 +15,18 @@ export class UploadMediaAttachmentsStore {
     @observable
     error = undefined;
 
+    @observable
+    showErrorSnackbar = false;
+
+    @observable
+    errorSnackbarLabel = undefined;
+
+    @action
+    setShowErrorSnackbar = (showErrorSnackbar, errorSnackbarLabel = undefined) => {
+        this.showErrorSnackbar = showErrorSnackbar;
+        this.errorSnackbarLabel = errorSnackbarLabel;
+    };
+
     @action
     attachFiles = files => {
         const attachmentsRemaining = 10 - this.mediaAttachmentsFiles.length;
@@ -22,6 +36,13 @@ export class UploadMediaAttachmentsStore {
         }
 
         for (let file of files) {
+
+            if (file.size > MAX_FILE_SIZE) {
+                this.showErrorSnackbar = true;
+                this.errorSnackbarLabel = "file.too-large";
+                continue;
+            }
+
             const fileId = randomString({length: 7});
             this.uploadPending = true;
             this.mediaAttachmentsFiles = [

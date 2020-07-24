@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Avatar,
@@ -10,6 +10,7 @@ import {
     TextField,
     Typography,
 } from '@material-ui/core';
+import { withSnackbar } from 'notistack';
 import { AttachImageInput } from './AttachImageInput';
 import { EmojiInput } from './EmojiInput';
 import { EmojiPicker } from './EmojiPicker';
@@ -78,120 +79,134 @@ const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
     const isPlural = maxAttachmentsString.charAt(maxAttachmentsString.length - 1) !== '1';
     const bindings = { limit: 1 };
     const labelKey = isPlural ? 'status.images-attachments-limit.plural' : 'status.images-attachments-limit';
-    
+
     return l(labelKey, bindings);
 };
 
 const _CreateStatusForm = ({
-                               charactersRemaining,
-                               submissionError,
-                               content,
-                               pending,
-                               currentUserAvatar,
-                               setContent,
-                               createStatus,
-                               mediaAttachmentsFiles,
-                               addMediaAttachments,
-                               removeMediaAttachment,
-                               uploadedAttachments,
-                               hideSendButton = false,
-                               isDialogEmojiPicker = false,
-                               referredStatus,
-                               statusReferenceType,
-                               setReferredStatus,
-                               setStatusReferenceType,
-                               setEmojiPickerVisible,
-                               setEmojiPickerDialogVisible,
-                               mediaAttachmentUploadPending,
-                               l,
-                           }) => {
+    charactersRemaining,
+    submissionError,
+    content,
+    pending,
+    currentUserAvatar,
+    setContent,
+    createStatus,
+    mediaAttachmentsFiles,
+    addMediaAttachments,
+    removeMediaAttachment,
+    uploadedAttachments,
+    hideSendButton = false,
+    isDialogEmojiPicker = false,
+    referredStatus,
+    statusReferenceType,
+    setReferredStatus,
+    setStatusReferenceType,
+    setEmojiPickerVisible,
+    setEmojiPickerDialogVisible,
+    mediaAttachmentUploadPending,
+    showMediaAttachmentErrorSnackbar,
+    mediaAttachmentErrorLabel,
+    setShowMediaAttachmentErrorSnackbar,
+    l,
+    enqueueSnackbar,
+}) => {
     const classes = useStyles();
-    
+
+    useEffect(
+        () => {
+            if (showMediaAttachmentErrorSnackbar && mediaAttachmentErrorLabel) {
+                enqueueSnackbar(l(mediaAttachmentErrorLabel), { variant: 'error' });
+                setShowMediaAttachmentErrorSnackbar(false);
+            }
+        },
+        [showMediaAttachmentErrorSnackbar],
+    );
+
     return (
-      <Card className={classes.createStatusFormCard} className="create-status-form">
-          <Grid container>
-              {referredStatus && (
-                <Grid item xs={12}>
-                    <Typography>
-                        {statusReferenceType === 'REPOST'
-                          ? l('status.reposted-status')
-                          : ''}
-                    </Typography>
-                    <RepostedStatusContent
-                      repostedStatus={referredStatus}
-                      displayClearButton
-                      onClearButtonClick={() => {
-                          setReferredStatus(undefined);
-                          setStatusReferenceType(undefined);
-                      }}
+        <Card className={classes.createStatusFormCard} className="create-status-form">
+            <Grid container>
+                {referredStatus && (
+                    <Grid item xs={12}>
+                        <Typography>
+                            {statusReferenceType === 'REPOST'
+                                ? l('status.reposted-status')
+                                : ''}
+                        </Typography>
+                        <RepostedStatusContent
+                            repostedStatus={referredStatus}
+                            displayClearButton
+                            onClearButtonClick={() => {
+                                setReferredStatus(undefined);
+                                setStatusReferenceType(undefined);
+                            }}
+                        />
+                    </Grid>
+                )}
+                <div className={classes.customTextareaContainer}>
+                    <Avatar src={currentUserAvatar} className="avatar-mini" />
+                    <TextField
+                        placeholder={l('status.placeholder')}
+                        multiline
+                        rows={4}
+                        rowsMax={Number.MAX_SAFE_INTEGER}
+                        onChange={event => setContent(event.target.value)}
+                        fullWidth
+                        value={content}
+                        className={classes.customTextarea}
                     />
+                </div>
+            </Grid>
+            <CardActions className={classes.cardActionsStyled}>
+                <Grid container justify="flex-start">
+                    <div className="create-status-form-pic">
+                        <AttachImageInput
+                            onImagesAttached={addMediaAttachments}
+                            disabled={mediaAttachmentsFiles.length === 1}
+                            disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
+                        />
+                        <img src="/pic-gif-disabled.png" />
+                        <img src="/pic-list-disabled.png" />
+                        <EmojiInput
+                            setEmojiPickerVisible={setEmojiPickerVisible}
+                            setEmojiPickerDialogVisible={setEmojiPickerDialogVisible}
+                            isDialogEmojiPicker={isDialogEmojiPicker}
+                        />
+                    </div>
                 </Grid>
-              )}
-              <div className={classes.customTextareaContainer}>
-                  <Avatar src={currentUserAvatar} className="avatar-mini" />
-                  <TextField
-                    placeholder={l('status.placeholder')}
-                    multiline
-                    rows={4}
-                    rowsMax={Number.MAX_SAFE_INTEGER}
-                    onChange={event => setContent(event.target.value)}
-                    fullWidth
-                    value={content}
-                    className={classes.customTextarea}
+                <Grid container classes={{ root: classes.containerRoot }}>
+                    <div className={classes.remainingCharactersCounter}>
+                        <Typography
+                            variant="body1"
+                            color="textSecondary"
+                        >
+                            {charactersRemaining}
+                        </Typography>
+                    </div>
+                    {!hideSendButton && (
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.createStatusButton}
+                            onClick={createStatus}
+                            disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
+                        >
+                            {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
+                            {l('status.send')}
+                        </Button>
+                    )}
+                </Grid>
+            </CardActions>
+            {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0
+          && (
+              <div className={classes.mediaAttachmentsContainer}>
+                  <CreateStatusFormMediaAttachments
+                      mediaAttachmentsFiles={mediaAttachmentsFiles}
+                      onDelete={removeMediaAttachment}
                   />
               </div>
-          </Grid>
-          <CardActions className={classes.cardActionsStyled}>
-              <Grid container justify="flex-start">
-                  <div className="create-status-form-pic">
-                      <AttachImageInput
-                        onImagesAttached={addMediaAttachments}
-                        disabled={mediaAttachmentsFiles.length === 1}
-                        disabledLabel={getDisabledLabelForAttachmentsInput(1, l)}
-                      />
-                      <img src="/pic-gif-disabled.png" />
-                      <img src="/pic-list-disabled.png" />
-                      <EmojiInput
-                        setEmojiPickerVisible={setEmojiPickerVisible}
-                        setEmojiPickerDialogVisible={setEmojiPickerDialogVisible}
-                        isDialogEmojiPicker={isDialogEmojiPicker}
-                      />
-                  </div>
-              </Grid>
-              <Grid container classes={{ root: classes.containerRoot }}>
-                  <div className={classes.remainingCharactersCounter}>
-                      <Typography
-                        variant="body1"
-                        color="textSecondary"
-                      >
-                          {charactersRemaining}
-                      </Typography>
-                  </div>
-                  {!hideSendButton && (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.createStatusButton}
-                      onClick={createStatus}
-                      disabled={(pending || mediaAttachmentUploadPending) || !(content.length > 0 || uploadedAttachments.length !== 0)}
-                    >
-                        {pending && <Loader size="md" css="position:absolute; top: -2px; left: 40px" />}
-                        {l('status.send')}
-                    </Button>
-                  )}
-              </Grid>
-          </CardActions>
-          {mediaAttachmentsFiles && mediaAttachmentsFiles.length > 0
-          && (
-            <div className={classes.mediaAttachmentsContainer}>
-                <CreateStatusFormMediaAttachments
-                  mediaAttachmentsFiles={mediaAttachmentsFiles}
-                  onDelete={removeMediaAttachment}
-                />
-            </div>
           )}
-          {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
-      </Card>
+            {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
+        </Card>
     );
 };
 
@@ -204,8 +219,8 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
     setEmojiPickerVisible: createStatus.setEmojiPickerVisible,
     setEmojiPickerDialogVisible: createStatus.setEmojiPickerDialogVisible,
     currentUserAvatar: authorization.currentUser
-      ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
-      : 'http://localhost:3000/avatars/original/missing.png',
+        ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
+        : 'http://localhost:3000/avatars/original/missing.png',
     setContent: createStatus.setContent,
     createStatus: createStatus.createStatus,
     addMediaAttachments: uploadMediaAttachments.attachFiles,
@@ -216,6 +231,13 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
     setReferredStatus: createStatus.setReferredStatus,
     statusReferenceType: createStatus.statusReferenceType,
     setStatusReferenceType: createStatus.setStatusReferenceType,
+    showMediaAttachmentErrorSnackbar: uploadMediaAttachments.showErrorSnackbar,
+    setShowMediaAttachmentErrorSnackbar: uploadMediaAttachments.setShowErrorSnackbar,
+    mediaAttachmentErrorLabel: uploadMediaAttachments.errorSnackbarLabel,
 });
 
-export const CreateStatusForm = localized(inject(mapMobxToProps)(observer(_CreateStatusForm)));
+export const CreateStatusForm = withSnackbar(
+    localized(
+        inject(mapMobxToProps)(observer(_CreateStatusForm)),
+    ),
+);

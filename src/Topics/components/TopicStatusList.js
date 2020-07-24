@@ -1,59 +1,59 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
-import InfiniteScroll from "react-infinite-scroll-component";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { makeStyles } from '@material-ui/core';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { MenuIcon } from "../../icons/MenuIcon";
-import { UnfollowDialog } from "../../Follow/components";
-import { StatusListItem } from "../../Status/components/StatusListItem";
-import { TopicsPopularScroll } from "./TopicsPopularScroll";
-import Loader from "../../components/Loader";
+import { MenuIcon } from '../../icons/MenuIcon';
+import { UnfollowDialog } from '../../Follow/components';
+import { StatusListItem } from '../../Status/components/StatusListItem';
+import { TopicsPopularScroll } from './TopicsPopularScroll';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "-2px",
-        [theme.breakpoints.down("sm")]: {
-            position: "fixed",
-            width: "100%",
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '-2px',
+        [theme.breakpoints.down('sm')]: {
+            position: 'fixed',
+            width: '100%',
             top: 50,
             background: theme.palette.background.paper,
             borderBottom: `1px solid ${theme.palette.border.main}`,
-            zIndex: 20
-        }
+            zIndex: 20,
+        },
     },
     topicListHeaderSwitcher: {
-        display: "flex"
+        display: 'flex',
     },
     topicListHeaderMenu: {
-        display: "none",
-        marginRight: "15px",
-        [theme.breakpoints.down("sm")]: {
-            display: "block"
-        }
+        display: 'none',
+        marginRight: '15px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'block',
+        },
     },
     topicListHeaderItem: {
-        cursor: "pointer",
-        fontFamily: "Museo Sans Cyrl Regular",
+        cursor: 'pointer',
+        fontFamily: 'Museo Sans Cyrl Regular',
         fontWeight: 600,
-        fontSize: "15px",
-        lineHeight: "18px",
-        textAlign: "center",
-        padding: "16px 31px",
-        color: "#A2A2A2"
+        fontSize: '15px',
+        lineHeight: '18px',
+        textAlign: 'center',
+        padding: '16px 31px',
+        color: '#A2A2A2',
     },
     topicItemActive: {
         color: theme.palette.primary.main,
-        borderBottom: "3px solid"
+        borderBottom: '3px solid',
     },
     centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "table",
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'table',
         marginTop: '100px',
-    }
+    },
 }));
 
 const _TopicStatusList = ({
@@ -74,7 +74,7 @@ const _TopicStatusList = ({
     currentStatusUsername,
     unfollowStatusAuthor,
     setUnfollowDialogOpen,
-    unfollowDialogOpen
+    unfollowDialogOpen,
 }) => {
     const classes = useStyles();
 
@@ -85,18 +85,18 @@ const _TopicStatusList = ({
                     <div
                         className={[
                             classes.topicListHeaderItem,
-                            activeTab === "hot" ? classes.topicItemActive : ""
-                        ].join(" ")}
-                        onClick={() => changeTabAndFetchStatuses("hot")}
+                            activeTab === 'hot' ? classes.topicItemActive : '',
+                        ].join(' ')}
+                        onClick={() => changeTabAndFetchStatuses('hot')}
                     >
                         Hot
                     </div>
                     <div
                         className={[
                             classes.topicListHeaderItem,
-                            activeTab === "fresh" ? classes.topicItemActive : ""
-                        ].join(" ")}
-                        onClick={() => changeTabAndFetchStatuses("fresh")}
+                            activeTab === 'fresh' ? classes.topicItemActive : '',
+                        ].join(' ')}
+                        onClick={() => changeTabAndFetchStatuses('fresh')}
                     >
                         Fresh
                     </div>
@@ -118,24 +118,22 @@ const _TopicStatusList = ({
             ) : (
                 <InfiniteScroll
                     next={fetchAction}
-                    loader={
+                    loader={(
                         <div className={classes.centered}>
                             <Loader size="lg" />
                         </div>
-                    }
+                    )}
                     dataLength={statusesOnTopic.length}
-                    style={{ overflowY: "hidden" }}
+                    style={{ overflowY: 'hidden' }}
                     hasMore={hasMore}
                 >
                     {statusesOnTopic.map(status => (
                         <StatusListItem
                             key={status.id}
                             status={status}
-                            onFavouriteStatusChange={(statusId, favourited) =>
-                                favourited
-                                    ? favouriteStatus(statusId)
-                                    : unfavouriteStatus(statusId)
-                            }
+                            onFavouriteStatusChange={(statusId, favourited) => (favourited
+                                ? favouriteStatus(statusId)
+                                : unfavouriteStatus(statusId))}
                             onFollowRequest={followStatusAuthor}
                             onUnfollowRequest={unfollowStatusAuthorWithDialog}
                             displayMenu={Boolean(currentUser)}
@@ -164,7 +162,7 @@ const mapMobxToProps = ({
     authorization,
     topicStatuses,
     topicsPopular,
-    createStatus
+    createStatus,
 }) => ({
     currentUser: authorization.currentUser,
     activeTab: topicStatuses.activeTab,
@@ -182,7 +180,7 @@ const mapMobxToProps = ({
     currentStatusUsername: topicStatuses.currentStatusUsername,
     unfollowStatusAuthor: topicStatuses.unfollowStatusAuthor,
     setUnfollowDialogOpen: topicStatuses.setUnfollowDialogOpen,
-    unfollowDialogOpen: topicStatuses.unfollowDialogOpen
+    unfollowDialogOpen: topicStatuses.unfollowDialogOpen,
 });
 
 export const TopicStatusList = inject(mapMobxToProps)(observer(_TopicStatusList));

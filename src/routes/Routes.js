@@ -46,7 +46,7 @@ export const Routes = {
     }),
     notFound: new Route({
         path: '/404',
-        component: <NotFound/>
+        component: <NotFound />,
     }),
     en: new Route({
         path: '/en',
@@ -108,7 +108,7 @@ export const Routes = {
         beforeExit: () => {
             store.topicStatuses.reset();
             store.topicsPopular.reset();
-        }
+        },
     }),
     topic: new Route({
         path: '/topic/:title',

@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
-import {useLocalization, useStore } from '../../store/hooks';
+import { useLocalization, useStore } from '../../store/hooks';
 
 const useStyles = makeStyles(theme => ({
     contentBlock: {
@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
             fontFamily: 'Museo Sans Cyrl Bold',
         },
         [theme.breakpoints.down('sm')]: {
-            fontSize: "14px",
-        }
+            fontSize: '14px',
+        },
     },
     button: {
         width: '187px',

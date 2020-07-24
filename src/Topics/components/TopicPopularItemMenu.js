@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
     ClickAwayListener,
     Grow,
@@ -10,36 +10,36 @@ import {
     Paper,
     Popper,
     makeStyles,
-    useTheme
-} from "@material-ui/core";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+    useTheme,
+} from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SadIcon } from '../../icons/SadIcon';
 
-import { localized } from "../../localization/components";
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({
     iconArrow: {
-        padding: "6px",
-        margin: "6px",
-        position: "absolute",
+        padding: '6px',
+        margin: '6px',
+        position: 'absolute',
         top: 0,
-        right: 0
+        right: 0,
     },
     paper: {
-        boxShadow: "0 0 5px rgba(0,0,0,0.2)"
+        boxShadow: '0 0 5px rgba(0,0,0,0.2)',
     },
     menuList: {
-        paddingTop: "10px",
-        paddingBottom: "10px"
+        paddingTop: '10px',
+        paddingBottom: '10px',
     },
     menuIcon: {
-        minWidth: "24px"
+        minWidth: '24px',
     },
     menuContent: {
-        "& span": {
-            fontSize: "15px"
-        }
-    }
+        '& span': {
+            fontSize: '15px',
+        },
+    },
 });
 
 const _TopicPopularItemMenu = ({ topicId, l }) => {
@@ -71,7 +71,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
     }, [open]);
 
     const handleListKeyDown = event => {
-        if (event.key === "Tab") {
+        if (event.key === 'Tab') {
             event.preventDefault();
             setOpen(false);
         }
@@ -82,7 +82,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
             <IconButton
                 className={classes.iconArrow}
                 ref={anchorRef}
-                ria-controls={open ? "menu-list-grow" : undefined}
+                ria-controls={open ? 'menu-list-grow' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
@@ -100,9 +100,9 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                         {...TransitionProps}
                         style={{
                             transformOrigin:
-                                placement === "bottom"
-                                    ? "center top"
-                                    : "center bottom"
+                                placement === 'bottom'
+                                    ? 'center top'
+                                    : 'center bottom',
                         }}
                     >
                         <Paper className={classes.paper}>
@@ -122,7 +122,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                                             <SadIcon />
                                         </ListItemIcon>
                                         <ListItemText className={classes.menuContent}>
-                                            {l("topics.card.menu.spam")}
+                                            {l('topics.card.menu.spam')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem className={classes.menuList}>
@@ -130,7 +130,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                                             <SadIcon />
                                         </ListItemIcon>
                                         <ListItemText className={classes.menuContent}>
-                                            {l("topics.card.menu.harmful")}
+                                            {l('topics.card.menu.harmful')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem className={classes.menuList}>
@@ -138,7 +138,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                                             <SadIcon />
                                         </ListItemIcon>
                                         <ListItemText className={classes.menuContent}>
-                                            {l("topics.card.menu.duplicate")}
+                                            {l('topics.card.menu.duplicate')}
                                         </ListItemText>
                                     </MenuItem>
                                     <MenuItem className={classes.menuList}>
@@ -146,7 +146,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                                             <SadIcon />
                                         </ListItemIcon>
                                         <ListItemText className={classes.menuContent}>
-                                            {l("topics.card.menu.quality")}
+                                            {l('topics.card.menu.quality')}
                                         </ListItemText>
                                     </MenuItem>
                                 </MenuList>

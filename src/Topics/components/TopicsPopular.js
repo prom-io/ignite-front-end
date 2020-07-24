@@ -1,33 +1,33 @@
-import React from "react";
-import { observer } from "mobx-react";
+import React from 'react';
+import { observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { Grid, Hidden, IconButton, makeStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-import { TopicsPopularList } from "./TopicsPopularList";
+import { TopicsPopularList } from './TopicsPopularList';
 import { useLocalization, useRouter, useStore } from '../../store/hooks';
 import { Routes } from '../../routes';
 
 const useStyles = makeStyles(theme => ({
     topicsPopular: {
         border: `1px solid ${theme.palette.border.main}`,
-        borderRadius: "4px"
+        borderRadius: '4px',
     },
     topicsPopularIsNotFull: {
-        marginBottom: "16px"
+        marginBottom: '16px',
     },
     topicsPopularHeader: {
         borderBottom: `1px solid ${theme.palette.border.main}`,
 
-        "& h3": {
-            padding: "16px",
-            margin: "0",
-            fontFamily: "Museo Sans Cyrl Bold",
-            fontStyle: "normal",
+        '& h3': {
+            padding: '16px',
+            margin: '0',
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontStyle: 'normal',
             fontWeight: 600,
-            fontSize: "20px",
-            lineHeight: "24px",
-            color: theme.palette.text.main
+            fontSize: '20px',
+            lineHeight: '24px',
+            color: theme.palette.text.main,
         },
         [theme.breakpoints.down('sm')]: {
             display: 'flex',
@@ -62,22 +62,23 @@ export const TopicsPopular = observer(({ isNotFull }) => {
         <Grid
             container
             spacing={2}
-            className={"description-container-right"}>
+            className="description-container-right"
+        >
             <Grid className="user_profile_container">
                 <div className={[
-                        classes.topicsPopular, 
-                        isNotFull && classes.topicsPopularIsNotFull
-                    ].join(" ")}
+                    classes.topicsPopular,
+                    isNotFull && classes.topicsPopularIsNotFull,
+                ].join(' ')}
                 >
                     <div className={classes.topicsPopularHeader}>
                         <Hidden lgUp>
                             <IconButton
-                              onClick={() => setIsTopicsMenuOpen(false)}
+                                onClick={() => setIsTopicsMenuOpen(false)}
                             >
                                 <ArrowBackIcon />
                             </IconButton>
                         </Hidden>
-                        <h3>{l("topics.card.popular")}</h3>
+                        <h3>{l('topics.card.popular')}</h3>
                     </div>
                     <div className={classes.topicsPopularBody}>
                         <TopicsPopularList />

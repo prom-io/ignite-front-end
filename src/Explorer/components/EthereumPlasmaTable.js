@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Table,
     TableHead,
@@ -10,68 +10,68 @@ import {
     Card,
     CardContent,
     makeStyles,
-    Typography
-} from "@material-ui/core";
+    Typography,
+} from '@material-ui/core';
 
-import { localized } from "../../localization/components";
-import Loader from "../../components/Loader";
-import { ExplorerSwitcher } from "./ExplorerSwitcher";
-import { ExplorerModal } from "./ExplorerModal";
+import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
+import { ExplorerSwitcher } from './ExplorerSwitcher';
+import { ExplorerModal } from './ExplorerModal';
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
-        width: "100%",
-        marginTop: "50px",
-        overflow: "auto",
-        [theme.breakpoints.down("sm")]: {
-            "& td": {
-                minWidth: "200px"
-            }
-        }
+        width: '100%',
+        marginTop: '50px',
+        overflow: 'auto',
+        [theme.breakpoints.down('sm')]: {
+            '& td': {
+                minWidth: '200px',
+            },
+        },
     },
     tableCardContent: {
-        padding: 0
+        padding: 0,
     },
     centered: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        width: "100%"
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
     },
     tableInput: {
-        fontFamily: "Museo Sans Cyrl Regular",
-        border: "none",
+        fontFamily: 'Museo Sans Cyrl Regular',
+        border: 'none',
         background: theme.palette.background.paper,
-        padding: "6px",
-        width: "100%",
-        fontSize: "0.875rem",
-        color: "rgba(0, 0, 0, 0.87)",
-        overflowX: "hidden",
-        whiteSpace: "nowrap",
-        textOverflow: "ellipsis",
-        "&:focus": {
-            outline: `1px solid ${theme.palette.border.main}`
+        padding: '6px',
+        width: '100%',
+        fontSize: '0.875rem',
+        color: 'rgba(0, 0, 0, 0.87)',
+        overflowX: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        '&:focus': {
+            outline: `1px solid ${theme.palette.border.main}`,
         },
-        "&:after": {
-            content: "'...'"
+        '&:after': {
+            content: "'...'",
         },
-        "&:not(:focus):after": {
-            content: ""
-        }
+        '&:not(:focus):after': {
+            content: '',
+        },
     },
     linkToModal: {
         color: theme.palette.primary.main,
-        textDecoration: "underline",
-        cursor: "pointer",
-        "&:hover": {
-            textDecoration: "none"
-        }
+        textDecoration: 'underline',
+        cursor: 'pointer',
+        '&:hover': {
+            textDecoration: 'none',
+        },
     },
     paginator: {
         padding: '10px 0 !important',
         marginBottom: 25,
-    }
+    },
 }));
 
 const _EthereumPlasmaTable = ({
@@ -81,7 +81,7 @@ const _EthereumPlasmaTable = ({
     setModalIsOpen,
     fetchEthereumPlasma,
     l,
-    currentActiveRoute
+    currentActiveRoute,
 }) => {
     const classes = useStyles();
     const [page, setPage] = useState(0);
@@ -107,16 +107,16 @@ const _EthereumPlasmaTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.txnId")}</strong>
+                                <strong>{l('explorer.txnId')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.age")}</strong>
+                                <strong>{l('explorer.age')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.node-wallet")}</strong>
+                                <strong>{l('explorer.node-wallet')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l('explorer.cid')}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -129,27 +129,25 @@ const _EthereumPlasmaTable = ({
                             </TableCell>
                         ) : error || ethereumHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
-                                <Typography>{l("explorer.no-data")}</Typography>
+                                <Typography>{l('explorer.no-data')}</Typography>
                             </TableCell>
                         ) : (
-                            ethereumHashes &&
-                            ethereumHashes.data.map(item => (
+                            ethereumHashes
+                            && ethereumHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[
                                                 classes.tableInput,
-                                                classes.linkToModal
-                                            ].join(" ")}
+                                                classes.linkToModal,
+                                            ].join(' ')}
                                             value={item.transactionHash}
                                             contentEditable={false}
-                                            onClick={() =>
-                                                setModalIsOpen(
-                                                    true,
-                                                    "ethereum-plasma",
-                                                    item
-                                                )
-                                            }
+                                            onClick={() => setModalIsOpen(
+                                                true,
+                                                'ethereum-plasma',
+                                                item,
+                                            )}
                                         />
                                     </TableCell>
                                     <TableCell>{item.ago}</TableCell>
@@ -180,7 +178,7 @@ const _EthereumPlasmaTable = ({
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
-                    classes={{root: classes.paginator}}
+                    classes={{ root: classes.paginator }}
                 />
             </CardContent>
         </Card>
@@ -192,9 +190,9 @@ const mapMoxToProps = ({ explorer }) => ({
     pending: explorer.pending.ethereum,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
-    fetchEthereumPlasma: explorer.fetchEthereumPlasma
+    fetchEthereumPlasma: explorer.fetchEthereumPlasma,
 });
 
 export const EthereumPlasmaTable = localized(
-    inject(mapMoxToProps)(observer(_EthereumPlasmaTable))
+    inject(mapMoxToProps)(observer(_EthereumPlasmaTable)),
 );

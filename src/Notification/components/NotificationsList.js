@@ -2,13 +2,13 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { makeStyles, Typography } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link } from 'mobx-router';
 import { Notification } from './Notification';
 import { useStore, useAuthorization, useLocalization, useRouter } from '../../store';
 import { SadIconLarge } from '../../icons/SadIconLarge';
 import { BellIcon } from '../../icons/BellIcon';
 import Loader from '../../components/Loader';
 import { Routes } from '../../routes';
-import { Link } from 'mobx-router';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -86,7 +86,7 @@ const noNotifications = {
             </div>
         </div>
     ),
-    kr: (classes,routerStore) => (
+    kr: (classes, routerStore) => (
         <div className={classes.noNotificationsContainer}>
             <div className={classes.noNotificationsContent}>
                 <SadIconLarge />
@@ -139,7 +139,7 @@ export const NotificationsList = observer(() => {
     }
 
     if (notifications.length === 0 && !hasMore) {
-        return noNotifications[locale](classes,routerStore);
+        return noNotifications[locale](classes, routerStore);
     }
 
     return (

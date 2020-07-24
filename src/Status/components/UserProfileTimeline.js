@@ -77,9 +77,9 @@ const _UserProfileTimeline = ({
     ) : (
         <>
             {!currentUser && (
-              <Grid item className="login-form-container">
-                  <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
-              </Grid>
+                <Grid item className="login-form-container">
+                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
+                </Grid>
             )}
             <Grid container style={{ height: '100%' }}>
                 {currentUser && currentUser.id === profileOwnerId && (

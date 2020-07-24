@@ -67,69 +67,70 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const navTitleList = {
-    '/': 'Home',
-    '/chat': 'Chat',
-    '/notifications': 'Notification',
-    '/topics': 'Topics',
-    '/edit-profile': 'Edit Profile',
-};
-
 const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
-    const classes = useStyles();
-    return (
-        <>
-            <MuiAppBar classes={{ root: classes.appBarContainer }}>
-                <Toolbar classes={{ root: classes.headerContainer }}>
-                    <Hidden mdUp>
-                        {currentUser ? <ExpandDrawerButton /> : <div />}
-                    </Hidden>
-                    <nav className={classes.navStyle}>
-                        <div className={classes.navItemList}>
-                            <AppBarLogo />
-                            <AppBarLink
-                                text={l('appbar.home')}
-                                targetView={Routes.home}
-                                active={currentActiveRoute === 'home'}
-                                icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
-                                routerStore={routerStore}
-                                viewParameters={{}}
-                                id="homeLink"
-                                hidden={Boolean(window.AndroidCallback)}
-                            />
-                            <AppBarLink
-                                text={l('appbar.notifications')}
-                                targetView={Routes.notifications}
-                                active={currentActiveRoute === 'notifications'}
-                                icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
-                                routerStore={routerStore}
-                                viewParameters={{}}
-                                id="notificationsLink"
-                                hidden={Boolean(window.AndroidCallback)}
-                            />
-                            <AppBarLink
-                                text={l('appbar.chat')}
-                                targetView={Routes.chat}
-                                active={currentActiveRoute === 'chat'}
-                                icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
-                                routerStore={routerStore}
-                                viewParameters={{}}
-                                id="chatLink"
-                                hidden={Boolean(window.AndroidCallback)}
-                            />
-                            <AppBarLink
-                                text={l('appbar.topics')}
-                                targetView={Routes.topics}
-                                active={currentActiveRoute === 'topics'}
-                                icon={<TopicsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
-                                routerStore={routerStore}
-                                viewParameters={{}}
-                                id="topicsLink"
-                                hidden={Boolean(window.AndroidCallback)}
-                            />
-                        </div>
-                        <div className={classes.navSecondary}>
-                            {/* <input type="text"
+  const classes = useStyles();
+
+  const navTitleList = {
+    '/': l('appbar.home'),
+    '/chat': l('appbar.chat'),
+    '/notifications': l('appbar.notifications'),
+    '/topics': l('appbar.topics'),
+    '/edit-profile': l('appbar.edit-profile'),
+  };
+
+  return (
+    <>
+      <MuiAppBar classes={{ root: classes.appBarContainer }}>
+        <Toolbar classes={{ root: classes.headerContainer }}>
+          <Hidden mdUp>
+            {currentUser ? <ExpandDrawerButton /> : <div />}
+          </Hidden>
+          <nav className={classes.navStyle}>
+            <div className={classes.navItemList}>
+              <AppBarLogo />
+              <AppBarLink
+                text={l('appbar.home')}
+                targetView={Routes.home}
+                active={currentActiveRoute === 'home'}
+                icon={<CustomHomeOutlinedIcon color={currentActiveRoute === 'home' ? theme.palette.primary.main : theme.palette.text.primary} />}
+                routerStore={routerStore}
+                viewParameters={{}}
+                id="homeLink"
+                hidden={Boolean(window.AndroidCallback)}
+              />
+              <AppBarLink
+                text={l('appbar.notifications')}
+                targetView={Routes.notifications}
+                active={currentActiveRoute === 'notifications'}
+                icon={<BellIcon color={currentActiveRoute === 'notifications' && theme.palette.primary.main} />}
+                routerStore={routerStore}
+                viewParameters={{}}
+                id="notificationsLink"
+                hidden={Boolean(window.AndroidCallback)}
+              />
+              <AppBarLink
+                text={l('appbar.chat')}
+                targetView={Routes.chat}
+                active={currentActiveRoute === 'chat'}
+                icon={<ChatIcon color={currentActiveRoute === 'chat' && theme.palette.primary.main} />}
+                routerStore={routerStore}
+                viewParameters={{}}
+                id="chatLink"
+                hidden={Boolean(window.AndroidCallback)}
+              />
+              <AppBarLink
+                text={l('appbar.topics')}
+                targetView={Routes.topics}
+                active={currentActiveRoute === 'topics'}
+                icon={<TopicsIcon color={currentActiveRoute === 'topics' && theme.palette.primary.main} />}
+                routerStore={routerStore}
+                viewParameters={{}}
+                id="topicsLink"
+                hidden={Boolean(window.AndroidCallback)}
+              />
+            </div>
+            <div className={classes.navSecondary}>
+              {/* <input type="text"
                                    placeholder={l("appbar.search")}
                                    disabled
                                    className="app-bar-search-field"

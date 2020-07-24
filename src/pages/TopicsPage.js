@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.background.paper,
         left: 0,
         top: 0,
-        width: '100%',
-        height: 'calc(100% - 50px)',
-        zIndex: 9999,
+        width: "100%",
+        height: "calc(100% - 50px)",
+        zIndex: 1150,
         overflowY: 'scroll',
     },
 }));

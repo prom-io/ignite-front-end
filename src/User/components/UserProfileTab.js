@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
 export const UserProfileTab = ({ header, subheader, active, onSelectActive, linkProps }) => {
     const classes = useStyles();
 
-    console.log(linkProps);
-
     if (linkProps) {
         return (
             <Link

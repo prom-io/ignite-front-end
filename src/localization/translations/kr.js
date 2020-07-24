@@ -49,6 +49,7 @@ export const kr = {
     'appbar.chat': '채팅',
     'appbar.topics': '트렌드',
     'appbar.search': '검색',
+    'appbar.edit-profile': '프로필을 편집하기',
     'appbar.explore-btfs': '블록 탐색기',
     'description-links.privacy-policy': '개인 정보 보호 정책',
     'description-links.terms-of-service': '서비스 약관',

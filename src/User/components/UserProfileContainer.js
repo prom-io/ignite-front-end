@@ -79,7 +79,9 @@ const _UserProfileContainer = ({
                     currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}
                 />
+                <Hidden smDown>
                 <DescriptionStoaBanner />
+                </Hidden>
             </Grid>
             <Grid item className="user-profile-content-container">
                 {tabContent}

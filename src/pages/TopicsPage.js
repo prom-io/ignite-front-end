@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         top: 0,
         width: "100%",
         height: "calc(100% - 50px)",
-        zIndex: 9999,
+        zIndex: 1150,
         overflowY: 'scroll',
     }
 }));

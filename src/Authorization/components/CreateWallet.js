@@ -96,7 +96,7 @@ export const CreateWallet = observer(() => {
     const classes = useStyles();
     const theme = useTheme();
     const { l, locale } = useLocalization();
-    const { signUp, walletGeneration } = useStore();
+    const { signUp, walletGeneration, genericAuthorizationDialog } = useStore();
     const {
         signUpForm,
         formErrors,
@@ -107,6 +107,7 @@ export const CreateWallet = observer(() => {
         doSignUp,
     } = signUp;
     const { generatedWallet } = walletGeneration;
+    const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
     const signUpButtonDisabled = (!agreedToPolicy || !savedEverything) || pending;
 
@@ -158,7 +159,10 @@ export const CreateWallet = observer(() => {
                     root: classes.button,
                 }}
                 disabled={signUpButtonDisabled}
-                onClick={doSignUp}
+                onClick={ () => {
+                    setGenericAuthorizationDialogType('createWalletPreload');
+                    doSignUp();
+                }}
             >
                 {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.4); top: -4px; left: 74px" />}
                 {l('sign-up')}

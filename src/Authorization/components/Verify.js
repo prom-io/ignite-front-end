@@ -50,6 +50,7 @@ export const Verify = observer(() => {
                     label="Ethereum Txn Hash"
                     onChange={event => setTransactionId(event.target.value)}
                     value={transactionId}
+                    fullWidth
                 />
                 <div className={classes.contentBlock}>
                     {l('sign-up.hash.verification.publish-record')}

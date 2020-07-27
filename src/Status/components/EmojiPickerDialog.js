@@ -39,6 +39,10 @@ const useStyles = makeStyles(theme => ({
         '& span.ld-emoji img': {
             width: '20px !important',
             height: '20px !important',
+            [theme.breakpoints.down('xs')]: {
+                width: '26px !important',
+                height: '26px !important',
+            },
         },
     },
 }));

@@ -86,7 +86,7 @@ export const CreateAccount = () => {
                     setGenericAuthorizationDialogType('verifyHash');
                 }}
             >
-                I will create the hashcode on my own
+                I will generate hashcode on my own
             </div>
             <div className={classes.notes}>
                 <a>Note:</a>

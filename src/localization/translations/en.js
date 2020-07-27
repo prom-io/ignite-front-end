@@ -146,7 +146,7 @@ export const en = {
     'sign-up.generate-hash-code': 'Generate a Hashcode',
     'sign-up.hash-code': 'A hashcode for this password',
     'sign-up.hash-code.not-generated': 'Hashcode not generated',
-    'sign-up.hash-code.saved': 'I have saved the hashcode to publish it later in a record to Binance Smart Chain or Ethereum',
+    'sign-up.hash-code.saved': 'I have saved the hashcode to publish it later in a record at the Binance Smart Chain or Ethereum',
     'sign-up.hash.verification.algorithm': 'If you’d like to generate a hashcode for it on your own, please note that we use standard Niels Provos and David Mazières bcrypt password hashing function.',
     'sign-up.hash.verification.publish-record': 'Publish a record to Binance Smart Chain or Ethereum that contains the necessary hashcode and enter it’s Txn Hash here. We will create an Ignite account connected to that BSC or ETH wallet.',
     'sign-up.hash.verification.verify-hash': 'Verify hash',

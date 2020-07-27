@@ -4,9 +4,6 @@ import { Undo } from '@material-ui/icons';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
-    menuItemGutters: {
-        paddingLeft: 0,
-    },
     listItemIconRoot: {
         minWidth: 15,
         marginRight: 8,
@@ -23,13 +20,7 @@ const _UndoRepostMenuItem = ({ onClick, l }) => {
     };
 
     return (
-        <MenuItem
-            classes={{
-                gutters: classes.menuItemGutters,
-            }}
-            disabled
-            onClick={handleClick}
-        >
+        <MenuItem onClick={handleClick} disabled>
             <ListItemIcon classes={{
                 root: classes.listItemIconRoot,
             }}

@@ -34,6 +34,7 @@ export const GenerateHash = observer(() => {
         generatedHash,
         showPassword,
         setShowPassword,
+        validateForm,
     } = hashGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
     const { setHashVerificationMode } = hashVerification;
@@ -72,7 +73,7 @@ export const GenerateHash = observer(() => {
                 classes={{
                     root: classes.button,
                 }}
-                disabled={!hashCodeSaved}
+                disabled={!hashCodeSaved || !generatedHash}
                 onClick={() => {
                     setHashVerificationMode(HashVerificationMode.SIGN_UP);
                     setGenericAuthorizationDialogType('verifyHash');

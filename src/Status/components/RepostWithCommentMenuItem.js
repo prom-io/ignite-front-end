@@ -5,9 +5,6 @@ import { PenIcon } from '../../icons/PenIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
-    menuItemGutters: {
-        paddingLeft: 0,
-    },
     listItemIconRoot: {
         minWidth: 15,
         marginRight: 8,
@@ -28,12 +25,7 @@ const _RepostWithCommentMenuItem = ({ status, onClick, setReferredStatus, setSta
     };
 
     return (
-        <MenuItem
-            classes={{
-                gutters: classes.menuItemGutters,
-            }}
-            onClick={handleClick}
-        >
+        <MenuItem onClick={handleClick}>
             <ListItemIcon classes={{
                 root: classes.listItemIconRoot,
             }}

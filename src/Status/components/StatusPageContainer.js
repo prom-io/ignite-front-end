@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
+        marginTop: '150px'
     },
 }));
 

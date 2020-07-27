@@ -90,10 +90,10 @@ export class SignUpStore {
             language: this.localeStore.selectedLanguage || 'en',
             reference_id: this.referenceId,
         })
-            .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogType('attention'))
+            .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType('attention'))
             .catch(error => {
                 this.submissionError = error;
-                this.genericAuthorizationDialogStore.setGenericAuthorizationDialogType('attention');
+                this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType('attention');
             })
             .finally(() => {
                 this.referenceId = undefined;

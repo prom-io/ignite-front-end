@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '16px',
         paddingTop: '24px',
         fontFamily: 'Museo Sans Cyrl Regular',
+        wordBreak: 'break-all',
         '& p': {
             margin: 0,
             marginBottom: 10,

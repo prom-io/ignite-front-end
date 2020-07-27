@@ -41,8 +41,14 @@ const useStyles = makeStyles(theme => ({
       width: '70px',
       height: '70px',
       position: 'absolute',
-      bottom: '256px',
+      bottom: '265px',
       left: '44%',
+      [theme.breakpoints.down('md')]: {
+        bottom: '465px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        left: '40%',
+      },
     }
   }
 }));

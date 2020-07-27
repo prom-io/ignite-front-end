@@ -44,12 +44,30 @@ const useStyles = makeStyles(theme => ({
       bottom: '265px',
       left: '44%',
       [theme.breakpoints.down('md')]: {
-        bottom: '465px',
+        bottom: '268',
       },
       [theme.breakpoints.down('sm')]: {
+        left: '47%',
+        top: '195px',
+      },
+      [theme.breakpoints.between(300, 380)]: {
         left: '40%',
+        top: '235px',
       },
     }
+  },
+  loader: {
+    top: '226px',
+    left:' 46%',
+    position: 'absolute',
+    [theme.breakpoints.down('sm')]: {
+      top: '202px',
+      left:' 47%',
+    },
+    [theme.breakpoints.between(300, 380)]: {
+      left: '44%',
+      top: '235px',
+    },
   }
 }));
 
@@ -94,7 +112,7 @@ export const CreateWalletPreload = observer(() => {
     >
       {walletGenerationSuccessTranslations[locale](classes)}
       {pending ?
-      <FadeLoader color={theme.palette.primary.main} css={'top: 245px; left: 49%; position: absolute'}/> :
+      <span className={classes.loader}><FadeLoader color={theme.palette.primary.main}/></span> :
         <DoneIcon className={classes.doneIcon}/>
       }
 

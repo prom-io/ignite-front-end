@@ -93,7 +93,7 @@ const _TopicPopularItemMenu = ({ topicId, l }) => {
                 anchorEl={anchorRef.current}
                 role={undefined}
                 transition
-                style={{ zIndex: 10 }}
+                style={{ zIndex: 1180 }}
             >
                 {({ TransitionProps, placement }) => (
                     <Grow

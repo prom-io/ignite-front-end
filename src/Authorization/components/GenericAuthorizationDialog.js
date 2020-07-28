@@ -22,6 +22,7 @@ import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 import { useLocalization, useStore } from '../../store/hooks';
 import { LoginForm } from './LoginForm';
+import { CreateWalletPreload } from './CreateWalletPreload';
 
 /** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
@@ -35,6 +36,12 @@ const dialogType = {
         id: 'createWallet',
         component: <CreateWallet />,
         title: 'sign-up.wallet-created',
+        type: 'default',
+    },
+    createWalletPreload: {
+        id: 'createWalletPreload',
+        component: <CreateWalletPreload />,
+        title: 'sign-up.wallet-created-preload',
         type: 'default',
     },
     attention: {

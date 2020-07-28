@@ -4,6 +4,7 @@ import { Link } from 'mobx-router';
 import { CardContent, makeStyles, Typography, useTheme } from '@material-ui/core';
 import ReplyIcon from '@material-ui/icons/Reply';
 import Markdown from 'react-markdown/with-html';
+import reactStringReplace from 'react-string-replace';
 import breaks from 'remark-breaks';
 import { StatusMediaAttachments } from './StatusMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
@@ -97,41 +98,27 @@ const _StatusBody = ({
                 variant="body1"
                 className={classes.statusText}
             >
-                {/* <Markdown
-                    source={text}
-                    plugins={[breaks]}
-                /> */}
-                {/* <Markdown
-                    source={text.replace(/#(\w+)/g, '<a href="/topic/$1">#$1</a>')}
-                    plugins={[breaks]}
-                    escapeHtml={false}
-                /> */}
-                <Markdown
-                    source={text}
-                    plugins={[breaks]}
-                    renderers={{
-                        text: props => {
-                            const result = props.value.split(' ').map(item => {
-                                if (item[0] === '#') {
-                                    return (
-                                        <ClickEventPropagationStopper style={{ display: 'inline-block' }}>
-                                            <Link
-                                                view={Routes.topic}
-                                                params={{ title: encodeURIComponent(item.substr(1)) }}
-                                                store={routerStore}
-                                                style={{ marginRight: '5px' }}
-                                            >
-                                                {item}
-                                            </Link>
-                                        </ClickEventPropagationStopper>
-                                    );
-                                }
-                                return `${item} `;
-                            });
-                            return result;
-                        },
-                    }}
-                />
+            <Markdown
+                source={text}
+                plugins={[breaks]}
+                renderers={{
+                    text: props => {
+                        const result = reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => (
+                            <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
+                                <Link
+                                    view={Routes.topic}
+                                    params={{ title: encodeURIComponent(match.substr(1)) }}
+                                    store={routerStore}
+                                    style={{ marginRight: '5px' }}
+                                >
+                                    {match}
+                                </Link>
+                            </ClickEventPropagationStopper>
+                        ))
+                        return result;
+                    },
+                }}
+            />
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments} isOnlyImage={!text} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}

@@ -20,10 +20,6 @@ export const CopyToClipboardButton = ({ textToCopy, darkTooltip = false, iconCol
     const classes = useStyles();
     const [copied, setCopied] = useState(false);
     iconColor = disabled ? 'rgba(255, 92, 1, 0.2)' : '#FF5C01';
-
-    console.log('disabled: ', disabled);
-    console.log('iconColor: ', iconColor);
-
     useEffect(
         () => {
             setTimeout(() => setCopied(false), 3000);

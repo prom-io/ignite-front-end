@@ -5,9 +5,6 @@ import { RepostIcon } from '../../icons/RepostIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
-    menuItemGutters: {
-        paddingLeft: 0,
-    },
     listItemIconRoot: {
         minWidth: 15,
         marginRight: 8,
@@ -35,12 +32,7 @@ const _RepostWithoutCommentMenuItem = ({
     };
 
     return (
-        <MenuItem
-            onClick={handleClick}
-            classes={{
-                gutters: classes.menuItemGutters,
-            }}
-        >
+        <MenuItem onClick={handleClick}>
             <ListItemIcon classes={{
                 root: classes.listItemIconRoot,
             }}

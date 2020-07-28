@@ -12,6 +12,9 @@ export class UserProfileStore {
     fetchingRelationships = false;
 
     @observable
+    openUnfollowDialog = false;
+
+    @observable
     username = undefined;
 
     @observable
@@ -118,12 +121,18 @@ export class UserProfileStore {
     unfollowUser = () => {
         axiosInstance.post(`/api/v1/accounts/${this.user.id}/unfollow`)
             .then(() => {
+                this.openUnfollowDialog = false;
                 this.user.following = false;
                 this.user.followers_count -= 1;
                 this.userStatusesStore.unfollowStatusAuthorByAuthorId(this.user.id);
                 this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count - 1);
             });
     };
+
+    @action
+    setOpenUnfollowDialog = openUnfollowDialog => {
+        this.openUnfollowDialog = openUnfollowDialog;
+    }
 
     @action
     setFollowersCount = followersCount => {

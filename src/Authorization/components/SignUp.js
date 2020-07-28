@@ -53,7 +53,6 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '26px',
         '& a': {
             color: '#FF5C01',
-            cursor: 'pointer',
             fontFamily: 'Museo Sans Cyrl Bold',
         },
         [theme.breakpoints.down('sm')]: {

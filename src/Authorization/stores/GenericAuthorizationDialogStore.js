@@ -6,6 +6,9 @@ export class GenericAuthorizationDialogStore {
 
     @observable
     genericAuthorizationDialogType = 'signUp';
+    
+    @observable
+    genericAuthorizationDialogTempType = 'attention';
 
     @action
     setGenericAuthorizationDialogOpen = genericDialogOpen => {
@@ -15,5 +18,10 @@ export class GenericAuthorizationDialogStore {
     @action
     setGenericAuthorizationDialogType = genericDialogType => {
         this.genericAuthorizationDialogType = genericDialogType;
+    };
+    
+    @action
+    setGenericAuthorizationDialogTempType = genericDialogTempType => {
+        this.genericAuthorizationDialogTempType = genericDialogTempType;
     };
 }

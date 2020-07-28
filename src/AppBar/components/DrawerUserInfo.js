@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Typography, Avatar } from '@material-ui/core';
 
+import { localized } from '../../localization/components';
+
 const lineBreak = (param) => (`${param.slice(0, 21)} ${param.slice(21)}`);
 
-const _DrawerUserInfo = ({ currentUser }) => {
+const _DrawerUserInfo = ({ currentUser, l }) => {
     if (!currentUser) {
         return null;
     }
@@ -37,7 +39,7 @@ const _DrawerUserInfo = ({ currentUser }) => {
                             variant="body2"
                             color="textSecondary"
                         >
-                            Followers
+                            {l('user.profile.followers')}
                         </Typography>
                     </div>
                     <div className="sidebar-menu-user-info-count-item">
@@ -48,7 +50,7 @@ const _DrawerUserInfo = ({ currentUser }) => {
                             variant="body2"
                             color="textSecondary"
                         >
-                            Follows
+                            {l('user.profile.following')}
                         </Typography>
                     </div>
 
@@ -62,4 +64,4 @@ const mapMobxToProps = ({ authorization }) => ({
     currentUser: authorization.currentUser,
 });
 
-export const DrawerUserInfo = inject(mapMobxToProps)(observer(_DrawerUserInfo));
+export const DrawerUserInfo = localized(inject(mapMobxToProps)(observer(_DrawerUserInfo)));

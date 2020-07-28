@@ -6,6 +6,7 @@ import { UserFollowersList } from './UserFollowersList';
 import { UserFollowingList } from './UserFollowingList';
 import { UserProfileTimeline } from '../../Status/components';
 import { WhoToFollow } from '../../Follow/components/WhoToFollow';
+import { UnfollowDialog } from '../../Follow/components';
 import { ExploreOurFeaturesDescription } from '../../PrometeusDescription';
 import { DescriptionStoaBanner } from '../../PrometeusDescription/DescriptionStoaBanner';
 import Loader from '../../components/Loader';
@@ -31,6 +32,8 @@ const _UserProfileContainer = ({
     activeTab,
     followUser,
     unfollowUser,
+    openUnfollowDialog,
+    setOpenUnfollowDialog,
     setActiveTab,
     currentUser,
 }) => {
@@ -70,7 +73,7 @@ const _UserProfileContainer = ({
                     activeTab={activeTab}
                     currentUserFollows={user.following}
                     onFollowRequest={followUser}
-                    onUnfollowRequest={unfollowUser}
+                    onUnfollowRequest={setOpenUnfollowDialog}
                     onTabSelected={setActiveTab}
                     username={user.username}
                     displayName={user.display_name}
@@ -79,7 +82,9 @@ const _UserProfileContainer = ({
                     currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}
                 />
+                <Hidden smDown>
                 <DescriptionStoaBanner />
+                </Hidden>
             </Grid>
             <Grid item className="user-profile-content-container">
                 {tabContent}
@@ -93,6 +98,12 @@ const _UserProfileContainer = ({
                     <ExploreOurFeaturesDescription />
                 )}
             </Grid>
+            <UnfollowDialog
+                username={user.username}
+                unfollowAction={unfollowUser}
+                unfollowDialogOpen={openUnfollowDialog}
+                setUnfollowDialogOpen={setOpenUnfollowDialog}
+            />
         </Grid>
     );
 };
@@ -106,6 +117,8 @@ const mapMobxToProps = ({ userProfile, authorization }) => ({
     activeTab: userProfile.activeTab,
     followUser: userProfile.followUser,
     unfollowUser: userProfile.unfollowUser,
+    openUnfollowDialog: userProfile.openUnfollowDialog,
+    setOpenUnfollowDialog: userProfile.setOpenUnfollowDialog,
     setActiveTab: userProfile.setActiveTab,
     currentUser: authorization.currentUser,
 });

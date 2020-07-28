@@ -10,3 +10,4 @@ export * from './UpdateUserContainer';
 export * from './UpdateUserProfile';
 export * from './UpdateUserPassword';
 export * from './UserAvatarFileInput';
+export * from './UserAvatarCropDialog';

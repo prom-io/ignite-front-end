@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import randomString from "random-string";
+import randomString from "randomatic";
 import {axiosInstance} from "../../api/axios-instance";
 import {FileContainer} from "../../utils/file-utils";
 
@@ -43,7 +43,7 @@ export class UploadMediaAttachmentsStore {
                 continue;
             }
 
-            const fileId = randomString({length: 7});
+            const fileId = randomString("a", 7);
             this.uploadPending = true;
             this.mediaAttachmentsFiles = [
                 ...this.mediaAttachmentsFiles,

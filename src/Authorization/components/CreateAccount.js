@@ -61,13 +61,14 @@ export const CreateAccount = () => {
     return (
         <DialogContent>
             <span className={classes.contentDescription}>
-                Creating an Ignite account based on existing ETH Wallet
+                Creating an Ignite account based on existing BSC or ETH Wallet
             </span>
             <div className={classes.contentBlock}>
-                If you don't want to share your Private Key with anybody including Ignite, you can use previously created ETH
-                Wallet for your new Ignite account. It will prevent any security issues but you will need to publish a record to
-                Ethereum blockchain that contains the hashcode (to the password).
-                We can help you generate a hashcode for your password or you can do this on your own.
+                If you don't want to share your Private Key with anybody including Ignite, you can use previously
+                created BSC or ETH Wallet for your new Ignite account.
+                It will prevent any security issues but you will need to publish a record to Binance Smart Chain
+                or Ethereum that contains the hashcode (to the password). We can help you generate a hashcode
+                for your password or you can do this on your own.
             </div>
             <Button
                 variant="contained"

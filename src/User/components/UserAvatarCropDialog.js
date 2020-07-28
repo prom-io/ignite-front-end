@@ -12,8 +12,11 @@ import {
     makeStyles
 } from "@material-ui/core";
 
-import getCroppedImg from "./utils/cropImage";
 import { ModalCloseIcon } from "../../icons/ModalCloseIcon";
+import { ZoomInIcon } from "../../icons/ZoomInIcon";
+import { ZoomOutIcon } from "../../icons/ZoomOutIcon";
+import getCroppedImg from "./utils/cropImage";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(() => ({
     dialogPaper: {
@@ -35,7 +38,7 @@ const useStyles = makeStyles(() => ({
     },
     dialogContent: {
         position: "relative",
-        height: "260px",
+        height: "380px",
         margin: "0 24px",
         padding: 0
     },
@@ -45,6 +48,9 @@ const useStyles = makeStyles(() => ({
         left: 0,
         right: 0,
         bottom: 0
+    },
+    slider: {
+        margin: "0 15px"
     },
     dialogActions: {
         margin: "0 24px",
@@ -59,6 +65,7 @@ const useStyles = makeStyles(() => ({
 const _UserAvatarCropDialog = ({
     openAvatarCropDialog,
     setOpenAvatarCropDialog,
+    pending,
     fileToCropUrl,
     uploadFile
 }) => {
@@ -77,7 +84,7 @@ const _UserAvatarCropDialog = ({
                 fileToCropUrl,
                 croppedAreaPixels
             );
-            uploadFile(croppedImage)
+            uploadFile(croppedImage);
         } catch (e) {
             console.error("ERROR: ", e);
         }
@@ -112,19 +119,29 @@ const _UserAvatarCropDialog = ({
                 </div>
             </DialogContent>
             <DialogActions classes={{ root: classes.dialogActions }} disableSpacing>
+                <ZoomInIcon />
                 <Slider
+                    classes={{ root: classes.slider }}
                     value={zoom}
                     min={1}
                     max={3}
                     step={0.1}
                     onChange={(e, zoom) => setZoom(zoom)}
                 />
+                <ZoomOutIcon />
                 <Button
+                    disabled={pending}
                     classes={{ root: classes.applyButton }}
                     variant="contained"
                     color="primary"
                     onClick={applyCroppedImage}
                 >
+                    {pending && (
+                        <Loader
+                            size="md"
+                            css="position:absolute; top:0; left: 34px"
+                        />
+                    )}
                     Apply
                 </Button>
             </DialogActions>
@@ -135,6 +152,7 @@ const _UserAvatarCropDialog = ({
 const mapMobxToProps = ({ userAvatarUpload }) => ({
     openAvatarCropDialog: userAvatarUpload.openAvatarCropDialog,
     setOpenAvatarCropDialog: userAvatarUpload.setOpenAvatarCropDialog,
+    pending: userAvatarUpload.pending,
     fileToCropUrl: userAvatarUpload.fileToCropUrl,
     uploadFile: userAvatarUpload.uploadFile
 });

@@ -12,10 +12,14 @@ export class UploadUserAvatarStore {
     @observable
     fileToCropUrl = undefined;
 
+    @observable
+    pending = false;
+
     @action
     uploadFile = croppedImage => {
-        const file = dataURLtoFile(croppedImage, new Date().getTime());
+        this.pending = true;
 
+        const file = dataURLtoFile(croppedImage, new Date().getTime());
         this.avatarFileContainer = new FileContainer(file, undefined, true);
 
         const formData = new FormData();
@@ -32,7 +36,8 @@ export class UploadUserAvatarStore {
                 );
                 this.openAvatarCropDialog = false;
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
+            .finally(() => (this.pending = false));
     };
 
     @action

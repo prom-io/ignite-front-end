@@ -109,10 +109,10 @@ const _StatusBody = ({
                                     view={Routes.topic}
                                     params={{ title: encodeURIComponent(match.substr(1)) }}
                                     store={routerStore}
-                                    style={{ marginRight: '5px' }}
                                 >
                                     {match}
                                 </Link>
+                                &nbsp;
                             </ClickEventPropagationStopper>
                         ))
                         return result;

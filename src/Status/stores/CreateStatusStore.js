@@ -43,6 +43,9 @@ export class CreateStatusStore {
     @observable
     createdStatus = undefined;
 
+    @observable
+    targetSelection = undefined;
+
     @computed
     get mediaAttachments() {
         return this.uploadMediaAttachmentsStore.mediaAttachmentsFiles
@@ -70,6 +73,11 @@ export class CreateStatusStore {
             this.charactersRemaining = STATUS_TEXT_LENGTH_LIMIT - content.length;
         }
     };
+
+    @action
+    setTargetSelection = e => {
+        this.targetSelection = e.target.selectionStart;
+    }
 
     @action
     setCreateStatusDialogOpen = createStatusDialogOpen => {
@@ -156,7 +164,11 @@ export class CreateStatusStore {
 
     @action
     addEmoji = emoji => {
-        let newContent = this.content + emoji.unicode;
+        const cursorPosition = this.targetSelection;
+        const textBeforeCursorPosition = this.content.substring(0, cursorPosition);
+        const textAfterCursorPosition = this.content.substring(cursorPosition, this.content.length);
+        let newContent = textBeforeCursorPosition + emoji.unicode + textAfterCursorPosition;
+        this.targetSelection += emoji.unicode.length;
 
         if (STATUS_TEXT_LENGTH_LIMIT - newContent.length >= 0) {
             this.content = newContent;

@@ -90,6 +90,7 @@ const _CreateStatusForm = ({
     pending,
     currentUserAvatar,
     setContent,
+    setTargetSelection,
     createStatus,
     mediaAttachmentsFiles,
     addMediaAttachments,
@@ -150,6 +151,7 @@ const _CreateStatusForm = ({
                         rows={4}
                         rowsMax={Number.MAX_SAFE_INTEGER}
                         onChange={event => setContent(event.target.value)}
+                        onBlur={setTargetSelection}
                         fullWidth
                         value={content}
                         className={classes.customTextarea}
@@ -222,6 +224,7 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
         ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
         : 'http://localhost:3000/avatars/original/missing.png',
     setContent: createStatus.setContent,
+    setTargetSelection: createStatus.setTargetSelection,
     createStatus: createStatus.createStatus,
     addMediaAttachments: uploadMediaAttachments.attachFiles,
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,

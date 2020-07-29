@@ -252,6 +252,7 @@ const _UpdateUserProfile = ({
                     store={routerStore}
                     view={Routes.userProfile}
                     className={classes.replyingToLink}
+                    params={{ username: currentUser.username }}
                   >
                       <Button
                         variant="contained"

@@ -18,8 +18,16 @@ export const EmojiInput = ({
     setEmojiPickerVisible,
     setEmojiPickerDialogVisible,
     isDialogEmojiPicker,
+    handleEmojiClick,
+    emojiWrapperRef
 }) => {
     const classes = useStyles();
+    const iconHandleClick = (e) => {
+        handleEmojiClick(e);
+        isDialogEmojiPicker
+          ? setEmojiPickerDialogVisible(true)
+          : setEmojiPickerVisible(true)
+    };
 
     return (
         <IconButton
@@ -27,10 +35,9 @@ export const EmojiInput = ({
             component="label"
             variant="text"
             className={classes.emojiImageInput}
-            onClick={() => (isDialogEmojiPicker
-                ? setEmojiPickerDialogVisible(true)
-                : setEmojiPickerVisible(true))}
+            onClick={()=>iconHandleClick(event)}
             disableRipple
+            ref={emojiWrapperRef}
         >
             <SmileIcon />
         </IconButton>

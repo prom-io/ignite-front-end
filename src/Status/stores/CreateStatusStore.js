@@ -141,6 +141,11 @@ export class CreateStatusStore {
                 })
         }
     };
+    
+    @action
+    resetOnBlur = () => {
+        this.targetSelection = undefined;
+    };
 
     @action
     setReferredStatus = referredStatus => {

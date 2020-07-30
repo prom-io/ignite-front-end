@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createRef, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Avatar,
@@ -112,7 +112,15 @@ const _CreateStatusForm = ({
     enqueueSnackbar,
 }) => {
     const classes = useStyles();
-
+    const wrapperRef = createRef();
+    const emojiWrapperRef = createRef();
+    
+    const handleEmojiClick = (event) => {
+        if (wrapperRef && !wrapperRef.current.contains(event.target) && !emojiWrapperRef) {
+            alert('You clicked outside of me!');
+        }
+    };
+    
     useEffect(
         () => {
             if (showMediaAttachmentErrorSnackbar && mediaAttachmentErrorLabel) {
@@ -155,6 +163,7 @@ const _CreateStatusForm = ({
                         fullWidth
                         value={content}
                         className={classes.customTextarea}
+                        ref={wrapperRef}
                     />
                 </div>
             </Grid>
@@ -172,6 +181,8 @@ const _CreateStatusForm = ({
                             setEmojiPickerVisible={setEmojiPickerVisible}
                             setEmojiPickerDialogVisible={setEmojiPickerDialogVisible}
                             isDialogEmojiPicker={isDialogEmojiPicker}
+                            handleEmojiClick={handleEmojiClick}
+                            emojiWrapperRef={emojiWrapperRef}
                         />
                     </div>
                 </Grid>

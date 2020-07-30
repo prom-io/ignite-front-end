@@ -34,7 +34,7 @@ export const StatusMediaAttachments = ({ mediaAttachments, isOnlyImage }) => {
 
     const gallery = mediaAttachments.map(mediaAttachment => ({
         src: mediaAttachment.url,
-        thumbnail: mediaAttachment.url,
+        thumbnail: `${mediaAttachment.url}?size=${200}`,
         thumbnailWidth: mediaAttachments.length === 1 ? '100%' : mediaAttachment.meta.width,
         thumbnailHeight: mediaAttachment.meta.height,
     }));

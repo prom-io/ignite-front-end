@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createRef, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Avatar,
@@ -19,6 +19,7 @@ import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachm
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
 import Loader from '../../components/Loader';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -112,7 +113,12 @@ const _CreateStatusForm = ({
     enqueueSnackbar,
 }) => {
     const classes = useStyles();
-
+    const wrapperRef = createRef();
+    
+    const handleEmojiClick = () => {
+        setTargetSelection(undefined);
+    };
+    
     useEffect(
         () => {
             if (showMediaAttachmentErrorSnackbar && mediaAttachmentErrorLabel) {
@@ -124,6 +130,7 @@ const _CreateStatusForm = ({
     );
 
     return (
+      <ClickAwayListener onClickAway={handleEmojiClick}>
         <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container>
                 {referredStatus && (
@@ -155,6 +162,7 @@ const _CreateStatusForm = ({
                         fullWidth
                         value={content}
                         className={classes.customTextarea}
+                        ref={wrapperRef}
                     />
                 </div>
             </Grid>
@@ -209,6 +217,7 @@ const _CreateStatusForm = ({
           )}
             {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
+      </ClickAwayListener>
     );
 };
 

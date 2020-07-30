@@ -75,9 +75,9 @@ export class CreateStatusStore {
     };
 
     @action
-    setTargetSelection = e => {
-        this.targetSelection = e.target.selectionStart;
-    }
+    setTargetSelection = (e) => {
+        e ? this.targetSelection = e.target.selectionStart : this.targetSelection = this.content.length;
+    };
 
     @action
     setCreateStatusDialogOpen = createStatusDialogOpen => {
@@ -140,11 +140,6 @@ export class CreateStatusStore {
                     }
                 })
         }
-    };
-    
-    @action
-    resetOnBlur = () => {
-        this.targetSelection = undefined;
     };
 
     @action

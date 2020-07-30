@@ -19,6 +19,7 @@ import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachm
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
 import Loader from '../../components/Loader';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -113,12 +114,9 @@ const _CreateStatusForm = ({
 }) => {
     const classes = useStyles();
     const wrapperRef = createRef();
-    const emojiWrapperRef = createRef();
     
-    const handleEmojiClick = (event) => {
-        if (wrapperRef && !wrapperRef.current.contains(event.target) && !emojiWrapperRef) {
-            alert('You clicked outside of me!');
-        }
+    const handleEmojiClick = () => {
+        setTargetSelection(undefined);
     };
     
     useEffect(
@@ -132,6 +130,7 @@ const _CreateStatusForm = ({
     );
 
     return (
+      <ClickAwayListener onClickAway={handleEmojiClick}>
         <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container>
                 {referredStatus && (
@@ -181,8 +180,6 @@ const _CreateStatusForm = ({
                             setEmojiPickerVisible={setEmojiPickerVisible}
                             setEmojiPickerDialogVisible={setEmojiPickerDialogVisible}
                             isDialogEmojiPicker={isDialogEmojiPicker}
-                            handleEmojiClick={handleEmojiClick}
-                            emojiWrapperRef={emojiWrapperRef}
                         />
                     </div>
                 </Grid>
@@ -220,6 +217,7 @@ const _CreateStatusForm = ({
           )}
             {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
+      </ClickAwayListener>
     );
 };
 

@@ -62,7 +62,7 @@ export class StatusPageStore {
         this.error = undefined;
 
         axiosInstance.get(`/api/v1/statuses/${id}`)
-            .then(({data}) => {console.log('data',data);this.status = data})
+            .then(({data}) => this.status = data)
             .catch(error => this.error = error)
             .finally(() => this.pending = false)
     };

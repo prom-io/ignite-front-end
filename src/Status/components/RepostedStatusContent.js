@@ -39,7 +39,7 @@ const _RepostedStatusContent = ({
                     username={repostedStatus.account.username}
                     userId={repostedStatus.account.id}
                     displayName={repostedStatus.account.display_name}
-                    avatar={repostedStatus.account.avatar}
+                    avatar={`${repostedStatus.account.avatar}?size=${100}`}
                     createdAt={repostedStatus.created_at}
                     statusId={repostedStatus.id}
                     displayMenu={false}

@@ -36,7 +36,7 @@ const _UserCard = ({
                     >
                         <div className="user-card-top user-card-content-box">
                             <Avatar
-                                src={src}
+                                src={`${src}?size=${100}`}
                                 style={{
                                     width: 90,
                                     height: 90,

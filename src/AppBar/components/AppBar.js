@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 import { inject, observer } from 'mobx-react';
 import { AppBar as MuiAppBar, Hidden, Toolbar, withTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,6 +20,7 @@ import { localized } from '../../localization/components';
 import { OpenLoginDialogButton, GenericAuthorizationDialog } from '../../Authorization/components';
 import { AppBarLogo } from '.';
 import { TopicsIcon } from '../../icons/TopicsIcon';
+import {SearchInput} from '../../Search/components/SearchInput';
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
@@ -130,40 +131,38 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
               />
             </div>
             <div className={classes.navSecondary}>
-              {/* <input type="text"
-                                   placeholder={l("appbar.search")}
-                                   disabled
-                                   className="app-bar-search-field"
-                            /> */}
-                            <Hidden smDown>
-                                <UserAppBarMenu />
-                            </Hidden>
-                            {currentUser ? (
-                                <Hidden smDown>
-                                    <OpenCreateStatusDialogButton />
-                                </Hidden>
-                            )
-                                : <div />}
-                            {!currentUser && (<OpenLoginDialogButton />)}
-                            <Hidden smDown>
-                                <div className="select-language">
-                                    <AppBarLanguageSelect />
-                                </div>
-                            </Hidden>
-
-                            <div className="mobile_header">
-                                <GenericAuthorizationDialog />
-                                {/* <img src="/search.png" /> */}
-                                <span className="mobile_header-title">
+              
+              <SearchInput />
+              
+              <Hidden smDown>
+                <UserAppBarMenu />
+              </Hidden>
+              {currentUser ? (
+                  <Hidden smDown>
+                    <OpenCreateStatusDialogButton />
+                  </Hidden>
+                )
+                : <div />}
+              {!currentUser && (<OpenLoginDialogButton />)}
+              <Hidden smDown>
+                <div className="select-language">
+                  <AppBarLanguageSelect />
+                </div>
+              </Hidden>
+    
+              <div className="mobile_header">
+                <GenericAuthorizationDialog />
+                <img src="/search.png" />
+                <span className="mobile_header-title">
                                     {' '}
-                                    {currentUser && navTitleList[window.location.pathname]}
-                                    {' '}
+                  {currentUser && navTitleList[window.location.pathname]}
+                  {' '}
                                 </span>
-                                <div className="select-language">
-                                    <AppBarLanguageSelect />
-                                </div>
-                            </div>
-                        </div>
+                <div className="select-language">
+                  <AppBarLanguageSelect />
+                </div>
+              </div>
+            </div>
                         <NavigationalDrawer />
                         <CreateStatusDialog />
                     </nav>

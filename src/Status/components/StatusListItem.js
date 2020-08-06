@@ -32,7 +32,7 @@ const _StatusListItem = ({
                 username={status.account.username}
                 userId={status.account.id}
                 displayName={status.account.display_name}
-                avatar={status.account.avatar}
+                avatar={`${status.account.avatar}?size=${100}`}
                 createdAt={status.created_at}
                 statusId={status.id}
                 displayMenu={displayMenu}

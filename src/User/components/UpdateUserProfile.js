@@ -11,6 +11,11 @@ import {
 import { UserAvatarFileInput } from './UserAvatarFileInput';
 import { localized } from '../../localization/components';
 import Loader from '../../components/Loader';
+import DialogContent from '@material-ui/core/DialogContent';
+import Dialog from '@material-ui/core/Dialog';
+import { Routes } from '../../routes';
+import { Link } from 'mobx-router';
+import CustomDialogTitle from '../../Authorization/components/CustomDialogTitle';
 
 const useStyles = makeStyles(theme => ({
     updateUserProfile: {
@@ -83,9 +88,27 @@ const useStyles = makeStyles(theme => ({
             lineHeight: '18px',
         },
     },
+    replyingToLink: {
+        textDecoration: 'none',
+    },
+    dialogRoot: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontStyle: 'normal',
+        fontWeight: 300,
+        fontSize: '18px',
+        lineHeight: '32px',
+        '& a': {
+            marginTop: '30px'
+        }
+    }
 }));
 
 const _UpdateUserProfile = ({
+    routerStore,
     currentUser,
     updateUserProfileForm,
     formErrors,
@@ -97,17 +120,28 @@ const _UpdateUserProfile = ({
     l,
 }) => {
     const classes = useStyles();
-
+    const [open, setOpen] = React.useState(false);
+    
+    const handleClickOpen = () => {
+        updateUser();
+        !pending && setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
+    
     return (
-        <div className={classes.updateUserProfile}>
-            <UserAvatarFileInput />
-            <div className={classes.updateUserProfileInfo}>
-                <div className={classes.updateUserProfileWallet}>
-                    <p>Wallet</p>
-                    <Typography variant="h5">{currentUser.id}</Typography>
-                </div>
-                <div className={classes.updateUserProfileField} style={{ marginTop: '40px' }}>
-                    <TextField
+      <>
+          <div className={classes.updateUserProfile}>
+              <UserAvatarFileInput />
+              <div className={classes.updateUserProfileInfo}>
+                  <div className={classes.updateUserProfileWallet}>
+                      <p>Wallet</p>
+                      <Typography variant="h5">{currentUser.id}</Typography>
+                  </div>
+                  <div className={classes.updateUserProfileField} style={{ marginTop: '40px' }}>
+                      <TextField
                         label={l('user.username')}
                         placeholder="Add your username"
                         value={updateUserProfileForm.username}
@@ -119,14 +153,14 @@ const _UpdateUserProfile = ({
                             shrink: true,
                         }}
                         fullWidth
-                    />
-                    <span>
+                      />
+                      <span>
                         {updateUserProfileForm.username.length}
-                        /50
+                          /50
                     </span>
-                </div>
-                <div className={classes.updateUserProfileField}>
-                    <TextField
+                  </div>
+                  <div className={classes.updateUserProfileField}>
+                      <TextField
                         className={classes.updateUserProfileField}
                         label={l('user.display-name')}
                         placeholder="Add your displayed name"
@@ -141,14 +175,14 @@ const _UpdateUserProfile = ({
                             shrink: true,
                         }}
                         fullWidth
-                    />
-                    <span>
+                      />
+                      <span>
                         {updateUserProfileForm.displayName.length}
-                        /50
+                          /50
                     </span>
-                </div>
-                <div className={classes.updateUserProfileField}>
-                    <TextField
+                  </div>
+                  <div className={classes.updateUserProfileField}>
+                      <TextField
                         className={classes.updateUserProfileField}
                         label={l('settings.language')}
                         placeholder="Select your language"
@@ -160,17 +194,17 @@ const _UpdateUserProfile = ({
                         }}
                         select
                         fullWidth
-                    >
-                        <MenuItem value="en">
-                            {l('settings.language.english')}
-                        </MenuItem>
-                        <MenuItem value="kr">
-                            {l('settings.language.korean')}
-                        </MenuItem>
-                    </TextField>
-                </div>
-                <div className={classes.updateUserProfileField}>
-                    <TextField
+                      >
+                          <MenuItem value="en">
+                              {l('settings.language.english')}
+                          </MenuItem>
+                          <MenuItem value="kr">
+                              {l('settings.language.korean')}
+                          </MenuItem>
+                      </TextField>
+                  </div>
+                  <div className={classes.updateUserProfileField}>
+                      <TextField
                         className={classes.updateUserProfileField}
                         label={l('user.bio')}
                         placeholder="Add your bio"
@@ -185,35 +219,62 @@ const _UpdateUserProfile = ({
                         }}
                         fullWidth
                         multiline
-                    />
-                    <span>
+                      />
+                      <span>
                         {updateUserProfileForm.bio ? updateUserProfileForm.bio.length : 0}
-                        /160
+                          /160
                     </span>
-                </div>
-                <div className={classes.updateUserProfileButton}>
-                    <Button
+                  </div>
+                  <div className={classes.updateUserProfileButton}>
+                      <Button
                         variant="contained"
                         color="primary"
-                        onClick={updateUser}
+                        onClick={handleClickOpen}
                         disabled={
                             pending
                             || checkingUsernameAvailability
                             || avatarUploadPending
                         }
-                    >
-                        {pending && (
+                      >
+                          {pending && (
                             <Loader size="md" css="position:absolute; top:0; left: 34px" />
-                        )}
-                        {l('user.update-profile.save')}
-                    </Button>
-                </div>
-            </div>
-        </div>
+                          )}
+                          {l('user.update-profile.save')}
+                      </Button>
+                  </div>
+              </div>
+          </div>
+          <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+              <CustomDialogTitle title={'Your changes saved!'} type={'default'} setLoginDialogOpen={setOpen} />
+              <DialogContent classes={{root: classes.dialogRoot}}>
+                  Your changes were successfully saved! Please click OK to return to the profile page.
+                  <Link
+                    store={routerStore}
+                    view={Routes.userProfile}
+                    className={classes.replyingToLink}
+                    params={{ username: currentUser.username }}
+                  >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleClose}
+                        disabled={
+                            pending
+                            || checkingUsernameAvailability
+                            || avatarUploadPending
+                        }
+                      >
+                          OK
+                      </Button>
+                  </Link>
+              </DialogContent>
+          </Dialog>
+      </>
     );
 };
 
-const mapMobxToProps = ({ userProfileUpdate }) => ({
+const mapMobxToProps = ({ userProfileUpdate, store }) => ({
+    routerStore: store,
     currentUser: userProfileUpdate.currentUser,
     updateUserProfileForm: userProfileUpdate.updateUserProfileForm,
     formErrors: userProfileUpdate.formErrors,

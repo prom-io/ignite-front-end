@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createRef, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import {
     Avatar,
@@ -19,6 +19,7 @@ import { CreateStatusFormMediaAttachments } from './CreateStatusFormMediaAttachm
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { localized } from '../../localization/components';
 import Loader from '../../components/Loader';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -90,6 +91,7 @@ const _CreateStatusForm = ({
     pending,
     currentUserAvatar,
     setContent,
+    setTargetSelection,
     createStatus,
     mediaAttachmentsFiles,
     addMediaAttachments,
@@ -111,7 +113,12 @@ const _CreateStatusForm = ({
     enqueueSnackbar,
 }) => {
     const classes = useStyles();
-
+    const wrapperRef = createRef();
+    
+    const handleEmojiClick = () => {
+        setTargetSelection(undefined);
+    };
+    
     useEffect(
         () => {
             if (showMediaAttachmentErrorSnackbar && mediaAttachmentErrorLabel) {
@@ -123,6 +130,7 @@ const _CreateStatusForm = ({
     );
 
     return (
+      <ClickAwayListener onClickAway={handleEmojiClick}>
         <Card className={classes.createStatusFormCard} className="create-status-form">
             <Grid container>
                 {referredStatus && (
@@ -150,9 +158,11 @@ const _CreateStatusForm = ({
                         rows={4}
                         rowsMax={Number.MAX_SAFE_INTEGER}
                         onChange={event => setContent(event.target.value)}
+                        onBlur={setTargetSelection}
                         fullWidth
                         value={content}
                         className={classes.customTextarea}
+                        ref={wrapperRef}
                     />
                 </div>
             </Grid>
@@ -207,6 +217,7 @@ const _CreateStatusForm = ({
           )}
             {isDialogEmojiPicker ? <EmojiPickerDialog /> : <EmojiPicker />}
         </Card>
+      </ClickAwayListener>
     );
 };
 
@@ -222,6 +233,7 @@ const mapMobxToProps = ({ createStatus, authorization, uploadMediaAttachments })
         ? authorization.currentUser.avatar || 'http://localhost:3000/avatars/original/missing.png'
         : 'http://localhost:3000/avatars/original/missing.png',
     setContent: createStatus.setContent,
+    setTargetSelection: createStatus.setTargetSelection,
     createStatus: createStatus.createStatus,
     addMediaAttachments: uploadMediaAttachments.attachFiles,
     removeMediaAttachment: uploadMediaAttachments.removeAttachedFileById,

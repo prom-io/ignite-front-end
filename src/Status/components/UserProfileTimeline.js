@@ -81,7 +81,7 @@ const _UserProfileTimeline = ({
                     <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
                 </Grid>
             )}
-            <Grid container style={{ height: '100%' }}>
+            <Grid container>
                 {currentUser && currentUser.id === profileOwnerId && (
                     <Grid item xs={12} className={classes.profileCreateStatusForm}>
                         <Hidden smDown>

@@ -224,6 +224,8 @@ export const kr = {
     'user.change-password.not-strong': '비밀번호가 강력하지 않습니다',
     'user.display-name': '표시된 이름',
     'user.display-name.is-too-long': '표시되는 이름이 너무 깁니다',
+    'user.external-url': 'External url',
+    'user.external-url.is-too-long': 'External url is too long',
     'user.edit-profile': '프로필을 편집하기',
     'user.language': '언어',
     'user.profile.cancel': '취소하기',

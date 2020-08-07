@@ -223,6 +223,8 @@ export const en = {
     'user.change-password.not-strong': 'Password is not strong',
     'user.display-name': 'Displayed name',
     'user.display-name.is-too-long': 'Displayed name is too long',
+    'user.external-url': 'External url',
+    'user.external-url.is-too-long': 'External url is too long',
     'user.edit-profile': 'Edit profile',
     'user.language': 'Language',
     'user.profile.cancel': 'Cancel',

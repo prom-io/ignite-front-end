@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { Dialog, withMobileDialog } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { UpdatePasswordError } from './resetPassword/UpdatePasswordError';
-import CustomDialogTitle from './CustomDialogTitle';
+import { CustomDialogTitle } from './CustomDialogTitle';
 import { SignUp } from './SignUp';
 import { CreateWallet } from './CreateWallet';
 import { Attention } from './Attention';

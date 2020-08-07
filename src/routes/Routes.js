@@ -18,6 +18,7 @@ import {
     UserProfilePage,
     UserEditPage,
     SignUpPage,
+    SearchPeoplePage,
 } from '../pages';
 import { store } from '../store';
 import { NotFound } from '../pages/NotFound';
@@ -77,6 +78,19 @@ export const Routes = {
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,
+        beforeEnter: () => {
+            if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
+                store.followPeople.fetchFollowPeople();
+            }
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onExit: () => {
+            store.followPeople.reset();
+        },
+    }),
+    searchPeople: new Route({
+        path: '/search',
+        component: <SearchPeoplePage />,
         beforeEnter: () => {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
                 store.followPeople.fetchFollowPeople();

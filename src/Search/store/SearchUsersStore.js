@@ -18,6 +18,12 @@ export class SearchUsersStore {
   @observable
   pending = false;
   
+  @observable
+  page = 1;
+  
+  @observable
+  hasMore = true;
+  
   
   authorizationStore = undefined;
   
@@ -27,7 +33,7 @@ export class SearchUsersStore {
       () => this.searchValue,
       debounce((inputValue) => {
         this.shouldResetResults = true;
-        this.doSearch(inputValue);
+        inputValue && this.doSearch(inputValue);
       }, 350)
     );
   }
@@ -39,6 +45,11 @@ export class SearchUsersStore {
   @action
   setSearchResult = result => {
     this.searchResult = result;
+  };
+  
+  cleanSearchValue = () => {
+    this.searchValue = '';
+    this.setSearchResult([]);
   };
   
   @action
@@ -55,10 +66,11 @@ export class SearchUsersStore {
       .get(`/api/v1/accounts`,{
         params: {
           q:inputValue,
-          take: 5
+          take: 15
         }})
       .then( ({data}) => {
         this.setSearchResult(data);
+        console.log('doSearch searchResult',this.searchResult);
         this.pending = false;
       })
       .catch(err => {
@@ -69,4 +81,33 @@ export class SearchUsersStore {
         }
       });
   };
+  
+  @action
+  fetchSearchPeople = () => {
+    axiosInstance
+      .get(`/api/v1/accounts`,{
+        params: {
+          q:this.searchValue,
+          skip: this.page*15,
+          take: 15
+        }})
+      .then( ({data}) => {
+        if (data.length > 0){
+        this.searchResult.push(data);
+        this.pending = false;
+        this.page++;
+        console.log(this.searchResult);
+        } else {
+          this.hasMore = false;
+        }
+      })
+      .catch(err => {
+        if (err.response.status === 409) {
+          this.searchResultStatus = "already";
+        } else {
+          this.searchResultStatus = "error";
+        }
+      });
+  
+  }
 }

@@ -11,13 +11,14 @@ const useStyles = makeStyles(theme => ({
   postLink: {
     display: 'flex',
     padding: '15px 0',
+    textDecoration: 'none',
   },
-  followPeopleItemAvatar: {
+  searchItemAvatar: {
     marginRight: 12,
     height: 35,
     width: 35,
   },
-  followPeopleItemContent: {
+  searchItemContent: {
     width: '100%',
     
     '& > p': {
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.text.main,
     },
   },
-  followPeopleItemRow: {
+  searchItemRow: {
     display: 'flex',
     justifyContent: 'space-between',
     
@@ -49,9 +50,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const _SearchResultItem = ({user}) => {
+const _SearchResultItem = ({user,cleanSearchValue}) => {
   const classes = useStyles();
   return (
+    <div onClick={cleanSearchValue}>
     <Link
       className={classes.postLink}
       key={user.id}
@@ -60,24 +62,25 @@ const _SearchResultItem = ({user}) => {
       store={routerStore}
     >
       <Avatar
-        className={classes.followPeopleItemAvatar}
+        className={classes.searchItemAvatar}
         src={
           user.avatar
           || 'http://localhost:3000/avatars/original/missing.png'
         }
       />
-      <div className={classes.followPeopleItemContent}>
-        <div className={classes.followPeopleItemRow}>
+      <div className={classes.searchItemContent}>
+        <div className={classes.searchItemRow}>
           <Typography>
-            <div>{trimString(user.display_name, 16)}</div>
+            <div>{user.display_name}</div>
             <small>
               @
-              {trimString(user.username, 16)}
+              {user.username}
             </small>
           </Typography>
         </div>
       </div>
     </Link>
+    </div>
   )
 };
 

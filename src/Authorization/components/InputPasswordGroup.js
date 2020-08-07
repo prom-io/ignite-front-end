@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, IconButton, InputAdornment, makeStyles, TextField, useTheme } from '@material-ui/core';
-import generateRandomString from 'randomatic';
+import generator from 'generate-password';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useLocalization } from '../../store/hooks';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
@@ -76,7 +76,14 @@ export const InputPasswordGroup = ({
     };
 
     const generateRandomPassword = () => {
-        const randomPassword = generateRandomString('*', 8);
+        const randomPassword = generator.generate({
+            length: 8,
+            numbers: true,
+            symbols: true,
+            lowercase: true,
+            uppercase: true,
+            strict: true
+        });;
         onValueChange('password', randomPassword);
         onValueChange('passwordConfirmation', randomPassword);
     };

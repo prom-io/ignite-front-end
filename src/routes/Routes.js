@@ -92,9 +92,6 @@ export const Routes = {
         path: '/search',
         component: <SearchPeoplePage />,
         beforeEnter: () => {
-            if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
-                store.followPeople.fetchFollowPeople();
-            }
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {

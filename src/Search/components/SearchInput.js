@@ -32,68 +32,69 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _SearchInput = ({
-    searchResult,
-    setSearchValue,
-    searchValue,
-    cleanSearchValue
+    searchResultHeader,
+    searchValueHeader,
+    pending,
+    setSearchValueHeader,
+    setSearchValuePage,
+    resetSearchHeader
 }) => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const classes = useStyles();
 
     const handleClickAway = () => {
-        cleanSearchValue();
+        resetSearchHeader();
         setIsSearchActive(false);
     };
 
-    const closeSearchInput = () => {
-        return (
-            <div
-                onClick={() => setIsSearchActive(true)}
-                className={classes.searchIconButton}
-            >
-                <img src="/search.png" />
-            </div>
-        );
-    };
+    const closeSearchInput = () => (
+        <div
+            onClick={() => setIsSearchActive(true)}
+            className={classes.searchIconButton}
+        >
+            <img src="/search.png" />
+        </div>
+    );
 
-    const openSearchInput = () => {
-        return (
-            <>
-                <ClickAwayListener onClickAway={handleClickAway}>
-                    <FormControl className={classes.searchInput}>
-                        <Input
-                            id="input-with-icon-adornment"
-                            placeholder={"Search"}
-                            value={searchValue}
-                            autoComplete={"off"}
-                            onChange={e => setSearchValue(e.target.value)}
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <img src="/search.png" />
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl>
-                </ClickAwayListener>
-
-                {searchResult.length > 0 && (
-                    <SearchResultDropdown
-                        cleanSearchValue={cleanSearchValue}
-                        result={searchResult}
+    const openSearchInput = () => (
+        <>
+            <ClickAwayListener onClickAway={handleClickAway}>
+                <FormControl className={classes.searchInput}>
+                    <Input
+                        id="input-with-icon-adornment"
+                        placeholder="Search"
+                        value={searchValueHeader}
+                        autoComplete="off"
+                        onChange={e => setSearchValueHeader(e.target.value)}
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <img src="/search.png" />
+                            </InputAdornment>
+                        }
                     />
-                )}
-            </>
-        );
-    };
+                </FormControl>
+            </ClickAwayListener>
+
+            {searchValueHeader && (
+                <SearchResultDropdown
+                    searchResult={searchResultHeader}
+                    showMore={() => setSearchValuePage(searchValueHeader)}
+                    pending={pending}
+                />
+            )}
+        </>
+    );
 
     return isSearchActive ? openSearchInput() : closeSearchInput();
 };
 
 const mapMobxToProps = ({ searchUsers }) => ({
-    setSearchValue: searchUsers.setSearchValue,
-    cleanSearchValue: searchUsers.cleanSearchValue,
-    searchResult: searchUsers.searchResult,
-    searchValue: searchUsers.searchValue
+    searchResultHeader: searchUsers.searchResultHeader,
+    searchValueHeader: searchUsers.searchValueHeader,
+    pending: searchUsers.pendingHeader,
+    setSearchValueHeader: searchUsers.setSearchValueHeader,
+    setSearchValuePage: searchUsers.setSearchValuePage,
+    resetSearchHeader: searchUsers.resetSearchHeader
 });
 
 export const SearchInput = localized(inject(mapMobxToProps)(observer(_SearchInput)));

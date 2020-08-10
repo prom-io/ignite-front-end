@@ -4,22 +4,34 @@ import { axiosInstance } from "../../api/axios-instance";
 
 export class SearchUsersStore {
     @observable
-    searchValue = undefined;
+    searchValueHeader = undefined;
 
     @observable
-    searchResult = [];
+    searchValuePage = undefined;
+
+    @observable
+    searchResultHeader = [];
+
+    @observable
+    searchResultPage = [];
+
+    @observable
+    shouldResetResultsHeader = false;
+
+    @observable
+    shouldResetResultsPage = false;
 
     @observable
     searchResultStatus = "";
 
     @observable
-    shouldResetResults = false;
+    pendingHeader = false;
 
     @observable
-    pending = false;
+    pendingPage = false;
 
     @observable
-    page = 1;
+    page = 0;
 
     @observable
     hasMore = true;
@@ -28,50 +40,47 @@ export class SearchUsersStore {
 
     constructor(authorizationStore) {
         this.authorizationStore = authorizationStore;
+
         reaction(
-            () => this.searchValue,
-            debounce(inputValue => {
-                this.shouldResetResults = true;
+            () => this.searchValueHeader,
+            inputValue => {
+                this.shouldResetResultsHeader = true;
                 inputValue && this.doSearch(inputValue);
-            }, 350)
+            }
+        );
+
+        reaction(
+            () => this.searchValuePage,
+            debounce(inputValue => {
+                this.shouldResetResultsPage = true;
+                inputValue && this.fetchSearchPeople();
+            }, 300)
         );
     }
 
     @action
-    setSearchValue = value => {
-        this.searchValue = value;
-    };
-    @action
-    setSearchResult = result => {
-        this.searchResult = result;
+    setSearchValueHeader = searchValueHeader => {
+        this.searchValueHeader = searchValueHeader;
     };
 
-    cleanSearchValue = () => {
-        this.searchValue = "";
-        this.setSearchResult([]);
+    @action
+    setSearchValuePage = searchValuePage => {
+        this.searchValuePage = searchValuePage;
     };
 
     @action
     doSearch = inputValue => {
-        if (this.shouldResetResults) {
-            this.searchResult = [];
-            this.page = 1;
-            this.shouldResetResults = false;
+        if (this.shouldResetResultsHeader) {
+            this.searchResultHeader = [];
+            this.shouldResetResultsHeader = false;
         }
 
-        this.pending = true;
+        this.pendingHeader = true;
 
         axiosInstance
-            .get(`/api/v1/accounts`, {
-                params: {
-                    q: inputValue,
-                    take: 15
-                }
-            })
+            .get(`/api/v1/accounts?q=${inputValue}&take=7`)
             .then(({ data }) => {
-                this.setSearchResult(data);
-                console.log("doSearch searchResult", this.searchResult);
-                this.pending = false;
+                this.searchResultHeader = data;
             })
             .catch(err => {
                 if (err.response.status === 409) {
@@ -79,25 +88,35 @@ export class SearchUsersStore {
                 } else {
                     this.searchResultStatus = "error";
                 }
-            });
+            })
+            .finally(() => (this.pendingHeader = false));
     };
 
     @action
     fetchSearchPeople = () => {
+        if (this.shouldResetResultsPage) {
+            this.searchResultPage = [];
+            this.page = 0;
+            this.hasMore = true;
+            this.shouldResetResultsPage = false;
+        }
+
+        this.pendingPage = true;
+
+        let searchUrl;
+        if (this.page === 0) {
+            searchUrl = `/api/v1/accounts?q=${this.searchValuePage}&take=15`;
+        } else {
+            const skip = this.page * 15;
+            searchUrl = `/api/v1/accounts?q=${this.searchValuePage}&skip=${skip}&take=15`;
+        }
+
         axiosInstance
-            .get(`/api/v1/accounts`, {
-                params: {
-                    q: this.searchValue,
-                    skip: this.page * 15,
-                    take: 15
-                }
-            })
+            .get(searchUrl)
             .then(({ data }) => {
                 if (data.length > 0) {
-                    this.searchResult.push(data);
-                    this.pending = false;
+                    this.searchResultPage.push(...data);
                     this.page++;
-                    console.log(this.searchResult);
                 } else {
                     this.hasMore = false;
                 }
@@ -108,6 +127,20 @@ export class SearchUsersStore {
                 } else {
                     this.searchResultStatus = "error";
                 }
-            });
+            })
+            .finally(() => (this.pendingPage = false));
+    };
+
+    @action
+    resetSearchHeader = () => {
+        this.searchValueHeader = undefined;
+        this.searchResultHeader = [];
+    };
+
+    @action
+    resetSearchPage = () => {
+        this.searchValuePage = undefined;
+        this.searchResultPage = [];
+        this.page = 1;
     };
 }

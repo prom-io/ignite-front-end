@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "mobx-router";
-import { inject } from "mobx-react";
 import { Avatar, Typography, makeStyles } from "@material-ui/core";
 
 import { Routes } from "../../routes";
 import { routerStore } from "../../store";
-import { trimString } from "../../utils/string-utils";
 
 const useStyles = makeStyles(theme => ({
     postLink: {
@@ -50,14 +48,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _SearchResultItem = ({ user, cleanSearchValue }) => {
+export const SearchResultItem = ({ user }) => {
     const classes = useStyles();
-    
+
     return (
-        <div onClick={cleanSearchValue}>
+        <div key={user.id}>
             <Link
                 className={classes.postLink}
-                key={user.id}
                 view={Routes.userProfile}
                 params={{ username: user.username }}
                 store={routerStore}
@@ -81,9 +78,3 @@ const _SearchResultItem = ({ user, cleanSearchValue }) => {
         </div>
     );
 };
-
-const mapMobxToProps = ({ store }) => ({
-    routerStore: store
-});
-
-export const SearchResultItem = inject(mapMobxToProps)(_SearchResultItem);

@@ -95,7 +95,7 @@ export const Routes = {
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
-            store.followPeople.reset();
+            store.searchUsers.resetSearchPage();
         },
     }),
     userEdit: new Route({

@@ -2,7 +2,7 @@ import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles';
 import { LoginForm } from './LoginForm';
-import CustomDialogTitle from './CustomDialogTitle';
+import { CustomDialogTitle } from './CustomDialogTitle';
 
 const useStyles = makeStyles(theme => ({
     dialogSecondaryAction: {

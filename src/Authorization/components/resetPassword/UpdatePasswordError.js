@@ -1,7 +1,7 @@
 import { Button, DialogContent } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomDialogTitle from '../CustomDialogTitle';
+import { CustomDialogTitle } from '../CustomDialogTitle';
 
 const useStyles = makeStyles(theme => ({
     dialogRoot: {

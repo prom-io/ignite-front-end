@@ -4,12 +4,17 @@ import { Avatar, Typography, makeStyles } from "@material-ui/core";
 
 import { Routes } from "../../routes";
 import { routerStore } from "../../store";
+import { trimString } from "../../utils/string-utils";
 
 const useStyles = makeStyles(theme => ({
     postLink: {
         display: "flex",
-        padding: "15px 0",
-        textDecoration: "none"
+        padding: "16px",
+        textDecoration: "none",
+
+        "&:hover": {
+            background: theme.palette.background.light
+        }
     },
     searchItemAvatar: {
         marginRight: 12,
@@ -48,33 +53,25 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const SearchResultItem = ({ user }) => {
+export const SearchResultDropdownItem = ({ user }) => {
     const classes = useStyles();
 
     return (
-        <div key={user.id}>
-            <Link
-                className={classes.postLink}
-                view={Routes.userProfile}
-                params={{ username: user.username }}
-                store={routerStore}
-            >
-                <Avatar
-                    className={classes.searchItemAvatar}
-                    src={
-                        user.avatar ||
-                        "http://localhost:3000/avatars/original/missing.png"
-                    }
-                />
-                <div className={classes.searchItemContent}>
-                    <div className={classes.searchItemRow}>
-                        <Typography>
-                            <div>{user.display_name}</div>
-                            <small>@{user.username}</small>
-                        </Typography>
-                    </div>
+        <Link
+            className={classes.postLink}
+            view={Routes.userProfile}
+            params={{ username: user.username }}
+            store={routerStore}
+        >
+            <Avatar className={classes.searchItemAvatar} src={user.avatar} />
+            <div className={classes.searchItemContent}>
+                <div className={classes.searchItemRow}>
+                    <Typography>
+                        <div>{trimString(user.display_name, 16)}</div>
+                        <small>@{trimString(user.username, 16)}</small>
+                    </Typography>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
     );
 };

@@ -3,8 +3,9 @@ import { inject, observer } from "mobx-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Typography, makeStyles } from "@material-ui/core";
 
+import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
-import { SearchResultItem } from "../../Search/components";
+import { SearchPeopleItem } from "../../Search/components";
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -20,7 +21,13 @@ const _SearchPeopleList = ({
     fetchSearchPeople,
     searchResult,
     hasMore,
-    pending
+    pending,
+    currentUser,
+    actionWithFollow,
+    selectedUser,
+    unfollowUser,
+    setUnfollowDialogOpen,
+    unfollowDialogOpen
 }) => {
     const classes = useStyles();
 
@@ -47,19 +54,36 @@ const _SearchPeopleList = ({
                     style={{ overflowY: "hidden" }}
                 >
                     {searchResult.map(user => (
-                        <SearchResultItem user={user} />
+                        <SearchPeopleItem
+                            key={user.id}
+                            user={user}
+                            currentUser={currentUser}
+                            actionWithFollow={actionWithFollow}
+                        />
                     ))}
                 </InfiniteScroll>
             )}
+            <UnfollowDialog
+                username={selectedUser.username}
+                unfollowAction={unfollowUser}
+                unfollowDialogOpen={unfollowDialogOpen}
+                setUnfollowDialogOpen={setUnfollowDialogOpen}
+            />
         </div>
     );
 };
 
-const mapMobxToProps = ({ searchUsers }) => ({
+const mapMobxToProps = ({ searchUsers, authorization, followAction }) => ({
     fetchSearchPeople: searchUsers.fetchSearchPeople,
     searchResult: searchUsers.searchResultPage,
     hasMore: searchUsers.hasMore,
-    pending: searchUsers.pendingPage
+    pending: searchUsers.pendingPage,
+    currentUser: authorization.currentUser,
+    actionWithFollow: followAction.actionWithFollow,
+    selectedUser: followAction.selectedUser,
+    unfollowUser: followAction.unfollowUser,
+    setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen
 });
 
 export const SearchPeopleList = inject(mapMobxToProps)(observer(_SearchPeopleList));

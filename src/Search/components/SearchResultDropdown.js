@@ -3,7 +3,7 @@ import { Link } from "mobx-router";
 import { Paper, Typography, makeStyles } from "@material-ui/core";
 
 import Loader from "../../components/Loader";
-import { SearchResultItem } from "../../Search/components";
+import { SearchResultDropdownItem } from "../../Search/components";
 import { Routes } from "../../routes";
 import { routerStore } from "../../store";
 import { useLocalization } from "../../store/hooks";
@@ -12,10 +12,12 @@ const useStyles = makeStyles(theme => ({
     searchResultDropdown: {
         position: "absolute",
         top: "50px",
-        padding: "15px",
+        overflow: "hidden",
         minWidth: "170px"
     },
     searchResultFooter: {
+        padding: "16px",
+
         "& a": {
             fontFamily: "Museo Sans Cyrl Regular",
             fontStyle: "normal",
@@ -48,7 +50,9 @@ export const SearchResultDropdown = ({ searchResult, showMore, pending }) => {
                 !pending &&
                 searchResult.map((item, index) => {
                     if (index < 6) {
-                        return <SearchResultItem user={item} />;
+                        return (
+                            <SearchResultDropdownItem key={item.id} user={item} />
+                        );
                     }
                 })}
 
@@ -66,11 +70,9 @@ export const SearchResultDropdown = ({ searchResult, showMore, pending }) => {
 
             {searchResult.length > 6 && (
                 <div className={classes.searchResultFooter}>
-                    <div onClick={showMore}>
-                        <Link view={Routes.searchPeople} store={routerStore}>
-                            {l("user.card.show-more")}
-                        </Link>
-                    </div>
+                    <Link view={Routes.searchPeople} store={routerStore}>
+                        <div onClick={showMore}>{l("user.card.show-more")}</div>
+                    </Link>
                 </div>
             )}
         </Paper>

@@ -84,6 +84,7 @@ export const en = {
     'explorer.to': 'To',
     'explorer.txnId': 'TxnId',
     'explorer.value': 'Value',
+    'search-people': 'Search People',
     'follow-people': 'Follow People',
     'follow.people.already': 'You already following this user',
     'follow.people.enter': 'Enter username or WalletAddress',

@@ -85,6 +85,7 @@ export const kr = {
     'explorer.to': 'To',
     'explorer.txnId': 'TxnId',
     'explorer.value': 'Value',
+    'search-people': 'Search People',
     'follow-people': '사람을 팔로우하기',
     'follow.people.already': '이미 이 사용자를 팔로우하고 있습니다',
     'follow.people.enter': '사용자 이름 또는 지갑 주소 입력해주세요',

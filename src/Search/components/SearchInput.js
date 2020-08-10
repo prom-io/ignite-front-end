@@ -36,14 +36,12 @@ const _SearchInput = ({
     searchValueHeader,
     pending,
     setSearchValueHeader,
-    setSearchValuePage,
-    resetSearchHeader
+    setSearchValuePage
 }) => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const classes = useStyles();
 
     const handleClickAway = () => {
-        resetSearchHeader();
         setIsSearchActive(false);
     };
 
@@ -93,8 +91,7 @@ const mapMobxToProps = ({ searchUsers }) => ({
     searchValueHeader: searchUsers.searchValueHeader,
     pending: searchUsers.pendingHeader,
     setSearchValueHeader: searchUsers.setSearchValueHeader,
-    setSearchValuePage: searchUsers.setSearchValuePage,
-    resetSearchHeader: searchUsers.resetSearchHeader
+    setSearchValuePage: searchUsers.setSearchValuePage
 });
 
 export const SearchInput = localized(inject(mapMobxToProps)(observer(_SearchInput)));

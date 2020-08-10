@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         top: "50px",
         overflow: "hidden",
-        minWidth: "170px"
+        minWidth: "200px"
     },
     searchResultFooter: {
         padding: "16px",
@@ -36,7 +36,8 @@ const useStyles = makeStyles(theme => ({
         display: "table"
     },
     notFound: {
-        color: "#000"
+        color: "#000",
+        padding: "16px"
     }
 }));
 

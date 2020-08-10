@@ -22,9 +22,6 @@ export class SearchUsersStore {
     shouldResetResultsPage = false;
 
     @observable
-    searchResultStatus = "";
-
-    @observable
     pendingHeader = false;
 
     @observable
@@ -82,13 +79,7 @@ export class SearchUsersStore {
             .then(({ data }) => {
                 this.searchResultHeader = data;
             })
-            .catch(err => {
-                if (err.response.status === 409) {
-                    this.searchResultStatus = "already";
-                } else {
-                    this.searchResultStatus = "error";
-                }
-            })
+            .catch(() => {})
             .finally(() => (this.pendingHeader = false));
     };
 
@@ -121,13 +112,7 @@ export class SearchUsersStore {
                     this.hasMore = false;
                 }
             })
-            .catch(err => {
-                if (err.response.status === 409) {
-                    this.searchResultStatus = "already";
-                } else {
-                    this.searchResultStatus = "error";
-                }
-            })
+            .catch(() => {})
             .finally(() => (this.pendingPage = false));
     };
 

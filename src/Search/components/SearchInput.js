@@ -34,9 +34,11 @@ const useStyles = makeStyles(theme => ({
 const _SearchInput = ({
     searchResultHeader,
     searchValueHeader,
+    searchValueHeaderIsTouched,
     pending,
     setSearchValueHeader,
-    setSearchValuePage
+    setSearchValuePage,
+    l
 }) => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const classes = useStyles();
@@ -59,8 +61,7 @@ const _SearchInput = ({
             <ClickAwayListener onClickAway={handleClickAway}>
                 <FormControl className={classes.searchInput}>
                     <Input
-                        id="input-with-icon-adornment"
-                        placeholder="Search"
+                        placeholder={l("appbar.search")}
                         value={searchValueHeader}
                         autoComplete="off"
                         onChange={e => setSearchValueHeader(e.target.value)}
@@ -75,6 +76,7 @@ const _SearchInput = ({
 
             {searchValueHeader && (
                 <SearchResultDropdown
+                    searchValueHeaderIsTouched={searchValueHeaderIsTouched}
                     searchResult={searchResultHeader}
                     showMore={() => setSearchValuePage(searchValueHeader)}
                     pending={pending}
@@ -89,6 +91,7 @@ const _SearchInput = ({
 const mapMobxToProps = ({ searchUsers }) => ({
     searchResultHeader: searchUsers.searchResultHeader,
     searchValueHeader: searchUsers.searchValueHeader,
+    searchValueHeaderIsTouched: searchUsers.searchValueHeaderIsTouched,
     pending: searchUsers.pendingHeader,
     setSearchValueHeader: searchUsers.setSearchValueHeader,
     setSearchValuePage: searchUsers.setSearchValuePage

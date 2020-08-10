@@ -68,19 +68,17 @@ const _StatusListItem = ({
 
     if (link) {
         return (
-            <Link
-                style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                }}
-                store={routerStore}
-                view={Routes.status}
-                params={{ id: status.id }}
+            <div
+                onClick={() =>
+                    routerStore.router.goTo(Routes.status, { id: status.id })
+                }
+                style={{ cursor: "pointer" }}
             >
                 {content}
-            </Link>
+            </div>
         );
     }
+    
     return content;
 };
 

@@ -40,7 +40,6 @@ export const UserEditPage = observer(() => {
                         </Grid>
                         <Grid
                             item
-                            spacing={28}
                             lg={9}
                             className="right-content-container"
                         >

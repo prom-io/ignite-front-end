@@ -85,6 +85,8 @@ export const en = {
     'explorer.txnId': 'TxnId',
     'explorer.value': 'Value',
     'search-people': 'Search People',
+    'search.people.enter': 'Enter username, display name or WalletAddress',
+    'search.people.not-found': 'Users is not found',
     'follow-people': 'Follow People',
     'follow.people.already': 'You already following this user',
     'follow.people.enter': 'Enter username or WalletAddress',

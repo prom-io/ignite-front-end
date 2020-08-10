@@ -41,7 +41,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const SearchResultDropdown = ({ searchResult, showMore, pending }) => {
+export const SearchResultDropdown = ({
+    searchValueHeaderIsTouched,
+    searchResult,
+    showMore,
+    pending
+}) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -63,11 +68,13 @@ export const SearchResultDropdown = ({ searchResult, showMore, pending }) => {
                 </div>
             )}
 
-            {!pending && searchResult.length === 0 && (
-                <Typography classes={{ root: classes.notFound }}>
-                    Not found
-                </Typography>
-            )}
+            {!pending &&
+                searchResult.length === 0 &&
+                !searchValueHeaderIsTouched && (
+                    <Typography classes={{ root: classes.notFound }}>
+                        {l("search.people.not-found")}
+                    </Typography>
+                )}
 
             {searchResult.length > 6 && (
                 <div className={classes.searchResultFooter}>

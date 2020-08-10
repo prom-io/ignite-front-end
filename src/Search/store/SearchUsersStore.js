@@ -28,6 +28,12 @@ export class SearchUsersStore {
     pendingPage = false;
 
     @observable
+    searchValuePageIsTouched = false;
+
+    @observable
+    searchValueHeaderIsTouched = false;
+
+    @observable
     page = 0;
 
     @observable
@@ -40,18 +46,30 @@ export class SearchUsersStore {
 
         reaction(
             () => this.searchValueHeader,
-            inputValue => {
+            debounce(inputValue => {
                 this.shouldResetResultsHeader = true;
-                inputValue && this.doSearch(inputValue);
-            }
+                inputValue ? this.doSearch(inputValue) : this.resetSearchHeader();
+                this.searchValueHeaderIsTouched = false;
+            }, 300)
+        );
+
+        reaction(
+            () => this.searchValueHeader,
+            () => (this.searchValueHeaderIsTouched = true)
         );
 
         reaction(
             () => this.searchValuePage,
             debounce(inputValue => {
                 this.shouldResetResultsPage = true;
-                inputValue && this.fetchSearchPeople();
+                inputValue ? this.fetchSearchPeople() : this.resetSearchPage();
+                this.searchValuePageIsTouched = false;
             }, 300)
+        );
+
+        reaction(
+            () => this.searchValuePage,
+            () => (this.searchValuePageIsTouched = true)
         );
     }
 

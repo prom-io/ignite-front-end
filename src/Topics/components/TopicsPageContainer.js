@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TopicStatusList } from './TopicStatusList';
 import { BackButton } from '../../components/BackButton';
 import { useStore } from '../../store/hooks';
-import { TopicsIcon } from '../../icons/TopicsIcon';
 
 const useStyles = makeStyles(theme => ({
     topicsError: {

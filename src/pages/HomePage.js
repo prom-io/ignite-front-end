@@ -27,7 +27,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item spacing={28} lg={9} className="right-content-container">
+                    <Grid item lg={9} className="right-content-container">
                         <Grid container>
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">

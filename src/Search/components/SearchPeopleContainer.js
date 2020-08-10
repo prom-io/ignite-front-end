@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _SearchPeopleContainer = ({ searchValuePage, setSearchValuePage, l}) => {
+const _SearchPeopleContainer = ({ searchValuePage, setSearchValuePage, l }) => {
     const classes = useStyles();
 
     return (
@@ -54,12 +54,12 @@ const _SearchPeopleContainer = ({ searchValuePage, setSearchValuePage, l}) => {
                     <input
                         className={classes.searchInput}
                         type="text"
-                        placeholder="Enter username, display name or WalletAddress"
+                        placeholder={l("search.people.enter")}
                         value={searchValuePage}
                         onChange={e => setSearchValuePage(e.target.value)}
                     />
                 </div>
-                <SearchPeopleList />
+                {searchValuePage && <SearchPeopleList />}
             </Grid>
         </Grid>
     );

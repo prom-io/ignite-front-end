@@ -6,6 +6,7 @@ import { Typography, makeStyles } from "@material-ui/core";
 import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
 import { SearchPeopleItem } from "../../Search/components";
+import { localized } from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     centered: {
@@ -14,32 +15,42 @@ const useStyles = makeStyles(() => ({
         marginTop: "50px",
         display: "table"
     },
-    searchListWrapper: {}
+    notFound: {
+        textAlign: "center",
+        border: "1px solid #F1EBE8",
+        borderTop: 0,
+        fontSize: "20px",
+        padding: "20px"
+    }
 }));
 
 const _SearchPeopleList = ({
-    fetchSearchPeople,
+    searchValuePageIsTouched,
     searchResult,
     hasMore,
     pending,
+    fetchSearchPeople,
     currentUser,
     actionWithFollow,
     selectedUser,
     unfollowUser,
     setUnfollowDialogOpen,
-    unfollowDialogOpen
+    unfollowDialogOpen,
+    l
 }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.searchListWrapper}>
+        <>
             {pending && searchResult.length === 0 && (
                 <div className={classes.centered}>
                     <Loader size="lg" />
                 </div>
             )}
-            {!pending && searchResult.length === 0 && (
-                <Typography>Not found</Typography>
+            {!pending && searchResult.length === 0 && !searchValuePageIsTouched && (
+                <Typography variant="h2" classes={{ root: classes.notFound }}>
+                    {l("search.people.not-found")}
+                </Typography>
             )}
             {searchResult.length !== 0 && (
                 <InfiniteScroll
@@ -69,15 +80,16 @@ const _SearchPeopleList = ({
                 unfollowDialogOpen={unfollowDialogOpen}
                 setUnfollowDialogOpen={setUnfollowDialogOpen}
             />
-        </div>
+        </>
     );
 };
 
 const mapMobxToProps = ({ searchUsers, authorization, followAction }) => ({
-    fetchSearchPeople: searchUsers.fetchSearchPeople,
+    searchValuePageIsTouched: searchUsers.searchValuePageIsTouched,
     searchResult: searchUsers.searchResultPage,
     hasMore: searchUsers.hasMore,
     pending: searchUsers.pendingPage,
+    fetchSearchPeople: searchUsers.fetchSearchPeople,
     currentUser: authorization.currentUser,
     actionWithFollow: followAction.actionWithFollow,
     selectedUser: followAction.selectedUser,
@@ -86,4 +98,6 @@ const mapMobxToProps = ({ searchUsers, authorization, followAction }) => ({
     unfollowDialogOpen: followAction.unfollowDialogOpen
 });
 
-export const SearchPeopleList = inject(mapMobxToProps)(observer(_SearchPeopleList));
+export const SearchPeopleList = localized(
+    inject(mapMobxToProps)(observer(_SearchPeopleList))
+);

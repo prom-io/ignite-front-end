@@ -83,7 +83,7 @@ export const InputPasswordGroup = ({
             lowercase: true,
             uppercase: true,
             strict: true
-        });;
+        });
         onValueChange('password', randomPassword);
         onValueChange('passwordConfirmation', randomPassword);
     };

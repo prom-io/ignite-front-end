@@ -36,6 +36,7 @@ import { ExplorerStore } from '../Explorer/stores';
 import { NotificationsStore } from '../Notification/stores';
 import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
 import { WebsocketStore } from '../websocket/stores';
+import { SearchUsersStore } from '../Search/store';
 
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
 const createStatus = new CreateStatusStore(uploadMediaAttachments);
@@ -71,6 +72,7 @@ const signUp = new SignUpStore(walletGeneration, genericAuthorizationDialog, loc
 const hashGeneration = new GenerateHashStore();
 const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
 const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
+const searchUsers = new SearchUsersStore();
 
 export const store = {
     authorization,
@@ -107,4 +109,5 @@ export const store = {
     hashGeneration,
     hashVerification,
     passwordChange,
+    searchUsers,
 };

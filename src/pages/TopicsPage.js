@@ -43,7 +43,6 @@ export const TopicsPage = observer(() => {
                         </Grid>
                         <Grid
                             item
-                            spacing={28}
                             lg={9}
                             className="right-content-container"
                         >

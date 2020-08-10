@@ -65,7 +65,6 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                         </Grid>
                         <Grid
                             item
-                            spacing={28}
                             lg={9}
                             className="right-content-container"
                         >

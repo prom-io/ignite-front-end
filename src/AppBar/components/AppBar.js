@@ -83,7 +83,8 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
         "/chat": l("appbar.chat"),
         "/notifications": l("appbar.notifications"),
         "/topics": l("appbar.topics"),
-        "/edit-profile": l("appbar.edit-profile")
+        "/edit-profile": l("appbar.edit-profile"),
+        "/memezator": l("appbar.memezator")
     };
 
     return (
@@ -163,6 +164,23 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                 routerStore={routerStore}
                                 viewParameters={{}}
                                 id="topicsLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l("appbar.memezator")}
+                                targetView={Routes.memezator}
+                                active={currentActiveRoute === "memezator"}
+                                icon={
+                                    <TopicsIcon
+                                        color={
+                                            currentActiveRoute === "memezator" &&
+                                            theme.palette.primary.main
+                                        }
+                                    />
+                                }
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="memezatorLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
                         </div>
@@ -276,6 +294,23 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                     routerStore={routerStore}
                     viewParameters={{}}
                     id="topicsLink"
+                    hidden={Boolean(window.AndroidCallback)}
+                />
+                <AppBarLink
+                    text={l("appbar.memezator")}
+                    targetView={Routes.memezator}
+                    active={currentActiveRoute === "memezator"}
+                    icon={
+                        <TopicsIcon
+                            color={
+                                currentActiveRoute === "memezator" &&
+                                theme.palette.primary.main
+                            }
+                        />
+                    }
+                    routerStore={routerStore}
+                    viewParameters={{}}
+                    id="memezatorLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
             </nav>

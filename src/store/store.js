@@ -35,8 +35,9 @@ import { LocaleStore } from '../localization/stores';
 import { ExplorerStore } from '../Explorer/stores';
 import { NotificationsStore } from '../Notification/stores';
 import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
+import { SearchUsersStore } from '../Search/stores';
+import { MemezatorStatusesStore, MemezatorWinnersStore } from '../Memezator/stores';
 import { WebsocketStore } from '../websocket/stores';
-import { SearchUsersStore } from '../Search/store';
 
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
 const createStatus = new CreateStatusStore(uploadMediaAttachments);
@@ -73,6 +74,8 @@ const hashGeneration = new GenerateHashStore();
 const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
 const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 const searchUsers = new SearchUsersStore();
+const memezatorStatuses = new MemezatorStatusesStore();
+const memezatorWinners = new MemezatorWinnersStore();
 
 export const store = {
     authorization,
@@ -110,4 +113,6 @@ export const store = {
     hashVerification,
     passwordChange,
     searchUsers,
+    memezatorStatuses,
+    memezatorWinners,
 };

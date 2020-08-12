@@ -16,7 +16,6 @@ import {
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
 import { WhoToFollow } from '../Follow/components';
-import '../styles/App.sass';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>

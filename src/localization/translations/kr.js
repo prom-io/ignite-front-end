@@ -48,6 +48,7 @@ export const kr = {
     'appbar.notifications': '알림',
     'appbar.chat': '채팅',
     'appbar.topics': '트렌드',
+    'appbar.memezator': 'Memezator',
     'appbar.search': '검색',
     'appbar.edit-profile': '프로필을 편집하기',
     'appbar.explore-btfs': '블록 탐색기',
@@ -255,4 +256,5 @@ export const kr = {
     post: '게시물',
     settings: '설정',
     'file.too-large': '파일은 3Mb 이하이어야 합니다.',
+    'memezator.card.recent-winners': 'Recent Winners'
 };

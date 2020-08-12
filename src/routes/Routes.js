@@ -15,13 +15,14 @@ import {
     TermsAndPoliciesPage,
     TopicsPage,
     TopicPage,
+    MemezatorPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
     SearchPeoplePage,
 } from '../pages';
 import { store } from '../store';
-import { NotFound } from '../pages/NotFound';
+import { NotFoundPage } from '../pages';
 
 export const Routes = {
     home: new Route({
@@ -47,7 +48,7 @@ export const Routes = {
     }),
     notFound: new Route({
         path: '/404',
-        component: <NotFound />,
+        component: <NotFoundPage />,
     }),
     en: new Route({
         path: '/en',
@@ -257,6 +258,27 @@ export const Routes = {
         onExit: () => {
             store.statusPage.reset();
             store.statusComments.reset();
+        },
+    }),
+    memezator: new Route({
+        path: '/memezator',
+        component: <MemezatorPage />,
+        beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
+            store.timelineSwitcher.setSwitchOnUserChange(true);
+
+            if (store.authorization.currentUser && store.authorization.currentUser.follows_count !== 0) {
+                store.timelineSwitcher.setCurrentTimeline('home');
+            }
+
+            store.memezatorWinners.fetchRecentWinners();
+            store.timelineSwitcher.selectedTimeline.fetchStatuses();
+        },
+        onExit: () => {
+            store.timelineSwitcher.setSwitchOnUserChange(false);
+            store.timelineSwitcher.selectedTimeline.reset();
+            store.memezatorStatuses.reset();
+            store.memezatorWinners.reset();
         },
     }),
 };

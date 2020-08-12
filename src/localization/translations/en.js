@@ -18,6 +18,7 @@ export const en = {
     'appbar.notifications': 'Notifications',
     'appbar.search': 'Search',
     'appbar.topics': 'Topics',
+    'appbar.memezator': 'Memezator',
     'appbar.edit-profile': 'Edit profile',
     'authorization.change-password': 'Change Your Password',
     'authorization.forgot-password': 'Forgot Your Password?',
@@ -259,4 +260,5 @@ export const en = {
     'topics.card.posts': 'posts',
     post: 'Post',
     'file.too-large': 'File must be 3Mb or smaller',
+    'memezator.card.recent-winners': 'Recent Winners'
 };

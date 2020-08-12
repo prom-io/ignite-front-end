@@ -61,9 +61,13 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
+            if (store.authorization.currentUser) {
+                store.notifications.fetchNotifications();
+            }
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
+            store.notifications.resetNotifications();
         },
     }),
     chat: new Route({

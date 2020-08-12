@@ -169,7 +169,7 @@ export const NotificationsList = observer(() => {
                         }}
                         badgeContent="!"
                         color="primary"
-                        invisible={notification.readed}
+                        invisible={notification.read}
                     >
                         <Notification
                             notification={notification}

@@ -75,7 +75,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
+const _AppBar = ({
+    currentActiveRoute,
+    routerStore,
+    currentUser,
+    notificationsCount,
+    theme,
+    l
+}) => {
     const classes = useStyles();
 
     const navTitleList = {
@@ -124,7 +131,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                             currentActiveRoute === "notifications" &&
                                             theme.palette.primary.main
                                         }
-                                        count={2}
+                                        count={notificationsCount}
                                     />
                                 }
                                 routerStore={routerStore}
@@ -238,7 +245,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                 currentActiveRoute === "notifications" &&
                                 theme.palette.primary.main
                             }
-                            count={2}
+                            count={notificationsCount}
                         />
                     }
                     routerStore={routerStore}
@@ -285,10 +292,11 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
     );
 };
 
-const mapMobxToProps = ({ store, authorization, login }) => ({
+const mapMobxToProps = ({ store, authorization, login, notifications }) => ({
     routerStore: store,
     currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen
+    setLoginDialogOpen: login.setLoginDialogOpen,
+    notificationsCount: notifications.notificationsCount
 });
 
 export const AppBar = localized(

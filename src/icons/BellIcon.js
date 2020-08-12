@@ -3,10 +3,12 @@ import { Badge, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     badge: {
+        height: "18px",
         fontSize: "12px !important",
-        height: "16px",
-        minWidth: "16px",
-        padding: 0
+        minWidth: "18px",
+        top: "-2px",
+        right: "2px",
+        padding: "3px"
     }
 }));
 

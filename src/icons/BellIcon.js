@@ -17,7 +17,7 @@ export const BellIcon = ({ color, width, height, count }) => {
         <Badge
             badgeContent={count}
             color="primary"
-            invisible={count < 0}
+            invisible={count <= 0}
             classes={{
                 badge: classes.badge
             }}

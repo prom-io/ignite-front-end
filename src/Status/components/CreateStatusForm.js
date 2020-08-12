@@ -135,11 +135,6 @@ const _CreateStatusForm = ({
             <Grid container>
                 {referredStatus && (
                     <Grid item xs={12}>
-                        <Typography>
-                            {statusReferenceType === 'REPOST'
-                                ? l('status.reposted-status')
-                                : ''}
-                        </Typography>
                         <RepostedStatusContent
                             repostedStatus={referredStatus}
                             displayClearButton

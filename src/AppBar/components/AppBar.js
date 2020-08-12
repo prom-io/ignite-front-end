@@ -124,6 +124,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                             currentActiveRoute === "notifications" &&
                                             theme.palette.primary.main
                                         }
+                                        count={2}
                                     />
                                 }
                                 routerStore={routerStore}
@@ -237,6 +238,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                 currentActiveRoute === "notifications" &&
                                 theme.palette.primary.main
                             }
+                            count={2}
                         />
                     }
                     routerStore={routerStore}

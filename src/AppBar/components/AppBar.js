@@ -24,6 +24,7 @@ import {
 import { AppBarLogo } from ".";
 import { TopicsIcon } from "../../icons/TopicsIcon";
 import { SearchInput } from "../../Search/components/SearchInput";
+import { MemezatorIcon } from '../../icons/MemezatorIcon';
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
@@ -75,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => {
+const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive, theme, l }) => {
     const classes = useStyles();
 
     const navTitleList = {
@@ -171,7 +172,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                                 targetView={Routes.memezator}
                                 active={currentActiveRoute === "memezator"}
                                 icon={
-                                    <TopicsIcon
+                                    <MemezatorIcon
                                         color={
                                             currentActiveRoute === "memezator" &&
                                             theme.palette.primary.main
@@ -207,7 +208,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                             <div className="mobile_header">
                                 <GenericAuthorizationDialog />
                                 <span className="mobile_header-title">
-                                    {currentUser &&
+                                    {currentUser && !isSearchActive &&
                                         navTitleList[window.location.pathname]}
                                 </span>
                                 <div className={classes.searchWrapper}>
@@ -301,7 +302,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
                     targetView={Routes.memezator}
                     active={currentActiveRoute === "memezator"}
                     icon={
-                        <TopicsIcon
+                        <MemezatorIcon
                             color={
                                 currentActiveRoute === "memezator" &&
                                 theme.palette.primary.main
@@ -318,10 +319,11 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, theme, l }) => 
     );
 };
 
-const mapMobxToProps = ({ store, authorization, login }) => ({
-    routerStore: store,
-    currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen
+const mapMobxToProps = ({ store, authorization, login, searchUsers }) => ({
+  routerStore: store,
+  currentUser: authorization.currentUser,
+  setLoginDialogOpen: login.setLoginDialogOpen,
+  isSearchActive: searchUsers.isSearchActive,
 });
 
 export const AppBar = localized(

@@ -3,12 +3,12 @@ import { Badge, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     badge: {
-        height: "18px",
-        fontSize: "12px !important",
-        minWidth: "18px",
-        top: "-2px",
-        right: "2px",
-        padding: "3px"
+        top: "-1px",
+        right: "-3px",
+        height: "15px",
+        minWidth: "16px",
+        padding: "3px",
+        fontSize: "11px !important"
     }
 }));
 
@@ -23,6 +23,7 @@ export const BellIcon = ({ color, width, height, count }) => {
             classes={{
                 badge: classes.badge
             }}
+            style={{ marginRight: count >= 100 ? "8px" : count > 0 ? "5px" : 0 }}
         >
             <svg
                 width={width || "16"}

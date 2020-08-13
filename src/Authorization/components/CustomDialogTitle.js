@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
+export const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
     const classes = useStyles();
     return (
         <div className={classes.titleBlock}>
@@ -86,5 +86,3 @@ const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
         </div>
     );
 };
-
-export default CustomDialogTitle;

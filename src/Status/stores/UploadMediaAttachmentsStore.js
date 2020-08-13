@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import randomString from "randomatic";
+import generator from 'generate-password';
 import {axiosInstance} from "../../api/axios-instance";
 import {FileContainer} from "../../utils/file-utils";
 
@@ -43,7 +43,13 @@ export class UploadMediaAttachmentsStore {
                 continue;
             }
 
-            const fileId = randomString("a", 7);
+            const fileId = generator.generate({
+                length: 7,
+                numbers: false,
+                symbols: false,
+                lowercase: true,
+                uppercase: false
+            });
             this.uploadPending = true;
             this.mediaAttachmentsFiles = [
                 ...this.mediaAttachmentsFiles,

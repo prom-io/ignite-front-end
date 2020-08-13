@@ -18,6 +18,7 @@ import {
     UserProfilePage,
     UserEditPage,
     SignUpPage,
+    SearchPeoplePage,
 } from '../pages';
 import { store } from '../store';
 import { NotFound } from '../pages/NotFound';
@@ -60,9 +61,13 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
+            if (store.authorization.currentUser) {
+                store.notifications.fetchNotifications();
+            }
             store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
+            store.notifications.resetNotifications();
         },
     }),
     chat: new Route({
@@ -85,6 +90,16 @@ export const Routes = {
         },
         onExit: () => {
             store.followPeople.reset();
+        },
+    }),
+    searchPeople: new Route({
+        path: '/search',
+        component: <SearchPeoplePage />,
+        beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
+        },
+        onExit: () => {
+            store.searchUsers.resetSearchPage();
         },
     }),
     userEdit: new Route({

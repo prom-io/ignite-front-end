@@ -3,12 +3,10 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import Markdown from 'react-markdown';
 import breaks from 'remark-breaks';
-import { Avatar, Grid, Typography } from '@material-ui/core';
+import { Avatar, Grid, Typography, useTheme } from '@material-ui/core';
 
-import useTheme from '@material-ui/core/styles/useTheme';
 import { localized } from '../localization/components';
 import { Routes } from '../routes';
-import { addLineBreak } from '../utils/string-utils';
 
 const _UserCard = ({
     currentUser,
@@ -18,6 +16,7 @@ const _UserCard = ({
     username,
     displayName,
     bio,
+    external_url,
     posts,
     followers,
     following,
@@ -50,7 +49,14 @@ const _UserCard = ({
                     <div className="user-card-bottom user-card-content-box">
                         <div className="user-card-info">
                             <h4>{displayName}</h4>
-                            <p>{username}</p>
+                            <p>@{username}</p>
+                            <a
+                                href={external_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {external_url}
+                            </a>
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -133,6 +139,7 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     username: userCard.user && userCard.user.username,
     displayName: userCard.user && userCard.user.display_name,
     bio: userCard.user && userCard.user.bio,
+    external_url: userCard.user && userCard.user.external_url,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
     following: userCard.user && userCard.user.follows_count,

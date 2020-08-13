@@ -78,6 +78,7 @@ const _UserProfileContainer = ({
                     username={user.username}
                     displayName={user.display_name}
                     bio={user.bio}
+                    external_url={user.external_url}
                     currentUser={currentUser}
                     currentUserFollowingCount={currentUser && currentUser.follows_count}
                     createdAt={new Date(user.created_at)}

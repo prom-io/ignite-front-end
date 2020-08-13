@@ -6,7 +6,6 @@ import { Link } from 'mobx-router';
 import { MuteIcon } from '../../icons/MuteIcon';
 import { Routes } from '../../routes';
 import { BlockIcon } from '../../icons/BlockIcon';
-import { SettingsIcon } from '../../icons/SettingsIcon';
 import { TermsOfServiceIcon } from '../../icons/TermsOfServiceIcon';
 import { InfoIcon } from '../../icons/InfoIcon';
 import { LogoutIcon } from '../../icons/LogoutIcon';

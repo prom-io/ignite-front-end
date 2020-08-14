@@ -260,5 +260,8 @@ export const en = {
     'topics.card.posts': 'posts',
     post: 'Post',
     'file.too-large': 'File must be 3Mb or smaller',
-    'memezator.card.recent-winners': 'Recent Winners'
+    'memezator.rules': 'Rules',
+    'memezator.voting-power': 'Your Voting Power',
+    'memezator.card.recent-winners': 'Recent Winners',
+    'memezator.card.show-post': 'Show post',
 };

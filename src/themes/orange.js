@@ -30,6 +30,9 @@ export const orange = createMuiTheme({
             root: {
                 borderRadius: '30px',
             },
+            outlinedPrimary: {
+                border: "1px solid #FF5C01"
+            }
         },
     },
     palette: {

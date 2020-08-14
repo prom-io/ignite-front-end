@@ -1,11 +1,15 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { Link } from "mobx-router";
-import { Avatar, Typography, makeStyles } from "@material-ui/core";
+import { Avatar, Typography, Button, makeStyles } from "@material-ui/core";
 
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 import Loader from "../../components/Loader";
-import { Routes } from "../../routes";
+import { HeartOutlinedIcon } from "../../icons/HeartOutlinedIcon";
+import { TrophyIcon } from "../../icons/TrophyIcon";
 import { trimString } from "../../utils/string-utils";
+import { localized } from "../../localization/components";
+import { Routes } from "../../routes";
 import { routerStore } from "../../store";
 
 const useStyles = makeStyles(theme => ({
@@ -16,12 +20,12 @@ const useStyles = makeStyles(theme => ({
         display: "table"
     },
     recentWinnersItem: {
+        textDecoration: "none",
         padding: "12px 16px",
         borderBottom: `1px solid ${theme.palette.border.main}`,
         display: "flex",
-
-        "& a": {
-            display: "inline-block"
+        "&:hover": {
+            background: theme.palette.background.light
         }
     },
     recentWinnersItemAvatar: {
@@ -30,9 +34,6 @@ const useStyles = makeStyles(theme => ({
         borderBottom: `1px solid ${theme.palette.border.main}`
     },
     recentWinnersItemContent: {
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
         paddingLeft: "8px"
     },
     itemDisplayName: {
@@ -47,14 +48,36 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 300,
         fontSize: "12px",
         lineHeight: "14px",
-        color: theme.palette.text.secondary
+        color: theme.palette.text.secondary,
+        marginBottom: "13px"
+    },
+    recentWinnersItemStatsWrapper: {
+        display: "flex",
+        marginBottom: "13px",
+        "& > div": {
+            display: "flex",
+            alignItems: "center",
+            "&:first-child": {
+                marginRight: "28px"
+            }
+        }
+    },
+    recentWinnersItemStats: {
+        marginLeft: "8px",
+        color: "#A2A2A2",
+        fontSize: "15px"
+    },
+    recentWinnersShowPostBtn: {
+        height: "24px",
+        fontSize: "12px",
+        lineHeight: "14px"
     },
     notFound: {
         padding: "16px"
     }
 }));
 
-const _MemezatorWinnersList = ({ recentWinners, pending }) => {
+const _MemezatorWinnersList = ({ recentWinners, pending, l }) => {
     const classes = useStyles();
 
     if (pending) {
@@ -70,41 +93,56 @@ const _MemezatorWinnersList = ({ recentWinners, pending }) => {
 
     return recentWinners.length > 0 ? (
         recentWinners.map(user => (
-            <div className={classes.recentWinnersItem} key={user.id}>
-                <Link
-                    view={Routes.userProfile}
-                    params={{ username: user.username }}
-                    store={routerStore}
-                >
-                    <Avatar
-                        className={classes.recentWinnersItemAvatar}
-                        src={user.avatar}
-                    />
-                </Link>
+            <Link
+                key={user.id}
+                className={classes.recentWinnersItem}
+                view={Routes.userProfile}
+                params={{ username: user.username }}
+                store={routerStore}
+            >
+                <Avatar
+                    className={classes.recentWinnersItemAvatar}
+                    src={user.avatar}
+                />
                 <div className={classes.recentWinnersItemContent}>
-                    <div>
-                        <Link
-                            view={Routes.userProfile}
-                            params={{ username: user.username }}
-                            store={routerStore}
-                            style={{ textDecoration: "none" }}
-                        >
+                    <Typography
+                        variant="h3"
+                        classes={{ root: classes.itemDisplayName }}
+                    >
+                        {trimString(user.display_name, 24)}
+                    </Typography>
+                    <Typography classes={{ root: classes.itemUsername }}>
+                        @{trimString(user.username, 24)}
+                    </Typography>
+                    <div className={classes.recentWinnersItemStatsWrapper}>
+                        <div>
+                            <HeartOutlinedIcon />
                             <Typography
-                                variant="h3"
-                                classes={{ root: classes.itemDisplayName }}
+                                classes={{ root: classes.recentWinnersItemStats }}
                             >
-                                {trimString(user.display_name, 24)}
+                                {user.likes}
                             </Typography>
-                        </Link>
-                        <Typography classes={{ root: classes.itemUsername }}>
-                            @{trimString(user.username, 24)}
-                        </Typography>
+                        </div>
+                        <div>
+                            <TrophyIcon />
+                            <Typography
+                                classes={{ root: classes.recentWinnersItemStats }}
+                            >
+                                {user.trophies}
+                            </Typography>
+                        </div>
                     </div>
-                    <div>
-                        <Typography variant="h5">{user.points}</Typography>
-                    </div>
+                    <ClickEventPropagationStopper>
+                        <Button
+                            classes={{ root: classes.recentWinnersShowPostBtn }}
+                            color="primary"
+                            variant="outlined"
+                        >
+                            {l("memezator.card.show-post")}
+                        </Button>
+                    </ClickEventPropagationStopper>
                 </div>
-            </div>
+            </Link>
         ))
     ) : (
         <div className={classes.notFound}>
@@ -118,6 +156,6 @@ const mapMobxToProps = ({ memezatorWinners }) => ({
     pending: memezatorWinners.pending
 });
 
-export const MemezatorWinnersList = inject(mapMobxToProps)(
-    observer(_MemezatorWinnersList)
+export const MemezatorWinnersList = localized(
+    inject(mapMobxToProps)(observer(_MemezatorWinnersList))
 );

@@ -1,42 +1,119 @@
 import React from "react";
-import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { inject, observer } from "mobx-react";
+import { Grid, Typography, Button, makeStyles } from "@material-ui/core";
+
+import { localized } from "../../localization/components";
+import { DetailsIcon } from "../../icons/DetailsIcon";
+import rulesPattern from "../../images/memezator-rules-pattern.jpg";
 
 const useStyles = makeStyles(theme => ({
     memezatorRulesWrapper: {
-      border: `1px solid ${theme.palette.border.main}`,
-      borderTopLeftRadius: "4px",
-      borderTopRightRadius: "4px",
-      padding: "16px",
-      marginBottom: 20,
+        border: `1px solid ${theme.palette.primary.main}`,
+        borderTopLeftRadius: "4px",
+        borderTopRightRadius: "4px",
+        padding: "16px 18px",
+        color: "#1C1C1C",
+        background: `url(${rulesPattern})`,
+        [theme.breakpoints.down("sm")]: {
+            borderLeft: "unset",
+            borderRight: "unset",
+            borderRadius: 0
+        }
+    },
+    memezatorRulesHeader: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "9px",
+        [theme.breakpoints.down("sm")]: {
+            marginBottom: "16px"
+        }
+    },
+    memezatorRulesTitle: {
+        fontSize: "20px",
+        fontWeight: 600,
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "16px"
+        }
+    },
+    memezatorRulesPower: {
+        fontSize: "15px",
+        fontWeight: 600,
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "14px"
+        }
+    },
+    memezatorRulesContent: {
+        marginBottom: "12px"
+    },
+    memezatorRulesParagraph: {
+        fontSize: "15px",
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "14px"
+        }
+    },
+    memezatorRulesAction: {
+        textAlign: "right"
+    },
+    memezatorRulesActionBtn: {
+        background: "#fff",
+        height: "24px",
+        minWidth: "56px",
+        [theme.breakpoints.down("sm")]: {
+            height: "28px"
+        }
     }
 }));
 
-export const MemezatorRules = () => {
+const _MemezatorRules = ({ currentUser, l }) => {
     const classes = useStyles();
 
     return (
         <Grid item xs={12} className={classes.memezatorRulesWrapper}>
-            <Typography variant={'h5'}>
-                Rules
-            </Typography>
-            <Typography>
-                With the start of the contest, each Ignite user can publish 1 post to participate in the Contest. You can publish a post either in the Memezator interface or in your feed by specifying a special hashtag.
-            </Typography>
-            <Typography>
-                After publication-all users of the system can vote for a post that they think deserves to win (no more than 3 votes per day)
-            </Typography>
-            <Typography>
-                The votes are counted at 00: 00 the next day (each round of the contest lasts exactly 24 hours)
-            </Typography>
-            <Typography>
-                At the end of the stage, the votes are counted and the winners are published
-            </Typography>
-            <Typography variant={'h5'}>
-                To participate:
-            </Typography>
-            <Typography>1. The user must be registered in the Ignite system</Typography>
-            <Typography>2. The user must have a meaningful username + userpic</Typography>
-            <Typography>3. The user must either have a balance on their PROM wallet, OR have published a meaningful post in the last 24 hours.</Typography>
+            <div className={classes.memezatorRulesHeader}>
+                <Typography
+                    classes={{ root: classes.memezatorRulesTitle }}
+                    variant="h5"
+                >
+                    {l("memezator.rules")}
+                </Typography>
+                {currentUser && (
+                    <Typography
+                        classes={{ root: classes.memezatorRulesPower }}
+                        variant="h6"
+                    >
+                        {l("memezator.voting-power")}: {currentUser.voting_power}
+                    </Typography>
+                )}
+            </div>
+            <div className={classes.memezatorRulesContent}>
+                <Typography classes={{ root: classes.memezatorRulesParagraph }}>
+                    <b>1.</b> Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                </Typography>
+                <Typography classes={{ root: classes.memezatorRulesParagraph }}>
+                    <b>2.</b> Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </Typography>
+            </div>
+            <div className={classes.memezatorRulesAction}>
+                <Button
+                    classes={{ root: classes.memezatorRulesActionBtn }}
+                    color="primary"
+                    variant="outlined"
+                >
+                    <DetailsIcon />
+                </Button>
+            </div>
         </Grid>
     );
 };
+
+const mapMobxToProps = ({ authorization }) => ({
+    currentUser: authorization.currentUser
+});
+
+export const MemezatorRules = localized(
+    inject(mapMobxToProps)(observer(_MemezatorRules))
+);

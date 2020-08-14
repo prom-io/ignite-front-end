@@ -20,7 +20,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 17
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -28,7 +29,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 14
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -36,7 +38,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 13
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -44,7 +47,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 11
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -52,7 +56,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 8
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -60,7 +65,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 6
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -68,7 +74,8 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 5
+                    likes: 123,
+                    trophies: 1.234
                 },
                 {
                     avatar:
@@ -76,8 +83,9 @@ export class MemezatorWinnersStore {
                     display_name: "Prometeus Labs",
                     id: "0x2643DC5CB19b4e43C491f9D556263626a1791183",
                     username: "promlabs",
-                    points: 4
-                }
+                    likes: 123,
+                    trophies: 1.234
+                },
             ];
             this.pending = false;
         }, 1500);

@@ -7,7 +7,6 @@ import { useLocalization } from "../../store/hooks";
 const useStyles = makeStyles(theme => ({
     memezatorRecentWinners: {
         border: `1px solid ${theme.palette.border.main}`,
-        background: theme.palette.background.light,
         borderRadius: "4px"
     },
     memezatorRecentWinnersHeader: {

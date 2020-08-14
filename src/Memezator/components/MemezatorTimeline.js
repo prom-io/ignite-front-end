@@ -14,12 +14,6 @@ const useStyles = makeStyles(theme => ({
         marginTop: "150px",
         display: "table"
     },
-    gridItemBottomSpacing: {
-        [theme.breakpoints.down("md")]: {
-            padding: "0px !important",
-            paddingBottom: `${theme.spacing(1)}px !important`
-        }
-    },
     statusListBorderCorrective: {
         padding: "0 !important",
         width: "100%",
@@ -57,12 +51,7 @@ const _MemezatorTimeline = ({
         <Grid container>
             <MemezatorRules />
             {currentUser && (
-                <Grid
-                    item
-                    xs={12}
-                    className={classes.gridItemBottomSpacing}
-                    className="create_status_form_mobile"
-                >
+                <Grid item xs={12} className="create_status_form_mobile">
                     <Hidden smDown>
                         <CreateStatusForm />
                     </Hidden>

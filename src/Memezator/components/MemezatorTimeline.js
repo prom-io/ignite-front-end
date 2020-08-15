@@ -32,7 +32,7 @@ const _MemezatorTimeline = ({
     unfavouriteStatus,
     followStatusAuthor,
     unfollowStatusAuthorWithDialog,
-    fetchStatuses,
+    fetchMemezatorStatuses,
     pending,
     hasMore,
     currentStatusUsername,
@@ -57,7 +57,7 @@ const _MemezatorTimeline = ({
                     <Loader size="lg" />
                 </div>
             ) : (
-                <Grid item item className={classes.statusListBorderCorrective}>
+                <Grid item className={classes.statusListBorderCorrective}>
                     <MemezatorStatusList
                         statuses={statuses}
                         onFavouriteClick={(statusId, favourited) =>
@@ -66,7 +66,7 @@ const _MemezatorTimeline = ({
                                 : unfavouriteStatus(statusId)
                         }
                         pending={pending}
-                        onNextPageRequest={fetchStatuses}
+                        onNextPageRequest={fetchMemezatorStatuses}
                         onFollowRequest={followStatusAuthor}
                         onUnfollowRequest={unfollowStatusAuthorWithDialog}
                         currentUser={currentUser}
@@ -98,21 +98,21 @@ const _MemezatorTimeline = ({
     );
 };
 
-const mapMobxToProps = ({ authorization, globalTimeline }) => ({
+const mapMobxToProps = ({ authorization, memezatorStatuses }) => ({
     currentUser: authorization.currentUser,
-    statuses: globalTimeline.statuses,
-    statusLikePendingMap: globalTimeline.statusLikePendingMap,
-    favouriteStatus: globalTimeline.favouriteStatus,
-    unfavouriteStatus: globalTimeline.unfavouriteStatus,
-    followStatusAuthor: globalTimeline.followStatusAuthor,
-    unfollowStatusAuthorWithDialog: globalTimeline.unfollowStatusAuthorWithDialog,
-    pending: globalTimeline.pending,
-    fetchStatuses: globalTimeline.fetchStatuses,
-    hasMore: globalTimeline.hasMore,
-    currentStatusUsername: globalTimeline.currentStatusUsername,
-    unfollowStatusAuthor: globalTimeline.unfollowStatusAuthor,
-    setUnfollowDialogOpen: globalTimeline.setUnfollowDialogOpen,
-    unfollowDialogOpen: globalTimeline.unfollowDialogOpen
+    statuses: memezatorStatuses.statuses,
+    statusLikePendingMap: memezatorStatuses.statusLikePendingMap,
+    favouriteStatus: memezatorStatuses.favouriteStatus,
+    unfavouriteStatus: memezatorStatuses.unfavouriteStatus,
+    followStatusAuthor: memezatorStatuses.followStatusAuthor,
+    unfollowStatusAuthorWithDialog: memezatorStatuses.unfollowStatusAuthorWithDialog,
+    pending: memezatorStatuses.pending,
+    fetchMemezatorStatuses: memezatorStatuses.fetchMemezatorStatuses,
+    hasMore: memezatorStatuses.hasMore,
+    currentStatusUsername: memezatorStatuses.currentStatusUsername,
+    unfollowStatusAuthor: memezatorStatuses.unfollowStatusAuthor,
+    setUnfollowDialogOpen: memezatorStatuses.setUnfollowDialogOpen,
+    unfollowDialogOpen: memezatorStatuses.unfollowDialogOpen
 });
 
 export const MemezatorTimeline = inject(mapMobxToProps)(

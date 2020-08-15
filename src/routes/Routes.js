@@ -269,18 +269,13 @@ export const Routes = {
         component: <MemezatorPage />,
         beforeEnter: () => {
             store.userCard.setDisplayMode('currentUser');
-            store.timelineSwitcher.setSwitchOnUserChange(true);
 
-            if (store.authorization.currentUser && store.authorization.currentUser.follows_count !== 0) {
-                store.timelineSwitcher.setCurrentTimeline('home');
-            }
-
+            store.memezatorActions.fetchAccessToMemezatorPosting();
+            store.memezatorStatuses.fetchMemezatorStatuses();
             store.memezatorWinners.fetchRecentWinners();
-            store.timelineSwitcher.selectedTimeline.fetchStatuses();
         },
         onExit: () => {
-            store.timelineSwitcher.setSwitchOnUserChange(false);
-            store.timelineSwitcher.selectedTimeline.reset();
+            store.memezatorActions.reset();
             store.memezatorStatuses.reset();
             store.memezatorWinners.reset();
         },

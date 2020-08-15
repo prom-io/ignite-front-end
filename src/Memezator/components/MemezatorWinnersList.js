@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Link } from "mobx-router";
 import { Avatar, Typography, Button, makeStyles } from "@material-ui/core";
 
@@ -69,14 +70,18 @@ const useStyles = makeStyles(theme => ({
     recentWinnersShowPostBtn: {
         height: "24px",
         fontSize: "12px",
-        lineHeight: "14px"
+        lineHeight: "14px",
+        [theme.breakpoints.down("sm")]: {
+            minWidth: "95px",
+            height: "28px"
+        }
     },
     notFound: {
         padding: "16px"
     }
 }));
 
-export const MemezatorWinnersList = ({ recentWinners, pending }) => {
+export const MemezatorWinnersList = observer(({ recentWinners, pending }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -149,4 +154,4 @@ export const MemezatorWinnersList = ({ recentWinners, pending }) => {
             <Typography>Not Found</Typography>
         </div>
     );
-};
+});

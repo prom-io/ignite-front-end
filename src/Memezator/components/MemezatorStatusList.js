@@ -42,7 +42,7 @@ export const MemezatorStatusList = ({
             >
                 {statuses.map((status, index) => (
                     <Fragment key={status.id}>
-                        {currentUser && index === 5 && (
+                        {index === 5 && (
                             <Hidden lgUp>
                                 <MemezatorWinners isMobile />
                             </Hidden>

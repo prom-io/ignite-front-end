@@ -239,6 +239,8 @@ export const en = {
     'user.profile.following': 'Following',
     'user.profile.following.empty': 'You follow nobody yet',
     'user.profile.member-since': 'Member since',
+    'user.profile.your-balance': 'Your Balance',
+    'user.profile.your-voting-power': 'Your Voting Power',
     'user.profile.posts': 'Posts',
     'user.profile.unfollow': 'Unfollow',
     'user.update-profile': 'Update profile',

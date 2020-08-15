@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Button, Typography, makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const MemezatorHeader = () => {
+export const MemezatorHeader = observer(() => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -76,4 +77,4 @@ export const MemezatorHeader = () => {
             </div>
         </>
     );
-};
+});

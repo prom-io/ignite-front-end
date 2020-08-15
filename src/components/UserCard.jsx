@@ -18,6 +18,7 @@ const _UserCard = ({
     bio,
     external_url,
     user_balance,
+    voting_power,
     posts,
     followers,
     following,
@@ -110,7 +111,10 @@ const _UserCard = ({
                         </Grid>
 
                         <p className="user-card-info-balance">
-                            Your Balance: {user_balance} PROM
+                            {l("user.profile.your-balance")}: {user_balance} PROM
+                        </p>
+                        <p className="user-card-info-balance">
+                            {l("user.profile.your-voting-power")}: {voting_power}
                         </p>
                     </div>
                 </>
@@ -144,6 +148,7 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     bio: userCard.user && userCard.user.bio,
     external_url: userCard.user && userCard.user.external_url,
     user_balance: userCard.user && userCard.user.user_balance,
+    voting_power: userCard.user && userCard.user.voting_power,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
     following: userCard.user && userCard.user.follows_count

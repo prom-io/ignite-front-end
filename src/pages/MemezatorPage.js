@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Hidden } from "@material-ui/core";
 import { inject, observer } from "mobx-react";
+import { Grid, Hidden } from "@material-ui/core";
 
 import { Layout } from "../Layout";
 import { AppBar } from "../AppBar/components";
@@ -9,7 +9,6 @@ import {
     MemezatorTimeline,
     MemezatorWinners
 } from "../Memezator/components";
-import { GlobalTimeline } from "../Status/components";
 import { LoginForm } from "../Authorization/components";
 import { PrometeusDescription } from "../PrometeusDescription";
 
@@ -26,9 +25,13 @@ const _MemezatorPage = ({ currentUser, homepageTimeline }) => (
                     </Grid>
                     <Grid item xs={12} lg={9} className="right-content-container">
                         <Grid container>
-                            <MemezatorHeader />
                             {!currentUser && (
-                                <Grid item xs={12} className="login-form-container">
+                                <Grid
+                                    item
+                                    xs={12}
+                                    className="login-form-container"
+                                    style={{ marginBottom: "16px" }}
+                                >
                                     <LoginForm
                                         hideSignUpButton={
                                             process.env
@@ -38,12 +41,9 @@ const _MemezatorPage = ({ currentUser, homepageTimeline }) => (
                                     />
                                 </Grid>
                             )}
+                            <MemezatorHeader />
                             <Grid item xs={12} md={9} className="right-content">
-                                {homepageTimeline === "home" ? (
-                                    <MemezatorTimeline />
-                                ) : (
-                                    <GlobalTimeline />
-                                )}
+                                <MemezatorTimeline />
                             </Grid>
                         </Grid>
                     </Grid>

@@ -1,11 +1,11 @@
-import React from 'react';
-import { inject } from 'mobx-react';
-import { Link } from 'mobx-router';
-import { Card } from '@material-ui/core';
-import { StatusHeader } from './StatusHeader';
-import { StatusBottom } from './StatusBottom';
-import { StatusBody } from './StatusBody';
-import { Routes } from '../../routes';
+import React from "react";
+import { inject } from "mobx-react";
+import { Link } from "mobx-router";
+import { Card } from "@material-ui/core";
+import { StatusHeader } from "./StatusHeader";
+import { StatusBottom } from "./StatusBottom";
+import { StatusBody } from "./StatusBody";
+import { Routes } from "../../routes";
 
 const _StatusListItem = ({
     status,
@@ -22,12 +22,10 @@ const _StatusListItem = ({
     currentUser,
     setGenericAuthorizationDialogOpen,
     setGenericAuthorizationDialogType,
+    isMeme = false
 }) => {
     const content = (
-        <Card
-            elevation={0}
-            className="statusCardBox"
-        >
+        <Card elevation={0} className="statusCardBox">
             <StatusHeader
                 username={status.account.username}
                 userId={status.account.id}
@@ -62,6 +60,7 @@ const _StatusListItem = ({
                 currentUser={currentUser}
                 setGenericAuthorizationDialogOpen={setGenericAuthorizationDialogOpen}
                 setGenericAuthorizationDialogType={setGenericAuthorizationDialogType}
+                isMeme={isMeme}
             />
         </Card>
     );
@@ -78,15 +77,17 @@ const _StatusListItem = ({
             </div>
         );
     }
-    
+
     return content;
 };
 
 const mapMobxToProps = ({ store, authorization, genericAuthorizationDialog }) => ({
     routerStore: store,
     currentUser: authorization.currentUser,
-    setGenericAuthorizationDialogOpen: genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
-    setGenericAuthorizationDialogType: genericAuthorizationDialog.setGenericAuthorizationDialogType,
+    setGenericAuthorizationDialogOpen:
+        genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType:
+        genericAuthorizationDialog.setGenericAuthorizationDialogType
 });
 
 export const StatusListItem = inject(mapMobxToProps)(_StatusListItem);

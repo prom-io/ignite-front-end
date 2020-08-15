@@ -74,7 +74,7 @@ const hashGeneration = new GenerateHashStore();
 const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
 const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 const searchUsers = new SearchUsersStore();
-const memezatorActions = new MemezatorActionsStore(authorization);
+const memezatorActions = new MemezatorActionsStore(authorization, createStatus);
 const memezatorStatuses = new MemezatorStatusesStore(authorization, createStatus);
 const memezatorWinners = new MemezatorWinnersStore();
 

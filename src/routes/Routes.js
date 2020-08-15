@@ -270,7 +270,9 @@ export const Routes = {
         beforeEnter: () => {
             store.userCard.setDisplayMode('currentUser');
 
-            store.memezatorActions.fetchAccessToMemezatorPosting();
+            if (store.authorization.currentUser) {
+                store.memezatorActions.fetchAccessToMemezatorPosting();
+            }
             store.memezatorStatuses.fetchMemezatorStatuses();
             store.memezatorWinners.fetchRecentWinners();
         },

@@ -93,6 +93,7 @@ const _CreateStatusDialog = ({
                         className={classes.createStatusButton}
                         onClick={() => createStatus(Boolean(actionRights))}
                         disabled={
+                            (actionRights && !actionRights.can_create) ||
                             pending ||
                             mediaAttachmentUploadPending ||
                             !(content.length > 0 || uploadedAttachments.length !== 0)

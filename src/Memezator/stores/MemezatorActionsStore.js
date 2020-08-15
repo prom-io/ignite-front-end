@@ -9,13 +9,26 @@ export class MemezatorActionsStore {
     pending = false;
 
     authorizationStore = undefined;
+    createStatusStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, createStatusStore) {
         this.authorizationStore = authorizationStore;
+        this.createStatusStore = createStatusStore;
 
         reaction(
             () => this.authorizationStore.currentUser,
-            currentUser => !currentUser && this.reset()
+            currentUser => {
+                this.reset();
+
+                if (currentUser && window.location.pathname === "/memezator") {
+                    this.fetchAccessToMemezatorPosting();
+                }
+            }
+        );
+
+        reaction(
+            () => this.createStatusStore.createdMemeStatus,
+            () => this.fetchAccessToMemezatorPosting()
         );
     }
 

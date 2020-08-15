@@ -260,4 +260,6 @@ export const kr = {
     'memezator.voting-power': 'Your Voting Power',
     'memezator.card.recent-winners': 'Recent Winners',
     'memezator.card.show-post': 'Show post',
+    'memezator.results': 'Results',
+    'memezator.ignite-memes-totalizator': 'Ignite Memes Totalizator',
 };

@@ -67,15 +67,15 @@ export const Routes = {
         onExit: () => {
         },
     }),
-    chat: new Route({
-        path: '/chat',
-        component: <ChatPage />,
-        beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
-        },
-        onExit: () => {
-        },
-    }),
+    // chat: new Route({
+    //     path: '/chat',
+    //     component: <ChatPage />,
+    //     beforeEnter: () => {
+    //         store.userCard.setDisplayMode('currentUser');
+    //     },
+    //     onExit: () => {
+    //     },
+    // }),
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,

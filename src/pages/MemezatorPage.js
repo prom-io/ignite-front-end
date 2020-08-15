@@ -4,7 +4,11 @@ import { inject, observer } from "mobx-react";
 
 import { Layout } from "../Layout";
 import { AppBar } from "../AppBar/components";
-import { MemezatorTimeline, MemezatorWinners } from "../Memezator/components";
+import {
+    MemezatorHeader,
+    MemezatorTimeline,
+    MemezatorWinners
+} from "../Memezator/components";
 import { GlobalTimeline } from "../Status/components";
 import { LoginForm } from "../Authorization/components";
 import { PrometeusDescription } from "../PrometeusDescription";
@@ -22,6 +26,7 @@ const _MemezatorPage = ({ currentUser, homepageTimeline }) => (
                     </Grid>
                     <Grid item xs={12} lg={9} className="right-content-container">
                         <Grid container>
+                            <MemezatorHeader />
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">
                                     <LoginForm

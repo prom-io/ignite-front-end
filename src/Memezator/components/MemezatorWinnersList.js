@@ -1,16 +1,15 @@
 import React from "react";
-import { inject, observer } from "mobx-react";
 import { Link } from "mobx-router";
 import { Avatar, Typography, Button, makeStyles } from "@material-ui/core";
 
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 import Loader from "../../components/Loader";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 import { HeartOutlinedIcon } from "../../icons/HeartOutlinedIcon";
 import { TrophyIcon } from "../../icons/TrophyIcon";
 import { trimString } from "../../utils/string-utils";
-import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
 import { routerStore } from "../../store";
+import { useLocalization } from "../../store/hooks";
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -77,8 +76,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _MemezatorWinnersList = ({ recentWinners, pending, l }) => {
+export const MemezatorWinnersList = ({ recentWinners, pending }) => {
     const classes = useStyles();
+    const { l } = useLocalization();
 
     if (pending) {
         return (
@@ -150,12 +150,3 @@ const _MemezatorWinnersList = ({ recentWinners, pending, l }) => {
         </div>
     );
 };
-
-const mapMobxToProps = ({ memezatorWinners }) => ({
-    recentWinners: memezatorWinners.recentWinners,
-    pending: memezatorWinners.pending
-});
-
-export const MemezatorWinnersList = localized(
-    inject(mapMobxToProps)(observer(_MemezatorWinnersList))
-);

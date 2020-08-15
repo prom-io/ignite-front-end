@@ -2,8 +2,8 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles, Hidden, Grid } from "@material-ui/core";
 
-import { MemezatorRules } from "./";
-import { CreateStatusForm, StatusList } from "../../Status/components";
+import { MemezatorRules, MemezatorStatusList } from "./";
+import { CreateStatusForm } from "../../Status/components";
 import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
 
@@ -28,7 +28,6 @@ const _MemezatorTimeline = ({
     currentUser,
     statuses,
     statusLikePendingMap,
-    repostsPendingMap,
     favouriteStatus,
     unfavouriteStatus,
     followStatusAuthor,
@@ -43,11 +42,7 @@ const _MemezatorTimeline = ({
 }) => {
     const classes = useStyles();
 
-    return pending && statuses.length === 0 ? (
-        <div className={classes.centered}>
-            <Loader size="lg" />
-        </div>
-    ) : (
+    return (
         <Grid container>
             <MemezatorRules />
             {currentUser && (
@@ -57,36 +52,41 @@ const _MemezatorTimeline = ({
                     </Hidden>
                 </Grid>
             )}
-            <Grid item item className={classes.statusListBorderCorrective}>
-                <StatusList
-                    statuses={statuses}
-                    onFavouriteClick={(statusId, favourited) =>
-                        favourited
-                            ? favouriteStatus(statusId)
-                            : unfavouriteStatus(statusId)
-                    }
-                    pending={pending}
-                    onNextPageRequest={fetchStatuses}
-                    onFollowRequest={followStatusAuthor}
-                    onUnfollowRequest={unfollowStatusAuthorWithDialog}
-                    currentUser={currentUser}
-                    displayMenu={Boolean(currentUser)}
-                    statusLikePendingMap={statusLikePendingMap}
-                    repostsPendingMap={repostsPendingMap}
-                    hasMore={hasMore}
-                />
-                <UnfollowDialog
-                    username={currentStatusUsername}
-                    unfollowAction={unfollowStatusAuthor}
-                    unfollowDialogOpen={unfollowDialogOpen}
-                    setUnfollowDialogOpen={setUnfollowDialogOpen}
-                />
-            </Grid>
+            {pending && statuses.length === 0 ? (
+                <div className={classes.centered}>
+                    <Loader size="lg" />
+                </div>
+            ) : (
+                <Grid item item className={classes.statusListBorderCorrective}>
+                    <MemezatorStatusList
+                        statuses={statuses}
+                        onFavouriteClick={(statusId, favourited) =>
+                            favourited
+                                ? favouriteStatus(statusId)
+                                : unfavouriteStatus(statusId)
+                        }
+                        pending={pending}
+                        onNextPageRequest={fetchStatuses}
+                        onFollowRequest={followStatusAuthor}
+                        onUnfollowRequest={unfollowStatusAuthorWithDialog}
+                        currentUser={currentUser}
+                        displayMenu={Boolean(currentUser)}
+                        statusLikePendingMap={statusLikePendingMap}
+                        hasMore={hasMore}
+                    />
+                    <UnfollowDialog
+                        username={currentStatusUsername}
+                        unfollowAction={unfollowStatusAuthor}
+                        unfollowDialogOpen={unfollowDialogOpen}
+                        setUnfollowDialogOpen={setUnfollowDialogOpen}
+                    />
+                </Grid>
+            )}
         </Grid>
     );
 };
 
-const mapMobxToProps = ({ authorization, homeTimeline, createStatus }) => ({
+const mapMobxToProps = ({ authorization, homeTimeline }) => ({
     currentUser: authorization.currentUser,
     statuses: homeTimeline.statuses,
     statusLikePendingMap: homeTimeline.statusLikePendingMap,
@@ -96,7 +96,6 @@ const mapMobxToProps = ({ authorization, homeTimeline, createStatus }) => ({
     unfollowStatusAuthorWithDialog: homeTimeline.unfollowStatusAuthorWithDialog,
     pending: homeTimeline.pending,
     fetchStatuses: homeTimeline.fetchStatuses,
-    repostsPendingMap: createStatus.pendingRepostsMap,
     hasMore: homeTimeline.hasMore,
     currentStatusUsername: homeTimeline.currentStatusUsername,
     unfollowStatusAuthor: homeTimeline.unfollowStatusAuthor,

@@ -133,7 +133,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                                 id="notificationsLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
-                            <AppBarLink
+                            {/* <AppBarLink
                                 text={l("appbar.chat")}
                                 targetView={Routes.chat}
                                 active={currentActiveRoute === "chat"}
@@ -149,7 +149,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                                 viewParameters={{}}
                                 id="chatLink"
                                 hidden={Boolean(window.AndroidCallback)}
-                            />
+                            /> */}
                             <AppBarLink
                                 text={l("appbar.topics")}
                                 targetView={Routes.topics}
@@ -263,7 +263,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                     id="notificationsLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
-                <AppBarLink
+                {/* <AppBarLink
                     text={l("appbar.chat")}
                     targetView={Routes.chat}
                     active={currentActiveRoute === "chat"}
@@ -279,7 +279,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                     viewParameters={{}}
                     id="chatLink"
                     hidden={Boolean(window.AndroidCallback)}
-                />
+                /> */}
                 <AppBarLink
                     text={l("appbar.topics")}
                     targetView={Routes.topics}

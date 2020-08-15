@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import { Grid, Typography, Button, makeStyles } from "@material-ui/core";
 
@@ -67,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 
 const _MemezatorRules = ({ currentUser, l }) => {
     const classes = useStyles();
+    const [showRules, setShowRules] = useState(false);
 
     return (
         <Grid item xs={12} className={classes.memezatorRulesWrapper}>
@@ -96,12 +97,31 @@ const _MemezatorRules = ({ currentUser, l }) => {
                     <b>2.</b> Ut enim ad minim veniam, quis nostrud exercitation
                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </Typography>
+                {showRules && (
+                    <>
+                        <Typography
+                            classes={{ root: classes.memezatorRulesParagraph }}
+                        >
+                            <b>3.</b> Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                        </Typography>
+                        <Typography
+                            classes={{ root: classes.memezatorRulesParagraph }}
+                        >
+                            <b>4.</b> Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                        </Typography>
+                    </>
+                )}
             </div>
             <div className={classes.memezatorRulesAction}>
                 <Button
                     classes={{ root: classes.memezatorRulesActionBtn }}
                     color="primary"
                     variant="outlined"
+                    onClick={() => setShowRules(!showRules)}
                 >
                     <DetailsIcon />
                 </Button>

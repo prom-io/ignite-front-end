@@ -1,10 +1,13 @@
-import { action, observable, reaction, computed } from 'mobx';
-import { throttle } from 'lodash';
-import { axiosInstance } from '../../api/axios-instance';
+import { action, observable, reaction, computed } from "mobx";
+import { throttle } from "lodash";
+import { axiosInstance } from "../../api/axios-instance";
 
 export class NotificationsStore {
     @observable
     notifications = [];
+
+    @observable
+    notificationsCount = 0;
 
     @observable
     pending = false;
@@ -25,7 +28,10 @@ export class NotificationsStore {
     constructor(authorization) {
         this.authorization = authorization;
 
-        this.fetchNotifications = throttle(this.fetchNotifications, 5000);
+        this.fetchCountNotReadedNotifications = throttle(
+            this.fetchCountNotReadedNotifications,
+            5000
+        );
 
         reaction(
             () => this.currentUser,
@@ -33,50 +39,89 @@ export class NotificationsStore {
                 this.reset();
 
                 if (currentUser) {
-                    this.fetchNotifications();
+                    this.fetchCountNotReadedNotifications();
+
+                    if (window.location.pathname === "/notifications") {
+                        this.fetchNotifications();
+                    }
                 }
             }
-        )
+        );
     }
 
     @action
     addNotification = notification => {
-        this.notifications = [
-            notification,
-            ...this.notifications
-        ];
+        this.notifications = [notification, ...this.notifications];
     };
 
     @action
     fetchNotifications = () => {
-        if (this.currentUser) {
-            this.pending = true;
+        if (this.pending) {
+            return;
+        }
 
-            let url;
+        this.pending = true;
+        this.hasMore = true;
 
-            if (this.notifications.length !== 0) {
-                const maxId = this.notifications[this.notifications.length - 1].id;
-                url = `/api/v1/notifications?max_id=${maxId}`;
-            } else {
-                url = "/api/v1/notifications";
-            }
+        let url;
 
-            axiosInstance.get(url)
-                .then(({data}) => {
-                    if (data.length !== 0) {
-                        this.notifications.push(...data);
-                    } else {
-                        this.hasMore = false;
-                    }
+        if (this.notifications.length !== 0) {
+            const maxId = this.notifications[this.notifications.length - 1].id;
+            url = `/api/v1/notifications?max_id=${maxId}`;
+        } else {
+            url = "/api/v1/notifications";
+        }
+
+        axiosInstance
+            .get(url)
+            .then(({ data }) => {
+                if (data.length !== 0) {
+                    this.notifications.push(...data);
+                    this.readNotifications();
+                } else {
+                    this.hasMore = false;
+                }
+            })
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
+    };
+
+    @action
+    fetchCountNotReadedNotifications = () => {
+        axiosInstance
+            .get("/api/v1/notifications/not-read-count")
+            .then(({ data }) => {
+                this.notificationsCount = data.countOfNotRead;
+            });
+    };
+
+    @action
+    readNotifications = () => {
+        const notReadedNotificationsId = this.notifications
+            .filter(notification => notification.read === false)
+            .map(notification => notification.id);
+
+        if (notReadedNotificationsId.length > 0) {
+            axiosInstance
+                .put("/api/v1/notifications/read", {
+                    notifications_ids: notReadedNotificationsId
                 })
-                .catch(error => this.error = error)
-                .finally(() => this.pending = false)
+                .then(() => {
+                    this.fetchCountNotReadedNotifications();
+                });
         }
     };
 
     @action
     reset = () => {
         this.pending = false;
+        this.notificationsCount = 0;
         this.notifications = [];
-    }
+    };
+
+    @action
+    resetNotifications = () => {
+        this.pending = false;
+        this.notifications = [];
+    };
 }

@@ -24,7 +24,7 @@ import {
 import { AppBarLogo } from ".";
 import { TopicsIcon } from "../../icons/TopicsIcon";
 import { SearchInput } from "../../Search/components/SearchInput";
-import { MemezatorIcon } from '../../icons/MemezatorIcon';
+import { MemezatorIcon } from "../../icons/MemezatorIcon";
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
@@ -76,7 +76,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive, theme, l }) => {
+const _AppBar = ({
+    currentActiveRoute,
+    routerStore,
+    currentUser,
+    notificationsCount,
+    isSearchActive,
+    theme,
+    l
+}) => {
     const classes = useStyles();
 
     const navTitleList = {
@@ -126,6 +134,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                                             currentActiveRoute === "notifications" &&
                                             theme.palette.primary.main
                                         }
+                                        count={notificationsCount}
                                     />
                                 }
                                 routerStore={routerStore}
@@ -208,7 +217,8 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                             <div className="mobile_header">
                                 <GenericAuthorizationDialog />
                                 <span className="mobile_header-title">
-                                    {currentUser && !isSearchActive &&
+                                    {currentUser &&
+                                        !isSearchActive &&
                                         navTitleList[window.location.pathname]}
                                 </span>
                                 <div className={classes.searchWrapper}>
@@ -256,6 +266,7 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
                                 currentActiveRoute === "notifications" &&
                                 theme.palette.primary.main
                             }
+                            count={notificationsCount}
                         />
                     }
                     routerStore={routerStore}
@@ -319,11 +330,18 @@ const _AppBar = ({ currentActiveRoute, routerStore, currentUser, isSearchActive,
     );
 };
 
-const mapMobxToProps = ({ store, authorization, login, searchUsers }) => ({
-  routerStore: store,
-  currentUser: authorization.currentUser,
-  setLoginDialogOpen: login.setLoginDialogOpen,
-  isSearchActive: searchUsers.isSearchActive,
+const mapMobxToProps = ({
+    store,
+    authorization,
+    login,
+    notifications,
+    searchUsers
+}) => ({
+    routerStore: store,
+    currentUser: authorization.currentUser,
+    setLoginDialogOpen: login.setLoginDialogOpen,
+    notificationsCount: notifications.notificationsCount,
+    isSearchActive: searchUsers.isSearchActive
 });
 
 export const AppBar = localized(

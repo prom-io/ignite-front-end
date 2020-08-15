@@ -1,12 +1,12 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Link } from 'mobx-router';
-import Markdown from 'react-markdown';
-import breaks from 'remark-breaks';
-import { Avatar, Grid, Typography, useTheme } from '@material-ui/core';
+import React from "react";
+import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
+import Markdown from "react-markdown";
+import breaks from "remark-breaks";
+import { Avatar, Grid, Typography, useTheme } from "@material-ui/core";
 
-import { localized } from '../localization/components';
-import { Routes } from '../routes';
+import { localized } from "../localization/components";
+import { Routes } from "../routes";
 
 const _UserCard = ({
     currentUser,
@@ -17,10 +17,11 @@ const _UserCard = ({
     displayName,
     bio,
     external_url,
+    user_balance,
     posts,
     followers,
     following,
-    l,
+    l
 }) => {
     const theme = useTheme();
 
@@ -41,7 +42,7 @@ const _UserCard = ({
                                     height: 90,
                                     minWidth: 90,
                                     minHeight: 90,
-                                    border: `1px solid ${theme.palette.border.main}`,
+                                    border: `1px solid ${theme.palette.border.main}`
                                 }}
                             />
                         </div>
@@ -65,20 +66,18 @@ const _UserCard = ({
                         </div>
 
                         <Grid className="user-profile-header-content-bottom">
-                            <Grid
-                                className="user-profile-header-content-bottom-follows user-card-statistic"
-                            >
+                            <Grid className="user-profile-header-content-bottom-follows user-card-statistic">
                                 <Link
                                     store={routerStore}
                                     view={Routes.userProfile}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{posts}</Typography>
                                     <Typography variant="body1">
-                                        {l('user.profile.posts')}
+                                        {l("user.profile.posts")}
                                     </Typography>
                                 </Link>
                                 <Link
@@ -86,12 +85,12 @@ const _UserCard = ({
                                     view={Routes.userFollowers}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{followers}</Typography>
                                     <Typography variant="body1">
-                                        {l('user.profile.followers')}
+                                        {l("user.profile.followers")}
                                     </Typography>
                                 </Link>
                                 <Link
@@ -99,31 +98,35 @@ const _UserCard = ({
                                     view={Routes.userFollowing}
                                     params={{
                                         username: currentUser.username,
-                                        id: currentUser.id,
+                                        id: currentUser.id
                                     }}
                                 >
                                     <Typography variant="h6">{following}</Typography>
                                     <Typography variant="body1">
-                                        {l('user.profile.following')}
+                                        {l("user.profile.following")}
                                     </Typography>
                                 </Link>
                             </Grid>
                         </Grid>
+
+                        <p className="user-card-info-balance">
+                            Your Balance: {user_balance} PROM
+                        </p>
                     </div>
                 </>
             ) : (
                 <div className="user-card-notauth-box">
                     <div className="user-card-notauth">
                         <img src="/user-card-search.png" alt="" />
-                        <p>{l('user.card.follow-your-interests')}</p>
+                        <p>{l("user.card.follow-your-interests")}</p>
                     </div>
                     <div className="user-card-notauth">
                         <img src="/user-card-friend.png" alt="" />
-                        <p>{l('user.card.hear-what-people-talking-about')}</p>
+                        <p>{l("user.card.hear-what-people-talking-about")}</p>
                     </div>
                     <div className="user-card-notauth">
                         <img src="/user-card-search.png" alt="" />
-                        <p>{l('user.card.join-the-conversation')}</p>
+                        <p>{l("user.card.join-the-conversation")}</p>
                     </div>
                 </div>
             )}
@@ -140,9 +143,10 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     displayName: userCard.user && userCard.user.display_name,
     bio: userCard.user && userCard.user.bio,
     external_url: userCard.user && userCard.user.external_url,
+    user_balance: userCard.user && userCard.user.user_balance,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
-    following: userCard.user && userCard.user.follows_count,
+    following: userCard.user && userCard.user.follows_count
 });
 
 export const UserCard = localized(inject(mapMobxToProps)(observer(_UserCard)));

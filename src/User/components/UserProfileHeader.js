@@ -25,7 +25,8 @@ const _UserProfileHeader = ({
     username,
     displayName,
     bio,
-    external_url,
+    externalUrl,
+    userBalance,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -74,11 +75,11 @@ const _UserProfileHeader = ({
                             <h4>{displayName}</h4>
                             <p>@{username}</p>
                             <a
-                                href={external_url}
+                                href={externalUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                {external_url}
+                                {externalUrl}
                             </a>
                             {bio && (
                                 <div className="user-card-info-bio">
@@ -137,11 +138,18 @@ const _UserProfileHeader = ({
                         }}
                     />
                 </Grid>
+
+                {currentUser && currentUser.username === username && (
+                    <p className="user-card-info-balance">
+                        Your Balance: {userBalance} PROM
+                    </p>
+                )}
+
                 <Grid item>
                     <Typography
                         variant="body1"
-                        noWrap
                         className="user-profile-info-text justify-content-center"
+                        noWrap
                     >
                         {l("user.profile.member-since")}{" "}
                         {format(createdAt, "MMMM yyyy", { locale: dateFnsLocale })}

@@ -11,7 +11,6 @@ import {
 import { LoginForm } from "../Authorization/components";
 import { SearchPeopleContainer } from "../Search/components";
 import { useAuthorization } from "../store/hooks";
-import "../styles/App.sass";
 
 export const SearchPeoplePage = observer(() => {
     const { currentUser } = useAuthorization();

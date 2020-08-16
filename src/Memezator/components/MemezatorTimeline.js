@@ -2,7 +2,7 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles, Hidden, Grid } from "@material-ui/core";
 
-import { MemezatorRules, MemezatorStatusList } from "./";
+import { MemezatorRules, MemezatorStatusList, MemezatorOldStatusList } from "./";
 import { CreateStatusForm } from "../../Status/components";
 import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
@@ -75,15 +75,15 @@ const _MemezatorTimeline = ({
                         hasMore={hasMore}
                     />
                     {/* {!hasMore && (
-                        <MemezatorStatusList
-                            statuses={oldStatuses}
-                            pending={oldPending}
-                            onNextPageRequest={fetchOldStatuses}
+                        <MemezatorOldStatusList
+                            statuses={statuses}
+                            pending={pending}
+                            onNextPageRequest={fetchMemezatorStatuses}
                             onFollowRequest={followStatusAuthor}
                             onUnfollowRequest={unfollowStatusAuthorWithDialog}
                             currentUser={currentUser}
                             displayMenu={Boolean(currentUser)}
-                            hasMore={hasMoreOldStatuses}
+                            hasMore={hasMore}
                         />
                     )} */}
                     <UnfollowDialog

@@ -157,7 +157,6 @@ export class MemezatorStatusesStore {
                 this.authorizationStore.setFollowsCount(
                     this.authorizationStore.currentUser.follows_count - 1
                 );
-                this.reset();
             });
         }
     };

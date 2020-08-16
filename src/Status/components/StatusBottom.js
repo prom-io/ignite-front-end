@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     },
     cardActionSpacing: {
         "& > :not(:first-child)": {
-            marginLeft: "25px"
+            marginLeft: "18px"
         }
     },
     progress: {

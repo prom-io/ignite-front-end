@@ -48,7 +48,9 @@ export class SearchUsersStore {
             () => this.searchValueHeader,
             debounce(inputValue => {
                 this.shouldResetResultsHeader = true;
-                inputValue ? this.doSearch(inputValue) : this.resetSearchHeader();
+                inputValue && inputValue.trim()
+                    ? this.doSearch(inputValue)
+                    : this.resetSearchHeader();
                 this.searchValueHeaderIsTouched = false;
             }, 300)
         );
@@ -62,7 +64,9 @@ export class SearchUsersStore {
             () => this.searchValuePage,
             debounce(inputValue => {
                 this.shouldResetResultsPage = true;
-                inputValue ? this.fetchSearchPeople() : this.resetSearchPage();
+                inputValue && inputValue.trim()
+                    ? this.fetchSearchPeople()
+                    : this.resetSearchPage();
                 this.searchValuePageIsTouched = false;
             }, 300)
         );

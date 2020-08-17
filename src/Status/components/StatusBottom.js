@@ -111,7 +111,7 @@ const _StatusBottom = ({
                             variant="body1"
                             color={favourited ? "primary" : "textSecondary"}
                         >
-                            {isMeme ? "???" : favouritesCount}
+                            {favouritesCount === null ? "???" : favouritesCount}
                         </Typography>
                     </ClickEventPropagationStopper>
                 </div>

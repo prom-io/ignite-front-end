@@ -259,4 +259,6 @@ export const en = {
     'topics.card.posts': 'posts',
     post: 'Post',
     'file.too-large': 'File must be 3Mb or smaller',
+    'sign-up.use-existing-wallet': 'Creating an Ignite account based on existing BSC or ETH Wallet',
+    'sign-up.use-existing-wallet.explained': 'If you don\'t want to share your Private Key with anybody including Ignite, you can use previously created BSC or ETH Wallet for your new Ignite account. It will prevent any security issues but you will need to publish a record to Binance Smart Chain or Ethereum that contains the hashcode (to the password). We can help you generate a hashcode for your password or you can do this on your own.',
 };

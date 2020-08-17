@@ -47,7 +47,7 @@ export const Verify = observer(() => {
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField
                     id="standard-basic"
-                    label="Ethereum Txn Hash"
+                    label="Ethereum or Binance Chain Txn Hash"
                     onChange={event => setTransactionId(event.target.value)}
                     value={transactionId}
                     fullWidth

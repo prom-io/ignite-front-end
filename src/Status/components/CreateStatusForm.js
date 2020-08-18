@@ -158,7 +158,10 @@ const _CreateStatusForm = ({
                     <div className={classes.customTextareaContainer}>
                         <Avatar src={currentUserAvatar} className="avatar-mini" />
                         <TextField
-                            placeholder={getFormPlaceholder(actionRights, l)}
+                            placeholder={getFormPlaceholder(
+                                referredStatus ? false : actionRights,
+                                l
+                            )}
                             multiline
                             rows={4}
                             rowsMax={Number.MAX_SAFE_INTEGER}
@@ -204,9 +207,17 @@ const _CreateStatusForm = ({
                                 variant="contained"
                                 color="primary"
                                 className={classes.createStatusButton}
-                                onClick={() => createStatus(Boolean(actionRights))}
+                                onClick={() =>
+                                    createStatus(
+                                        referredStatus
+                                            ? false
+                                            : Boolean(actionRights)
+                                    )
+                                }
                                 disabled={
-                                    (actionRights && !actionRights.can_create) ||
+                                    (!Boolean(referredStatus) &&
+                                        actionRights &&
+                                        !actionRights.can_create) ||
                                     pending ||
                                     mediaAttachmentUploadPending ||
                                     !(

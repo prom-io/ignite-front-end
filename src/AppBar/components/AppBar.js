@@ -24,6 +24,7 @@ import {
 import { AppBarLogo } from ".";
 import { TopicsIcon } from "../../icons/TopicsIcon";
 import { SearchInput } from "../../Search/components/SearchInput";
+import { MemezatorIcon } from "../../icons/MemezatorIcon";
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {
@@ -80,6 +81,7 @@ const _AppBar = ({
     routerStore,
     currentUser,
     notificationsCount,
+    isSearchActive,
     theme,
     l
 }) => {
@@ -90,7 +92,8 @@ const _AppBar = ({
         "/chat": l("appbar.chat"),
         "/notifications": l("appbar.notifications"),
         "/topics": l("appbar.topics"),
-        "/edit-profile": l("appbar.edit-profile")
+        "/edit-profile": l("appbar.edit-profile"),
+        "/memezator": l("appbar.memezator")
     };
 
     return (
@@ -139,7 +142,7 @@ const _AppBar = ({
                                 id="notificationsLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
-                            <AppBarLink
+                            {/* <AppBarLink
                                 text={l("appbar.chat")}
                                 targetView={Routes.chat}
                                 active={currentActiveRoute === "chat"}
@@ -155,7 +158,7 @@ const _AppBar = ({
                                 viewParameters={{}}
                                 id="chatLink"
                                 hidden={Boolean(window.AndroidCallback)}
-                            />
+                            /> */}
                             <AppBarLink
                                 text={l("appbar.topics")}
                                 targetView={Routes.topics}
@@ -171,6 +174,23 @@ const _AppBar = ({
                                 routerStore={routerStore}
                                 viewParameters={{}}
                                 id="topicsLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l("appbar.memezator")}
+                                targetView={Routes.memezator}
+                                active={currentActiveRoute === "memezator"}
+                                icon={
+                                    <MemezatorIcon
+                                        color={
+                                            currentActiveRoute === "memezator" &&
+                                            theme.palette.primary.main
+                                        }
+                                    />
+                                }
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="memezatorLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
                         </div>
@@ -198,6 +218,7 @@ const _AppBar = ({
                                 <GenericAuthorizationDialog />
                                 <span className="mobile_header-title">
                                     {currentUser &&
+                                        !isSearchActive &&
                                         navTitleList[window.location.pathname]}
                                 </span>
                                 <div className={classes.searchWrapper}>
@@ -253,7 +274,7 @@ const _AppBar = ({
                     id="notificationsLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
-                <AppBarLink
+                {/* <AppBarLink
                     text={l("appbar.chat")}
                     targetView={Routes.chat}
                     active={currentActiveRoute === "chat"}
@@ -269,7 +290,7 @@ const _AppBar = ({
                     viewParameters={{}}
                     id="chatLink"
                     hidden={Boolean(window.AndroidCallback)}
-                />
+                /> */}
                 <AppBarLink
                     text={l("appbar.topics")}
                     targetView={Routes.topics}
@@ -287,16 +308,40 @@ const _AppBar = ({
                     id="topicsLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
+                <AppBarLink
+                    text={l("appbar.memezator")}
+                    targetView={Routes.memezator}
+                    active={currentActiveRoute === "memezator"}
+                    icon={
+                        <MemezatorIcon
+                            color={
+                                currentActiveRoute === "memezator" &&
+                                theme.palette.primary.main
+                            }
+                        />
+                    }
+                    routerStore={routerStore}
+                    viewParameters={{}}
+                    id="memezatorLink"
+                    hidden={Boolean(window.AndroidCallback)}
+                />
             </nav>
         </>
     );
 };
 
-const mapMobxToProps = ({ store, authorization, login, notifications }) => ({
+const mapMobxToProps = ({
+    store,
+    authorization,
+    login,
+    notifications,
+    searchUsers
+}) => ({
     routerStore: store,
     currentUser: authorization.currentUser,
     setLoginDialogOpen: login.setLoginDialogOpen,
-    notificationsCount: notifications.notificationsCount
+    notificationsCount: notifications.notificationsCount,
+    isSearchActive: searchUsers.isSearchActive
 });
 
 export const AppBar = localized(

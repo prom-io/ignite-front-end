@@ -5,6 +5,9 @@ import { axiosInstance } from "../../api/axios-instance";
 export class SearchUsersStore {
     @observable
     searchValueHeader = undefined;
+    
+    @observable
+    isSearchActive = false;
 
     @observable
     searchValuePage = undefined;
@@ -80,6 +83,11 @@ export class SearchUsersStore {
     @action
     setSearchValueHeader = searchValueHeader => {
         this.searchValueHeader = searchValueHeader;
+    };
+    
+    @action
+    setIsSearchActive = isActive => {
+        this.isSearchActive = isActive;
     };
 
     @action

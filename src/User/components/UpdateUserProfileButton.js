@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
             textTransform: 'capitalize',
             width: '100%',
             height: '40px',
-            border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: '30px',
             background: 'transparent',
             fontWeight: 600,
@@ -40,7 +39,7 @@ const _UpdateUserProfileButton = ({ routerStore, l }) => {
         >
             <Button
                 color="primary"
-                variant="text"
+                variant="outlined"
             >
                 {l('user.edit-profile')}
             </Button>

@@ -11,7 +11,6 @@ import {
 } from '../PrometeusDescription';
 import { LoginForm } from '../Authorization/components';
 import { useAuthorization } from '../store/hooks';
-import '../styles/App.sass';
 
 export const FollowPeoplePage = observer(() => {
     const { currentUser } = useAuthorization();

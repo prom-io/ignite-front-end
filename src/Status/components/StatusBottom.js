@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
+import { FadeLoader } from "react-spinners";
 import {
     CardActions,
     Checkbox,
     Typography,
     makeStyles,
-} from '@material-ui/core';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
-import { OpenStatusBtfsInfoDialogButton } from './OpenStatusBtfsInfoDialogButton';
-import { RepostStatusMenu } from './RepostStatusMenu';
-import { ShareStatusMenu } from './ShareStatusMenu';
-import { CommentsButton } from './CommentsButton';
-import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
-import { FavoriteIcon } from '../../icons/FavoriteIcon';
+    useTheme
+} from "@material-ui/core";
+
+import { OpenStatusBtfsInfoDialogButton } from "./OpenStatusBtfsInfoDialogButton";
+import { RepostStatusMenu } from "./RepostStatusMenu";
+import { ShareStatusMenu } from "./ShareStatusMenu";
+import { CommentsButton } from "./CommentsButton";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import { FavoriteIcon } from "../../icons/FavoriteIcon";
 
 const useStyles = makeStyles({
     styledCheckbox: {
@@ -22,26 +22,26 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        '&.MuiCheckbox-root': {
-            color: 'rgba(0, 0, 0, 0.35)',
+        "&.MuiCheckbox-root": {
+            color: "rgba(0, 0, 0, 0.35)"
         },
-        '&:hover': {
-            background: 'rgba(255, 92, 1, 0.2)',
-            borderRadius: 30,
-        },
+        "&:hover": {
+            background: "rgba(255, 92, 1, 0.2)",
+            borderRadius: 30
+        }
     },
     cardActionSpacing: {
-        '& > :not(:first-child)': {
-            marginLeft: '25px',
-        },
+        "& > :not(:first-child)": {
+            marginLeft: "18px"
+        }
     },
     progress: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         width: 34,
-        height: 34,
-    },
+        height: 34
+    }
 });
 
 const _StatusBottom = ({
@@ -58,6 +58,7 @@ const _StatusBottom = ({
     currentUser,
     setGenericAuthorizationDialogOpen,
     setGenericAuthorizationDialogType,
+    isMeme
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -65,7 +66,7 @@ const _StatusBottom = ({
     const handleFavoriteClick = () => {
         if (!currentUser) {
             setGenericAuthorizationDialogOpen(true);
-            setGenericAuthorizationDialogType('login');
+            setGenericAuthorizationDialogType("login");
             return;
         }
         onFavouriteClick(statusId, !favourited);
@@ -80,35 +81,42 @@ const _StatusBottom = ({
                 <ClickEventPropagationStopper>
                     <CommentsButton status={status} />
                 </ClickEventPropagationStopper>
-                <RepostStatusMenu
-                    status={status}
-                    repostPending={repostPending}
-                    canBeReposted={canBeReposted}
-                    currentUserIsAuthor={currentUserIsAuthor}
-                />
-                <div>
-                    <ClickEventPropagationStopper className="status-list-bottom-box">
-                        {statusLikePending ? (
-                            <div className={classes.progress}>
-                                <FadeLoader css="transform: scale(0.3); top:5px; left:5px" color={theme.palette.primary.main} />
-                            </div>
-                        ) : (
-                            <Checkbox
-                                icon={<FavoriteIcon color={favourited} />}
-                                checkedIcon={<FavoriteIcon type="primary" />}
-                                checked={favourited}
-                                onChange={handleFavoriteClick}
-                                classes={{ root: classes.styledCheckbox }}
-                            />
-                        )}
-                        <Typography
-                            variant="body1"
-                            color={favourited ? 'primary' : 'textSecondary'}
-                        >
-                            {favouritesCount}
-                        </Typography>
-                    </ClickEventPropagationStopper>
-                </div>
+                {!isMeme && (
+                    <RepostStatusMenu
+                        status={status}
+                        repostPending={repostPending}
+                        canBeReposted={canBeReposted}
+                        currentUserIsAuthor={currentUserIsAuthor}
+                    />
+                )}
+                {!(isMeme && favouritesCount !== null) && (
+                    <div>
+                        <ClickEventPropagationStopper className="status-list-bottom-box">
+                            {statusLikePending ? (
+                                <div className={classes.progress}>
+                                    <FadeLoader
+                                        css="transform: scale(0.3); top:5px; left:5px"
+                                        color={theme.palette.primary.main}
+                                    />
+                                </div>
+                            ) : (
+                                <Checkbox
+                                    icon={<FavoriteIcon color={favourited} />}
+                                    checkedIcon={<FavoriteIcon type="primary" />}
+                                    checked={favourited}
+                                    onChange={handleFavoriteClick}
+                                    classes={{ root: classes.styledCheckbox }}
+                                />
+                            )}
+                            <Typography
+                                variant="body1"
+                                color={favourited ? "primary" : "textSecondary"}
+                            >
+                                {favouritesCount === null ? "???" : favouritesCount}
+                            </Typography>
+                        </ClickEventPropagationStopper>
+                    </div>
+                )}
                 <ShareStatusMenu status={status} />
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo} />

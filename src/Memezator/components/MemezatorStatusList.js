@@ -1,41 +1,35 @@
 import React, { Fragment } from "react";
-import { Typography, Hidden, makeStyles } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Hidden, makeStyles } from "@material-ui/core";
 
-import { StatusListItem } from "./StatusListItem";
-import { WhoToFollow } from "../../Follow/components";
+import { MemezatorWinners } from "./";
+import { StatusListItem } from "../../Status/components";
 import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
-        marginTop: "150px",
         display: "table"
     }
 }));
 
-export const StatusList = ({
+export const MemezatorStatusList = ({
     statuses,
     onFavouriteClick,
     statusLikePendingMap,
-    repostsPendingMap,
     currentUser,
     displayMenu,
     onFollowRequest,
     onUnfollowRequest,
     onNextPageRequest,
-    header,
-    hideThreadLinks,
     hasMore
 }) => {
     const classes = useStyles();
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
-            {header && statuses.length !== 0 && (
-                <Typography variant="h6">{header}</Typography>
-            )}
+            
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}
@@ -49,9 +43,9 @@ export const StatusList = ({
             >
                 {statuses.map((status, index) => (
                     <Fragment key={status.id}>
-                        {currentUser && index === 5 && (
+                        {index === 5 && (
                             <Hidden lgUp>
-                                <WhoToFollow isMobile />
+                                <MemezatorWinners isMobile />
                             </Hidden>
                         )}
                         <StatusListItem
@@ -64,10 +58,8 @@ export const StatusList = ({
                                 currentUser && currentUser.id === status.account.id
                             }
                             statusLikePending={statusLikePendingMap[status.id]}
-                            repostPending={repostsPendingMap[status.id]}
                             link
-                            hideThreadLink={hideThreadLinks}
-                            isMeme={status.is_meme}
+                            isMeme
                         />
                     </Fragment>
                 ))}

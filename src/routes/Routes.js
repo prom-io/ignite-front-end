@@ -134,6 +134,11 @@ export const Routes = {
             store.topicStatuses.fetchTopicInfo(params.title);
             store.userCard.setDisplayMode('currentUser');
         },
+        onEnter: (route, params, store1) => { //
+            if (params.title === "memezator") { //
+                store1.router.goTo(Routes.memezator, {}) //
+            } //
+        }, //
         onParamsChange: (route, params) => {
             store.topicStatuses.resetStatuses();
             store.topicStatuses.fetchTopicInfo(params.title);
@@ -270,6 +275,7 @@ export const Routes = {
         beforeEnter: () => {
             store.userCard.setDisplayMode('currentUser');
 
+            store.topicsPopular.fetchTopicsPopular(5); //
             if (store.authorization.currentUser) {
                 store.memezatorActions.fetchAccessToMemezatorPosting();
             }
@@ -280,6 +286,8 @@ export const Routes = {
             store.memezatorActions.reset();
             store.memezatorStatuses.reset();
             store.memezatorWinners.reset();
+            store.whoToFollow.reset(); //
+            store.topicsPopular.reset(); //
         },
     }),
 };

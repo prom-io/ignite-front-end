@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     },
     memezatorRulesNotes: {
         fontSize: "15px",
-        margin: '10px 0',
+        margin: "10px 0",
         [theme.breakpoints.down("sm")]: {
             fontSize: "14px"
         }
@@ -95,26 +95,74 @@ const _MemezatorRules = ({ currentUser, l }) => {
                 )}
             </div>
             <div className={classes.memezatorRulesContent}>
-              <Typography classes={{ root: classes.memezatorRulesNotes }}>
-                {l('memezator.rules-list.note-top')}
-              </Typography>
-                {(l('memezator.rules-list')).map((rule, index) => {
-                    return <Typography key={index} classes={{ root: classes.memezatorRulesParagraph }}>
-                        <b>{index+1}.</b> {rule}
+                <Typography classes={{ root: classes.memezatorRulesNotes }}>
+                    {l("memezator.rules-list.note-top")}
+                </Typography>
+                {l("memezator.rules-list").map((rule, index) => (
+                    <Typography
+                        key={index}
+                        classes={{ root: classes.memezatorRulesParagraph }}
+                    >
+                        <b>{index + 1}.</b> {rule}
                     </Typography>
-                })}
-                {showRules &&
-                  <>
-                    {(l('memezator.rules-list-hidden')).map((rule, index) => {
-                        return <Typography key={index} classes={{ root: classes.memezatorRulesParagraph }}>
-                            <b>{(l('memezator.rules-list')).length+index+1}.</b> {rule}
+                ))}
+                {showRules && (
+                    <>
+                        {l("memezator.rules-list-hidden-1").map((rule, index) => (
+                            <Typography
+                                key={index}
+                                classes={{
+                                    root: classes.memezatorRulesParagraph
+                                }}
+                            >
+                                <b>
+                                    {l("memezator.rules-list").length + index + 1}.
+                                </b>{" "}
+                                {rule}
+                            </Typography>
+                        ))}
+                        <br />
+                        {l("memezator.rules-list-hidden-2").map((rule, index) => (
+                            <Typography
+                                key={index}
+                                classes={{
+                                    root: classes.memezatorRulesParagraph
+                                }}
+                            >
+                                <b>
+                                    {l("memezator.rules-list").length +
+                                        l("memezator.rules-list-hidden-1").length +
+                                        index +
+                                        1}
+                                    .
+                                </b>{" "}
+                                {rule}
+                            </Typography>
+                        ))}
+                        <br />
+                        {l("memezator.rules-list-hidden-3").map((rule, index) => (
+                            <Typography
+                                key={index}
+                                classes={{
+                                    root: classes.memezatorRulesParagraph
+                                }}
+                            >
+                                <b>
+                                    {l("memezator.rules-list").length +
+                                        l("memezator.rules-list-hidden-1").length +
+                                        l("memezator.rules-list-hidden-2").length +
+                                        index +
+                                        1}
+                                    .
+                                </b>{" "}
+                                {rule}
+                            </Typography>
+                        ))}
+                        <Typography classes={{ root: classes.memezatorRulesNotes }}>
+                            <b>*</b> {l("memezator.rules-list.note-bottom")}
                         </Typography>
-                    })}
-                      <Typography classes={{ root: classes.memezatorRulesNotes }}>
-                          <b>*</b> {l('memezator.rules-list.note-bottom')}
-                      </Typography>
-                  </>
-                }
+                    </>
+                )}
             </div>
             <div className={classes.memezatorRulesAction}>
                 <Button

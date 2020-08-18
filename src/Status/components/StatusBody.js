@@ -103,18 +103,20 @@ const _StatusBody = ({
                 plugins={[breaks]}
                 renderers={{
                     text: props => {
-                        const result = reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => (
-                            <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
-                                <Link
-                                    view={Routes.topic}
-                                    params={{ title: encodeURIComponent(match.substr(1)) }}
-                                    store={routerStore}
-                                >
-                                    {match}
-                                </Link>
-                                &nbsp;
-                            </ClickEventPropagationStopper>
-                        ))
+                        const result = reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => {
+                            return match !== "#memezator" && (
+                                <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
+                                    <Link
+                                        view={Routes.topic}
+                                        params={{ title: encodeURIComponent(match.substr(1)) }}
+                                        store={routerStore}
+                                    >
+                                        {match}
+                                    </Link>
+                                    &nbsp;
+                                </ClickEventPropagationStopper>
+                            )
+                        })
                         return result;
                     },
                 }}

@@ -4,6 +4,8 @@ import { Button, Typography, makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
 import { useLocalization } from "../../store/hooks";
+import { routerStore } from "../../store";
+import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     memezatorHeader: {
@@ -62,6 +64,11 @@ export const MemezatorHeader = observer(() => {
                     classes={{ root: classes.memezatorResultsBtn }}
                     variant="contained"
                     color="primary"
+                    onClick={() =>
+                        routerStore.router.goTo(Routes.userProfile, {
+                            username: "memezator_official"
+                        })
+                    }
                 >
                     {l("memezator.results")}
                 </Button>

@@ -10,7 +10,12 @@ import {
     MemezatorWinners
 } from "../Memezator/components";
 import { LoginForm } from "../Authorization/components";
-import { PrometeusDescription } from "../PrometeusDescription";
+import {
+    PrometeusDescription,
+    ExploreOurFeaturesDescription
+} from "../PrometeusDescription";
+import { TopicsPopular } from "../Topics/components";
+import { WhoToFollow } from "../Follow/components";
 
 const _MemezatorPage = ({ currentUser }) => (
     <Grid container>
@@ -48,9 +53,17 @@ const _MemezatorPage = ({ currentUser }) => (
                         </Grid>
                     </Grid>
                     <Grid item md={3} className="right-banners-container">
-                        <Hidden only={["md"]}>
+                        {/* <Hidden only={["md"]}>
                             <MemezatorWinners />
-                        </Hidden>
+                        </Hidden> */}
+                        {currentUser ? (
+                            <Hidden only={["md"]}>
+                                <TopicsPopular isNotFull />
+                                <WhoToFollow />
+                            </Hidden>
+                        ) : (
+                            <ExploreOurFeaturesDescription />
+                        )}
                     </Grid>
                 </Grid>
             </Layout>

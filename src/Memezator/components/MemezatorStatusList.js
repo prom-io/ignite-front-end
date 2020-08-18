@@ -43,11 +43,11 @@ export const MemezatorStatusList = ({
             >
                 {statuses.map((status, index) => (
                     <Fragment key={status.id}>
-                        {index === 5 && (
+                        {/* {index === 5 && (
                             <Hidden lgUp>
                                 <MemezatorWinners isMobile />
                             </Hidden>
-                        )}
+                        )} */}
                         <StatusListItem
                             status={status}
                             onFavouriteStatusChange={onFavouriteClick}

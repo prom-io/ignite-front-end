@@ -196,6 +196,15 @@ export class StatusesListStore {
                     });
                 })
                 .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                     this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
@@ -224,6 +233,15 @@ export class StatusesListStore {
                     });
                 })
                 .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                     this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
@@ -241,12 +259,7 @@ export class StatusesListStore {
                 this.authorizationStore.setFollowsCount(
                     this.authorizationStore.currentUser.follows_count + 1
                 );
-                this.statuses = this.statuses.map(status => {
-                    if (status.account.id === authorId) {
-                        status.account.following = true;
-                    }
-                    return status;
-                });
+                this.followStatusAuthorByAuthorId(authorId);
                 this.statusAuthorSubscriptionListeners.forEach(
                     statusAuthorSubscriptionListener => {
                         statusAuthorSubscriptionListener.subscribeToStatusAuthor(

@@ -102,6 +102,15 @@ export class MemezatorStatusesStore {
                     });
                 })
                 .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                     this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => {
@@ -122,14 +131,19 @@ export class MemezatorStatusesStore {
                 this.authorizationStore.setFollowsCount(
                     this.authorizationStore.currentUser.follows_count + 1
                 );
-                this.statuses = this.statuses.map(status => {
-                    if (status.account.id === authorId) {
-                        status.account.following = true;
-                    }
-                    return status;
-                });
+                this.followStatusAuthorByAuthorId(authorId);
             });
         }
+    };
+
+    @action
+    followStatusAuthorByAuthorId = authorId => {
+        this.statuses = this.statuses.map(status => {
+            if (status.account.id === authorId) {
+                status.account.following = true;
+            }
+            return status;
+        });
     };
 
     @action
@@ -151,13 +165,6 @@ export class MemezatorStatusesStore {
     };
 
     @action
-    unfollowStatusAuthorWithDialog = (statusId, username) => {
-        this.currentStatusId = statusId;
-        this.currentStatusUsername = username;
-        this.unfollowDialogOpen = true;
-    };
-
-    @action
     unfollowStatusAuthorByAuthorId = authorId => {
         this.statuses = this.statuses.map(status => {
             if (status.account.id === authorId) {
@@ -165,6 +172,13 @@ export class MemezatorStatusesStore {
             }
             return status;
         });
+    };
+
+    @action
+    unfollowStatusAuthorWithDialog = (statusId, username) => {
+        this.currentStatusId = statusId;
+        this.currentStatusUsername = username;
+        this.unfollowDialogOpen = true;
     };
 
     @action

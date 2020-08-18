@@ -176,6 +176,15 @@ export class TopicStatusesStore {
                     });
                 })
                 .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                     this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
@@ -204,6 +213,15 @@ export class TopicStatusesStore {
                     });
                 })
                 .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
                     this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));

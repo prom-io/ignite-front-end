@@ -2,7 +2,12 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles, Hidden, Grid } from "@material-ui/core";
 
-import { MemezatorRules, MemezatorStatusList, MemezatorOldStatusList } from "./";
+import {
+    MemezatorRules,
+    MemezatorStatusList,
+    MemezatorOldStatusList,
+    MemezatorDialog
+} from "./";
 import { CreateStatusForm } from "../../Status/components";
 import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
@@ -29,7 +34,7 @@ const _MemezatorTimeline = ({
     statuses,
     statusLikePendingMap,
     favouriteStatus,
-    unfavouriteStatus,
+    setMemezatorDialogOpen,
     followStatusAuthor,
     unfollowStatusAuthorWithDialog,
     fetchMemezatorStatuses,
@@ -63,7 +68,10 @@ const _MemezatorTimeline = ({
                         onFavouriteClick={(statusId, favourited) =>
                             favourited
                                 ? favouriteStatus(statusId)
-                                : unfavouriteStatus(statusId)
+                                : setMemezatorDialogOpen(
+                                      true,
+                                      "memezator.dialog.unlike"
+                                  )
                         }
                         pending={pending}
                         onNextPageRequest={fetchMemezatorStatuses}
@@ -92,18 +100,18 @@ const _MemezatorTimeline = ({
                         unfollowDialogOpen={unfollowDialogOpen}
                         setUnfollowDialogOpen={setUnfollowDialogOpen}
                     />
+                    <MemezatorDialog />
                 </Grid>
             )}
         </Grid>
     );
 };
 
-const mapMobxToProps = ({ authorization, memezatorStatuses }) => ({
+const mapMobxToProps = ({ authorization, memezatorStatuses, memezatorDialog }) => ({
     currentUser: authorization.currentUser,
     statuses: memezatorStatuses.statuses,
     statusLikePendingMap: memezatorStatuses.statusLikePendingMap,
     favouriteStatus: memezatorStatuses.favouriteStatus,
-    unfavouriteStatus: memezatorStatuses.unfavouriteStatus,
     followStatusAuthor: memezatorStatuses.followStatusAuthor,
     unfollowStatusAuthorWithDialog: memezatorStatuses.unfollowStatusAuthorWithDialog,
     pending: memezatorStatuses.pending,
@@ -112,7 +120,8 @@ const mapMobxToProps = ({ authorization, memezatorStatuses }) => ({
     currentStatusUsername: memezatorStatuses.currentStatusUsername,
     unfollowStatusAuthor: memezatorStatuses.unfollowStatusAuthor,
     setUnfollowDialogOpen: memezatorStatuses.setUnfollowDialogOpen,
-    unfollowDialogOpen: memezatorStatuses.unfollowDialogOpen
+    unfollowDialogOpen: memezatorStatuses.unfollowDialogOpen,
+    setMemezatorDialogOpen: memezatorDialog.setMemezatorDialogOpen
 });
 
 export const MemezatorTimeline = inject(mapMobxToProps)(

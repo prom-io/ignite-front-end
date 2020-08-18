@@ -116,10 +116,13 @@ export class CreateStatusStore {
             }
 
             const statusReferenceType = this.statusReferenceType;
+            const statusContent = fromMemezator
+                ? `#memezator ${this.content}`
+                : this.content;
 
             axiosInstance
                 .post("/api/v1/statuses", {
-                    status: this.content,
+                    status: statusContent,
                     media_attachments: this.mediaAttachments,
                     referred_status_id: referredStatusId,
                     status_reference_type: this.statusReferenceType,

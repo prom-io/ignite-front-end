@@ -29,6 +29,7 @@ export const MemezatorStatusList = ({
 
     return (
         <div id="statusList" className="status-list-card paddingBottomRoot">
+            
             <InfiniteScroll
                 next={onNextPageRequest}
                 hasMore={hasMore}

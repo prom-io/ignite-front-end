@@ -20,7 +20,7 @@ export const FollowPeoplePage = observer(() => {
             <AppBar />
             <Grid item xs={12}>
                 <Layout>
-                    <Grid container spacing={2} className="content-container">
+                    <Grid container className="content-container">
                         <Grid item md={3} className="left-banners-container">
                             <PrometeusDescription />
                         </Grid>

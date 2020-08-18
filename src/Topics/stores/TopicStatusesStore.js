@@ -30,9 +30,11 @@ export class TopicStatusesStore {
     unfollowDialogOpen = false;
 
     authorizationStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, memezatorDialogStore) {
         this.authorizationStore = authorizationStore;
+        this.memezatorDialogStore = memezatorDialogStore;
     }
 
     @action
@@ -173,6 +175,9 @@ export class TopicStatusesStore {
                         return status;
                     });
                 })
+                .catch(error => {
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }
     };
@@ -197,6 +202,9 @@ export class TopicStatusesStore {
                         }
                         return status;
                     });
+                })
+                .catch(error => {
+                    this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }

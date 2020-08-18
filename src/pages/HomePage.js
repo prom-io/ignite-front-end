@@ -16,6 +16,7 @@ import {
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
 import { WhoToFollow } from '../Follow/components';
+import { MemezatorDialog } from '../Memezator/components';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
@@ -56,6 +57,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
             </Layout>
         </Grid>
         <StatusBtfsInfoDialog />
+        <MemezatorDialog />
     </Grid>
 );
 

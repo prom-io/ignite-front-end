@@ -12,7 +12,7 @@ import {
 import { LoginForm } from "../Authorization/components";
 import { PrometeusDescription } from "../PrometeusDescription";
 
-const _MemezatorPage = ({ currentUser, homepageTimeline }) => (
+const _MemezatorPage = ({ currentUser }) => (
     <Grid container>
         <Grid item>
             <AppBar currentActiveRoute="memezator" />
@@ -58,9 +58,8 @@ const _MemezatorPage = ({ currentUser, homepageTimeline }) => (
     </Grid>
 );
 
-const mapMobxToProps = ({ authorization, timelineSwitcher }) => ({
-    currentUser: authorization.currentUser,
-    homepageTimeline: timelineSwitcher.currentTimeline
+const mapMobxToProps = ({ authorization }) => ({
+    currentUser: authorization.currentUser
 });
 
 export const MemezatorPage = inject(mapMobxToProps)(observer(_MemezatorPage));

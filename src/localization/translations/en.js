@@ -269,4 +269,9 @@ export const en = {
     'memezator.card.show-post': 'Show post',
     'memezator.results': 'Results',
     'memezator.ignite-memes-totalizator': 'Ignite Memes Totalizator',
+    'memezator.dialog.ok': 'Ok',
+    'memezator.dialog.unlike': 'User can\'t unlike meme',
+    'memezator.dialog.own-meme': 'User can\'t like his own meme',
+    'memezator.dialog.already': 'Current user has already liked 3 memes today.',
+    'dialog.favourite.can-not-unliked': 'Statuses which have not been liked by current user can\'t be unliked',
 };

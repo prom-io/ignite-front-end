@@ -7,6 +7,7 @@ import { MenuIcon } from '../../icons/MenuIcon';
 import { UnfollowDialog } from '../../Follow/components';
 import { StatusListItem } from '../../Status/components/StatusListItem';
 import { TopicsPopularScroll } from './TopicsPopularScroll';
+import { MemezatorDialog } from '../../Memezator/components';
 import Loader from '../../components/Loader';
 
 const useStyles = makeStyles(theme => ({
@@ -143,6 +144,7 @@ const _TopicStatusList = ({
                             statusLikePending={statusLikePendingMap[status.id]}
                             repostPending={repostsPendingMap[status.id]}
                             link
+                            isMeme={status.is_meme}
                         />
                     ))}
                 </InfiniteScroll>
@@ -154,6 +156,7 @@ const _TopicStatusList = ({
                 unfollowDialogOpen={unfollowDialogOpen}
                 setUnfollowDialogOpen={setUnfollowDialogOpen}
             />
+            <MemezatorDialog />
         </>
     );
 };

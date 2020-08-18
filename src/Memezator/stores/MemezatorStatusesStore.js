@@ -18,17 +18,27 @@ export class MemezatorStatusesStore {
     currentStatusUsername = undefined;
 
     @observable
-    unfollowDialogOpen = false;
+    memezatorError = undefined;
 
     @observable
     pending = false;
 
     authorizationStore = undefined;
     createStatusStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(authorizationStore, createStatusStore) {
+    constructor(authorizationStore, createStatusStore, memezatorDialogStore) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
+        this.memezatorDialogStore = memezatorDialogStore;
+
+        reaction(
+            () => this.authorizationStore.currentUser,
+            () => {
+                this.reset();
+                this.fetchMemezatorStatuses();
+            }
+        );
 
         reaction(
             () => this.createStatusStore.createdMemeStatus,
@@ -91,33 +101,12 @@ export class MemezatorStatusesStore {
                         return status;
                     });
                 })
-                .finally(() => (this.statusLikePendingMap[id] = false));
-        }
-    };
-
-    @action
-    unfavouriteStatus = id => {
-        if (this.authorizationStore.accessToken) {
-            this.statusLikePendingMap = {
-                ...this.statusLikePendingMap,
-                [id]: true
-            };
-
-            axiosInstance
-                .post(`/api/v1/statuses/${id}/unfavourite`)
-                .then(({ data }) => {
-                    this.statusLikePendingMap[id] = false;
-                    this.statuses = this.statuses.map(status => {
-                        if (status.id === id) {
-                            const originalMediaAttachments =
-                                status.media_attachments;
-                            status = { ...data };
-                            status.media_attachments = originalMediaAttachments;
-                        }
-                        return status;
-                    });
+                .catch(error => {
+                    this.memezatorDialogStore.openDialogByError(error);
                 })
-                .finally(() => (this.statusLikePendingMap[id] = false));
+                .finally(() => {
+                    this.statusLikePendingMap[id] = false;
+                });
         }
     };
 

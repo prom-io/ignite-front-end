@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     },
     memezatorRulesNotes: {
         fontSize: "15px",
-        marginTop: 10,
+        margin: '10px 0',
         [theme.breakpoints.down("sm")]: {
             fontSize: "14px"
         }
@@ -95,6 +95,9 @@ const _MemezatorRules = ({ currentUser, l }) => {
                 )}
             </div>
             <div className={classes.memezatorRulesContent}>
+              <Typography classes={{ root: classes.memezatorRulesNotes }}>
+                {l('memezator.rules-list.note-top')}
+              </Typography>
                 {(l('memezator.rules-list')).map((rule, index) => {
                     return <Typography key={index} classes={{ root: classes.memezatorRulesParagraph }}>
                         <b>{index+1}.</b> {rule}
@@ -108,7 +111,7 @@ const _MemezatorRules = ({ currentUser, l }) => {
                         </Typography>
                     })}
                       <Typography classes={{ root: classes.memezatorRulesNotes }}>
-                          <b>*</b> {l('memezator.rules-list-note')}
+                          <b>*</b> {l('memezator.rules-list.note-bottom')}
                       </Typography>
                   </>
                 }

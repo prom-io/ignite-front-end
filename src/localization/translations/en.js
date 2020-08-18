@@ -293,5 +293,6 @@ export const en = {
       "Info about the winners is published daily by a bot named memezator_official",
       "You can use RESULTS button above to see all the winners."
     ],
-    'memezator.rules-list-note': "The actual prize sum depends on current PROM exchange rate and daily prize fund",
+    'memezator.rules-list.note-bottom': "The actual prize sum depends on current PROM exchange rate and daily prize fund",
+    'memezator.rules-list.note-top': "Memezator is a contest where you can win up to $500* (in PROM BSC tokens) daily by publishing memes and voting for them. Here are the Rules of our contest.",
 };

@@ -269,4 +269,24 @@ export const en = {
     'memezator.card.show-post': 'Show post',
     'memezator.results': 'Results',
     'memezator.ignite-memes-totalizator': 'Ignite Memes Totalizator',
+    'memezator.rules-list': [
+      "Voting is super easy: you just ‘like‘ any meme here.",
+      "Only registered Ignite users can publish memes and vote for them.",
+      "Only memes which have been published here (and nowhere else) can participate the contest."
+    ],
+    'memezator.rules-list-hidden': [
+      "You can publish a meme here only once per day.",
+      "Day is a term form 00:00.00 GMT and 23:59.59 GMT.",
+      "Only current day’s memes are available for voting.",
+      "You can vote for any meme available, but only once per day.",
+      "Each Ignite user have some Voting Power (1 by default).",
+      "You can raise it to 40 (holding 2-5 PROM on your Ignite account) or to 80 (5+ PROM)",
+      "Voting Power means how many ‘likes’ will add to meme you’ve chosen, when you press ‘like’.",
+      "All the memes ‘likes’ are calculated at the end of each day.",
+      "Nobody can see the number of ‘likes’ till the calculation: it’s hidden",
+      "Only three memes win daily: top3 memes with max ‘likes’.",
+      "Info about the winners is published daily by a bot named memezator_official",
+      "You can use RESULTS button above to see all the winners."
+    ],
+    'memezator.rules-list-note': "The actual prize sum depends on current PROM exchange rate and daily prize fund",
 };

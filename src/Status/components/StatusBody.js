@@ -104,7 +104,7 @@ const _StatusBody = ({
                 renderers={{
                     text: props => {
                         const result = reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => {
-                            return match !== "#memezator" && (
+                            return match == "#memezator" ? "#memezator" : (
                                 <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
                                     <Link
                                         view={Routes.topic}

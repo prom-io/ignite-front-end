@@ -5,8 +5,10 @@ import {
     FormControl,
     Input,
     InputAdornment,
+    IconButton,
     ClickAwayListener
 } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
 
 import { localized } from "../../localization/components";
 import { SearchResultDropdown } from "../../Search/components";
@@ -27,7 +29,10 @@ const useStyles = makeStyles(theme => ({
         }
     },
     searchInput: {
-        marginRight: 16
+        marginRight: "16px"
+    },
+    searchInputCloseIcon: {
+        padding: "3px"
     }
 }));
 
@@ -68,6 +73,16 @@ const _SearchInput = ({
                         startAdornment={
                             <InputAdornment position="start">
                                 <img src="/search.png" />
+                            </InputAdornment>
+                        }
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    classes={{ root: classes.searchInputCloseIcon }}
+                                    onClick={() => setSearchValueHeader("")}
+                                >
+                                    <Close />
+                                </IconButton>
                             </InputAdornment>
                         }
                     />

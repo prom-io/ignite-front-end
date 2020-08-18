@@ -187,6 +187,8 @@ export const en = {
     'sign-up.we-believe': 'We believe that privacy is a personal right so do not ask for your email or any personal information. However, that makes us unable to recover the password if you lose your private key.',
     'sign-up.welcome-to-ignite': 'Welcome to Ignite!',
     'sign-up.your-login-is': 'Your login is',
+    'sign-up.use-existing-wallet': 'Creating an Ignite account based on existing BSC or ETH Wallet',
+    'sign-up.use-existing-wallet.explained': 'If you don\'t want to share your Private Key with anybody including Ignite, you can use previously created BSC or ETH Wallet for your new Ignite account. It will prevent any security issues but you will need to publish a record to Binance Smart Chain or Ethereum that contains the hashcode (to the password). We can help you generate a hashcode for your password or you can do this on your own.',
     'status.comments': 'Comments to this post',
     'status.copy-link': 'Copy link',
     'status.images-attachments-limit': "You can't attach more than {limit} image",

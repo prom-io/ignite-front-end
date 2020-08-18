@@ -192,6 +192,8 @@ export const kr = {
     'sign-up.we-believe': '우리는 개인정보가 개인의 권리라고 생각하므로 당신의 이메일이나 어떠한 개인 정보도 요구하지 않습니다. 그러나, 만약 당신의 개인 키를 잃어버리면 우리는 비밀번호를 복구할 수 없습니다.',
     'sign-up.welcome-to-ignite': '이그나이트에 온 걸 환영합니다!',
     'sign-up.your-login-is': '당신의 로그인은',
+    'sign-up.use-existing-wallet': 'Creating an Ignite account based on existing BSC or ETH Wallet',
+    'sign-up.use-existing-wallet.explained': 'If you don\'t want to share your Private Key with anybody including Ignite, you can use previously created BSC or ETH Wallet for your new Ignite account. It will prevent any security issues but you will need to publish a record to Binance Smart Chain or Ethereum that contains the hashcode (to the password). We can help you generate a hashcode for your password or you can do this on your own.',
     'status.comments': '이 게시물에 대한 코멘트',
     'status.copy-link': '링크 복사하기',
     'status.no-comments': '코멘트 없다',

@@ -163,6 +163,7 @@ export const NotificationsList = observer(() => {
             >
                 {notifications.map(notification => (
                     <Badge
+                        key={notification.id}
                         classes={{
                             root: classes.badgeWrapper,
                             anchorOriginTopRightRectangle: classes.badgeCircle
@@ -171,10 +172,7 @@ export const NotificationsList = observer(() => {
                         color="primary"
                         invisible={notification.read}
                     >
-                        <Notification
-                            notification={notification}
-                            key={notification.id}
-                        />
+                        <Notification notification={notification} />
                     </Badge>
                 ))}
             </InfiniteScroll>

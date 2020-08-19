@@ -11,6 +11,8 @@ import {
 } from '../PrometeusDescription';
 import { Layout } from '../Layout';
 import { LoginForm } from '../Authorization/components';
+import { PrivacyPoliciesIcon } from '../icons/PrivacyPoliciesIcon';
+import { TermsOfServiceIcon } from '../icons/TermsOfServiceIcon';
 
 const useStyles = makeStyles(theme => ({
     termsAndPolicies: {
@@ -81,7 +83,7 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                             )}
                             <div className={classes.termsAndPolicies}>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="../images/page_img/terms_of_service_page.svg" />
+                                    <TermsOfServiceIcon/>
                                     <h1>{l('terms-of-service')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>
@@ -91,7 +93,7 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                                     <p>{l('terms-of-service.paragraph-4')}</p>
                                 </div>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="../images/page_img/privacy_policies_page.svg" />
+                                    <PrivacyPoliciesIcon/>
                                     <h1>{l('privacy-policies')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>

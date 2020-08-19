@@ -87,10 +87,7 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
         >
             <Avatar
                 className={classes.usersListAvatar}
-                src={
-                    user.avatar
-                    || 'http://localhost:3000/avatars/original/missing.png'
-                }
+                src={ user.avatar }
             />
             <div className={classes.usersListContent}>
                 <div className={classes.usersListRow}>

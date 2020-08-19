@@ -62,10 +62,7 @@ const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
             >
                 <Avatar
                     className={classes.whoToFollowBodyItemAvatar}
-                    src={
-                        user.avatar
-                        || 'http://localhost:3000/avatars/original/missing.png'
-                    }
+                    src={ user.avatar }
                 />
             </Link>
             <div className={classes.whoToFollowBodyItemContent}>

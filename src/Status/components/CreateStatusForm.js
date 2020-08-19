@@ -265,10 +265,7 @@ const mapMobxToProps = ({
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     setEmojiPickerVisible: createStatus.setEmojiPickerVisible,
     setEmojiPickerDialogVisible: createStatus.setEmojiPickerDialogVisible,
-    currentUserAvatar: authorization.currentUser
-        ? authorization.currentUser.avatar ||
-          "http://localhost:3000/avatars/original/missing.png"
-        : "http://localhost:3000/avatars/original/missing.png",
+    currentUserAvatar: authorization.currentUser && authorization.currentUser.avatar,
     setContent: createStatus.setContent,
     setTargetSelection: createStatus.setTargetSelection,
     createStatus: createStatus.createStatus,

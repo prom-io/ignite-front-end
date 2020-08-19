@@ -70,10 +70,7 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
         >
             <Avatar
                 className={classes.followPeopleItemAvatar}
-                src={
-                    user.avatar
-                    || 'http://localhost:3000/avatars/original/missing.png'
-                }
+                src={ user.avatar }
             />
             <div className={classes.followPeopleItemContent}>
                 <div className={classes.followPeopleItemRow}>

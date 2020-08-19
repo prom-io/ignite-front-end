@@ -3,9 +3,9 @@ import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { localized } from '../localization/components';
 import anonymous from "../images/descriptions/anonymous.svg";
-import shield from "../images/descriptions/shield.svg";
-import censorship from "../images/descriptions/censorship-free.svg";
-import unblockable from "../images/descriptions/unblockable.svg";
+import { CensorshipIcon } from '../icons/CensorshipIcon';
+import { ShieldIcon } from '../icons/ShieldIcon';
+import { UnblockableIcon } from '../icons/UnblockableIcon';
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
@@ -77,7 +77,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src={unblockable} />
+                        <UnblockableIcon/>
                     </div>
                     <h3>
                         {l('description.unauth-banner.unblockable')}
@@ -91,7 +91,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src={censorship} />
+                        <CensorshipIcon/>
                     </div>
                     <h3>
                         {l('description.unauth-banner.Censorship-free')}
@@ -105,7 +105,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src={shield} />
+                        <ShieldIcon/>
                     </div>
                     <h3>
                         {l('description.unauth-banner.Immutable')}

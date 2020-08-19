@@ -2,10 +2,10 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { localized } from '../localization/components';
-import friends from "../images/descriptions/friends.svg";
-import comment from "../images/descriptions/comment.svg";
 import bannerBinanceSmartChain from "../images/descriptions/banner-binance-smart-chain.png";
 import { SearchIcon } from '../icons/SearchIcon';
+import { FriendsIcon } from '../icons/FriendsIcon';
+import { CommentIcon } from '../icons/CommentIcon';
 
 const useStyles = makeStyles(theme => ({
     marginDescription: {
@@ -89,7 +89,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src={friends} />
+                                <FriendsIcon/>
                             </div>
                             <p>
                                 {l('user.card.hear-what-people-talking-about')}
@@ -98,7 +98,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src={comment} />
+                                <CommentIcon commented={true} />
                             </div>
                             <p>
                                 {l('user.card.join-the-conversation')}

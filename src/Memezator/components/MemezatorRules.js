@@ -86,12 +86,20 @@ const _MemezatorRules = ({ currentUser, l }) => {
                     {l("memezator.rules")}
                 </Typography>
                 {currentUser && (
-                    <Typography
-                        classes={{ root: classes.memezatorRulesPower }}
-                        variant="h6"
-                    >
-                        {l("memezator.voting-power")}: {currentUser.voting_power}
-                    </Typography>
+                    <div>
+                        <Typography
+                            classes={{ root: classes.memezatorRulesPower }}
+                            variant="h6"
+                        >
+                            {l("memezator.voting-power")}: {currentUser.voting_power}
+                        </Typography>
+                        <Typography
+                            classes={{ root: classes.memezatorRulesPower }}
+                            variant="h6"
+                        >
+                            {l("memezator.your-balance")}: {currentUser.user_balance}
+                        </Typography>
+                    </div>
                 )}
             </div>
             <div className={classes.memezatorRulesContent}>

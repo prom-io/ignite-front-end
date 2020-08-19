@@ -26,8 +26,6 @@ const _UserProfileHeader = ({
     displayName,
     bio,
     externalUrl,
-    userBalance,
-    votingPower,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -139,18 +137,6 @@ const _UserProfileHeader = ({
                         }}
                     />
                 </Grid>
-
-                {currentUser && currentUser.username === username && (
-                    <>
-                        <p className="user-card-info-balance">
-                            {l("user.profile.your-balance")}: {userBalance} PROM
-                        </p>
-                        <p className="user-card-info-balance">
-                            {l("user.profile.your-voting-power")}: {votingPower}
-                        </p>
-                    </>
-                )}
-
                 <Grid item>
                     <Typography
                         variant="body1"

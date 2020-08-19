@@ -1,7 +1,11 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { localized } from '../localization/components';
+import anonymous from "../images/descriptions/anonymous.svg";
+import shield from "../images/descriptions/shield.svg";
+import censorship from "../images/descriptions/censorship-free.svg";
+import unblockable from "../images/descriptions/unblockable.svg";
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
@@ -73,7 +77,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src="/descriptions/unblockable.svg" />
+                        <img src={unblockable} />
                     </div>
                     <h3>
                         {l('description.unauth-banner.unblockable')}
@@ -87,7 +91,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src="/descriptions/censorship-free.svg" />
+                        <img src={censorship} />
                     </div>
                     <h3>
                         {l('description.unauth-banner.Censorship-free')}
@@ -101,7 +105,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src="/descriptions/shield.svg" />
+                        <img src={shield} />
                     </div>
                     <h3>
                         {l('description.unauth-banner.Immutable')}
@@ -115,7 +119,7 @@ const _DescriptionUnauthBanner = ({ routerStore, l, locale }) => {
             <Grid className={classes.bannerBox}>
                 <div className={classes.bannerHeader}>
                     <div className={classes.bannerHeaderImg}>
-                        <img src="/descriptions/anonymous.svg" />
+                        <img src={anonymous} />
                     </div>
                     <h3>
                         {l('description.unauth-banner.Anonymous')}

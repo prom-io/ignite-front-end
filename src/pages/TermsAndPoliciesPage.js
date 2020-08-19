@@ -81,7 +81,7 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                             )}
                             <div className={classes.termsAndPolicies}>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="/page_img/terms_of_service_page.svg" />
+                                    <img src="../images/page_img/terms_of_service_page.svg" />
                                     <h1>{l('terms-of-service')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>
@@ -91,7 +91,7 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                                     <p>{l('terms-of-service.paragraph-4')}</p>
                                 </div>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="/page_img/privacy_policies_page.svg" />
+                                    <img src="../images/page_img/privacy_policies_page.svg" />
                                     <h1>{l('privacy-policies')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>

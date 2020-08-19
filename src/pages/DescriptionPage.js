@@ -1,9 +1,8 @@
 import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { inject } from 'mobx-react';
-import { Link } from 'mobx-router';
-import { Routes } from '../routes';
 import { DescriptionLinks } from '../components/DescriptionLinks';
+import { BackButton } from '../components/BackButton';
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,9 +20,7 @@ const _DescriptionPage = ({ routerStore }) => {
     return (
         <div className="description-page">
             <div className="arrow-go-home">
-                <Link view={Routes.home} store={routerStore}>
-                    <img src="./arrow-go-back.png" />
-                </Link>
+                <BackButton toHome title="appbar.home" />
             </div>
             <Grid container spacing={2} className="description-container">
                 <Grid item>

@@ -27,7 +27,7 @@ const _DrawerUserInfo = ({ currentUser, l }) => {
                         color="textSecondary"
                         className="sidebar-menu-user-info-id"
                     >
-                        {lineBreak(currentUser.username)}
+                        @{lineBreak(currentUser.username)}
                     </Typography>
                 </div>
                 <div className="sidebar-menu-user-info-count">

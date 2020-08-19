@@ -1,75 +1,10 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
+import { Button, DialogContent, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
 import { useLocalization, useStore } from '../../store/hooks';
 import { DoneIcon } from '../../icons/DoneIcon';
-
-const useStyles = makeStyles(theme => ({
-  dialogContentRoot: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  contentDescription: {
-    fontFamily: 'Museo Sans Cyrl Regular',
-    fontSize: '15px',
-    lineHeight: '26px',
-    color: '#A2A2A2',
-    '& p': {
-      fontSize: '28px',
-      lineHeight: '34px',
-      color: '#1C1C1C',
-      textAlign: 'center',
-    },
-    '& a': {
-      color: '#FF5C01',
-    },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '14px',
-    },
-  },
-  button: {
-    width: '187px',
-    marginTop: 25,
-    alignSelf: 'center',
-  },
-  marginTop: {
-    marginTop: 120,
-  },
-  doneIcon: {
-    '& svg': {
-      width: '70px',
-      height: '70px',
-      position: 'absolute',
-      bottom: '265px',
-      left: '44%',
-      [theme.breakpoints.down('md')]: {
-        bottom: '268',
-      },
-      [theme.breakpoints.down('sm')]: {
-        left: '47%',
-        top: '195px',
-      },
-      [theme.breakpoints.between(300, 380)]: {
-        left: '40%',
-        top: '235px',
-      },
-    }
-  },
-  loader: {
-    top: '226px',
-    left:' 46%',
-    position: 'absolute',
-    [theme.breakpoints.down('sm')]: {
-      top: '202px',
-      left:' 47%',
-    },
-    [theme.breakpoints.between(300, 380)]: {
-      left: '44%',
-      top: '235px',
-    },
-  }
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 const walletGenerationSuccessTranslations = {
   en: (classes) => (
@@ -94,7 +29,7 @@ const walletGenerationSuccessTranslations = {
 export const CreateWalletPreload = observer(() => {
   const [savedEverything] = useState(false);
   const [agreedToPolicy] = useState(false);
-  const classes = useStyles();
+  const classes = authorizationDialogsStyles();
   const theme = useTheme();
   const { l, locale } = useLocalization();
   const { signUp, genericAuthorizationDialog } = useStore();

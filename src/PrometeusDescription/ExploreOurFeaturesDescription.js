@@ -1,8 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles } from '@material-ui/core';
+
 import { localized } from '../localization/components';
-import bannerBinanceSmartChain from "../images/descriptions/banner-binance-smart-chain.png";
+import bannerBinanceSmartChain from "../images/banner-binance-smart-chain.png";
 import { SearchIcon } from '../icons/SearchIcon';
 import { FriendsIcon } from '../icons/FriendsIcon';
 import { CommentIcon } from '../icons/CommentIcon';

@@ -26,7 +26,7 @@ const _UserCard = ({
 
     return (
         <div className="user-profile-card">
-            {isLogin ? (
+            {isLogin && (
                 <>
                     <Link
                         store={routerStore}
@@ -109,21 +109,6 @@ const _UserCard = ({
                         </Grid>
                     </div>
                 </>
-            ) : (
-                <div className="user-card-notauth-box">
-                    <div className="user-card-notauth">
-                        <img src="/user-card-search.png" alt="" />
-                        <p>{l("user.card.follow-your-interests")}</p>
-                    </div>
-                    <div className="user-card-notauth">
-                        <img src="/user-card-friend.png" alt="" />
-                        <p>{l("user.card.hear-what-people-talking-about")}</p>
-                    </div>
-                    <div className="user-card-notauth">
-                        <img src="/user-card-search.png" alt="" />
-                        <p>{l("user.card.join-the-conversation")}</p>
-                    </div>
-                </div>
             )}
         </div>
     );

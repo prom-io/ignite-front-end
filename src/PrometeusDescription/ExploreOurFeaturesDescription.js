@@ -2,10 +2,10 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { localized } from '../localization/components';
-import search from "../images/descriptions/search.svg";
 import friends from "../images/descriptions/friends.svg";
 import comment from "../images/descriptions/comment.svg";
 import bannerBinanceSmartChain from "../images/descriptions/banner-binance-smart-chain.png";
+import { SearchIcon } from '../icons/SearchIcon';
 
 const useStyles = makeStyles(theme => ({
     marginDescription: {
@@ -80,7 +80,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src={search} />
+                              <SearchIcon />
                             </div>
                             <p>
                                 {l('user.card.follow-your-interests')}

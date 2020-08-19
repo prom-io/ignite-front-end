@@ -20,6 +20,8 @@ import { RepostedStatusContent } from "./RepostedStatusContent";
 import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import gif from "../../images/pic-gif-disabled.png";
+import list from "../../images/pic-list-disabled.png";
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
@@ -185,8 +187,8 @@ const _CreateStatusForm = ({
                                     l
                                 )}
                             />
-                            <img src="/pic-gif-disabled.png" />
-                            <img src="/pic-list-disabled.png" />
+                            <img src={gif} />
+                            <img src={list} />
                             <EmojiInput
                                 setEmojiPickerVisible={setEmojiPickerVisible}
                                 setEmojiPickerDialogVisible={

@@ -1,6 +1,6 @@
-import {action, computed, observable, reaction} from "mobx";
+import { action, computed, observable, reaction } from "mobx";
 import _ from "lodash";
-import {axiosInstance} from "../../api/axios-instance";
+import { axiosInstance } from "../../api/axios-instance";
 
 export class StatusesListStore {
     @observable
@@ -32,6 +32,7 @@ export class StatusesListStore {
 
     authorizationStore = undefined;
     createStatusStore = undefined;
+    memezatorDialogStore = undefined;
 
     statusAuthorSubscriptionListeners = [];
     statusAuthorUnsubscriptionListeners = [];
@@ -44,9 +45,18 @@ export class StatusesListStore {
         return this.createStatusStore.createdStatus;
     }
 
-    constructor(authorizationStore, createStatusStore, baseUrl, reverseOrder, sendLanguage = false, dynamicBaseUrl = false) {
+    constructor(
+        authorizationStore,
+        createStatusStore,
+        memezatorDialogStore,
+        baseUrl,
+        reverseOrder,
+        sendLanguage = false,
+        dynamicBaseUrl = false
+    ) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
+        this.memezatorDialogStore = memezatorDialogStore;
         this.baseUrl = baseUrl;
         this.reverseOrder = reverseOrder;
         this.sendLanguage = sendLanguage;
@@ -67,21 +77,18 @@ export class StatusesListStore {
             status => {
                 if (status) {
                     if (this.onlyAddCommentsToThisStatus) {
-                        if (status.referred_status && status.status_reference_type === "COMMENT") {
-                            this.statuses = [
-                                ...this.statuses,
-                                status,
-                            ];
+                        if (
+                            status.referred_status &&
+                            status.status_reference_type === "COMMENT"
+                        ) {
+                            this.statuses = [...this.statuses, status];
                         }
                     } else {
-                        this.statuses = [
-                            status,
-                            ...this.statuses
-                        ];
+                        this.statuses = [status, ...this.statuses];
                     }
                 }
             }
-        )
+        );
     }
 
     @action
@@ -104,18 +111,19 @@ export class StatusesListStore {
                             language = "en";
                         }
                         url = `${this.baseUrl}?since_id=${minId}&language=${language}`;
-                    } else{
+                    } else {
                         url = `${this.baseUrl}?since_id=${minId}`;
                     }
-                    axiosInstance.get(url)
-                        .then(({data}) => {
+                    axiosInstance
+                        .get(url)
+                        .then(({ data }) => {
                             if (data.length !== 0) {
                                 this.statuses.push(...data);
                             } else {
                                 this.hasMore = false;
                             }
                         })
-                        .finally(() => this.pending = false);
+                        .finally(() => (this.pending = false));
                 } else {
                     let url;
                     const maxId = this.statuses[this.statuses.length - 1].id;
@@ -127,17 +135,18 @@ export class StatusesListStore {
                         }
                         url = `${this.baseUrl}?max_id=${maxId}&language=${language}`;
                     } else {
-                        url = `${this.baseUrl}?max_id=${maxId}`
+                        url = `${this.baseUrl}?max_id=${maxId}`;
                     }
-                    axiosInstance.get(url)
-                        .then(({data}) => {
+                    axiosInstance
+                        .get(url)
+                        .then(({ data }) => {
                             if (data.length !== 0) {
                                 this.statuses.push(...data);
                             } else {
                                 this.hasMore = false;
                             }
                         })
-                        .finally(() => this.pending = false);
+                        .finally(() => (this.pending = false));
                 }
             } else {
                 let url;
@@ -151,15 +160,16 @@ export class StatusesListStore {
                 } else {
                     url = `${this.baseUrl}`;
                 }
-                axiosInstance.get(`${url}`)
-                    .then(({data}) => {
+                axiosInstance
+                    .get(`${url}`)
+                    .then(({ data }) => {
                         if (data.length !== 0) {
                             this.statuses.push(...data);
                         } else {
                             this.hasMore = false;
                         }
                     })
-                    .finally(() => this.pending = false)
+                    .finally(() => (this.pending = false));
             }
         }
     };
@@ -171,19 +181,33 @@ export class StatusesListStore {
                 ...this.statusLikePendingMap,
                 [id]: true
             };
-            axiosInstance.post(`/api/v1/statuses/${id}/favourite`)
-                .then(({data}) => {
+            axiosInstance
+                .post(`/api/v1/statuses/${id}/favourite`)
+                .then(({ data }) => {
                     this.statusLikePendingMap[id] = false;
                     this.statuses = this.statuses.map(status => {
                         if (status.id === id) {
-                            const originalMediaAttachments = status.media_attachments;
-                            status = {...data};
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status = { ...data };
                             status.media_attachments = originalMediaAttachments;
                         }
                         return status;
                     });
                 })
-                .finally(() => this.statusLikePendingMap[id] = false);
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
+                .finally(() => (this.statusLikePendingMap[id] = false));
         }
     };
 
@@ -194,41 +218,57 @@ export class StatusesListStore {
                 ...this.statusLikePendingMap,
                 [id]: true
             };
-            axiosInstance.post(`/api/v1/statuses/${id}/unfavourite`)
-                .then(({data}) => {
+            axiosInstance
+                .post(`/api/v1/statuses/${id}/unfavourite`)
+                .then(({ data }) => {
                     this.statusLikePendingMap[id] = false;
                     this.statuses = this.statuses.map(status => {
                         if (status.id === id) {
-                            const originalMediaAttachments = status.media_attachments;
-                            status = {...data};
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status = { ...data };
                             status.media_attachments = originalMediaAttachments;
                         }
                         return status;
                     });
                 })
-                .finally(() => this.statusLikePendingMap[id] = false);
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statuses = this.statuses.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
+                .finally(() => (this.statusLikePendingMap[id] = false));
         }
     };
 
     @action
     followStatusAuthor = id => {
         if (this.authorizationStore.accessToken) {
-            const authorId = this.statuses.filter(status => status.id === id)
+            const authorId = this.statuses
+                .filter(status => status.id === id)
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
-            axiosInstance.post(`/api/v1/accounts/${authorId}/follow`)
-            .then(() => {
-                this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count + 1);
-                    this.statuses = this.statuses.map(status => {
-                        if (status.account.id === authorId) {
-                            status.account.following = true;
-                        }
-                        return status;
-                    });
-                    this.statusAuthorSubscriptionListeners.forEach(statusAuthorSubscriptionListener => {
-                        statusAuthorSubscriptionListener.subscribeToStatusAuthor(authorId, undefined);
-                    })
-                });
+            axiosInstance.post(`/api/v1/accounts/${authorId}/follow`).then(() => {
+                this.authorizationStore.setFollowsCount(
+                    this.authorizationStore.currentUser.follows_count + 1
+                );
+                this.followStatusAuthorByAuthorId(authorId);
+                this.statusAuthorSubscriptionListeners.forEach(
+                    statusAuthorSubscriptionListener => {
+                        statusAuthorSubscriptionListener.subscribeToStatusAuthor(
+                            authorId,
+                            undefined
+                        );
+                    }
+                );
+            });
         }
     };
 
@@ -245,20 +285,26 @@ export class StatusesListStore {
     @action
     unfollowStatusAuthor = () => {
         if (this.authorizationStore.accessToken) {
-            const authorId = this.statuses.filter(status => status.id === this.currentStatusId)
+            const authorId = this.statuses
+                .filter(status => status.id === this.currentStatusId)
                 .map(status => status.account.id)
                 .reduce(authorId => authorId);
-            axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`)
-                .then(() => {
-                    this.unfollowDialogOpen = false;
-                    this.unfollowStatusAuthorByAuthorId(authorId);
-                    this.statusAuthorUnsubscriptionListeners.forEach(statusAuthorUnsubscriptionListener => {
-                        statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(authorId);
-                    });
-                    this.authorizationStore.setFollowsCount(this.authorizationStore.currentUser.follows_count - 1);
-                    this.reset();
-                    this.fetchStatuses();
-                });
+            axiosInstance.post(`/api/v1/accounts/${authorId}/unfollow`).then(() => {
+                this.unfollowDialogOpen = false;
+                this.unfollowStatusAuthorByAuthorId(authorId);
+                this.statusAuthorUnsubscriptionListeners.forEach(
+                    statusAuthorUnsubscriptionListener => {
+                        statusAuthorUnsubscriptionListener.unsubscribeFromStatusAuthor(
+                            authorId
+                        );
+                    }
+                );
+                this.authorizationStore.setFollowsCount(
+                    this.authorizationStore.currentUser.follows_count - 1
+                );
+                this.reset();
+                this.fetchStatuses();
+            });
         }
     };
 
@@ -276,7 +322,7 @@ export class StatusesListStore {
                 status.account.following = false;
             }
             return status;
-        })
+        });
     };
 
     @action
@@ -309,18 +355,26 @@ export class StatusesListStore {
     };
 
     addStatusAuthorSubscriptionListener = statusAuthorSubscriptionListener => {
-        this.statusAuthorSubscriptionListeners.push(statusAuthorSubscriptionListener);
+        this.statusAuthorSubscriptionListeners.push(
+            statusAuthorSubscriptionListener
+        );
     };
 
     addStatusAuthorUnsubscriptionListener = statusAuthorUnsubscriptionListener => {
-        this.statusAuthorUnsubscriptionListeners.push(statusAuthorUnsubscriptionListener);
+        this.statusAuthorUnsubscriptionListeners.push(
+            statusAuthorUnsubscriptionListener
+        );
     };
 
     removeStatusAuthorSubscriptionListener = listenerId => {
-        this.statusAuthorSubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(listener => listener.id !== listenerId);
+        this.statusAuthorSubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(
+            listener => listener.id !== listenerId
+        );
     };
 
     removeStatusAuthorUnsubscriptionListener = listenerId => {
-        this.statusAuthorUnsubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(listener => listener.id !== listenerId);
-    }
+        this.statusAuthorUnsubscriptionListeners = this.statusAuthorSubscriptionListeners.filter(
+            listener => listener.id !== listenerId
+        );
+    };
 }

@@ -53,7 +53,6 @@ const _DrawerUserInfo = ({ currentUser, l }) => {
                             {l('user.profile.following')}
                         </Typography>
                     </div>
-
                 </div>
             </div>
         </>

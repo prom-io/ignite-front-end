@@ -86,6 +86,7 @@ const _StatusPageContainer = ({
                     onFavouriteStatusChange={handleFavouriteStatusChange}
                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     displayMenu={Boolean(currentUser)}
+                    isMeme={status.is_meme}
                 />
                 <UnfollowDialog
                     username={currentStatusUsername}

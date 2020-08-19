@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const _NotFound = ({ routerStore }) => {
+export const _NotFoundPage = ({ routerStore }) => {
     const classes = useStyles();
     return (
         <>
@@ -59,4 +59,4 @@ const mapMobxToProps = ({ store }) => ({
     routerStore: store,
 });
 
-export const NotFound = localized(inject(mapMobxToProps)(_NotFound));
+export const NotFoundPage = localized(inject(mapMobxToProps)(_NotFoundPage));

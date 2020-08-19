@@ -30,9 +30,11 @@ export class TopicStatusesStore {
     unfollowDialogOpen = false;
 
     authorizationStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, memezatorDialogStore) {
         this.authorizationStore = authorizationStore;
+        this.memezatorDialogStore = memezatorDialogStore;
     }
 
     @action
@@ -173,6 +175,18 @@ export class TopicStatusesStore {
                         return status;
                     });
                 })
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }
     };
@@ -197,6 +211,18 @@ export class TopicStatusesStore {
                         }
                         return status;
                     });
+                })
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }

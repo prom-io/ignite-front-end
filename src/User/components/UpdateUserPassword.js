@@ -28,12 +28,10 @@ const useStyles = makeStyles(theme => ({
         boxSizing: "border-box",
         padding: "11px 23px",
         height: "40px",
-        border: `1px solid ${theme.palette.primary.main}`,
         borderRadius: "30px",
         fontWeight: 600,
         fontSize: "15px",
-        lineHeight: "18px",
-        color: theme.palette.primary.main
+        lineHeight: "18px"
     }
 }));
 
@@ -50,6 +48,8 @@ export const UpdateUserPassword = observer(() => {
         <div className={classes.updateUserPassword}>
             <Typography variant="h5">{l("authorization.login.password")}</Typography>
             <Button
+                color="primary"
+                variant="outlined"
                 className={classes.updateUserPasswordOpen}
                 onClick={() => {
                     setGenericAuthorizationDialogOpen(true);

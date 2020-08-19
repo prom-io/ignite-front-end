@@ -15,13 +15,14 @@ import {
     TermsAndPoliciesPage,
     TopicsPage,
     TopicPage,
+    MemezatorPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
     SearchPeoplePage,
 } from '../pages';
 import { store } from '../store';
-import { NotFound } from '../pages/NotFound';
+import { NotFoundPage } from '../pages';
 
 export const Routes = {
     home: new Route({
@@ -47,7 +48,7 @@ export const Routes = {
     }),
     notFound: new Route({
         path: '/404',
-        component: <NotFound />,
+        component: <NotFoundPage />,
     }),
     en: new Route({
         path: '/en',
@@ -70,15 +71,15 @@ export const Routes = {
             store.notifications.resetNotifications();
         },
     }),
-    chat: new Route({
-        path: '/chat',
-        component: <ChatPage />,
-        beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
-        },
-        onExit: () => {
-        },
-    }),
+    // chat: new Route({
+    //     path: '/chat',
+    //     component: <ChatPage />,
+    //     beforeEnter: () => {
+    //         store.userCard.setDisplayMode('currentUser');
+    //     },
+    //     onExit: () => {
+    //     },
+    // }),
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,
@@ -133,6 +134,11 @@ export const Routes = {
             store.topicStatuses.fetchTopicInfo(params.title);
             store.userCard.setDisplayMode('currentUser');
         },
+        onEnter: (route, params, store1) => { //
+            if (params.title === "memezator") { //
+                store1.router.goTo(Routes.memezator, {}) //
+            } //
+        }, //
         onParamsChange: (route, params) => {
             store.topicStatuses.resetStatuses();
             store.topicStatuses.fetchTopicInfo(params.title);
@@ -261,6 +267,27 @@ export const Routes = {
         onExit: () => {
             store.statusPage.reset();
             store.statusComments.reset();
+        },
+    }),
+    memezator: new Route({
+        path: '/memezator',
+        component: <MemezatorPage />,
+        beforeEnter: () => {
+            store.userCard.setDisplayMode('currentUser');
+
+            store.topicsPopular.fetchTopicsPopular(5); //
+            if (store.authorization.currentUser) {
+                store.memezatorActions.fetchAccessToMemezatorPosting();
+            }
+            store.memezatorStatuses.fetchMemezatorStatuses();
+            store.memezatorWinners.fetchRecentWinners();
+        },
+        onExit: () => {
+            store.memezatorActions.reset();
+            store.memezatorStatuses.reset();
+            store.memezatorWinners.reset();
+            store.whoToFollow.reset(); //
+            store.topicsPopular.reset(); //
         },
     }),
 };

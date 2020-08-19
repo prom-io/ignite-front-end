@@ -11,7 +11,6 @@ import {
 import { LoginForm } from "../Authorization/components";
 import { SearchPeopleContainer } from "../Search/components";
 import { useAuthorization } from "../store/hooks";
-import "../styles/App.sass";
 
 export const SearchPeoplePage = observer(() => {
     const { currentUser } = useAuthorization();
@@ -21,7 +20,7 @@ export const SearchPeoplePage = observer(() => {
             <AppBar />
             <Grid item xs={12}>
                 <Layout>
-                    <Grid container spacing={2} className="content-container">
+                    <Grid container className="content-container">
                         <Grid item md={3} className="left-banners-container">
                             <PrometeusDescription />
                         </Grid>

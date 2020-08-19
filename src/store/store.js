@@ -35,34 +35,41 @@ import { LocaleStore } from '../localization/stores';
 import { ExplorerStore } from '../Explorer/stores';
 import { NotificationsStore } from '../Notification/stores';
 import { TopicStatusesStore, TopicsPopularStore } from '../Topics/stores';
+import { SearchUsersStore } from '../Search/stores';
+import { 
+    MemezatorActionsStore, 
+    MemezatorStatusesStore, 
+    MemezatorWinnersStore, 
+    MemezatorDialogStore 
+} from '../Memezator/stores';
 import { WebsocketStore } from '../websocket/stores';
-import { SearchUsersStore } from '../Search/store';
 
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
 const createStatus = new CreateStatusStore(uploadMediaAttachments);
 const authorization = new AuthorizationStore(createStatus);
-const globalTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/global', false, true);
+const memezatorDialog = new MemezatorDialogStore();
+const globalTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, '/api/v1/timelines/global', false, true);
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();
 const userFollowing = new UserFollowingStore();
-const userProfileTimeline = new StatusesListStore(authorization, createStatus, undefined, false, false, true);
+const userProfileTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, undefined, false, false, true);
 const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing, createStatus);
 const followAction = new FollowActionStore(authorization);
 const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);
-const homeTimeline = new StatusesListStore(authorization, createStatus, '/api/v1/timelines/home');
+const homeTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, '/api/v1/timelines/home');
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
 const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
-const statusPage = new StatusPageStore(authorization, createStatus);
+const statusPage = new StatusPageStore(authorization, createStatus, memezatorDialog);
 const localization = new LocaleStore(authorization);
 const explorer = new ExplorerStore();
 const statusBtfsInfo = new StatusBtfsInfoStore();
-const statusComments = new StatusesListStore(authorization, createStatus, undefined, true);
+const statusComments = new StatusesListStore(authorization, createStatus, memezatorDialog, undefined, true);
 const userAvatarUpload = new UploadUserAvatarStore();
 const userProfileUpdate = new UpdateUserProfileStore(authorization, userAvatarUpload, userProfile, localization);
 const notifications = new NotificationsStore(authorization);
-const topicStatuses = new TopicStatusesStore(authorization);
+const topicStatuses = new TopicStatusesStore(authorization, memezatorDialog);
 const topicsPopular = new TopicsPopularStore(authorization);
 const websocket = new WebsocketStore(authorization, notifications);
 const genericAuthorizationDialog = new GenericAuthorizationDialogStore();
@@ -73,6 +80,9 @@ const hashGeneration = new GenerateHashStore();
 const hashVerification = new VerifyHashStore(genericAuthorizationDialog);
 const passwordChange = new PasswordChangeStore(new Web3(), genericAuthorizationDialog);
 const searchUsers = new SearchUsersStore();
+const memezatorActions = new MemezatorActionsStore(authorization, createStatus);
+const memezatorStatuses = new MemezatorStatusesStore(authorization, createStatus, memezatorDialog);
+const memezatorWinners = new MemezatorWinnersStore();
 
 export const store = {
     authorization,
@@ -110,4 +120,8 @@ export const store = {
     hashVerification,
     passwordChange,
     searchUsers,
+    memezatorActions,
+    memezatorStatuses,
+    memezatorWinners,
+    memezatorDialog
 };

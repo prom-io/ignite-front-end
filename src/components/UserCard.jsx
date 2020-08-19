@@ -17,6 +17,7 @@ const _UserCard = ({
     displayName,
     bio,
     external_url,
+    user_balance,
     posts,
     followers,
     following,
@@ -50,13 +51,15 @@ const _UserCard = ({
                         <div className="user-card-info">
                             <h4>{displayName}</h4>
                             <p>@{username}</p>
-                            <a
-                                href={external_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {external_url}
-                            </a>
+                            {external_url && (
+                                <a
+                                    href={external_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {external_url}
+                                </a>
+                            )}
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -106,6 +109,9 @@ const _UserCard = ({
                                     </Typography>
                                 </Link>
                             </Grid>
+                            <div className="user-profile-header-content-bottom-balance">
+                                {l("user.profile.your-balance")}: {user_balance} PROM
+                            </div>
                         </Grid>
                     </div>
                 </>
@@ -123,6 +129,7 @@ const mapMobxToProps = ({ authorization, userCard, store }) => ({
     displayName: userCard.user && userCard.user.display_name,
     bio: userCard.user && userCard.user.bio,
     external_url: userCard.user && userCard.user.external_url,
+    user_balance: userCard.user && userCard.user.user_balance,
     followers: userCard.user && userCard.user.followers_count,
     posts: userCard.user && userCard.user.statuses_count,
     following: userCard.user && userCard.user.follows_count

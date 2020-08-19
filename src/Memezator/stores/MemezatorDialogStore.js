@@ -19,7 +19,7 @@ export class MemezatorDialogStore {
     openDialogByError = error => {
         if (error.response && error.response.status === 403) {
             this.memezatorDialogOpen = true;
-            if (error.response.data.message.includes("User cannot unlike meme")) {
+            if (error.response.data.message.includes("Your vote is already in, please choose more wisely next time.")) {
                 this.memezatorError = "memezator.dialog.unlike";
             } else if (error.response.data.message.includes("We appreciate that you like your meme")) {
                 this.memezatorError = "memezator.dialog.own-meme";

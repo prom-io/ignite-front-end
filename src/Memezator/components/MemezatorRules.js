@@ -98,7 +98,10 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                             classes={{ root: classes.memezatorRulesPower }}
                             variant="h6"
                         >
-                            {l("memezator.your-balance")}: {currentUser.user_balance}
+                            {l("memezator.tokens")}:{" "}
+                            {actionRights
+                                ? Number(actionRights.eth_prom_tokens).toFixed(2)
+                                : "0.00"}
                         </Typography>
                     </div>
                 )}

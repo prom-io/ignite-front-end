@@ -26,6 +26,7 @@ const _UserProfileHeader = ({
     displayName,
     bio,
     externalUrl,
+    userBalance,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -73,13 +74,15 @@ const _UserProfileHeader = ({
                         <div className="user-card-info">
                             <h4>{displayName}</h4>
                             <p>@{username}</p>
-                            <a
-                                href={externalUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {externalUrl}
-                            </a>
+                            {externalUrl && (
+                                <a
+                                    href={externalUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {externalUrl}
+                                </a>
+                            )}
                             {bio && (
                                 <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
@@ -137,6 +140,11 @@ const _UserProfileHeader = ({
                         }}
                     />
                 </Grid>
+                {currentUser && currentUser.username === username && (
+                    <div className="user-profile-header-content-bottom-balance">
+                        {l("user.profile.your-balance")}: {userBalance} PROM
+                    </div>
+                )}
                 <Grid item>
                     <Typography
                         variant="body1"

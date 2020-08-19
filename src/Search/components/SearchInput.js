@@ -12,6 +12,7 @@ import { Close } from "@material-ui/icons";
 
 import { localized } from "../../localization/components";
 import { SearchResultDropdown } from "../../Search/components";
+import search from "../../images/descriptions/search.svg"
 
 const useStyles = makeStyles(theme => ({
     searchIconButton: {
@@ -57,7 +58,7 @@ const _SearchInput = ({
             onClick={() => setIsSearchActive(true)}
             className={classes.searchIconButton}
         >
-            <img src="/search.png" />
+            <img src={search} />
         </div>
     );
 
@@ -72,7 +73,7 @@ const _SearchInput = ({
                         onChange={e => setSearchValueHeader(e.target.value)}
                         startAdornment={
                             <InputAdornment position="start">
-                                <img src="/search.png" />
+                                <img src={search} />
                             </InputAdornment>
                         }
                         endAdornment={

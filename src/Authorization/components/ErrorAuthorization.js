@@ -1,71 +1,10 @@
 import React from 'react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, DialogContent } from '@material-ui/core';
 import { useLocalization, useStore } from '../../store/hooks';
-
-const useStyles = makeStyles(theme => ({
-    contentDescription: {
-        fontFamily: 'Museo Sans Cyrl Bold',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: '#1C1C1C',
-        '& a': {
-            color: theme.palette.primary.main,
-            textDecoration: 'underline',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    contentBlock: {
-        display: 'flex',
-        flexDirection: 'column',
-        borderTop: '1px solid #F1EBE8',
-        marginTop: '16px',
-        paddingTop: '24px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        '& p': {
-            margin: 0,
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            lineHeight: '18px',
-        },
-        '& span': {
-            marginTop: 8,
-            fontSize: '15px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            '& span': {
-                fontSize: '14px',
-                wordBreak: 'break-all',
-            },
-            marginTop: '12px',
-            paddingTop: '20px',
-        },
-    },
-    notes: {
-        marginTop: '32px',
-        marginBottom: 16,
-        color: '#A2A2A2',
-        fontSize: '15px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        lineHeight: '26px',
-        '& a': {
-            color: theme.palette.primary.main,
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    button: {
-        width: '187px',
-        marginTop: 20,
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 export const ErrorAuthorization = () => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const { l } = useLocalization();
     const { generatedWallet } = useStore().walletGeneration;
     const {

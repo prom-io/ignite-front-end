@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 export const _Checkbox = ({ children, ...props }) => {
     const classes = useStyles();
     return (
-        <div className={`${classes.checkboxGroup} ${props.className}`}>
+        <div className={`${classes.checkboxGroup} ${props.className}`} style={props.style}>
             <Checkbox
                 color="primary"
                 classes={{ root: classes.checkbox }}

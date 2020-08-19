@@ -3,40 +3,10 @@ import { observer } from 'mobx-react';
 import { Button, DialogContent, makeStyles, TextField, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
 import { useLocalization, useStore } from '../../store/hooks';
-
-const useStyles = makeStyles(theme => ({
-    contentBlock: {
-        margin: '16px 0 30px 0',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-            marginTop: '12px 0 24px 0',
-        },
-    },
-    notes: {
-        marginTop: '24px',
-        color: '#A2A2A2',
-        fontSize: '15px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        lineHeight: '26px',
-        '& a': {
-            color: '#FF5C01',
-            cursor: 'pointer',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    button: {
-        width: '187px',
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 export const Verify = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const theme = useTheme();
     const { hashVerification } = useStore();
     const { l } = useLocalization();
@@ -52,7 +22,7 @@ export const Verify = observer(() => {
                     value={transactionId}
                     fullWidth
                 />
-                <div className={classes.contentBlock}>
+                <div className={classes.content} style={{margin: '24px 0'}}>
                     {l('sign-up.hash.verification.publish-record')}
                 </div>
                 <Button

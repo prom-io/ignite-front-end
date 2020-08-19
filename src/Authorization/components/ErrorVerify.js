@@ -1,55 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, DialogContent } from '@material-ui/core';
 import { useStore, useLocalization } from '../../store/hooks';
-
-const useStyles = makeStyles(theme => ({
-    contentDescription: {
-        paddingBottom: '16px',
-        fontFamily: 'Museo Sans Cyrl Bold',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: '#1C1C1C',
-        borderBottom: '1px solid #F1EBE8',
-        '& a': {
-            textDecoration: 'underline',
-
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    contentBlock: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '16px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        '& p': {
-            margin: 0,
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            lineHeight: '18px',
-        },
-        '& span': {
-            marginTop: 8,
-            fontSize: '15px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            '& span': {
-                fontSize: '14px',
-                wordBreak: 'break-all',
-            },
-            marginTop: '12px',
-        },
-    },
-    button: {
-        width: '187px',
-    },
-    content: {
-        margin: '24px 0 40px 0',
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 const errorTranslations = {
     en: (classes) => (
@@ -78,7 +31,7 @@ const errorTranslations = {
 };
 
 export const ErrorVerify = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const { hashVerification, genericAuthorizationDialog } = useStore();
     const { l, locale } = useLocalization();
     const { transactionId, error } = hashVerification;

@@ -6,13 +6,13 @@ import {
     Input,
     InputAdornment,
     IconButton,
-    ClickAwayListener
-} from "@material-ui/core";
+    ClickAwayListener, useTheme
+} from '@material-ui/core';
 import { Close } from "@material-ui/icons";
 
 import { localized } from "../../localization/components";
 import { SearchResultDropdown } from "../../Search/components";
-import search from "../../images/descriptions/search.svg"
+import { SearchIcon } from '../../icons/SearchIcon';
 
 const useStyles = makeStyles(theme => ({
     searchIconButton: {
@@ -48,6 +48,7 @@ const _SearchInput = ({
 }) => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const classes = useStyles();
+    const theme = useTheme();
 
     const handleClickAway = () => {
         setIsSearchActive(false);
@@ -58,7 +59,7 @@ const _SearchInput = ({
             onClick={() => setIsSearchActive(true)}
             className={classes.searchIconButton}
         >
-            <img src={search} />
+            <SearchIcon color={theme.palette.text.secondary}/>
         </div>
     );
 
@@ -73,7 +74,7 @@ const _SearchInput = ({
                         onChange={e => setSearchValueHeader(e.target.value)}
                         startAdornment={
                             <InputAdornment position="start">
-                                <img src={search} />
+                                <SearchIcon color={theme.palette.text.secondary}/>
                             </InputAdornment>
                         }
                         endAdornment={

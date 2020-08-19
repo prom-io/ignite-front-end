@@ -1,10 +1,16 @@
-import React from 'react';
+import React from "react";
 
 export const BtfsIcon = ({ color }) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <path
             d="M3 4.17544L9.7207 2.09202C9.91404 2.03209 10.121 2.03223 10.3143 2.09244L17 4.17544M3 4.17544L10.0175 18M3 4.17544V15.1192C3 15.5591 3.28749 15.9473 3.70827 16.0757L10.0175 18M3 4.17544L10.0175 6.05286M17 4.17544L10.0175 18M17 4.17544V15.1203C17 15.5597 16.7132 15.9476 16.2931 16.0763L10.0175 18M17 4.17544L10.0175 6.05286M10.0175 18V6.05286"
-            stroke={color || '#1C1C1C'}
+            stroke={color || "#1C1C1C"}
             strokeWidth="1.8"
         />
     </svg>

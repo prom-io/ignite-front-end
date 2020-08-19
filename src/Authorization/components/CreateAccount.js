@@ -16,7 +16,7 @@ export const CreateAccount = () => {
             <span className={classes.contentDescription}>
                 {l('sign-up.use-existing-wallet')}
             </span>
-            <div className={classes.content}>
+            <div className={classes.content} style={{margin: '16px 0 24px 0'}}>
                 {l('sign-up.use-existing-wallet.explained')}
             </div>
             <Button

@@ -153,37 +153,4 @@ export const authorizationDialogsStyles = makeStyles(theme => ({
   marginTop: {
     marginTop: 120,
   },
-  doneIcon: {
-    '& svg': {
-      width: '70px',
-      height: '70px',
-      position: 'absolute',
-      bottom: '265px',
-      left: '44%',
-      [theme.breakpoints.down('md')]: {
-        bottom: '268',
-      },
-      [theme.breakpoints.down('sm')]: {
-        left: '47%',
-        top: '195px',
-      },
-      [theme.breakpoints.between(300, 380)]: {
-        left: '40%',
-        top: '235px',
-      },
-    }
-  },
-  loader: {
-    top: '226px',
-    left:' 46%',
-    position: 'absolute',
-    [theme.breakpoints.down('sm')]: {
-      top: '202px',
-      left:' 47%',
-    },
-    [theme.breakpoints.between(300, 380)]: {
-      left: '44%',
-      top: '235px',
-    },
-  }
 }));

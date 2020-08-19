@@ -49,6 +49,7 @@ export const GenerateHash = observer(() => {
                 className={classes.checkbox}
                 checked={hashCodeSaved}
                 onChange={() => setHashCodeSaved(!hashCodeSaved)}
+                style={{margin:'20px 0 30px 0'}}
             >
                 {l('sign-up.hash-code.saved')}
             </_Checkbox>

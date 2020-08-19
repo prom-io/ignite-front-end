@@ -22,7 +22,7 @@ export const Verify = observer(() => {
                     value={transactionId}
                     fullWidth
                 />
-                <div className={classes.content}>
+                <div className={classes.content} style={{margin: '24px 0'}}>
                     {l('sign-up.hash.verification.publish-record')}
                 </div>
                 <Button

@@ -89,34 +89,30 @@ const _StatusBottom = ({
                         currentUserIsAuthor={currentUserIsAuthor}
                     />
                 )}
-                {!(isMeme && favouritesCount !== null) && (
-                    <div>
-                        <ClickEventPropagationStopper className="status-list-bottom-box">
-                            {statusLikePending ? (
-                                <div className={classes.progress}>
-                                    <FadeLoader
-                                        css="transform: scale(0.3); top:5px; left:5px"
-                                        color={theme.palette.primary.main}
-                                    />
-                                </div>
-                            ) : (
-                                <Checkbox
-                                    icon={<FavoriteIcon color={favourited} />}
-                                    checkedIcon={<FavoriteIcon type="primary" />}
-                                    checked={favourited}
-                                    onChange={handleFavoriteClick}
-                                    classes={{ root: classes.styledCheckbox }}
-                                />
-                            )}
-                            <Typography
-                                variant="body1"
-                                color={favourited ? "primary" : "textSecondary"}
-                            >
-                                {favouritesCount === null ? "???" : favouritesCount}
-                            </Typography>
-                        </ClickEventPropagationStopper>
-                    </div>
-                )}
+                <ClickEventPropagationStopper className="status-list-bottom-box">
+                    {statusLikePending ? (
+                        <div className={classes.progress}>
+                            <FadeLoader
+                                css="transform: scale(0.3); top:5px; left:5px"
+                                color={theme.palette.primary.main}
+                            />
+                        </div>
+                    ) : (
+                        <Checkbox
+                            icon={<FavoriteIcon color={favourited} />}
+                            checkedIcon={<FavoriteIcon type="primary" />}
+                            checked={favourited}
+                            onChange={handleFavoriteClick}
+                            classes={{ root: classes.styledCheckbox }}
+                        />
+                    )}
+                    <Typography
+                        variant="body1"
+                        color={favourited ? "primary" : "textSecondary"}
+                    >
+                        {favouritesCount === null ? "???" : favouritesCount}
+                    </Typography>
+                </ClickEventPropagationStopper>
                 <ShareStatusMenu status={status} />
                 <ClickEventPropagationStopper className="status-list-bottom-box">
                     <OpenStatusBtfsInfoDialogButton btfsInfo={btfsInfo} />

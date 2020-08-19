@@ -53,8 +53,13 @@ const _DrawerUserInfo = ({ currentUser, l }) => {
                             {l('user.profile.following')}
                         </Typography>
                     </div>
-
                 </div>
+                <p className="user-card-info-balance">
+                    {l("user.profile.your-balance")}: {currentUser.user_balance} PROM
+                </p>
+                <p className="user-card-info-balance">
+                    {l("user.profile.your-voting-power")}: {currentUser.voting_power}
+                </p>
             </div>
         </>
     );

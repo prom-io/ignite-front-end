@@ -32,8 +32,8 @@ p {
     display: flex;
     align-items: center;
     padding: 0;
-    background-color: #FFFFFf !important;
-    border-bottom: 1px solid #F1EBE8 !important;
+    background-color: $border !important;
+    border-bottom: 1px solid $border_light !important;
 }
 
 .user-app-bar-menu-button {
@@ -67,8 +67,8 @@ p {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid #F1EBE8;
-    background-color: #FEFDFD;
+    border: 1px solid $border_light;
+    background-color: $border_light;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +80,7 @@ p {
 
 .mobile_header-title {
     margin-left: 70px;
-    color: #1C1C1C;
+    color: $text_main;
     font-size: 18px;
     font-family: Museo Sans Cyrl Bold;
 }
@@ -110,7 +110,7 @@ p {
     font-weight: 600;
     font-size: 15px;
     line-height: 18px;
-    color: #FF5C01;
+    color: $primary_main;
     margin-bottom: 5px !important;
 }
 
@@ -198,10 +198,10 @@ p {
         font-style: normal;
         font-weight: 300;
         font-size: 12px;
-        color: #1C1C1C;
+        color: $text_main;
 
         span {
-            color: #FF5C01;
+            color: $primary_main;
         }
     }
 }
@@ -214,8 +214,8 @@ p {
 }
 
 .user-profile-card {
-    background: #FFFBF8;
-    border: 1px solid #F1EBE8;
+    background: $bg_light;
+    border: 1px solid $border_light;
     box-sizing: border-box;
     width: 256px;
     min-height: 290px;
@@ -258,7 +258,7 @@ p {
         font-size: 20px;
         line-height: 24px;
         text-align: center;
-        color: #1C1C1C;
+        color: $text_main;
         margin: 20px 0 5px 0;
         word-break: break-word;
     }
@@ -271,7 +271,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
         margin: 0 0 10px 0;
         word-break: break-word;
     }
@@ -291,7 +291,7 @@ p {
     p {
         font-size: 15px;
         line-height: 20px;
-        color: #1C1C1C;
+        color: $text_main;
         margin: 0;
     }
 }
@@ -308,7 +308,7 @@ p {
 
         &:hover {
             p {
-                color: #1C1C1C;
+                color: $text_main;
             }
         }
     }
@@ -321,7 +321,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 
     p {
@@ -359,7 +359,7 @@ p {
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
-        color: #1C1C1C;
+        color: $text_main;
         text-align: center;
     }
 }
@@ -388,11 +388,11 @@ p {
             font-weight: 300;
             font-size: 15px;
             line-height: 23px;
-            color: #A2A2A2;
+            color: $text_secondary;
         }
 
         &:first-child {
-            border-top: 1px solid #F1EBE8;
+            border-top: 1px solid $border_light;
 
             ul {
                 width: auto;
@@ -445,22 +445,22 @@ p {
 }
 
 .statusCardBox {
-    border-top: 1px solid #F1EBE8;
-    border-right: 1px solid #F1EBE8;
-    border-left: 1px solid #F1EBE8;
+    border-top: 1px solid $border_light;
+    border-right: 1px solid $border_light;
+    border-left: 1px solid $border_light;
     border-radius: 0px !important;
     overflow: visible !important;
 
     &:hover {
-        background: #FFFBF8;
+        background: $bg_light;
 
         .repostedStatusContainer {
-            background: #FFFBF8;
+            background: $bg_light;
         }
     }
 
     &:last-child {
-        border-bottom: 1px solid #F1EBE8;
+        border-bottom: 1px solid $border_light;
     }
 }
 
@@ -483,7 +483,7 @@ p {
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
-        color: #1C1C1C;
+        color: $text_main;
     }
 
     .status-header-date {
@@ -492,14 +492,14 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
 .avatar-mini {
     height: 35px !important;
     width: 35px !important;
-    border: 1px solid #F1EBE8;
+    border: 1px solid $border_light;
 }
 
 .status-list-body-container {
@@ -512,7 +512,7 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
-        color: #1C1C1C;
+        color: $text_main;
         word-break: break-word;
     }
 }
@@ -526,7 +526,7 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
-        color: #1C1C1C;
+        color: $text_main;
         word-break: break-word;
     }
 }
@@ -542,7 +542,7 @@ p {
         font-weight: normal;
         font-size: 15px;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
@@ -603,8 +603,8 @@ p {
 
 .user-profile-header-content {
     max-width: 256px !important;
-    background: #FFFBF8;
-    border: 1px solid #F1EBE8;
+    background: $bg_light;
+    border: 1px solid $border_light;
     border-radius: 4px;
     padding: 30px 20px;
 }
@@ -640,7 +640,7 @@ p {
 
         &:hover {
             >p {
-                color: #1C1C1C;
+                color: $text_main;
             }
         }
     }
@@ -652,7 +652,7 @@ p {
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-        color: #1C1C1C;
+        color: $text_main;
     }
 
     p {
@@ -661,7 +661,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
@@ -673,7 +673,7 @@ p {
     margin-top: 16px;
 
     button {
-        background: #FF5C01;
+        background: $primary_main;
         border-radius: 30px;
         width: 202px;
         font-style: normal;
@@ -681,7 +681,7 @@ p {
         font-size: 15px;
         line-height: 18px;
         text-align: center;
-        color: #FFFFFF;
+        color: $border;
     }
 }
 
@@ -715,7 +715,7 @@ p {
     text-align: center;
     font-family: Museo Sans Cyrl Regular, serif !important;
     font-size: 12px !important;
-    color: #1C1C1C;
+    color: $text_main;
 }
 
 .static-page-container {
@@ -747,12 +747,12 @@ p {
             font-weight: 300;
             font-size: 15px;
             line-height: 26px;
-            color: #A2A2A2;
+            color: $text_secondary;
             text-align: left;
 
             span {
                 font-weight: 600;
-                color: #FF5C01;
+                color: $primary_main;
             }
         }
     }
@@ -765,7 +765,7 @@ p {
     font-weight: 300;
     font-size: 15px;
     line-height: 23px;
-    color: #A2A2A2;
+    color: $text_secondary;
     text-decoration: none;
 
     &:hover {
@@ -804,9 +804,9 @@ p {
 
 .notificationCardBox {
     width: 100%;
-    border-top: 1px solid #F1EBE8;
-    border-right: 1px solid #F1EBE8;
-    border-left: 1px solid #F1EBE8;
+    border-top: 1px solid $border_light;
+    border-right: 1px solid $border_light;
+    border-left: 1px solid $border_light;
     overflow: visible !important;
     border-radius: 0 !important;
 
@@ -815,7 +815,7 @@ p {
     }
 
     &:last-child {
-        border-bottom: 1px solid #F1EBE8;
+        border-bottom: 1px solid $border_light;
     }
 }
 
@@ -856,7 +856,7 @@ p {
     .app-bar {
         top: 0 !important;
         bottom: auto !important;
-        background-color: #FFF !important;
+        background-color: $border_light !important;
     }
 
     .tool-bar_list {
@@ -873,7 +873,7 @@ p {
         width: 250px;
         height: 34px;
         background: #FBF7F6;
-        border: 1px solid #F1EBE8 !important;
+        border: 1px solid $border_light !important;
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Museo Sans Cyrl Regular;
@@ -882,7 +882,7 @@ p {
         font-size: 15px;
         margin-right: 30px !important;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
         padding-left: 13px;
     }
 
@@ -922,7 +922,7 @@ p {
         border-radius: 0 !important;
         border-top-left-radius: 4px !important;
         border-top-right-radius: 4px !important;
-        background-color: #FFFBF8 !important;
+        background-color: $bg_light !important;
         box-sizing: border-box;
     }
 
@@ -950,7 +950,7 @@ p {
         padding: 0 !important;
         position: fixed !important;
         bottom: 0;
-        background: #FFFBF8;
+        background: $bg_light;
     }
 
     .user-profile-header-content.another-user {

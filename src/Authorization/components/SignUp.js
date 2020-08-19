@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import { Button, DialogContent, useTheme } from '@material-ui/core';
+
 import { useLocalization, useStore } from '../../store/hooks';
 import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 

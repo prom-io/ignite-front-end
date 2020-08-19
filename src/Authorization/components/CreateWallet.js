@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, CircularProgress, DialogContent, makeStyles, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import { Button, CircularProgress, DialogContent, makeStyles, useTheme } from '@material-ui/core';
+
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';

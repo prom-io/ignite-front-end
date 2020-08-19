@@ -1,6 +1,5 @@
-import Checkbox from '@material-ui/core/Checkbox/Checkbox';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Checkbox, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     checkboxGroup: {

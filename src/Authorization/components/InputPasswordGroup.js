@@ -1,7 +1,8 @@
 import React from 'react';
-import { FormControl, IconButton, InputAdornment, makeStyles, TextField, useTheme } from '@material-ui/core';
 import generator from 'generate-password';
+import { FormControl, IconButton, InputAdornment, makeStyles, TextField, useTheme } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+
 import { useLocalization } from '../../store/hooks';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
 
@@ -37,14 +38,6 @@ const useStyles = makeStyles(theme => ({
     },
     iconButton: {
         padding: 0,
-    },
-    underlineInput: {
-        '&:hover': {
-            borderColor: '#F1EBE8',
-        },
-        '&:before': {
-            borderColor: '#F1EBE8',
-        },
     },
     copyPasswordInputAdornment: {
         paddingBottom: theme.spacing(2),

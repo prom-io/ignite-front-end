@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
+import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
+
 import { useLocalization, useStore } from '../../store/hooks';
 import { DoneIcon } from '../../icons/DoneIcon';
 

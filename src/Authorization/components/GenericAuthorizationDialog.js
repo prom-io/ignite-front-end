@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Dialog, withMobileDialog } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Dialog, withMobileDialog, makeStyles } from '@material-ui/core';
+
 import { UpdatePasswordError } from './resetPassword/UpdatePasswordError';
 import { CustomDialogTitle } from './CustomDialogTitle';
 import { SignUp } from './SignUp';
@@ -12,6 +12,8 @@ import { ErrorAuthorization } from './ErrorAuthorization';
 import { CreateAccount } from './CreateAccount';
 import { GenerateHash } from './GenerateHash';
 import { Verify } from './Verify';
+import { LoginForm } from './LoginForm';
+import { CreateWalletPreload } from './CreateWalletPreload';
 import { ErrorVerify } from './ErrorVerify';
 import { ResetPassword } from './resetPassword/ResetPassword';
 import { ForgotPassword } from './resetPassword/ForgotPassword';
@@ -21,16 +23,13 @@ import { PasswordUpdatedError } from './resetPassword/PasswordUpdatedError';
 import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 import { useLocalization, useStore } from '../../store/hooks';
-import { LoginForm } from './LoginForm';
-import { CreateWalletPreload } from './CreateWalletPreload';
 
-/** Список всех возможных диалоговых окон для регистрации и восстановления пароля */
 const dialogType = {
     signUp: {
         id: 'signUp',
         component: <SignUp />,
         title: 'sign-up',
-        type: 'default', // в зависимости от type меняеться иконка в dialogHeader. Возможные варианты: default, attention
+        type: 'default',
     },
     createWallet: {
         id: 'createWallet',

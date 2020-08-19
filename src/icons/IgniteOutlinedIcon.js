@@ -1,6 +1,6 @@
 import React from "react";
 
-export const IgniteOrangeIcon = () => (
+export const IgniteOutlinedIcon = () => (
     <svg
         width="12"
         height="16"

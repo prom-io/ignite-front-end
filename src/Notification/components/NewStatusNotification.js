@@ -4,7 +4,7 @@ import { Link } from 'mobx-router';
 import { Card, makeStyles } from '@material-ui/core';
 import { NotificationTitle } from './NotificationTitle';
 import { localized } from '../../localization/components';
-import { IgniteOrangeIcon } from '../../icons/IgniteOrangeIcon';
+import { IgniteOutlinedIcon } from '../../icons/IgniteOutlinedIcon';
 import { Routes } from '../../routes';
 
 const useStyles = makeStyles(theme => ({
@@ -47,7 +47,7 @@ const _NewStatusNotifications = ({ notification, locale, routerStore, dateFnsLoc
             <NotificationTitle
                 user={user}
                 actionLabel={translationsMap[locale]({ classes, routerStore, statusId: status.id })}
-                icon={<IgniteOrangeIcon />}
+                icon={<IgniteOutlinedIcon />}
                 pixelsToAddToIconRightPadding={4}
                 createdAt={notification.created_at}
                 dateFnsLocale={dateFnsLocale}

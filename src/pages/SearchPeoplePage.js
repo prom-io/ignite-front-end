@@ -30,13 +30,23 @@ export const SearchPeoplePage = observer(() => {
                             xs={12}
                             className="right-content-container"
                         >
-                            {!currentUser ? (
-                                <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === "true"} />
+                            {!currentUser && (
+                                <Grid
+                                    item
+                                    xs={12}
+                                    className="login-form-container"
+                                    style={{ marginBottom: "16px" }}
+                                >
+                                    <LoginForm
+                                        hideSignUpButton={
+                                            process.env
+                                                .REACT_APP_HIDE_SIGN_UP_BUTTON ===
+                                            "true"
+                                        }
+                                    />
                                 </Grid>
-                            ) : (
-                                <SearchPeopleContainer />
                             )}
+                            <SearchPeopleContainer />
                         </Grid>
                         <Grid item md={3} className="right-banners-container">
                             {!currentUser && <ExploreOurFeaturesDescription />}

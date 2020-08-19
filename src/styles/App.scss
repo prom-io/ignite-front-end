@@ -784,12 +784,6 @@ p {
     margin-bottom: 24px;
 }
 
-.MuiListItem-root.Mui-disabled {
-    opacity: 0.5;
-    color: #A2A2A2 !important;
-    background-color: transparent !important;
-}
-
 .description-page {
     padding: 0 32px;
 }
@@ -806,15 +800,6 @@ p {
         left: -7px;
         cursor: pointer;
     }
-}
-
-.ReactGridGallery_tile {
-    background: none !important;
-}
-
-#lightboxBackdrop {
-    z-index: 1190;
-    font-family: Museo Sans Cyrl !important;
 }
 
 .notificationCardBox {

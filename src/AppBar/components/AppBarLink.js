@@ -48,8 +48,10 @@ const useStyles = makeStyles(theme => ({
         display: 'none',
     },
     barLink: {
-        display: 'none',
-        paddingLeft: '8px'
+        paddingLeft: '8px',
+        [theme.breakpoints.down("sm")]: {
+            display: 'none',
+        }
     }
 }));
 

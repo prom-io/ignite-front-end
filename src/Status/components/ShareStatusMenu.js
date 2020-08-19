@@ -8,10 +8,11 @@ import {
     MenuList,
     makeStyles
 } from "@material-ui/core";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { AnotherShareIcon } from "../../icons/AnotherShareIcon";
+
 import { ShareWithLink } from "./ShareWithLink";
 import { ShareToItem } from "./ShareToItem";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import { AnotherShareIcon } from "../../icons/AnotherShareIcon";
 
 const useStyles = makeStyles({
     styledIconButton: {

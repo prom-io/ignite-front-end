@@ -6,9 +6,6 @@ import { ShareIcon } from '../../icons/ShareIcon';
 import { useLocalization } from '../../store/hooks';
 
 const useStyles = makeStyles(() => ({
-    menuItemGutters: {
-        paddingLeft: 0,
-    },
     listItemIconRoot: {
         minWidth: 15,
         marginRight: 8,

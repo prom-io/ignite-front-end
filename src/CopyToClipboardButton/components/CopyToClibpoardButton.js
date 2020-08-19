@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Tooltip } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { makeStyles, Tooltip } from '@material-ui/core';
+
 import { CopyIcon } from '../../icons/CopyIcon';
 
 const useStyles = makeStyles(theme => ({

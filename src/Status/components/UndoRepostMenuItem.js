@@ -1,6 +1,7 @@
 import React from 'react';
 import { MenuItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { Undo } from '@material-ui/icons';
+
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({

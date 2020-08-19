@@ -1,30 +1,38 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { AppBar as MuiAppBar, Hidden, Toolbar, withTheme } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { CustomHomeOutlinedIcon } from "../../icons/CustomHomeOutlinedIcon";
-import { AppBarLink } from "./AppBarLink";
-import { UserAppBarMenu } from "./UserAppBarMenu";
-import { Routes } from "../../routes";
+import {
+    AppBar as MuiAppBar,
+    Hidden,
+    Toolbar,
+    withTheme,
+    makeStyles
+} from "@material-ui/core";
+
+import {
+    AppBarLink,
+    UserAppBarMenu,
+    ExpandDrawerButton,
+    NavigationalDrawer,
+    AppBarLogo
+} from "./";
+import {
+    OpenLoginDialogButton,
+    GenericAuthorizationDialog
+} from "../../Authorization/components";
 import {
     CreateStatusDialog,
     OpenCreateStatusDialogButton,
     OpenCreateStatusDialogFloatingActionButton
 } from "../../Status/components";
-import { ExpandDrawerButton } from "./ExpandDrawerButton";
-import { NavigationalDrawer } from "./NavigationalDrawer";
+import { AppBarLanguageSelect } from "../../Settings/components";
+import { SearchInput } from "../../Search/components";
+import { Routes } from "../../routes";
+import { localized } from "../../localization/components";
 import { BellIcon } from "../../icons/BellIcon";
 import { ChatIcon } from "../../icons/ChatIcon";
-import { AppBarLanguageSelect } from "../../Settings/components";
-import { localized } from "../../localization/components";
-import {
-    OpenLoginDialogButton,
-    GenericAuthorizationDialog
-} from "../../Authorization/components";
-import { AppBarLogo } from ".";
 import { TopicsIcon } from "../../icons/TopicsIcon";
-import { SearchInput } from "../../Search/components/SearchInput";
 import { MemezatorIcon } from "../../icons/MemezatorIcon";
+import { CustomHomeOutlinedIcon } from "../../icons/CustomHomeOutlinedIcon";
 
 const useStyles = makeStyles(theme => ({
     appBarContainer: {

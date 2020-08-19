@@ -9,9 +9,6 @@ import { UnblockableIcon } from "../icons/UnblockableIcon";
 import { AnonymousIcon } from "../icons/AnonymousIcon";
 
 const useStyles = makeStyles(theme => ({
-    prometeusLink: {
-        color: theme.palette.primary.main
-    },
     bannerContainer: {
         padding: "0 24px",
         border: `1px solid ${theme.palette.border.main}`,

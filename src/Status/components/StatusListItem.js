@@ -2,6 +2,7 @@ import React from "react";
 import { inject } from "mobx-react";
 import { Link } from "mobx-router";
 import { Card } from "@material-ui/core";
+
 import { StatusHeader } from "./StatusHeader";
 import { StatusBottom } from "./StatusBottom";
 import { StatusBody } from "./StatusBody";

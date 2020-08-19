@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, Grid, Typography } from "@material-ui/core";
-import { format } from "date-fns";
 import Markdown from "react-markdown";
 import breaks from "remark-breaks";
+import { format } from "date-fns";
+import { Button, Grid, Typography } from "@material-ui/core";
 
 import { UserProfileAvatar } from "./UserProfileAvatar";
 import { UserProfileTab } from "./UserProfileTab";
-import { localized } from "../../localization/components";
 import { UpdateUserProfileButton } from "./UpdateUserProfileButton";
 import { UserProfileHeaderButton } from "./UserProfileHeaderButton";
+import { localized } from "../../localization/components";
 import { useRouter } from "../../store/hooks";
 import { Routes } from "../../routes";
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import { inject, observer } from 'mobx-react';
+import { Grid, makeStyles } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
 import { localized } from '../localization/components';
 import { AppBar } from '../AppBar/components';
 import {

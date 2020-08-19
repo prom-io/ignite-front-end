@@ -1,8 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, makeStyles } from '@material-ui/core';
 
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';

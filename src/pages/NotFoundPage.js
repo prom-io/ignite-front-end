@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, makeStyles } from '@material-ui/core';
 import { inject } from 'mobx-react';
+import { Button, makeStyles } from '@material-ui/core';
+
 import { AppBar } from '../AppBar/components';
 import { localized } from '../localization/components';
 import { Routes } from '../routes';

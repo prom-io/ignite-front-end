@@ -6,8 +6,8 @@ import { Badge, Typography, makeStyles } from "@material-ui/core";
 
 import Loader from "../../components/Loader";
 import { Notification } from "./Notification";
-import { useStore, useAuthorization, useLocalization, useRouter } from "../../store";
 import { Routes } from "../../routes";
+import { useStore, useAuthorization, useLocalization, useRouter } from "../../store";
 import { SadIconLarge } from "../../icons/SadIconLarge";
 import { BellIcon } from "../../icons/BellIcon";
 

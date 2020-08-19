@@ -1,30 +1,30 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { SwipeableDrawer, makeStyles, Typography } from '@material-ui/core';
-import { Link } from 'mobx-router';
-import useTheme from '@material-ui/core/styles/useTheme';
-import { DrawerMenu } from './DrawerMenu';
-import { DrawerUserInfo } from './DrawerUserInfo';
-import { Routes } from '../../routes';
+import React from "react";
+import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
+import {
+    SwipeableDrawer,
+    makeStyles,
+    Typography,
+    useTheme
+} from "@material-ui/core";
+
+import { DrawerMenu, DrawerUserInfo } from "./";
+import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     importantInfoLink: {
         color: theme.palette.primary.main,
         marginLeft: 15,
         marginTop: 20,
-        textDecoration: 'none',
-        fontStyle: 'normal',
-        fontWeight: '600 !important',
-        fontSize: '15px',
-        lineHeight: '18px',
-    },
-    swipeableDrawerRoot: {
-        overflowY: 'auto',
-        '-webkit-overflow-scrolling': 'touch',
-    },
+        textDecoration: "none",
+        fontStyle: "normal",
+        fontWeight: "600 !important",
+        fontSize: "15px",
+        lineHeight: "18px"
+    }
 }));
 
-const ImportantInfo = '{Important info}';
+const ImportantInfo = "{Important info}";
 
 const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore }) => {
     const classes = useStyles();
@@ -39,22 +39,22 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
             PaperProps={{
                 style: {
                     width: 256,
-                    overflowY: 'auto',
-                    display: 'block',
-                    '-webkit-overflow-scrolling': 'touch',
-                    backgroundColor: theme.palette.background.light,
-                },
+                    overflowY: "auto",
+                    display: "block",
+                    "-webkit-overflow-scrolling": "touch",
+                    backgroundColor: theme.palette.background.light
+                }
             }}
             BackdropProps={{
                 style: {
-                    backgroundColor: 'rgba(0,0,0,0.4)',
-                },
+                    backgroundColor: "rgba(0,0,0,0.4)"
+                }
             }}
         >
             <Link
                 view={Routes.description}
                 store={routerStore}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: "none" }}
             >
                 <Typography
                     variant="body1"
@@ -74,7 +74,9 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
 const mapMobxToProps = ({ drawer, store }) => ({
     drawerExpanded: drawer.drawerExpanded,
     setDrawerExpanded: drawer.setDrawerExpanded,
-    routerStore: store,
+    routerStore: store
 });
 
-export const NavigationalDrawer = inject(mapMobxToProps)(observer(_NavigationalDrawer));
+export const NavigationalDrawer = inject(mapMobxToProps)(
+    observer(_NavigationalDrawer)
+);

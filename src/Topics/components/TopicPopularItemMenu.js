@@ -13,8 +13,8 @@ import {
     useTheme,
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { SadIcon } from '../../icons/SadIcon';
 
+import { SadIcon } from '../../icons/SadIcon';
 import { localized } from '../../localization/components';
 
 const useStyles = makeStyles({

@@ -1,18 +1,18 @@
-import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { makeStyles } from '@material-ui/core';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { FollowPeopleItem, UnfollowDialog } from '.';
-import Loader from '../../components/Loader';
+import React from "react";
+import { inject, observer } from "mobx-react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { makeStyles } from "@material-ui/core";
+
+import { FollowPeopleItem, UnfollowDialog } from "./";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(theme => ({
     centered: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '50px',
-        display: 'table',
-    },
-    followListWrapper: {},
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "50px",
+        display: "table"
+    }
 }));
 
 const _FollowPeopleList = ({
@@ -22,20 +22,22 @@ const _FollowPeopleList = ({
     selectedUser,
     unfollowUser,
     setUnfollowDialogOpen,
-    unfollowDialogOpen,
+    unfollowDialogOpen
 }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.followListWrapper}>
+        <div>
             <InfiniteScroll
                 next={fetchFollowPeople}
                 hasMore
-                loader={(
-                    <div className={classes.centered}><Loader size="lg" /></div>
-                )}
+                loader={
+                    <div className={classes.centered}>
+                        <Loader size="lg" />
+                    </div>
+                }
                 dataLength={followPeopleItems.length}
-                style={{ overflowY: 'hidden' }}
+                style={{ overflowY: "hidden" }}
             >
                 {followPeopleItems.map(user => (
                     <FollowPeopleItem
@@ -61,7 +63,7 @@ const mapMobxToProps = ({ followPeople, followAction }) => ({
     selectedUser: followAction.selectedUser,
     unfollowUser: followAction.unfollowUser,
     setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
-    unfollowDialogOpen: followAction.unfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen
 });
 
 export const FollowPeopleList = inject(mapMobxToProps)(observer(_FollowPeopleList));

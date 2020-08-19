@@ -1,25 +1,26 @@
 import React, { createRef, useEffect } from "react";
 import { inject, observer } from "mobx-react";
+import { withSnackbar } from "notistack";
 import {
     Avatar,
     Button,
     Card,
     CardActions,
     Grid,
-    makeStyles,
     TextField,
-    Typography
+    Typography,
+    ClickAwayListener,
+    makeStyles,
 } from "@material-ui/core";
-import { withSnackbar } from "notistack";
+
 import { AttachImageInput } from "./AttachImageInput";
 import { EmojiInput } from "./EmojiInput";
 import { EmojiPicker } from "./EmojiPicker";
 import { EmojiPickerDialog } from "./EmojiPickerDialog";
 import { CreateStatusFormMediaAttachments } from "./CreateStatusFormMediaAttachments";
 import { RepostedStatusContent } from "./RepostedStatusContent";
-import { localized } from "../../localization/components";
 import Loader from "../../components/Loader";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { localized } from "../../localization/components";
 import { GifIcon } from '../../icons/GifIcon';
 import { ListIcon } from '../../icons/ListIcon';
 
@@ -29,9 +30,6 @@ const useStyles = makeStyles(theme => ({
     },
     remainingCharactersCounter: {
         padding: "7px 10px"
-    },
-    createStatusButtonWrapper: {
-        paddingTop: 15
     },
     createStatusButton: {
         borderRadius: 30,

@@ -10,12 +10,13 @@ import {
     makeStyles
 } from "@material-ui/core";
 import { inject, observer } from "mobx-react";
+
 import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
 import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
-import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
-import { RepostIcon } from "../../icons/RepostIcon";
 import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
 import Loader from "../../components/Loader";
+import { RepostIcon } from "../../icons/RepostIcon";
 
 const useStyles = makeStyles({
     styledIconButton: {

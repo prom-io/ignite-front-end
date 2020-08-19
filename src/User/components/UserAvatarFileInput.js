@@ -25,21 +25,6 @@ const useStyles = makeStyles(theme => ({
         height: "120px",
         borderRadius: "80px",
         background: "rgba(34, 34, 34, 0.8)"
-    },
-    avatarAttachmentDescription: {
-        marginTop: "24px",
-        "& p": {
-            margin: 0,
-            color: theme.palette.text.secondary,
-            fontSize: "12px",
-            fontFamily: "Museo Sans Cyrl Regular"
-        },
-        "& span": {
-            marginTop: "8px",
-            color: theme.palette.text.main,
-            fontSize: "16px",
-            fontFamily: "Museo Sans Cyrl Bold"
-        }
     }
 }));
 

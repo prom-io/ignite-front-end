@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import { UpdateUserProfile, UpdateUserPassword } from '.';
+import { UpdateUserProfile, UpdateUserPassword } from './';
 
 const useStyles = makeStyles(theme => ({
     updateUserContainer: {

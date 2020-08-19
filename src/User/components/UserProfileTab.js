@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography, makeStyles } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import { Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     userProfileTab: {

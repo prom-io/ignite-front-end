@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import { observer } from 'mobx-react';
+import { Grid } from '@material-ui/core';
 
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';

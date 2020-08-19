@@ -1,12 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Typography, makeStyles, Grid } from '@material-ui/core';
+
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
-import { localized } from '../../localization/components';
-import { BackButton } from '../../components/BackButton';
 import { UnfollowDialog } from '../../Follow/components';
+import { BackButton } from '../../components/BackButton';
 import Loader from '../../components/Loader';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     centered: {

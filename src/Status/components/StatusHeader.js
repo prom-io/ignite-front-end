@@ -1,15 +1,16 @@
 import React from 'react';
 import { inject } from 'mobx-react';
+import { Link } from 'mobx-router';
 import { CardHeader, Typography, Avatar, Hidden, IconButton, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { Link } from 'mobx-router';
+
 import { StatusMenu } from './StatusMenu';
-import { Routes } from '../../routes';
-import { SmallEllipseIcon } from '../../icons/SmallEllipseIcon';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
 import { addLineBreak, trimString } from '../../utils/string-utils';
-import { localized } from '../../localization/components';
 import { getCreatedAtLabel } from '../../utils/date-utlis';
+import { Routes } from '../../routes';
+import { localized } from '../../localization/components';
+import { SmallEllipseIcon } from '../../icons/SmallEllipseIcon';
 
 const useStyles = makeStyles(() => ({
     statusHeader: {

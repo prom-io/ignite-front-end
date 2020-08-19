@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, CardContent, makeStyles, useMediaQuery, useTheme, Hidden } from '@material-ui/core';
+
 import { NotificationTitle } from './NotificationTitle';
 import { NotificationLeftMargin } from './NotificationLeftMargin';
 import { RepostedStatusContent } from '../../Status/components';
-import { ReplyOrangeIcon } from '../../icons/ReplyOrangeIcon';
 import { localized } from '../../localization/components';
+import { ReplyOrangeIcon } from '../../icons/ReplyOrangeIcon';
 
 const useStyles = makeStyles(() => ({
     cardContentRoot: {

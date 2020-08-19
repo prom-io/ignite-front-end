@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { inject } from 'mobx-react';
+import { Grid, Typography, makeStyles } from '@material-ui/core';
+
 import { DescriptionLinks } from '../components/DescriptionLinks';
 import { BackButton } from '../components/BackButton';
 

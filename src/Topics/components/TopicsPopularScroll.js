@@ -3,15 +3,8 @@ import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 
 import { TopicsHashButton } from "./TopicsHashButton";
-import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(theme => ({
-    centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "10px",
-        display: "table"
-    },
     hashBtnBlock: {
         display: "none",
         justifyContent: "flex-start",

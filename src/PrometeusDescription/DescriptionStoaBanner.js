@@ -1,11 +1,12 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles, Typography, Hidden } from '@material-ui/core';
+
 import { localized } from '../localization/components';
 import { AppBarLink } from '../AppBar/components/AppBarLink';
+import { StaticPageLinks } from '../components/StaticPageLinks';
 import { Routes } from '../routes';
 import { BtfsIcon } from '../icons/BtfsIcon';
-import { StaticPageLinks } from '../components/StaticPageLinks';
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { ClickAwayListener, makeStyles } from '@material-ui/core';
 import Picker from 'react-emojipicker';
+import { ClickAwayListener, makeStyles } from '@material-ui/core';
 
 import { useStore } from '../../store/hooks';
 

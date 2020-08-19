@@ -1,11 +1,12 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import { makeStyles, Hidden, Grid } from "@material-ui/core";
+
 import { StatusList } from "./StatusList";
 import { CreateStatusForm } from "./CreateStatusForm";
+import { LoginForm } from "../../Authorization/components";
 import Loader from "../../components/Loader";
 import { PenIcon } from "../../icons/PenIcon";
-import { LoginForm } from "../../Authorization/components";
 
 const useStyles = makeStyles(theme => ({
     centered: {

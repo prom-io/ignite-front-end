@@ -1,6 +1,6 @@
 import React from 'react';
-import { Hidden } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Hidden, makeStyles } from '@material-ui/core';
+
 import { TopicStatusList } from './TopicStatusList';
 import { BackButton } from '../../components/BackButton';
 import { useStore } from '../../store/hooks';

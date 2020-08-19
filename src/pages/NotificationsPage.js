@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid, Typography, makeStyles } from '@material-ui/core';
 import { observer } from 'mobx-react';
-import Hidden from '@material-ui/core/Hidden';
+import { Grid, Hidden, Typography, makeStyles } from '@material-ui/core';
+
 import { AppBar } from '../AppBar/components';
 import { NotificationsList } from '../Notification/components';
 import {

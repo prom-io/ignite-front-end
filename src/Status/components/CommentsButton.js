@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { IconButton, Typography, makeStyles } from '@material-ui/core';
+
 import { CommentIcon } from '../../icons/CommentIcon';
 
 const useStyles = makeStyles({

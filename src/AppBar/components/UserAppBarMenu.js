@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { inject, observer } from 'mobx-react';
+import React, { useEffect, useRef, useState } from "react";
+import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
 import {
     Avatar,
     ClickAwayListener,
@@ -12,31 +13,32 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Popper, useTheme,
-} from '@material-ui/core';
-import { Link } from 'mobx-router';
-import { Routes } from '../../routes';
-import { LogoutMenuItem } from '../../Authorization/components';
-import { localized } from '../../localization/components';
+    Popper,
+    useTheme
+} from "@material-ui/core";
+
+import { LogoutMenuItem } from "../../Authorization/components";
+import { Routes } from "../../routes";
+import { localized } from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
     undecoratedLink: {
-        textDecoration: 'none',
-        color: 'inherit',
+        textDecoration: "none",
+        color: "inherit"
     },
     avatarIconButton: {
         padding: 0,
-        width: '34px',
-        height: '34px',
-        '&>span': {
-            width: '34px',
-            height: '34px',
-        },
+        width: "34px",
+        height: "34px",
+        "&>span": {
+            width: "34px",
+            height: "34px"
+        }
     },
     avatarIcon: {
-        width: '34px',
-        height: '34px',
-    },
+        width: "34px",
+        height: "34px"
+    }
 }));
 
 const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
@@ -68,7 +70,7 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
     }, [open]);
 
     const handleListKeyDown = event => {
-        if (event.key === 'Tab') {
+        if (event.key === "Tab") {
             event.preventDefault();
             setOpen(false);
         }
@@ -83,18 +85,33 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
             <Grid className="user-app-bar-menu">
                 <IconButton
                     ref={anchorRef}
-                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-controls={open ? "menu-list-grow" : undefined}
                     aria-haspopup="true"
                     onClick={handleToggle}
                     classes={{ root: classes.avatarIconButton }}
                 >
-                    <Avatar classes={{ root: classes.avatarIcon }} src={currentUser.avatar} style={{ border: `1px solid ${theme.palette.border.main}` }} />
+                    <Avatar
+                        classes={{ root: classes.avatarIcon }}
+                        src={currentUser.avatar}
+                        style={{ border: `1px solid ${theme.palette.border.main}` }}
+                    />
                 </IconButton>
-                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                <Popper
+                    open={open}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    transition
+                    disablePortal
+                >
                     {({ TransitionProps, placement }) => (
                         <Grow
                             {...TransitionProps}
-                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            style={{
+                                transformOrigin:
+                                    placement === "bottom"
+                                        ? "center top"
+                                        : "center bottom"
+                            }}
                         >
                             <Paper>
                                 <ClickAwayListener
@@ -102,33 +119,39 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                                     touchEvent="onTouchStart"
                                     mouseEvent="onMouseDown"
                                 >
-                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                    <MenuList
+                                        autoFocusItem={open}
+                                        id="menu-list-grow"
+                                        onKeyDown={handleListKeyDown}
+                                    >
                                         <Link
                                             view={Routes.userProfile}
-                                            params={{ username: currentUser.username }}
+                                            params={{
+                                                username: currentUser.username
+                                            }}
                                             store={routerStore}
                                             className={classes.undecoratedLink}
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    {l('menu.profile')}
+                                                    {l("menu.profile")}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
                                         <Divider />
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l('menu.muted-users')}
+                                                {l("menu.muted-users")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l('menu.blocked-users')}
+                                                {l("menu.blocked-users")}
                                             </ListItemText>
                                         </MenuItem>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l('menu.settings')}
+                                                {l("menu.settings")}
                                             </ListItemText>
                                         </MenuItem>
                                         <Link
@@ -138,13 +161,13 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
                                         >
                                             <MenuItem onClick={handleClose}>
                                                 <ListItemText>
-                                                    {l('menu.terms-and-policies')}
+                                                    {l("menu.terms-and-policies")}
                                                 </ListItemText>
                                             </MenuItem>
                                         </Link>
                                         <MenuItem disabled>
                                             <ListItemText>
-                                                {l('menu.help-center')}
+                                                {l("menu.help-center")}
                                             </ListItemText>
                                         </MenuItem>
                                         <Divider />
@@ -162,9 +185,9 @@ const _UserAppBarMenu = ({ currentUser, routerStore, l }) => {
 
 const mapMobxToProps = ({ authorization, store }) => ({
     currentUser: authorization.currentUser,
-    routerStore: store,
+    routerStore: store
 });
 
 export const UserAppBarMenu = localized(
-    inject(mapMobxToProps)(observer(_UserAppBarMenu)),
+    inject(mapMobxToProps)(observer(_UserAppBarMenu))
 );

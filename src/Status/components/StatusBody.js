@@ -122,7 +122,7 @@ const _StatusBody = ({
                 }}
             />
             </Typography>
-            <StatusMediaAttachments mediaAttachments={mediaAttachments} isOnlyImage={!text} />
+            <StatusMediaAttachments mediaAttachments={mediaAttachments} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}
             {nestedReferredStatusId && nestedReferredStatusReferenceType === 'REPOST' && (
                 <ClickEventPropagationStopper>

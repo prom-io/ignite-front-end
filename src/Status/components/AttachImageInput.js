@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IconButton, Tooltip, makeStyles } from '@material-ui/core';
+
 import { AttachImageIcon } from '../../icons/AttachImageIcon';
 import { AttachImageDisabledIcon } from '../../icons/AttachImageDisabledIcon';
 

@@ -11,10 +11,10 @@ import {
 } from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 
-import { MuteIcon } from "../../icons/MuteIcon";
 import { Routes } from "../../routes";
 import { BlockIcon } from "../../icons/BlockIcon";
 import { TermsAndPoliciesIcon } from "../../icons/TermsAndPoliciesIcon";
+import { MuteIcon } from "../../icons/MuteIcon";
 import { InfoIcon } from "../../icons/InfoIcon";
 import { LogoutIcon } from "../../icons/LogoutIcon";
 import { BtfsIcon } from "../../icons/BtfsIcon";

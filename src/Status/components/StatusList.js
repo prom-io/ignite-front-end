@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Typography, Hidden, makeStyles } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Typography, Hidden, makeStyles } from "@material-ui/core";
 
 import { StatusListItem } from "./StatusListItem";
 import { WhoToFollow } from "../../Follow/components";

@@ -8,10 +8,7 @@ const useStyles = makeStyles(() => ({
         width: 20,
         height: 20,
         padding: '0px !important',
-    },
-    disabled: {
-        background: 'none !important',
-    },
+    }
 }));
 
 export const EmojiInput = ({

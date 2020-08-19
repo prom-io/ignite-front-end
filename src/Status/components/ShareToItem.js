@@ -17,9 +17,6 @@ const useStyles = makeStyles(() => ({
     shareButton: {
         width: '100%',
     },
-    menuItemGutters: {
-        paddingLeft: 0,
-    },
     listItemIconRoot: {
         minWidth: 15,
         marginRight: 8,

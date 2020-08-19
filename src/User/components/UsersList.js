@@ -1,7 +1,8 @@
 import React from 'react';
 import { inject } from 'mobx-react';
-import { makeStyles } from '@material-ui/core';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { makeStyles } from '@material-ui/core';
+
 import { UsersListItem } from './UsersListItem';
 import { UnfollowDialog } from '../../Follow/components';
 import Loader from '../../components/Loader';

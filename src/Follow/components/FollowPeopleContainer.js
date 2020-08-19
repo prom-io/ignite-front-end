@@ -1,20 +1,19 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import React from "react";
+import { Grid, makeStyles } from "@material-ui/core";
 
-import { makeStyles } from '@material-ui/core/styles';
-import { FollowPeopleInput, FollowPeopleList } from '.';
-import { BackButton } from '../../components/BackButton';
+import { FollowPeopleInput, FollowPeopleList } from "./";
+import { BackButton } from "../../components/BackButton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     followBackButton: {
-        [theme.breakpoints.down('sm')]: {
-            position: 'fixed',
+        [theme.breakpoints.down("sm")]: {
+            position: "fixed",
             top: 0,
             zIndex: 1100,
-            width: '100%',
-            background: theme.palette.background.paper,
-        },
-    },
+            width: "100%",
+            background: theme.palette.background.paper
+        }
+    }
 }));
 
 export const FollowPeopleContainer = () => {

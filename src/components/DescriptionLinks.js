@@ -1,19 +1,19 @@
-import React from 'react';
-import { inject } from 'mobx-react';
-import { Routes } from '../routes';
-import { StaticPageLinks } from './StaticPageLinks';
-import { LogoutMenuItem } from '../Authorization/components';
-import { localized } from '../localization/components';
+import React from "react";
+import { inject } from "mobx-react";
+
+import { Routes } from "../routes";
+import { StaticPageLinks } from "./StaticPageLinks";
+import { LogoutMenuItem } from "../Authorization/components";
+import { localized } from "../localization/components";
 
 const _DescriptionLinks = ({ routerStore, l }) => {
-    const Prometeus = ' {Prometeus}';
+    const Prometeus = " {Prometeus}";
 
     const links = {
-        termsOfService: l('description-links.terms-of-service'),
-        privacyPolicy: l('description-links.privacy-policy'),
+        termsOfService: l("description-links.terms-of-service"),
+        privacyPolicy: l("description-links.privacy-policy")
     };
     const handleClose = () => null;
-
 
     return (
         <div className="description-links">
@@ -33,16 +33,11 @@ const _DescriptionLinks = ({ routerStore, l }) => {
                         linkTekst={links.privacyPolicy}
                     />
                 </p>
-                {/*
-                <p>{l('menu.help-center')}</p>
-                <LogoutMenuItem onClick={handleClose} isMenuItem /> */}
             </div>
             <div>
                 <p>
                     © 2020
-                    {Prometeus}
-                    {' '}
-                    Team
+                    {Prometeus} Team
                 </p>
             </div>
         </div>
@@ -50,9 +45,7 @@ const _DescriptionLinks = ({ routerStore, l }) => {
 };
 
 const mapMobxToProps = ({ store }) => ({
-    routerStore: store,
+    routerStore: store
 });
 
-export const DescriptionLinks = localized(
-    inject(mapMobxToProps)(_DescriptionLinks),
-);
+export const DescriptionLinks = localized(inject(mapMobxToProps)(_DescriptionLinks));

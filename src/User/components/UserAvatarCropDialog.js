@@ -12,11 +12,11 @@ import {
     makeStyles
 } from "@material-ui/core";
 
+import Loader from "../../components/Loader";
+import getCroppedImg from "./utils/cropImage";
 import { ModalCloseIcon } from "../../icons/ModalCloseIcon";
 import { ZoomInIcon } from "../../icons/ZoomInIcon";
 import { ZoomOutIcon } from "../../icons/ZoomOutIcon";
-import getCroppedImg from "./utils/cropImage";
-import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(() => ({
     dialogPaper: {

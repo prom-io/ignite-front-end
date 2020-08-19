@@ -3,9 +3,9 @@ import { observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { Typography, makeStyles } from '@material-ui/core';
 
-import { SadIconLarge } from '../../icons/SadIconLarge';
 import { useLocalization, useRouter } from '../../store';
 import { Routes } from '../../routes';
+import { SadIconLarge } from '../../icons/SadIconLarge';
 
 const useStyles = makeStyles(theme => ({
     link: {

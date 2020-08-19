@@ -47,6 +47,10 @@ const useStyles = makeStyles(theme => ({
     hidden: {
         display: 'none',
     },
+    barLink: {
+        display: 'none',
+        paddingLeft: '8px'
+    }
 }));
 
 export const AppBarLink = ({ routerStore, targetView, viewParameters, active, icon, text, id, hidden }) => {
@@ -65,7 +69,7 @@ export const AppBarLink = ({ routerStore, targetView, viewParameters, active, ic
                 id={id}
             >
                 {icon}
-                <Typography variant="body1" style={{ paddingLeft: '8px' }} className="nav-bar-link">
+                <Typography variant="body1" classes={{root: classes.barLink}}>
                     <span>{text}</span>
                 </Typography>
             </div>

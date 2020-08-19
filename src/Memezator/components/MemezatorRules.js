@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _MemezatorRules = ({ currentUser, l }) => {
+const _MemezatorRules = ({ currentUser, actionRights, l }) => {
     const classes = useStyles();
     const [showRules, setShowRules] = useState(false);
 
@@ -91,7 +91,8 @@ const _MemezatorRules = ({ currentUser, l }) => {
                             classes={{ root: classes.memezatorRulesPower }}
                             variant="h6"
                         >
-                            {l("memezator.voting-power")}: {currentUser.voting_power}
+                            {l("memezator.voting-power")}:{" "}
+                            {actionRights ? actionRights.voting_power : 0}
                         </Typography>
                         <Typography
                             classes={{ root: classes.memezatorRulesPower }}
@@ -186,8 +187,9 @@ const _MemezatorRules = ({ currentUser, l }) => {
     );
 };
 
-const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+const mapMobxToProps = ({ authorization, memezatorActions }) => ({
+    currentUser: authorization.currentUser,
+    actionRights: memezatorActions.actionRights
 });
 
 export const MemezatorRules = localized(

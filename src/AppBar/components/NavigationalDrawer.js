@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '18px',
     },
     swipeableDrawerRoot: {
-        overflowY: 'scroll',
+        overflowY: 'auto',
         '-webkit-overflow-scrolling': 'touch',
     },
 }));
@@ -39,7 +39,7 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
             PaperProps={{
                 style: {
                     width: 256,
-                    overflowY: 'scroll',
+                    overflowY: 'auto',
                     display: 'block',
                     '-webkit-overflow-scrolling': 'touch',
                     backgroundColor: theme.palette.background.light,

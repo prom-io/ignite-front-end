@@ -1,72 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles, useTheme } from '@material-ui/core';
+import { Button, DialogContent, useTheme } from '@material-ui/core';
 import { FadeLoader } from 'react-spinners';
 import { useLocalization, useStore } from '../../store/hooks';
-
-const useStyles = makeStyles(theme => ({
-    contentDescription: {
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: '#1C1C1C',
-        '& a': {
-            color: '#FF5C01',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    contentBlock: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderTop: '1px solid #F1EBE8',
-        marginTop: '32px',
-        paddingTop: '32px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        '&>div': {
-            width: '234px',
-        },
-        '& p': {
-            margin: 0,
-            fontSize: '20px',
-        },
-        '& span': {
-            fontSize: '15px',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            '& span': {
-                fontSize: '14px',
-            },
-            marginTop: '18px',
-            paddingTop: '18px',
-        },
-    },
-    notes: {
-        marginTop: '12px',
-        color: '#A2A2A2',
-        fontSize: '15px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        lineHeight: '26px',
-        '& a': {
-            color: '#FF5C01',
-            fontFamily: 'Museo Sans Cyrl Bold',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    button: {
-        width: '187px',
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 const igniteDescriptionTranslations = {
     en: (classes) => (
-        <span className={classes.contentDescription}>
+        <span className={classes.content}>
             <a>Ignite </a>
             {' '}
             is a decentralized social network, based on blockchain technology.
@@ -78,7 +19,7 @@ const igniteDescriptionTranslations = {
         </span>
     ),
     kr: (classes) => (
-        <span className={classes.contentDescription}>
+        <span className={classes.content}>
             <a>Ignite </a>
             는 블록체인 기술을 기반으로 한 분산형 소셜 네트워크다. 가입하려면
             <a>블록체인 지갑주소 라는</a>
@@ -106,7 +47,7 @@ const useExistingWalletTranslations = {
 };
 
 export const SignUp = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const theme = useTheme();
     const { walletGeneration, genericAuthorizationDialog } = useStore();
     const { generateWallet, pending } = walletGeneration;

@@ -1,90 +1,9 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, Checkbox, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, Checkbox, DialogContent } from '@material-ui/core';
 import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
 import { useLocalization, useStore } from '../../store/hooks';
-
-const useStyles = makeStyles(theme => ({
-    dialogContentRoot: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    contentDescription: {
-        margin: '0',
-        fontFamily: 'Museo Sans Cyrl Bold',
-        fontSize: '20px',
-        lineHeight: '26px',
-        color: '#1C1C1C',
-        '& span': {
-            color: '#FF5C01',
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
-    },
-    infoCheckingBlock: {
-        margin: '16px 0 24px 0',
-        borderBottom: '1px solid #F1EBE8',
-    },
-    markList: {
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '24px',
-        '& span': {
-            color: '#FF5C01',
-        },
-        '& ul': {
-            padding: '0 16px',
-            margin: 0,
-            '& li': {
-                margin: '8px 0',
-            },
-            '& li::marker': {
-                color: '#A2A2A2',
-            },
-        },
-    },
-    checkboxBlock: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        borderTop: '1px solid #F1EBE8',
-        padding: '12px 0 16px 0',
-    },
-    checkboxBlockDescription: {
-        display: 'flex',
-        flexDirection: 'column',
-        fontSize: 15,
-        marginLeft: 24,
-        width: '90%',
-    },
-    checkboxTitle: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        width: '90%',
-    },
-    title: {
-        fontFamily: 'Museo Sans Cyrl Bold',
-    },
-    value: {
-        maxWidth: '390px',
-        marginTop: 8,
-        overflowWrap: 'break-word',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        [theme.breakpoints.down('sm')]: {
-            width: '84%',
-        },
-    },
-    button: {
-        width: '187px',
-        marginTop: 40,
-        alignSelf: 'center',
-    },
-    checkbox: {
-        padding: 0,
-        height: 'fit-content',
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 const makeSureYouReallySavedTranslations = {
     en: (classes) => (
@@ -149,7 +68,7 @@ const privateKeyLossTranslations = {
 };
 
 export const Attention = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const { walletGeneration, signUp, genericAuthorizationDialog } = useStore();
     const { l, locale } = useLocalization();
     const { generatedWallet } = walletGeneration;

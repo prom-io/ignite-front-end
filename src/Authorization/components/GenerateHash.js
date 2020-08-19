@@ -1,30 +1,15 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
+import { Button, DialogContent } from '@material-ui/core';
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
 import { _Checkbox } from './_Checkbox';
 import { HashVerificationMode } from '../stores';
 import { useLocalization, useStore } from '../../store/hooks';
-
-const useStyles = makeStyles(() => ({
-    dialogContentRoot: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '-30px',
-    },
-    button: {
-        width: '187px',
-        marginTop: 24,
-        alignSelf: 'center',
-    },
-    checkbox: {
-        marginTop: '30px',
-    },
-}));
+import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
 
 export const GenerateHash = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const [hashCodeSaved, setHashCodeSaved] = useState(false);
     const { hashGeneration, genericAuthorizationDialog, hashVerification } = useStore();
     const {
@@ -64,6 +49,7 @@ export const GenerateHash = observer(() => {
                 className={classes.checkbox}
                 checked={hashCodeSaved}
                 onChange={() => setHashCodeSaved(!hashCodeSaved)}
+                style={{margin:'20px 0 30px 0'}}
             >
                 {l('sign-up.hash-code.saved')}
             </_Checkbox>

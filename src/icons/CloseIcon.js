@@ -1,7 +1,13 @@
-import React from 'react';
+import React from "react";
 
 export const CloseIcon = () => (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 1L6.00003 6M6.00003 6L11 1M6.00003 6L1 11M6.00003 6L11 11" stroke="#A2A2A2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        fill="none"
+        viewBox="0 0 12 12"
+    >
+        <path stroke="#A2A2A2" d="M1 1l5 5m0 0l5-5M6 6l-5 5m5-5l5 5" />
     </svg>
 );

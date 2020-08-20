@@ -11,15 +11,6 @@ body {
     margin: 0 !important;
 }
 
-.border {
-    border: 1px solid red !important;
-    z-index: 9999;
-}
-
-p {
-    font-family: Museo Sans Cyrl Regular;
-}
-
 .user-app-bar-menu {
     position: fixed !important;
     left: auto !important;
@@ -38,17 +29,6 @@ p {
 
 .user-app-bar-menu-button {
     padding: 0 !important;
-
-    >MuiAvatar-root {
-        min-width: 35px;
-        max-width: 35px;
-        height: 35px;
-        overflow: hidden;
-
-        img {
-            object-fit: cover;
-        }
-    }
 }
 
 .content-container {
@@ -67,8 +47,8 @@ p {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid $border;
-    background-color: $border;
+    border: 1px solid $border_light;
+    background-color: $border_light;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -89,7 +69,6 @@ p {
     position: absolute !important;
     top: 11px;
     left: -11px;
-    font-style: normal;
     border-radius: 30px !important;
     width: 90px;
     z-index: 10;
@@ -105,8 +84,6 @@ p {
 }
 
 .drawer-user-info-link {
-    font-family: Museo Sans Cyrl Regular;
-    font-style: normal;
     font-weight: 600;
     font-size: 15px;
     line-height: 18px;
@@ -194,8 +171,6 @@ p {
     width: 100%;
 
     p {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 12px;
         color: $text_main;
@@ -252,8 +227,6 @@ p {
     align-items: center;
 
     h4 {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 700;
         font-size: 20px;
         line-height: 24px;
@@ -265,8 +238,6 @@ p {
 
     p {
         max-width: 256px;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 12px;
         line-height: 14px;
@@ -277,7 +248,6 @@ p {
     }
 
     a {
-        font-family: Museo Sans Cyrl Regular;
         font-size: 12px;
         margin-bottom: 10px;
         text-decoration: none;
@@ -315,8 +285,6 @@ p {
 
     h5 {
         margin: 5px 0;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 12px;
         line-height: 14px;
@@ -325,8 +293,6 @@ p {
     }
 
     p {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 600;
         font-size: 16px;
         line-height: 19px;
@@ -354,8 +320,6 @@ p {
 
     p {
         width: 100%;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
@@ -383,8 +347,6 @@ p {
         align-items: flex-start;
 
         p {
-            font-family: Museo Sans Cyrl Regular;
-            font-style: normal;
             font-weight: 300;
             font-size: 15px;
             line-height: 23px;
@@ -479,7 +441,6 @@ p {
     }
 
     p {
-        font-style: normal;
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
@@ -488,7 +449,6 @@ p {
 
     .status-header-date {
         display: none;
-        font-style: normal;
         font-weight: 300;
         font-size: 15px;
         line-height: 18px;
@@ -507,8 +467,6 @@ p {
     padding-left: 65px !important;
 
     p {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
@@ -521,8 +479,6 @@ p {
     padding-top: 0px !important;
 
     p {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
@@ -537,9 +493,6 @@ p {
 
     p {
         margin-left: 2px;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
-        font-weight: normal;
         font-size: 15px;
         line-height: 18px;
         color: $text_secondary;
@@ -647,8 +600,6 @@ p {
     }
 
     h6 {
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 600;
         font-size: 16px;
         line-height: 19px;
@@ -657,7 +608,6 @@ p {
     }
 
     p {
-        font-style: normal;
         font-weight: 300;
         font-size: 12px;
         line-height: 14px;
@@ -667,7 +617,6 @@ p {
 }
 
 .user-profile-header-content-bottom-balance {
-    font-family: Museo Sans Cyrl Regular;
     text-align: center;
     font-weight: 600;
     font-size: 14px;
@@ -684,7 +633,6 @@ p {
         background: $primary_main;
         border-radius: 30px;
         width: 202px;
-        font-style: normal;
         font-weight: 600 !important;
         font-size: 15px;
         line-height: 18px;
@@ -749,9 +697,7 @@ p {
 
         p {
             width: 100%;
-            font-family: Museo Sans Cyrl Regular;
             margin: 0;
-            font-style: normal;
             font-weight: 300;
             font-size: 15px;
             line-height: 26px;
@@ -768,8 +714,6 @@ p {
 
 .static-page-link {
     text-decoration: none;
-    font-family: Museo Sans Cyrl Regular;
-    font-style: normal;
     font-weight: 300;
     font-size: 15px;
     line-height: 23px;
@@ -884,8 +828,6 @@ p {
         border: 1px solid $border !important;
         box-sizing: border-box;
         border-radius: 4px;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
         font-weight: 300;
         font-size: 15px;
         margin-right: 30px !important;

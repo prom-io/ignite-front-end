@@ -1,6 +1,5 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { Link } from "mobx-router";
 import {
     SwipeableDrawer,
     makeStyles,
@@ -9,7 +8,6 @@ import {
 } from "@material-ui/core";
 
 import { DrawerMenu, DrawerUserInfo } from "./";
-import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     importantInfoLink: {
@@ -17,8 +15,7 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 15,
         marginTop: 20,
         textDecoration: "none",
-        fontStyle: "normal",
-        fontWeight: "600 !important",
+        fontWeight: "600",
         fontSize: "15px",
         lineHeight: "18px"
     }
@@ -26,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 const ImportantInfo = "{Important info}";
 
-const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore }) => {
+const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded }) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -51,30 +48,22 @@ const _NavigationalDrawer = ({ drawerExpanded, setDrawerExpanded, routerStore })
                 }
             }}
         >
-            <Link
-                view={Routes.description}
-                store={routerStore}
-                style={{ textDecoration: "none" }}
+            <Typography
+                variant="body1"
+                color="primary"
+                classes={{ root: classes.importantInfoLink }}
             >
-                <Typography
-                    variant="body1"
-                    color="primary"
-                    classes={{ root: classes.importantInfoLink }}
-                    onClick={() => setDrawerExpanded(false)}
-                >
-                    <strong>{ImportantInfo}</strong>
-                </Typography>
-            </Link>
+                {ImportantInfo}
+            </Typography>
             <DrawerUserInfo />
             <DrawerMenu />
         </SwipeableDrawer>
     );
 };
 
-const mapMobxToProps = ({ drawer, store }) => ({
+const mapMobxToProps = ({ drawer }) => ({
     drawerExpanded: drawer.drawerExpanded,
-    setDrawerExpanded: drawer.setDrawerExpanded,
-    routerStore: store
+    setDrawerExpanded: drawer.setDrawerExpanded
 });
 
 export const NavigationalDrawer = inject(mapMobxToProps)(

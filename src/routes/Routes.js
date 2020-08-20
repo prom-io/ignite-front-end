@@ -5,7 +5,6 @@ import {
     DistributedStoragePage,
     BinanceSmartChainPage,
     ChatPage,
-    DescriptionPage,
     HomePage,
     NotificationsPage,
     SetEnglishLanguageAndRedirectToHomePage,
@@ -147,15 +146,6 @@ export const Routes = {
     terms: new Route({
         path: '/terms-and-policy',
         component: <TermsAndPoliciesPage />,
-        beforeEnter: () => {
-
-        },
-        onExit: () => {
-        },
-    }),
-    description: new Route({
-        path: '/description',
-        component: <DescriptionPage />,
         beforeEnter: () => {
 
         },

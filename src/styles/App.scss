@@ -11,79 +11,13 @@ body {
     margin: 0 !important;
 }
 
-.MuiButton-contained {
-    box-shadow: none !important;
-}
-
 .border {
     border: 1px solid red !important;
     z-index: 9999;
 }
 
-.border-green {
-    border: 1px solid green !important;
-}
-
-.Mui-disabled {
-    background: #ffdecc !important;
-    font-family: Museo Sans Cyrl Regular !important;
-    font-style: normal !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    color: #FFFFFF !important;
-}
-
 p {
     font-family: Museo Sans Cyrl Regular;
-}
-
-.app-bar {
-    background-color: #FFF !important;
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: center;
-    max-height: 49px;
-    padding: 0 40px;
-    bottom: 0 !important;
-    top: auto !important;
-}
-
-.tool-bar {
-    width: 100%;
-    max-height: 49px;
-    min-height: 49px !important;
-    padding-right: 0px !important;
-
-    >button {
-        padding: 5px;
-        display: flex;
-        margin: auto 0 auto 18px !important;
-        justify-self: center;
-        align-items: center;
-        min-width: 34px;
-        height: 34px;
-
-        &:hover {
-            background-color: #EF5600 !important;
-        }
-    }
-}
-
-.bottom-inherit {
-    bottom: inherit !important;
-}
-
-.tool-bar_list {
-    display: flex;
-    justify-content: space-around;
-}
-
-.nav-bar-link {
-    display: none !important;
-}
-
-.app-bar-search-field {
-    display: none !important;
 }
 
 .user-app-bar-menu {
@@ -98,8 +32,8 @@ p {
     display: flex;
     align-items: center;
     padding: 0;
-    background-color: #FFFFFf !important;
-    border-bottom: 1px solid #F1EBE8 !important;
+    background-color: $border !important;
+    border-bottom: 1px solid $border !important;
 }
 
 .user-app-bar-menu-button {
@@ -133,8 +67,8 @@ p {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid #F1EBE8;
-    background-color: #FEFDFD;
+    border: 1px solid $border;
+    background-color: $border;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,7 +80,7 @@ p {
 
 .mobile_header-title {
     margin-left: 70px;
-    color: #1C1C1C;
+    color: $text_main;
     font-size: 18px;
     font-family: Museo Sans Cyrl Bold;
 }
@@ -176,7 +110,7 @@ p {
     font-weight: 600;
     font-size: 15px;
     line-height: 18px;
-    color: #FF5C01;
+    color: $primary_main;
     margin-bottom: 5px !important;
 }
 
@@ -264,10 +198,10 @@ p {
         font-style: normal;
         font-weight: 300;
         font-size: 12px;
-        color: #1C1C1C;
+        color: $text_main;
 
         span {
-            color: #FF5C01;
+            color: $primary_main;
         }
     }
 }
@@ -280,8 +214,8 @@ p {
 }
 
 .user-profile-card {
-    background: #FFFBF8;
-    border: 1px solid #F1EBE8;
+    background: $bg_light;
+    border: 1px solid $border;
     box-sizing: border-box;
     width: 256px;
     min-height: 290px;
@@ -324,7 +258,7 @@ p {
         font-size: 20px;
         line-height: 24px;
         text-align: center;
-        color: #1C1C1C;
+        color: $text_main;
         margin: 20px 0 5px 0;
         word-break: break-word;
     }
@@ -337,7 +271,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
         margin: 0 0 10px 0;
         word-break: break-word;
     }
@@ -357,18 +291,11 @@ p {
     p {
         font-size: 15px;
         line-height: 20px;
-        color: #1C1C1C;
+        color: $text_main;
         margin: 0;
     }
 }
 
-.user-card-info-balance {
-    margin: 0;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    text-align: center !important;
-    color: #1C1C1C !important;
-}
 
 .user-card-statistic {
     display: flex;
@@ -381,7 +308,7 @@ p {
 
         &:hover {
             p {
-                color: #1C1C1C;
+                color: $text_main;
             }
         }
     }
@@ -394,7 +321,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 
     p {
@@ -432,7 +359,7 @@ p {
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
-        color: #1C1C1C;
+        color: $text_main;
         text-align: center;
     }
 }
@@ -461,11 +388,11 @@ p {
             font-weight: 300;
             font-size: 15px;
             line-height: 23px;
-            color: #A2A2A2;
+            color: $text_secondary;
         }
 
         &:first-child {
-            border-top: 1px solid #F1EBE8;
+            border-top: 1px solid $border;
 
             ul {
                 width: auto;
@@ -488,11 +415,6 @@ p {
     }
 }
 
-.main-content {
-    max-width: 100% !important;
-    width: 100% !important;
-}
-
 .right-content {
     padding: 0 !important;
 }
@@ -501,45 +423,8 @@ p {
     display: none;
 }
 
-.login_dialog_title {
-    max-width: 600px !important;
-}
-
-.MuiDialog-paperWidthMd {
-    max-width: 600px !important;
-}
-
-.create_status_form_container {
-    border: 1px solid red !important;
-}
-
 .create_status_form_mobile {
     display: none;
-}
-
-.create-status-form {
-    position: relative;
-    overflow: unset !important;
-    box-shadow: none !important;
-    background-color: #FFFBF8 !important;
-    border: 1px solid #F1EBE8;
-    box-sizing: border-box;
-}
-
-.create-status-form-textfield {
-    padding-left: 20px !important;
-    width: 95% !important;
-    border: none;
-    background: none;
-    outline: none;
-}
-
-.create-status-counter {
-    border: none !important;
-}
-
-.create-status-form-counter-container {
-    max-width: 50px !important;
 }
 
 .create-status-form-pic {
@@ -560,22 +445,22 @@ p {
 }
 
 .statusCardBox {
-    border-top: 1px solid #F1EBE8;
-    border-right: 1px solid #F1EBE8;
-    border-left: 1px solid #F1EBE8;
+    border-top: 1px solid $border;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
     border-radius: 0px !important;
     overflow: visible !important;
 
     &:hover {
-        background: #FFFBF8;
+        background: $bg_light;
 
         .repostedStatusContainer {
-            background: #FFFBF8;
+            background: $bg_light;
         }
     }
 
     &:last-child {
-        border-bottom: 1px solid #F1EBE8;
+        border-bottom: 1px solid $border;
     }
 }
 
@@ -598,7 +483,7 @@ p {
         font-weight: 600;
         font-size: 15px;
         line-height: 18px;
-        color: #1C1C1C;
+        color: $text_main;
     }
 
     .status-header-date {
@@ -607,14 +492,14 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
 .avatar-mini {
     height: 35px !important;
     width: 35px !important;
-    border: 1px solid #F1EBE8;
+    border: 1px solid $border;
 }
 
 .status-list-body-container {
@@ -627,7 +512,7 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
-        color: #1C1C1C;
+        color: $text_main;
         word-break: break-word;
     }
 }
@@ -641,7 +526,7 @@ p {
         font-weight: 300;
         font-size: 15px;
         line-height: 23px;
-        color: #1C1C1C;
+        color: $text_main;
         word-break: break-word;
     }
 }
@@ -657,7 +542,7 @@ p {
         font-weight: normal;
         font-size: 15px;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
@@ -710,16 +595,6 @@ p {
     }
 }
 
-.status-menu-active {
-    z-index: 10 !important;
-    border: 1px solid green;
-}
-
-.user-profile-container {
-    display: flex;
-    justify-content: center;
-}
-
 .user-profile-header {
     max-width: 256px !important;
     padding: 0 !important;
@@ -728,8 +603,8 @@ p {
 
 .user-profile-header-content {
     max-width: 256px !important;
-    background: #FFFBF8;
-    border: 1px solid #F1EBE8;
+    background: $bg_light;
+    border: 1px solid $border;
     border-radius: 4px;
     padding: 30px 20px;
 }
@@ -766,7 +641,7 @@ p {
 
         &:hover {
             >p {
-                color: #1C1C1C;
+                color: $text_main;
             }
         }
     }
@@ -778,7 +653,7 @@ p {
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-        color: #1C1C1C;
+        color: $text_main;
     }
 
     p {
@@ -787,7 +662,7 @@ p {
         font-size: 12px;
         line-height: 14px;
         text-align: center;
-        color: #A2A2A2;
+        color: $text_secondary;
     }
 }
 
@@ -806,7 +681,7 @@ p {
     margin-top: 16px;
 
     button {
-        background: #FF5C01;
+        background: $primary_main;
         border-radius: 30px;
         width: 202px;
         font-style: normal;
@@ -814,7 +689,7 @@ p {
         font-size: 15px;
         line-height: 18px;
         text-align: center;
-        color: #FFFFFF;
+        color: $border;
     }
 }
 
@@ -848,7 +723,7 @@ p {
     text-align: center;
     font-family: Museo Sans Cyrl Regular, serif !important;
     font-size: 12px !important;
-    color: #1C1C1C;
+    color: $text_main;
 }
 
 .static-page-container {
@@ -880,93 +755,12 @@ p {
             font-weight: 300;
             font-size: 15px;
             line-height: 26px;
-            color: #A2A2A2;
+            color: $text_secondary;
             text-align: left;
 
             span {
                 font-weight: 600;
-                color: #FF5C01;
-            }
-        }
-    }
-}
-
-.static-page-logo-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    img {
-        width: 56px;
-        height: 56px;
-    }
-
-    h1 {
-        width: 100%;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 32px;
-        line-height: 38px;
-        text-align: left;
-        padding-left: 24px;
-        color: #1C1C1C;
-        margin: 9px 0 0 0;
-    }
-}
-
-.static-page {
-    display: flex;
-    flex-direction: column;
-}
-
-.static-page-footer-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.static-page-footer {
-    display: flex;
-    position: fixed;
-    max-width: 1148px;
-    width: 100% !important;
-    bottom: 0;
-    left: 0;
-    padding: 0 20px;
-    height: 50px;
-    justify-content: space-between;
-    border-top: 1px solid #E5E5E5 !important;
-
-    div {
-        display: flex;
-        font-family: Museo Sans Cyrl Regular;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 15px;
-        line-height: 23px;
-        color: #A2A2A2;
-        justify-content: flex-start;
-        width: 100%;
-
-        ul {
-            display: flex;
-            width: 100%;
-            padding: 0;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-
-            li {
-                margin-left: 27px;
-                list-style: none;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-
-                &:nth-child(2) {
-                    display: none;
-                }
+                color: $primary_main;
             }
         }
     }
@@ -979,7 +773,7 @@ p {
     font-weight: 300;
     font-size: 15px;
     line-height: 23px;
-    color: #A2A2A2;
+    color: $text_secondary;
     text-decoration: none;
 
     &:hover {
@@ -996,12 +790,6 @@ p {
     display: flex;
     justify-content: center;
     margin-bottom: 24px;
-}
-
-.MuiListItem-root.Mui-disabled {
-    opacity: 0.5;
-    color: #A2A2A2 !important;
-    background-color: transparent !important;
 }
 
 .description-page {
@@ -1022,20 +810,11 @@ p {
     }
 }
 
-.ReactGridGallery_tile {
-    background: none !important;
-}
-
-#lightboxBackdrop {
-    z-index: 1190;
-    font-family: Museo Sans Cyrl !important;
-}
-
 .notificationCardBox {
     width: 100%;
-    border-top: 1px solid #F1EBE8;
-    border-right: 1px solid #F1EBE8;
-    border-left: 1px solid #F1EBE8;
+    border-top: 1px solid $border;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
     overflow: visible !important;
     border-radius: 0 !important;
 
@@ -1044,7 +823,7 @@ p {
     }
 
     &:last-child {
-        border-bottom: 1px solid #F1EBE8;
+        border-bottom: 1px solid $border;
     }
 }
 
@@ -1085,7 +864,7 @@ p {
     .app-bar {
         top: 0 !important;
         bottom: auto !important;
-        background-color: #FFF !important;
+        background-color: $border_light !important;
     }
 
     .tool-bar_list {
@@ -1102,7 +881,7 @@ p {
         width: 250px;
         height: 34px;
         background: #FBF7F6;
-        border: 1px solid #F1EBE8 !important;
+        border: 1px solid $border !important;
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Museo Sans Cyrl Regular;
@@ -1111,7 +890,7 @@ p {
         font-size: 15px;
         margin-right: 30px !important;
         line-height: 18px;
-        color: #A2A2A2;
+        color: $text_secondary;
         padding-left: 13px;
     }
 
@@ -1151,7 +930,7 @@ p {
         border-radius: 0 !important;
         border-top-left-radius: 4px !important;
         border-top-right-radius: 4px !important;
-        background-color: #FFFBF8 !important;
+        background-color: $bg_light !important;
         box-sizing: border-box;
     }
 
@@ -1179,7 +958,7 @@ p {
         padding: 0 !important;
         position: fixed !important;
         bottom: 0;
-        background: #FFFBF8;
+        background: $bg_light;
     }
 
     .user-profile-header-content.another-user {

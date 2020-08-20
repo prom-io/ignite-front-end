@@ -7,19 +7,10 @@ export const orange = createMuiTheme({
                 background: 'rgba(255,255,255,0)',
             },
         },
-        MuiIconButton: {
-            root: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
-        },
-        MuiListItem: {
-            button: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
+        MuiDialog: {
+            paperWidthMd: {
+                maxWidth: 600,
+            }
         },
         MuiDialogContent: {
             root: {
@@ -32,10 +23,18 @@ export const orange = createMuiTheme({
             },
             outlinedPrimary: {
                 border: "1px solid #FF5C01"
-            }
+            },
+            contained: {
+                boxShadow: 'none',
+            },
         },
     },
     palette: {
+        action: {
+            disabledBackground: '#ffdecc',
+            disabled: '#FFFFFF' ,
+            hover: '#ffdecc',
+        },
         common: {
             black: '#000',
             white: '#fff',

@@ -26,7 +26,12 @@ import { ListIcon } from '../../icons/ListIcon';
 
 const useStyles = makeStyles(theme => ({
     createStatusFormCard: {
-        background: theme.palette.border.main
+        background: theme.palette.background.light,
+        position: 'relative',
+        overflow: 'unset' ,
+        boxShadow: 'none' ,
+        border: `1px solid ${theme.palette.border.main}`,
+        boxSizing: 'border-box',
     },
     remainingCharactersCounter: {
         padding: "7px 10px"
@@ -138,10 +143,7 @@ const _CreateStatusForm = ({
 
     return (
         <ClickAwayListener onClickAway={handleEmojiClick}>
-            <Card
-                className={classes.createStatusFormCard}
-                className="create-status-form"
-            >
+            <Card className={classes.createStatusFormCard}>
                 <Grid container>
                     {referredStatus && (
                         <Grid item xs={12}>

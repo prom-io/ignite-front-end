@@ -7,7 +7,7 @@ import { DescriptionStoaBanner } from "./DescriptionStoaBanner";
 import { UserCard } from "../components/UserCard";
 
 const _PrometeusDescription = ({ currentUser }) => (
-    <Grid container spacing={2} className="description-container">
+    <Grid container spacing={2}>
         <Grid className="user_profile_container">
             {currentUser ? <UserCard isLogin /> : <DescriptionUnauthBanner />}
         </Grid>

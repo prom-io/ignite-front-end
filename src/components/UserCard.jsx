@@ -49,8 +49,12 @@ const _UserCard = ({
                     </Link>
                     <div className="user-card-bottom user-card-content-box">
                         <div className="user-card-info">
-                            <h4>{displayName}</h4>
-                            <p>@{username}</p>
+                            <Typography variant={'h4'}>
+                                {displayName}
+                            </Typography>
+                            <Typography>
+                                @{username}
+                            </Typography>
                             {external_url && (
                                 <a
                                     href={external_url}
@@ -61,9 +65,9 @@ const _UserCard = ({
                                 </a>
                             )}
                             {bio && (
-                                <div className="user-card-info-bio">
+                                <Typography className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
-                                </div>
+                                </Typography>
                             )}
                         </div>
 
@@ -109,9 +113,9 @@ const _UserCard = ({
                                     </Typography>
                                 </Link>
                             </Grid>
-                            <div className="user-profile-header-content-bottom-balance">
+                            <Typography variant={'body2'} className={'user-profile-header-content-bottom-balance'}>
                                 {l("user.profile.your-balance")}: {user_balance} PROM
-                            </div>
+                            </Typography>
                         </Grid>
                     </div>
                 </>

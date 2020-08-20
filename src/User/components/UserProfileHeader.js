@@ -72,8 +72,12 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <h4>{displayName}</h4>
-                            <p>@{username}</p>
+                            <Typography variant={'h4'}>
+                                {displayName}
+                            </Typography>
+                            <Typography>
+                                @{username}
+                            </Typography>
                             {externalUrl && (
                                 <a
                                     href={externalUrl}
@@ -84,9 +88,9 @@ const _UserProfileHeader = ({
                                 </a>
                             )}
                             {bio && (
-                                <div className="user-card-info-bio">
+                                <Typography className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
-                                </div>
+                                </Typography>
                             )}
                         </div>
                     </Grid>
@@ -141,9 +145,9 @@ const _UserProfileHeader = ({
                     />
                 </Grid>
                 {currentUser && currentUser.username === username && (
-                    <div className="user-profile-header-content-bottom-balance">
-                        {l("user.profile.your-balance")}: {userBalance} PROM
-                    </div>
+                  <Typography variant={'body2'} className={'user-profile-header-content-bottom-balance'}>
+                      {l("user.profile.your-balance")}: {userBalance} PROM
+                  </Typography>
                 )}
                 <Grid item>
                     <Typography

@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     topicsPopular: {
         border: `1px solid ${theme.palette.border.main}`,
         borderRadius: '4px',
+        width: '100%',
     },
     topicsPopularIsNotFull: {
         marginBottom: '16px',
@@ -64,7 +65,6 @@ export const TopicsPopular = observer(({ isNotFull }) => {
             spacing={2}
             className="description-container-right"
         >
-            <Grid className="user_profile_container">
                 <div className={[
                     classes.topicsPopular,
                     isNotFull && classes.topicsPopularIsNotFull,
@@ -91,7 +91,6 @@ export const TopicsPopular = observer(({ isNotFull }) => {
                         </div>
                     )}
                 </div>
-            </Grid>
         </Grid>
     );
 });

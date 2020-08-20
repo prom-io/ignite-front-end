@@ -47,7 +47,7 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid $border_light;
+    border: 1px solid $border;
     background-color: $border_light;
     display: flex;
     justify-content: space-between;
@@ -243,7 +243,6 @@ body {
         line-height: 14px;
         text-align: center;
         color: $text_secondary;
-        margin: 0 0 10px 0;
         word-break: break-word;
     }
 
@@ -262,7 +261,7 @@ body {
         font-size: 15px;
         line-height: 20px;
         color: $text_main;
-        margin: 0;
+        margin: 10px 0 0 0;
     }
 }
 

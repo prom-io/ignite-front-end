@@ -32,6 +32,9 @@ export const orange = createMuiTheme({
                 '&:hover': {
                     boxShadow: 'none',
                 },
+                '&:active': {
+                    boxShadow: 'none',
+                },
             }
         },
     },
@@ -40,7 +43,6 @@ export const orange = createMuiTheme({
             disabledBackground: '#ffdecc',
             disabled: '#FFFFFF' ,
             hover: '#ffdecc',
-            hoverOpacity: 0,
         },
         common: {
             black: '#000',
@@ -84,6 +86,10 @@ export const orange = createMuiTheme({
     typography: {
         button: {
             textTransform: 'none',
+        },
+        body2: {
+            fontWeight: 600,
+            fontSize: '14px',
         },
         fontFamily: 'Museo Sans Cyrl Regular',
     },

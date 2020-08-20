@@ -110,7 +110,8 @@ const _UserCard = ({
                                 </Link>
                             </Grid>
                             <div className="user-profile-header-content-bottom-balance">
-                                {l("user.profile.your-balance")}: {user_balance} PROM
+                                {l("user.profile.your-balance")}:{" "}
+                                {Number(user_balance).toFixed(2)} PROM
                             </div>
                         </Grid>
                     </div>

@@ -142,7 +142,8 @@ const _UserProfileHeader = ({
                 </Grid>
                 {currentUser && currentUser.username === username && (
                     <div className="user-profile-header-content-bottom-balance">
-                        {l("user.profile.your-balance")}: {userBalance} PROM
+                        {l("user.profile.your-balance")}:{" "}
+                        {Number(userBalance).toFixed(2)} PROM
                     </div>
                 )}
                 <Grid item>

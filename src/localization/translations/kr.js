@@ -275,7 +275,7 @@ export const kr = {
     'memezator.dialog.unlike': 'Your vote is already in, please choose more wisely next time.',
     'memezator.dialog.own-meme': 'We appreciate that you like your meme, but please vote for another one',
     'memezator.dialog.already': 'You can vote for a meme here only once per day',
-    'memezator.dialog.old-meme': 'These are old memes, Please vote for newer ones',
+    'memezator.dialog.old-meme': 'You can only vote for today\'s memes',
     'dialog.favourite.can-not-unliked': 'Statuses which have not been liked by current user can\'t be unliked',
     'memezator.rules-list': [
         "Voting is super easy: you just ‘like‘ any meme here.",

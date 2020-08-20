@@ -21,7 +21,6 @@ import { CreateStatusFormMediaAttachments } from "./CreateStatusFormMediaAttachm
 import { RepostedStatusContent } from "./RepostedStatusContent";
 import Loader from "../../components/Loader";
 import { localized } from "../../localization/components";
-import { GifIcon } from '../../icons/GifIcon';
 import { ListIcon } from '../../icons/ListIcon';
 
 const useStyles = makeStyles(theme => ({
@@ -187,7 +186,6 @@ const _CreateStatusForm = ({
                                     l
                                 )}
                             />
-                            <GifIcon color={'rgba(255, 92, 1, 0.2)'}/>
                             <ListIcon color={'rgba(255, 92, 1, 0.2)'}/>
                             <EmojiInput
                                 setEmojiPickerVisible={setEmojiPickerVisible}

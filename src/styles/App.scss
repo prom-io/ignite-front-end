@@ -632,6 +632,7 @@ p {
     width: 100%;
     height: 40px;
     margin-top: 16px;
+    margin-bottom: 16px;
     align-content: space-between;
 
     a {
@@ -663,6 +664,13 @@ p {
         text-align: center;
         color: $text_secondary;
     }
+}
+
+.user-profile-header-content-bottom-balance {
+    font-family: Museo Sans Cyrl Regular;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .user-profile-header-content-bottom-follow-button {

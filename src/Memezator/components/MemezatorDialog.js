@@ -97,7 +97,7 @@ const _MemezatorDialog = ({
                     <ModalCloseIcon />
                 </IconButton>
                 <DialogTitle className={classes.memezatorDialogTitle}>
-                    Error
+                    {l("memezator.dialog.sorry")}
                 </DialogTitle>
                 <DialogContent className={classes.memezatorDialogContent}>
                     <DialogContentText>{l(memezatorError)}</DialogContentText>

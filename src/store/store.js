@@ -20,7 +20,6 @@ import {
 import {
     UpdateUserProfileStore,
     UploadUserAvatarStore,
-    UserCardStore,
     UserFollowersStore,
     UserFollowingStore,
     UserProfileStore,
@@ -59,7 +58,6 @@ const followPeople = new FollowPeopleStore(authorization);
 const whoToFollow = new WhoToFollowStore(authorization);
 const homeTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, '/api/v1/timelines/home');
 const timelineSwitcher = new TimelinesSwitcherStore(globalTimeline, homeTimeline, authorization);
-const userCard = new UserCardStore(authorization, userProfile);
 const drawer = new DrawerStore();
 const statusPage = new StatusPageStore(authorization, createStatus, memezatorDialog);
 const localization = new LocaleStore(authorization);
@@ -100,7 +98,6 @@ export const store = {
     signUp,
     homeTimeline,
     timelineSwitcher,
-    userCard,
     drawer,
     statusPage,
     uploadMediaAttachments,

@@ -29,7 +29,6 @@ export const Routes = {
         path: '/',
         component: <HomePage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
             store.timelineSwitcher.setSwitchOnUserChange(true);
 
             if (store.authorization.currentUser && store.authorization.currentUser.follows_count !== 0) {
@@ -65,7 +64,6 @@ export const Routes = {
             if (store.authorization.currentUser) {
                 store.notifications.fetchNotifications();
             }
-            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.notifications.resetNotifications();
@@ -75,7 +73,7 @@ export const Routes = {
     //     path: '/chat',
     //     component: <ChatPage />,
     //     beforeEnter: () => {
-    //         store.userCard.setDisplayMode('currentUser');
+    //         
     //     },
     //     onExit: () => {
     //     },
@@ -87,7 +85,6 @@ export const Routes = {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
                 store.followPeople.fetchFollowPeople();
             }
-            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.followPeople.reset();
@@ -97,7 +94,7 @@ export const Routes = {
         path: '/search',
         component: <SearchPeoplePage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         onExit: () => {
             store.searchUsers.resetSearchPage();
@@ -107,7 +104,7 @@ export const Routes = {
         path: '/edit-profile',
         component: <UserEditPage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         onExit: () => {
             store.userProfileUpdate.resetForm();
@@ -119,7 +116,7 @@ export const Routes = {
         beforeEnter: () => {
             store.topicsPopular.fetchTopicsPopular();
             store.topicStatuses.fetchAllStatuses();
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         beforeExit: () => {
             store.topicStatuses.reset();
@@ -132,7 +129,6 @@ export const Routes = {
         beforeEnter: (route, params) => {
             store.topicsPopular.fetchTopicsPopular();
             store.topicStatuses.fetchTopicInfo(params.title);
-            store.userCard.setDisplayMode('currentUser');
         },
         onEnter: (route, params, store1) => { //
             if (params.title === "memezator") { //
@@ -198,7 +194,6 @@ export const Routes = {
                 store.userProfile.reset();
                 store.userProfile.fetchUserByUsername(params.username);
             }
-            store.userCard.setDisplayMode('userByAddress');
             store.userProfile.activeTab = 'posts';
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',
@@ -255,7 +250,7 @@ export const Routes = {
             store.statusComments.setOnlyAddCommentsToStatus(params.id);
             store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
             store.statusComments.fetchStatuses();
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);
@@ -273,8 +268,6 @@ export const Routes = {
         path: '/memezator',
         component: <MemezatorPage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
-
             store.topicsPopular.fetchTopicsPopular(5); //
             if (store.authorization.currentUser) {
                 store.memezatorActions.fetchAccessToMemezatorPosting();

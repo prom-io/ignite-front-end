@@ -9,7 +9,6 @@ export * from './TopicsPage';
 export * from './TopicPage';
 export * from './MemezatorPage';
 export * from './TermsAndPoliciesPage';
-export * from './DescriptionPage';
 export * from './StatusPage';
 export * from './EthereumPlasmaPage';
 export * from './DistributedStoragePage';

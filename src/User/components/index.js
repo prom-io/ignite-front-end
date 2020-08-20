@@ -11,3 +11,4 @@ export * from './UpdateUserProfile';
 export * from './UpdateUserPassword';
 export * from './UserAvatarFileInput';
 export * from './UserAvatarCropDialog';
+export * from './UserGlobalCard';

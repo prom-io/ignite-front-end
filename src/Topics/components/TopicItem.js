@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/core/SvgIcon/SvgIcon';
 
 const useStyles = makeStyles((theme) => ({

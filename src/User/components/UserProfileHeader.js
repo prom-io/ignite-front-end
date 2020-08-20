@@ -88,9 +88,9 @@ const _UserProfileHeader = ({
                                 </a>
                             )}
                             {bio && (
-                                <Typography className="user-card-info-bio">
+                                <div className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
-                                </Typography>
+                                </div>
                             )}
                         </div>
                     </Grid>
@@ -146,7 +146,8 @@ const _UserProfileHeader = ({
                 </Grid>
                 {currentUser && currentUser.username === username && (
                   <Typography variant={'body2'} className={'user-profile-header-content-bottom-balance'}>
-                      {l("user.profile.your-balance")}: {userBalance} PROM
+                    {l("user.profile.your-balance")}:{" "}
+                    {Number(userBalance).toFixed(2)} PROM
                   </Typography>
                 )}
                 <Grid item>

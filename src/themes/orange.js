@@ -18,6 +18,7 @@ export const orange = createMuiTheme({
             },
         },
         MuiButton: {
+            disableElevation: true,
             root: {
                 borderRadius: '30px',
             },
@@ -27,6 +28,11 @@ export const orange = createMuiTheme({
             contained: {
                 boxShadow: 'none',
             },
+            containedPrimary: {
+                '&:hover': {
+                    boxShadow: 'none',
+                },
+            }
         },
     },
     palette: {
@@ -34,6 +40,7 @@ export const orange = createMuiTheme({
             disabledBackground: '#ffdecc',
             disabled: '#FFFFFF' ,
             hover: '#ffdecc',
+            hoverOpacity: 0,
         },
         common: {
             black: '#000',

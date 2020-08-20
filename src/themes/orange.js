@@ -2,6 +2,20 @@ import { createMuiTheme } from '@material-ui/core';
 
 export const orange = createMuiTheme({
     overrides: {
+        MuiGrid: {
+            root: {
+                maxWidth: '100%',
+                margin: 0
+            },
+            container: {
+                maxWidth: '100%',
+                margin: 0
+            },
+            'spacing-xs-2': {
+                maxWidth: '100%',
+                margin: 0
+            }
+        },
         MuiTouchRipple: {
             root: {
                 background: 'rgba(255,255,255,0)',
@@ -37,6 +51,11 @@ export const orange = createMuiTheme({
                 },
             }
         },
+        MuiTypography:{
+            root: {
+                fontFamily: 'Museo Sans Cyrl Regular',
+            }
+        }
     },
     palette: {
         action: {

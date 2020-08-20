@@ -88,9 +88,9 @@ const _UserProfileHeader = ({
                                 </a>
                             )}
                             {bio && (
-                                <div className="user-card-info-bio">
+                                <Typography variant={'h6'} className="user-card-info-bio">
                                     <Markdown source={bio} plugins={[breaks]} />
-                                </div>
+                                </Typography>
                             )}
                         </div>
                     </Grid>

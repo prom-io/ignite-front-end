@@ -31,10 +31,14 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                     />
                 </div>
             </Link>
-            <div className="user-card-bottom user-card-content-box">
+            <div className="user-card-content-box">
                 <div className="user-card-info">
-                    <h4>{currentUser.display_name}</h4>
-                    <p>@{currentUser.username}</p>
+                    <Typography variant={'h4'}>
+                      {currentUser.display_name}
+                    </Typography>
+                    <Typography>
+                      @{currentUser.username}
+                    </Typography>
                     {currentUser.external_url && (
                         <a
                             href={currentUser.external_url}
@@ -45,9 +49,9 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                         </a>
                     )}
                     {currentUser.bio && (
-                        <div className="user-card-info-bio">
+                        <Typography variant={'h6'} className="user-card-info-bio">
                             <Markdown source={currentUser.bio} plugins={[breaks]} />
-                        </div>
+                        </Typography>
                     )}
                 </div>
 
@@ -99,10 +103,10 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                             </Typography>
                         </Link>
                     </Grid>
-                    <div className="user-profile-header-content-bottom-balance">
+                    <Typography variant={'span'} className="user-profile-header-content-bottom-balance">
                         {l("user.profile.your-balance")}:{" "}
                         {Number(currentUser.user_balance).toFixed(2)} PROM
-                    </div>
+                    </Typography>
                 </Grid>
             </div>
         </div>

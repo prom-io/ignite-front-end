@@ -8,39 +8,9 @@ export const orange = createMuiTheme({
             },
         },
         MuiDialog: {
-          paperWidthMd: {
-              maxWidth: 600,
-          }
-        },
-        MuiIconButton: {
-            root: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
-            disabled: {
-                background: '#ffdecc',
-                fontFamily: 'Museo Sans Cyrl Regular',
-                fontStyle: 'normal' ,
-                fontWeight: 600 ,
-                fontSize: '14px' ,
-                color: '#FFFFFF' ,
-            },
-        }
-        },
-        MuiListItem: {
-            root: {
-                disabled: {
-                    opacity: 0.5,
-                    color: '#A2A2A2',
-                    backgroundColor: 'transparent' ,
-                },
-            },
-            button: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
+            paperWidthMd: {
+                maxWidth: 600,
+            }
         },
         MuiDialogContent: {
             root: {
@@ -57,16 +27,14 @@ export const orange = createMuiTheme({
             contained: {
                 boxShadow: 'none',
             },
-            disabled: {
-                background: '#ffdecc',
-                fontFamily: 'Museo Sans Cyrl Regular',
-                fontStyle: 'normal' ,
-                fontWeight: 600 ,
-                fontSize: '14px' ,
-                color: '#FFFFFF' ,
-            },
+        },
     },
     palette: {
+        action: {
+            disabledBackground: '#ffdecc',
+            disabled: '#FFFFFF' ,
+            hover: '#ffdecc',
+        },
         common: {
             black: '#000',
             white: '#fff',

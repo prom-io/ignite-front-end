@@ -33,7 +33,7 @@ p {
     align-items: center;
     padding: 0;
     background-color: $border !important;
-    border-bottom: 1px solid $border_light !important;
+    border-bottom: 1px solid $border !important;
 }
 
 .user-app-bar-menu-button {
@@ -67,8 +67,8 @@ p {
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid $border_light;
-    background-color: $border_light;
+    border: 1px solid $border;
+    background-color: $border;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -215,7 +215,7 @@ p {
 
 .user-profile-card {
     background: $bg_light;
-    border: 1px solid $border_light;
+    border: 1px solid $border;
     box-sizing: border-box;
     width: 256px;
     min-height: 290px;
@@ -392,7 +392,7 @@ p {
         }
 
         &:first-child {
-            border-top: 1px solid $border_light;
+            border-top: 1px solid $border;
 
             ul {
                 width: auto;
@@ -445,9 +445,9 @@ p {
 }
 
 .statusCardBox {
-    border-top: 1px solid $border_light;
-    border-right: 1px solid $border_light;
-    border-left: 1px solid $border_light;
+    border-top: 1px solid $border;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
     border-radius: 0px !important;
     overflow: visible !important;
 
@@ -460,7 +460,7 @@ p {
     }
 
     &:last-child {
-        border-bottom: 1px solid $border_light;
+        border-bottom: 1px solid $border;
     }
 }
 
@@ -499,7 +499,7 @@ p {
 .avatar-mini {
     height: 35px !important;
     width: 35px !important;
-    border: 1px solid $border_light;
+    border: 1px solid $border;
 }
 
 .status-list-body-container {
@@ -604,7 +604,7 @@ p {
 .user-profile-header-content {
     max-width: 256px !important;
     background: $bg_light;
-    border: 1px solid $border_light;
+    border: 1px solid $border;
     border-radius: 4px;
     padding: 30px 20px;
 }
@@ -812,9 +812,9 @@ p {
 
 .notificationCardBox {
     width: 100%;
-    border-top: 1px solid $border_light;
-    border-right: 1px solid $border_light;
-    border-left: 1px solid $border_light;
+    border-top: 1px solid $border;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
     overflow: visible !important;
     border-radius: 0 !important;
 
@@ -823,7 +823,7 @@ p {
     }
 
     &:last-child {
-        border-bottom: 1px solid $border_light;
+        border-bottom: 1px solid $border;
     }
 }
 
@@ -881,7 +881,7 @@ p {
         width: 250px;
         height: 34px;
         background: #FBF7F6;
-        border: 1px solid $border_light !important;
+        border: 1px solid $border !important;
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Museo Sans Cyrl Regular;

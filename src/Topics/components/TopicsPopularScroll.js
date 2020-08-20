@@ -27,15 +27,13 @@ const _TopicsPopularScroll = ({ topicsPopularItems, pending, routerStore }) => {
         <div className={classes.hashBtnBlock}>
             {!pending &&
                 topicsPopularItems.length > 0 &&
-                topicsPopularItems.map(topic => {
-                    return topic.title === "memezator" ? undefined : (
-                        <TopicsHashButton
-                            key={topic.id}
-                            topic={topic}
-                            routerStore={routerStore}
-                        />
-                    );
-                })}
+                topicsPopularItems.map(topic => (
+                    <TopicsHashButton
+                        key={topic.id}
+                        topic={topic}
+                        routerStore={routerStore}
+                    />
+                ))}
         </div>
     );
 };

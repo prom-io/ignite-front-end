@@ -13,7 +13,8 @@ import {
     UserAppBarMenu,
     ExpandDrawerButton,
     NavigationalDrawer,
-    AppBarLogo
+    AppBarLogo,
+    AppBarLanguageSelect
 } from "./";
 import {
     OpenLoginDialogButton,
@@ -24,7 +25,6 @@ import {
     OpenCreateStatusDialogButton,
     OpenCreateStatusDialogFloatingActionButton
 } from "../../Status/components";
-import { AppBarLanguageSelect } from "../../Settings/components";
 import { SearchInput } from "../../Search/components";
 import { Routes } from "../../routes";
 import { localized } from "../../localization/components";

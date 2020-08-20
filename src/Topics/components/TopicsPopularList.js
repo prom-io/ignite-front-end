@@ -27,11 +27,9 @@ const _TopicsPopularList = ({ topicsPopularItems, pending }) => {
         </div>
     ) : (
         topicsPopularItems.length > 0 &&
-            topicsPopularItems.map(topic => {
-                return topic.title === "memezator" ? undefined : (
-                    <TopicPopularItem key={topic.id} topic={topic} />
-                );
-            })
+            topicsPopularItems.map(topic => (
+                <TopicPopularItem key={topic.id} topic={topic} />
+            ))
     );
 };
 

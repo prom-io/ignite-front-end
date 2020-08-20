@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { Link } from "mobx-router";
 import { Button, Typography, makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
@@ -35,6 +36,10 @@ const useStyles = makeStyles(theme => ({
         }
     },
     memezatorCaptionWrapper: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
         marginBottom: "16px",
         [theme.breakpoints.down("sm")]: {
             marginBottom: 0,
@@ -49,6 +54,17 @@ const useStyles = makeStyles(theme => ({
             fontSize: "14px",
             lineHeight: "14px"
         }
+    },
+    memezatorCaptionHashtagLink: {
+        color: theme.palette.primary.main,
+        textDecoration: "none",
+        "&:hover": {
+            textDecoration: "underline"
+        }
+    },
+    memezatorCaptionHashtag: {
+        fontSize: "18px",
+        fontWeight: 600
     }
 }));
 
@@ -74,13 +90,29 @@ export const MemezatorHeader = observer(() => {
                 </Button>
             </div>
             <div className={classes.memezatorCaptionWrapper}>
-                <Typography
-                    classes={{ root: classes.memezatorCaption }}
-                    variant="h5"
-                    color="textSecondary"
-                >
-                    {l("memezator.ignite-memes-totalizator")}
-                </Typography>
+                <div>
+                    <Typography
+                        classes={{ root: classes.memezatorCaption }}
+                        variant="h5"
+                        color="textSecondary"
+                    >
+                        {l("memezator.ignite-memes-totalizator")}
+                    </Typography>
+                </div>
+                <div>
+                    <Link
+                        className={classes.memezatorCaptionHashtagLink}
+                        view={Routes.topic}
+                        params={{ title: "memezator_talk" }}
+                        store={routerStore}
+                    >
+                        <Typography
+                            classes={{ root: classes.memezatorCaptionHashtag }}
+                        >
+                            #memezator_talk
+                        </Typography>
+                    </Link>
+                </div>
             </div>
         </>
     );

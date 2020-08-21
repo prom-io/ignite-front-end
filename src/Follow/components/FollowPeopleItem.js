@@ -89,7 +89,7 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
                         />
                     </ClickEventPropagationStopper>
                 </div>
-                <p>{user.bio}</p>
+                <Typography>{user.bio}</Typography>
             </div>
         </Link>
     );

@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, reaction } from "mobx";
 import { axiosInstance } from "../../api/axios-instance";
 
 export class FollowPeopleStore {
@@ -9,13 +9,10 @@ export class FollowPeopleStore {
     followInputValue = "";
 
     @observable
-    followResult = {
-        type: "",
-        username: ""
-    };
+    pending = false;
 
     @observable
-    pending = false;
+    hasMore = true;
 
     page = 1;
 
@@ -23,6 +20,11 @@ export class FollowPeopleStore {
 
     constructor(authorizationStore) {
         this.authorizationStore = authorizationStore;
+
+        reaction(
+            () => this.followInputValue,
+            inputValue => !inputValue && this.fetchFollowPeople(true)
+        );
     }
 
     @action
@@ -31,49 +33,14 @@ export class FollowPeopleStore {
     };
 
     @action
-    doFollow = () => {
-        const username =
-            this.followInputValue[0] === "@"
-                ? this.followInputValue.slice(1)
-                : this.followInputValue;
-        axiosInstance
-            .post(`/api/v1/accounts/${username}/follow`)
-            .then(({ data }) => {
-                this.followInputValue = "";
-                this.followResult = {
-                    type: "success",
-                    username: data.username
-                };
-                this.authorizationStore.currentUser.follows_count += 1;
+    fetchFollowPeople = isNew => {
+        if (isNew) {
+            this.followPeopleItems = [];
+            this.page = 1;
+        }
 
-                const temp = [...this.followPeopleItems];
-                const selected = temp.find(item => item.id === data.id);
-                if (selected) {
-                    const index = temp.indexOf(selected);
-                    const selectedUser = temp[index];
-                    selectedUser.following = true;
-                    this.followPeopleItems = [...temp];
-                    this.followPeopleItems.splice(
-                        0,
-                        0,
-                        this.followPeopleItems.splice(index, 1)[0]
-                    );
-                } else {
-                    this.followPeopleItems.unshift(data);
-                }
-            })
-            .catch(err => {
-                if (err.response.status == 409) {
-                    this.followResult.type = "already";
-                } else {
-                    this.followResult.type = "error";
-                }
-            });
-    };
-
-    @action
-    fetchFollowPeople = () => {
         this.pending = true;
+
         let language = localStorage.getItem("language");
         if (language !== "en" && language !== "kr") {
             language = "en";
@@ -83,10 +50,45 @@ export class FollowPeopleStore {
                 `/api/v1/accounts/follow-recommendations?language=${language}&page=${this.page}`
             )
             .then(({ data }) => {
-                this.followPeopleItems.push(...data);
-                this.page++;
+                if (data.length > 0) {
+                    this.followPeopleItems.push(...data);
+                    this.page++;
+                } else {
+                    this.hasMore = false;
+                }
             })
-            .catch(error => (this.error = error))
+            .catch(() => {})
+            .finally(() => (this.pending = false));
+    };
+
+    @action
+    fetchSearchPeople = isNew => {
+        if (isNew) {
+            this.followPeopleItems = [];
+            this.page = 0;
+        }
+
+        this.pending = true;
+
+        let searchUrl;
+        if (this.page === 0) {
+            searchUrl = `/api/v1/accounts?q=${this.followInputValue}&take=15`;
+        } else {
+            const skip = this.page * 15;
+            searchUrl = `/api/v1/accounts?q=${this.followInputValue}&skip=${skip}&take=15`;
+        }
+
+        axiosInstance
+            .get(searchUrl)
+            .then(({ data }) => {
+                if (data.length > 0) {
+                    this.followPeopleItems.push(...data);
+                    this.page++;
+                } else {
+                    this.hasMore = false;
+                }
+            })
+            .catch(() => {})
             .finally(() => (this.pending = false));
     };
 
@@ -94,10 +96,6 @@ export class FollowPeopleStore {
     reset = () => {
         this.followPeopleItems = [];
         this.followInputValue = "";
-        this.followResult = {
-            type: "",
-            username: ""
-        };
         this.pending = false;
         this.page = 1;
     };

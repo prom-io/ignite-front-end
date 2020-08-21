@@ -36,7 +36,10 @@ export class MemezatorStatusesStore {
             () => this.authorizationStore.currentUser,
             () => {
                 this.reset();
-                this.fetchMemezatorStatuses();
+
+                if (window.location.pathname === "/memezator") {
+                    this.fetchMemezatorStatuses();
+                }
             }
         );
 

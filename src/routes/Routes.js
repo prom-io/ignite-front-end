@@ -82,7 +82,7 @@ export const Routes = {
         component: <FollowPeoplePage />,
         beforeEnter: () => {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
-                store.followPeople.fetchFollowPeople();
+                store.followPeople.fetchFollowPeople(true);
             }
         },
         onExit: () => {

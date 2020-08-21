@@ -1,10 +1,13 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Link } from "mobx-router";
+import { Button, Grid, makeStyles } from "@material-ui/core";
 
 import { SearchPeopleList } from "../../Search/components";
 import { BackButton } from "../../components/BackButton";
 import { localized } from "../../localization/components";
+import { Routes } from "../../routes";
+import { routerStore } from "../../store";
 
 const useStyles = makeStyles(theme => ({
     searchBackButton: {
@@ -26,18 +29,40 @@ const useStyles = makeStyles(theme => ({
             marginTop: 0
         }
     },
-    searchInput: {
-        boxSizing: "border-box",
-        fontFamily: "Museo Sans Cyrl Regular",
-        fontWeight: 300,
-        fontSize: "15px",
-        lineHeight: "18px",
-        height: 42,
-        width: "100%",
-        borderRadius: 30,
-        border: `1px solid ${theme.palette.border.main}`,
-        outline: "none",
-        padding: "0 105px 0 24px"
+    followInputRow: {
+        position: "relative",
+
+        "& input": {
+            boxSizing: "border-box",
+            fontFamily: "Museo Sans Cyrl Regular",
+            fontStyle: "normal",
+            fontWeight: 300,
+            fontSize: "15px",
+            lineHeight: "18px",
+            height: 42,
+            width: "100%",
+            borderRadius: 30,
+            border: `1px solid ${theme.palette.border.main}`,
+            outline: "none",
+            padding: "0 105px 0 24px"
+        },
+
+        "& button": {
+            position: "absolute",
+            right: 0,
+            maxWidth: 95,
+            borderRadius: 30,
+            height: 42,
+            fontWeight: 600,
+            fontSize: "15px",
+            lineHeight: "18px",
+
+            "&.Mui-disabled": {
+                fontSize: "15px !important",
+                pointerEvents: "auto !important",
+                cursor: "no-drop !important"
+            }
+        }
     }
 }));
 
@@ -51,15 +76,30 @@ const _SearchPeopleContainer = ({ searchValuePage, setSearchValuePage, l }) => {
                     <BackButton title="search-people" toHome />
                 </div>
                 <div className={classes.searchInputWrapper}>
-                    <input
-                        className={classes.searchInput}
-                        type="text"
-                        placeholder={l("search.people.enter")}
-                        value={searchValuePage}
-                        onChange={e => setSearchValuePage(e.target.value)}
-                    />
+                    <div className={classes.followInputRow}>
+                        <input
+                            type="text"
+                            placeholder={l("search.people.enter")}
+                            value={searchValuePage}
+                            onChange={e => setSearchValuePage(e.target.value)}
+                        />
+                        <Link
+                            view={Routes.searchPeople}
+                            queryParams={{ q: searchValuePage }}
+                            store={routerStore}
+                        >
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                disabled={!searchValuePage || !searchValuePage.trim()}
+                                fullWidth
+                            >
+                                {l("appbar.search")}
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
-                {searchValuePage && <SearchPeopleList />}
+                <SearchPeopleList />
             </Grid>
         </Grid>
     );

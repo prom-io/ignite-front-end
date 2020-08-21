@@ -42,9 +42,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const SearchResultDropdown = ({
+    searchValueHeader,
     searchValueHeaderIsTouched,
     searchResult,
-    showMore,
     pending
 }) => {
     const classes = useStyles();
@@ -78,8 +78,12 @@ export const SearchResultDropdown = ({
 
             {searchResult.length > 6 && (
                 <div className={classes.searchResultFooter}>
-                    <Link view={Routes.searchPeople} store={routerStore}>
-                        <div onClick={showMore}>{l("user.card.show-more")}</div>
+                    <Link
+                        view={Routes.searchPeople}
+                        queryParams={{ q: searchValueHeader }}
+                        store={routerStore}
+                    >
+                        {l("user.card.show-more")}
                     </Link>
                 </div>
             )}

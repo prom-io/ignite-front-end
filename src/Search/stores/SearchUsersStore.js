@@ -5,7 +5,7 @@ import { axiosInstance } from "../../api/axios-instance";
 export class SearchUsersStore {
     @observable
     searchValueHeader = undefined;
-    
+
     @observable
     isSearchActive = false;
 
@@ -22,16 +22,10 @@ export class SearchUsersStore {
     shouldResetResultsHeader = false;
 
     @observable
-    shouldResetResultsPage = false;
-
-    @observable
     pendingHeader = false;
 
     @observable
     pendingPage = false;
-
-    @observable
-    searchValuePageIsTouched = false;
 
     @observable
     searchValueHeaderIsTouched = false;
@@ -41,6 +35,9 @@ export class SearchUsersStore {
 
     @observable
     hasMore = true;
+
+    @observable
+    searchWithParams = false;
 
     authorizationStore = undefined;
 
@@ -62,29 +59,13 @@ export class SearchUsersStore {
             () => this.searchValueHeader,
             () => (this.searchValueHeaderIsTouched = true)
         );
-
-        reaction(
-            () => this.searchValuePage,
-            debounce(inputValue => {
-                this.shouldResetResultsPage = true;
-                inputValue && inputValue.trim()
-                    ? this.fetchSearchPeople()
-                    : this.resetSearchPage();
-                this.searchValuePageIsTouched = false;
-            }, 300)
-        );
-
-        reaction(
-            () => this.searchValuePage,
-            () => (this.searchValuePageIsTouched = true)
-        );
     }
 
     @action
     setSearchValueHeader = searchValueHeader => {
         this.searchValueHeader = searchValueHeader;
     };
-    
+
     @action
     setIsSearchActive = isActive => {
         this.isSearchActive = isActive;
@@ -114,22 +95,22 @@ export class SearchUsersStore {
     };
 
     @action
-    fetchSearchPeople = () => {
-        if (this.shouldResetResultsPage) {
+    fetchSearchPeople = (query, isNew) => {
+        if (isNew) {
+            this.searchWithParams = true;
+            this.searchValuePage = query;
             this.searchResultPage = [];
             this.page = 0;
-            this.hasMore = true;
-            this.shouldResetResultsPage = false;
         }
 
         this.pendingPage = true;
 
         let searchUrl;
         if (this.page === 0) {
-            searchUrl = `/api/v1/accounts?q=${this.searchValuePage}&take=15`;
+            searchUrl = `/api/v1/accounts?q=${query}&take=15`;
         } else {
             const skip = this.page * 15;
-            searchUrl = `/api/v1/accounts?q=${this.searchValuePage}&skip=${skip}&take=15`;
+            searchUrl = `/api/v1/accounts?q=${query}&skip=${skip}&take=15`;
         }
 
         axiosInstance

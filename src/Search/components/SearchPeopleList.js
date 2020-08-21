@@ -25,7 +25,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _SearchPeopleList = ({
-    searchValuePageIsTouched,
+    searchWithParams,
+    searchValuePage,
     searchResult,
     hasMore,
     pending,
@@ -47,33 +48,35 @@ const _SearchPeopleList = ({
                     <Loader size="lg" />
                 </div>
             )}
-            {!pending && searchResult.length === 0 && !searchValuePageIsTouched && (
+            {searchWithParams && !pending && searchResult.length === 0 && (
                 <Typography variant="h2" classes={{ root: classes.notFound }}>
                     {l("search.people.not-found")}
                 </Typography>
             )}
-            {searchResult.length !== 0 && (
-                <InfiniteScroll
-                    next={fetchSearchPeople}
-                    hasMore={hasMore}
-                    loader={
-                        <div className={classes.centered}>
-                            <Loader size="lg" />
-                        </div>
-                    }
-                    dataLength={searchResult.length}
-                    style={{ overflowY: "hidden" }}
-                >
-                    {searchResult.map(user => (
-                        <SearchPeopleItem
-                            key={user.id}
-                            user={user}
-                            currentUser={currentUser}
-                            actionWithFollow={actionWithFollow}
-                        />
-                    ))}
-                </InfiniteScroll>
-            )}
+            <div className="paddingBottomRoot">
+                {searchResult.length !== 0 && (
+                    <InfiniteScroll
+                        next={() => fetchSearchPeople(searchValuePage)}
+                        hasMore={hasMore}
+                        loader={
+                            <div className={classes.centered}>
+                                <Loader size="lg" />
+                            </div>
+                        }
+                        dataLength={searchResult.length}
+                        style={{ overflowY: "hidden" }}
+                    >
+                        {searchResult.map(user => (
+                            <SearchPeopleItem
+                                key={user.id}
+                                user={user}
+                                currentUser={currentUser}
+                                actionWithFollow={actionWithFollow}
+                            />
+                        ))}
+                    </InfiniteScroll>
+                )}
+            </div>
             <UnfollowDialog
                 username={selectedUser.username}
                 unfollowAction={unfollowUser}
@@ -85,7 +88,8 @@ const _SearchPeopleList = ({
 };
 
 const mapMobxToProps = ({ searchUsers, authorization, followAction }) => ({
-    searchValuePageIsTouched: searchUsers.searchValuePageIsTouched,
+    searchWithParams: searchUsers.searchWithParams,
+    searchValuePage: searchUsers.searchValuePage,
     searchResult: searchUsers.searchResultPage,
     hasMore: searchUsers.hasMore,
     pending: searchUsers.pendingPage,

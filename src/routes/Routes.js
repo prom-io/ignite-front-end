@@ -82,7 +82,7 @@ export const Routes = {
         component: <FollowPeoplePage />,
         beforeEnter: () => {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
-                store.followPeople.fetchFollowPeople();
+                store.followPeople.fetchFollowPeople(true);
             }
         },
         onExit: () => {
@@ -92,8 +92,13 @@ export const Routes = {
     searchPeople: new Route({
         path: '/search',
         component: <SearchPeoplePage />,
-        beforeEnter: () => {
-            
+        beforeEnter: (route, params, _store, queryParams) => {
+            if (queryParams.q) {
+                store.searchUsers.fetchSearchPeople(queryParams.q, true);
+            }
+        },
+        onParamsChange: (route, params, _store, queryParams) => {
+            store.searchUsers.fetchSearchPeople(queryParams.q, true);
         },
         onExit: () => {
             store.searchUsers.resetSearchPage();

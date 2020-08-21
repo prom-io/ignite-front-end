@@ -253,6 +253,7 @@ export const en = {
     'user.username': 'Username',
     'user.username.cant-be-empty': "Username can't be empty",
     'user.username.contains-invalid-characters': 'Username contains invalid characters',
+    'user.username.contains-uppercase': 'For Username, please use only lowercase letter',
     'user.username.has-already-been-taken': 'This username has already been taken',
     'user.username.is-too-long': 'Username is too long',
     comment: 'Comment',

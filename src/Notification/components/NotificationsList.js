@@ -63,7 +63,15 @@ const useStyles = makeStyles(theme => ({
         }
     },
     badgeWrapper: {
-        width: "100%"
+        width: "100%",
+        '&:first-child': {
+            '& .notificationCardBox': {
+                borderRadius: "4px 4px 0 0 !important"
+            }
+        },
+        '&:last-child': {
+            borderBottom: `1px solid ${theme.palette.border.main}`
+        }
     },
     badgeCircle: {
         top: "17px",

@@ -684,14 +684,6 @@ body {
     border-left: 1px solid $border;
     overflow: visible !important;
     border-radius: 0 !important;
-
-    &:first-child {
-        border-radius: 4px 4px 0 0 !important;
-    }
-
-    &:last-child {
-        border-bottom: 1px solid $border;
-    }
 }
 
 .ignite-chat-page {

@@ -108,7 +108,7 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
                             )}
                     </ClickEventPropagationStopper>
                 </div>
-                <p>{user.bio}</p>
+                <Typography>{user.bio}</Typography>
             </div>
         </Link>
     );

@@ -83,7 +83,7 @@ export const SearchPeopleItem = ({ user, currentUser, actionWithFollow }) => {
                         )}
                     </ClickEventPropagationStopper>
                 </div>
-                <p>{user.bio}</p>
+                <Typography>{user.bio}</Typography>
             </div>
         </Link>
     );

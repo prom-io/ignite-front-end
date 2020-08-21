@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _FollowPeopleList = ({
+    currentUser,
     followInputValue,
     pending,
     hasMore,
@@ -68,6 +69,7 @@ const _FollowPeopleList = ({
                     >
                         {followPeopleItems.map(user => (
                             <FollowPeopleItem
+                                currentUser={currentUser}
                                 user={user}
                                 actionWithFollow={actionWithFollow}
                             />
@@ -85,7 +87,8 @@ const _FollowPeopleList = ({
     );
 };
 
-const mapMobxToProps = ({ followPeople, followAction }) => ({
+const mapMobxToProps = ({ authorization, followPeople, followAction }) => ({
+    currentUser: authorization.currentUser,
     followInputValue: followPeople.followInputValue,
     pending: followPeople.pending,
     hasMore: followPeople.hasMore,

@@ -1,9 +1,6 @@
 import { isStringEmpty } from "../../utils/string-utils";
 
-const USERNAME_REGEXP = /^[a-zA-Z0-9_\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7AF\uD7B0-\uD7FF\u4e00-\u9eff]+$/;
-const PASSWORD_REGEXP = new RegExp(
-    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9!@#$%^&*])(?=.{8,})"
-);
+const USERNAME_REGEXP = /^[a-z0-9!?\\|\-_\u1100-\u11FF\u3130-\u318F\uA960-\uA97F\uAC00-\uD7AF\uD7B0-\uD7FF\u4e00-\u9eff]+$/;
 
 export const validateUsername = username => {
     if (isStringEmpty(username)) {
@@ -14,8 +11,8 @@ export const validateUsername = username => {
         return "user.username.is-too-long";
     }
 
-    if (username.includes("@")) {
-        return "user.username.contains-invalid-characters";
+    if (username !== username.toLowerCase()) {
+        return "user.username.contains-uppercase";
     }
 
     if (!USERNAME_REGEXP.test(username)) {

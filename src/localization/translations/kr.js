@@ -257,6 +257,7 @@ export const kr = {
     'user.username': '아이디',
     'user.username.cant-be-empty': '아이디 이름은 비워 둘 수 없다',
     'user.username.contains-invalid-characters': '아이디 이름에 유효하지 않은 문자 포함',
+    'user.username.contains-uppercase': 'For Username, please use only lowercase letter',
     'user.username.has-already-been-taken': '아이디 이름은 이미 사용되고 있습니다',
     'user.username.is-too-long': '아이디 이름이 너무 길다',
     comment: 'Comment',

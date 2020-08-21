@@ -225,11 +225,11 @@ export class UpdateUserProfileStore {
 
     @action
     checkUsernameAvailability = () => {
-        const username = this.updateUserProfileForm.username;
+        const username = this.updateUserProfileForm.username.toLowerCase();
         this.checkingUsernameAvailability = true;
 
         axiosInstance
-            .get(`/api/v1/accounts/username/${username}/is-available`)
+            .get(`/api/v1/accounts/username/${encodeURI(username)}/is-available`)
             .then(({ data }) => {
                 if (!data.available) {
                     this.formErrors.username =

@@ -18,6 +18,9 @@ export class TopicStatusesStore {
     pending = false;
 
     @observable
+    error = undefined;
+
+    @observable
     hasMore = true;
 
     @observable
@@ -133,7 +136,8 @@ export class TopicStatusesStore {
             .then(({ data }) => {
                 this.currentTopic = data;
                 this.fetchStatusesOnTopic();
-            });
+            })
+            .catch(error => (this.error = error));
     };
 
     @action
@@ -286,6 +290,7 @@ export class TopicStatusesStore {
         this.activeTab = "hot";
         this.pending = false;
         this.hasMore = true;
+        this.error = undefined;
         this.currentStatusId = undefined;
         this.currentStatusUsername = undefined;
         this.unfollowDialogOpen = false;
@@ -294,5 +299,6 @@ export class TopicStatusesStore {
     @action
     resetStatuses = () => {
         this.statusesOnTopic = [];
+        this.error = undefined;
     };
 }

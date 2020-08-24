@@ -10,6 +10,8 @@ import {
     DescriptionStoaBanner
 } from "../../PrometeusDescription";
 import Loader from "../../components/Loader";
+import { Routes } from '../../routes';
+import { routerStore } from '../../store';
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 const _UserProfileContainer = ({
     user,
     fetchingUser,
+    error,
     activeTab,
     followUser,
     unfollowUser,
@@ -36,8 +39,11 @@ const _UserProfileContainer = ({
 }) => {
     const classes = useStyles();
 
-    let tabContent;
+    if (error) {
+        routerStore.router.goTo(Routes.notFound)
+    }
 
+    let tabContent;
     switch (activeTab) {
         case "posts":
             tabContent = <UserProfileTimeline />;
@@ -114,6 +120,7 @@ const _UserProfileContainer = ({
 const mapMobxToProps = ({ userProfile, authorization }) => ({
     user: userProfile.user,
     fetchingUser: userProfile.fetchingUser,
+    error: userProfile.error,
     activeTab: userProfile.activeTab,
     followUser: userProfile.followUser,
     unfollowUser: userProfile.unfollowUser,

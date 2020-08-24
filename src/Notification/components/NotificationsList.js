@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
+        marginTop: "150px",
         display: "table"
     },
     link: {

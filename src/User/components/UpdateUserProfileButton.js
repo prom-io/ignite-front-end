@@ -6,9 +6,8 @@ import { Button, makeStyles } from '@material-ui/core';
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     editButtonWrapper: {
-        marginTop: '10px',
         textDecoration: 'none',
         maxWidth: '204px',
         height: '40px',

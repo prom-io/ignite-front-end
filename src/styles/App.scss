@@ -585,12 +585,9 @@ body {
     }
 }
 
-.user-profile-info-text {
-    margin-top: 22px !important;
-    text-align: center;
-    font-family: Museo Sans Cyrl Regular, serif !important;
+.user-profile-info-member-since {
+    margin: 10px 0 !important;
     font-size: 12px !important;
-    color: $text_main;
 }
 
 .static-page-container {
@@ -910,12 +907,6 @@ body {
     .status-list-bottom-box-modal {
         width: 170px;
         left: -150px;
-    }
-}
-
-@media (min-width: 922px) {
-    .user-profile-info-text {
-        text-align: left;
     }
 }
 

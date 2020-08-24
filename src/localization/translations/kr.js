@@ -111,7 +111,7 @@ export const kr = {
     'notification.like': '당신의 게시물을 좋아요',
     'notification.new-post': '새 게시물 발표한다',
     'notification.reply': '댓글을 잇어요',
-    'notification.repost': 'respoted your post',
+    'notification.repost': 'reposted your post',
     'notifications.description.first-paragraph': '프로메테우스 팀은 강열의 다른 사용자들이 그들과 어떻게 상호작용하는지를 볼 수 있는 간단한 방법을 제공하기 위해 알림 타임라인을 만들고 개발할 계획이다.',
     'notifications.description.second-paragraph': "알림 타임라인을 보면 어떤 게시물이 마음에 들었는지, 최신 게시물, 게시물(리플라이와 언급)과 새로운 팔로워를 볼 수 있다. 알림은 두 가지 방법으로 볼 수 있다: '모든'은 새로운 팔로워, 다시 게시, 언급 및 좋아하는 계정 활동에 대한 알림을 보여준다. '멘션'은 당신의 사용자 이름을 언급하는 게시물에 대해서만 통지를 보여줄 것이다.",
     'notifications.description.third-paragraph': "나중에 우리는 당신의 알림에서 저품질 콘텐츠를 필터링하는 '품질 필터'를 구현할 것이다. 예를 들어, 중복 게시물이나 콘텐츠가 자동화되어 있는 것처럼 보이지만, 그것은 당신이 팔로잉하는 사람들 또는 최근에 상호작용한 계정의 알림을 필터링하지 않을 것이다. 알림 설정에서 이 옵션을 설정하거나 해제할 수 있다.",

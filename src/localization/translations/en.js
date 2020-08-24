@@ -106,7 +106,7 @@ export const en = {
     'notification.like': 'liked your post',
     'notification.new-post': 'published new post',
     'notification.reply': 'replied to your post',
-    'notification.repost': 'respoted your post',
+    'notification.repost': 'reposted your post',
     'notifications.description.first-paragraph': 'Prometeus Team plans to create and develop Notifications timeline to offer our users a simple way to see how others on Ignite are interacting with them.',
     'notifications.description.second-paragraph': "From the Notifications timeline, you’ll be able to see which of your posts have been liked, plus the latest reposts, posts directed to you (replies and mentions) and your new followers. You could view your notifications in two ways: 'All' shows you notifications for account activity like new followers, reposts, mentions, and likes. 'Mentions' will show you notifications only for posts that mention your username.",
     'notifications.description.third-paragraph': "Later we are going to implement the 'Quality filter' that will filter lower-quality content from your notifications, for example, duplicate posts or content that appears to be automated, but it will never filter notifications from people you follow or accounts you’ve recently interacted with. You will have the option to turn this on or off in your notifications settings.",

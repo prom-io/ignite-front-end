@@ -2,7 +2,7 @@ import React from "react";
 import Markdown from "react-markdown";
 import breaks from "remark-breaks";
 import { format } from "date-fns";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Link, Typography } from "@material-ui/core";
 
 import { UserProfileAvatar } from "./UserProfileAvatar";
 import { UserProfileTab } from "./UserProfileTab";
@@ -72,23 +72,22 @@ const _UserProfileHeader = ({
                     </Grid>
                     <Grid item xs={12}>
                         <div className="user-card-info">
-                            <Typography variant={'h4'}>
-                                {displayName}
-                            </Typography>
-                            <Typography>
-                                @{username}
-                            </Typography>
+                            <Typography variant={"h4"}>{displayName}</Typography>
+                            <Typography>@{username}</Typography>
                             {externalUrl && (
-                                <a
+                                <Link
                                     href={externalUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     {externalUrl}
-                                </a>
+                                </Link>
                             )}
                             {bio && (
-                                <Typography variant={'h6'} className="user-card-info-bio">
+                                <Typography
+                                    variant={"h6"}
+                                    className="user-card-info-bio"
+                                >
                                     <Markdown source={bio} plugins={[breaks]} />
                                 </Typography>
                             )}
@@ -145,16 +144,19 @@ const _UserProfileHeader = ({
                     />
                 </Grid>
                 {currentUser && currentUser.username === username && (
-                  <Typography variant={'body2'} className={'user-profile-header-content-bottom-balance'}>
-                    {l("user.profile.your-balance")}:{" "}
-                    {Number(userBalance).toFixed(2)} PROM
-                  </Typography>
+                    <Typography
+                        variant={"body2"}
+                        className={"user-profile-header-content-bottom-balance"}
+                    >
+                        {l("user.profile.your-balance")}:{" "}
+                        {Number(userBalance).toFixed(2)} PROM
+                    </Typography>
                 )}
                 <Grid item>
                     <Typography
                         variant="body1"
-                        className="user-profile-info-text justify-content-center"
-                        noWrap
+                        className="user-profile-info-member-since"
+                        align="center"
                     >
                         {l("user.profile.member-since")}{" "}
                         {format(createdAt, "MMMM yyyy", { locale: dateFnsLocale })}

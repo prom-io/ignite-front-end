@@ -1,14 +1,15 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
-import { CardContent, makeStyles, Typography, useTheme } from '@material-ui/core';
-import ReplyIcon from '@material-ui/icons/Reply';
 import Markdown from 'react-markdown/with-html';
 import reactStringReplace from 'react-string-replace';
 import breaks from 'remark-breaks';
+import { CardContent, makeStyles, Typography, useTheme } from '@material-ui/core';
+import ReplyIcon from '@material-ui/icons/Reply';
+
 import { StatusMediaAttachments } from './StatusMediaAttachments';
 import { RepostedStatusContent } from './RepostedStatusContent';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { routerStore } from '../../store';
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
 
@@ -30,10 +31,6 @@ const useStyles = makeStyles(theme => ({
     },
     replyingToLabel: {
         color: theme.palette.text.secondary,
-    },
-    replyToContainer: {
-        marginBottom: theme.spacing(1),
-        display: 'flex',
     },
     replyingToLink: {
         textDecoration: 'none',
@@ -57,7 +54,6 @@ const _StatusBody = ({
     statusReferenceType,
     nestedReferredStatusId,
     nestedReferredStatusReferenceType,
-    routerStore,
     hideThreadLink,
     disableLeftPadding,
     l,
@@ -72,11 +68,7 @@ const _StatusBody = ({
         >
             {referredStatus && statusReferenceType === 'COMMENT' && (
                 <ClickEventPropagationStopper>
-                    <div
-                        style={{
-                            display: 'flex',
-                        }}
-                    >
+                    <div style={{ display: 'flex' }}>
                         <Typography classes={{ root: classes.replyingToLabel }}>
                             {l('status.replying-to')}
                         </Typography>
@@ -87,23 +79,18 @@ const _StatusBody = ({
                             className={classes.replyingToLink}
                         >
                             <Typography style={{ color: '#A2A2A2' }}>
-                                @
-                                {referredStatus.account.username}
+                                @{referredStatus.account.username}
                             </Typography>
                         </Link>
                     </div>
                 </ClickEventPropagationStopper>
             )}
-            <Typography
-                variant="body1"
-                className={classes.statusText}
-            >
-            <Markdown
-                source={text}
-                plugins={[breaks]}
-                renderers={{
-                    text: props => {
-                        const result = reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => {
+            <Typography variant="body1" className={classes.statusText}>
+                <Markdown
+                    source={text.replace(/\n/gi, '&nbsp;\n')}
+                    plugins={[breaks]}
+                    renderers={{
+                        text: props => reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => {
                             return match == "#memezator" ? "#memezator" : (
                                 <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
                                     <Link
@@ -116,11 +103,20 @@ const _StatusBody = ({
                                     &nbsp;
                                 </ClickEventPropagationStopper>
                             )
-                        })
-                        return result;
-                    },
-                }}
-            />
+                        }),
+                        link: props => (
+                            <ClickEventPropagationStopper style={{ display: 'inline-block' }}>
+                                <Link
+                                    view={Routes.userProfile}
+                                    params={{ username: encodeURIComponent(props.href) }}
+                                    store={routerStore}
+                                >
+                                    {props.children[0].props.value}
+                                </Link>
+                            </ClickEventPropagationStopper>
+                        )
+                    }}
+                />
             </Typography>
             <StatusMediaAttachments mediaAttachments={mediaAttachments} />
             {referredStatus && statusReferenceType === 'REPOST' && <RepostedStatusContent repostedStatus={referredStatus} />}
@@ -185,11 +181,4 @@ const _StatusBody = ({
     );
 };
 
-const mapMobxToProps = ({ store }) => ({
-    routerStore: store,
-});
-
-// eslint-disable-next-line import/prefer-default-export
-export const StatusBody = localized(
-    inject(mapMobxToProps)(observer(_StatusBody)),
-);
+export const StatusBody = localized(_StatusBody);

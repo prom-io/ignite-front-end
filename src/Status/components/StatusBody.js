@@ -90,7 +90,7 @@ const _StatusBody = ({
                     source={text.replace(/\n/gi, '&nbsp;\n')}
                     plugins={[breaks]}
                     renderers={{
-                        text: props => reactStringReplace(props.value, /(#[^\s#\.\;\,]+)/, (match, i) => {
+                        text: props => reactStringReplace(props.value, /(#[^\s]+)/, (match, i) => {
                             return match == "#memezator" ? "#memezator" : (
                                 <ClickEventPropagationStopper key={i} style={{ display: 'inline-block' }}>
                                     <Link

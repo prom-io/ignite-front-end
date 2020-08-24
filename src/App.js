@@ -1,14 +1,11 @@
-import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
-import { SnackbarProvider } from 'notistack';
-import { MobxRouter } from 'mobx-router';
-import './styles/App.scss';
-import { orange } from './themes/orange';
+import React from "react";
+import { MobxRouter } from "mobx-router";
+import { MuiThemeProvider } from "@material-ui/core";
+import "./styles/App.scss";
+import { orange } from "./themes/orange";
 
 export const App = () => (
-    <SnackbarProvider maxSnack={3}>
-        <MuiThemeProvider theme={orange}>
-            <MobxRouter />
-        </MuiThemeProvider>
-    </SnackbarProvider>
+    <MuiThemeProvider theme={orange}>
+        <MobxRouter />
+    </MuiThemeProvider>
 );

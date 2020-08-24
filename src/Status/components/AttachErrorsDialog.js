@@ -15,11 +15,11 @@ import { ModalCloseIcon } from "../../icons/ModalCloseIcon";
 import { localized } from "../../localization/components";
 
 const useStyles = makeStyles(theme => ({
-    memezatorDialog: {
+    attachDialog: {
         position: "relative",
         padding: "32px"
     },
-    memezatorDialogCloseBtn: {
+    attachDialogCloseBtn: {
         position: "absolute",
         top: 0,
         right: 0,
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         margin: "8px",
         lineHeight: 0
     },
-    memezatorDialogTitle: {
+    attachDialogTitle: {
         marginBottom: "24px",
         padding: 0,
         textAlign: "center",
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
             marginBottom: 0
         }
     },
-    memezatorDialogContent: {
+    attachDialogContent: {
         marginBottom: "24px",
         padding: 0,
         textAlign: "center",
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     dialogActionsButton: {
         padding: 0
     },
-    memezatorDialogButton: {
+    attachDialogButton: {
         display: "block",
         height: "40px",
         fontWeight: 600,
@@ -73,41 +73,41 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _MemezatorDialog = ({
-    memezatorError,
-    memezatorDialogOpen,
-    setMemezatorDialogOpen,
+const _AttachErrorsDialog = ({
+    showErrorModal,
+    errorModalLabel,
+    setShowErrorModal,
     l
 }) => {
     const classes = useStyles();
 
     return (
         <Dialog
-            open={memezatorDialogOpen}
-            onClose={() => setMemezatorDialogOpen(false)}
+            open={showErrorModal}
+            onClose={() => setShowErrorModal(false)}
             classes={{
                 paper: classes.dialogPaper
             }}
         >
-            <div className={classes.memezatorDialog}>
+            <div className={classes.attachDialog}>
                 <IconButton
-                    onClick={() => setMemezatorDialogOpen(false)}
-                    className={classes.memezatorDialogCloseBtn}
+                    onClick={() => setShowErrorModal(false)}
+                    className={classes.attachDialogCloseBtn}
                 >
                     <ModalCloseIcon />
                 </IconButton>
-                <DialogTitle className={classes.memezatorDialogTitle}>
+                <DialogTitle className={classes.attachDialogTitle}>
                     {l("dialog.sorry")}
                 </DialogTitle>
-                <DialogContent className={classes.memezatorDialogContent}>
-                    <DialogContentText>{l(memezatorError)}</DialogContentText>
+                <DialogContent className={classes.attachDialogContent}>
+                    <DialogContentText>{l(errorModalLabel)}</DialogContentText>
                 </DialogContent>
                 <DialogActions className={classes.dialogActionsButton}>
                     <Button
                         variant="contained"
                         color="primary"
-                        className={classes.memezatorDialogButton}
-                        onClick={() => setMemezatorDialogOpen(false)}
+                        className={classes.attachDialogButton}
+                        onClick={() => setShowErrorModal(false)}
                     >
                         {l("dialog.ok")}
                     </Button>
@@ -117,12 +117,12 @@ const _MemezatorDialog = ({
     );
 };
 
-const mapMobxToProps = ({ memezatorDialog }) => ({
-    memezatorError: memezatorDialog.memezatorError,
-    memezatorDialogOpen: memezatorDialog.memezatorDialogOpen,
-    setMemezatorDialogOpen: memezatorDialog.setMemezatorDialogOpen
+const mapMobxToProps = ({ uploadMediaAttachments }) => ({
+    showErrorModal: uploadMediaAttachments.showErrorModal,
+    errorModalLabel: uploadMediaAttachments.errorModalLabel,
+    setShowErrorModal: uploadMediaAttachments.setShowErrorModal
 });
 
-export const MemezatorDialog = localized(
-    inject(mapMobxToProps)(observer(_MemezatorDialog))
+export const AttachErrorsDialog = localized(
+    inject(mapMobxToProps)(observer(_AttachErrorsDialog))
 );

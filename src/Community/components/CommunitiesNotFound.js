@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const CommunitiesNotFound = observer(() => {
+export const CommunitiesNotFound = observer(({ type }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -33,7 +33,11 @@ export const CommunitiesNotFound = observer(() => {
                 <SadIconLarge />
                 <div className={classes.emptyListLabel}>
                     <Typography>
-                        <strong>{l("communities.not-found")}</strong>
+                        <strong>
+                            {type === "all"
+                                ? l("communities.not-found")
+                                : l("communities.you-have-no-communities")}
+                        </strong>
                     </Typography>
                 </div>
             </div>

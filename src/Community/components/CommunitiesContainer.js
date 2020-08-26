@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import { Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 
+import { CommunityLeaveDialog } from "./CommunityLeaveDialog";
 import { CommunitiesList } from "./CommunitiesList";
 import { BackButton } from "../../components/BackButton";
 
@@ -50,6 +51,8 @@ const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
             </Tabs>
 
             <CommunitiesList type={tabValue} />
+
+            <CommunityLeaveDialog />
         </>
     );
 };

@@ -66,9 +66,6 @@ const useStyles = makeStyles(theme => ({
 
         '& button:first-child': {
             width: '124px',
-            background: 'transparent',
-            border: `1px solid ${theme.palette.primary.main}`,
-            color: theme.palette.primary.main,
             [theme.breakpoints.down('sm')]: {
                 marginRight: '8px',
             },
@@ -76,9 +73,6 @@ const useStyles = makeStyles(theme => ({
 
         '& button:last-child': {
             width: '146px',
-            background: theme.palette.primary.main,
-            border: 'none',
-            color: '#fff',
             marginLeft: 0,
         },
     },
@@ -125,17 +119,19 @@ const _UnfollowDialog = ({
                 </DialogContent>
                 <DialogActions className={classes.dialogActionsButton}>
                     <Button
-                        variant="text"
+                        color="primary"
+                        variant="outlined"
                         className={classes.cancelButton}
                         onClick={() => {
                             setUnfollowDialogOpen(false);
                         }}
                         autoFocus
                     >
-                        {l('user.profile.cancel')}
+                        {l('dialog.cancel')}
                     </Button>
                     <Button
-                        variant="text"
+                        variant="contained"
+                        color="primary"
                         className={classes.unfollowButton}
                         onClick={unfollowAction}
                     >

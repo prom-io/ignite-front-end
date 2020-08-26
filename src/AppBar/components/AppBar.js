@@ -32,6 +32,7 @@ import { BellIcon } from "../../icons/BellIcon";
 import { ChatIcon } from "../../icons/ChatIcon";
 import { TopicsIcon } from "../../icons/TopicsIcon";
 import { MemezatorIcon } from "../../icons/MemezatorIcon";
+import { CommunitiesIcon } from "../../icons/CommunitiesIcon";
 import { CustomHomeOutlinedIcon } from "../../icons/CustomHomeOutlinedIcon";
 
 const useStyles = makeStyles(theme => ({
@@ -208,7 +209,7 @@ const _AppBar = ({
                                 targetView={Routes.communities}
                                 active={currentActiveRoute === "communities"}
                                 icon={
-                                    <MemezatorIcon
+                                    <CommunitiesIcon
                                         color={
                                             currentActiveRoute === "communities" &&
                                             theme.palette.primary.main
@@ -357,7 +358,7 @@ const _AppBar = ({
                     targetView={Routes.communities}
                     active={currentActiveRoute === "communities"}
                     icon={
-                        <MemezatorIcon
+                        <CommunitiesIcon
                             color={
                                 currentActiveRoute === "communities" &&
                                 theme.palette.primary.main

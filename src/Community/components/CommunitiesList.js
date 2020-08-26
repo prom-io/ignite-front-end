@@ -3,7 +3,7 @@ import { inject, observer } from "mobx-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { makeStyles } from "@material-ui/core";
 
-import { CommunityItem } from "./CommunityItem";
+import { CommunityListItem } from "./CommunityListItem";
 import { CommunitiesNotFound } from "./CommunitiesNotFound";
 import Loader from "../../components/Loader";
 
@@ -17,12 +17,13 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _CommunitiesList = ({
+    currentUser,
     type,
     communities,
     pending,
     hasMore,
-    error,
-    fetchCommunities
+    fetchCommunities,
+    doJoin
 }) => {
     const classes = useStyles();
 
@@ -45,22 +46,27 @@ const _CommunitiesList = ({
                     hasMore={hasMore}
                 >
                     {communities.map(community => (
-                        <CommunityItem community={community} />
+                        <CommunityListItem
+                            community={community}
+                            currentUser={currentUser}
+                            doJoin={doJoin}
+                        />
                     ))}
                 </InfiniteScroll>
             ) : (
-                <CommunitiesNotFound />
+                <CommunitiesNotFound type={type} />
             )}
         </div>
     );
 };
 
-const mapMobxToProps = ({ communities }) => ({
+const mapMobxToProps = ({ authorization, communities }) => ({
+    currentUser: authorization.currentUser,
     communities: communities.communities,
     pending: communities.pending,
     hasMore: communities.hasMore,
-    error: communities.error,
-    fetchCommunities: communities.fetchCommunities
+    fetchCommunities: communities.fetchCommunities,
+    doJoin: communities.doJoin
 });
 
 export const CommunitiesList = inject(mapMobxToProps)(observer(_CommunitiesList));

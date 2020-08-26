@@ -202,7 +202,7 @@ export const en = {
     'status.menu.unfollow-author': 'Unfollow author',
     'status.no-comments': 'No comments',
     'status.placeholder': "What's on your mind?",
-    'status.placeholder.already-published': 'Please note you cannot publish a meme here and now\n\nYou have already published one today.\nYou should wait until 00:00 GMT',
+    'status.placeholder.already-published': 'Please note you cannot publish a meme here and now.\n\n You have already published one today.\n You should wait until 00:00 GMT.',
     'status.replying-to': 'Replying to',
     'status.repost': 'Repost',
     'status.repost.with-comment': 'Repost with comment',

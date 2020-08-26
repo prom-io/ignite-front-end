@@ -16,6 +16,7 @@ import {
     TopicPage,
     MemezatorPage,
     CommunitiesPage,
+    CommunityPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
@@ -284,9 +285,23 @@ export const Routes = {
         component: <CommunitiesPage />,
         beforeEnter: () => {
             store.topicsPopular.fetchTopicsPopular(5);
-            store.communities.fetchCommunities();
+            store.communities.fetchCommunities("all");
         },
         onExit: () => {
+            store.communities.reset();
+            store.whoToFollow.reset();
+            store.topicsPopular.reset();
+        },
+    }),
+    community: new Route({
+        path: '/community/:community',
+        component: <CommunityPage />,
+        beforeEnter: (route, params) => {
+            store.topicsPopular.fetchTopicsPopular(5);
+            store.community.fetchCurrentCommunity(params.community);
+        },
+        onExit: () => {
+            store.community.reset();
             store.whoToFollow.reset();
             store.topicsPopular.reset();
         },

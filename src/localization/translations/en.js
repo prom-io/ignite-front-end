@@ -20,6 +20,7 @@ export const en = {
     'appbar.topics': 'Topics',
     'appbar.memezator': 'Memezator',
     'appbar.communities': 'Communities',
+    'appbar.community': 'Community',
     'appbar.edit-profile': 'Edit profile',
     'authorization.change-password': 'Change Your Password',
     'authorization.forgot-password': 'Forgot Your Password?',
@@ -309,4 +310,5 @@ export const en = {
     ],
     'memezator.rules-list.note-bottom': "The actual prize sum depends on current PROM exchange rate and daily prize fund",
     'memezator.rules-list.note-top': "Memezator is a contest where you can win up to $500* (in PROM BSC tokens) daily by publishing memes and voting for them. Here are the Rules of our contest.",
+    'communities.not-found': "You have no communities yet.",
 };

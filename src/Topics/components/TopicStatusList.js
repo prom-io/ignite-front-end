@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { makeStyles } from "@material-ui/core";
+import { Tabs, Tab, makeStyles } from "@material-ui/core";
 
 import { TopicsPopularScroll } from "./TopicsPopularScroll";
 import { TopicNotFound } from "./TopicNotFound";
@@ -26,8 +26,9 @@ const useStyles = makeStyles(theme => ({
             zIndex: 20
         }
     },
-    topicListHeaderSwitcher: {
-        display: "flex"
+    topicTab: {
+        fontSize: "15px",
+        fontWeight: 600
     },
     topicListHeaderMenu: {
         display: "none",
@@ -35,20 +36,6 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down("sm")]: {
             display: "block"
         }
-    },
-    topicListHeaderItem: {
-        cursor: "pointer",
-        fontFamily: "Museo Sans Cyrl Regular",
-        fontWeight: 600,
-        fontSize: "15px",
-        lineHeight: "18px",
-        textAlign: "center",
-        padding: "16px 31px",
-        color: "#A2A2A2"
-    },
-    topicItemActive: {
-        color: theme.palette.primary.main,
-        borderBottom: "3px solid"
     },
     centered: {
         marginLeft: "auto",
@@ -62,7 +49,6 @@ const _TopicStatusList = ({
     fetchAction,
     error,
     currentUser,
-    activeTab,
     pending,
     hasMore,
     statusesOnTopic,
@@ -80,30 +66,38 @@ const _TopicStatusList = ({
     unfollowDialogOpen
 }) => {
     const classes = useStyles();
+    const [tabValue, setTabValue] = useState("hot");
+
+    const handleChange = (event, newValue) => {
+        console.log(newValue)
+        setTabValue(newValue);
+        changeTabAndFetchStatuses(newValue);
+    };
 
     return (
         <>
             <div className={classes.topicListHeader}>
-                <div className={classes.topicListHeaderSwitcher}>
-                    <div
-                        className={[
-                            classes.topicListHeaderItem,
-                            activeTab === "hot" ? classes.topicItemActive : ""
-                        ].join(" ")}
-                        onClick={() => changeTabAndFetchStatuses("hot")}
-                    >
-                        Hot
-                    </div>
-                    <div
-                        className={[
-                            classes.topicListHeaderItem,
-                            activeTab === "fresh" ? classes.topicItemActive : ""
-                        ].join(" ")}
-                        onClick={() => changeTabAndFetchStatuses("fresh")}
-                    >
-                        Fresh
-                    </div>
-                </div>
+                <Tabs
+                    value={tabValue}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={handleChange}
+                >
+                    <Tab
+                        classes={{ wrapper: classes.topicTab }}
+                        label="Hot"
+                        value="hot"
+                        disabled={pending}
+                        disableRipple
+                    />
+                    <Tab
+                        classes={{ wrapper: classes.topicTab }}
+                        label="Fresh"
+                        value="fresh"
+                        disabled={pending}
+                        disableRipple
+                    />
+                </Tabs>
                 <div
                     className={classes.topicListHeaderMenu}
                     onClick={() => setIsTopicsMenuOpen(true)}
@@ -174,7 +168,6 @@ const mapMobxToProps = ({
     createStatus
 }) => ({
     currentUser: authorization.currentUser,
-    activeTab: topicStatuses.activeTab,
     pending: topicStatuses.pending,
     hasMore: topicStatuses.hasMore,
     statusesOnTopic: topicStatuses.statusesOnTopic,

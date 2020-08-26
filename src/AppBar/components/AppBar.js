@@ -102,7 +102,8 @@ const _AppBar = ({
         "/topics": l("appbar.topics"),
         "/edit-profile": l("appbar.edit-profile"),
         "/memezator": l("appbar.memezator"),
-        "/communities": l("appbar.communities")
+        "/communities": l("appbar.communities"),
+        "/community": l("appbar.community"),
     };
 
     return (
@@ -245,7 +246,7 @@ const _AppBar = ({
                                 <span className="mobile_header-title">
                                     {currentUser &&
                                         !isSearchActive &&
-                                        navTitleList[window.location.pathname]}
+                                        navTitleList[`/${window.location.pathname.split("/")[1]}`]}
                                 </span>
                                 <div className={classes.searchWrapper}>
                                     <SearchInput />

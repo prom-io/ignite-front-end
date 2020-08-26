@@ -3,6 +3,8 @@ import { inject, observer } from "mobx-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { makeStyles } from "@material-ui/core";
 
+import { CommunityItem } from "./CommunityItem";
+import { CommunitiesNotFound } from "./CommunitiesNotFound";
 import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(() => ({
@@ -14,40 +16,51 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const _CommunitiesList = ({ pending, hasMore, error }) => {
+const _CommunitiesList = ({
+    type,
+    communities,
+    pending,
+    hasMore,
+    error,
+    fetchCommunities
+}) => {
     const classes = useStyles();
 
-    return null;
-
-    // return pending && communities.length === 0 ? (
-    //     <div className={classes.centered}>
-    //         <Loader size="lg" />
-    //     </div>
-    // ) : !error ? (
-    //     <InfiniteScroll
-    //         next={fetchCommunities}
-    //         loader={
-    //             <div className={classes.centered}>
-    //                 <Loader size="lg" />
-    //             </div>
-    //         }
-    //         dataLength={communities.length}
-    //         style={{ overflowY: "hidden" }}
-    //         hasMore={hasMore}
-    //     >
-    //         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(community => (
-    //             <div>Community #{community}</div>
-    //         ))}
-    //     </InfiniteScroll>
-    // ) : (
-    //     <CommunitiesNotFound />
-    // );
+    return pending && communities.length === 0 ? (
+        <div className={classes.centered}>
+            <Loader size="lg" />
+        </div>
+    ) : (
+        <div className="paddingBottomRoot">
+            {communities.length > 0 ? (
+                <InfiniteScroll
+                    next={() => fetchCommunities(type)}
+                    loader={
+                        <div className={classes.centered}>
+                            <Loader size="lg" />
+                        </div>
+                    }
+                    dataLength={communities.length}
+                    style={{ overflowY: "hidden" }}
+                    hasMore={hasMore}
+                >
+                    {communities.map(community => (
+                        <CommunityItem community={community} />
+                    ))}
+                </InfiniteScroll>
+            ) : (
+                <CommunitiesNotFound />
+            )}
+        </div>
+    );
 };
 
 const mapMobxToProps = ({ communities }) => ({
+    communities: communities.communities,
     pending: communities.pending,
     hasMore: communities.hasMore,
-    error: communities.error
+    error: communities.error,
+    fetchCommunities: communities.fetchCommunities
 });
 
 export const CommunitiesList = inject(mapMobxToProps)(observer(_CommunitiesList));

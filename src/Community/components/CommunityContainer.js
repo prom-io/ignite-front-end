@@ -2,29 +2,32 @@ import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import { Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 
-import { CommunitiesList } from "./CommunitiesList";
 import { BackButton } from "../../components/BackButton";
 
 const useStyles = makeStyles(() => ({
-    communitiesTab: {
+    communityTab: {
         fontSize: "15px",
         fontWeight: 600
     }
 }));
 
-const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
+const _CommunityContainer = ({
+    fetchCommunityPosts,
+    fetchCommunityUsers,
+    pending
+}) => {
     const classes = useStyles();
-    const [tabValue, setTabValue] = useState("all");
+    const [tabValue, setTabValue] = useState("posts");
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
-        fetchCommunities(newValue, true);
+        newValue === "posts" ? fetchCommunityPosts() : fetchCommunityUsers();
     };
 
     return (
         <>
             <Hidden smDown>
-                <BackButton title="appbar.communities" toHome />
+                <BackButton title="appbar.community" toHome />
             </Hidden>
 
             <Tabs
@@ -34,31 +37,30 @@ const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
                 onChange={handleChange}
             >
                 <Tab
-                    classes={{ wrapper: classes.communitiesTab }}
-                    label="All communities"
-                    value="all"
+                    classes={{ wrapper: classes.communityTab }}
+                    label="Posts"
+                    value="posts"
                     disabled={pending}
                     disableRipple
                 />
                 <Tab
-                    classes={{ wrapper: classes.communitiesTab }}
-                    label="Your communities"
-                    value="my"
+                    classes={{ wrapper: classes.communityTab }}
+                    label="Users"
+                    value="users"
                     disabled={pending}
                     disableRipple
                 />
             </Tabs>
-
-            <CommunitiesList type={tabValue} />
         </>
     );
 };
 
-const mapMobxToProps = ({ communities }) => ({
-    pending: communities.pending,
-    fetchCommunities: communities.fetchCommunities
+const mapMobxToProps = ({ community }) => ({
+    pending: community.pending,
+    fetchCommunityPosts: community.fetchCommunityPosts,
+    fetchCommunityUsers: community.fetchCommunityUsers
 });
 
-export const CommunitiesContainer = inject(mapMobxToProps)(
-    observer(_CommunitiesContainer)
+export const CommunityContainer = inject(mapMobxToProps)(
+    observer(_CommunityContainer)
 );

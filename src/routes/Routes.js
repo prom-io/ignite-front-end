@@ -15,6 +15,7 @@ import {
     TopicsPage,
     TopicPage,
     MemezatorPage,
+    CommunitiesPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
@@ -263,7 +264,7 @@ export const Routes = {
         path: '/memezator',
         component: <MemezatorPage />,
         beforeEnter: () => {
-            store.topicsPopular.fetchTopicsPopular(5); //
+            store.topicsPopular.fetchTopicsPopular(5);
             if (store.authorization.currentUser) {
                 store.memezatorActions.fetchAccessToMemezatorPosting();
             }
@@ -274,8 +275,20 @@ export const Routes = {
             store.memezatorActions.reset();
             store.memezatorStatuses.reset();
             store.memezatorWinners.reset();
-            store.whoToFollow.reset(); //
-            store.topicsPopular.reset(); //
+            store.whoToFollow.reset();
+            store.topicsPopular.reset();
+        },
+    }),
+    communities: new Route({
+        path: '/communities',
+        component: <CommunitiesPage />,
+        beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular(5);
+            store.communities.fetchCommunities();
+        },
+        onExit: () => {
+            store.whoToFollow.reset();
+            store.topicsPopular.reset();
         },
     }),
 };

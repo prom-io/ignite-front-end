@@ -101,7 +101,8 @@ const _AppBar = ({
         "/notifications": l("appbar.notifications"),
         "/topics": l("appbar.topics"),
         "/edit-profile": l("appbar.edit-profile"),
-        "/memezator": l("appbar.memezator")
+        "/memezator": l("appbar.memezator"),
+        "/communities": l("appbar.communities")
     };
 
     return (
@@ -199,6 +200,23 @@ const _AppBar = ({
                                 routerStore={routerStore}
                                 viewParameters={{}}
                                 id="memezatorLink"
+                                hidden={Boolean(window.AndroidCallback)}
+                            />
+                            <AppBarLink
+                                text={l("appbar.communities")}
+                                targetView={Routes.communities}
+                                active={currentActiveRoute === "communities"}
+                                icon={
+                                    <MemezatorIcon
+                                        color={
+                                            currentActiveRoute === "communities" &&
+                                            theme.palette.primary.main
+                                        }
+                                    />
+                                }
+                                routerStore={routerStore}
+                                viewParameters={{}}
+                                id="communitiesLink"
                                 hidden={Boolean(window.AndroidCallback)}
                             />
                         </div>
@@ -331,6 +349,23 @@ const _AppBar = ({
                     routerStore={routerStore}
                     viewParameters={{}}
                     id="memezatorLink"
+                    hidden={Boolean(window.AndroidCallback)}
+                />
+                <AppBarLink
+                    text={l("appbar.communities")}
+                    targetView={Routes.communities}
+                    active={currentActiveRoute === "communities"}
+                    icon={
+                        <MemezatorIcon
+                            color={
+                                currentActiveRoute === "communities" &&
+                                theme.palette.primary.main
+                            }
+                        />
+                    }
+                    routerStore={routerStore}
+                    viewParameters={{}}
+                    id="communitiesLink"
                     hidden={Boolean(window.AndroidCallback)}
                 />
             </nav>

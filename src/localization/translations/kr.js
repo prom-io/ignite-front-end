@@ -53,6 +53,7 @@ export const kr = {
     'appbar.chat': '채팅',
     'appbar.topics': '트렌드',
     'appbar.memezator': 'Memezator',
+    'appbar.communities': 'Communities',
     'appbar.search': '검색',
     'appbar.edit-profile': '프로필을 편집하기',
     'appbar.explore-btfs': '블록 탐색기',

@@ -13,6 +13,7 @@ export class SignUpStore {
     signUpCommunityForm = {
         displayName: '',
         username: '',
+        about: '',
         avatar: undefined,
     };
 
@@ -21,6 +22,8 @@ export class SignUpStore {
         password: undefined,
         passwordConfirmation: undefined,
         username: undefined,
+        displayName: undefined,
+        about: undefined,
     };
 
     @observable

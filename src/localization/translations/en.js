@@ -186,6 +186,7 @@ export const en = {
     'sign-up.wallet-created': 'Wallet Created',
     'sign-up.wallet-created-preload': 'Please Wait',
     'sign-up.community-data': 'Community Data',
+    'sign-up.community-about': 'Please enter information about your Community',
     'sign-up.wallet-generation.success': 'Your blockchain wallet and private key were successfully created. <strong>Please save</strong> the wallet address and private key and keep them in a safe place.',
     'sign-up.we-believe': 'We believe that privacy is a personal right so do not ask for your email or any personal information. However, that makes us unable to recover the password if you lose your private key.',
     'sign-up.welcome-to-ignite': 'Welcome to Ignite!',

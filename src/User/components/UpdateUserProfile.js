@@ -292,7 +292,7 @@ const _UpdateUserProfile = ({
                 <CustomDialogTitle
                     title="Your changes saved!"
                     type="default"
-                    setLoginDialogOpen={setOpenSuccessDialog}
+                    setDialogOpen={setOpenSuccessDialog}
                 />
                 <DialogContent classes={{ root: classes.dialogRoot }}>
                     Your changes were successfully saved! Please click OK to return

@@ -49,7 +49,6 @@ export class AuthorizationStore {
                 .then(({data}) => {
                     this.currentUser = data;
                     if (isRedirect && (!data.avatar || data.id == data.username)) {
-                        // localStorage.setItem("firstAccess", true);
                         window.location.pathname = '/edit-profile';
                     }
                 })
@@ -63,7 +62,6 @@ export class AuthorizationStore {
         this.accessToken = undefined;
         localStorage.removeItem("accessToken");
         sessionStorage.removeItem("accessToken");
-        // localStorage.removeItem("firstAccess");
         store.timelineSwitcher.setCurrentTimeline("global");
 
         if (window.AndroidCallback) {

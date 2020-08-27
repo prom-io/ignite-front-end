@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
+export const CustomDialogTitle = ({ title, type, setDialogOpen }) => {
     const classes = useStyles();
 
     return (
@@ -79,7 +79,7 @@ export const CustomDialogTitle = ({ title, type, setLoginDialogOpen }) => {
                     root: classes.closeIcon,
                     colorPrimary: classes.colorPrimary
                 }}
-                onClick={() => setLoginDialogOpen(false)}
+                onClick={() => setDialogOpen(false)}
             >
                 <CloseIcon />
             </IconButton>

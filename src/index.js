@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { App } from './App';
 import { store, routerStore } from './store';
 import { Routes } from './routes';
+import { firstEnterLog } from './api/logger';
 
 if (process.env.REACT_APP_EMULATE_WEBVIEW_PRESENCE === 'true') {
     window.AndroidCallback = {
@@ -32,7 +33,6 @@ if (localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken')
     store.authorization.fetchCurrentUser();
 }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+firstEnterLog();
+
 serviceWorker.unregister();

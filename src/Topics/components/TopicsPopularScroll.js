@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         overflowX: "auto",
         [theme.breakpoints.down("sm")]: {
             display: "flex",
-            marginTop: "50px"
+            marginTop: "47px"
         }
     }
 }));

@@ -128,7 +128,7 @@ export const CreateWallet = observer(() => {
         } }
         disabled={ signUpButtonDisabled }
         onClick={ () => {
-          setGenericAuthorizationDialogType('createWalletPreload');
+          setGenericAuthorizationDialogType('communityData');
           doSignUp();
         } }
       >

@@ -8,11 +8,19 @@ export class SignUpStore {
         password: '',
         passwordConfirmation: ''
     };
+    
+    @observable
+    signUpCommunityForm = {
+        displayName: '',
+        username: '',
+        avatar: undefined,
+    };
 
     @observable
     formErrors = {
         password: undefined,
-        passwordConfirmation: undefined
+        passwordConfirmation: undefined,
+        username: undefined,
     };
 
     @observable
@@ -54,6 +62,13 @@ export class SignUpStore {
             )
         );
     }
+    @action
+    setCommunityFormValue = (key, value) => {
+        this.signUpCommunityForm = {
+            ...this.signUpCommunityForm,
+            [key]: value
+        }
+    };
 
     @action
     setFormValue = (key, value) => {

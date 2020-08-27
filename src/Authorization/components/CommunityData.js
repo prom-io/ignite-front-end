@@ -9,8 +9,10 @@ export const CommunityData = observer(() => {
   const classes = authorizationDialogsStyles();
   const { signUp, genericAuthorizationDialog } = useStore();
   const { l, locale } = useLocalization();
-  const { signUpForm, submissionError } = signUp;
+  const { formErrors, setCommunityFormValue, doSignUp, signUpCommunityForm, submissionError } = signUp;
   const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
+  
+  const signUpButtonDisabled = false;
   
   
   const handleOkClick = () => {
@@ -27,14 +29,39 @@ export const CommunityData = observer(() => {
     }}
     >
       <UserAvatarFileInput />
-     
+      <div
+        className={classes.updateUserProfileField}
+        style={{ marginTop: "40px" }}
+      >
+        <TextField
+          label={l("user.username")}
+          placeholder="Add your username"
+          value={signUpCommunityForm.username}
+          onChange={event =>
+            setCommunityFormValue("username", event.target.value)
+          }
+          error={Boolean(formErrors.username)}
+          helperText={
+            formErrors.username && l(formErrors.username)
+          }
+          margin="dense"
+          InputLabelProps={{
+            shrink: true
+          }}
+          fullWidth
+        />
+        <span>
+          {signUpCommunityForm.username.length}
+          /50
+        </span>
+      </div>
       <Button
         variant="contained"
         color="primary"
         disabled={ signUpButtonDisabled }
         onClick={ () => {
           setGenericAuthorizationDialogType('communityData');
-          /*doSignUp();*/
+          doSignUp();
         } }
       >
       </Button>

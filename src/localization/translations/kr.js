@@ -190,6 +190,7 @@ export const kr = {
     'sign-up.wallet-address': '지갑 주소(로그인)',
     'sign-up.wallet-created': '지갑 생성했다',
     'sign-up.wallet-created-preload': 'Please Wait',
+    'sign-up.community-data': 'Community Data',
     'sign-up.wallet-generation.success': 'Your blockchain wallet and private key were successfully created. <strong>Please save</strong> the wallet address and private key and keep them in a safe place.',
     'sign-up.we-believe': '우리는 개인정보가 개인의 권리라고 생각하므로 당신의 이메일이나 어떠한 개인 정보도 요구하지 않습니다. 그러나, 만약 당신의 개인 키를 잃어버리면 우리는 비밀번호를 복구할 수 없습니다.',
     'sign-up.welcome-to-ignite': '이그나이트에 온 걸 환영합니다!',

@@ -23,6 +23,7 @@ import { PasswordUpdatedError } from './resetPassword/PasswordUpdatedError';
 import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
 import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
 import { useLocalization, useStore } from '../../store/hooks';
+import { CommunityData } from './CommunityData';
 
 const dialogType = {
     signUp: {
@@ -41,6 +42,12 @@ const dialogType = {
         id: 'createWalletPreload',
         component: <CreateWalletPreload />,
         title: 'sign-up.wallet-created-preload',
+        type: 'default',
+    },
+    communityData: {
+        id: 'communityData',
+        component: <CommunityData/>,
+        title: 'sign-up.community-data',
         type: 'default',
     },
     attention: {

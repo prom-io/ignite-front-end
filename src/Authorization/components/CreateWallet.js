@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import { FadeLoader } from 'react-spinners';
-import { Button, CircularProgress, DialogContent, makeStyles, useTheme } from '@material-ui/core';
+import { Button, Radio, FormControlLabel, RadioGroup, DialogContent, useTheme } from '@material-ui/core';
 
 import { InputPasswordGroup } from './InputPasswordGroup';
 import { KeyCopyBlock } from './KeyCopyBlock';
@@ -74,63 +74,68 @@ export const CreateWallet = observer(() => {
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
     const signUpButtonDisabled = (!agreedToPolicy || !savedEverything) || pending;
-
-    return (
-        <DialogContent classes={{
-            root: classes.dialogContentRoot,
-        }}
-        >
-            {walletGenerationSuccessTranslations[locale](classes)}
-            <KeyCopyBlock
-                title={l('sign-up.wallet-address')}
-                textToCopy={generatedWallet.address}
-            >
-                {generatedWallet.address}
-            </KeyCopyBlock>
-            <InputPasswordGroup
-                formValues={signUpForm}
-                onValueChange={setFormValue}
-                formErrors={formErrors}
-                showPassword={showPassword}
-                onShowPasswordChange={setShowPassword}
-                title={l('sign-up.password')}
-            />
-            <KeyCopyBlock
-                title={l('sign-up.private-key')}
-                textToCopy={generatedWallet.privateKey}
-            >
-                {generatedWallet.privateKey}
-            </KeyCopyBlock>
-            <p className={classes.content}>
-                {l('sign-up.we-believe')}
-            </p>
-            <_Checkbox
-                checked={savedEverything}
-                onChange={() => setSavedEverything(!savedEverything)}
-            >
-                {l('sign-up.confirmation.private-key-saved')}
-            </_Checkbox>
-            <_Checkbox
-                checked={agreedToPolicy}
-                onChange={() => setAgreedToPolicy(!agreedToPolicy)}
-            >
-                {termsOfServiceAgreementTranslations[locale]()}
-            </_Checkbox>
-            <Button
-                variant="contained"
-                color="primary"
-                classes={{
-                    root: classes.button,
-                }}
-                disabled={signUpButtonDisabled}
-                onClick={ () => {
-                    setGenericAuthorizationDialogType('createWalletPreload');
-                    doSignUp();
-                }}
-            >
-                {pending && <FadeLoader color={theme.palette.primary.main} css="position: absolute; transform: scale(0.4); top: -4px; left: 74px" />}
-                {l('sign-up')}
-            </Button>
-        </DialogContent>
-    );
+  
+  return (
+    <DialogContent classes={ {
+      root: classes.dialogContentRoot
+    } }
+    >
+      { walletGenerationSuccessTranslations[locale](classes) }
+      <KeyCopyBlock
+        title={ l('sign-up.wallet-address') }
+        textToCopy={ generatedWallet.address }
+      >
+        { generatedWallet.address }
+      </KeyCopyBlock>
+      <InputPasswordGroup
+        formValues={ signUpForm }
+        onValueChange={ setFormValue }
+        formErrors={ formErrors }
+        showPassword={ showPassword }
+        onShowPasswordChange={ setShowPassword }
+        title={ l('sign-up.password') }
+      />
+      <RadioGroup row aria-label="gender" name="gender1" value={ 'user' } classes={{root: classes.radioGroup}}>
+        <FormControlLabel value="user" control={ <Radio color={"primary"}/> } label="Sign up as User"/>
+        <FormControlLabel value="community" control={ <Radio color={"primary"}/> } label="Sign up as Community"/>
+      </RadioGroup>
+      <KeyCopyBlock
+        title={ l('sign-up.private-key') }
+        textToCopy={ generatedWallet.privateKey }
+      >
+        { generatedWallet.privateKey }
+      </KeyCopyBlock>
+      <p className={ classes.content }>
+        { l('sign-up.we-believe') }
+      </p>
+      <_Checkbox
+        checked={ savedEverything }
+        onChange={ () => setSavedEverything(!savedEverything) }
+      >
+        { l('sign-up.confirmation.private-key-saved') }
+      </_Checkbox>
+      <_Checkbox
+        checked={ agreedToPolicy }
+        onChange={ () => setAgreedToPolicy(!agreedToPolicy) }
+      >
+        { termsOfServiceAgreementTranslations[locale]() }
+      </_Checkbox>
+      <Button
+        variant="contained"
+        color="primary"
+        classes={ {
+          root: classes.button
+        } }
+        disabled={ signUpButtonDisabled }
+        onClick={ () => {
+          setGenericAuthorizationDialogType('createWalletPreload');
+          doSignUp();
+        } }
+      >
+        { pending && <FadeLoader color={ theme.palette.primary.main }
+                                 css="position: absolute; transform: scale(0.4); top: -4px; left: 74px"/> }
+        { l('sign-up') }
+      </Button>
+    </DialogContent>
+  );
 });

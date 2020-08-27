@@ -153,4 +153,9 @@ export const authorizationDialogsStyles = makeStyles(theme => ({
   marginTop: {
     marginTop: 120,
   },
+  radioGroup: {
+    padding: '20px 0',
+    borderTop: `1px solid ${theme.palette.border.main}`,
+    borderBottom: `1px solid ${theme.palette.border.main}`,
+  }
 }));

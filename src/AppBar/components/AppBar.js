@@ -338,16 +338,9 @@ const _AppBar = ({
     );
 };
 
-const mapMobxToProps = ({
-    store,
-    authorization,
-    login,
-    notifications,
-    searchUsers
-}) => ({
+const mapMobxToProps = ({ store, authorization, notifications, searchUsers }) => ({
     routerStore: store,
     currentUser: authorization.currentUser,
-    setLoginDialogOpen: login.setLoginDialogOpen,
     notificationsCount: notifications.notificationsCount,
     isSearchActive: searchUsers.isSearchActive
 });

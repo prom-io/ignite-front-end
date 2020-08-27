@@ -7,22 +7,29 @@ import { CommunityListItem } from "./CommunityListItem";
 import { CommunitiesNotFound } from "./CommunitiesNotFound";
 import Loader from "../../components/Loader";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     centered: {
         marginLeft: "auto",
         marginRight: "auto",
         display: "table",
         marginTop: "100px"
+    },
+    marginTopIfMyCommunities: {
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "46px"
+        }
     }
 }));
 
 const _CommunitiesList = ({
     currentUser,
     type,
+    communitiesInputValue,
     communities,
     pending,
     hasMore,
     fetchCommunities,
+    fetchSearchCommunities,
     doJoin
 }) => {
     const classes = useStyles();
@@ -33,9 +40,14 @@ const _CommunitiesList = ({
         </div>
     ) : (
         <div className="paddingBottomRoot">
+            <div className={type === "my" && classes.marginTopIfMyCommunities} />
             {communities.length > 0 ? (
                 <InfiniteScroll
-                    next={() => fetchCommunities(type)}
+                    next={() =>
+                        communitiesInputValue
+                            ? fetchSearchCommunities()
+                            : fetchCommunities(type)
+                    }
                     loader={
                         <div className={classes.centered}>
                             <Loader size="lg" />
@@ -62,10 +74,12 @@ const _CommunitiesList = ({
 
 const mapMobxToProps = ({ authorization, communities }) => ({
     currentUser: authorization.currentUser,
+    communitiesInputValue: communities.communitiesInputValue,
     communities: communities.communities,
     pending: communities.pending,
     hasMore: communities.hasMore,
     fetchCommunities: communities.fetchCommunities,
+    fetchSearchCommunities: communities.fetchSearchCommunities,
     doJoin: communities.doJoin
 });
 

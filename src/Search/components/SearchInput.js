@@ -44,7 +44,6 @@ const _SearchInput = ({
     searchValueHeaderIsTouched,
     pending,
     setSearchValueHeader,
-    setSearchValuePage,
     l
 }) => {
     const [isSearchActive, setIsSearchActive] = useState(false);
@@ -111,8 +110,7 @@ const mapMobxToProps = ({ searchUsers }) => ({
     searchValueHeader: searchUsers.searchValueHeader,
     searchValueHeaderIsTouched: searchUsers.searchValueHeaderIsTouched,
     pending: searchUsers.pendingHeader,
-    setSearchValueHeader: searchUsers.setSearchValueHeader,
-    setSearchValuePage: searchUsers.setSearchValuePage
+    setSearchValueHeader: searchUsers.setSearchValueHeader
 });
 
 export const SearchInput = localized(inject(mapMobxToProps)(observer(_SearchInput)));

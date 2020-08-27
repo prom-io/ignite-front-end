@@ -2,11 +2,22 @@ import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import { Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 
-import { CommunityLeaveDialog } from "./CommunityLeaveDialog";
+import { CommunitiesSearchInput } from "./CommunitiesSearchInput";
 import { CommunitiesList } from "./CommunitiesList";
+import { CommunityLeaveDialog } from "./CommunityLeaveDialog";
 import { BackButton } from "../../components/BackButton";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
+    communitiesTabs: {
+        [theme.breakpoints.down("sm")]: {
+            position: "fixed",
+            width: "100%",
+            top: 50,
+            background: theme.palette.background.paper,
+            borderBottom: `1px solid ${theme.palette.border.main}`,
+            zIndex: 20
+        }
+    },
     communitiesTab: {
         fontSize: "15px",
         fontWeight: 600
@@ -28,27 +39,31 @@ const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
                 <BackButton title="appbar.communities" toHome />
             </Hidden>
 
-            <Tabs
-                value={tabValue}
-                indicatorColor="primary"
-                textColor="primary"
-                onChange={handleChange}
-            >
-                <Tab
-                    classes={{ wrapper: classes.communitiesTab }}
-                    label="All communities"
-                    value="all"
-                    disabled={pending}
-                    disableRipple
-                />
-                <Tab
-                    classes={{ wrapper: classes.communitiesTab }}
-                    label="Your communities"
-                    value="my"
-                    disabled={pending}
-                    disableRipple
-                />
-            </Tabs>
+            <div className={classes.communitiesTabs}>
+                <Tabs
+                    value={tabValue}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={handleChange}
+                >
+                    <Tab
+                        classes={{ wrapper: classes.communitiesTab }}
+                        label="All communities"
+                        value="all"
+                        disabled={pending}
+                        disableRipple
+                    />
+                    <Tab
+                        classes={{ wrapper: classes.communitiesTab }}
+                        label="Your communities"
+                        value="my"
+                        disabled={pending}
+                        disableRipple
+                    />
+                </Tabs>
+            </div>
+
+            {tabValue === "all" && <CommunitiesSearchInput />}
 
             <CommunitiesList type={tabValue} />
 

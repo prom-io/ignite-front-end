@@ -122,7 +122,7 @@ const _UpdateUserProfile = ({
     l
 }) => {
     const classes = useStyles();
-    
+
     const handleClose = () => {
         setOpenSuccessDialog(false);
     };
@@ -133,7 +133,7 @@ const _UpdateUserProfile = ({
                 <UserAvatarFileInput />
                 <div className={classes.updateUserProfileInfo}>
                     <div className={classes.updateUserProfileWallet}>
-                        <p>Wallet</p>
+                        <Typography>Wallet</Typography>
                         <Typography variant="h5">{currentUser.id}</Typography>
                     </div>
                     <div
@@ -284,11 +284,7 @@ const _UpdateUserProfile = ({
                     </div>
                 </div>
             </div>
-            <Dialog
-                onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
-                open={openSuccessDialog}
-            >
+            <Dialog onClose={handleClose} open={openSuccessDialog}>
                 <CustomDialogTitle
                     title="Your changes saved!"
                     type="default"
@@ -313,7 +309,7 @@ const _UpdateUserProfile = ({
                                 avatarUploadPending
                             }
                         >
-                            OK
+                            {l("dialog.ok")}
                         </Button>
                     </Link>
                 </DialogContent>

@@ -11,6 +11,7 @@ import {
     useTheme
 } from "@material-ui/core";
 
+import { UserBalanceButton } from "./UserBalanceButton";
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
 
@@ -107,13 +108,7 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                             </Typography>
                         </Link>
                     </Grid>
-                    <Typography
-                        variant={"span"}
-                        className="user-profile-header-content-bottom-balance"
-                    >
-                        {l("user.profile.your-balance")}:{" "}
-                        {Number(currentUser.user_balance).toFixed(2)} PROM
-                    </Typography>
+                    <UserBalanceButton userBalance={currentUser.user_balance} />
                 </Grid>
             </div>
         </div>

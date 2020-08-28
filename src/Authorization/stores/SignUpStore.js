@@ -6,7 +6,8 @@ export class SignUpStore {
     @observable
     signUpForm = {
         password: '',
-        passwordConfirmation: ''
+        passwordConfirmation: '',
+        type: 'user',
     };
     
     @observable

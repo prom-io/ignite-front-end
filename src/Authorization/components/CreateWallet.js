@@ -74,6 +74,15 @@ export const CreateWallet = observer(() => {
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
     const signUpButtonDisabled = (!agreedToPolicy || !savedEverything) || pending;
+    
+    const onSignUpClick = () => {
+      if (signUpForm.type === 'community')
+        setGenericAuthorizationDialogType('communityData');
+      else {
+        setGenericAuthorizationDialogType('createWalletPreload');
+        doSignUp();
+      }
+    };
   
   return (
     <DialogContent classes={ {
@@ -95,7 +104,11 @@ export const CreateWallet = observer(() => {
         onShowPasswordChange={ setShowPassword }
         title={ l('sign-up.password') }
       />
-      <RadioGroup row aria-label="gender" name="gender1" value={ 'user' } classes={{root: classes.radioGroup}}>
+      <RadioGroup row aria-label="gender" name="gender1"
+                  value={ signUpForm.type }
+                  classes={{root: classes.radioGroup}}
+                  onChange={(event)=>setFormValue('type',event.target.value)}
+      >
         <FormControlLabel value="user" control={ <Radio color={"primary"}/> } label="Sign up as User"/>
         <FormControlLabel value="community" control={ <Radio color={"primary"}/> } label="Sign up as Community"/>
       </RadioGroup>
@@ -127,10 +140,7 @@ export const CreateWallet = observer(() => {
           root: classes.button
         } }
         disabled={ signUpButtonDisabled }
-        onClick={ () => {
-          setGenericAuthorizationDialogType('communityData');
-          doSignUp();
-        } }
+        onClick={ onSignUpClick }
       >
         { pending && <FadeLoader color={ theme.palette.primary.main }
                                  css="position: absolute; transform: scale(0.4); top: -4px; left: 74px"/> }

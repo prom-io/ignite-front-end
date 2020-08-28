@@ -254,6 +254,8 @@ export const en = {
     'user.update-profile.save-changes': 'Save changes',
     'user.upload-avatar': 'Upload avatar',
     'user.username': 'Username',
+    'user.name': 'Name',
+    'user.about': 'About',
     'user.username.cant-be-empty': "Username can't be empty",
     'user.username.contains-invalid-characters': 'Username contains invalid characters',
     'user.username.contains-uppercase': 'For Username, please use only lowercase letter',

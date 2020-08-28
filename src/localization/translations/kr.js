@@ -261,6 +261,8 @@ export const kr = {
     'user.update-profile.save-changes': '변경 내용 저장한다',
     'user.upload-avatar': '프로필 업로드',
     'user.username': '아이디',
+    'user.name': 'Name',
+    'user.about': 'About',
     'user.username.cant-be-empty': '아이디 이름은 비워 둘 수 없다',
     'user.username.contains-invalid-characters': '아이디 이름에 유효하지 않은 문자 포함',
     'user.username.contains-uppercase': 'For Username, please use only lowercase letter',

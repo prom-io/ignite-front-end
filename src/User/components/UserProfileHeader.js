@@ -8,6 +8,7 @@ import { UserProfileAvatar } from "./UserProfileAvatar";
 import { UserProfileTab } from "./UserProfileTab";
 import { UpdateUserProfileButton } from "./UpdateUserProfileButton";
 import { UserProfileHeaderButton } from "./UserProfileHeaderButton";
+import { UserBalanceButton } from "./UserBalanceButton";
 import { localized } from "../../localization/components";
 import { useRouter } from "../../store/hooks";
 import { Routes } from "../../routes";
@@ -143,15 +144,6 @@ const _UserProfileHeader = ({
                         }}
                     />
                 </Grid>
-                {currentUser && currentUser.username === username && (
-                    <Typography
-                        variant={"body2"}
-                        className={"user-profile-header-content-bottom-balance"}
-                    >
-                        {l("user.profile.your-balance")}:{" "}
-                        {Number(userBalance).toFixed(2)} PROM
-                    </Typography>
-                )}
                 <Grid item>
                     <Typography
                         variant="body1"
@@ -162,6 +154,9 @@ const _UserProfileHeader = ({
                         {format(createdAt, "MMMM yyyy", { locale: dateFnsLocale })}
                     </Typography>
                 </Grid>
+                {currentUser && currentUser.username === username && (
+                    <UserBalanceButton userBalance={userBalance} withMargin />
+                )}
                 {profileButton}
             </Grid>
         </Grid>

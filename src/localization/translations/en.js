@@ -19,6 +19,7 @@ export const en = {
     'appbar.search': 'Search',
     'appbar.topics': 'Topics',
     'appbar.memezator': 'Memezator',
+    'appbar.transactions': 'Transactions',
     'appbar.edit-profile': 'Edit profile',
     'authorization.change-password': 'Change Your Password',
     'authorization.forgot-password': 'Forgot Your Password?',

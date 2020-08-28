@@ -6,53 +6,43 @@ export class TransactionsStore {
     transactions = [];
 
     @observable
+    page = 0;
+
+    @observable
     pending = false;
+
+    @observable
+    hasMore = true;
 
     @action
     fetchTransactions = () => {
         this.pending = true;
 
-        setTimeout(() => {
-            this.transactions = [
-                {
-                    txnId: "0x553e27288406b577cab41cccc65b7f47eae1d606beb2796651d6bb60214e63601",
-                    date: "20.02.2020, 20:20:20",
-                    status: "Approved",
-                    count: "123.55 PROM",
-                    type: "up",
-                    text: "Memezator prize"
-                },
-                {
-                    txnId: "0x553e27288406b577cab41cccc65b7f47eae1d606beb2796651d6bb60214e63602",
-                    date: "20.02.2020, 20:20:20",
-                    status: "Pending",
-                    count: "123.55 PROM",
-                    type: "down",
-                    text: "P2P transaction"
-                },
-                {
-                    txnId: "0x553e27288406b577cab41cccc65b7f47eae1d606beb2796651d6bb60214e63603",
-                    date: "20.02.2020, 20:20:20",
-                    status: "Approved",
-                    count: "123.55 PROM",
-                    type: "up",
-                    text: "Memezator prize"
-                },
-                {
-                    txnId: "0x553e27288406b577cab41cccc65b7f47eae1d606beb2796651d6bb60214e63604",
-                    date: "20.02.2020, 20:20:20",
-                    status: "Pending",
-                    count: "123.55 PROM",
-                    type: "down",
-                    text: "P2P transaction"
+        let searchUrl;
+        if (this.page === 0) {
+            searchUrl = `/api/v1/accounts/current/transactions?take=15`;
+        } else {
+            const skip = this.page * 15;
+            searchUrl = `/api/v1/accounts/current/transactions?skip=${skip}&take=15`;
+        }
+
+        axiosInstance
+            .get(searchUrl)
+            .then(({ data }) => {
+                if (data.length > 0) {
+                    this.transactions.push(...data);
+                    this.page++;
+                } else {
+                    this.hasMore = false;
                 }
-            ];
-            this.pending = false;
-        }, 1000)
+            })
+            .finally(() => (this.pending = false));
     };
 
     @action
     reset = () => {
         this.transactions = [];
+        this.hasMore = true;
+        this.page = 0;
     };
 }

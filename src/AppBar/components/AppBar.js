@@ -101,7 +101,8 @@ const _AppBar = ({
         "/notifications": l("appbar.notifications"),
         "/topics": l("appbar.topics"),
         "/edit-profile": l("appbar.edit-profile"),
-        "/memezator": l("appbar.memezator")
+        "/memezator": l("appbar.memezator"),
+        "/transactions": l("appbar.transactions"),
     };
 
     return (

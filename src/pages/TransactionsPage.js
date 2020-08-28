@@ -5,7 +5,10 @@ import { Grid, Typography, makeStyles } from "@material-ui/core";
 import { AppBar } from "../AppBar/components";
 import { LoginForm } from "../Authorization/components";
 import { Layout } from "../Layout";
-import { TransactionsList } from "../Transactions/components";
+import {
+    TransactionsList,
+    TransactionDetailsDialog
+} from "../Transactions/components";
 import {
     PrometeusDescription,
     ExploreOurFeaturesDescription
@@ -63,6 +66,7 @@ export const TransactionsPage = observer(() => {
                                         Transactions
                                     </Typography>
                                     <TransactionsList />
+                                    <TransactionDetailsDialog />
                                 </>
                             )}
                         </Grid>

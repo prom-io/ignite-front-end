@@ -14,6 +14,12 @@ export class TransactionsStore {
     @observable
     hasMore = true;
 
+    @observable
+    openDetails = false;
+
+    @observable
+    currentTransaction = {};
+
     @action
     fetchTransactions = () => {
         this.pending = true;
@@ -37,6 +43,14 @@ export class TransactionsStore {
                 }
             })
             .finally(() => (this.pending = false));
+    };
+
+    @action
+    setOpenDetails = (openDetails, currentTransaction) => {
+        this.openDetails = openDetails;
+        if (openDetails) {
+            this.currentTransaction = currentTransaction;
+        }
     };
 
     @action

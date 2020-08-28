@@ -21,7 +21,8 @@ const _TransactionsList = ({
     transactions,
     hasMore,
     pending,
-    fetchTransactions
+    fetchTransactions,
+    setOpenDetails
 }) => {
     const classes = useStyles();
 
@@ -47,7 +48,10 @@ const _TransactionsList = ({
                         style={{ overflowY: "hidden" }}
                     >
                         {transactions.map(transaction => (
-                            <TransactionItem transaction={transaction} />
+                            <TransactionItem
+                                transaction={transaction}
+                                setOpenDetails={setOpenDetails}
+                            />
                         ))}
                     </InfiniteScroll>
                 )}
@@ -60,7 +64,8 @@ const mapMobxToProps = ({ transactions }) => ({
     transactions: transactions.transactions,
     hasMore: transactions.hasMore,
     pending: transactions.pending,
-    fetchTransactions: transactions.fetchTransactions
+    fetchTransactions: transactions.fetchTransactions,
+    setOpenDetails: transactions.setOpenDetails
 });
 
 export const TransactionsList = localized(

@@ -51,11 +51,16 @@ const useStyles = makeStyles(theme => ({
         top: "23px"
     },
     transactionHash: {
+        cursor: "pointer",
         fontSize: "15px",
         fontWeight: 600,
         lineHeight: "18px",
         maxWidth: "365px",
+        width: "100%",
         overflowWrap: "break-word",
+        "&:hover": {
+            textDecoration: "underline"
+        },
         [theme.breakpoints.down("xs")]: {
             maxWidth: "unset",
             marginBottom: "8px"
@@ -78,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const TransactionItem = ({ transaction }) => {
+export const TransactionItem = ({ transaction, setOpenDetails }) => {
     const classes = useStyles();
 
     const transactionStatus =
@@ -133,6 +138,7 @@ export const TransactionItem = ({ transaction }) => {
                 <Typography
                     classes={{ root: classes.transactionHash }}
                     color="textPrimary"
+                    onClick={() => setOpenDetails(true, transaction)}
                 >
                     {transaction.txn_hash || "PENDING"}
                 </Typography>

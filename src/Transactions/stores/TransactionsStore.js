@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, reaction } from "mobx";
 import { axiosInstance } from "../../api/axios-instance";
 
 export class TransactionsStore {
@@ -19,6 +19,23 @@ export class TransactionsStore {
 
     @observable
     currentTransaction = {};
+
+    authorizationStore = undefined;
+
+    constructor(authorizationStore) {
+        this.authorizationStore = authorizationStore;
+
+        reaction(
+            () => this.authorizationStore.currentUser,
+            () => {
+                this.reset();
+
+                if (window.location.pathname === "/transactions") {
+                    this.fetchTransactions();
+                }
+            }
+        );
+    }
 
     @action
     fetchTransactions = () => {

@@ -283,7 +283,9 @@ export const Routes = {
         path: '/transactions',
         component: <TransactionsPage />,
         beforeEnter: () => {
-            store.transactions.fetchTransactions();
+            if (store.authorization.currentUser) {
+                store.transactions.fetchTransactions();
+            }
         },
         onExit: () => {
             store.transactions.reset();

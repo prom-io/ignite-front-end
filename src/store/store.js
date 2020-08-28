@@ -82,7 +82,7 @@ const searchUsers = new SearchUsersStore();
 const memezatorActions = new MemezatorActionsStore(authorization, createStatus);
 const memezatorStatuses = new MemezatorStatusesStore(authorization, createStatus, memezatorDialog);
 const memezatorWinners = new MemezatorWinnersStore();
-const transactions = new TransactionsStore();
+const transactions = new TransactionsStore(authorization);
 
 export const store = {
     authorization,

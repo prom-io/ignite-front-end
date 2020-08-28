@@ -10,6 +10,7 @@ export * from './TopicPage';
 export * from './MemezatorPage';
 export * from './CommunitiesPage';
 export * from './CommunityPage';
+export * from './TransactionsPage';
 export * from './TermsAndPoliciesPage';
 export * from './StatusPage';
 export * from './EthereumPlasmaPage';

@@ -105,6 +105,7 @@ const _AppBar = ({
         "/memezator": l("appbar.memezator"),
         "/communities": l("appbar.communities"),
         "/community": l("appbar.community"),
+        "/transactions": l("appbar.transactions"),
     };
 
     return (

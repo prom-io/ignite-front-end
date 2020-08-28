@@ -41,7 +41,11 @@ import {
     MemezatorWinnersStore, 
     MemezatorDialogStore 
 } from '../Memezator/stores';
+<<<<<<< HEAD
 import { CommunitiesStore, CommunityStore } from '../Community/stores';
+=======
+import { TransactionsStore } from '../Transactions/stores';
+>>>>>>> e1b5304498154d4803f98e344dd95b0da39901d3
 import { WebsocketStore } from '../websocket/stores';
 
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
@@ -84,6 +88,7 @@ const memezatorStatuses = new MemezatorStatusesStore(authorization, createStatus
 const memezatorWinners = new MemezatorWinnersStore();
 const communities = new CommunitiesStore();
 const community = new CommunityStore();
+const transactions = new TransactionsStore(authorization);
 
 export const store = {
     authorization,
@@ -126,4 +131,5 @@ export const store = {
     memezatorDialog,
     communities,
     community,
+    transactions
 };

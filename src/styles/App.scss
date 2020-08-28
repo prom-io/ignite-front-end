@@ -535,15 +535,6 @@ body {
     }
 }
 
-.user-profile-header-content-bottom-balance {
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 12px;
-    border: 1px solid $primary_main;
-    border-radius: 4px;
-}
-
 .user-profile-header-content-bottom-follow-button {
     width: 202px;
     height: 40px;
@@ -589,7 +580,7 @@ body {
 }
 
 .user-profile-info-member-since {
-    margin: 10px 0 !important;
+    margin-bottom: 20px !important;
     font-size: 12px !important;
 }
 

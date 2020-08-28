@@ -21,6 +21,7 @@ export const en = {
     'appbar.memezator': 'Memezator',
     'appbar.communities': 'Communities',
     'appbar.community': 'Community',
+    'appbar.transactions': 'Transactions',
     'appbar.edit-profile': 'Edit profile',
     'authorization.change-password': 'Change Your Password',
     'authorization.forgot-password': 'Forgot Your Password?',

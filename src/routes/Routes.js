@@ -15,6 +15,7 @@ import {
     TopicsPage,
     TopicPage,
     MemezatorPage,
+    TransactionsPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
@@ -276,6 +277,18 @@ export const Routes = {
             store.memezatorWinners.reset();
             store.whoToFollow.reset(); //
             store.topicsPopular.reset(); //
+        },
+    }),
+    transactions: new Route({
+        path: '/transactions',
+        component: <TransactionsPage />,
+        beforeEnter: () => {
+            if (store.authorization.currentUser) {
+                store.transactions.fetchTransactions();
+            }
+        },
+        onExit: () => {
+            store.transactions.reset();
         },
     }),
 };

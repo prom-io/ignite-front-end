@@ -38,7 +38,12 @@ export const TransactionsPage = observer(() => {
                         <Grid item md={3} className="left-banners-container">
                             <PrometeusDescription />
                         </Grid>
-                        <Grid item lg={9} className="right-content-container">
+                        <Grid
+                            item
+                            lg={9}
+                            className="right-content-container"
+                            style={{ width: "100%" }}
+                        >
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
                                     <LoginForm

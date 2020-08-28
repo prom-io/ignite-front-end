@@ -29,12 +29,10 @@ const useStyles = makeStyles(theme => ({
         position: "relative",
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
-        padding: "18px 16px 18px 44px",
+        padding: "23px 16px 18px 44px",
         background: theme.palette.background.light,
         [theme.breakpoints.down("xs")]: {
-            display: "block",
-            padding: "23px 16px 16px 44px"
+            display: "block"
         }
     },
     transactionItemFooter: {
@@ -136,7 +134,7 @@ export const TransactionItem = ({ transaction }) => {
                     classes={{ root: classes.transactionHash }}
                     color="textPrimary"
                 >
-                    0x553e27288406b577cab41cccc65b7f47eae1d606beb2796651d6bb60214e6360
+                    {transaction.txn_hash || "PENDING"}
                 </Typography>
                 <Hidden smUp>
                     <Typography

@@ -284,28 +284,18 @@ export const kr = {
     'memezator.dialog.old-meme': 'You can only vote for today\'s memes',
     'dialog.favourite.can-not-unliked': 'Statuses which have not been liked by current user can\'t be unliked',
     'memezator.rules-list': [
-        "Voting is super easy: you just ‘like‘ any meme here.",
-        "Only registered Ignite users can publish memes and vote for them.",
-        "Only memes which have been published here (and nowhere else) can participate the contest."
+        "Submit the MEME for the contest. By posting it to the window below. Please note that you can submit only one meme from your account. There is also total daily limit of submitted memes, so be quick;",
+        "Vote for MEME you want by pushing the like button;",
+        "Every day we distribute significant amount of PROM tokens to the best MEME creators and voters;"
     ],
-        'memezator.rules-list-hidden-1': [
-        "You can publish a meme here only once per day.",
-        "Day is a term form 00:00.00 GMT and 23:59.59 GMT.",
+    'memezator.rules-list-hidden': [
+        "Day: 00:00.00 EST - 23:59.59 EST",
+        "All scores are calculated at the end of the day;",
+        "Everyone, who meet a requirements can participate;",
+        "You can vote only for 1 meme a day;",
+        "Nobody can see the number of scores before the calculation;",
+        "Only current day memes can participate in contest;",
+        "Please read the detailed rules before voting: ",
     ],
-        'memezator.rules-list-hidden-2': [
-        "Only current day’s memes are available for voting.",
-        "You can vote for any meme available, but only once per day.",
-        "Each Ignite user have some Voting Power (1 by default).",
-        "You can raise it to 40 (holding 2-5 PROM on your Ignite account) or to 80 (5+ PROM)",
-        "Voting Power means how many ‘likes’ will add to meme you’ve chosen, when you press ‘like’.",
-    ],
-        'memezator.rules-list-hidden-3': [
-        "All the memes ‘likes’ are calculated at the end of each day.",
-        "Nobody can see the number of ‘likes’ till the calculation: it’s hidden",
-        "Only three memes win daily: top3 memes with max ‘likes’.",
-        "Info about the winners is published daily by a bot named memezator_official",
-        "You can use RESULTS button above to see all the winners."
-    ],
-    'memezator.rules-list.note-bottom': "The actual prize sum depends on current PROM exchange rate and daily prize fund",
-    'memezator.rules-list.note-top': "Memezator is a contest where you can win up to $500* (in PROM BSC tokens) daily by publishing memes and voting for them. Here are the Rules of our contest.",
+    'memezator.rules-list.note-top': "Memezator is a daily community contest and lottery which allows you earn money by creating the memes and voting for them. You can call it meme social mining or proof-of-meme.",
 };

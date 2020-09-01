@@ -1,11 +1,11 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Typography, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 import { UnfollowDialog } from "../../Follow/components";
 import Loader from "../../components/Loader";
-import { SearchPeopleItem } from "../../Search/components";
+import { SearchPeopleItem, SearchUsersNotFound } from "../../Search/components";
 import { localized } from "../../localization/components";
 
 const useStyles = makeStyles(() => ({
@@ -14,13 +14,6 @@ const useStyles = makeStyles(() => ({
         marginRight: "auto",
         marginTop: "50px",
         display: "table"
-    },
-    notFound: {
-        textAlign: "center",
-        border: "1px solid #F1EBE8",
-        borderTop: 0,
-        fontSize: "20px",
-        padding: "20px"
     }
 }));
 
@@ -49,9 +42,7 @@ const _SearchPeopleList = ({
                 </div>
             )}
             {searchWithParams && !pending && searchResult.length === 0 && (
-                <Typography variant="h2" classes={{ root: classes.notFound }}>
-                    {l("search.people.not-found")}
-                </Typography>
+                <SearchUsersNotFound />
             )}
             <div className="paddingBottomRoot">
                 {searchResult.length !== 0 && (

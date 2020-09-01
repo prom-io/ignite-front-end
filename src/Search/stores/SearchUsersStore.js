@@ -101,6 +101,7 @@ export class SearchUsersStore {
             this.searchValuePage = query;
             this.searchResultPage = [];
             this.page = 0;
+            this.hasMore = true;
         }
 
         this.pendingPage = true;

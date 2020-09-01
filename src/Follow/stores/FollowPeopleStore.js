@@ -37,6 +37,7 @@ export class FollowPeopleStore {
         if (isNew) {
             this.followPeopleItems = [];
             this.page = 1;
+            this.hasMore = true;
         }
 
         this.pending = true;
@@ -66,6 +67,7 @@ export class FollowPeopleStore {
         if (isNew) {
             this.followPeopleItems = [];
             this.page = 0;
+            this.hasMore = true;
         }
 
         this.pending = true;

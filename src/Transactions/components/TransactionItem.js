@@ -1,7 +1,7 @@
 import React from "react";
-import { format } from "date-fns";
 import { Typography, makeStyles } from "@material-ui/core";
 
+import { getTimeToEST } from "../../utils/date-utlis";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
@@ -161,10 +161,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                         classes={{ root: classes.transactionSmallText }}
                         color="textSecondary"
                     >
-                        {format(
-                            new Date(transaction.created_at),
-                            "dd.MM.yyyy, HH:mm:ss"
-                        )}
+                        {getTimeToEST(transaction.created_at)}
                     </Typography>
                 </div>
                 <div style={{ width: "25%" }}>

@@ -1,6 +1,5 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { format, utcToZonedTime } from "date-fns-tz";
 import {
     Dialog,
     DialogContent,
@@ -11,6 +10,7 @@ import {
 
 import { CustomDialogTitle } from "../../Authorization/components";
 import { localized } from "../../localization/components";
+import { getTimeToEST } from "../../utils/date-utlis";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
@@ -163,14 +163,11 @@ const _TransactionDetailsDialog = ({
                 <TableItem>
                     <Typography color="textSecondary">
                         {currentTransaction.created_at &&
-                            format(
-                                utcToZonedTime(
-                                    new Date(currentTransaction.created_at),
-                                    "America/New_York"
-                                ),
-                                "dd MMM. MM yyyy, HH:mm:ss, zzz",
-                                { timeZone: "America/New_York" }
-                            )}
+                            getTimeToEST(
+                                currentTransaction.created_at,
+                                "dd MMM yyyy, HH:mm:ss, zzz"
+                            )}{" "}
+                        (EST)
                     </Typography>
                 </TableItem>
                 <TableItem>

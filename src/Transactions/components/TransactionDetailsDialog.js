@@ -1,6 +1,6 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { format } from "date-fns";
+import { format, utcToZonedTime } from "date-fns-tz";
 import {
     Dialog,
     DialogContent,
@@ -16,6 +16,9 @@ import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
 const useStyles = makeStyles(theme => ({
     dialogContent: {
+        [theme.breakpoints.down("sm")]: {
+            padding: "24px 12px"
+        },
         [theme.breakpoints.down("xs")]: {
             padding: "12px"
         }
@@ -86,7 +89,7 @@ const _TransactionDetailsDialog = ({
 
     const transactionSubject =
         currentTransaction.txn_subject === "REWARD"
-            ? "Memezator Price"
+            ? "Memezator prize"
             : currentTransaction.txn_subject === "TRANSFER"
             ? "P2P transaction"
             : "";
@@ -161,8 +164,12 @@ const _TransactionDetailsDialog = ({
                     <Typography color="textSecondary">
                         {currentTransaction.created_at &&
                             format(
-                                new Date(currentTransaction.created_at),
-                                "dd.MM.yyyy HH:mm:ss"
+                                utcToZonedTime(
+                                    new Date(currentTransaction.created_at),
+                                    "America/New_York"
+                                ),
+                                "dd MMM. MM yyyy, HH:mm:ss, zzz",
+                                { timeZone: "America/New_York" }
                             )}
                     </Typography>
                 </TableItem>

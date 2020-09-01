@@ -119,40 +119,35 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                         <b>{index + 1}.</b> {rule}
                     </Typography>
                 ))}
-                {showRules && (
-                    <>
-                        {l("memezator.rules-list-hidden").map((rule, index) => (
-                            index !== l("memezator.rules-list-hidden").length - 1 ?
-                              <Typography
+                {showRules &&
+                    l("memezator.rules-list-hidden").map((rule, index) =>
+                        index !== l("memezator.rules-list-hidden").length - 1 ? (
+                            <Typography
                                 key={index}
                                 classes={{
                                     root: classes.memezatorRulesParagraph
                                 }}
                             >
                                 <b>
-                                    {l("memezator.rules-list").length + index + 1}
-                                    .
+                                    {l("memezator.rules-list").length + index + 1}.
                                 </b>{" "}
                                 {rule}
                             </Typography>
-                              :
-                              <Typography
+                        ) : (
+                            <Typography
                                 key={index}
                                 classes={{
                                     root: classes.memezatorRulesParagraph
                                 }}
-                              >
-                                  <b>
-                                      {l("memezator.rules-list").length + index + 1}
-                                      .
-                                  </b>{" "}
-                                  {rule}
-                                  <Link href={rules}>rules</Link>
-                              </Typography>
-                        ))}
-                        <br />
-                    </>
-                )}
+                            >
+                                <b>
+                                    {l("memezator.rules-list").length + index + 1}.
+                                </b>{" "}
+                                {rule}
+                                <Link href={rules}>rules</Link>
+                            </Typography>
+                        )
+                    )}
             </div>
             <div className={classes.memezatorRulesAction}>
                 <Button

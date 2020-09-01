@@ -1,6 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
-import { Typography, Hidden, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
@@ -30,18 +30,16 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         justifyContent: "space-between",
         padding: "23px 16px 18px 44px",
-        background: theme.palette.background.light,
-        [theme.breakpoints.down("xs")]: {
-            display: "block"
-        }
+        background: theme.palette.background.light
     },
     transactionItemFooter: {
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
         padding: "18px 16px 18px 44px",
+        "& > div > div:first-child": {
+            marginBottom: "8px"
+        },
         [theme.breakpoints.down("xs")]: {
-            alignItems: "unset",
             padding: "14px 16px 14px 44px"
         }
     },
@@ -57,13 +55,14 @@ const useStyles = makeStyles(theme => ({
         lineHeight: "18px",
         maxWidth: "365px",
         width: "100%",
-        overflowWrap: "break-word",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        marginBottom: "6px",
         "&:hover": {
             textDecoration: "underline"
         },
-        [theme.breakpoints.down("xs")]: {
-            maxWidth: "unset",
-            marginBottom: "8px"
+        [theme.breakpoints.down("sm")]: {
+            maxWidth: "90%"
         }
     },
     transactionBalance: {
@@ -80,6 +79,19 @@ const useStyles = makeStyles(theme => ({
     },
     transactionSmallText: {
         fontSize: "12px"
+    },
+    detailsFromTo: {
+        display: "flex"
+    },
+    detailsFromToLabel: {
+        color: theme.palette.primary.main,
+        fontWeight: 600,
+        fontSize: "12px"
+    },
+    detailsFromToContent: {
+        fontSize: "12px",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
     }
 }));
 
@@ -95,7 +107,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
 
     const transactionSubject =
         transaction.txn_subject === "REWARD"
-            ? "Memezator Price"
+            ? "Memezator prize"
             : transaction.txn_subject === "TRANSFER"
             ? "P2P transaction"
             : "";
@@ -107,6 +119,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                     <Typography
                         className={classes.transactionBalance}
                         classes={{ root: classes.transactionGreen }}
+                        align="right"
                     >
                         + {Number(transaction.txn_sum).toFixed(2)} PROM
                     </Typography>
@@ -116,6 +129,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                     <Typography
                         className={classes.transactionBalance}
                         classes={{ root: classes.transactionRed }}
+                        align="right"
                     >
                         - {Number(transaction.txn_sum).toFixed(2)} PROM
                     </Typography>
@@ -135,64 +149,64 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                         transaction.txn_subject === "TRANSFER" && <ArrowRedIcon />
                     )}
                 </div>
-                <Typography
-                    classes={{ root: classes.transactionHash }}
-                    color="textPrimary"
-                    onClick={() => setOpenDetails(true, transaction)}
-                >
-                    {transaction.txn_hash || "PENDING"}
-                </Typography>
-                <Hidden smUp>
+                <div style={{ width: "75%" }}>
+                    <Typography
+                        classes={{ root: classes.transactionHash }}
+                        color="textPrimary"
+                        onClick={() => setOpenDetails(true, transaction)}
+                    >
+                        {transaction.txn_hash || "PENDING"}
+                    </Typography>
                     <Typography
                         classes={{ root: classes.transactionSmallText }}
                         color="textSecondary"
                     >
                         {format(
                             new Date(transaction.created_at),
-                            "dd.MM.yyyy HH:mm:ss"
+                            "dd.MM.yyyy, HH:mm:ss"
                         )}
                     </Typography>
-                </Hidden>
-                <div>
-                    <Hidden xsDown>
-                        {transactionSum()}
-                        <Typography
-                            classes={{ root: classes.transactionSmallText }}
-                            color="textSecondary"
-                            align="right"
-                        >
-                            {transactionStatus}
-                        </Typography>
-                    </Hidden>
+                </div>
+                <div style={{ width: "25%" }}>
+                    {transactionSum()}
+                    <Typography
+                        classes={{ root: classes.transactionSmallText }}
+                        color="textSecondary"
+                        align="right"
+                    >
+                        {transactionStatus}
+                    </Typography>
                 </div>
             </div>
             <div className={classes.transactionItemFooter}>
-                <div>
-                    <Hidden xsDown>
+                <div style={{ width: "65%" }}>
+                    <div className={classes.detailsFromTo}>
+                        <Typography classes={{ root: classes.detailsFromToLabel }}>
+                            FROM:&nbsp;
+                        </Typography>{" "}
                         <Typography
-                            classes={{ root: classes.transactionSmallText }}
-                            color="textSecondary"
+                            classes={{ root: classes.detailsFromToContent }}
+                            color="textPrimary"
                         >
-                            {format(
-                                new Date(transaction.created_at),
-                                "dd.MM.yyyy HH:mm:ss"
-                            )}
+                            {transaction.txn_from}
                         </Typography>
-                    </Hidden>
-                    <Hidden smUp>
-                        {transactionSum()}
+                    </div>
+                    <div className={classes.detailsFromTo}>
+                        <Typography classes={{ root: classes.detailsFromToLabel }}>
+                            TO:&nbsp;
+                        </Typography>{" "}
                         <Typography
-                            classes={{ root: classes.transactionSmallText }}
-                            color="textSecondary"
-                            align="left"
+                            classes={{ root: classes.detailsFromToContent }}
+                            color="textPrimary"
                         >
-                            {transactionStatus}
+                            {transaction.txn_to}
                         </Typography>
-                    </Hidden>
+                    </div>
                 </div>
                 <Typography
                     classes={{ root: classes.transactionSmallText }}
                     color="textPrimary"
+                    align="right"
                 >
                     {transactionSubject}
                 </Typography>

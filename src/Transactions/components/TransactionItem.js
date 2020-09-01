@@ -1,7 +1,9 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Typography, makeStyles } from "@material-ui/core";
 
 import { getTimeToEST } from "../../utils/date-utlis";
+import { useLocalization } from "../../store";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
@@ -95,8 +97,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const TransactionItem = ({ transaction, setOpenDetails }) => {
+export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
     const classes = useStyles();
+    const { l } = useLocalization();
 
     const transactionStatus =
         transaction.txn_status === "PERFORMED"
@@ -179,7 +182,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                 <div style={{ width: "65%" }}>
                     <div className={classes.detailsFromTo}>
                         <Typography classes={{ root: classes.detailsFromToLabel }}>
-                            FROM:&nbsp;
+                            {l("transactions.from")}&nbsp;
                         </Typography>{" "}
                         <Typography
                             classes={{ root: classes.detailsFromToContent }}
@@ -190,7 +193,7 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
                     </div>
                     <div className={classes.detailsFromTo}>
                         <Typography classes={{ root: classes.detailsFromToLabel }}>
-                            TO:&nbsp;
+                            {l("transactions.to")}&nbsp;
                         </Typography>{" "}
                         <Typography
                             classes={{ root: classes.detailsFromToContent }}
@@ -210,4 +213,4 @@ export const TransactionItem = ({ transaction, setOpenDetails }) => {
             </div>
         </div>
     );
-};
+});

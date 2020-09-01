@@ -1,25 +1,26 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { Button, CircularProgress, DialogContent, makeStyles } from '@material-ui/core';
-import { InputPasswordGroup } from '../InputPasswordGroup';
-import { useStore, useLocalization } from '../../../store/hooks';
-import Loader from '../../../components/Loader';
+import React from "react";
+import { observer } from "mobx-react";
+import { Button, DialogContent, makeStyles } from "@material-ui/core";
+
+import { InputPasswordGroup } from "../InputPasswordGroup";
+import { useStore, useLocalization } from "../../../store";
+import Loader from "../../../components/Loader";
 
 const useStyles = makeStyles(() => ({
     dialogRoot: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column"
     },
     button: {
-        width: '187px',
-        alignSelf: 'center',
-        marginTop: '40px',
+        width: "187px",
+        alignSelf: "center",
+        marginTop: "40px"
     },
     titleBold: {
-        fontFamily: 'Museo Sans Cyrl Bold',
-        fontSize: '15px',
-        lineHeight: '26px',
-    },
+        fontFamily: "Museo Sans Cyrl Bold",
+        fontSize: "15px",
+        lineHeight: "26px"
+    }
 }));
 
 export const ChangePassword = observer(() => {
@@ -33,14 +34,16 @@ export const ChangePassword = observer(() => {
         showPassword,
         setShowPassword,
         pending,
-        changePassword,
+        changePassword
     } = passwordChange;
 
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
-            <span className={classes.titleBold}>{l('authorization.set-new-password')}</span>
+            <span className={classes.titleBold}>
+                {l("authorization.set-new-password")}
+            </span>
             <InputPasswordGroup
-                title={l('sign-up.password')}
+                title={l("sign-up.password")}
                 formValues={passwordChangeForm}
                 onValueChange={setFormValue}
                 formErrors={formErrors}
@@ -51,13 +54,18 @@ export const ChangePassword = observer(() => {
                 variant="contained"
                 color="primary"
                 classes={{
-                    root: classes.button,
+                    root: classes.button
                 }}
                 disabled={pending}
                 onClick={changePassword}
             >
-                {pending && <Loader size="md" css="position: absolute; transform: scale(0.5); top: -2px; left: 74px" />}
-                {l('sign-up.continue')}
+                {pending && (
+                    <Loader
+                        size="md"
+                        css="position: absolute; transform: scale(0.5); top: -2px; left: 74px"
+                    />
+                )}
+                {l("sign-up.continue")}
             </Button>
         </DialogContent>
     );

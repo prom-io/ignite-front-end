@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const TransactionsNotFound = observer(({ type }) => {
+export const TransactionsNotFound = observer(() => {
     const classes = useStyles();
     const { l } = useLocalization();
 
@@ -33,9 +33,7 @@ export const TransactionsNotFound = observer(({ type }) => {
                 <SadIconLarge />
                 <div className={classes.emptyListLabel}>
                     <Typography>
-                        <strong>
-                            Transactions not found.
-                        </strong>
+                        <strong>Transactions not found.</strong>
                     </Typography>
                 </div>
             </div>

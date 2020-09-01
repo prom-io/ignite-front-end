@@ -1,47 +1,54 @@
-import React from 'react';
-import generator from 'generate-password';
-import { FormControl, IconButton, InputAdornment, makeStyles, TextField, useTheme } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import React from "react";
+import generator from "generate-password";
+import {
+    FormControl,
+    IconButton,
+    InputAdornment,
+    makeStyles,
+    TextField,
+    useTheme
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
-import { useLocalization } from '../../store/hooks';
-import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
+import { useLocalization } from "../../store";
+import { CopyToClipboardButton } from "../../CopyToClipboardButton/components";
 
 const useStyles = makeStyles(theme => ({
     titleBold: {
-        fontFamily: 'Museo Sans Cyrl Bold',
-        fontSize: '20px',
-        lineHeight: '24px',
+        fontFamily: "Museo Sans Cyrl Bold",
+        fontSize: "20px",
+        lineHeight: "24px"
     },
     descriptionSecondary: {
-        marginTop: '22px',
-        color: '#A2A2A2',
-        fontSize: '15px',
-        lineHeight: '26px',
-        fontFamily: 'Museo Sans Cyrl Regular',
+        marginTop: "22px",
+        color: "#A2A2A2",
+        fontSize: "15px",
+        lineHeight: "26px",
+        fontFamily: "Museo Sans Cyrl Regular"
     },
     link: {
-        margin: '16px 0',
-        cursor: 'pointer',
-        color: '#FF5C01',
-        textDecoration: 'underline',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '18px',
+        margin: "16px 0",
+        cursor: "pointer",
+        color: "#FF5C01",
+        textDecoration: "underline",
+        fontFamily: "Museo Sans Cyrl Regular",
+        fontSize: "15px",
+        lineHeight: "18px"
     },
     inputGroup: {
-        marginTop: '30px',
-        display: 'flex',
-        flexDirection: 'column',
+        marginTop: "30px",
+        display: "flex",
+        flexDirection: "column"
     },
     input: {
-        marginTop: '10px',
+        marginTop: "10px"
     },
     iconButton: {
-        padding: 0,
+        padding: 0
     },
     copyPasswordInputAdornment: {
-        paddingBottom: theme.spacing(2),
-    },
+        paddingBottom: theme.spacing(2)
+    }
 }));
 
 export const InputPasswordGroup = ({
@@ -50,13 +57,13 @@ export const InputPasswordGroup = ({
     onValueChange,
     showPassword,
     onShowPasswordChange,
-    title,
+    title
 }) => {
     const classes = useStyles();
     const theme = useTheme();
     const { l } = useLocalization();
 
-    const handleChange = (prop) => (event) => {
+    const handleChange = prop => event => {
         onValueChange(prop, event.target.value);
     };
 
@@ -64,7 +71,7 @@ export const InputPasswordGroup = ({
         onShowPasswordChange(!showPassword);
     };
 
-    const handleMouseDownPassword = (event) => {
+    const handleMouseDownPassword = event => {
         event.preventDefault();
     };
 
@@ -77,8 +84,8 @@ export const InputPasswordGroup = ({
             uppercase: true,
             strict: true
         });
-        onValueChange('password', randomPassword);
-        onValueChange('passwordConfirmation', randomPassword);
+        onValueChange("password", randomPassword);
+        onValueChange("passwordConfirmation", randomPassword);
     };
 
     return (
@@ -87,10 +94,10 @@ export const InputPasswordGroup = ({
             <FormControl classes={{ root: classes.input }}>
                 <TextField
                     id="standard-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     value={formValues.password}
-                    label={l('sign-up.password')}
-                    onChange={handleChange('password')}
+                    label={l("sign-up.password")}
+                    onChange={handleChange("password")}
                     className={classes.underlinedInput}
                     InputProps={{
                         endAdornment: (
@@ -104,7 +111,7 @@ export const InputPasswordGroup = ({
                                     disabled={!formValues.password}
                                 />
                             </InputAdornment>
-                        ),
+                        )
                     }}
                     error={Boolean(formErrors.password)}
                     helperText={formErrors.password && l(formErrors.password)}
@@ -113,10 +120,10 @@ export const InputPasswordGroup = ({
             <FormControl classes={{ root: classes.input }}>
                 <TextField
                     id="standard-adornment-password-confirmation"
-                    label={l('sign-up.confirm-password')}
-                    type={showPassword ? 'text' : 'password'}
+                    label={l("sign-up.confirm-password")}
+                    type={showPassword ? "text" : "password"}
                     value={formValues.passwordConfirmation}
-                    onChange={handleChange('passwordConfirmation')}
+                    onChange={handleChange("passwordConfirmation")}
                     className={classes.underlinedInput}
                     InputProps={{
                         endAdornment: (
@@ -127,23 +134,24 @@ export const InputPasswordGroup = ({
                                     onMouseDown={handleMouseDownPassword}
                                     classes={{ root: classes.iconButton }}
                                 >
-                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {showPassword ? (
+                                        <Visibility />
+                                    ) : (
+                                        <VisibilityOff />
+                                    )}
                                 </IconButton>
                             </InputAdornment>
-                        ),
+                        )
                     }}
                     error={Boolean(formErrors.passwordConfirmation)}
                     helperText={l(formErrors.passwordConfirmation)}
                 />
             </FormControl>
             <span className={classes.descriptionSecondary}>
-                {l('sign-up.password.requirements')}
+                {l("sign-up.password.requirements")}
             </span>
-            <a
-                className={classes.link}
-                onClick={generateRandomPassword}
-            >
-                {l('sign-up.password.generate-strong-password')}
+            <a className={classes.link} onClick={generateRandomPassword}>
+                {l("sign-up.password.generate-strong-password")}
             </a>
         </div>
     );

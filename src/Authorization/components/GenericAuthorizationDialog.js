@@ -22,7 +22,7 @@ import { PasswordUpdated } from "./resetPassword/PasswordUpdated";
 import { PasswordUpdatedError } from "./resetPassword/PasswordUpdatedError";
 import { ChangePasswordWithHash } from "./resetPassword/ChangePasswordWithHash";
 import { ResetWithoutKey } from "./resetPassword/ResetWithoutKey";
-import { useLocalization, useStore } from "../../store/hooks";
+import { useLocalization, useStore } from "../../store";
 import { openLoginLog } from "../../api/logger";
 
 const dialogType = {

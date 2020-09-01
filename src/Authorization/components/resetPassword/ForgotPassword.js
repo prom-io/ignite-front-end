@@ -1,48 +1,49 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import { useStore, useLocalization } from '../../../store/hooks';
+import React from "react";
+import { observer } from "mobx-react";
+import { Button, DialogContent, makeStyles } from "@material-ui/core";
+
+import { useStore, useLocalization } from "../../../store";
 
 const useStyles = makeStyles(theme => ({
     contentDescription: {
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
-        color: '#1C1C1C',
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '14px',
-        },
+        fontFamily: "Museo Sans Cyrl Regular",
+        fontSize: "15px",
+        lineHeight: "26px",
+        color: "#1C1C1C",
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "14px"
+        }
     },
     contentBlock: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderTop: '1px solid #F1EBE8',
-        marginTop: '32px',
-        paddingTop: '32px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        '&>div': {
-            width: '320px',
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderTop: "1px solid #F1EBE8",
+        marginTop: "32px",
+        paddingTop: "32px",
+        fontFamily: "Museo Sans Cyrl Regular",
+        "&>div": {
+            width: "320px"
         },
-        '& p': {
+        "& p": {
             margin: 0,
-            fontSize: '20px',
+            fontSize: "20px"
         },
-        '& span': {
-            fontSize: '15px',
-            fontFamily: 'Museo Sans Cyrl Bold',
+        "& span": {
+            fontSize: "15px",
+            fontFamily: "Museo Sans Cyrl Bold"
         },
-        [theme.breakpoints.down('sm')]: {
-            '& span': {
-                fontSize: '12px',
+        [theme.breakpoints.down("sm")]: {
+            "& span": {
+                fontSize: "12px"
             },
-            marginTop: '18px',
-            paddingTop: '18px',
-        },
+            marginTop: "18px",
+            paddingTop: "18px"
+        }
     },
     button: {
-        width: '187px',
-    },
+        width: "187px"
+    }
 }));
 
 const publishTransactionTranslations = {
@@ -59,7 +60,7 @@ const publishTransactionTranslations = {
             <br />
             (고급 사용자 전용입니다)
         </span>
-    ),
+    )
 };
 
 export const ForgotPassword = observer(() => {
@@ -71,40 +72,39 @@ export const ForgotPassword = observer(() => {
     return (
         <DialogContent classes={{ root: classes.dialogRoot }}>
             <span className={classes.contentDescription}>
-                {l('password-recovery.verification-is-needed')}
+                {l("password-recovery.verification-is-needed")}
             </span>
             <div className={classes.contentBlock}>
                 <div>
-                    <p>
-                        {l('sign-up.options.recommended-option')}
-                        :
-                    </p>
-                    <span>{l('password-recovery.options.private-key')}</span>
+                    <p>{l("sign-up.options.recommended-option")}:</p>
+                    <span>{l("password-recovery.options.private-key")}</span>
                 </div>
                 <Button
                     variant="contained"
                     color="primary"
                     classes={{
-                        root: classes.button,
+                        root: classes.button
                     }}
-                    onClick={() => setGenericAuthorizationDialogType('resetPassword')}
+                    onClick={() =>
+                        setGenericAuthorizationDialogType("resetPassword")
+                    }
                 >
-                    {l('password-recovery.enter-key')}
+                    {l("password-recovery.enter-key")}
                 </Button>
             </div>
             <div className={classes.contentBlock}>
-                <div>
-                    {publishTransactionTranslations[locale]()}
-                </div>
+                <div>{publishTransactionTranslations[locale]()}</div>
                 <Button
                     variant="outlined"
                     color="primary"
                     classes={{
-                        root: classes.button,
+                        root: classes.button
                     }}
-                    onClick={() => setGenericAuthorizationDialogType('resetWithoutKey')}
+                    onClick={() =>
+                        setGenericAuthorizationDialogType("resetWithoutKey")
+                    }
                 >
-                    {l('password-recovery.enter-transaction-hash')}
+                    {l("password-recovery.enter-transaction-hash")}
                 </Button>
             </div>
         </DialogContent>

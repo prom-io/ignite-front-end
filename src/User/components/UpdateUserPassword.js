@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Button, Typography, makeStyles } from "@material-ui/core";
 
-import { useLocalization, useStore } from "../../store/hooks";
+import { useLocalization, useStore } from "../../store";
 
 const useStyles = makeStyles(theme => ({
     updateUserPassword: {

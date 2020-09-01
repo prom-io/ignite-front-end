@@ -14,8 +14,9 @@ import {
     Typography
 } from "@material-ui/core";
 import { Visibility } from "@material-ui/icons";
-import { useLocalization, useStore } from "../../store/hooks";
+
 import Loader from "../../components/Loader";
+import { useLocalization, useStore } from "../../store";
 import { EyeIcon } from "../../icons/EyeIcon";
 
 const useStyles = makeStyles(theme => ({

@@ -1,70 +1,51 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react';
-import { Button, Checkbox, DialogContent } from '@material-ui/core';
-import { CopyToClipboardButton } from '../../CopyToClipboardButton/components';
-import { useLocalization, useStore } from '../../store/hooks';
-import {authorizationDialogsStyles} from '../../styles/material/authorizationDialogsStyles'
+import React, { useState } from "react";
+import { observer } from "mobx-react";
+import { Button, Checkbox, DialogContent } from "@material-ui/core";
+
+import { CopyToClipboardButton } from "../../CopyToClipboardButton/components";
+import { useLocalization, useStore } from "../../store";
+import { authorizationDialogsStyles } from "../../styles/material/authorizationDialogsStyles";
 
 const makeSureYouReallySavedTranslations = {
-    en: (classes) => (
+    en: classes => (
         <p className={classes.contentDescription}>
-            Make sure you
-            {' '}
-            <span>really</span>
-            {' '}
-            saved this info:
+            Make sure you <span>really</span> saved this info:
         </p>
     ),
-    kr: (classes) => (
+    kr: classes => (
         <p className={classes.contentDescription}>
-            다음 정보를
-            {' '}
-            <span>저장</span>
-            {' '}
-            했는지 확인하십시오
+            다음 정보를 <span>저장</span> 했는지 확인하십시오
         </p>
-    ),
+    )
 };
 
 const makeOneHundredPercentSureTranslations = {
     en: () => (
         <>
-            Make
-            {' '}
-            <span>100%</span>
-            {' '}
-            sure that you really saved all this info in a safe place
+            Make <span>100%</span> sure that you really saved all this info in a safe
+            place
         </>
     ),
     kr: () => (
         <>
             이 모든 정보를 안전한 곳에 저장했는지
-            <span> 100%</span>
-            {' '}
-            확인해주세요
+            <span> 100%</span> 확인해주세요
         </>
-    ),
+    )
 };
 
 const privateKeyLossTranslations = {
     en: () => (
         <>
-            If you lose your Private Key, you will
-            {' '}
-            <span>never</span>
-            {' '}
-            recover the password
+            If you lose your Private Key, you will <span>never</span> recover the
+            password
         </>
     ),
     kr: () => (
         <>
-            개인 키를 잃어버리면
-            {' '}
-            <span>절대</span>
-            {' '}
-            비밀번호를 복구할 수 없다.
+            개인 키를 잃어버리면 <span>절대</span> 비밀번호를 복구할 수 없다.
         </>
-    ),
+    )
 };
 
 export const Attention = observer(() => {
@@ -81,16 +62,17 @@ export const Attention = observer(() => {
 
     const handleOkClick = () => {
         if (submissionError) {
-            setGenericAuthorizationDialogType('errorAuthorization');
+            setGenericAuthorizationDialogType("errorAuthorization");
         } else {
-            setGenericAuthorizationDialogType('welcome');
+            setGenericAuthorizationDialogType("welcome");
         }
     };
 
     return (
-        <DialogContent classes={{
-            root: classes.dialogContentRoot,
-        }}
+        <DialogContent
+            classes={{
+                root: classes.dialogContentRoot
+            }}
         >
             {makeSureYouReallySavedTranslations[locale](classes)}
             <div className={classes.infoCheckingBlock}>
@@ -103,12 +85,18 @@ export const Attention = observer(() => {
                             onChange={() => setAddressCopied(!addressCopied)}
                         />
                         <div className={classes.checkboxBlockDescription}>
-                            <span className={classes.title}>{l('sign-up.wallet-address')}</span>
-                            <span className={classes.value}>{generatedWallet.address}</span>
+                            <span className={classes.title}>
+                                {l("sign-up.wallet-address")}
+                            </span>
+                            <span className={classes.value}>
+                                {generatedWallet.address}
+                            </span>
                         </div>
                     </div>
                     <span>
-                        <CopyToClipboardButton textToCopy={generatedWallet.address} />
+                        <CopyToClipboardButton
+                            textToCopy={generatedWallet.address}
+                        />
                     </span>
                 </div>
                 <div className={classes.checkboxBlock}>
@@ -120,12 +108,18 @@ export const Attention = observer(() => {
                             onChange={() => setPrivateKeyCopied(!privateKeyCopied)}
                         />
                         <div className={classes.checkboxBlockDescription}>
-                            <span className={classes.title}>{l('sign-up.private-key')}</span>
-                            <span className={classes.value}>{generatedWallet.privateKey}</span>
+                            <span className={classes.title}>
+                                {l("sign-up.private-key")}
+                            </span>
+                            <span className={classes.value}>
+                                {generatedWallet.privateKey}
+                            </span>
                         </div>
                     </div>
                     <span>
-                        <CopyToClipboardButton textToCopy={generatedWallet.privateKey} />
+                        <CopyToClipboardButton
+                            textToCopy={generatedWallet.privateKey}
+                        />
                     </span>
                 </div>
                 <div className={classes.checkboxBlock}>
@@ -138,7 +132,9 @@ export const Attention = observer(() => {
                         />
                         <div className={classes.checkboxBlockDescription}>
                             <span className={classes.title}>Password</span>
-                            <span className={classes.value}>{signUpForm.password}</span>
+                            <span className={classes.value}>
+                                {signUpForm.password}
+                            </span>
                         </div>
                     </div>
                     <span>
@@ -148,16 +144,12 @@ export const Attention = observer(() => {
             </div>
             <div className={classes.markList}>
                 <p className={classes.contentDescription}>
-                    {l('sign-up.please-do-not-lose it')}
+                    {l("sign-up.please-do-not-lose it")}
                 </p>
                 <ul>
-                    <li>
-                        {makeOneHundredPercentSureTranslations[locale]()}
-                    </li>
-                    <li>{l('sign-up.password-change')}</li>
-                    <li>
-                        {privateKeyLossTranslations[locale]()}
-                    </li>
+                    <li>{makeOneHundredPercentSureTranslations[locale]()}</li>
+                    <li>{l("sign-up.password-change")}</li>
+                    <li>{privateKeyLossTranslations[locale]()}</li>
                 </ul>
             </div>
 
@@ -165,12 +157,12 @@ export const Attention = observer(() => {
                 variant="contained"
                 color="primary"
                 classes={{
-                    root: classes.button,
+                    root: classes.button
                 }}
                 disabled={!passwordCopied || !privateKeyCopied || !addressCopied}
                 onClick={handleOkClick}
             >
-                {l('sign-up.ok')}
+                {l("sign-up.ok")}
             </Button>
         </DialogContent>
     );

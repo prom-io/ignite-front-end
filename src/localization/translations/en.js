@@ -299,4 +299,6 @@ export const en = {
         "Please read the detailed rules before voting: ",
     ],
     'memezator.rules-list.note-top': "Memezator is a daily community contest and lottery which allows you earn money by creating the memes and voting for them. You can call it meme social mining or proof-of-meme.",
+    'transactions.from': "FROM:",
+    'transactions.to': "TO:",
 };

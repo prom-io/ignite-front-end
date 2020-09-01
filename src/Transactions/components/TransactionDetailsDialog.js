@@ -175,13 +175,13 @@ const _TransactionDetailsDialog = ({
                 </TableItem>
                 <TableItem className={classes.detailsFromTo}>
                     <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        FROM:
+                        {l("transactions.from")}
                     </Typography>{" "}
                     <Typography>{currentTransaction.txn_from}</Typography>
                 </TableItem>
                 <TableItem className={classes.detailsFromTo}>
                     <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        TO:
+                        {l("transactions.to")}
                     </Typography>{" "}
                     <Typography>{currentTransaction.txn_to}</Typography>
                 </TableItem>

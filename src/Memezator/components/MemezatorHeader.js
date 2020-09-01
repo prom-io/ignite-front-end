@@ -4,8 +4,7 @@ import { Link } from "mobx-router";
 import { Button, Typography, makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
-import { useLocalization } from "../../store/hooks";
-import { routerStore } from "../../store";
+import { routerStore, useLocalization } from "../../store";
 import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({

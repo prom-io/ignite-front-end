@@ -13,7 +13,7 @@ import {
     PrometeusDescription,
     ExploreOurFeaturesDescription
 } from "../PrometeusDescription";
-import { useAuthorization, useLocalization } from "../store/hooks";
+import { useAuthorization, useLocalization } from "../store";
 
 const useStyles = makeStyles(theme => ({
     transactionsTitle: {

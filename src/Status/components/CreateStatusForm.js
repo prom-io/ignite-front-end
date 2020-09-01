@@ -93,7 +93,15 @@ const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
 
 const getFormPlaceholder = (actionRights, l) => {
     if (actionRights && !actionRights.can_create) {
-        return l("status.placeholder.already-published");
+        if (actionRights.cannot_create_reason_code === "LIMIT_EXCEEDED") {
+            return l("status.placeholder.already-published");
+        } else if (actionRights.cannot_create_reason_code === "DOESNT_HAVE_ENOUGH_POSTS") {
+            return l("status.placeholder.have-no-posts");
+        } else if (actionRights.cannot_create_reason_code === "MISSING_AVATAR_OR_USERNAME_OR_BIO") {
+            return l("status.placeholder.missing-info");
+        } else if (actionRights.cannot_create_reason_code === "MEMES_LIMIT_EXCEEDED_FOR_CURRENT_CONTEST") {
+            return l("status.placeholder.posts-limit");
+        }
     }
 
     return l("status.placeholder");

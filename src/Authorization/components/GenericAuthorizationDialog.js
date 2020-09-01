@@ -2,28 +2,28 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { Dialog, withMobileDialog, makeStyles } from "@material-ui/core";
 
-import { UpdatePasswordError } from './resetPassword/UpdatePasswordError';
-import { CustomDialogTitle } from './CustomDialogTitle';
-import { SignUp } from './SignUp';
-import { CreateWallet } from './CreateWallet';
-import { Attention } from './Attention';
-import { Welcome } from './Welcome';
-import { ErrorAuthorization } from './ErrorAuthorization';
-import { CreateAccount } from './CreateAccount';
-import { GenerateHash } from './GenerateHash';
-import { Verify } from './Verify';
-import { LoginForm } from './LoginForm';
-import { CreateWalletPreload } from './CreateWalletPreload';
-import { CommunityData } from './CommunityData';
-import { ErrorVerify } from './ErrorVerify';
-import { ResetPassword } from './resetPassword/ResetPassword';
-import { ForgotPassword } from './resetPassword/ForgotPassword';
-import { ChangePassword } from './resetPassword/ChangePassword';
-import { PasswordUpdated } from './resetPassword/PasswordUpdated';
-import { PasswordUpdatedError } from './resetPassword/PasswordUpdatedError';
-import { ChangePasswordWithHash } from './resetPassword/ChangePasswordWithHash';
-import { ResetWithoutKey } from './resetPassword/ResetWithoutKey';
-import { useLocalization, useStore } from '../../store/hooks';
+import { UpdatePasswordError } from "./resetPassword/UpdatePasswordError";
+import { CustomDialogTitle } from "./CustomDialogTitle";
+import { SignUp } from "./SignUp";
+import { CreateWallet } from "./CreateWallet";
+import { Attention } from "./Attention";
+import { Welcome } from "./Welcome";
+import { ErrorAuthorization } from "./ErrorAuthorization";
+import { CreateAccount } from "./CreateAccount";
+import { GenerateHash } from "./GenerateHash";
+import { Verify } from "./Verify";
+import { LoginForm } from "./LoginForm";
+import { CreateWalletPreload } from "./CreateWalletPreload";
+import { CommunityData } from "./CommunityData";
+import { ErrorVerify } from "./ErrorVerify";
+import { ResetPassword } from "./resetPassword/ResetPassword";
+import { ForgotPassword } from "./resetPassword/ForgotPassword";
+import { ChangePassword } from "./resetPassword/ChangePassword";
+import { PasswordUpdated } from "./resetPassword/PasswordUpdated";
+import { PasswordUpdatedError } from "./resetPassword/PasswordUpdatedError";
+import { ChangePasswordWithHash } from "./resetPassword/ChangePasswordWithHash";
+import { ResetWithoutKey } from "./resetPassword/ResetWithoutKey";
+import { useLocalization, useStore } from "../../store";
 import { openLoginLog } from "../../api/logger";
 
 const dialogType = {
@@ -46,10 +46,10 @@ const dialogType = {
         type: "default"
     },
     communityData: {
-        id: 'communityData',
-        component: <CommunityData/>,
-        title: 'sign-up.community-data',
-        type: 'default',
+        id: "communityData",
+        component: <CommunityData />,
+        title: "sign-up.community-data",
+        type: "default"
     },
     attention: {
         id: "attention",

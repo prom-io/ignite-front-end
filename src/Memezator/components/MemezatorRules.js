@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
-import { Grid, Typography, Button, makeStyles } from "@material-ui/core";
+import { Grid, Typography, Button, Link, makeStyles } from "@material-ui/core";
 
 import { localized } from "../../localization/components";
 import { DetailsIcon } from "../../icons/DetailsIcon";
 import rulesPattern from "../../images/memezator-rules-pattern.jpg";
+import rules from "../../images/documents/Introducing Memezator.pdf";
 
 const useStyles = makeStyles(theme => ({
     memezatorRulesWrapper: {
@@ -118,9 +119,9 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                         <b>{index + 1}.</b> {rule}
                     </Typography>
                 ))}
-                {showRules && (
-                    <>
-                        {l("memezator.rules-list-hidden-1").map((rule, index) => (
+                {showRules &&
+                    l("memezator.rules-list-hidden").map((rule, index) =>
+                        index !== l("memezator.rules-list-hidden").length - 1 ? (
                             <Typography
                                 key={index}
                                 classes={{
@@ -132,9 +133,7 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                                 </b>{" "}
                                 {rule}
                             </Typography>
-                        ))}
-                        <br />
-                        {l("memezator.rules-list-hidden-2").map((rule, index) => (
+                        ) : (
                             <Typography
                                 key={index}
                                 classes={{
@@ -142,39 +141,13 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                                 }}
                             >
                                 <b>
-                                    {l("memezator.rules-list").length +
-                                        l("memezator.rules-list-hidden-1").length +
-                                        index +
-                                        1}
-                                    .
+                                    {l("memezator.rules-list").length + index + 1}.
                                 </b>{" "}
                                 {rule}
+                                <Link href={rules}>rules</Link>
                             </Typography>
-                        ))}
-                        <br />
-                        {l("memezator.rules-list-hidden-3").map((rule, index) => (
-                            <Typography
-                                key={index}
-                                classes={{
-                                    root: classes.memezatorRulesParagraph
-                                }}
-                            >
-                                <b>
-                                    {l("memezator.rules-list").length +
-                                        l("memezator.rules-list-hidden-1").length +
-                                        l("memezator.rules-list-hidden-2").length +
-                                        index +
-                                        1}
-                                    .
-                                </b>{" "}
-                                {rule}
-                            </Typography>
-                        ))}
-                        <Typography classes={{ root: classes.memezatorRulesNotes }}>
-                            <b>*</b> {l("memezator.rules-list.note-bottom")}
-                        </Typography>
-                    </>
-                )}
+                        )
+                    )}
             </div>
             <div className={classes.memezatorRulesAction}>
                 <Button

@@ -1,6 +1,5 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { format } from "date-fns";
 import {
     Dialog,
     DialogContent,
@@ -11,11 +10,15 @@ import {
 
 import { CustomDialogTitle } from "../../Authorization/components";
 import { localized } from "../../localization/components";
+import { getTimeToEST } from "../../utils/date-utlis";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
 const useStyles = makeStyles(theme => ({
     dialogContent: {
+        [theme.breakpoints.down("sm")]: {
+            padding: "24px 12px"
+        },
         [theme.breakpoints.down("xs")]: {
             padding: "12px"
         }
@@ -86,7 +89,7 @@ const _TransactionDetailsDialog = ({
 
     const transactionSubject =
         currentTransaction.txn_subject === "REWARD"
-            ? "Memezator Price"
+            ? "Memezator prize"
             : currentTransaction.txn_subject === "TRANSFER"
             ? "P2P transaction"
             : "";
@@ -160,10 +163,11 @@ const _TransactionDetailsDialog = ({
                 <TableItem>
                     <Typography color="textSecondary">
                         {currentTransaction.created_at &&
-                            format(
-                                new Date(currentTransaction.created_at),
-                                "dd.MM.yyyy HH:mm:ss"
-                            )}
+                            getTimeToEST(
+                                currentTransaction.created_at,
+                                "dd MMM yyyy, HH:mm:ss, zzz"
+                            )}{" "}
+                        (EST)
                     </Typography>
                 </TableItem>
                 <TableItem>
@@ -171,13 +175,13 @@ const _TransactionDetailsDialog = ({
                 </TableItem>
                 <TableItem className={classes.detailsFromTo}>
                     <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        FROM:
+                        {l("transactions.from")}
                     </Typography>{" "}
                     <Typography>{currentTransaction.txn_from}</Typography>
                 </TableItem>
                 <TableItem className={classes.detailsFromTo}>
                     <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        TO:
+                        {l("transactions.to")}
                     </Typography>{" "}
                     <Typography>{currentTransaction.txn_to}</Typography>
                 </TableItem>

@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react';
+import React, { useState } from "react";
+import { observer } from "mobx-react";
 import {
     TextField,
     InputAdornment,
     IconButton,
-    makeStyles,
-} from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+    makeStyles
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
-import { useLocalization } from '../../store/hooks';
+import { useLocalization } from "../../store";
 
 const useStyles = makeStyles(theme => ({
     iconButton: {
-        padding: 0,
-    },
+        padding: 0
+    }
 }));
 
 const UserPasswordField = observer(({ label, value, errors, setFormValue }) => {
@@ -24,7 +24,7 @@ const UserPasswordField = observer(({ label, value, errors, setFormValue }) => {
     return (
         <TextField
             label={l(label)}
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             value={value}
             onChange={setFormValue}
             error={Boolean(errors)}
@@ -40,7 +40,7 @@ const UserPasswordField = observer(({ label, value, errors, setFormValue }) => {
                             {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
-                ),
+                )
             }}
             fullWidth
         />

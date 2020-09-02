@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => ({
     isMobileStatusImage: {
         "& img": {
             maxWidth: "100%",
-            marginLeft: "unset !important"
+            marginLeft: "unset !important",
+            borderRadius: "4px"
         }
     }
 }));

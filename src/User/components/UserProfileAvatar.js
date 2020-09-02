@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import { Avatar, Dialog } from '@material-ui/core';
+import React, { useState } from "react";
+import { Avatar, Dialog } from "@material-ui/core";
 
 export const UserProfileAvatar = ({ avatarUrl }) => {
     const [open, setOpen] = useState(false);
 
+    const avatarIsNull = avatarUrl.includes("default_user.png");
+
     const handleClickOpen = () => {
+        if (avatarIsNull) {
+            return;
+        }
+
         setOpen(true);
     };
 
@@ -20,7 +26,7 @@ export const UserProfileAvatar = ({ avatarUrl }) => {
                 style={{
                     width: 94,
                     height: 94,
-                    cursor: 'pointer',
+                    cursor: avatarIsNull ? "default" : "pointer"
                 }}
             />
             <Dialog open={open} onClose={handleClose}>
@@ -28,7 +34,7 @@ export const UserProfileAvatar = ({ avatarUrl }) => {
                     src={avatarUrl}
                     alt=""
                     style={{
-                        width: '100%',
+                        width: "100%"
                     }}
                 />
             </Dialog>

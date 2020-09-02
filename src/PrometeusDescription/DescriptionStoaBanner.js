@@ -107,7 +107,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale }) => {
             <div className={classes.descriptionStoa}>
                 {tryOurNetworkTranslations[locale]({ classes })}
             </div>
-            <div className={classes.exploreLink}>
+            {/* <div className={classes.exploreLink}>
                 <Hidden smDown>
                     <AppBarLink
                         text={l("appbar.explore-btfs")}
@@ -118,7 +118,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale }) => {
                         id="btfsLink"
                     />
                 </Hidden>
-            </div>
+            </div> */}
             <div className={classes.descriprionLinks}>
                 <p>
                     <Link

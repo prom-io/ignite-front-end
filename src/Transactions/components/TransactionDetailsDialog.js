@@ -33,6 +33,13 @@ const useStyles = makeStyles(theme => ({
             borderBottom: "none"
         }
     },
+    transactionHashLink: {
+        textDecoration: "none",
+        color: theme.palette.text.primary,
+        "&:hover": {
+            textDecoration: "underline"
+        }
+    },
     transactionHash: {
         fontSize: "20px !important",
         fontWeight: 600,
@@ -138,12 +145,28 @@ const _TransactionDetailsDialog = ({
             />
             <DialogContent classes={{ root: classes.dialogContent }}>
                 <TableItem>
-                    <Typography
-                        classes={{ root: classes.transactionHash }}
-                        color="textPrimary"
-                    >
-                        {currentTransaction.txn_hash || "PENDING"}
-                    </Typography>
+                    {currentTransaction.txn_hash ? (
+                        <a
+                            href={`https://explorer.binance.org/smart/tx/${currentTransaction.txn_hash}`}
+                            className={classes.transactionHashLink}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            <Typography
+                                classes={{ root: classes.transactionHash }}
+                                color="textPrimary"
+                            >
+                                {currentTransaction.txn_hash}
+                            </Typography>
+                        </a>
+                    ) : (
+                        <Typography
+                            classes={{ root: classes.transactionHash }}
+                            color="textPrimary"
+                        >
+                            Pending
+                        </Typography>
+                    )}
                 </TableItem>
                 <TableItem className={classes.detailsBalance}>
                     <div className={classes.detailsBalanceSum}>

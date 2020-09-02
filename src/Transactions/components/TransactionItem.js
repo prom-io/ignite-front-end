@@ -9,6 +9,7 @@ import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
 const useStyles = makeStyles(theme => ({
     transactionItem: {
+        cursor: "pointer",
         border: `1px solid ${theme.palette.border.main}`,
         borderTop: "unset",
         overflow: "hidden",
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
         },
         "&:last-child": {
             borderRadius: "0 0 4px 4px"
+        },
+        "&:hover": {
+            background: theme.palette.background.light
         },
         [theme.breakpoints.down("sm")]: {
             borderLeft: "none",
@@ -51,7 +55,6 @@ const useStyles = makeStyles(theme => ({
         top: "23px"
     },
     transactionHash: {
-        cursor: "pointer",
         fontSize: "15px",
         fontWeight: 600,
         lineHeight: "18px",
@@ -60,9 +63,6 @@ const useStyles = makeStyles(theme => ({
         overflow: "hidden",
         textOverflow: "ellipsis",
         marginBottom: "6px",
-        "&:hover": {
-            textDecoration: "underline"
-        },
         [theme.breakpoints.down("sm")]: {
             maxWidth: "90%"
         }
@@ -143,7 +143,10 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
     };
 
     return (
-        <div className={classes.transactionItem}>
+        <div
+            className={classes.transactionItem}
+            onClick={() => setOpenDetails(true, transaction)}
+        >
             <div className={classes.transactionItemHeader}>
                 <div className={classes.transactionArrow}>
                     {transaction.txn_subject === "REWARD" ? (
@@ -156,9 +159,8 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                     <Typography
                         classes={{ root: classes.transactionHash }}
                         color="textPrimary"
-                        onClick={() => setOpenDetails(true, transaction)}
                     >
-                        {transaction.txn_hash || "PENDING"}
+                        {transaction.txn_hash || "Pending"}
                     </Typography>
                     <Typography
                         classes={{ root: classes.transactionSmallText }}

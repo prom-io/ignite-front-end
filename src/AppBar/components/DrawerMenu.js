@@ -98,7 +98,7 @@ const _DrawerMenu = ({
                 </ListItemIcon>
                 <ListItemText>{l("menu.help-center")}</ListItemText>
             </MenuItem>
-            <Link
+            {/* <Link
                 view={Routes.ethereumPlasma}
                 store={routerStore}
                 className={classes.undecoratedLink}
@@ -109,7 +109,7 @@ const _DrawerMenu = ({
                     </ListItemIcon>
                     <ListItemText>{l("menu.explore-btfs")}</ListItemText>
                 </MenuItem>
-            </Link>
+            </Link> */}
             <Divider />
             <MenuItem onClick={handleLogoutItemClick}>
                 <ListItemIcon>

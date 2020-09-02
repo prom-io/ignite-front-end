@@ -46,7 +46,15 @@ const useStyles = makeStyles(theme => ({
             marginBottom: "8px"
         },
         [theme.breakpoints.down("xs")]: {
-            padding: "14px 16px 14px 44px"
+            padding: "14px 16px 14px 44px",
+            display: "block"
+        }
+    },
+    transactionItemFooterMobile: {
+        [theme.breakpoints.down("xs")]: {
+            marginBottom: "14px",
+            paddingBottom: "14px",
+            borderBottom: `1px solid ${theme.palette.border.main}`
         }
     },
     transactionArrow: {
@@ -65,13 +73,19 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "6px",
         [theme.breakpoints.down("sm")]: {
             maxWidth: "90%"
+        },
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "14px",
         }
     },
     transactionBalance: {
         fontSize: "15px",
         fontWeight: 600,
         lineHeight: "18px",
-        marginBottom: "5px"
+        marginBottom: "5px",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "14px",
+        }
     },
     transactionGreen: {
         color: "#27AE60"
@@ -181,7 +195,7 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                 </div>
             </div>
             <div className={classes.transactionItemFooter}>
-                <div style={{ width: "65%" }}>
+                <div className={classes.transactionItemFooterMobile}>
                     <div className={classes.detailsFromTo}>
                         <Typography classes={{ root: classes.detailsFromToLabel }}>
                             {l("transactions.from")}&nbsp;
@@ -208,7 +222,6 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                 <Typography
                     classes={{ root: classes.transactionSmallText }}
                     color="textPrimary"
-                    align="right"
                 >
                     {transactionSubject}
                 </Typography>

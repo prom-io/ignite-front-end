@@ -702,6 +702,10 @@ body {
     padding: 0px 20px 50px 20px;
 }
 
+.ReactGridGallery_tile {
+    background: none !important;
+}
+
 @media (min-width: 960px) {
     .header-logo {
         display: block;

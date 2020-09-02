@@ -3,16 +3,9 @@ import { inject, observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 
 import { TopicsHashButton } from "./TopicsHashButton";
-import Loader from "../../components/Loader";
 
 const useStyles = makeStyles(theme => ({
-    centered: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "10px",
-        display: "table",
-    },
-        hashBtnBlock: {
+    hashBtnBlock: {
         display: "none",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -22,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         overflowX: "auto",
         [theme.breakpoints.down("sm")]: {
             display: "flex",
-            marginTop: '50px'
+            marginTop: "50px"
         }
     }
 }));
@@ -32,15 +25,15 @@ const _TopicsPopularScroll = ({ topicsPopularItems, pending, routerStore }) => {
 
     return (
         <div className={classes.hashBtnBlock}>
-          {!pending &&
-          topicsPopularItems.map(topic => (
-            <TopicsHashButton
-              key={topic.id}
-              topic={topic}
-              routerStore={routerStore}
-            />
-          ))
-          }
+            {!pending &&
+                topicsPopularItems.length > 0 &&
+                topicsPopularItems.map(topic => (
+                    <TopicsHashButton
+                        key={topic.id}
+                        topic={topic}
+                        routerStore={routerStore}
+                    />
+                ))}
         </div>
     );
 };

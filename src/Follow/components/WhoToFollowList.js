@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react';
-import { inject, observer } from 'mobx-react';
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import React, { useEffect } from "react";
+import { inject, observer } from "mobx-react";
+import { FadeLoader } from "react-spinners";
+import { useTheme, makeStyles } from "@material-ui/core";
 
-import { FadeLoader } from 'react-spinners';
-import useTheme from '@material-ui/core/styles/useTheme';
-import { SideBarList, UnfollowDialog } from '.';
+import { SideBarList, UnfollowDialog } from "./";
 
 const useStyles = makeStyles(() => ({
     centered: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '10px',
-        display: 'table',
-    },
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "10px",
+        display: "table"
+    }
 }));
 
 const _WhoToFollowList = ({
@@ -24,7 +23,7 @@ const _WhoToFollowList = ({
     selectedUser,
     unfollowUser,
     setUnfollowDialogOpen,
-    unfollowDialogOpen,
+    unfollowDialogOpen
 }) => {
     const classes = useStyles();
     const theme = useTheme();
@@ -35,7 +34,12 @@ const _WhoToFollowList = ({
     }, []);
 
     return whoToFollowItems.slice(0, viewCount).length === 0 && pending ? (
-        <div className={classes.centered}><FadeLoader color={theme.palette.primary.main} css="transform: scale(0.5); top: 10px; left: 10px" /></div>
+        <div className={classes.centered}>
+            <FadeLoader
+                color={theme.palette.primary.main}
+                css="transform: scale(0.5); top: 10px; left: 10px"
+            />
+        </div>
     ) : (
         <>
             <SideBarList
@@ -60,7 +64,7 @@ const mapMobxToProps = ({ whoToFollow, followAction }) => ({
     selectedUser: followAction.selectedUser,
     unfollowUser: followAction.unfollowUser,
     setUnfollowDialogOpen: followAction.setUnfollowDialogOpen,
-    unfollowDialogOpen: followAction.unfollowDialogOpen,
+    unfollowDialogOpen: followAction.unfollowDialogOpen
 });
 
 export const WhoToFollowList = inject(mapMobxToProps)(observer(_WhoToFollowList));

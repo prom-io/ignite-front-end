@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import { observer } from 'mobx-react';
+import { Grid } from '@material-ui/core';
 
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
@@ -11,7 +11,6 @@ import {
 } from '../PrometeusDescription';
 import { LoginForm } from '../Authorization/components';
 import { useAuthorization } from '../store/hooks';
-import '../styles/App.sass';
 
 export const FollowPeoplePage = observer(() => {
     const { currentUser } = useAuthorization();
@@ -21,7 +20,7 @@ export const FollowPeoplePage = observer(() => {
             <AppBar />
             <Grid item xs={12}>
                 <Layout>
-                    <Grid container spacing={2} className="content-container">
+                    <Grid container className="content-container">
                         <Grid item md={3} className="left-banners-container">
                             <PrometeusDescription />
                         </Grid>

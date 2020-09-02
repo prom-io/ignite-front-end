@@ -1,11 +1,25 @@
 import React from 'react';
 import { inject } from 'mobx-react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { makeStyles } from '@material-ui/core';
 
 import { UsersListItem } from './UsersListItem';
 import { UnfollowDialog } from '../../Follow/components';
+import Loader from '../../components/Loader';
+
+const useStyles = makeStyles(() => ({
+    centered: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '150px',
+        display: 'table',
+    },
+}));
 
 const _UsersList = ({
     users,
+    onNextPageRequest,
+    hasMore,
     routerStore,
     actionWithFollow,
     selectedUser,
@@ -13,24 +27,36 @@ const _UsersList = ({
     setUnfollowDialogOpen,
     unfollowDialogOpen,
     currentUser,
-}) => (
-    <>
-        {users.map(user => (
-            <UsersListItem
-                user={user}
-                actionWithFollow={actionWithFollow}
-                routerStore={routerStore}
-                currentUser={currentUser}
+}) => {
+    const classes = useStyles();
+
+    return (
+        <>
+            <InfiniteScroll
+                next={onNextPageRequest}
+                hasMore={hasMore}
+                loader={<div className={classes.centered}><Loader size="lg" /></div>}
+                dataLength={users.length}
+                style={{ overflowY: 'hidden' }}
+            >
+                {users.map(user => (
+                    <UsersListItem
+                        user={user}
+                        actionWithFollow={actionWithFollow}
+                        routerStore={routerStore}
+                        currentUser={currentUser}
+                    />
+                ))}
+            </InfiniteScroll>
+            <UnfollowDialog
+                username={selectedUser.username}
+                unfollowAction={unfollowUser}
+                unfollowDialogOpen={unfollowDialogOpen}
+                setUnfollowDialogOpen={setUnfollowDialogOpen}
             />
-        ))}
-        <UnfollowDialog
-            username={selectedUser.username}
-            unfollowAction={unfollowUser}
-            unfollowDialogOpen={unfollowDialogOpen}
-            setUnfollowDialogOpen={setUnfollowDialogOpen}
-        />
-    </>
-);
+        </>
+    );
+};
 
 const mapMobxToProps = ({ store, followAction, authorization }) => ({
     routerStore: store,

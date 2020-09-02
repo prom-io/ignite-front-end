@@ -1,52 +1,53 @@
-import React from "react";
-import { inject, observer } from "mobx-react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Grid, makeStyles } from '@material-ui/core';
 
-import { localized } from "../localization/components";
-import { AppBar } from "../AppBar/components";
+import { localized } from '../localization/components';
+import { AppBar } from '../AppBar/components';
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription
-} from "../PrometeusDescription";
-import { Layout } from "../Layout";
-import { LoginForm } from "../Authorization/components";
+    ExploreOurFeaturesDescription,
+} from '../PrometeusDescription';
+import { Layout } from '../Layout';
+import { LoginForm } from '../Authorization/components';
+import { PrivacyPoliciesIcon } from '../icons/PrivacyPoliciesIcon';
+import { TermsOfServiceIcon } from '../icons/TermsOfServiceIcon';
 
 const useStyles = makeStyles(theme => ({
     termsAndPolicies: {
         border: `1px solid ${theme.palette.border.main}`,
-        height: "100%",
-        padding: "30px",
-        textAlign: "center",
-        "& h1": {
-            fontFamily: "Museo Sans Cyrl Bold",
-            fontSize: "20px",
-            margin: "24px 0 4px 0",
-            color: theme.palette.text.main
+        height: '100%',
+        padding: '30px',
+        textAlign: 'center',
+        '& h1': {
+            fontFamily: 'Museo Sans Cyrl Bold',
+            fontSize: '20px',
+            margin: '24px 0 4px 0',
+            color: theme.palette.text.main,
         },
-        "& p": {
+        '& p': {
             color: theme.palette.text.secondary,
-            fontSize: "15px",
-            lineHeight: "26px"
-        }
+            fontSize: '15px',
+            lineHeight: '26px',
+        },
     },
     termsAndPoliciesTitle: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Museo Sans Cyrl Regular",
-        fontSize: "15px",
-        lineHeight: "26px",
-        color: "#A2A2A2"
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'Museo Sans Cyrl Regular',
+        fontSize: '15px',
+        lineHeight: '26px',
+        color: '#A2A2A2',
     },
     termsAndPoliciesInfo: {
-        textAlign: "justify",
-        marginBottom: "50px",
-        "&:last-child": {
-            marginBottom: 0
-        }
-    }
+        textAlign: 'justify',
+        marginBottom: '50px',
+        '&:last-child': {
+            marginBottom: 0,
+        },
+    },
 }));
 
 const _TermsAndPolicesPage = ({ currentUser, l }) => {
@@ -65,7 +66,6 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                         </Grid>
                         <Grid
                             item
-                            spacing={28}
                             lg={9}
                             className="right-content-container"
                         >
@@ -74,33 +74,33 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
                                     <LoginForm
                                         hideSignUpButton={
                                             process.env
-                                                .REACT_APP_HIDE_SIGN_UP_BUTTON ===
-                                            "true"
+                                                .REACT_APP_HIDE_SIGN_UP_BUTTON
+                                            === 'true'
                                         }
                                     />
                                 </Grid>
                             )}
                             <div className={classes.termsAndPolicies}>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="/page_img/terms_of_service_page.svg" />
-                                    <h1>{l("terms-of-service")}</h1>
+                                    <TermsOfServiceIcon/>
+                                    <h1>{l('terms-of-service')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>
-                                    <p>{l("terms-of-service.paragraph-1")}</p>
-                                    <p>{l("terms-of-service.paragraph-2")}</p>
-                                    <p>{l("terms-of-service.paragraph-3")}</p>
-                                    <p>{l("terms-of-service.paragraph-4")}</p>
+                                    <p>{l('terms-of-service.paragraph-1')}</p>
+                                    <p>{l('terms-of-service.paragraph-2')}</p>
+                                    <p>{l('terms-of-service.paragraph-3')}</p>
+                                    <p>{l('terms-of-service.paragraph-4')}</p>
                                 </div>
                                 <div className={classes.termsAndPoliciesTitle}>
-                                    <img src="/page_img/privacy_policies_page.svg" />
-                                    <h1>{l("privacy-policies")}</h1>
+                                    <PrivacyPoliciesIcon/>
+                                    <h1>{l('privacy-policies')}</h1>
                                 </div>
                                 <div className={classes.termsAndPoliciesInfo}>
-                                    <p>{l("privacy-policies.paragraph-1")}</p>
-                                    <p>{l("privacy-policies.paragraph-2")}</p>
-                                    <p>{l("privacy-policies.paragraph-3")}</p>
-                                    <p>{l("privacy-policies.paragraph-4")}</p>
-                                    <p>{l("privacy-policies.paragraph-5")}</p>
+                                    <p>{l('privacy-policies.paragraph-1')}</p>
+                                    <p>{l('privacy-policies.paragraph-2')}</p>
+                                    <p>{l('privacy-policies.paragraph-3')}</p>
+                                    <p>{l('privacy-policies.paragraph-4')}</p>
+                                    <p>{l('privacy-policies.paragraph-5')}</p>
                                 </div>
                             </div>
                         </Grid>
@@ -115,9 +115,9 @@ const _TermsAndPolicesPage = ({ currentUser, l }) => {
 };
 
 const mapMobxToProps = ({ authorization }) => ({
-    currentUser: authorization.currentUser
+    currentUser: authorization.currentUser,
 });
 
 export const TermsAndPoliciesPage = localized(
-    inject(mapMobxToProps)(observer(_TermsAndPolicesPage))
+    inject(mapMobxToProps)(observer(_TermsAndPolicesPage)),
 );

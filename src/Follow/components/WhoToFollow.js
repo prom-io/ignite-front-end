@@ -3,9 +3,9 @@ import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { Grid, makeStyles } from '@material-ui/core';
 
+import { WhoToFollowList } from './WhoToFollowList';
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
-import { WhoToFollowList } from './WhoToFollowList';
 
 const useStyles = makeStyles(theme => ({
     whoToFollow: {
@@ -42,7 +42,6 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.main,
         },
     },
-    whoToFollowBody: {},
     whoToFollowFooter: {
         padding: '16px',
         margin: '0',
@@ -81,9 +80,7 @@ const _WhoToFollow = ({ isMobile, routerStore, l }) => {
                     <div className={classes.whoToFollowHeader}>
                         <h3>{l('user.card.who-to-follow')}</h3>
                     </div>
-                    <div className={classes.whoToFollowBody}>
                         <WhoToFollowList isMobile={isMobile} />
-                    </div>
                     <div className={classes.whoToFollowFooter}>
                         <Link view={Routes.followPeople} store={routerStore}>
                             {l('user.card.show-more')}

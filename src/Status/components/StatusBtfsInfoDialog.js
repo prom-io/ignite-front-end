@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { format } from 'date-fns';
 import {
     Button,
     Dialog,
@@ -13,7 +14,7 @@ import {
     TableRow,
     withMobileDialog,
 } from '@material-ui/core';
-import { format } from 'date-fns';
+
 import { localized } from '../../localization/components';
 import { trimString } from '../../utils/string-utils';
 

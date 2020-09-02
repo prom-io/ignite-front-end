@@ -1,6 +1,6 @@
 import { isStringEmpty } from '../../utils/string-utils';
 
-const PASSWORD_REGEXP = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9!@#\$%\^&\*])(?=.{8,})');
+const PASSWORD_REGEXP = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9!$%^&*()_+|~\\-=`{}[\\]:;<>?,.\\/])(?=.{8,})');
 const ETHEREUM_ADDRESS_REGEXP = new RegExp('^0x[a-fA-F0-9]{40}$');
 
 export const validatePassword = password => {

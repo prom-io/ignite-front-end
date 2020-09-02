@@ -18,6 +18,9 @@ export class TopicStatusesStore {
     pending = false;
 
     @observable
+    error = undefined;
+
+    @observable
     hasMore = true;
 
     @observable
@@ -30,9 +33,11 @@ export class TopicStatusesStore {
     unfollowDialogOpen = false;
 
     authorizationStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(authorizationStore) {
+    constructor(authorizationStore, memezatorDialogStore) {
         this.authorizationStore = authorizationStore;
+        this.memezatorDialogStore = memezatorDialogStore;
     }
 
     @action
@@ -131,12 +136,26 @@ export class TopicStatusesStore {
             .then(({ data }) => {
                 this.currentTopic = data;
                 this.fetchStatusesOnTopic();
-            });
+            })
+            .catch(error => (this.error = error));
     };
 
     @action
     followTopic = () => {
-        console.log("follow topic: ", this.currentTopic.title);
+        axiosInstance
+            .post(`/api/v1/topics/${this.currentTopic.id}/follow`)
+            .then(() => {
+                this.currentTopic.following = true;
+            });
+    };
+
+    @action
+    unfollowTopic = () => {
+        axiosInstance
+            .delete(`/api/v1/topics/${this.currentTopic.id}/unfollow`)
+            .then(() => {
+                this.currentTopic.following = false;
+            });
     };
 
     @action
@@ -159,6 +178,18 @@ export class TopicStatusesStore {
                         }
                         return status;
                     });
+                })
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }
@@ -184,6 +215,18 @@ export class TopicStatusesStore {
                         }
                         return status;
                     });
+                })
+                .catch(error => {
+                    this.statusLikePendingMap[id] = false;
+                    this.statusesOnTopic = this.statusesOnTopic.map(status => {
+                        if (status.id === id) {
+                            const originalMediaAttachments =
+                                status.media_attachments;
+                            status.media_attachments = originalMediaAttachments;
+                        }
+                        return status;
+                    });
+                    this.memezatorDialogStore.openDialogByError(error);
                 })
                 .finally(() => (this.statusLikePendingMap[id] = false));
         }
@@ -247,6 +290,7 @@ export class TopicStatusesStore {
         this.activeTab = "hot";
         this.pending = false;
         this.hasMore = true;
+        this.error = undefined;
         this.currentStatusId = undefined;
         this.currentStatusUsername = undefined;
         this.unfollowDialogOpen = false;
@@ -255,5 +299,6 @@ export class TopicStatusesStore {
     @action
     resetStatuses = () => {
         this.statusesOnTopic = [];
+        this.error = undefined;
     };
 }

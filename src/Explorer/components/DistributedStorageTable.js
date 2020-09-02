@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { inject, observer } from "mobx-react";
+import React, { useState } from 'react';
+import { inject, observer } from 'mobx-react';
 import {
     Table,
     TableHead,
@@ -10,72 +10,72 @@ import {
     Card,
     CardContent,
     makeStyles,
-    Typography
-} from "@material-ui/core";
+    Typography,
+} from '@material-ui/core';
 
-import { trimString } from "../../utils/string-utils";
-import { localized } from "../../localization/components";
-import Loader from "../../components/Loader";
-import { ExplorerSwitcher } from "./ExplorerSwitcher";
-import { ExplorerModal } from "./ExplorerModal";
+import { trimString } from '../../utils/string-utils';
+import { localized } from '../../localization/components';
+import Loader from '../../components/Loader';
+import { ExplorerSwitcher } from './ExplorerSwitcher';
+import { ExplorerModal } from './ExplorerModal';
 
 const useStyles = makeStyles(theme => ({
     tableCard: {
-        width: "100%",
-        marginTop: "50px",
-        overflow: "auto",
-        [theme.breakpoints.down("sm")]: {
-            "& td": {
-                minWidth: "200px"
-            }
-        }
+        width: '100%',
+        marginTop: '50px',
+        overflow: 'auto',
+        [theme.breakpoints.down('sm')]: {
+            '& td': {
+                minWidth: '200px',
+            },
+        },
     },
     tableCardContent: {
-        padding: 0
+        padding: 0,
     },
     link: {
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
     },
     centered: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        width: "100%"
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
     },
     tableInput: {
-        fontFamily: "Museo Sans Cyrl Regular",
-        border: "none",
+        fontFamily: 'Museo Sans Cyrl Regular',
+        border: 'none',
         background: theme.palette.background.paper,
-        padding: "6px",
-        width: "100%",
-        fontSize: "0.875rem",
-        color: "rgba(0, 0, 0, 0.87)",
-        overflowX: "hidden",
-        whiteSpace: "nowrap",
-        textOverflow: "ellipsis",
-        "&:focus": {
-            outline: `1px solid ${theme.palette.border.main}`
+        padding: '6px',
+        width: '100%',
+        fontSize: '0.875rem',
+        color: 'rgba(0, 0, 0, 0.87)',
+        overflowX: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        '&:focus': {
+            outline: `1px solid ${theme.palette.border.main}`,
         },
-        "&:after": {
-            content: "'...'"
+        '&:after': {
+            content: "'...'",
         },
-        "&:not(:focus):after": {
-            content: ""
-        }
+        '&:not(:focus):after': {
+            content: '',
+        },
     },
     linkToModal: {
         color: theme.palette.primary.main,
-        textDecoration: "underline",
-        cursor: "pointer",
-        "&:hover": {
-            textDecoration: "none"
-        }
+        textDecoration: 'underline',
+        cursor: 'pointer',
+        '&:hover': {
+            textDecoration: 'none',
+        },
     },
     paginator: {
-        padding: "10px 0 !important",
-        marginBottom: 25
-    }
+        padding: '10px 0 !important',
+        marginBottom: 25,
+    },
 }));
 
 const _DistributedStorageTable = ({
@@ -85,7 +85,7 @@ const _DistributedStorageTable = ({
     setModalIsOpen,
     fetchDistributedStorage,
     l,
-    currentActiveRoute
+    currentActiveRoute,
 }) => {
     const classes = useStyles();
     const [page, setPage] = useState(0);
@@ -111,16 +111,16 @@ const _DistributedStorageTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                <strong>{l("explorer.cid")}</strong>
+                                <strong>{l('explorer.cid')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.age")}</strong>
+                                <strong>{l('explorer.age')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.node-wallet")}</strong>
+                                <strong>{l('explorer.node-wallet')}</strong>
                             </TableCell>
                             <TableCell>
-                                <strong>{l("explorer.arweave-link")}</strong>
+                                <strong>{l('explorer.arweave-link')}</strong>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -133,27 +133,25 @@ const _DistributedStorageTable = ({
                             </TableCell>
                         ) : error || distributedHashes.data.length === 0 ? (
                             <TableCell colSpan={4}>
-                                <Typography>{l("explorer.no-data")}</Typography>
+                                <Typography>{l('explorer.no-data')}</Typography>
                             </TableCell>
                         ) : (
-                            distributedHashes &&
-                            distributedHashes.data.map(item => (
+                            distributedHashes
+                            && distributedHashes.data.map(item => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <input
                                             className={[
                                                 classes.tableInput,
-                                                classes.linkToModal
-                                            ].join(" ")}
+                                                classes.linkToModal,
+                                            ].join(' ')}
                                             value={item.btfsCid}
                                             contentEditable={false}
-                                            onClick={() =>
-                                                setModalIsOpen(
-                                                    true,
-                                                    "distributed-storage",
-                                                    item
-                                                )
-                                            }
+                                            onClick={() => setModalIsOpen(
+                                                true,
+                                                'distributed-storage',
+                                                item,
+                                            )}
                                         />
                                     </TableCell>
                                     <TableCell>{item.ago}</TableCell>
@@ -173,7 +171,7 @@ const _DistributedStorageTable = ({
                                         >
                                             {trimString(
                                                 `https://arweave.net/${item.btfsCid}`,
-                                                40
+                                                40,
                                             )}
                                         </a>
                                     </TableCell>
@@ -202,9 +200,9 @@ const mapMoxToProps = ({ explorer }) => ({
     pending: explorer.pending.distributed,
     error: explorer.error,
     setModalIsOpen: explorer.setModalIsOpen,
-    fetchDistributedStorage: explorer.fetchDistributedStorage
+    fetchDistributedStorage: explorer.fetchDistributedStorage,
 });
 
 export const DistributedStorageTable = localized(
-    inject(mapMoxToProps)(observer(_DistributedStorageTable))
+    inject(mapMoxToProps)(observer(_DistributedStorageTable)),
 );

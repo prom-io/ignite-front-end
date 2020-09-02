@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
 import { makeStyles } from '@material-ui/core';
+
 import { StatusBody } from './StatusBody';
 import { StatusHeader } from './StatusHeader';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
@@ -39,7 +40,7 @@ const _RepostedStatusContent = ({
                     username={repostedStatus.account.username}
                     userId={repostedStatus.account.id}
                     displayName={repostedStatus.account.display_name}
-                    avatar={repostedStatus.account.avatar}
+                    avatar={`${repostedStatus.account.avatar}?size=${100}`}
                     createdAt={repostedStatus.created_at}
                     statusId={repostedStatus.id}
                     displayMenu={false}

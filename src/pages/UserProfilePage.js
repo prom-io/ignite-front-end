@@ -1,10 +1,11 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, makeStyles } from '@material-ui/core';
+
 import { AppBar } from '../AppBar/components';
 import { Layout } from '../Layout';
 import { UserProfileContainer } from '../User/components';
 import { StatusBtfsInfoDialog } from '../Status/components';
+import { MemezatorDialog } from '../Memezator/components';
 
 export const UserProfilePage = () => (
     <Grid container>
@@ -15,5 +16,6 @@ export const UserProfilePage = () => (
             </Layout>
         </Grid>
         <StatusBtfsInfoDialog />
+        <MemezatorDialog />
     </Grid>
 );

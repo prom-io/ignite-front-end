@@ -1,32 +1,22 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react';
-import { Button, DialogContent, makeStyles } from '@material-ui/core';
-import { InputPasswordGroup } from './InputPasswordGroup';
-import { KeyCopyBlock } from './KeyCopyBlock';
-import { _Checkbox } from './_Checkbox';
-import { HashVerificationMode } from '../stores';
-import { useLocalization, useStore } from '../../store/hooks';
+import React, { useState } from "react";
+import { observer } from "mobx-react";
+import { Button, DialogContent } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
-    dialogContentRoot: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: '-30px',
-    },
-    button: {
-        width: '187px',
-        marginTop: 24,
-        alignSelf: 'center',
-    },
-    checkbox: {
-        marginTop: '30px',
-    },
-}));
+import { InputPasswordGroup } from "./InputPasswordGroup";
+import { KeyCopyBlock } from "./KeyCopyBlock";
+import { _Checkbox } from "./_Checkbox";
+import { HashVerificationMode } from "../stores";
+import { useLocalization, useStore } from "../../store";
+import { authorizationDialogsStyles } from "../../styles/material/authorizationDialogsStyles";
 
 export const GenerateHash = observer(() => {
-    const classes = useStyles();
+    const classes = authorizationDialogsStyles();
     const [hashCodeSaved, setHashCodeSaved] = useState(false);
-    const { hashGeneration, genericAuthorizationDialog, hashVerification } = useStore();
+    const {
+        hashGeneration,
+        genericAuthorizationDialog,
+        hashVerification
+    } = useStore();
     const {
         setFormValue,
         passwordForm,
@@ -34,15 +24,17 @@ export const GenerateHash = observer(() => {
         generatedHash,
         showPassword,
         setShowPassword,
+        validateForm
     } = hashGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
     const { setHashVerificationMode } = hashVerification;
     const { l } = useLocalization();
 
     return (
-        <DialogContent classes={{
-            root: classes.dialogContentRoot,
-        }}
+        <DialogContent
+            classes={{
+                root: classes.dialogContentRoot
+            }}
         >
             <InputPasswordGroup
                 formValues={passwordForm}
@@ -50,35 +42,36 @@ export const GenerateHash = observer(() => {
                 formErrors={formErrors}
                 showPassword={showPassword}
                 onShowPasswordChange={setShowPassword}
-                title={l('sign-up.create-password')}
+                title={l("sign-up.create-password")}
             />
             <KeyCopyBlock
-                title={l('sign-up.hash-code')}
+                title={l("sign-up.hash-code")}
                 disabled={!generatedHash}
                 textToCopy={generatedHash}
             >
-                {generatedHash || l('sign-up.hashcode.not-generated')}
+                {generatedHash || l("sign-up.hashcode.not-generated")}
             </KeyCopyBlock>
             <_Checkbox
                 className={classes.checkbox}
                 checked={hashCodeSaved}
                 onChange={() => setHashCodeSaved(!hashCodeSaved)}
+                style={{ margin: "20px 0 30px 0" }}
             >
-                {l('sign-up.hash-code.saved')}
+                {l("sign-up.hash-code.saved")}
             </_Checkbox>
             <Button
                 variant="contained"
                 color="primary"
                 classes={{
-                    root: classes.button,
+                    root: classes.button
                 }}
-                disabled={!hashCodeSaved}
+                disabled={!hashCodeSaved || !generatedHash}
                 onClick={() => {
                     setHashVerificationMode(HashVerificationMode.SIGN_UP);
-                    setGenericAuthorizationDialogType('verifyHash');
+                    setGenericAuthorizationDialogType("verifyHash");
                 }}
             >
-                {l('sign-up.continue')}
+                {l("sign-up.continue")}
             </Button>
         </DialogContent>
     );

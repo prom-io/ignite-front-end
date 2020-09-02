@@ -1,11 +1,12 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
+import { Link } from "mobx-router";
 import { Grid, makeStyles, Typography, Hidden } from "@material-ui/core";
+
 import { localized } from "../localization/components";
 import { AppBarLink } from "../AppBar/components/AppBarLink";
 import { Routes } from "../routes";
 import { BtfsIcon } from "../icons/BtfsIcon";
-import { StaticPageLinks } from "../components/StaticPageLinks";
 
 const useStyles = makeStyles(theme => ({
     prometeusLink: {
@@ -106,7 +107,7 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale }) => {
             <div className={classes.descriptionStoa}>
                 {tryOurNetworkTranslations[locale]({ classes })}
             </div>
-            <div className={classes.exploreLink}>
+            {/* <div className={classes.exploreLink}>
                 <Hidden smDown>
                     <AppBarLink
                         text={l("appbar.explore-btfs")}
@@ -117,21 +118,24 @@ const _DescriptionStoaBanner = ({ routerStore, l, locale }) => {
                         id="btfsLink"
                     />
                 </Hidden>
-            </div>
+            </div> */}
             <div className={classes.descriprionLinks}>
                 <p>
-                    <StaticPageLinks
-                        linkTekst={links.termsOfService}
-                        routerStore={routerStore}
-                        targetView={Routes.terms}
-                    />{" "}
-                    &bull;
-                    <StaticPageLinks />{" "}
-                    <StaticPageLinks
-                        linkTekst={links.privacyPolicy}
-                        routerStore={routerStore}
-                        targetView={Routes.terms}
-                    />
+                    <Link
+                        view={Routes.terms}
+                        store={routerStore}
+                        className="static-page-link"
+                    >
+                        {links.termsOfService}
+                    </Link>{" "}
+                    &bull;{" "}
+                    <Link
+                        view={Routes.terms}
+                        store={routerStore}
+                        className="static-page-link"
+                    >
+                        {links.privacyPolicy}
+                    </Link>
                 </p>
                 <p>
                     <a

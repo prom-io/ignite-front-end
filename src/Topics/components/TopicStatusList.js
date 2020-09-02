@@ -1,13 +1,15 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { makeStyles } from "@material-ui/core";
 
-import { MenuIcon } from "../../icons/MenuIcon";
+import { TopicsPopularScroll } from "./TopicsPopularScroll";
+import { TopicNotFound } from "./TopicNotFound";
 import { UnfollowDialog } from "../../Follow/components";
 import { StatusListItem } from "../../Status/components/StatusListItem";
-import { TopicsPopularScroll } from "./TopicsPopularScroll";
+import { MemezatorDialog } from "../../Memezator/components";
 import Loader from "../../components/Loader";
+import { MenuIcon } from "../../icons/MenuIcon";
 
 const useStyles = makeStyles(theme => ({
     topicListHeader: {
@@ -52,12 +54,13 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "auto",
         marginRight: "auto",
         display: "table",
-        marginTop: '100px',
+        marginTop: "100px"
     }
 }));
 
 const _TopicStatusList = ({
     fetchAction,
+    error,
     currentUser,
     activeTab,
     pending,
@@ -115,7 +118,7 @@ const _TopicStatusList = ({
                 <div className={classes.centered}>
                     <Loader size="lg" />
                 </div>
-            ) : (
+            ) : !error ? (
                 <InfiniteScroll
                     next={fetchAction}
                     loader={
@@ -145,9 +148,12 @@ const _TopicStatusList = ({
                             statusLikePending={statusLikePendingMap[status.id]}
                             repostPending={repostsPendingMap[status.id]}
                             link
+                            isMeme={status.is_meme}
                         />
                     ))}
                 </InfiniteScroll>
+            ) : (
+                <TopicNotFound />
             )}
 
             <UnfollowDialog
@@ -156,6 +162,7 @@ const _TopicStatusList = ({
                 unfollowDialogOpen={unfollowDialogOpen}
                 setUnfollowDialogOpen={setUnfollowDialogOpen}
             />
+            <MemezatorDialog />
         </>
     );
 };

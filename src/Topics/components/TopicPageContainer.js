@@ -1,79 +1,55 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
-import { Button, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 import { BackButton } from "../../components/BackButton";
+import { TopicFollowButton } from "./TopicFollowButton";
 import { TopicStatusList } from "./TopicStatusList";
-import { localized } from "../../localization/components";
-import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     topicTitle: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        [theme.breakpoints.down('sm')]: {
-            position: 'fixed',
+        [theme.breakpoints.down("sm")]: {
+            position: "fixed",
             top: 0,
-            width: '100%',
+            width: "100%",
             zIndex: 1100,
             background: theme.palette.background.paper
-        },
-    },
-    followTopicButton: {
-        fontWeight: 600,
-        fontSize: "15px",
-        lineHeight: "0px",
-        height: "34px",
-        width: "114px",
-        borderRadius: "30px",
-        [theme.breakpoints.down("sm")]: {
-            height: "28px",
-            width: "90px",
-            marginRight: "15px"
         }
     }
 }));
 
 const _TopicPageContainer = ({
-    followTopic,
     fetchStatusesOnTopic,
+    error,
     routerStore,
-    currentUser,
-    l
+    currentUser
 }) => {
     const classes = useStyles();
-    console.log(routerStore.router.params.title);
-    
+
     if (!currentUser) {
-        return (
-          <TopicStatusList fetchAction={fetchStatusesOnTopic} />
-        )
-    } else
+        return <TopicStatusList fetchAction={fetchStatusesOnTopic} error={error} />;
+    }
+
     return (
         <>
             <div className={classes.topicTitle}>
                 <BackButton params={routerStore.router.params.title} toTopics />
-                {/* <Button
-                    className={classes.followTopicButton}
-                    variant="contained"
-                    color="primary"
-                    onClick={followTopic}
-                >
-                    {l("user.profile.follow")}
-                </Button> */}
+                {!error && <TopicFollowButton />}
             </div>
-            <TopicStatusList fetchAction={fetchStatusesOnTopic} />
+            <TopicStatusList fetchAction={fetchStatusesOnTopic} error={error} />
         </>
     );
 };
 
 const mapMobxToProps = ({ topicStatuses, store }) => ({
-    followTopic: topicStatuses.followTopic,
     fetchStatusesOnTopic: topicStatuses.fetchStatusesOnTopic,
+    error: topicStatuses.error,
     routerStore: store
 });
 
-export const TopicPageContainer = localized(
-    inject(mapMobxToProps)(observer(_TopicPageContainer))
+export const TopicPageContainer = inject(mapMobxToProps)(
+    observer(_TopicPageContainer)
 );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IconButton, Tooltip, makeStyles } from '@material-ui/core';
+
 import { AttachImageIcon } from '../../icons/AttachImageIcon';
 import { AttachImageDisabledIcon } from '../../icons/AttachImageDisabledIcon';
 
@@ -51,7 +52,7 @@ export const AttachImageInput = ({ onImagesAttached, disabled, disabledLabel, ma
                         type="file"
                         value={value}
                         style={{ display: 'none' }}
-                        accept="image/png, image/jpg, image/jpeg"
+                        accept="image/png, image/jpg, image/jpeg, image/gif"
                         onClick={() => setValue('')}
                         multiple={maxAttachments > 1}
                         onChange={event => {

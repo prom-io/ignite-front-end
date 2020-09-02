@@ -1,18 +1,22 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from "react";
 import {
     ClickAwayListener,
     IconButton,
     Popper,
+    Paper,
+    Grow,
+    MenuList,
     Typography,
-    makeStyles,
-} from '@material-ui/core';
-import { inject, observer } from 'mobx-react';
-import { RepostWithoutCommentMenuItem } from './RepostWithoutCommentMenuItem';
-import { RepostWithCommentMenuItem } from './RepostWithCommentMenuItem';
-import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
-import { RepostIcon } from '../../icons/RepostIcon';
-import { UndoRepostMenuItem } from './UndoRepostMenuItem';
-import Loader from '../../components/Loader';
+    makeStyles
+} from "@material-ui/core";
+import { inject, observer } from "mobx-react";
+
+import { RepostWithoutCommentMenuItem } from "./RepostWithoutCommentMenuItem";
+import { RepostWithCommentMenuItem } from "./RepostWithCommentMenuItem";
+import { UndoRepostMenuItem } from "./UndoRepostMenuItem";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import Loader from "../../components/Loader";
+import { RepostIcon } from "../../icons/RepostIcon";
 
 const useStyles = makeStyles({
     styledIconButton: {
@@ -21,11 +25,14 @@ const useStyles = makeStyles({
         borderRadius: 100,
         width: 34,
         height: 34,
-        '&:hover': {
-            background: 'rgba(255, 92, 1, 0.2)',
-            borderRadius: 30,
-        },
+        "&:hover": {
+            background: "rgba(255, 92, 1, 0.2)",
+            borderRadius: 30
+        }
     },
+    paper: {
+        boxShadow: "0 0 5px rgba(0,0,0,0.2)"
+    }
 });
 
 const _RepostStatusMenu = ({
@@ -35,16 +42,16 @@ const _RepostStatusMenu = ({
     currentUserIsAuthor,
     currentUser,
     setGenericAuthorizationDialogOpen,
-    setGenericAuthorizationDialogType,
+    setGenericAuthorizationDialogType
 }) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
-    const classes = useStyles();
 
     const handleToggle = () => {
         if (!currentUser) {
             setGenericAuthorizationDialogOpen(true);
-            setGenericAuthorizationDialogType('login');
+            setGenericAuthorizationDialogType("login");
             return;
         }
         canBeReposted && setOpen(prevOpen => currentUser && !prevOpen);
@@ -57,19 +64,33 @@ const _RepostStatusMenu = ({
         setOpen(false);
     };
 
+    const previousOpen = useRef(open);
+
+    useEffect(() => {
+        if (previousOpen && previousOpen.current === true && open === false) {
+            anchorRef.current && anchorRef.current.focus();
+        }
+        previousOpen.current = open;
+    }, [open]);
+
     return (
         <div className="status-list-bottom-box">
             {repostPending ? (
                 <Loader css="transform: scale(0.3); top:5px; left:5px" />
             ) : (
                 <IconButton
+                    classes={{ root: classes.styledIconButton }}
                     ref={anchorRef}
                     onClick={handleToggle}
-                    classes={{ root: classes.styledIconButton }}
+                    aria-controls={open ? "menu-list-grow" : undefined}
+                    aria-haspopup="true"
                 >
                     <RepostIcon
                         reposted={
-                            currentUser && !canBeReposted && status.reposted && !currentUserIsAuthor
+                            currentUser &&
+                            !canBeReposted &&
+                            status.reposted &&
+                            !currentUserIsAuthor
                         }
                     />
                 </IconButton>
@@ -82,39 +103,49 @@ const _RepostStatusMenu = ({
                 anchorEl={anchorRef.current}
                 role={undefined}
                 transition
+                style={{ zIndex: 10 }}
             >
-                <ClickEventPropagationStopper>
-                    <ClickAwayListener
-                        onClickAway={handleClose}
-                        touchEvent="onTouchStart"
-                        mouseEvent="onMouseDown"
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{
+                            transformOrigin:
+                                placement === "bottom"
+                                    ? "center top"
+                                    : "center bottom"
+                        }}
                     >
-                        <div
-                            className="status-list-bottom-box-modal"
-                            onClick={handleClose}
-                        >
-                            {canBeReposted && (
-                                <>
-                                    <ClickEventPropagationStopper>
-                                        <RepostWithoutCommentMenuItem
-                                            status={status}
-                                            onClick={handleClose}
-                                        />
-                                    </ClickEventPropagationStopper>
-                                    <ClickEventPropagationStopper>
-                                        <RepostWithCommentMenuItem
-                                            status={status}
-                                            onClick={handleClose}
-                                        />
-                                    </ClickEventPropagationStopper>
-                                </>
-                            )}
-                            {!canBeReposted && (
-                                <UndoRepostMenuItem onClick={handleClose} />
-                            )}
-                        </div>
-                    </ClickAwayListener>
-                </ClickEventPropagationStopper>
+                        <Paper className={classes.paper}>
+                            <ClickAwayListener
+                                onClickAway={handleClose}
+                                touchEvent="onTouchStart"
+                                mouseEvent="onMouseDown"
+                            >
+                                <MenuList autoFocusItem={open} id="menu-list-grow">
+                                    {canBeReposted && (
+                                        <>
+                                            <ClickEventPropagationStopper>
+                                                <RepostWithoutCommentMenuItem
+                                                    status={status}
+                                                    onClick={handleClose}
+                                                />
+                                            </ClickEventPropagationStopper>
+                                            <ClickEventPropagationStopper>
+                                                <RepostWithCommentMenuItem
+                                                    status={status}
+                                                    onClick={handleClose}
+                                                />
+                                            </ClickEventPropagationStopper>
+                                        </>
+                                    )}
+                                    {!canBeReposted && (
+                                        <UndoRepostMenuItem onClick={handleClose} />
+                                    )}
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
             </Popper>
         </div>
     );
@@ -122,8 +153,10 @@ const _RepostStatusMenu = ({
 
 const mampMobxToProps = ({ authorization, genericAuthorizationDialog }) => ({
     currentUser: authorization.currentUser,
-    setGenericAuthorizationDialogOpen: genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
-    setGenericAuthorizationDialogType: genericAuthorizationDialog.setGenericAuthorizationDialogType,
+    setGenericAuthorizationDialogOpen:
+        genericAuthorizationDialog.setGenericAuthorizationDialogOpen,
+    setGenericAuthorizationDialogType:
+        genericAuthorizationDialog.setGenericAuthorizationDialogType
 });
 
 export const RepostStatusMenu = inject(mampMobxToProps)(observer(_RepostStatusMenu));

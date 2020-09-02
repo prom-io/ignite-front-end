@@ -1,6 +1,5 @@
-import Checkbox from '@material-ui/core/Checkbox/Checkbox';
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Checkbox, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     checkboxGroup: {
@@ -26,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 export const _Checkbox = ({ children, ...props }) => {
     const classes = useStyles();
     return (
-        <div className={`${classes.checkboxGroup} ${props.className}`}>
+        <div className={`${classes.checkboxGroup} ${props.className}`} style={props.style}>
             <Checkbox
                 color="primary"
                 classes={{ root: classes.checkbox }}

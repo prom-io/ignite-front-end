@@ -1,5 +1,5 @@
-import {action, reaction, observable, toJS} from "mobx";
-import {axiosInstance} from "../../api/axios-instance";
+import { action, reaction, observable, toJS } from "mobx";
+import { axiosInstance } from "../../api/axios-instance";
 
 export class StatusPageStore {
     @observable
@@ -28,32 +28,39 @@ export class StatusPageStore {
 
     authorizationStore = undefined;
     createStatusStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(authorizationStore, createStatusStore) {
+    constructor(authorizationStore, createStatusStore, memezatorDialogStore) {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
+        this.memezatorDialogStore = memezatorDialogStore;
 
         reaction(
             () => this.createStatusStore.createdStatus,
             status => {
-                if (this.status && status && status.referred_status && status.referred_status.id === this.status.id) {
+                if (
+                    this.status &&
+                    status &&
+                    status.referred_status &&
+                    status.referred_status.id === this.status.id
+                ) {
                     if (status.status_reference_type === "REPOST") {
                         this.status = {
                             ...this.status,
                             reposts_count: this.status.reposts_count + 1,
                             can_be_reposted: false,
                             reposted: true
-                        }
+                        };
                     } else {
                         this.status = {
                             ...this.status,
                             comments_count: this.status.comments_count + 1,
                             commented: true
-                        }
+                        };
                     }
                 }
             }
-        )
+        );
     }
 
     @action
@@ -61,22 +68,28 @@ export class StatusPageStore {
         this.pending = true;
         this.error = undefined;
 
-        axiosInstance.get(`/api/v1/statuses/${id}`)
-            .then(({data}) => this.status = data)
-            .catch(error => this.error = error)
-            .finally(() => this.pending = false)
+        axiosInstance
+            .get(`/api/v1/statuses/${id}`)
+            .then(({ data }) => (this.status = data))
+            .catch(error => (this.error = error))
+            .finally(() => (this.pending = false));
     };
 
     @action
     favouriteStatus = () => {
         if (this.status && this.authorizationStore.accessToken) {
-            axiosInstance.post(`/api/v1/statuses/${this.status.id}/favourite`)
-                .then(({data}) => {
+            this.statusLikePending = true;
+            axiosInstance
+                .post(`/api/v1/statuses/${this.status.id}/favourite`)
+                .then(({ data }) => {
                     if (this.status && this.status.id === data.id) {
                         this.status = data;
                     }
                 })
-                .finally(() => this.statusLikePending = false)
+                .catch(error => {
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
+                .finally(() => (this.statusLikePending = false));
         }
     };
 
@@ -84,13 +97,17 @@ export class StatusPageStore {
     unfavouriteStatus = () => {
         if (this.status && this.authorizationStore.accessToken) {
             this.statusLikePending = true;
-            axiosInstance.post(`/api/v1/statuses/${this.status.id}/unfavourite`)
-                .then(({data}) => {
+            axiosInstance
+                .post(`/api/v1/statuses/${this.status.id}/unfavourite`)
+                .then(({ data }) => {
                     if (this.status && this.status.id === data.id) {
                         this.status = data;
                     }
                 })
-                .finally(() => this.statusLikePending = false)
+                .catch(error => {
+                    this.memezatorDialogStore.openDialogByError(error);
+                })
+                .finally(() => (this.statusLikePending = false));
         }
     };
 
@@ -99,14 +116,15 @@ export class StatusPageStore {
         if (this.status && this.authorizationStore.accessToken) {
             this.statusAuthorSubscriptionPending = true;
             const statusId = this.status.id;
-            axiosInstance.post(`/api/v1/accounts/${this.status.account.id}/follow`)
+            axiosInstance
+                .post(`/api/v1/accounts/${this.status.account.id}/follow`)
                 .then(() => {
                     if (this.status.id === statusId) {
                         this.status.account.following = true;
                     }
                     this.authorizationStore.currentUser.follows_count += 1;
                 })
-                .finally(() => this.statusAuthorSubscriptionPending = false)
+                .finally(() => (this.statusAuthorSubscriptionPending = false));
         }
     };
 
@@ -115,7 +133,8 @@ export class StatusPageStore {
         if (this.status && this.authorizationStore.accessToken) {
             this.statusAuthorSubscriptionPending = true;
             const statusId = this.status.id;
-            axiosInstance.post(`/api/v1/accounts/${this.status.account.id}/unfollow`)
+            axiosInstance
+                .post(`/api/v1/accounts/${this.status.account.id}/unfollow`)
                 .then(() => {
                     this.unfollowDialogOpen = false;
                     if (this.status.id === statusId) {
@@ -123,7 +142,7 @@ export class StatusPageStore {
                     }
                     this.authorizationStore.currentUser.follows_count -= 1;
                 })
-                .finally(() => this.statusAuthorSubscriptionPending = false)
+                .finally(() => (this.statusAuthorSubscriptionPending = false));
         }
     };
 
@@ -132,7 +151,7 @@ export class StatusPageStore {
         this.currentStatusId = statusId;
         this.currentStatusUsername = username;
         this.unfollowDialogOpen = true;
-    }
+    };
 
     @action
     setCurrentStatusId = currentStatusId => {
@@ -149,5 +168,5 @@ export class StatusPageStore {
         this.status = undefined;
         this.error = undefined;
         this.pending = false;
-    }
+    };
 }

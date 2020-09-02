@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { inject } from "mobx-react";
-import { Tabs, Tab } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { inject } from 'mobx-react';
+import { Tabs, Tab, makeStyles } from '@material-ui/core';
 
-import { localized } from "../../localization/components";
-import { Routes } from "../../routes";
+import { localized } from '../../localization/components';
+import { Routes } from '../../routes';
 
 const useStyles = makeStyles(() => ({
     tabsRoot: {
-        overflow:'visible'
+        overflow: 'visible',
     },
     tabScroller: {
-        overflow:'visible !important'
-    }
+        overflow: 'visible !important',
+    },
 }));
 
 const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
@@ -25,17 +24,17 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
 
     const getRoute = route => {
         switch (route) {
-            case "ethereum-plasma":
-                return Routes.ethereumPlasma;
-            case "distributed-storage":
-                return Routes.distributedStorage;
-            case "binance-smart-chain":
-                return Routes.binanceSmartChain;
-            default:
-                return Routes.home;
+        case 'ethereum-plasma':
+            return Routes.ethereumPlasma;
+        case 'distributed-storage':
+            return Routes.distributedStorage;
+        case 'binance-smart-chain':
+            return Routes.binanceSmartChain;
+        default:
+            return Routes.home;
         }
     };
-    
+
     const classes = useStyles();
 
     return (
@@ -45,18 +44,18 @@ const _ExplorerSwitcher = ({ routerStore, activeTab, l }) => {
                 onChange={handleChange}
                 indicatorColor="primary"
                 textColor="primary"
-                classes={{scroller: classes.tabScroller, root: classes.tabsRoot}}
+                classes={{ scroller: classes.tabScroller, root: classes.tabsRoot }}
             >
-                <Tab value="ethereum-plasma" label={l("explorer.ethereum-plasma-info")} />
-                <Tab value="distributed-storage" label={l("explorer.distributed-storage-info")} />
-                <Tab value="binance-smart-chain" label={l("explorer.binance-smart-chain-info")} />
+                <Tab value="ethereum-plasma" label={l('explorer.ethereum-plasma-info')} />
+                <Tab value="distributed-storage" label={l('explorer.distributed-storage-info')} />
+                <Tab value="binance-smart-chain" label={l('explorer.binance-smart-chain-info')} />
             </Tabs>
         </div>
     );
 };
 
 const mapMobxToProps = ({ store }) => ({
-    routerStore: store
+    routerStore: store,
 });
 
 export const ExplorerSwitcher = localized(inject(mapMobxToProps)(_ExplorerSwitcher));

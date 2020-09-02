@@ -1,11 +1,10 @@
-import {action, reaction, observable, computed} from "mobx";
-import {axiosInstance} from "../../api/axios-instance";
+import { action, reaction, observable, computed } from "mobx";
+import { axiosInstance } from "../../api/axios-instance";
 import {
-    validateBio, 
-    validateDisplayName, 
-    validateUsername, 
-    validateIsCurrentPassword,
-    validatePassword
+    validateBio,
+    validateDisplayName,
+    validateUsername,
+    validateExternalUrl
 } from "../validation";
 
 export class UpdateUserProfileStore {
@@ -15,14 +14,16 @@ export class UpdateUserProfileStore {
         displayName: "",
         avatarId: undefined,
         language: "",
-        bio: ""
+        bio: "",
+        external_url: ""
     };
 
     @observable
     formErrors = {
         username: undefined,
         displayName: undefined,
-        bio: undefined
+        bio: undefined,
+        external_url: undefined
     };
 
     @observable
@@ -34,6 +35,9 @@ export class UpdateUserProfileStore {
     @observable
     submissionError = undefined;
 
+    @observable
+    openSuccessDialog = false;
+
     authorizationStore = undefined;
     uploadUserAvatarStore = undefined;
     userProfileStore = undefined;
@@ -42,7 +46,7 @@ export class UpdateUserProfileStore {
     @computed
     get currentUser() {
         return this.authorizationStore.currentUser;
-    };
+    }
 
     @computed
     get user() {
@@ -56,7 +60,10 @@ export class UpdateUserProfileStore {
 
     @computed
     get avatarUploadPending() {
-        return this.uploadUserAvatarStore.avatarFileContainer && this.uploadUserAvatarStore.avatarFileContainer.pending;
+        return (
+            this.uploadUserAvatarStore.avatarFileContainer &&
+            this.uploadUserAvatarStore.avatarFileContainer.pending
+        );
     }
 
     @computed
@@ -64,7 +71,12 @@ export class UpdateUserProfileStore {
         return this.localeStore.selectedLanguage;
     }
 
-    constructor(authorizationStore, uploadUserAvatarStore, userProfileStore, localeStore) {
+    constructor(
+        authorizationStore,
+        uploadUserAvatarStore,
+        userProfileStore,
+        localeStore
+    ) {
         this.authorizationStore = authorizationStore;
         this.uploadUserAvatarStore = uploadUserAvatarStore;
         this.userProfileStore = userProfileStore;
@@ -92,14 +104,32 @@ export class UpdateUserProfileStore {
 
         reaction(
             () => this.updateUserProfileForm.displayName,
-            displayName => this.formErrors.displayName = validateDisplayName(displayName)
+            displayName =>
+                (this.formErrors.displayName = validateDisplayName(displayName))
+        );
+
+        reaction(
+            () => this.updateUserProfileForm.bio,
+            bio => (this.formErrors.bio = validateBio(bio))
+        );
+
+        reaction(
+            () => this.updateUserProfileForm.external_url,
+            external_url =>
+                (this.formErrors.external_url = validateExternalUrl(external_url))
         );
 
         reaction(
             () => this.avatarFileContainer,
             avatarFileContainer => {
-                if (avatarFileContainer && avatarFileContainer.uploadedMediaAttachment) {
-                    this.setFormValue("avatarId", avatarFileContainer.uploadedMediaAttachment.id);
+                if (
+                    avatarFileContainer &&
+                    avatarFileContainer.uploadedMediaAttachment
+                ) {
+                    this.setFormValue(
+                        "avatarId",
+                        avatarFileContainer.uploadedMediaAttachment.id
+                    );
                 }
             }
         );
@@ -107,11 +137,14 @@ export class UpdateUserProfileStore {
         reaction(
             () => this.currentUser,
             currentUser => {
-                if (currentUser && this.currentUser.username === this.updateUserProfileForm.username) {
+                if (
+                    currentUser &&
+                    this.currentUser.username === this.updateUserProfileForm.username
+                ) {
                     this.formErrors.username = undefined;
                 }
             }
-        )
+        );
     }
 
     @action
@@ -131,17 +164,24 @@ export class UpdateUserProfileStore {
 
         this.pending = true;
 
-        axiosInstance.put(`/api/v1/accounts/${this.currentUser.id}`, {
-            username: this.updateUserProfileForm.username,
-            display_name: this.updateUserProfileForm.displayName,
-            avatar_id: this.updateUserProfileForm.avatarId,
-            bio: this.updateUserProfileForm.bio,
-            preferences: {
-                language: this.updateUserProfileForm.language
-            }
-        })
-            .then(({data}) => {
-                this.localeStore.setSelectedLanguage(this.updateUserProfileForm.language, true);
+        axiosInstance
+            .put(`/api/v1/accounts/${this.currentUser.id}`, {
+                username: this.updateUserProfileForm.username,
+                display_name: this.updateUserProfileForm.displayName,
+                avatar_id: this.updateUserProfileForm.avatarId,
+                bio: this.updateUserProfileForm.bio,
+                preferences: {
+                    language: this.updateUserProfileForm.language
+                },
+                external_url: this.updateUserProfileForm.external_url
+            })
+            .then(({ data }) => {
+                this.openSuccessDialog = true;
+
+                this.localeStore.setSelectedLanguage(
+                    this.updateUserProfileForm.language,
+                    true
+                );
                 this.userProfileStore.setUser(data);
 
                 if (this.currentUser) {
@@ -150,100 +190,80 @@ export class UpdateUserProfileStore {
                         username: data.username,
                         display_name: data.display_name,
                         bio: data.bio,
-                        avatar: data.avatar
+                        avatar: data.avatar,
+                        external_url: data.external_url
                     });
                 }
             })
-            .catch(error => this.submissionError = error)
-            .finally(() => this.pending = false);
-    };
-
-    @action
-    updateUserPassword = () => {
-        if (!this.currentUser) {
-            return;
-        }
-
-        if (!this.validatePasswordForm()) {
-            return;
-        }
-
-        this.pending = true;
-
-        axiosInstance.put(`/api/v1/accounts/${this.currentUser.id}`, {
-            password: this.updateUserProfileForm.password
-        })
-            .then(({data}) => {})
-            .catch(error => this.submissionError = error)
-            .finally(() => this.pending = false);
+            .catch(error => (this.submissionError = error))
+            .finally(() => (this.pending = false));
     };
 
     @action
     validateForm = () => {
         const originalUsernameError = this.formErrors.username;
         this.formErrors = {
-            username: validateUsername(this.updateUserProfileForm.username),
+            username:
+                this.currentUser.username !== this.updateUserProfileForm.username
+                    ? validateUsername(this.updateUserProfileForm.username)
+                    : undefined,
             displayName: validateDisplayName(this.updateUserProfileForm.displayName),
-            bio: validateBio(this.updateUserProfileForm.bio)
+            bio: validateBio(this.updateUserProfileForm.bio),
+            external_url: validateExternalUrl(
+                this.updateUserProfileForm.external_url
+            )
         };
 
         if (originalUsernameError === "user.username.has-already-been-taken") {
             this.formErrors.username = originalUsernameError;
         }
 
-        const {username, displayName, bio} = this.formErrors;
+        const { username, displayName, bio, external_url } = this.formErrors;
 
-        return Boolean(!(username || displayName || bio));
-    };
-
-    @action
-    validatePasswordForm = () => {
-        this.formErrors = {
-            password: validateIsCurrentPassword(
-                null,
-                this.updateUserProfileForm.password
-            ),
-            new_password: validatePassword(this.updateUserProfileForm.new_password)
-        };
-
-        const {password, new_password} = this.formErrors;
-
-        return Boolean(!(password || new_password));
+        return Boolean(!(username || displayName || bio || external_url));
     };
 
     @action
     checkUsernameAvailability = () => {
-        const username = this.updateUserProfileForm.username;
+        const username = this.updateUserProfileForm.username.toLowerCase();
         this.checkingUsernameAvailability = true;
 
-        axiosInstance.get(`/api/v1/accounts/username/${username}/is-available`)
-            .then(({data}) => {
+        axiosInstance
+            .get(`/api/v1/accounts/username/${encodeURI(username)}/is-available`)
+            .then(({ data }) => {
                 if (!data.available) {
-                    this.formErrors.username = "user.username.has-already-been-taken";
+                    this.formErrors.username =
+                        "user.username.has-already-been-taken";
                 }
             })
-            .finally(() => this.checkingUsernameAvailability = false);
+            .finally(() => (this.checkingUsernameAvailability = false));
+    };
+
+    @action
+    setOpenSuccessDialog = openSuccessDialog => {
+        this.openSuccessDialog = openSuccessDialog;
     };
 
     @action
     resetForm = () => {
         this.updateUserProfileForm = {
             username: this.currentUser ? this.currentUser.username : "",
-            displayName:  this.currentUser ? this.currentUser.display_name : "",
+            displayName: this.currentUser ? this.currentUser.display_name : "",
             avatarId: undefined,
-            bio: this.currentUser ? this.currentUser.bio : undefined,
-            language: this.localeStore.selectedLanguage,
-            password: undefined,
-            new_password:  undefined
+            bio: this.currentUser ? this.currentUser.bio : "",
+            external_url: this.currentUser ? this.currentUser.external_url : "",
+            language: this.localeStore.selectedLanguage
         };
         this.uploadUserAvatarStore.reset();
-        setTimeout(() => this.formErrors = {
-            username: undefined,
-            displayName: undefined,
-            bio: undefined,
-            language: undefined,
-            password: undefined,
-            new_password: undefined
-        })
-    }
+        setTimeout(
+            () =>
+                (this.formErrors = {
+                    username: undefined,
+                    displayName: undefined,
+                    bio: undefined,
+                    language: undefined,
+                    external_url: undefined
+                })
+        );
+    };
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, Hidden } from '@material-ui/core';
 
-import { TopicsPopular } from "../Topics/components";
+import { TopicsPopular } from '../Topics/components';
 import { AppBar } from '../AppBar/components';
 import { LoginForm } from '../Authorization/components';
 import { Layout } from '../Layout';
@@ -16,7 +16,7 @@ import {
     ExploreOurFeaturesDescription,
 } from '../PrometeusDescription';
 import { WhoToFollow } from '../Follow/components';
-import '../styles/App.sass';
+import { MemezatorDialog } from '../Memezator/components';
 
 const _HomePage = ({ currentUser, homepageTimeline }) => (
     <Grid container>
@@ -27,7 +27,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
                     <Grid item md={3} className="left-banners-container">
                         <PrometeusDescription />
                     </Grid>
-                    <Grid item spacing={28} lg={9} className="right-content-container">
+                    <Grid item lg={9} className="right-content-container">
                         <Grid container>
                             {!currentUser && (
                                 <Grid item xs={12} className="login-form-container">
@@ -57,6 +57,7 @@ const _HomePage = ({ currentUser, homepageTimeline }) => (
             </Layout>
         </Grid>
         <StatusBtfsInfoDialog />
+        <MemezatorDialog />
     </Grid>
 );
 

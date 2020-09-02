@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Tooltip } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { makeStyles, Tooltip } from '@material-ui/core';
+
 import { CopyIcon } from '../../icons/CopyIcon';
 
 const useStyles = makeStyles(theme => ({
@@ -20,10 +21,6 @@ export const CopyToClipboardButton = ({ textToCopy, darkTooltip = false, iconCol
     const classes = useStyles();
     const [copied, setCopied] = useState(false);
     iconColor = disabled ? 'rgba(255, 92, 1, 0.2)' : '#FF5C01';
-
-    console.log('disabled: ', disabled);
-    console.log('iconColor: ', iconColor);
-
     useEffect(
         () => {
             setTimeout(() => setCopied(false), 3000);

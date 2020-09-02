@@ -1,68 +1,84 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { makeStyles, Typography } from '@material-ui/core';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { Notification } from './Notification';
-import { useStore, useAuthorization, useLocalization, useRouter } from '../../store';
-import { SadIconLarge } from '../../icons/SadIconLarge';
-import { BellIcon } from '../../icons/BellIcon';
-import Loader from '../../components/Loader';
-import { Routes } from '../../routes';
-import { Link } from 'mobx-router';
+import React from "react";
+import { observer } from "mobx-react";
+import { Link } from "mobx-router";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Badge, Typography, makeStyles } from "@material-ui/core";
+
+import Loader from "../../components/Loader";
+import { Notification } from "./Notification";
+import { Routes } from "../../routes";
+import { useStore, useAuthorization, useLocalization, useRouter } from "../../store";
+import { SadIconLarge } from "../../icons/SadIconLarge";
+import { BellIcon } from "../../icons/BellIcon";
 
 const useStyles = makeStyles(theme => ({
     centered: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'table',
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "150px",
+        display: "table"
     },
     link: {
         color: theme.palette.primary.main,
-        cursor: 'pointer',
+        cursor: "pointer"
     },
     noNotificationsContainer: {
-        border: `1px solid ${theme.palette.border.main}`,
+        border: `1px solid ${theme.palette.border.main}`
     },
     noNotificationsContent: {
-        display: 'flex',
-        padding: theme.spacing(2),
+        display: "flex",
+        padding: theme.spacing(2)
     },
     noNotificationsLabel: {
-        display: 'flex',
-        flexDirection: 'column',
-        paddingLeft: theme.spacing(2),
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: theme.spacing(2)
     },
     notificationsError: {
         border: `1px solid ${theme.palette.border.main}`,
-        height: '100%',
-        padding: '30px',
+        height: "100%",
+        padding: "30px"
     },
     notificationsErrorInfo: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        marginTop: '65px',
-        fontFamily: 'Museo Sans Cyrl Regular',
-        fontSize: '15px',
-        lineHeight: '26px',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginTop: "65px",
+        fontFamily: "Museo Sans Cyrl Regular",
+        fontSize: "15px",
+        lineHeight: "26px",
         color: theme.palette.text.secondary,
-        '& p': {
-            fontFamily: 'Museo Sans Cyrl Bold',
-            fontSize: '20px',
-            margin: '24px 0 4px 0',
-            color: theme.palette.text.main,
-        },
+        "& p": {
+            fontFamily: "Museo Sans Cyrl Bold",
+            fontSize: "20px",
+            margin: "24px 0 4px 0",
+            color: theme.palette.text.main
+        }
     },
     notificationMarginTop: {
-        marginTop: '10px',
-        [theme.breakpoints.down('sm')]: {
-            marginTop: 0,
-        },
+        marginTop: "10px",
+        [theme.breakpoints.down("sm")]: {
+            marginTop: 0
+        }
     },
+    badgeWrapper: {
+        width: "100%",
+        "&:first-child": {
+            "& .notificationCardBox": {
+                borderRadius: "4px 4px 0 0 !important"
+            }
+        },
+        "&:last-child": {
+            borderBottom: `1px solid ${theme.palette.border.main}`
+        }
+    },
+    badgeCircle: {
+        top: "17px",
+        right: "17px"
+    }
 }));
-
 
 const noNotifications = {
     en: (classes, routerStore) => (
@@ -74,19 +90,17 @@ const noNotifications = {
                         <strong>You have no notifications yet.</strong>
                     </Typography>
                     <Typography>
-                        Get to know other
-                        {' '}
+                        Get to know other{" "}
                         <Link view={Routes.followPeople} store={routerStore}>
                             <a className={classes.link}>users</a>
-                        </Link>
-                        {' '}
+                        </Link>{" "}
                         to start a conversation
                     </Typography>
                 </div>
             </div>
         </div>
     ),
-    kr: (classes,routerStore) => (
+    kr: (classes, routerStore) => (
         <div className={classes.noNotificationsContainer}>
             <div className={classes.noNotificationsContent}>
                 <SadIconLarge />
@@ -95,18 +109,16 @@ const noNotifications = {
                         <strong>아직 알림이 없다. </strong>
                     </Typography>
                     <Typography>
-                        다른
-                        {' '}
+                        다른{" "}
                         <Link view={Routes.followPeople} store={routerStore}>
                             <a className={classes.link}>users</a>
-                        </Link>
-                        {' '}
+                        </Link>{" "}
                         에 대해 알아보고 대화를 시작하십시오.
                     </Typography>
                 </div>
             </div>
         </div>
-    ),
+    )
 };
 
 export const NotificationsList = observer(() => {
@@ -121,7 +133,7 @@ export const NotificationsList = observer(() => {
     if (fetchingCurrentUser) {
         return (
             <div className={classes.centered}>
-                <Loader size="md" />
+                <Loader size="lg" />
             </div>
         );
     }
@@ -139,25 +151,38 @@ export const NotificationsList = observer(() => {
     }
 
     if (notifications.length === 0 && !hasMore) {
-        return noNotifications[locale](classes,routerStore);
+        return noNotifications[locale](classes, routerStore);
     }
 
     return (
-        <div id="notificationsList" className={`paddingBottomRoot ${classes.notificationMarginTop}`}>
+        <div
+            id="notificationsList"
+            className={`paddingBottomRoot ${classes.notificationMarginTop}`}
+        >
             <InfiniteScroll
                 next={fetchNotifications}
                 hasMore={hasMore}
-                loader={(
-                    <div className={classes.centered}><Loader size="md" /></div>
-                )}
+                loader={
+                    <div className={classes.centered}>
+                        <Loader size="lg" />
+                    </div>
+                }
                 dataLength={notifications.length}
-                style={{ overflowY: 'hidden' }}
+                style={{ overflow: "visible" }}
             >
                 {notifications.map(notification => (
-                    <Notification
-                        notification={notification}
+                    <Badge
                         key={notification.id}
-                    />
+                        classes={{
+                            root: classes.badgeWrapper,
+                            anchorOriginTopRightRectangle: classes.badgeCircle
+                        }}
+                        badgeContent="!"
+                        color="primary"
+                        invisible={notification.read}
+                    >
+                        <Notification notification={notification} />
+                    </Badge>
                 ))}
             </InfiniteScroll>
         </div>

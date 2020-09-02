@@ -1,10 +1,11 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
+
 import { StatusList } from './StatusList';
-import { localized } from '../../localization/components';
 import { UnfollowDialog } from '../../Follow/components';
 import Loader from '../../components/Loader';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles((theme) => ({
     centered: {

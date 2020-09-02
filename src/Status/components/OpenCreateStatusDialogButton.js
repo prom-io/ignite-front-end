@@ -37,4 +37,4 @@ const mapMobxToProps = ({ createStatus }) => ({
     setCreateStatusDialogOpen: createStatus.setCreateStatusDialogOpen,
 });
 
-export const    OpenCreateStatusDialogButton = inject(mapMobxToProps)(observer(_OpenCreateStatusDialogButton));
+export const OpenCreateStatusDialogButton = inject(mapMobxToProps)(observer(_OpenCreateStatusDialogButton));

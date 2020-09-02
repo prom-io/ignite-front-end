@@ -1,18 +1,20 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Typography, makeStyles, Grid } from '@material-ui/core';
+
 import { StatusListItem } from './StatusListItem';
 import { StatusCommentsList } from './StatusCommentsList';
-import { localized } from '../../localization/components';
-import { BackButton } from '../../components/BackButton';
 import { UnfollowDialog } from '../../Follow/components';
+import { BackButton } from '../../components/BackButton';
 import Loader from '../../components/Loader';
+import { localized } from '../../localization/components';
 
 const useStyles = makeStyles(() => ({
     centered: {
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'table',
+        marginTop: '150px'
     },
 }));
 
@@ -85,6 +87,7 @@ const _StatusPageContainer = ({
                     onFavouriteStatusChange={handleFavouriteStatusChange}
                     currentUserIsAuthor={currentUser && currentUser.id === status.account.id}
                     displayMenu={Boolean(currentUser)}
+                    isMeme={status.is_meme}
                 />
                 <UnfollowDialog
                     username={currentStatusUsername}

@@ -47,7 +47,7 @@ const _UserProfileHeaderButton = ({ username, onUnfollowRequest, l }) => {
             className={[classes.followBtn, statusBtn].join(' ')}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => onUnfollowRequest(username)}
+            onClick={() => onUnfollowRequest(true)}
             disableElevation
         >
             {l(`user.profile.${statusBtn}`)}

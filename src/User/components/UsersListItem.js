@@ -1,11 +1,11 @@
 import React from 'react';
-import { Avatar, Typography, makeStyles } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import { Avatar, Typography, makeStyles } from '@material-ui/core';
 
-import { trimString } from '../../utils/string-utils';
-import { Routes } from '../../routes';
 import { UserFollowButton } from './UserFollowButton';
 import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { trimString } from '../../utils/string-utils';
+import { Routes } from '../../routes';
 
 const useStyles = makeStyles(theme => ({
     usersList: {
@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('sm')]: {
             maxWidth: '140px',
         },
-    }
+    },
 }));
 
 export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser }) => {
@@ -87,10 +87,7 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
         >
             <Avatar
                 className={classes.usersListAvatar}
-                src={
-                    user.avatar
-                    || 'http://localhost:3000/avatars/original/missing.png'
-                }
+                src={ user.avatar }
             />
             <div className={classes.usersListContent}>
                 <div className={classes.usersListRow}>
@@ -111,7 +108,7 @@ export const UsersListItem = ({ user, actionWithFollow, routerStore, currentUser
                             )}
                     </ClickEventPropagationStopper>
                 </div>
-                <p>{user.bio}</p>
+                <Typography>{user.bio}</Typography>
             </div>
         </Link>
     );

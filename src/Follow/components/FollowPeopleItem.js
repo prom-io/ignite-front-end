@@ -1,63 +1,63 @@
-import React from 'react';
-import { inject } from 'mobx-react';
-import { Avatar, Typography, makeStyles } from '@material-ui/core';
-import { Link } from 'mobx-router';
+import React from "react";
+import { inject } from "mobx-react";
+import { Avatar, Typography, makeStyles } from "@material-ui/core";
+import { Link } from "mobx-router";
 
-import { trimString } from '../../utils/string-utils';
-import { Routes } from '../../routes';
-import { FollowButton } from '.';
-import { ClickEventPropagationStopper } from '../../ClickEventProgatationStopper';
+import { FollowButton } from "./";
+import { ClickEventPropagationStopper } from "../../ClickEventProgatationStopper";
+import { trimString } from "../../utils/string-utils";
+import { Routes } from "../../routes";
 
 const useStyles = makeStyles(theme => ({
     followPeopleItem: {
-        display: 'flex',
+        display: "flex",
         padding: 16,
         border: `1px solid ${theme.palette.border.main}`,
-        borderTop: 'none',
-        textDecoration: 'none',
+        borderTop: "none",
+        textDecoration: "none",
 
-        '&:hover': {
-            background: theme.palette.background.light,
-        },
+        "&:hover": {
+            background: theme.palette.background.light
+        }
     },
     followPeopleItemAvatar: {
         marginRight: 12,
         height: 35,
-        width: 35,
+        width: 35
     },
     followPeopleItemContent: {
-        width: '100%',
+        width: "100%",
 
-        '& > p': {
+        "& > p": {
             fontWeight: 300,
-            fontSize: '13px',
-            lineHeight: '16px',
-            margin: '4px 0 0',
-            color: theme.palette.text.main,
-        },
+            fontSize: "13px",
+            lineHeight: "16px",
+            margin: "4px 0 0",
+            color: theme.palette.text.main
+        }
     },
     followPeopleItemRow: {
-        display: 'flex',
-        justifyContent: 'space-between',
+        display: "flex",
+        justifyContent: "space-between",
 
-        '& p': {
+        "& p": {
             fontWeight: 600,
-            fontSize: '15px',
-            lineHeight: '18px',
-            textDecoration: 'none',
-            color: theme.palette.text.main,
+            fontSize: "15px",
+            lineHeight: "18px",
+            textDecoration: "none",
+            color: theme.palette.text.main
         },
 
-        '& small': {
+        "& small": {
             fontWeight: 300,
-            fontSize: '15px',
-            lineHeight: '18px',
-            color: theme.palette.text.secondary,
-        },
-    },
+            fontSize: "15px",
+            lineHeight: "18px",
+            color: theme.palette.text.secondary
+        }
+    }
 }));
 
-const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
+const _FollowPeopleItem = ({ currentUser, user, actionWithFollow, routerStore }) => {
     const classes = useStyles();
 
     return (
@@ -68,38 +68,31 @@ const _FollowPeopleItem = ({ user, actionWithFollow, routerStore }) => {
             params={{ username: user.username }}
             store={routerStore}
         >
-            <Avatar
-                className={classes.followPeopleItemAvatar}
-                src={
-                    user.avatar
-                    || 'http://localhost:3000/avatars/original/missing.png'
-                }
-            />
+            <Avatar className={classes.followPeopleItemAvatar} src={user.avatar} />
             <div className={classes.followPeopleItemContent}>
                 <div className={classes.followPeopleItemRow}>
                     <Typography>
                         <div>{trimString(user.display_name, 16)}</div>
-                        <small>
-                            @
-                            {trimString(user.username, 16)}
-                        </small>
+                        <small>@{trimString(user.username, 16)}</small>
                     </Typography>
-                    <ClickEventPropagationStopper>
-                        <FollowButton
-                            user={user}
-                            actionWithFollow={actionWithFollow}
-                            size="lg"
-                        />
-                    </ClickEventPropagationStopper>
+                    {currentUser && currentUser.username !== user.username && (
+                        <ClickEventPropagationStopper>
+                            <FollowButton
+                                user={user}
+                                actionWithFollow={actionWithFollow}
+                                size="lg"
+                            />
+                        </ClickEventPropagationStopper>
+                    )}
                 </div>
-                <p>{user.bio}</p>
+                <Typography>{user.bio}</Typography>
             </div>
         </Link>
     );
 };
 
 const mapMobxToProps = ({ store }) => ({
-    routerStore: store,
+    routerStore: store
 });
 
 export const FollowPeopleItem = inject(mapMobxToProps)(_FollowPeopleItem);

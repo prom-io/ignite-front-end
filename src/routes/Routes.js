@@ -5,7 +5,6 @@ import {
     DistributedStoragePage,
     BinanceSmartChainPage,
     ChatPage,
-    DescriptionPage,
     HomePage,
     NotificationsPage,
     SetEnglishLanguageAndRedirectToHomePage,
@@ -15,19 +14,21 @@ import {
     TermsAndPoliciesPage,
     TopicsPage,
     TopicPage,
+    MemezatorPage,
+    TransactionsPage,
     UserProfilePage,
     UserEditPage,
     SignUpPage,
+    SearchPeoplePage,
 } from '../pages';
 import { store } from '../store';
-import { NotFound } from '../pages/NotFound';
+import { NotFoundPage } from '../pages';
 
 export const Routes = {
     home: new Route({
         path: '/',
         component: <HomePage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
             store.timelineSwitcher.setSwitchOnUserChange(true);
 
             if (store.authorization.currentUser && store.authorization.currentUser.follows_count !== 0) {
@@ -46,7 +47,7 @@ export const Routes = {
     }),
     notFound: new Route({
         path: '/404',
-        component: <NotFound/>
+        component: <NotFoundPage />,
     }),
     en: new Route({
         path: '/en',
@@ -60,38 +61,55 @@ export const Routes = {
         path: '/notifications',
         component: <NotificationsPage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
+            if (store.authorization.currentUser) {
+                store.notifications.fetchNotifications();
+            }
         },
         onExit: () => {
+            store.notifications.resetNotifications();
         },
     }),
-    chat: new Route({
-        path: '/chat',
-        component: <ChatPage />,
-        beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
-        },
-        onExit: () => {
-        },
-    }),
+    // chat: new Route({
+    //     path: '/chat',
+    //     component: <ChatPage />,
+    //     beforeEnter: () => {
+    //         
+    //     },
+    //     onExit: () => {
+    //     },
+    // }),
     followPeople: new Route({
         path: '/follow-people',
         component: <FollowPeoplePage />,
         beforeEnter: () => {
             if (store.authorization.currentUser || !store.followPeople.followPeopleItems.length) {
-                store.followPeople.fetchFollowPeople();
+                store.followPeople.fetchFollowPeople(true);
             }
-            store.userCard.setDisplayMode('currentUser');
         },
         onExit: () => {
             store.followPeople.reset();
+        },
+    }),
+    searchPeople: new Route({
+        path: '/search',
+        component: <SearchPeoplePage />,
+        beforeEnter: (route, params, _store, queryParams) => {
+            if (queryParams.q) {
+                store.searchUsers.fetchSearchPeople(queryParams.q, true);
+            }
+        },
+        onParamsChange: (route, params, _store, queryParams) => {
+            store.searchUsers.fetchSearchPeople(queryParams.q, true);
+        },
+        onExit: () => {
+            store.searchUsers.resetSearchPage();
         },
     }),
     userEdit: new Route({
         path: '/edit-profile',
         component: <UserEditPage />,
         beforeEnter: () => {
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         onExit: () => {
             store.userProfileUpdate.resetForm();
@@ -103,12 +121,12 @@ export const Routes = {
         beforeEnter: () => {
             store.topicsPopular.fetchTopicsPopular();
             store.topicStatuses.fetchAllStatuses();
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         beforeExit: () => {
             store.topicStatuses.reset();
             store.topicsPopular.reset();
-        }
+        },
     }),
     topic: new Route({
         path: '/topic/:title',
@@ -116,8 +134,12 @@ export const Routes = {
         beforeEnter: (route, params) => {
             store.topicsPopular.fetchTopicsPopular();
             store.topicStatuses.fetchTopicInfo(params.title);
-            store.userCard.setDisplayMode('currentUser');
         },
+        onEnter: (route, params, store1) => { //
+            if (params.title === "memezator") { //
+                store1.router.goTo(Routes.memezator, {}) //
+            } //
+        }, //
         onParamsChange: (route, params) => {
             store.topicStatuses.resetStatuses();
             store.topicStatuses.fetchTopicInfo(params.title);
@@ -130,15 +152,6 @@ export const Routes = {
     terms: new Route({
         path: '/terms-and-policy',
         component: <TermsAndPoliciesPage />,
-        beforeEnter: () => {
-
-        },
-        onExit: () => {
-        },
-    }),
-    description: new Route({
-        path: '/description',
-        component: <DescriptionPage />,
         beforeEnter: () => {
 
         },
@@ -177,7 +190,6 @@ export const Routes = {
                 store.userProfile.reset();
                 store.userProfile.fetchUserByUsername(params.username);
             }
-            store.userCard.setDisplayMode('userByAddress');
             store.userProfile.activeTab = 'posts';
             store.userProfileTimeline.addStatusAuthorSubscriptionListener({
                 id: 'userProfileAuthorSubscriptionListener',
@@ -234,7 +246,7 @@ export const Routes = {
             store.statusComments.setOnlyAddCommentsToStatus(params.id);
             store.statusComments.setBaseUrl(`/api/v1/statuses/${params.id}/comments`);
             store.statusComments.fetchStatuses();
-            store.userCard.setDisplayMode('currentUser');
+            
         },
         onParamsChange: (route, params) => {
             store.statusPage.fetchStatus(params.id);
@@ -246,6 +258,37 @@ export const Routes = {
         onExit: () => {
             store.statusPage.reset();
             store.statusComments.reset();
+        },
+    }),
+    memezator: new Route({
+        path: '/memezator',
+        component: <MemezatorPage />,
+        beforeEnter: () => {
+            store.topicsPopular.fetchTopicsPopular(5); //
+            if (store.authorization.currentUser) {
+                store.memezatorActions.fetchAccessToMemezatorPosting();
+            }
+            store.memezatorStatuses.fetchMemezatorStatuses();
+            store.memezatorWinners.fetchRecentWinners();
+        },
+        onExit: () => {
+            store.memezatorActions.reset();
+            store.memezatorStatuses.reset();
+            store.memezatorWinners.reset();
+            store.whoToFollow.reset(); //
+            store.topicsPopular.reset(); //
+        },
+    }),
+    transactions: new Route({
+        path: '/transactions',
+        component: <TransactionsPage />,
+        beforeEnter: () => {
+            if (store.authorization.currentUser) {
+                store.transactions.fetchTransactions();
+            }
+        },
+        onExit: () => {
+            store.transactions.reset();
         },
     }),
 };

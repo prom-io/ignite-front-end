@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles, Typography, SvgIcon } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import { makeStyles, Typography, SvgIcon } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     appBarLink: {
@@ -47,6 +47,12 @@ const useStyles = makeStyles(theme => ({
     hidden: {
         display: 'none',
     },
+    barLink: {
+        paddingLeft: '8px',
+        [theme.breakpoints.down("sm")]: {
+            display: 'none',
+        }
+    }
 }));
 
 export const AppBarLink = ({ routerStore, targetView, viewParameters, active, icon, text, id, hidden }) => {
@@ -65,7 +71,7 @@ export const AppBarLink = ({ routerStore, targetView, viewParameters, active, ic
                 id={id}
             >
                 {icon}
-                <Typography variant="body1" style={{ paddingLeft: '8px' }} className="nav-bar-link">
+                <Typography variant="body1" classes={{root: classes.barLink}}>
                     <span>{text}</span>
                 </Typography>
             </div>

@@ -1,20 +1,14 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Link } from 'mobx-router';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import BinanceBanner from '../images/binance-banner.jpg';
-import JustBanner from '../images/just-banner.png';
-import { DescriptionLinks } from '../components/DescriptionLinks';
-import { BtfsIcon } from '../icons/BtfsIcon';
-import { Routes } from '../routes';
+import { Grid, makeStyles } from '@material-ui/core';
+
 import { localized } from '../localization/components';
-import { DescriptionUnauthBanner } from './DescriptionUnauthBanner';
-import { DescriptionStoaBanner } from './DescriptionStoaBanner';
+import bannerBinanceSmartChain from "../images/banner-binance-smart-chain.png";
+import { SearchIcon } from '../icons/SearchIcon';
+import { FriendsIcon } from '../icons/FriendsIcon';
+import { CommentIcon } from '../icons/CommentIcon';
 
 const useStyles = makeStyles(theme => ({
-    prometeusLink: {
-        color: theme.palette.primary.main,
-    },
     marginDescription: {
         position: 'relative',
         top: 44,
@@ -87,7 +81,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src="/descriptions/search.svg" />
+                              <SearchIcon />
                             </div>
                             <p>
                                 {l('user.card.follow-your-interests')}
@@ -96,7 +90,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src="/descriptions/friends.svg" />
+                                <FriendsIcon/>
                             </div>
                             <p>
                                 {l('user.card.hear-what-people-talking-about')}
@@ -105,7 +99,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
 
                         <div className={classes.exploreCardBodyBox}>
                             <div className={classes.exploreCardImgBox}>
-                                <img src="/descriptions/comment.svg" />
+                                <CommentIcon commented={true} />
                             </div>
                             <p>
                                 {l('user.card.join-the-conversation')}
@@ -122,7 +116,7 @@ const _ExploreOurFeaturesDescription = ({ routerStore, l, locale, currentUser })
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <img src="/descriptions/banner-binance-smart-chain.png" />
+                    <img src={bannerBinanceSmartChain} />
                 </a>
             </Grid>
         </Grid>

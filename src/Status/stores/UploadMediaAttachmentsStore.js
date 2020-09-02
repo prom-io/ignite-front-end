@@ -1,7 +1,9 @@
-import {action, observable} from "mobx";
-import randomString from "random-string";
-import {axiosInstance} from "../../api/axios-instance";
-import {FileContainer} from "../../utils/file-utils";
+import { action, observable } from "mobx";
+import generator from "generate-password";
+import { axiosInstance } from "../../api/axios-instance";
+import { FileContainer } from "../../utils/file-utils";
+
+const MAX_FILE_SIZE = 3145728;
 
 export class UploadMediaAttachmentsStore {
     @observable
@@ -11,7 +13,18 @@ export class UploadMediaAttachmentsStore {
     uploadPending = false;
 
     @observable
-    error = undefined;
+    showErrorModal = false;
+
+    @observable
+    errorModalLabel = undefined;
+
+    @action
+    setShowErrorModal = (showErrorModal, errorModalLabel) => {
+        this.showErrorModal = showErrorModal;
+        if (showErrorModal) {
+            this.errorModalLabel = errorModalLabel;
+        }
+    };
 
     @action
     attachFiles = files => {
@@ -22,13 +35,24 @@ export class UploadMediaAttachmentsStore {
         }
 
         for (let file of files) {
-            const fileId = randomString({length: 7});
+            if (file.size > MAX_FILE_SIZE) {
+                this.setShowErrorModal(true, "file.too-large");
+                continue;
+            }
+
+            const fileId = generator.generate({
+                length: 7,
+                numbers: false,
+                symbols: false,
+                lowercase: true,
+                uppercase: false
+            });
             this.uploadPending = true;
             this.mediaAttachmentsFiles = [
                 ...this.mediaAttachmentsFiles,
                 new FileContainer(file, fileId, true)
             ];
-            this.uploadFile(file, fileId)
+            this.uploadFile(file, fileId);
         }
     };
 
@@ -37,34 +61,40 @@ export class UploadMediaAttachmentsStore {
         const formData = new FormData();
         formData.append("file", file);
 
-        axiosInstance.post("/api/v1/media", formData)
-            .then(({data}) => {
+        axiosInstance
+            .post("/api/v1/media", formData)
+            .then(({ data }) => {
                 try {
-                    this.mediaAttachmentsFiles = this.mediaAttachmentsFiles.map(fileContainer => {
-                        if (fileContainer.fileId === localFileId) {
-                            fileContainer.pending = false;
-                            fileContainer.uploadedMediaAttachment = data;
+                    this.mediaAttachmentsFiles = this.mediaAttachmentsFiles.map(
+                        fileContainer => {
+                            if (fileContainer.fileId === localFileId) {
+                                fileContainer.pending = false;
+                                fileContainer.uploadedMediaAttachment = data;
+                            }
+                            return fileContainer;
                         }
-                        return fileContainer;
-                    });
+                    );
                 } catch (error) {
-                    console.log(error);
                     throw error;
                 }
-
             })
-            .catch(error => this.error = error)
-            .finally(() => this.uploadPending = false);
+            .catch(() => {
+                this.setShowErrorModal(true, "file.something-wrong");
+                this.removeAttachedFileById(localFileId);
+            })
+            .finally(() => (this.uploadPending = false));
     };
 
     @action
     removeAttachedFileById = id => {
-        this.mediaAttachmentsFiles = this.mediaAttachmentsFiles.filter(fileContainer => fileContainer.fileId !== id);
+        this.mediaAttachmentsFiles = this.mediaAttachmentsFiles.filter(
+            fileContainer => fileContainer.fileId !== id
+        );
     };
 
     @action
     reset = () => {
         this.uploadPending = false;
         this.mediaAttachmentsFiles = [];
-    }
+    };
 }

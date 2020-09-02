@@ -1,15 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Link } from 'mobx-router';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, makeStyles } from '@material-ui/core';
 
 import { Routes } from '../../routes';
 import { localized } from '../../localization/components';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     editButtonWrapper: {
-        marginTop: '10px',
         textDecoration: 'none',
         maxWidth: '204px',
         height: '40px',
@@ -19,7 +17,6 @@ const useStyles = makeStyles(theme => ({
             textTransform: 'capitalize',
             width: '100%',
             height: '40px',
-            border: `1px solid ${theme.palette.primary.main}`,
             borderRadius: '30px',
             background: 'transparent',
             fontWeight: 600,
@@ -40,7 +37,7 @@ const _UpdateUserProfileButton = ({ routerStore, l }) => {
         >
             <Button
                 color="primary"
-                variant="text"
+                variant="outlined"
             >
                 {l('user.edit-profile')}
             </Button>

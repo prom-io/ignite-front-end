@@ -1,27 +1,27 @@
-import React from 'react';
-import { Grid, Typography, makeStyles } from '@material-ui/core';
-import { observer } from 'mobx-react';
+import React from "react";
+import { observer } from "mobx-react";
+import { Grid, Typography, makeStyles } from "@material-ui/core";
 
-import { AppBar } from '../AppBar/components';
-import { UpdateUserContainer } from '../User/components';
-import { Layout } from '../Layout';
-import { LoginForm } from '../Authorization/components';
+import { AppBar } from "../AppBar/components";
+import { UpdateUserContainer } from "../User/components";
+import { Layout } from "../Layout";
+import { LoginForm } from "../Authorization/components";
 import {
     PrometeusDescription,
-    ExploreOurFeaturesDescription,
-} from '../PrometeusDescription';
-import { useAuthorization, useLocalization } from '../store/hooks';
+    ExploreOurFeaturesDescription
+} from "../PrometeusDescription";
+import { useAuthorization, useLocalization } from "../store";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     editTitle: {
         fontWeight: 600,
-        fontSize: '20px',
-        lineHeight: '24px',
-        marginBottom: '24px',
-        [theme.breakpoints.down('sm')]: {
-            display: 'none',
-        },
-    },
+        fontSize: "20px",
+        lineHeight: "24px",
+        marginBottom: "24px",
+        [theme.breakpoints.down("sm")]: {
+            display: "none"
+        }
+    }
 }));
 
 export const UserEditPage = observer(() => {
@@ -38,15 +38,16 @@ export const UserEditPage = observer(() => {
                         <Grid item md={3} className="left-banners-container">
                             <PrometeusDescription />
                         </Grid>
-                        <Grid
-                            item
-                            spacing={28}
-                            lg={9}
-                            className="right-content-container"
-                        >
+                        <Grid item lg={9} className="right-content-container">
                             {!currentUser ? (
                                 <Grid item className="login-form-container">
-                                    <LoginForm hideSignUpButton={process.env.REACT_APP_HIDE_SIGN_UP_BUTTON === 'true'} />
+                                    <LoginForm
+                                        hideSignUpButton={
+                                            process.env
+                                                .REACT_APP_HIDE_SIGN_UP_BUTTON ===
+                                            "true"
+                                        }
+                                    />
                                 </Grid>
                             ) : (
                                 <>
@@ -54,7 +55,7 @@ export const UserEditPage = observer(() => {
                                         className={classes.editTitle}
                                         variant="h6"
                                     >
-                                        {l('user.edit-profile')}
+                                        {l("user.edit-profile")}
                                     </Typography>
                                     <UpdateUserContainer />
                                 </>

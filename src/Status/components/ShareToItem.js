@@ -11,14 +11,11 @@ import {
 } from "react-share";
 
 import { trimString } from "../../utils/string-utils";
-import { useLocalization } from "../../store/hooks";
+import { useLocalization } from "../../store";
 
 const useStyles = makeStyles(() => ({
     shareButton: {
         width: "100%"
-    },
-    menuItemGutters: {
-        paddingLeft: 0
     },
     listItemIconRoot: {
         minWidth: 15,

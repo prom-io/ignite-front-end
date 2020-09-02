@@ -2,24 +2,29 @@ import { createMuiTheme } from '@material-ui/core';
 
 export const orange = createMuiTheme({
     overrides: {
+        MuiGrid: {
+            root: {
+                maxWidth: '100%',
+                margin: 0
+            },
+            container: {
+                maxWidth: '100%',
+                margin: 0
+            },
+            'spacing-xs-2': {
+                maxWidth: '100%',
+                margin: 0
+            }
+        },
         MuiTouchRipple: {
             root: {
                 background: 'rgba(255,255,255,0)',
             },
         },
-        MuiIconButton: {
-            root: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
-        },
-        MuiListItem: {
-            button: {
-                '&:hover': {
-                    backgroundColor: 'rgba(255, 92, 1, 0.2)',
-                },
-            },
+        MuiDialog: {
+            paperWidthMd: {
+                maxWidth: 600,
+            }
         },
         MuiDialogContent: {
             root: {
@@ -27,12 +32,37 @@ export const orange = createMuiTheme({
             },
         },
         MuiButton: {
+            disableElevation: true,
             root: {
                 borderRadius: '30px',
             },
+            outlinedPrimary: {
+                border: "1px solid #FF5C01"
+            },
+            contained: {
+                boxShadow: 'none',
+            },
+            containedPrimary: {
+                '&:hover': {
+                    boxShadow: 'none',
+                },
+                '&:active': {
+                    boxShadow: 'none',
+                },
+            }
         },
+        MuiTypography:{
+            root: {
+                fontFamily: 'Museo Sans Cyrl Regular',
+            }
+        }
     },
     palette: {
+        action: {
+            disabledBackground: '#ffdecc',
+            disabled: '#FFFFFF' ,
+            hover: '#ffdecc',
+        },
         common: {
             black: '#000',
             white: '#fff',
@@ -75,6 +105,10 @@ export const orange = createMuiTheme({
     typography: {
         button: {
             textTransform: 'none',
+        },
+        body2: {
+            fontWeight: 600,
+            fontSize: '14px',
         },
         fontFamily: 'Museo Sans Cyrl Regular',
     },

@@ -1,11 +1,11 @@
 import React from 'react';
 import { inject } from 'mobx-react';
-import { Avatar, makeStyles } from '@material-ui/core';
 import { Link } from 'mobx-router';
+import { Avatar, makeStyles } from '@material-ui/core';
 
+import { FollowButton } from './';
 import { trimString } from '../../utils/string-utils';
 import { Routes } from '../../routes';
-import { FollowButton } from '.';
 
 const useStyles = makeStyles(theme => ({
     whoToFollowBodyItem: {
@@ -62,10 +62,7 @@ const _SideBarList = ({ users, actionWithFollow, routerStore }) => {
             >
                 <Avatar
                     className={classes.whoToFollowBodyItemAvatar}
-                    src={
-                        user.avatar
-                        || 'http://localhost:3000/avatars/original/missing.png'
-                    }
+                    src={ user.avatar }
                 />
             </Link>
             <div className={classes.whoToFollowBodyItemContent}>

@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     transactionHashLink: {
         textDecoration: "none",
         color: theme.palette.text.primary,
+        overflowWrap: "break-word",
         "&:hover": {
             textDecoration: "underline"
         }

@@ -10,7 +10,7 @@ import {
 
 import { CustomDialogTitle } from "../../Authorization/components";
 import { localized } from "../../localization/components";
-import { getTimeToEST } from "../../utils/date-utlis";
+import { getTimeToCET } from "../../utils/date-utlis";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
 
@@ -187,11 +187,11 @@ const _TransactionDetailsDialog = ({
                 <TableItem>
                     <Typography color="textSecondary">
                         {currentTransaction.created_at &&
-                            getTimeToEST(
+                            getTimeToCET(
                                 currentTransaction.created_at,
                                 "dd MMM yyyy, HH:mm:ss, zzz"
                             )}{" "}
-                        (EST)
+                        (CET)
                     </Typography>
                 </TableItem>
                 <TableItem>

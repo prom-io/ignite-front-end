@@ -1,8 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { format } from "date-fns";
 import { Typography, makeStyles } from "@material-ui/core";
 
-import { getTimeToEST } from "../../utils/date-utlis";
 import { useLocalization } from "../../store";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
             maxWidth: "90%"
         },
         [theme.breakpoints.down("xs")]: {
-            fontSize: "14px",
+            fontSize: "14px"
         }
     },
     transactionBalance: {
@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
         lineHeight: "18px",
         marginBottom: "5px",
         [theme.breakpoints.down("xs")]: {
-            fontSize: "14px",
+            fontSize: "14px"
         }
     },
     transactionGreen: {
@@ -180,7 +180,10 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                         classes={{ root: classes.transactionSmallText }}
                         color="textSecondary"
                     >
-                        {getTimeToEST(transaction.created_at)}
+                        {format(
+                            new Date(transaction.created_at),
+                            "dd.MM.yyyy, HH:mm:ss"
+                        )}
                     </Typography>
                 </div>
                 <div style={{ width: "25%" }}>

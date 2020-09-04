@@ -271,7 +271,7 @@ export const kr = {
     post: '게시물',
     settings: '설정',
     'file.too-large': '파일은 3Mb 이하이어야 합니다.',
-    'file.something-wrong': 'Something went wrong',
+    'dialog.something-wrong': 'Something went wrong',
     'dialog.sorry': 'Sorry!',
     'dialog.ok': '오케이',
     'memezator.rules': 'Rules',

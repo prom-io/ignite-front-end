@@ -19,16 +19,24 @@ export class MemezatorDialogStore {
     openDialogByError = error => {
         if (error.response && error.response.status === 403) {
             this.memezatorDialogOpen = true;
-            if (error.response.data.message.includes("Your vote is already in, please choose more wisely next time.")) {
+            const errorCode = error.response.data.code;
+
+            if (errorCode === "CANNOT_DISLIKE_A_MEME") {
                 this.memezatorError = "memezator.dialog.unlike";
-            } else if (error.response.data.message.includes("We appreciate that you like your meme")) {
+            } else if (errorCode === "CANNOT_VOTE_FOR_OWN_MEME") {
                 this.memezatorError = "memezator.dialog.own-meme";
-            } else if (error.response.data.message.includes("You can vote for a meme here only once per day")) {
+            } else if (errorCode === "LIMIT_EXCEEDED") {
                 this.memezatorError = "memezator.dialog.already";
-            } else if (error.response.data.message.includes("old memes")) {
+            } else if (errorCode === "CANNOT_VOTE_FOR_OLD_MEMES") {
                 this.memezatorError = "memezator.dialog.old-meme";
-            } else if (error.response.data.message.includes("Statuses which have not been liked by current user can't be unliked")) {
+            } else if (errorCode === "STATUS_HAVE_NOT_BEEN_LIKED") {
                 this.memezatorError = "dialog.favourite.can-not-unliked";
+            } else if (errorCode === "DOESNT_HAVE_ENOUGH_POSTS") {
+                this.memezatorError = "status.placeholder.have-no-posts";
+            } else if (errorCode === "MISSING_AVATAR_OR_USERNAME_OR_BIO") {
+                this.memezatorError = "status.placeholder.missing-info";
+            } else {
+                this.memezatorError = "dialog.something-wrong";
             }
         }
     };

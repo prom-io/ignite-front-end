@@ -272,7 +272,7 @@ export const en = {
     'topic.this-page': 'this page',
     post: 'Post',
     'file.too-large': 'File must be 3Mb or smaller',
-    'file.something-wrong': 'Something went wrong',
+    'dialog.something-wrong': 'Something went wrong',
     'dialog.sorry': 'Sorry!',
     'dialog.ok': 'Ok',
     'memezator.rules': 'Rules',

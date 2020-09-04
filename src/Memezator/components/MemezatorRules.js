@@ -93,14 +93,16 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                             variant="h6"
                         >
                             {l("memezator.voting-power")}:{" "}
-                            {actionRights ? actionRights.voting_power : 0}
+                            {actionRights && actionRights.voting_power
+                                ? actionRights.voting_power
+                                : 0}
                         </Typography>
                         <Typography
                             classes={{ root: classes.memezatorRulesPower }}
                             variant="h6"
                         >
                             {l("memezator.tokens")}:{" "}
-                            {actionRights
+                            {actionRights && actionRights.eth_prom_tokens
                                 ? Number(actionRights.eth_prom_tokens).toFixed(2)
                                 : "0.00"}
                         </Typography>

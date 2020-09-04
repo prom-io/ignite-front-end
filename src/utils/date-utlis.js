@@ -1,5 +1,10 @@
-import { differenceInSeconds, formatDistance, formatDistanceStrict } from "date-fns";
-import { format as tzFormat, utcToZonedTime } from "date-fns-tz";
+import {
+    format,
+    differenceInSeconds,
+    formatDistance,
+    formatDistanceStrict
+} from "date-fns";
+import { format as tzFormat, utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
 
 export const getCreatedAtLabel = (createdAt, dateFnsLocale, addSuffix = true) => {
     const now = new Date();
@@ -17,8 +22,19 @@ export const getCreatedAtLabel = (createdAt, dateFnsLocale, addSuffix = true) =>
     });
 };
 
-export const getTimeToEST = (date, pattern = "dd.MM.yyyy, HH:mm:ss") => {
-    return tzFormat(utcToZonedTime(new Date(date), "America/New_York"), pattern, {
-        timeZone: "America/New_York"
+export const getTimeToCET = (date, pattern = "dd.MM.yyyy, HH:mm:ss") => {
+    return tzFormat(utcToZonedTime(new Date(date), "Europe/Berlin"), pattern, {
+        timeZone: "Europe/Berlin"
+    });
+};
+
+export const getTimeWhenCETIsMidnight = () => {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const cetTime = zonedTimeToUtc(
+        new Date(format(new Date(), "MM/dd/yyyy")),
+        "Europe/Berlin"
+    );
+    return tzFormat(utcToZonedTime(new Date(cetTime), timeZone), "HH:mm", {
+        timeZone: timeZone
     });
 };

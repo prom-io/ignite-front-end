@@ -21,6 +21,7 @@ import { CreateStatusFormMediaAttachments } from "./CreateStatusFormMediaAttachm
 import { RepostedStatusContent } from "./RepostedStatusContent";
 import Loader from "../../components/Loader";
 import { localized } from "../../localization/components";
+import { getTimeWhenCETIsMidnight } from "../../utils/date-utlis";
 import { ListIcon } from "../../icons/ListIcon";
 
 const useStyles = makeStyles(theme => ({
@@ -93,14 +94,15 @@ const getDisabledLabelForAttachmentsInput = (maxAttachments, l) => {
 
 const getFormPlaceholder = (actionRights, l) => {
     if (actionRights && !actionRights.can_create) {
+        const time = getTimeWhenCETIsMidnight();
         if (actionRights.cannot_create_reason_code === "LIMIT_EXCEEDED") {
-            return l("status.placeholder.already-published");
+            return l("status.placeholder.already-published") + `${time} GMT (00:00 CET)`;
         } else if (actionRights.cannot_create_reason_code === "DOESNT_HAVE_ENOUGH_POSTS") {
             return l("status.placeholder.have-no-posts");
         } else if (actionRights.cannot_create_reason_code === "MISSING_AVATAR_OR_USERNAME_OR_BIO") {
             return l("status.placeholder.missing-info");
         } else if (actionRights.cannot_create_reason_code === "MEMES_LIMIT_EXCEEDED_FOR_CURRENT_CONTEST") {
-            return l("status.placeholder.posts-limit");
+            return l("status.placeholder.posts-limit") + `${time} GMT (00:00 CET)`;
         }
     }
 

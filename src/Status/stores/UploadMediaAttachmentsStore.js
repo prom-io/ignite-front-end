@@ -79,7 +79,7 @@ export class UploadMediaAttachmentsStore {
                 }
             })
             .catch(() => {
-                this.setShowErrorModal(true, "file.something-wrong");
+                this.setShowErrorModal(true, "dialog.something-wrong");
                 this.removeAttachedFileById(localFileId);
             })
             .finally(() => (this.uploadPending = false));

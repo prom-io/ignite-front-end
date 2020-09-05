@@ -45,9 +45,9 @@ import { TransactionsStore } from '../Transactions/stores';
 import { WebsocketStore } from '../websocket/stores';
 
 const uploadMediaAttachments = new UploadMediaAttachmentsStore();
-const createStatus = new CreateStatusStore(uploadMediaAttachments);
-const authorization = new AuthorizationStore(createStatus);
 const memezatorDialog = new MemezatorDialogStore();
+const createStatus = new CreateStatusStore(uploadMediaAttachments, memezatorDialog);
+const authorization = new AuthorizationStore(createStatus);
 const globalTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, '/api/v1/timelines/global', false, true);
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();

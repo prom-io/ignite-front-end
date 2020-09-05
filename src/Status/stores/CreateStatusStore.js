@@ -66,9 +66,11 @@ export class CreateStatusStore {
     }
 
     uploadMediaAttachmentsStore = undefined;
+    memezatorDialogStore = undefined;
 
-    constructor(uploadMediaAttachmentsStore) {
+    constructor(uploadMediaAttachmentsStore, memezatorDialogStore) {
         this.uploadMediaAttachmentsStore = uploadMediaAttachmentsStore;
+        this.memezatorDialogStore = memezatorDialogStore;
     }
 
     @action
@@ -150,7 +152,12 @@ export class CreateStatusStore {
                     this.referredStatus = undefined;
                     this.statusReferenceType = undefined;
                 })
-                .catch(error => (this.submissionError = error))
+                .catch(error => {
+                    this.submissionError = error;
+                    if (fromMemezator) {
+                        this.memezatorDialogStore.openDialogByError(error);
+                    }
+                })
                 .finally(() => {
                     this.pending = false;
                     if (referredStatusId && statusReferenceType === "REPOST") {

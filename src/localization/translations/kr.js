@@ -291,6 +291,7 @@ export const kr = {
     'memezator.dialog.own-meme': 'We appreciate that you like your meme, but please vote for another one',
     'memezator.dialog.already': 'You can vote for a meme here only once per day',
     'memezator.dialog.old-meme': 'You can only vote for today\'s memes',
+    'memezator.dialog.without-attachments': 'Please attach file to take part in memezator contest.',
     'dialog.favourite.can-not-unliked': 'Statuses which have not been liked by current user can\'t be unliked',
     'memezator.rules-list': [
         "Submit the MEME for the contest. By posting it to the window below. Please note that you can submit only one meme from your account. There is also total daily limit of submitted memes, so be quick;",

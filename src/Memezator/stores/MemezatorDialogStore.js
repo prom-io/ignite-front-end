@@ -35,6 +35,8 @@ export class MemezatorDialogStore {
                 this.memezatorError = "status.placeholder.have-no-posts";
             } else if (errorCode === "MISSING_AVATAR_OR_USERNAME_OR_BIO") {
                 this.memezatorError = "status.placeholder.missing-info";
+            } else if (errorCode === "CANNOT_CREATE_MEME_WITHOUT_ATTACHMENTS") {
+                this.memezatorError = "memezator.dialog.without-attachments";
             } else {
                 this.memezatorError = "dialog.something-wrong";
             }

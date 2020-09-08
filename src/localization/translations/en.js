@@ -300,7 +300,7 @@ export const en = {
         "Every day we distribute significant amount of PROM tokens to the best MEME creators and voters;"
     ],
     'memezator.rules-list-hidden': [
-        "Day: 00:00.00 EST - 23:59.59 EST",
+        "Day: 00:00.00 CET - 23:59.59 CET",
         "All scores are calculated at the end of the day;",
         "Everyone, who meet a requirements can participate;",
         "You can vote only for 1 meme a day;",

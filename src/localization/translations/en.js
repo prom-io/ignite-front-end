@@ -140,7 +140,7 @@ export const en = {
     'sign-up.beta-testing': 'Sign up for private beta testing',
     'sign-up.confirm-password': 'Confirm password',
     'sign-up.confirmation.age-and-policy': 'I am over 16 years old and have read and understood the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>',
-    'sign-up.confirmation.private-key-saved': 'I have saved my Wallet Address(login), password and Private Key (password recovery key).',
+    'sign-up.confirmation.private-key-saved': 'I have saved my Wallet Address (login), password and Private Key (password recovery key).',
     'sign-up.continue': 'Continue',
     'sign-up.copied': 'Copied',
     'sign-up.create-account': 'Create an account',

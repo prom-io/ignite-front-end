@@ -74,7 +74,14 @@ export const CreateWallet = observer(() => {
     const { generatedWallet } = walletGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
-    const signUpButtonDisabled = !agreedToPolicy || !savedEverything || pending;
+    const signUpButtonDisabled =
+        !agreedToPolicy ||
+        !savedEverything ||
+        pending ||
+        !Boolean(signUpForm.password) ||
+        !Boolean(signUpForm.passwordConfirmation) ||
+        Boolean(formErrors.password) ||
+        Boolean(formErrors.passwordConfirmation);
 
     const onSignUpClick = () => {
         if (signUpForm.type === "community")

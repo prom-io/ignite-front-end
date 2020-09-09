@@ -43,7 +43,13 @@ export class SignUpStore {
 
         reaction(
             () => this.signUpForm.password,
-            password => this.formErrors.password = validatePassword(password)
+            password => {
+                this.formErrors.password = validatePassword(password);
+                this.formErrors.passwordConfirmation = validatePasswordConfirmation(
+                    this.signUpForm.passwordConfirmation,
+                    password
+                );
+            }
         );
 
         reaction(

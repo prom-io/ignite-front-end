@@ -144,6 +144,7 @@ export const en = {
     'sign-up.create-account': 'Create an account',
     'sign-up.create-password': 'Please create password for your new account',
     'sign-up.create-wallet': 'Create Wallet',
+    'sign-up.succesfully-created': 'Account succesfully created',
     'sign-up.enjoy': 'Enjoy',
     'sign-up.error-part-1': 'Something seems to go wrong… Please contact us on ',
     'sign-up.error-part-2': 'or',

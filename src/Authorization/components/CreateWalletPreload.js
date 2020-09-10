@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
             width: "70px",
             height: "70px",
             position: "absolute",
-            bottom: "265px",
+            bottom: "125px",
             left: "44%",
             [theme.breakpoints.down("md")]: {
                 bottom: "268"
@@ -110,7 +110,14 @@ export const CreateWalletPreload = observer(() => {
                 root: classes.dialogContentRoot
             }}
         >
-            {walletGenerationSuccessTranslations[locale](classes)}
+            {pending ? (
+                walletGenerationSuccessTranslations[locale](classes)
+            ) : (
+                <span className={classes.contentDescription}>
+                    <p>{l('sign-up.succesfully-created')}</p>
+                    <p className={classes.marginTop}></p>
+                </span>
+            )}
             {pending ? (
                 <span className={classes.loader}>
                     <FadeLoader color={theme.palette.primary.main} />

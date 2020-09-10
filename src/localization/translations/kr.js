@@ -153,6 +153,7 @@ export const kr = {
     'sign-up.create-account': '계정 만들기',
     'sign-up.create-password': '새 계정에 대한 암호를 만드십시오.',
     'sign-up.create-wallet': '새지갑 만들기',
+    'sign-up.succesfully-created': 'Account succesfully created',
     'sign-up.enjoy': '즐기다',
     'sign-up.error': 'S뭔가 잘못된 것 같습니다… <a href="#" Ignite.so이나 <a href="#" Prometeus.io>으로 연락해 주세요. 우리는 최선을 다해 문제를 해결할 것입니다',
     'sign-up.error-part-1': '문제가있는 것 같습니다. 문의 해주세요 ',

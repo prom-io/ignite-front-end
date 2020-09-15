@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { FadeLoader } from "react-spinners";
-import {
-    Button,
-    CircularProgress,
-    DialogContent,
-    makeStyles,
-    useTheme
-} from "@material-ui/core";
+import { Button, DialogContent, useTheme } from "@material-ui/core";
 
 import { InputPasswordGroup } from "./InputPasswordGroup";
 import { KeyCopyBlock } from "./KeyCopyBlock";
 import { _Checkbox } from "./_Checkbox";
+import { ReCaptcha } from "../../components/ReCaptcha";
 import { useLocalization, useStore } from "../../store";
 import { authorizationDialogsStyles } from "../../styles/material/authorizationDialogsStyles";
 
@@ -57,6 +52,7 @@ const termsOfServiceAgreementTranslations = {
 export const CreateWallet = observer(() => {
     const [savedEverything, setSavedEverything] = useState(false);
     const [agreedToPolicy, setAgreedToPolicy] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState(null);
     const classes = authorizationDialogsStyles();
     const theme = useTheme();
     const { l, locale } = useLocalization();
@@ -73,7 +69,12 @@ export const CreateWallet = observer(() => {
     const { generatedWallet } = walletGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
+    const handleChangeCaptcha = captchaToken => {
+        setCaptchaToken(captchaToken);
+    };
+
     const signUpButtonDisabled =
+        !captchaToken ||
         !agreedToPolicy ||
         !savedEverything ||
         pending ||
@@ -122,6 +123,7 @@ export const CreateWallet = observer(() => {
             >
                 {termsOfServiceAgreementTranslations[locale]()}
             </_Checkbox>
+            <ReCaptcha onChange={handleChangeCaptcha} />
             <Button
                 variant="contained"
                 color="primary"

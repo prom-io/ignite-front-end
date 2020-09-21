@@ -52,7 +52,6 @@ const termsOfServiceAgreementTranslations = {
 export const CreateWallet = observer(() => {
     const [savedEverything, setSavedEverything] = useState(false);
     const [agreedToPolicy, setAgreedToPolicy] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState(null);
     const classes = authorizationDialogsStyles();
     const theme = useTheme();
     const { l, locale } = useLocalization();
@@ -64,14 +63,16 @@ export const CreateWallet = observer(() => {
         showPassword,
         setShowPassword,
         pending,
-        doSignUp
+        doSignUp,
+        captchaToken,
+        setCaptchaToken
     } = signUp;
     const { generatedWallet } = walletGeneration;
     const { setGenericAuthorizationDialogType } = genericAuthorizationDialog;
 
-    const handleChangeCaptcha = captchaToken => {
-        setCaptchaToken(captchaToken);
-    };
+    const handleChangeCaptcha = newCaptcha => {
+        setCaptchaToken(newCaptcha);
+    }
 
     const signUpButtonDisabled =
         !captchaToken ||

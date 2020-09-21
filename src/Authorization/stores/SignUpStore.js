@@ -27,6 +27,9 @@ export class SignUpStore {
     @observable
     referenceId = undefined;
 
+    @observable
+    captchaToken = undefined;
+
     generateWalletStore = undefined;
     genericAuthorizationDialogStore = undefined;
     localeStore = undefined;
@@ -95,6 +98,10 @@ export class SignUpStore {
             private_key: this.generatedWallet.privateKey,
             language: this.localeStore.selectedLanguage || 'en',
             reference_id: this.referenceId,
+        }, { 
+            headers: { 
+                "x-recaptcha": this.captchaToken
+            } 
         })
             .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType('attention'))
             .catch(error => {
@@ -127,5 +134,10 @@ export class SignUpStore {
         const {password, passwordConfirmation} = this.formErrors;
 
         return !Boolean(password || passwordConfirmation);
+    }
+
+    @action
+    setCaptchaToken = captchaToken => {
+        this.captchaToken = captchaToken;
     }
 }

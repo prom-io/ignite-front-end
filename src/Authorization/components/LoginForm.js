@@ -128,7 +128,7 @@ export const LoginForm = observer(
             setGenericAuthorizationDialogType
         } = genericAuthorizationDialog;
         const { l } = useLocalization();
-        const [isRemember, setIsRemember] = useState(false);
+        const [isRemember, setIsRemember] = useState(true);
         const [passwordVisibility, setPasswordVisibility] = useState(false);
 
         const handleClickShowPassword = () => {

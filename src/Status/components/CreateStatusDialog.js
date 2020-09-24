@@ -59,7 +59,9 @@ const _CreateStatusDialog = ({
     mediaAttachmentUploadPending,
     createStatus,
     fullScreen,
+    referredStatus,
     actionRights,
+    setCaptchaDialogOpen,
     l
 }) => {
     const classes = useStyles();
@@ -91,7 +93,13 @@ const _CreateStatusDialog = ({
                 <Hidden mdUp>
                     <Button
                         className={classes.createStatusButton}
-                        onClick={() => createStatus(Boolean(actionRights))}
+                        onClick={() =>
+                            referredStatus
+                                ? createStatus(false)
+                                : Boolean(actionRights)
+                                ? setCaptchaDialogOpen(true)
+                                : createStatus(false)
+                        }
                         disabled={
                             (actionRights && !actionRights.can_create) ||
                             pending ||
@@ -131,7 +139,9 @@ const mapMobxToProps = ({ createStatus, memezatorActions }) => ({
     mediaAttachmentUploadPending: createStatus.mediaAttachmentUploadPending,
     createStatus: createStatus.createStatus,
     uploadedAttachments: createStatus.mediaAttachments,
-    actionRights: memezatorActions.actionRights
+    referredStatus: createStatus.referredStatus,
+    actionRights: memezatorActions.actionRights,
+    setCaptchaDialogOpen: createStatus.setCaptchaDialogOpen
 });
 
 export const CreateStatusDialog = localized(

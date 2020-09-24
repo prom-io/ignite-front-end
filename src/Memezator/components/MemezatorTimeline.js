@@ -6,7 +6,8 @@ import {
     MemezatorRules,
     MemezatorStatusList,
     MemezatorOldStatusList,
-    MemezatorDialog
+    MemezatorDialog,
+    MemezatorCaptchaDialog
 } from "./";
 import { CreateStatusForm } from "../../Status/components";
 import { UnfollowDialog } from "../../Follow/components";
@@ -101,6 +102,7 @@ const _MemezatorTimeline = ({
                         setUnfollowDialogOpen={setUnfollowDialogOpen}
                     />
                     <MemezatorDialog />
+                    <MemezatorCaptchaDialog />
                 </Grid>
             )}
         </Grid>

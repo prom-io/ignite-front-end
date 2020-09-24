@@ -276,6 +276,7 @@ export const en = {
     'dialog.something-wrong': 'Something went wrong',
     'dialog.sorry': 'Sorry!',
     'dialog.ok': 'Ok',
+    'dialog.captcha': 'Please enter the captcha to post a meme',
     'memezator.rules': 'Rules',
     'memezator.voting-power': 'Your Voting Power',
     'memezator.tokens': 'ETH PROM Tokens',

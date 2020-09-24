@@ -282,6 +282,7 @@ export const en = {
     'dialog.sorry': 'Sorry!',
     'dialog.ok': 'Ok',
     'dialog.cancel': 'Cancel',
+    'dialog.captcha': 'Please enter the captcha to post a meme',
     'memezator.rules': 'Rules',
     'memezator.voting-power': 'Your Voting Power',
     'memezator.tokens': 'ETH PROM Tokens',

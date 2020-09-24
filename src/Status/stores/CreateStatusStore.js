@@ -49,6 +49,12 @@ export class CreateStatusStore {
     @observable
     targetSelection = undefined;
 
+    @observable
+    captchaDialogOpen = false;
+
+    @observable
+    captchaToken = undefined;
+
     @computed
     get mediaAttachments() {
         return this.uploadMediaAttachmentsStore.mediaAttachmentsFiles
@@ -123,13 +129,23 @@ export class CreateStatusStore {
                 : this.content;
 
             axiosInstance
-                .post("/api/v1/statuses", {
-                    status: statusContent,
-                    media_attachments: this.mediaAttachments,
-                    referred_status_id: referredStatusId,
-                    status_reference_type: this.statusReferenceType,
-                    from_memezator: fromMemezator ? true : false
-                })
+                .post(
+                    "/api/v1/statuses",
+                    {
+                        status: statusContent,
+                        media_attachments: this.mediaAttachments,
+                        referred_status_id: referredStatusId,
+                        status_reference_type: this.statusReferenceType,
+                        from_memezator: fromMemezator ? true : false
+                    },
+                    this.captchaToken
+                        ? {
+                              headers: {
+                                  "x-recaptcha": this.captchaToken
+                              }
+                          }
+                        : {}
+                )
                 .then(({ data }) => {
                     if (fromMemezator) {
                         this.createdMemeStatus = data;
@@ -160,6 +176,7 @@ export class CreateStatusStore {
                 })
                 .finally(() => {
                     this.pending = false;
+                    this.captchaToken = undefined;
                     if (referredStatusId && statusReferenceType === "REPOST") {
                         this.pendingRepostsMap = {
                             ...this.pendingRepostsMap,
@@ -188,6 +205,16 @@ export class CreateStatusStore {
     @action
     setEmojiPickerDialogVisible = emojiPickerDialogVisible => {
         this.emojiPickerDialogVisible = emojiPickerDialogVisible;
+    };
+
+    @action
+    setCaptchaDialogOpen = captchaDialogOpen => {
+        this.captchaDialogOpen = captchaDialogOpen;
+    };
+
+    @action
+    setCaptchaToken = captchaToken => {
+        this.captchaToken = captchaToken;
     };
 
     @action

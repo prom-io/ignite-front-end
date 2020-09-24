@@ -96,12 +96,22 @@ const getFormPlaceholder = (actionRights, l) => {
     if (actionRights && !actionRights.can_create) {
         const time = getTimeWhenCETIsMidnight();
         if (actionRights.cannot_create_reason_code === "LIMIT_EXCEEDED") {
-            return l("status.placeholder.already-published") + `${time} GMT (00:00 CET)`;
-        } else if (actionRights.cannot_create_reason_code === "DOESNT_HAVE_ENOUGH_POSTS") {
+            return (
+                l("status.placeholder.already-published") + `${time} GMT (00:00 CET)`
+            );
+        } else if (
+            actionRights.cannot_create_reason_code === "DOESNT_HAVE_ENOUGH_POSTS"
+        ) {
             return l("status.placeholder.have-no-posts");
-        } else if (actionRights.cannot_create_reason_code === "MISSING_AVATAR_OR_USERNAME_OR_BIO") {
+        } else if (
+            actionRights.cannot_create_reason_code ===
+            "MISSING_AVATAR_OR_USERNAME_OR_BIO"
+        ) {
             return l("status.placeholder.missing-info");
-        } else if (actionRights.cannot_create_reason_code === "MEMES_LIMIT_EXCEEDED_FOR_CURRENT_CONTEST") {
+        } else if (
+            actionRights.cannot_create_reason_code ===
+            "MEMES_LIMIT_EXCEEDED_FOR_CURRENT_CONTEST"
+        ) {
             return l("status.placeholder.posts-limit") + `${time} GMT (00:00 CET)`;
         }
     }
@@ -130,6 +140,7 @@ const _CreateStatusForm = ({
     setEmojiPickerDialogVisible,
     mediaAttachmentUploadPending,
     actionRights,
+    setCaptchaDialogOpen,
     l
 }) => {
     const classes = useStyles();
@@ -211,11 +222,11 @@ const _CreateStatusForm = ({
                                     color="primary"
                                     className={classes.createStatusButton}
                                     onClick={() =>
-                                        createStatus(
-                                            referredStatus
-                                                ? false
-                                                : Boolean(actionRights)
-                                        )
+                                        referredStatus
+                                            ? createStatus(false)
+                                            : Boolean(actionRights)
+                                            ? setCaptchaDialogOpen(true)
+                                            : createStatus(false)
                                     }
                                     disabled={
                                         (!Boolean(referredStatus) &&
@@ -279,7 +290,8 @@ const mapMobxToProps = ({
     referredStatus: createStatus.referredStatus,
     setReferredStatus: createStatus.setReferredStatus,
     setStatusReferenceType: createStatus.setStatusReferenceType,
-    actionRights: memezatorActions.actionRights
+    actionRights: memezatorActions.actionRights,
+    setCaptchaDialogOpen: createStatus.setCaptchaDialogOpen
 });
 
 export const CreateStatusForm = localized(

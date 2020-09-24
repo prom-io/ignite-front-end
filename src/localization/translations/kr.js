@@ -281,6 +281,7 @@ export const kr = {
     'dialog.sorry': 'Sorry!',
     'dialog.cancel': '취소하기',
     'dialog.ok': '오케이',
+    'dialog.captcha': 'Please enter the captcha to post a meme',
     'memezator.rules': 'Rules',
     'memezator.voting-power': 'Your Voting Power',
     'memezator.tokens': 'ETH PROM Tokens',

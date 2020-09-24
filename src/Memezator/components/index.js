@@ -6,3 +6,4 @@ export * from "./MemezatorOldStatusList";
 export * from "./MemezatorWinners";
 export * from "./MemezatorWinnersList";
 export * from "./MemezatorDialog";
+export * from "./MemezatorCaptchaDialog";

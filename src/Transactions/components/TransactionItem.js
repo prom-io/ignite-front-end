@@ -6,6 +6,8 @@ import { Typography, makeStyles } from "@material-ui/core";
 import { useLocalization } from "../../store";
 import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
 import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
+import { TransactionCheckIcon } from "../../icons/TransactionCheckIcon";
+import { TransactionPlusIcon } from "../../icons/TransactionPlusIcon";
 
 const useStyles = makeStyles(theme => ({
     transactionItem: {

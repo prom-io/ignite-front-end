@@ -8,7 +8,7 @@ import { UserProfileAvatar } from "./UserProfileAvatar";
 import { UserProfileTab } from "./UserProfileTab";
 import { UpdateUserProfileButton } from "./UpdateUserProfileButton";
 import { UserProfileHeaderButton } from "./UserProfileHeaderButton";
-import { UserBalanceButton } from "./UserBalanceButton";
+import { UserBalance } from "./UserBalance";
 import { localized } from "../../localization/components";
 import { useRouter } from "../../store/hooks";
 import { Routes } from "../../routes";
@@ -41,14 +41,14 @@ const _UserProfileHeader = ({
     if (currentUser) {
         if (currentUser.username !== username) {
             profileButton = currentUserFollows ? (
-                <Grid className="user-profile-header-content-bottom-follow-button">
+                <div className="user-profile-header-content-bottom-follow-button">
                     <UserProfileHeaderButton
                         username={username}
                         onUnfollowRequest={onUnfollowRequest}
                     />
-                </Grid>
+                </div>
             ) : (
-                <Grid className="user-profile-header-content-bottom-follow-button">
+                <div className="user-profile-header-content-bottom-follow-button">
                     <Button
                         variant="contained"
                         color="primary"
@@ -57,7 +57,7 @@ const _UserProfileHeader = ({
                     >
                         {l("user.profile.follow")}
                     </Button>
-                </Grid>
+                </div>
             );
         } else {
             profileButton = <UpdateUserProfileButton />;
@@ -65,39 +65,28 @@ const _UserProfileHeader = ({
     }
 
     return (
-        <Grid container className="user-profile-header-content another-user">
-            <Grid className="user-profile-header-content-top">
-                <Grid container>
-                    <Grid item xs={12} className="justify-content-center">
-                        <UserProfileAvatar avatarUrl={avatar} />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <div className="user-card-info">
-                            <Typography variant={"h4"}>{displayName}</Typography>
-                            <Typography>@{username}</Typography>
-                            {externalUrl && (
-                                <Link
-                                    href={externalUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {externalUrl}
-                                </Link>
-                            )}
-                            {bio && (
-                                <Typography
-                                    variant={"h6"}
-                                    className="user-card-info-bio"
-                                >
-                                    <Markdown source={bio} plugins={[breaks]} />
-                                </Typography>
-                            )}
-                        </div>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid className="user-profile-header-content-bottom">
-                <Grid className="user-profile-header-content-bottom-follows">
+        <Grid container className="user-profile-header-content">
+            <div className="user-profile-header-content-top">
+                <UserProfileAvatar avatarUrl={avatar} />
+                <div className="user-card-info">
+                    <Typography variant="h4">{displayName}</Typography>
+                    <Typography>@{username}</Typography>
+                    {externalUrl && (
+                        <Link
+                            href={externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {externalUrl}
+                        </Link>
+                    )}
+                    {bio && (
+                        <Typography variant="h6" className="user-card-info-bio">
+                            <Markdown source={bio} plugins={[breaks]} />
+                        </Typography>
+                    )}
+                </div>
+                <div className="user-profile-header-content-bottom-follows">
                     <UserProfileTab
                         active={activeTab === "posts"}
                         header={
@@ -143,22 +132,20 @@ const _UserProfileHeader = ({
                             store
                         }}
                     />
-                </Grid>
-                <Grid item>
-                    <Typography
-                        variant="body1"
-                        className="user-profile-info-member-since"
-                        align="center"
-                    >
-                        {l("user.profile.member-since")}{" "}
-                        {format(createdAt, "MMMM yyyy", { locale: dateFnsLocale })}
-                    </Typography>
-                </Grid>
-                {currentUser && currentUser.username === username && (
-                    <UserBalanceButton userBalance={userBalance} withMargin />
-                )}
-                {profileButton}
-            </Grid>
+                </div>
+                <Typography
+                    variant="body1"
+                    className="user-profile-info-member-since"
+                    align="center"
+                >
+                    {l("user.profile.member-since")}{" "}
+                    {format(createdAt, "MMMM yyyy", { locale: dateFnsLocale })}
+                </Typography>
+            </div>
+            {currentUser && currentUser.username === username && (
+                <UserBalance userBalance={userBalance} />
+            )}
+            {profileButton}
         </Grid>
     );
 };

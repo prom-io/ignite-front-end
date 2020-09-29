@@ -115,12 +115,22 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
-    const transactionStatus =
-        transaction.txn_status === "PERFORMED"
-            ? "Approved"
-            : transaction.txn_status === "NOT_STARTED"
-            ? "Pending"
-            : "Declined";
+    const transactionStatus = () => {
+        switch (transaction.txn_status) {
+            case "PERFORMED":
+                return "Succeed";
+            case "NOT_STARTED":
+                return "Pending";
+            case "PROBLEM":
+                return "Pending";
+            case "PERFORMING":
+                return "Performing";
+            case "FAILED":
+                return "Failed";
+            default:
+                return "Pending";
+        }
+    };
 
     const transactionSubject =
         transaction.txn_subject === "REWARD"
@@ -193,7 +203,7 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                         color="textSecondary"
                         align="right"
                     >
-                        {transactionStatus}
+                        {transactionStatus()}
                     </Typography>
                 </div>
             </div>

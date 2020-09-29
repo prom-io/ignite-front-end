@@ -88,12 +88,22 @@ const _TransactionDetailsDialog = ({
 }) => {
     const classes = useStyles();
 
-    const transactionStatus =
-        currentTransaction.txn_status === "PERFORMED"
-            ? "Approved"
-            : currentTransaction.txn_status === "NOT_STARTED"
-            ? "Pending"
-            : "Declined";
+    const transactionStatus = () => {
+        switch (currentTransaction.txn_status) {
+            case "PERFORMED":
+                return "Succeed";
+            case "NOT_STARTED":
+                return "Pending";
+            case "PROBLEM":
+                return "Pending";
+            case "PERFORMING":
+                return "Performing";
+            case "FAILED":
+                return "Failed";
+            default:
+                return "Pending";
+        }
+    };
 
     const transactionSubject =
         currentTransaction.txn_subject === "REWARD"
@@ -181,7 +191,7 @@ const _TransactionDetailsDialog = ({
                         {transactionSum()}
                     </div>
                     <Typography color="textSecondary">
-                        {transactionStatus}
+                        {transactionStatus()}
                     </Typography>
                 </TableItem>
                 <TableItem>

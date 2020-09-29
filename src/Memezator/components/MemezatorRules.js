@@ -146,7 +146,13 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                                     {l("memezator.rules-list").length + index + 1}.
                                 </b>{" "}
                                 {rule}
-                                <Link href={rules}>rules</Link>
+                                <Link
+                                    href={rules}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                    rules
+                                </Link>
                             </Typography>
                         )
                     )}

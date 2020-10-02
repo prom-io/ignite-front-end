@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { Button, Checkbox, DialogContent } from "@material-ui/core";
 
-import { CopyToClipboardButton } from "../../CopyToClipboardButton/components";
+import { CopyToClipboardButton } from "../../components";
 import { useLocalization, useStore } from "../../store";
 import { authorizationDialogsStyles } from "../../styles/material/authorizationDialogsStyles";
 

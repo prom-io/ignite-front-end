@@ -5,9 +5,8 @@ import { AppBar } from "../AppBar/components";
 import { localized } from "../localization/components";
 import { Routes } from "../routes";
 import { routerStore } from "../store";
-import errorImage from "../images/page_not_found.jpg";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     notFound: {
         position: "absolute",
         top: "50%",
@@ -15,10 +14,12 @@ const useStyles = makeStyles(() => ({
         transform: "translate(-50%, -50%)",
         textAlign: "center"
     },
-    notFoundImageWrapper: {
-        minWidth: "290px",
-        "& img": {
-            width: "100%"
+    comingSoon: {
+        fontFamily: "Museo Sans Cyrl Bold",
+        fontSize: "80px",
+        textTransform: "uppercase",
+        [theme.breakpoints.down("340")]: {
+            fontSize: "68px"
         }
     },
     notFoundMainText: {
@@ -35,31 +36,33 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export const _NotFoundPage = () => {
+export const _MemezatorNotFoundPage = () => {
     const classes = useStyles();
 
     return (
         <>
-            <AppBar />
+            <AppBar currentActiveRoute="memezator" />
             <div className={classes.notFound}>
-                <div className={classes.notFoundImageWrapper}>
-                    <img src={errorImage} alt="" />
-                </div>
+                <Typography variant="h1" className={classes.comingSoon}>
+                    Coming Soon
+                </Typography>
                 <Typography className={classes.notFoundMainText} color="textPrimary">
-                    Oops! It looks like we don’t have such a page
+                    Memezator is going on planned maintenance before Memezator 2.0
+                    release.
                 </Typography>
                 <Typography
                     className={classes.notFoundSecondaryText}
                     color="textSecondary"
                 >
-                    Are you sure the web site URL is correct? Get in touch with
-                    support
+                    It will be unavailable until 8th of October. We will publish a
+                    detailed article on Memezator 2.0 and FAQ later today. Thank you
+                    for your patience and support!
                 </Typography>
                 <Button
                     onClick={() => routerStore.router.goTo(Routes.home)}
                     variant="outlined"
-                    disableElevation
                     color="primary"
+                    disableElevation
                 >
                     Go Back Home
                 </Button>
@@ -68,4 +71,4 @@ export const _NotFoundPage = () => {
     );
 };
 
-export const NotFoundPage = localized(_NotFoundPage);
+export const MemezatorNotFoundPage = localized(_MemezatorNotFoundPage);

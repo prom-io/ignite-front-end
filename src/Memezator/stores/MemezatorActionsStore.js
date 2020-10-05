@@ -20,9 +20,9 @@ export class MemezatorActionsStore {
             currentUser => {
                 this.reset();
 
-                if (currentUser && window.location.pathname === "/memezator") {
-                    this.fetchAccessToMemezatorPosting();
-                }
+                // if (currentUser && window.location.pathname === "/memezator") {
+                //     this.fetchAccessToMemezatorPosting();
+                // }
             }
         );
 

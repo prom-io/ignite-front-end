@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Avatar, Dialog } from "@material-ui/core";
+import { Avatar, Dialog, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+    userProfileAvatar: {
+        width: "94px",
+        height: "94px",
+        margin: "0 auto"
+    }
+}));
 
 export const UserProfileAvatar = ({ avatarUrl }) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
-
     const avatarIsNull = avatarUrl.includes("default_user.png");
 
     const handleClickOpen = () => {
         if (avatarIsNull) {
             return;
         }
-
         setOpen(true);
     };
 
@@ -21,11 +28,10 @@ export const UserProfileAvatar = ({ avatarUrl }) => {
     return (
         <>
             <Avatar
+                classes={{ root: classes.userProfileAvatar }}
                 onClick={handleClickOpen}
                 src={avatarUrl}
                 style={{
-                    width: 94,
-                    height: 94,
                     cursor: avatarIsNull ? "default" : "pointer"
                 }}
             />

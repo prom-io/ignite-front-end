@@ -22,9 +22,10 @@ import {
     UserEditPage,
     SignUpPage,
     SearchPeoplePage,
+    NotFoundPage,
+    MemezatorNotFoundPage
 } from '../pages';
 import { store } from '../store';
-import { NotFoundPage } from '../pages';
 
 export const Routes = {
     home: new Route({
@@ -264,6 +265,7 @@ export const Routes = {
     }),
     memezator: new Route({
         path: '/memezator',
+        // component: <MemezatorNotFoundPage />,
         component: <MemezatorPage />,
         beforeEnter: () => {
             store.topicsPopular.fetchTopicsPopular(5);

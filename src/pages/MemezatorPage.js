@@ -7,7 +7,10 @@ import { AppBar } from "../AppBar/components";
 import {
     MemezatorHeader,
     MemezatorTimeline,
-    MemezatorWinners
+    MemezatorWinners,
+    MemezatorDialog,
+    MemezatorCaptchaDialog,
+    MemezatorBuyVotingPowerDialog
 } from "../Memezator/components";
 import { LoginForm } from "../Authorization/components";
 import {
@@ -49,6 +52,9 @@ const _MemezatorPage = ({ currentUser }) => (
                             <MemezatorHeader />
                             <Grid item xs={12} md={9} className="right-content">
                                 <MemezatorTimeline />
+                                <MemezatorDialog />
+                                <MemezatorCaptchaDialog />
+                                <MemezatorBuyVotingPowerDialog />
                             </Grid>
                         </Grid>
                     </Grid>

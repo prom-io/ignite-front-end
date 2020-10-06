@@ -20,3 +20,4 @@ export * from './SetEnglishLanguageAndRedirectToHomePage';
 export * from './SetKoreanLanguageAndRedirectToHomePage';
 export * from './SignUpPage';
 export * from './NotFoundPage';
+export * from './MemezatorNotFoundPage';

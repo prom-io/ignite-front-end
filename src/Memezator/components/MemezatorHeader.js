@@ -63,7 +63,10 @@ const useStyles = makeStyles(theme => ({
     },
     memezatorCaptionHashtag: {
         fontSize: "18px",
-        fontWeight: 600
+        fontWeight: 600,
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "14px"
+        }
     }
 }));
 

@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
+import { CopyToClipboardButton } from "../../components";
 import { useLocalization } from "../../store";
-import { CopyToClipboardButton } from "../../CopyToClipboardButton/components";
 
 const useStyles = makeStyles(theme => ({
     titleBold: {

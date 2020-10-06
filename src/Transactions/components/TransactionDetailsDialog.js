@@ -11,10 +11,15 @@ import {
 import { CustomDialogTitle } from "../../Authorization/components";
 import { localized } from "../../localization/components";
 import { getTimeToCET } from "../../utils/date-utlis";
-import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
-import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
+import { TransactionPlusIcon } from "../../icons/TransactionPlusIcon";
+import { TransactionCheckIcon } from "../../icons/TransactionCheckIcon";
+import { TransactionCrossIcon } from "../../icons/TransactionCrossIcon";
 
 const useStyles = makeStyles(theme => ({
+    dialogPaper: {
+        maxWidth: "650px",
+        width: "100%"
+    },
     dialogContent: {
         [theme.breakpoints.down("sm")]: {
             padding: "24px 12px"
@@ -88,14 +93,60 @@ const _TransactionDetailsDialog = ({
 }) => {
     const classes = useStyles();
 
+    const transactionIcon = () => {
+        switch (currentTransaction.txn_status) {
+            case "PERFORMED":
+                return <TransactionCheckIcon />;
+            case "FAILED":
+                return <TransactionCrossIcon />;
+            default:
+                return <TransactionPlusIcon />;
+        }
+    };
+
+    const transactionHash = () => {
+        switch (currentTransaction.txn_status) {
+            case "PERFORMED":
+                return (
+                    <a
+                        href={`https://explorer.binance.org/smart/tx/${currentTransaction.txn_hash}`}
+                        className={classes.transactionHashLink}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        <Typography
+                            classes={{ root: classes.transactionHash }}
+                            color="textPrimary"
+                        >
+                            {currentTransaction.txn_hash}
+                        </Typography>
+                    </a>
+                );
+            case "FAILED":
+                return (
+                    <Typography
+                        classes={{ root: classes.transactionHash }}
+                        color="textPrimary"
+                    >
+                        Transation failed
+                    </Typography>
+                );
+            default:
+                return (
+                    <Typography
+                        classes={{ root: classes.transactionHash }}
+                        color="textPrimary"
+                    >
+                        Will be transferred
+                    </Typography>
+                );
+        }
+    };
+
     const transactionStatus = () => {
         switch (currentTransaction.txn_status) {
             case "PERFORMED":
                 return "Succeed";
-            case "NOT_STARTED":
-                return "Pending";
-            case "PROBLEM":
-                return "Pending";
             case "PERFORMING":
                 return "Performing";
             case "FAILED":
@@ -105,20 +156,17 @@ const _TransactionDetailsDialog = ({
         }
     };
 
-    const transactionSubject =
-        currentTransaction.txn_subject === "REWARD"
-            ? "Memezator prize"
-            : currentTransaction.txn_subject === "TRANSFER"
-            ? "P2P transaction"
-            : "";
-
     const transactionSum = () => {
         switch (currentTransaction.txn_subject) {
             case "REWARD":
                 return (
                     <Typography
                         className={classes.transactionBalance}
-                        classes={{ root: classes.transactionGreen }}
+                        classes={{
+                            root:
+                                currentTransaction.txn_status !== "FAILED" &&
+                                classes.transactionGreen
+                        }}
                     >
                         + {Number(currentTransaction.txn_sum).toFixed(2)} PROM
                     </Typography>
@@ -127,13 +175,28 @@ const _TransactionDetailsDialog = ({
                 return (
                     <Typography
                         className={classes.transactionBalance}
-                        classes={{ root: classes.transactionRed }}
+                        classes={{
+                            root:
+                                currentTransaction.txn_status !== "FAILED" &&
+                                classes.transactionRed
+                        }}
                     >
                         - {Number(currentTransaction.txn_sum).toFixed(2)} PROM
                     </Typography>
                 );
             default:
                 return null;
+        }
+    };
+
+    const transactionSubject = () => {
+        switch (currentTransaction.txn_subject) {
+            case "REWARD":
+                return "Memezator prize";
+            case "TRANSFER":
+                return "P2P transaction";
+            default:
+                return "";
         }
     };
 
@@ -145,6 +208,7 @@ const _TransactionDetailsDialog = ({
 
     return (
         <Dialog
+            classes={{ paper: classes.dialogPaper }}
             onClose={() => setOpenDetails(false)}
             open={openDetails}
             fullScreen={fullScreen}
@@ -155,39 +219,10 @@ const _TransactionDetailsDialog = ({
                 setDialogOpen={setOpenDetails}
             />
             <DialogContent classes={{ root: classes.dialogContent }}>
-                <TableItem>
-                    {currentTransaction.txn_hash ? (
-                        <a
-                            href={`https://explorer.binance.org/smart/tx/${currentTransaction.txn_hash}`}
-                            className={classes.transactionHashLink}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                        >
-                            <Typography
-                                classes={{ root: classes.transactionHash }}
-                                color="textPrimary"
-                            >
-                                {currentTransaction.txn_hash}
-                            </Typography>
-                        </a>
-                    ) : (
-                        <Typography
-                            classes={{ root: classes.transactionHash }}
-                            color="textPrimary"
-                        >
-                            Pending
-                        </Typography>
-                    )}
-                </TableItem>
+                <TableItem>{transactionHash()}</TableItem>
                 <TableItem className={classes.detailsBalance}>
                     <div className={classes.detailsBalanceSum}>
-                        {currentTransaction.txn_subject === "REWARD" ? (
-                            <ArrowGreenIcon />
-                        ) : (
-                            currentTransaction.txn_subject === "TRANSFER" && (
-                                <ArrowRedIcon />
-                            )
-                        )}
+                        {transactionIcon()}
                         {transactionSum()}
                     </div>
                     <Typography color="textSecondary">
@@ -204,21 +239,31 @@ const _TransactionDetailsDialog = ({
                         (CET)
                     </Typography>
                 </TableItem>
-                <TableItem>
-                    <Typography color="textPrimary">{transactionSubject}</Typography>
-                </TableItem>
-                <TableItem className={classes.detailsFromTo}>
-                    <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        {l("transactions.from")}
-                    </Typography>{" "}
-                    <Typography>{currentTransaction.txn_from}</Typography>
-                </TableItem>
-                <TableItem className={classes.detailsFromTo}>
-                    <Typography classes={{ root: classes.detailsFromToLabel }}>
-                        {l("transactions.to")}
-                    </Typography>{" "}
-                    <Typography>{currentTransaction.txn_to}</Typography>
-                </TableItem>
+                {currentTransaction.txn_status === "PERFORMED" && (
+                    <>
+                        <TableItem>
+                            <Typography color="textPrimary">
+                                {transactionSubject()}
+                            </Typography>
+                        </TableItem>
+                        <TableItem className={classes.detailsFromTo}>
+                            <Typography
+                                classes={{ root: classes.detailsFromToLabel }}
+                            >
+                                {l("transactions.from")}
+                            </Typography>{" "}
+                            <Typography>{currentTransaction.txn_from}</Typography>
+                        </TableItem>
+                        <TableItem className={classes.detailsFromTo}>
+                            <Typography
+                                classes={{ root: classes.detailsFromToLabel }}
+                            >
+                                {l("transactions.to")}
+                            </Typography>{" "}
+                            <Typography>{currentTransaction.txn_to}</Typography>
+                        </TableItem>
+                    </>
+                )}
             </DialogContent>
         </Dialog>
     );

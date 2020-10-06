@@ -55,10 +55,9 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "Museo Sans Cyrl Bold",
         fontSize: "48px",
         maxWidth: "900px",
-        margin: "46px 0",
+        margin: "40px 0",
         padding: "0 15px",
         [theme.breakpoints.down("md")]: {
-            fontSize: "40px",
             margin: "32px 0"
         },
         [theme.breakpoints.down("xs")]: {
@@ -69,11 +68,10 @@ const useStyles = makeStyles(theme => ({
     notFoundSecondaryText: {
         fontSize: "22px",
         maxWidth: "950px",
-        margin: "0 auto 52px",
+        margin: "0 auto 40px",
         padding: "0 15px",
         [theme.breakpoints.down("md")]: {
-            fontSize: "20px",
-            marginBottom: "40px"
+            fontSize: "20px"
         },
         [theme.breakpoints.down("xs")]: {
             fontSize: "14px"

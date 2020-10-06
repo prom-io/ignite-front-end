@@ -4,10 +4,9 @@ import { format } from "date-fns";
 import { Typography, makeStyles } from "@material-ui/core";
 
 import { useLocalization } from "../../store";
-import { ArrowGreenIcon } from "../../icons/ArrowGreenIcon";
-import { ArrowRedIcon } from "../../icons/ArrowRedIcon";
-import { TransactionCheckIcon } from "../../icons/TransactionCheckIcon";
 import { TransactionPlusIcon } from "../../icons/TransactionPlusIcon";
+import { TransactionCheckIcon } from "../../icons/TransactionCheckIcon";
+import { TransactionCrossIcon } from "../../icons/TransactionCrossIcon";
 
 const useStyles = makeStyles(theme => ({
     transactionItem: {
@@ -32,6 +31,9 @@ const useStyles = makeStyles(theme => ({
             borderLeft: "none",
             borderRight: "none"
         }
+    },
+    transactionItemFailed: {
+        border: `1px solid ${theme.palette.error.main}`
     },
     transactionItemHeader: {
         position: "relative",
@@ -117,14 +119,32 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
     const classes = useStyles();
     const { l } = useLocalization();
 
+    const transactionIcon = () => {
+        switch (transaction.txn_status) {
+            case "PERFORMED":
+                return <TransactionCheckIcon />;
+            case "FAILED":
+                return <TransactionCrossIcon />;
+            default:
+                return <TransactionPlusIcon />;
+        }
+    };
+
+    const transactionHash = () => {
+        switch (transaction.txn_status) {
+            case "PERFORMED":
+                return transaction.txn_hash;
+            case "FAILED":
+                return "Transation failed";
+            default:
+                return "Will be transferred";
+        }
+    };
+
     const transactionStatus = () => {
         switch (transaction.txn_status) {
             case "PERFORMED":
                 return "Succeed";
-            case "NOT_STARTED":
-                return "Pending";
-            case "PROBLEM":
-                return "Pending";
             case "PERFORMING":
                 return "Performing";
             case "FAILED":
@@ -134,20 +154,17 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
         }
     };
 
-    const transactionSubject =
-        transaction.txn_subject === "REWARD"
-            ? "Memezator prize"
-            : transaction.txn_subject === "TRANSFER"
-            ? "P2P transaction"
-            : "";
-
     const transactionSum = () => {
         switch (transaction.txn_subject) {
             case "REWARD":
                 return (
                     <Typography
                         className={classes.transactionBalance}
-                        classes={{ root: classes.transactionGreen }}
+                        classes={{
+                            root:
+                                transaction.txn_status !== "FAILED" &&
+                                classes.transactionGreen
+                        }}
                         align="right"
                     >
                         + {Number(transaction.txn_sum).toFixed(2)} PROM
@@ -157,7 +174,11 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                 return (
                     <Typography
                         className={classes.transactionBalance}
-                        classes={{ root: classes.transactionRed }}
+                        classes={{
+                            root:
+                                transaction.txn_status !== "FAILED" &&
+                                classes.transactionRed
+                        }}
                         align="right"
                     >
                         - {Number(transaction.txn_sum).toFixed(2)} PROM
@@ -168,25 +189,35 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
         }
     };
 
+    const transactionSubject = () => {
+        switch (transaction.txn_subject) {
+            case "REWARD":
+                return "Memezator prize";
+            case "TRANSFER":
+                return "P2P transaction";
+            default:
+                return "";
+        }
+    };
+
     return (
         <div
-            className={classes.transactionItem}
+            className={[
+                classes.transactionItem,
+                transaction.txn_status === "FAILED"
+                    ? classes.transactionItemFailed
+                    : ""
+            ].join(" ")}
             onClick={() => setOpenDetails(true, transaction)}
         >
             <div className={classes.transactionItemHeader}>
-                <div className={classes.transactionArrow}>
-                    {transaction.txn_subject === "REWARD" ? (
-                        <ArrowGreenIcon />
-                    ) : (
-                        transaction.txn_subject === "TRANSFER" && <ArrowRedIcon />
-                    )}
-                </div>
+                <div className={classes.transactionArrow}>{transactionIcon()}</div>
                 <div style={{ width: "75%" }}>
                     <Typography
                         classes={{ root: classes.transactionHash }}
                         color="textPrimary"
                     >
-                        {transaction.txn_hash || "Pending"}
+                        {transactionHash()}
                     </Typography>
                     <Typography
                         classes={{ root: classes.transactionSmallText }}
@@ -209,38 +240,44 @@ export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
                     </Typography>
                 </div>
             </div>
-            <div className={classes.transactionItemFooter}>
-                <div className={classes.transactionItemFooterMobile}>
-                    <div className={classes.detailsFromTo}>
-                        <Typography classes={{ root: classes.detailsFromToLabel }}>
-                            {l("transactions.from")}&nbsp;
-                        </Typography>{" "}
-                        <Typography
-                            classes={{ root: classes.detailsFromToContent }}
-                            color="textPrimary"
-                        >
-                            {transaction.txn_from}
-                        </Typography>
+            {transaction.txn_status === "PERFORMED" && (
+                <div className={classes.transactionItemFooter}>
+                    <div className={classes.transactionItemFooterMobile}>
+                        <div className={classes.detailsFromTo}>
+                            <Typography
+                                classes={{ root: classes.detailsFromToLabel }}
+                            >
+                                {l("transactions.from")}&nbsp;
+                            </Typography>{" "}
+                            <Typography
+                                classes={{ root: classes.detailsFromToContent }}
+                                color="textPrimary"
+                            >
+                                {transaction.txn_from}
+                            </Typography>
+                        </div>
+                        <div className={classes.detailsFromTo}>
+                            <Typography
+                                classes={{ root: classes.detailsFromToLabel }}
+                            >
+                                {l("transactions.to")}&nbsp;
+                            </Typography>{" "}
+                            <Typography
+                                classes={{ root: classes.detailsFromToContent }}
+                                color="textPrimary"
+                            >
+                                {transaction.txn_to}
+                            </Typography>
+                        </div>
                     </div>
-                    <div className={classes.detailsFromTo}>
-                        <Typography classes={{ root: classes.detailsFromToLabel }}>
-                            {l("transactions.to")}&nbsp;
-                        </Typography>{" "}
-                        <Typography
-                            classes={{ root: classes.detailsFromToContent }}
-                            color="textPrimary"
-                        >
-                            {transaction.txn_to}
-                        </Typography>
-                    </div>
+                    <Typography
+                        classes={{ root: classes.transactionSmallText }}
+                        color="textPrimary"
+                    >
+                        {transactionSubject()}
+                    </Typography>
                 </div>
-                <Typography
-                    classes={{ root: classes.transactionSmallText }}
-                    color="textPrimary"
-                >
-                    {transactionSubject}
-                </Typography>
-            </div>
+            )}
         </div>
     );
 });

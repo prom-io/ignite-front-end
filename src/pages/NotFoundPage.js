@@ -7,7 +7,7 @@ import { Routes } from "../routes";
 import { routerStore } from "../store";
 import errorImage from "../images/page_not_found.jpg";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
     notFound: {
         position: "absolute",
         top: "50%",
@@ -32,6 +32,15 @@ const useStyles = makeStyles(() => ({
         lineHeight: "26px",
         maxWidth: "400px",
         margin: "0 auto 24px"
+    },
+    notFoundButton: {
+        maxWidth: "187px",
+        width: "100%",
+        height: "40px",
+        fontWeight: "bold",
+        [theme.breakpoints.down("xs")]: {
+            maxWidth: "115px"
+        }
     }
 }));
 
@@ -56,9 +65,9 @@ export const _NotFoundPage = () => {
                     support
                 </Typography>
                 <Button
+                    classes={{ root: classes.notFoundButton }}
                     onClick={() => routerStore.router.goTo(Routes.home)}
-                    variant="outlined"
-                    disableElevation
+                    variant="contained"
                     color="primary"
                 >
                     Go Back Home

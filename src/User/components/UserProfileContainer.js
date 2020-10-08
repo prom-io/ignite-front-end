@@ -2,7 +2,12 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 import { Grid, Hidden, makeStyles } from "@material-ui/core";
 
-import { UserProfileHeader, UserFollowersList, UserFollowingList } from "./";
+import {
+    UserProfileHeader,
+    UserFollowersList,
+    UserFollowingList,
+    UserCommunitiesList
+} from "./";
 import { UserProfileTimeline } from "../../Status/components";
 import { WhoToFollow, UnfollowDialog } from "../../Follow/components";
 import {
@@ -10,8 +15,8 @@ import {
     DescriptionStoaBanner
 } from "../../PrometeusDescription";
 import Loader from "../../components/Loader";
-import { Routes } from '../../routes';
-import { routerStore } from '../../store';
+import { Routes } from "../../routes";
+import { routerStore } from "../../store";
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -40,7 +45,7 @@ const _UserProfileContainer = ({
     const classes = useStyles();
 
     if (error) {
-        routerStore.router.goTo(Routes.notFound)
+        routerStore.router.goTo(Routes.notFound);
     }
 
     let tabContent;
@@ -53,6 +58,9 @@ const _UserProfileContainer = ({
             break;
         case "following":
             tabContent = <UserFollowingList />;
+            break;
+        case "communities":
+            tabContent = <UserCommunitiesList />;
             break;
         default:
             tabContent = <UserProfileTimeline />;

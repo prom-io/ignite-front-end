@@ -36,7 +36,7 @@ export const CommunitiesNotFound = observer(({ type }) => {
                         <strong>
                             {type === "all"
                                 ? l("communities.not-found")
-                                : l("communities.you-have-no-communities")}
+                                : l("user.profile.communities.empty")}
                         </strong>
                     </Typography>
                 </div>

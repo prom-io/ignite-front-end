@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
+const _CommunitiesContainer = ({ currentUser, fetchCommunities, pending }) => {
     const classes = useStyles();
     const [tabValue, setTabValue] = useState("all");
 
@@ -57,7 +57,7 @@ const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
                         classes={{ wrapper: classes.communitiesTab }}
                         label="Your communities"
                         value="my"
-                        disabled={pending}
+                        disabled={pending || !currentUser}
                         disableRipple
                     />
                 </Tabs>
@@ -72,7 +72,8 @@ const _CommunitiesContainer = ({ fetchCommunities, pending }) => {
     );
 };
 
-const mapMobxToProps = ({ communities }) => ({
+const mapMobxToProps = ({ authorization, communities }) => ({
+    currentUser: authorization.currentUser,
     pending: communities.pending,
     fetchCommunities: communities.fetchCommunities
 });

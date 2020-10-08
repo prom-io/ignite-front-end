@@ -1,21 +1,21 @@
-import {action, observable, computed, reaction} from "mobx";
-import {validatePassword, validatePasswordConfirmation} from "../validation";
-import {axiosInstance} from "../../api/axios-instance";
+import { action, observable, computed, reaction } from "mobx";
+import { validatePassword, validatePasswordConfirmation } from "../validation";
+import { axiosInstance } from "../../api/axios-instance";
 
 export class SignUpStore {
     @observable
     signUpForm = {
-        password: '',
-        passwordConfirmation: '',
-        type: 'user',
+        password: "",
+        passwordConfirmation: "",
+        type: "user"
     };
-    
+
     @observable
     signUpCommunityForm = {
-        displayName: '',
-        username: '',
-        about: '',
-        avatar: undefined,
+        displayName: "",
+        username: "",
+        about: "",
+        avatar: undefined
     };
 
     @observable
@@ -24,7 +24,7 @@ export class SignUpStore {
         passwordConfirmation: undefined,
         username: undefined,
         displayName: undefined,
-        about: undefined,
+        about: undefined
     };
 
     @observable
@@ -69,18 +69,16 @@ export class SignUpStore {
 
         reaction(
             () => this.signUpForm.passwordConfirmation,
-            passwordConfirmation => this.formErrors.passwordConfirmation = validatePasswordConfirmation(
-                passwordConfirmation,
-                this.signUpForm.password
-            )
+            passwordConfirmation =>
+                (this.formErrors.passwordConfirmation = validatePasswordConfirmation(
+                    passwordConfirmation,
+                    this.signUpForm.password
+                ))
         );
     }
     @action
     setCommunityFormValue = (key, value) => {
-        this.signUpCommunityForm = {
-            ...this.signUpCommunityForm,
-            [key]: value
-        }
+        this.signUpCommunityForm[key] = value;
     };
 
     @action
@@ -88,7 +86,7 @@ export class SignUpStore {
         this.signUpForm = {
             ...this.signUpForm,
             [key]: value
-        }
+        };
     };
 
     @action
@@ -110,27 +108,38 @@ export class SignUpStore {
         this.pending = true;
         this.submissionError = undefined;
 
-        axiosInstance.post('/api/v1/sign-up', {
-            password: this.signUpForm.password,
-            password_confirmation: this.signUpForm.passwordConfirmation,
-            wallet_address: this.generatedWallet.address,
-            private_key: this.generatedWallet.privateKey,
-            language: this.localeStore.selectedLanguage || 'en',
-            reference_id: this.referenceId,
-        }, { 
-            headers: { 
-                "x-recaptcha": this.captchaToken
-            } 
-        })
-            .then(() => this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType('attention'))
+        axiosInstance
+            .post(
+                "/api/v1/sign-up",
+                {
+                    password: this.signUpForm.password,
+                    password_confirmation: this.signUpForm.passwordConfirmation,
+                    wallet_address: this.generatedWallet.address,
+                    private_key: this.generatedWallet.privateKey,
+                    language: this.localeStore.selectedLanguage || "en",
+                    reference_id: this.referenceId
+                },
+                {
+                    headers: {
+                        "x-recaptcha": this.captchaToken
+                    }
+                }
+            )
+            .then(() =>
+                this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType(
+                    "attention"
+                )
+            )
             .catch(error => {
                 this.submissionError = error;
-                this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType('attention');
+                this.genericAuthorizationDialogStore.setGenericAuthorizationDialogTempType(
+                    "attention"
+                );
             })
             .finally(() => {
                 this.referenceId = undefined;
                 this.pending = false;
-            })
+            });
     };
 
     @action
@@ -150,13 +159,13 @@ export class SignUpStore {
             };
         }
 
-        const {password, passwordConfirmation} = this.formErrors;
+        const { password, passwordConfirmation } = this.formErrors;
 
         return !Boolean(password || passwordConfirmation);
-    }
+    };
 
     @action
     setCaptchaToken = captchaToken => {
         this.captchaToken = captchaToken;
-    }
+    };
 }

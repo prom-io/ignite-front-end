@@ -8,10 +8,12 @@ import {
     Grid,
     Typography,
     Link as MaterialLink,
+    Hidden,
     useTheme
 } from "@material-ui/core";
 
 import { UserBalance } from "./UserBalance";
+import { UserProfileTab } from "./UserProfileTab";
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
 
@@ -54,52 +56,61 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                         </Typography>
                     )}
                 </div>
-                <div className="user-profile-header-content-bottom-follows user-card-statistic">
-                    <Link
-                        store={routerStore}
-                        view={Routes.userProfile}
-                        params={{
-                            username: currentUser.username,
-                            id: currentUser.id
-                        }}
-                    >
-                        <Typography variant="h6">
-                            {currentUser.statuses_count}
-                        </Typography>
-                        <Typography variant="body1">
-                            {l("user.profile.posts")}
-                        </Typography>
-                    </Link>
-                    <Link
-                        store={routerStore}
-                        view={Routes.userFollowers}
-                        params={{
-                            username: currentUser.username,
-                            id: currentUser.id
-                        }}
-                    >
-                        <Typography variant="h6">
-                            {currentUser.followers_count}
-                        </Typography>
-                        <Typography variant="body1">
-                            {l("user.profile.followers")}
-                        </Typography>
-                    </Link>
-                    <Link
-                        store={routerStore}
-                        view={Routes.userFollowing}
-                        params={{
-                            username: currentUser.username,
-                            id: currentUser.id
-                        }}
-                    >
-                        <Typography variant="h6">
-                            {currentUser.follows_count}
-                        </Typography>
-                        <Typography variant="body1">
-                            {l("user.profile.following")}
-                        </Typography>
-                    </Link>
+                <div className="user-profile-header-content-bottom-follows">
+                    <div>
+                        <UserProfileTab
+                            header={currentUser.statuses_count}
+                            subheader={l("user.profile.posts")}
+                            linkProps={{
+                                view: Routes.userProfile,
+                                params: {
+                                    username: currentUser.username,
+                                    id: currentUser.id
+                                },
+                                store: routerStore
+                            }}
+                        />
+                        <UserProfileTab
+                            header={currentUser.followers_count}
+                            subheader={l("user.profile.followers")}
+                            linkProps={{
+                                view: Routes.userFollowers,
+                                params: {
+                                    username: currentUser.username,
+                                    id: currentUser.id
+                                },
+                                store: routerStore
+                            }}
+                        />
+                        <UserProfileTab
+                            header={currentUser.follows_count}
+                            subheader={l("user.profile.following")}
+                            linkProps={{
+                                view: Routes.userFollowing,
+                                params: {
+                                    username: currentUser.username,
+                                    id: currentUser.id
+                                },
+                                store: routerStore
+                            }}
+                        />
+                    </div>
+                    <Hidden smDown>
+                        <div>
+                            <UserProfileTab
+                                header={0}
+                                subheader={l("user.profile.communities")}
+                                linkProps={{
+                                    view: Routes.userCommunities,
+                                    params: {
+                                        username: currentUser.username,
+                                        id: currentUser.id
+                                    },
+                                    store: routerStore
+                                }}
+                            />
+                        </div>
+                    </Hidden>
                 </div>
             </div>
             <UserBalance userBalance={currentUser.user_balance} />

@@ -69,7 +69,6 @@ const _TopicStatusList = ({
     const [tabValue, setTabValue] = useState("hot");
 
     const handleChange = (event, newValue) => {
-        console.log(newValue)
         setTabValue(newValue);
         changeTabAndFetchStatuses(newValue);
     };

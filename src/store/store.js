@@ -22,6 +22,7 @@ import {
     UploadUserAvatarStore,
     UserFollowersStore,
     UserFollowingStore,
+    UserCommunitiesStore,
     UserProfileStore,
 } from '../User/stores';
 import {
@@ -54,6 +55,7 @@ const globalTimeline = new StatusesListStore(authorization, createStatus, memeza
 const userStatuses = new StatusesListStore(authorization, createStatus);
 const userFollowers = new UserFollowersStore();
 const userFollowing = new UserFollowingStore();
+const userCommunities = new UserCommunitiesStore();
 const userProfileTimeline = new StatusesListStore(authorization, createStatus, memezatorDialog, undefined, false, false, true);
 const userProfile = new UserProfileStore(authorization, userProfileTimeline, userFollowers, userFollowing, createStatus);
 const followAction = new FollowActionStore(authorization);
@@ -96,6 +98,7 @@ export const store = {
     userStatuses,
     userFollowers,
     userFollowing,
+    userCommunities,
     userProfile,
     followAction,
     followPeople,

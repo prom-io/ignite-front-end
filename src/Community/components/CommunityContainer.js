@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { inject, observer } from "mobx-react";
 import { Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 
-import { BackButton } from "../../components/BackButton";
+import { CreateStatusForm } from "../../Status/components";
 
 const useStyles = makeStyles(() => ({
     communityTab: {
@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _CommunityContainer = ({
+    currentUser,
     fetchCommunityPosts,
     fetchCommunityUsers,
     pending
@@ -26,9 +27,11 @@ const _CommunityContainer = ({
 
     return (
         <>
-            <Hidden smDown>
-                <BackButton title="appbar.community" toHome />
-            </Hidden>
+            {currentUser && (
+                <Hidden smDown>
+                    <CreateStatusForm />
+                </Hidden>
+            )}
 
             <Tabs
                 value={tabValue}
@@ -51,11 +54,14 @@ const _CommunityContainer = ({
                     disableRipple
                 />
             </Tabs>
+
+            {tabValue === "posts" ? <div>Posts</div> : <div>Users</div>}
         </>
     );
 };
 
-const mapMobxToProps = ({ community }) => ({
+const mapMobxToProps = ({ authorization, community }) => ({
+    currentUser: authorization.currentUser,
     pending: community.pending,
     fetchCommunityPosts: community.fetchCommunityPosts,
     fetchCommunityUsers: community.fetchCommunityUsers

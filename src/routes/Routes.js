@@ -240,6 +240,18 @@ export const Routes = {
             store.userProfile.activeTab = 'following';
         },
     }),
+    userCommunities: new Route({
+        path: '/user/:username/communities',
+        component: <UserProfilePage />,
+        beforeEnter: (route, params) => {
+            if (!(store.userProfile.user && store.userProfile.username === params.username)) {
+                store.userProfile.fetchUserByUsername(params.username);
+            }
+
+            store.userFollowing.fetchFollowing(params.username);
+            store.userProfile.activeTab = 'communities';
+        },
+    }),
     status: new Route({
         path: '/status/:id',
         component: <StatusPage />,

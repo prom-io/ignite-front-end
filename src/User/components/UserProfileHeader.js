@@ -2,7 +2,7 @@ import React from "react";
 import Markdown from "react-markdown";
 import breaks from "remark-breaks";
 import { format } from "date-fns";
-import { Button, Grid, Link, Typography } from "@material-ui/core";
+import { Button, Grid, Link, Typography, Hidden } from "@material-ui/core";
 
 import { UserProfileAvatar } from "./UserProfileAvatar";
 import { UserProfileTab } from "./UserProfileTab";
@@ -17,6 +17,7 @@ const _UserProfileHeader = ({
     avatar,
     following,
     followers,
+    communities = 0,
     currentUserFollows,
     statuses,
     activeTab,
@@ -87,51 +88,89 @@ const _UserProfileHeader = ({
                     )}
                 </div>
                 <div className="user-profile-header-content-bottom-follows">
-                    <UserProfileTab
-                        active={activeTab === "posts"}
-                        header={
-                            currentUser && currentUser.username === username
-                                ? currentUser.statuses_count
-                                : statuses
-                        }
-                        subheader={l("user.profile.posts")}
-                        onSelectActive={() => onTabSelected("posts")}
-                        linkProps={{
-                            view: Routes.userProfile,
-                            params: { username },
-                            store
-                        }}
-                    />
-                    <UserProfileTab
-                        active={activeTab === "followers"}
-                        header={
-                            currentUser && currentUser.username === username
-                                ? currentUser.followers_count
-                                : followers
-                        }
-                        subheader={l("user.profile.followers")}
-                        onSelectActive={() => onTabSelected("followers")}
-                        linkProps={{
-                            view: Routes.userFollowers,
-                            params: { username },
-                            store
-                        }}
-                    />
-                    <UserProfileTab
-                        active={activeTab === "following"}
-                        header={
-                            currentUser && currentUser.username === username
-                                ? currentUserFollowingCount
-                                : following
-                        }
-                        subheader={l("user.profile.following")}
-                        onSelectActive={() => onTabSelected("following")}
-                        linkProps={{
-                            view: Routes.userFollowing,
-                            params: { username },
-                            store
-                        }}
-                    />
+                    <div>
+                        <UserProfileTab
+                            active={activeTab === "posts"}
+                            header={
+                                currentUser && currentUser.username === username
+                                    ? currentUser.statuses_count
+                                    : statuses
+                            }
+                            subheader={l("user.profile.posts")}
+                            onSelectActive={() => onTabSelected("posts")}
+                            linkProps={{
+                                view: Routes.userProfile,
+                                params: { username },
+                                store
+                            }}
+                        />
+                        <UserProfileTab
+                            active={activeTab === "followers"}
+                            header={
+                                currentUser && currentUser.username === username
+                                    ? currentUser.followers_count
+                                    : followers
+                            }
+                            subheader={l("user.profile.followers")}
+                            onSelectActive={() => onTabSelected("followers")}
+                            linkProps={{
+                                view: Routes.userFollowers,
+                                params: { username },
+                                store
+                            }}
+                        />
+                        <UserProfileTab
+                            active={activeTab === "following"}
+                            header={
+                                currentUser && currentUser.username === username
+                                    ? currentUserFollowingCount
+                                    : following
+                            }
+                            subheader={l("user.profile.following")}
+                            onSelectActive={() => onTabSelected("following")}
+                            linkProps={{
+                                view: Routes.userFollowing,
+                                params: { username },
+                                store
+                            }}
+                        />
+                        <Hidden mdUp>
+                            <UserProfileTab
+                                active={activeTab === "communities"}
+                                header={
+                                    currentUser && currentUser.username === username
+                                        ? 0
+                                        : communities
+                                }
+                                subheader={l("user.profile.communities")}
+                                onSelectActive={() => onTabSelected("communities")}
+                                linkProps={{
+                                    view: Routes.userCommunities,
+                                    params: { username },
+                                    store
+                                }}
+                            />
+                        </Hidden>
+                    </div>
+                    <Hidden smDown>
+                        <div>
+                            <UserProfileTab
+                                active={activeTab === "communities"}
+                                header={
+                                    currentUser && currentUser.username === username
+                                        ? 0
+                                        : communities
+                                }
+                                subheader={l("user.profile.communities")}
+                                onSelectActive={() => onTabSelected("communities")}
+                                linkProps={{
+                                    view: Routes.userCommunities,
+                                    params: { username },
+                                    store
+                                }}
+                            />
+                        </div>
+                    </Hidden>
                 </div>
                 <Typography
                     variant="body1"

@@ -1,6 +1,7 @@
 export * from './UserProfileHeader';
 export * from './UserFollowersList';
 export * from './UserFollowingList';
+export * from './UserCommunitiesList';
 export * from './UsersList';
 export * from './UserProfileAvatar';
 export * from './UserProfileTab';

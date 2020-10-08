@@ -53,7 +53,9 @@ const _UserAvatarFileInput = ({
                     src={
                         avatarFileContainer
                             ? avatarFileContainer.url
-                            : currentUser.avatar
+                            : currentUser
+                            ? currentUser.avatar
+                            : null
                     }
                 />
                 <Button

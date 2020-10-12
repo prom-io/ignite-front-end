@@ -13,7 +13,7 @@ import {
     CustomDialogTitle,
     _Checkbox as Checkbox
 } from "../../Authorization/components";
-import { CopyToClipboardButton } from "../../components";
+import { CopyToClipboardButton, Loader } from "../../components";
 import { ArrowRightIcon } from "../../icons/ArrowRightIcon";
 import { LinkIcon } from "../../icons/LinkIcon";
 import { localized } from "../../localization/components";
@@ -134,7 +134,8 @@ const BuyVotingPowerForm = ({
     quantity,
     setFormValueTokens,
     setFormValueQuantity,
-    buyVotingPower
+    buyVotingPower,
+    pending
 }) => {
     return (
         <div>
@@ -178,8 +179,15 @@ const BuyVotingPowerForm = ({
                 color="primary"
                 variant="contained"
                 size="large"
+                disabled={pending}
             >
                 Buy
+                {pending && (
+                    <Loader
+                        size="md"
+                        css="position:absolute; top: 0px; left: 68px"
+                    />
+                )}
             </Button>
         </div>
     );
@@ -250,6 +258,7 @@ const _MemezatorBuyVotingPowerDialog = ({
     buyVotingPowerForm,
     buyVotingPowerHash,
     buyVotingPowerDialogOpen,
+    pending,
     buyVotingPowerVisibleCode,
     setFormValueTokens,
     setFormValueQuantity,
@@ -280,6 +289,7 @@ const _MemezatorBuyVotingPowerDialog = ({
                         setFormValueTokens={setFormValueTokens}
                         setFormValueQuantity={setFormValueQuantity}
                         buyVotingPower={buyVotingPower}
+                        pending={pending}
                         {...buyVotingPowerForm}
                     />
                 ) : (
@@ -299,6 +309,7 @@ const mapMobxToProps = ({ memezatorVotingPower }) => ({
     buyVotingPowerForm: memezatorVotingPower.buyVotingPowerForm,
     buyVotingPowerHash: memezatorVotingPower.buyVotingPowerHash,
     buyVotingPowerDialogOpen: memezatorVotingPower.buyVotingPowerDialogOpen,
+    pending: memezatorVotingPower.pending,
     buyVotingPowerVisibleCode: memezatorVotingPower.buyVotingPowerVisibleCode,
     setFormValueTokens: memezatorVotingPower.setFormValueTokens,
     setFormValueQuantity: memezatorVotingPower.setFormValueQuantity,

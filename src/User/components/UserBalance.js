@@ -75,7 +75,7 @@ export const UserBalance = observer(({ userBalance }) => {
                         {Number(userBalance).toFixed(2)} PROM
                     </Button>
                 </Link>
-                <div className={classes.balanceRefreshWrapper}>
+                {/* <div className={classes.balanceRefreshWrapper}>
                     <Typography
                         color="textPrimary"
                         classes={{ root: classes.balanceText }}
@@ -95,7 +95,7 @@ export const UserBalance = observer(({ userBalance }) => {
                     align="center"
                 >
                     Rewards: 21.10 PROM
-                </Typography>
+                </Typography> */}
             </div>
         </div>
     );

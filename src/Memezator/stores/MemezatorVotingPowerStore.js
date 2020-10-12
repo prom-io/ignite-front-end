@@ -11,6 +11,9 @@ export class MemezatorVotingPowerStore {
     buyVotingPowerForm = BUY_VOTING_POWER_FORM;
 
     @observable
+    buyVotingPowerHash = undefined;
+
+    @observable
     buyVotingPowerDialogOpen = false;
 
     @observable
@@ -21,6 +24,7 @@ export class MemezatorVotingPowerStore {
         this.buyVotingPowerDialogOpen = buyVotingPowerDialogOpen;
         if (buyVotingPowerDialogOpen) {
             this.buyVotingPowerVisibleCode = false;
+            this.buyVotingPowerHash = undefined;
         }
         if (!buyVotingPowerDialogOpen) {
             this.buyVotingPowerForm = BUY_VOTING_POWER_FORM;
@@ -29,7 +33,12 @@ export class MemezatorVotingPowerStore {
 
     @action
     buyVotingPower = () => {
-        this.buyVotingPowerVisibleCode = true;
+        axiosInstance
+            .get("/api/v1/memezator/voting-power-purchase-address")
+            .then(({ data }) => {
+                this.buyVotingPowerHash = data.votingPowerPurchaseAddress;
+                this.buyVotingPowerVisibleCode = true;
+            });
     };
 
     @action

@@ -13,7 +13,7 @@ import {
     CustomDialogTitle,
     _Checkbox as Checkbox
 } from "../../Authorization/components";
-import { CopyToClipboardButton } from "../../components";
+import { CopyToClipboardButton, Loader } from "../../components";
 import { ArrowRightIcon } from "../../icons/ArrowRightIcon";
 import { LinkIcon } from "../../icons/LinkIcon";
 import { localized } from "../../localization/components";
@@ -134,7 +134,8 @@ const BuyVotingPowerForm = ({
     quantity,
     setFormValueTokens,
     setFormValueQuantity,
-    buyVotingPower
+    buyVotingPower,
+    pending
 }) => {
     return (
         <div>
@@ -178,8 +179,15 @@ const BuyVotingPowerForm = ({
                 color="primary"
                 variant="contained"
                 size="large"
+                disabled={pending}
             >
                 Buy
+                {pending && (
+                    <Loader
+                        size="md"
+                        css="position:absolute; top: 0px; left: 68px"
+                    />
+                )}
             </Button>
         </div>
     );
@@ -187,7 +195,8 @@ const BuyVotingPowerForm = ({
 
 const BuyVotingPowerCode = ({
     classes,
-    setBuyVotingPowerDialogOpen,
+    hash,
+    setDialogOpen,
     fetchConfirmTransaction
 }) => {
     const [checkboxIsChecked, setCheckboxIsChecked] = useState(false);
@@ -202,19 +211,18 @@ const BuyVotingPowerCode = ({
             </Typography>
             <div className={classes.buyVotingPowerHashWrapper}>
                 <Typography classes={{ root: classes.buyVotingPowerHash }}>
-                    0x47E7B12A86869750a9c1bE2e62b0FA22d7e35b77
+                    {hash}
                 </Typography>
-                <CopyToClipboardButton
-                    textToCopy="0x47E7B12A86869750a9c1bE2e62b0FA22d7e35b77"
-                    darkTooltip
-                >
+                <CopyToClipboardButton textToCopy={hash} darkTooltip>
                     <Button color="primary" variant="outlined">
                         <LinkIcon />
                     </Button>
                 </CopyToClipboardButton>
             </div>
             <div className={classes.buyVotingPowerCodeWrapper}>
-                <img src="https://chart.apis.google.com/chart?choe=UTF-8&chld=H&cht=qr&chs=200x200&chl=0x47E7B12A86869750a9c1bE2e62b0FA22d7e35b77" />
+                <img
+                    src={`https://chart.apis.google.com/chart?choe=UTF-8&chld=H&cht=qr&chs=200x200&chl=${hash}`}
+                />
             </div>
             <Checkbox
                 checked={checkboxIsChecked}
@@ -234,7 +242,7 @@ const BuyVotingPowerCode = ({
                     OK
                 </Button>
                 <Button
-                    onClick={() => setBuyVotingPowerDialogOpen(false)}
+                    onClick={() => setDialogOpen(false)}
                     color="primary"
                     variant="outlined"
                     size="large"
@@ -248,7 +256,9 @@ const BuyVotingPowerCode = ({
 
 const _MemezatorBuyVotingPowerDialog = ({
     buyVotingPowerForm,
+    buyVotingPowerHash,
     buyVotingPowerDialogOpen,
+    pending,
     buyVotingPowerVisibleCode,
     setFormValueTokens,
     setFormValueQuantity,
@@ -279,12 +289,14 @@ const _MemezatorBuyVotingPowerDialog = ({
                         setFormValueTokens={setFormValueTokens}
                         setFormValueQuantity={setFormValueQuantity}
                         buyVotingPower={buyVotingPower}
+                        pending={pending}
                         {...buyVotingPowerForm}
                     />
                 ) : (
                     <BuyVotingPowerCode
                         classes={classes}
-                        setBuyVotingPowerDialogOpen={setBuyVotingPowerDialogOpen}
+                        hash={buyVotingPowerHash}
+                        setDialogOpen={setBuyVotingPowerDialogOpen}
                         fetchConfirmTransaction={fetchConfirmTransaction}
                     />
                 )}
@@ -295,7 +307,9 @@ const _MemezatorBuyVotingPowerDialog = ({
 
 const mapMobxToProps = ({ memezatorVotingPower }) => ({
     buyVotingPowerForm: memezatorVotingPower.buyVotingPowerForm,
+    buyVotingPowerHash: memezatorVotingPower.buyVotingPowerHash,
     buyVotingPowerDialogOpen: memezatorVotingPower.buyVotingPowerDialogOpen,
+    pending: memezatorVotingPower.pending,
     buyVotingPowerVisibleCode: memezatorVotingPower.buyVotingPowerVisibleCode,
     setFormValueTokens: memezatorVotingPower.setFormValueTokens,
     setFormValueQuantity: memezatorVotingPower.setFormValueQuantity,

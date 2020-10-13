@@ -64,12 +64,13 @@ const useStyles = makeStyles(theme => ({
         minWidth: "85px",
         height: "24px",
         fontSize: "13px",
-        padding: 0,
+        padding: "0 12px",
         [theme.breakpoints.down("sm")]: {
             display: "block",
             height: "28px",
             fontSize: "12px",
-            marginLeft: "auto"
+            marginLeft: "auto",
+            padding: 0
         }
     },
     memezatorRulesContent: {

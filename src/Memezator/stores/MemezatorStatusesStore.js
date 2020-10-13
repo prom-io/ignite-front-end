@@ -37,9 +37,9 @@ export class MemezatorStatusesStore {
             () => {
                 this.reset();
 
-                // if (window.location.pathname === "/memezator") {
-                //     this.fetchMemezatorStatuses();
-                // }
+                if (window.location.pathname === "/memezator") {
+                    this.fetchMemezatorStatuses();
+                }
             }
         );
 

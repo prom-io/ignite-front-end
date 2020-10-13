@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
         color: '#A2A2A2',
     },
     termsAndPoliciesInfo: {
+        fontFamily: "Museo Sans Cyrl Regular",
         textAlign: 'justify',
         marginBottom: '50px',
         '&:last-child': {

@@ -37,11 +37,40 @@ const useStyles = makeStyles(theme => ({
             fontSize: "16px"
         }
     },
-    memezatorRulesPower: {
+    memezatorRulesPowerWrapper: {
+        display: "flex",
+        alignItems: "center",
+        [theme.breakpoints.down("355")]: {
+            display: "block"
+        }
+    },
+    memezatorRulesPowerInner: {
+        marginRight: "14px",
+        [theme.breakpoints.down("355")]: {
+            marginRight: "0px",
+            marginBottom: "6px",
+            textAlign: "right"
+        }
+    },
+    memezatorRulesPowerText: {
         fontSize: "15px",
         fontWeight: 600,
         [theme.breakpoints.down("sm")]: {
             fontSize: "14px"
+        }
+    },
+    memezatorRulesPowerButton: {
+        background: "#fff",
+        minWidth: "85px",
+        height: "24px",
+        fontSize: "13px",
+        padding: "0 12px",
+        [theme.breakpoints.down("sm")]: {
+            display: "block",
+            height: "28px",
+            fontSize: "12px",
+            marginLeft: "auto",
+            padding: 0
         }
     },
     memezatorRulesContent: {
@@ -73,7 +102,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const _MemezatorRules = ({ currentUser, actionRights, l }) => {
+const _MemezatorRules = ({
+    currentUser,
+    actionRights,
+    setBuyVotingPowerDialogOpen,
+    l
+}) => {
     const classes = useStyles();
     const [showRules, setShowRules] = useState(false);
 
@@ -87,25 +121,35 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
                     {l("memezator.rules")}
                 </Typography>
                 {currentUser && (
-                    <div>
-                        <Typography
-                            classes={{ root: classes.memezatorRulesPower }}
-                            variant="h6"
+                    <div className={classes.memezatorRulesPowerWrapper}>
+                        <div className={classes.memezatorRulesPowerInner}>
+                            <Typography
+                                classes={{ root: classes.memezatorRulesPowerText }}
+                                variant="h6"
+                            >
+                                {l("memezator.voting-power")}:{" "}
+                                {actionRights && actionRights.voting_power
+                                    ? actionRights.voting_power
+                                    : 0}
+                            </Typography>
+                            <Typography
+                                classes={{ root: classes.memezatorRulesPowerText }}
+                                variant="h6"
+                            >
+                                {l("memezator.tokens")}:{" "}
+                                {actionRights && actionRights.eth_prom_tokens
+                                    ? Number(actionRights.eth_prom_tokens).toFixed(2)
+                                    : "0.00"}
+                            </Typography>
+                        </div>
+                        <Button
+                            classes={{ root: classes.memezatorRulesPowerButton }}
+                            color="primary"
+                            variant="outlined"
+                            onClick={() => setBuyVotingPowerDialogOpen(true)}
                         >
-                            {l("memezator.voting-power")}:{" "}
-                            {actionRights && actionRights.voting_power
-                                ? actionRights.voting_power
-                                : 0}
-                        </Typography>
-                        <Typography
-                            classes={{ root: classes.memezatorRulesPower }}
-                            variant="h6"
-                        >
-                            {l("memezator.tokens")}:{" "}
-                            {actionRights && actionRights.eth_prom_tokens
-                                ? Number(actionRights.eth_prom_tokens).toFixed(2)
-                                : "0.00"}
-                        </Typography>
+                            Buy Power
+                        </Button>
                     </div>
                 )}
             </div>
@@ -171,9 +215,14 @@ const _MemezatorRules = ({ currentUser, actionRights, l }) => {
     );
 };
 
-const mapMobxToProps = ({ authorization, memezatorActions }) => ({
+const mapMobxToProps = ({
+    authorization,
+    memezatorActions,
+    memezatorVotingPower
+}) => ({
     currentUser: authorization.currentUser,
-    actionRights: memezatorActions.actionRights
+    actionRights: memezatorActions.actionRights,
+    setBuyVotingPowerDialogOpen: memezatorVotingPower.setBuyVotingPowerDialogOpen
 });
 
 export const MemezatorRules = localized(

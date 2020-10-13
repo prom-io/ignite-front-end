@@ -39,7 +39,8 @@ import {
     MemezatorActionsStore, 
     MemezatorStatusesStore, 
     MemezatorWinnersStore, 
-    MemezatorDialogStore 
+    MemezatorDialogStore ,
+    MemezatorVotingPowerStore
 } from '../Memezator/stores';
 import { TransactionsStore } from '../Transactions/stores';
 import { WebsocketStore } from '../websocket/stores';
@@ -82,6 +83,7 @@ const searchUsers = new SearchUsersStore();
 const memezatorActions = new MemezatorActionsStore(authorization, createStatus);
 const memezatorStatuses = new MemezatorStatusesStore(authorization, createStatus, memezatorDialog);
 const memezatorWinners = new MemezatorWinnersStore();
+const memezatorVotingPower = new MemezatorVotingPowerStore();
 const transactions = new TransactionsStore(authorization);
 
 export const store = {
@@ -123,5 +125,6 @@ export const store = {
     memezatorStatuses,
     memezatorWinners,
     memezatorDialog,
+    memezatorVotingPower,
     transactions
 };

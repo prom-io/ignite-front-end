@@ -11,7 +11,7 @@ import {
     useTheme
 } from "@material-ui/core";
 
-import { UserBalanceButton } from "./UserBalanceButton";
+import { UserBalance } from "./UserBalance";
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
 
@@ -19,30 +19,25 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
     const theme = useTheme();
 
     return (
-        <div className="user-profile-card">
-            <Link
-                store={routerStore}
-                view={Routes.userProfile}
-                params={{ username: currentUser.username }}
-            >
-                <div className="user-card-top user-card-content-box">
+        <Grid container className="user-profile-header-content">
+            <div className="user-profile-header-content-top">
+                <Link
+                    store={routerStore}
+                    view={Routes.userProfile}
+                    params={{ username: currentUser.username }}
+                >
                     <Avatar
                         src={`${currentUser.avatar}?size=${100}`}
                         style={{
-                            width: 90,
-                            height: 90,
-                            minWidth: 90,
-                            minHeight: 90,
-                            border: `1px solid ${theme.palette.border.main}`
+                            width: "94px",
+                            height: "94px",
+                            border: `1px solid ${theme.palette.border.main}`,
+                            margin: "0 auto"
                         }}
                     />
-                </div>
-            </Link>
-            <div className="user-card-content-box">
+                </Link>
                 <div className="user-card-info">
-                    <Typography variant={"h4"}>
-                        {currentUser.display_name}
-                    </Typography>
+                    <Typography variant="h4">{currentUser.display_name}</Typography>
                     <Typography>@{currentUser.username}</Typography>
                     {currentUser.external_url && (
                         <MaterialLink
@@ -54,64 +49,61 @@ const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
                         </MaterialLink>
                     )}
                     {currentUser.bio && (
-                        <Typography variant={"h6"} className="user-card-info-bio">
+                        <Typography variant="h6" className="user-card-info-bio">
                             <Markdown source={currentUser.bio} plugins={[breaks]} />
                         </Typography>
                     )}
                 </div>
-
-                <Grid className="user-profile-header-content-bottom">
-                    <Grid className="user-profile-header-content-bottom-follows user-card-statistic">
-                        <Link
-                            store={routerStore}
-                            view={Routes.userProfile}
-                            params={{
-                                username: currentUser.username,
-                                id: currentUser.id
-                            }}
-                        >
-                            <Typography variant="h6">
-                                {currentUser.statuses_count}
-                            </Typography>
-                            <Typography variant="body1">
-                                {l("user.profile.posts")}
-                            </Typography>
-                        </Link>
-                        <Link
-                            store={routerStore}
-                            view={Routes.userFollowers}
-                            params={{
-                                username: currentUser.username,
-                                id: currentUser.id
-                            }}
-                        >
-                            <Typography variant="h6">
-                                {currentUser.followers_count}
-                            </Typography>
-                            <Typography variant="body1">
-                                {l("user.profile.followers")}
-                            </Typography>
-                        </Link>
-                        <Link
-                            store={routerStore}
-                            view={Routes.userFollowing}
-                            params={{
-                                username: currentUser.username,
-                                id: currentUser.id
-                            }}
-                        >
-                            <Typography variant="h6">
-                                {currentUser.follows_count}
-                            </Typography>
-                            <Typography variant="body1">
-                                {l("user.profile.following")}
-                            </Typography>
-                        </Link>
-                    </Grid>
-                    <UserBalanceButton userBalance={currentUser.user_balance} />
-                </Grid>
+                <div className="user-profile-header-content-bottom-follows user-card-statistic">
+                    <Link
+                        store={routerStore}
+                        view={Routes.userProfile}
+                        params={{
+                            username: currentUser.username,
+                            id: currentUser.id
+                        }}
+                    >
+                        <Typography variant="h6">
+                            {currentUser.statuses_count}
+                        </Typography>
+                        <Typography variant="body1">
+                            {l("user.profile.posts")}
+                        </Typography>
+                    </Link>
+                    <Link
+                        store={routerStore}
+                        view={Routes.userFollowers}
+                        params={{
+                            username: currentUser.username,
+                            id: currentUser.id
+                        }}
+                    >
+                        <Typography variant="h6">
+                            {currentUser.followers_count}
+                        </Typography>
+                        <Typography variant="body1">
+                            {l("user.profile.followers")}
+                        </Typography>
+                    </Link>
+                    <Link
+                        store={routerStore}
+                        view={Routes.userFollowing}
+                        params={{
+                            username: currentUser.username,
+                            id: currentUser.id
+                        }}
+                    >
+                        <Typography variant="h6">
+                            {currentUser.follows_count}
+                        </Typography>
+                        <Typography variant="body1">
+                            {l("user.profile.following")}
+                        </Typography>
+                    </Link>
+                </div>
             </div>
-        </div>
+            <UserBalance userBalance={currentUser.user_balance} />
+        </Grid>
     );
 };
 

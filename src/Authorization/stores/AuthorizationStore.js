@@ -1,13 +1,14 @@
-import {observable, action, reaction} from "mobx";
-import {axiosInstance} from "../../api/axios-instance";
-import {store} from "../../store";
+import { observable, action, reaction } from "mobx";
+import { axiosInstance } from "../../api/axios-instance";
+import { store } from "../../store";
 
 export class AuthorizationStore {
     @observable
     currentUser = undefined;
 
     @observable
-    accessToken = localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
+    accessToken =
+        localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
 
     @observable
     fetchingCurrentUser = false;
@@ -33,7 +34,7 @@ export class AuthorizationStore {
         this.accessToken = accessToken;
         this.fetchCurrentUser(true);
     };
-    
+
     @action
     setTempAccessToken = accessToken => {
         sessionStorage.setItem("accessToken", accessToken);
@@ -43,16 +44,32 @@ export class AuthorizationStore {
 
     @action
     fetchCurrentUser = isRedirect => {
-        if (localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken")) {
+        if (
+            localStorage.getItem("accessToken") ||
+            sessionStorage.getItem("accessToken")
+        ) {
             this.fetchingCurrentUser = true;
-            axiosInstance.get("/api/v1/accounts/current")
-                .then(({data}) => {
+            axiosInstance
+                .get("/api/v1/accounts/current")
+                .then(({ data }) => {
                     this.currentUser = data;
                     if (isRedirect && (!data.avatar || data.id == data.username)) {
-                        window.location.pathname = '/edit-profile';
+                        window.location.pathname = "/edit-profile";
                     }
                 })
-                .finally(() => this.fetchingCurrentUser = false);
+                .finally(() => (this.fetchingCurrentUser = false));
+        }
+    };
+
+    @action
+    updateBalance = () => {
+        if (
+            localStorage.getItem("accessToken") ||
+            sessionStorage.getItem("accessToken")
+        ) {
+            axiosInstance.get("/api/v1/accounts/current").then(({ data }) => {
+                this.currentUser = data;
+            });
         }
     };
 
@@ -67,7 +84,6 @@ export class AuthorizationStore {
         if (window.AndroidCallback) {
             window.AndroidCallback.logout();
         } else {
-        
         }
     };
 

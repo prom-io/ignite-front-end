@@ -10,8 +10,8 @@ import {
     DescriptionStoaBanner
 } from "../../PrometeusDescription";
 import Loader from "../../components/Loader";
-import { Routes } from '../../routes';
-import { routerStore } from '../../store';
+import { Routes } from "../../routes";
+import { routerStore } from "../../store";
 
 const useStyles = makeStyles(theme => ({
     centered: {
@@ -35,12 +35,13 @@ const _UserProfileContainer = ({
     openUnfollowDialog,
     setOpenUnfollowDialog,
     setActiveTab,
+    updateBalance,
     currentUser
 }) => {
     const classes = useStyles();
 
     if (error) {
-        routerStore.router.goTo(Routes.notFound)
+        routerStore.router.goTo(Routes.notFound);
     }
 
     let tabContent;
@@ -84,7 +85,16 @@ const _UserProfileContainer = ({
                     displayName={user.display_name}
                     bio={user.bio}
                     externalUrl={user.external_url}
-                    userBalance={user.user_balance}
+                    currentUserOverallBalance={
+                        currentUser && currentUser.overall_balance
+                    }
+                    currentUserBlockchainBalance={
+                        currentUser && currentUser.blockchain_balance
+                    }
+                    currentUserPendingRewardsSum={
+                        currentUser && currentUser.pending_rewards_sum
+                    }
+                    updateBalance={updateBalance}
                     currentUser={currentUser}
                     currentUserFollowingCount={
                         currentUser && currentUser.follows_count
@@ -127,6 +137,7 @@ const mapMobxToProps = ({ userProfile, authorization }) => ({
     openUnfollowDialog: userProfile.openUnfollowDialog,
     setOpenUnfollowDialog: userProfile.setOpenUnfollowDialog,
     setActiveTab: userProfile.setActiveTab,
+    updateBalance: authorization.updateBalance,
     currentUser: authorization.currentUser
 });
 

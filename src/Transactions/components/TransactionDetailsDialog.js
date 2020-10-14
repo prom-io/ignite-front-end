@@ -85,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const _TransactionDetailsDialog = ({
+    currentUser,
     openDetails,
     currentTransaction,
     setOpenDetails,
@@ -172,18 +173,40 @@ const _TransactionDetailsDialog = ({
                     </Typography>
                 );
             case "TRANSFER":
-                return (
-                    <Typography
-                        className={classes.transactionBalance}
-                        classes={{
-                            root:
-                                currentTransaction.txn_status !== "FAILED" &&
-                                classes.transactionRed
-                        }}
-                    >
-                        - {Number(currentTransaction.txn_sum).toFixed(2)} PROM
-                    </Typography>
-                );
+                if (currentTransaction.txn_from) {
+                    if (
+                        currentUser.id.toLowerCase() ===
+                        currentTransaction.txn_from.toLowerCase()
+                    ) {
+                        return (
+                            <Typography
+                                className={classes.transactionBalance}
+                                classes={{
+                                    root:
+                                        currentTransaction.txn_status !== "FAILED" &&
+                                        classes.transactionRed
+                                }}
+                            >
+                                - {Number(currentTransaction.txn_sum).toFixed(2)}{" "}
+                                PROM
+                            </Typography>
+                        );
+                    } else {
+                        return (
+                            <Typography
+                                className={classes.transactionBalance}
+                                classes={{
+                                    root:
+                                        currentTransaction.txn_status !== "FAILED" &&
+                                        classes.transactionGreen
+                                }}
+                            >
+                                + {Number(currentTransaction.txn_sum).toFixed(2)}{" "}
+                                PROM
+                            </Typography>
+                        );
+                    }
+                }
             default:
                 return null;
         }
@@ -269,7 +292,8 @@ const _TransactionDetailsDialog = ({
     );
 };
 
-const mapMobxToProps = ({ transactions }) => ({
+const mapMobxToProps = ({ authorization, transactions }) => ({
+    currentUser: authorization.currentUser,
     openDetails: transactions.openDetails,
     currentTransaction: transactions.currentTransaction,
     setOpenDetails: transactions.setOpenDetails

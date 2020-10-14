@@ -115,169 +115,196 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const TransactionItem = observer(({ transaction, setOpenDetails }) => {
-    const classes = useStyles();
-    const { l } = useLocalization();
+export const TransactionItem = observer(
+    ({ currentUserId, transaction, setOpenDetails }) => {
+        const classes = useStyles();
+        const { l } = useLocalization();
 
-    const transactionIcon = () => {
-        switch (transaction.txn_status) {
-            case "PERFORMED":
-                return <TransactionCheckIcon />;
-            case "FAILED":
-                return <TransactionCrossIcon />;
-            default:
-                return <TransactionPlusIcon />;
-        }
-    };
+        const transactionIcon = () => {
+            switch (transaction.txn_status) {
+                case "PERFORMED":
+                    return <TransactionCheckIcon />;
+                case "FAILED":
+                    return <TransactionCrossIcon />;
+                default:
+                    return <TransactionPlusIcon />;
+            }
+        };
 
-    const transactionHash = () => {
-        switch (transaction.txn_status) {
-            case "PERFORMED":
-                return transaction.txn_hash;
-            case "FAILED":
-                return "Transation failed";
-            default:
-                return "Will be transferred";
-        }
-    };
+        const transactionHash = () => {
+            switch (transaction.txn_status) {
+                case "PERFORMED":
+                    return transaction.txn_hash;
+                case "FAILED":
+                    return "Transation failed";
+                default:
+                    return "Will be transferred";
+            }
+        };
 
-    const transactionStatus = () => {
-        switch (transaction.txn_status) {
-            case "PERFORMED":
-                return "Succeed";
-            case "PERFORMING":
-                return "Performing";
-            case "FAILED":
-                return "Failed";
-            default:
-                return "Pending";
-        }
-    };
+        const transactionStatus = () => {
+            switch (transaction.txn_status) {
+                case "PERFORMED":
+                    return "Succeed";
+                case "PERFORMING":
+                    return "Performing";
+                case "FAILED":
+                    return "Failed";
+                default:
+                    return "Pending";
+            }
+        };
 
-    const transactionSum = () => {
-        switch (transaction.txn_subject) {
-            case "REWARD":
-                return (
-                    <Typography
-                        className={classes.transactionBalance}
-                        classes={{
-                            root:
-                                transaction.txn_status !== "FAILED" &&
-                                classes.transactionGreen
-                        }}
-                        align="right"
-                    >
-                        + {Number(transaction.txn_sum).toFixed(2)} PROM
-                    </Typography>
-                );
-            case "TRANSFER":
-                return (
-                    <Typography
-                        className={classes.transactionBalance}
-                        classes={{
-                            root:
-                                transaction.txn_status !== "FAILED" &&
-                                classes.transactionRed
-                        }}
-                        align="right"
-                    >
-                        - {Number(transaction.txn_sum).toFixed(2)} PROM
-                    </Typography>
-                );
-            default:
-                return null;
-        }
-    };
+        const transactionSum = () => {
+            switch (transaction.txn_subject) {
+                case "REWARD":
+                    return (
+                        <Typography
+                            className={classes.transactionBalance}
+                            classes={{
+                                root:
+                                    transaction.txn_status !== "FAILED" &&
+                                    classes.transactionGreen
+                            }}
+                            align="right"
+                        >
+                            + {Number(transaction.txn_sum).toFixed(2)} PROM
+                        </Typography>
+                    );
+                case "TRANSFER":
+                    if (transaction.txn_from) {
+                        if (
+                            currentUserId.toLowerCase() ===
+                            transaction.txn_from.toLowerCase()
+                        ) {
+                            return (
+                                <Typography
+                                    className={classes.transactionBalance}
+                                    classes={{
+                                        root:
+                                            transaction.txn_status !== "FAILED" &&
+                                            classes.transactionRed
+                                    }}
+                                    align="right"
+                                >
+                                    - {Number(transaction.txn_sum).toFixed(2)} PROM
+                                </Typography>
+                            );
+                        } else {
+                            return (
+                                <Typography
+                                    className={classes.transactionBalance}
+                                    classes={{
+                                        root:
+                                            transaction.txn_status !== "FAILED" &&
+                                            classes.transactionGreen
+                                    }}
+                                    align="right"
+                                >
+                                    + {Number(transaction.txn_sum).toFixed(2)} PROM
+                                </Typography>
+                            );
+                        }
+                    }
 
-    const transactionSubject = () => {
-        switch (transaction.txn_subject) {
-            case "REWARD":
-                return "Memezator prize";
-            case "TRANSFER":
-                return "P2P transaction";
-            default:
-                return "";
-        }
-    };
+                    return null;
+                default:
+                    return null;
+            }
+        };
 
-    return (
-        <div
-            className={[
-                classes.transactionItem,
-                transaction.txn_status === "FAILED"
-                    ? classes.transactionItemFailed
-                    : ""
-            ].join(" ")}
-            onClick={() => setOpenDetails(true, transaction)}
-        >
-            <div className={classes.transactionItemHeader}>
-                <div className={classes.transactionArrow}>{transactionIcon()}</div>
-                <div style={{ width: "75%" }}>
-                    <Typography
-                        classes={{ root: classes.transactionHash }}
-                        color="textPrimary"
-                    >
-                        {transactionHash()}
-                    </Typography>
-                    <Typography
-                        classes={{ root: classes.transactionSmallText }}
-                        color="textSecondary"
-                    >
-                        {format(
-                            new Date(transaction.created_at),
-                            "dd.MM.yyyy, HH:mm:ss"
-                        )}
-                    </Typography>
-                </div>
-                <div style={{ width: "25%" }}>
-                    {transactionSum()}
-                    <Typography
-                        classes={{ root: classes.transactionSmallText }}
-                        color="textSecondary"
-                        align="right"
-                    >
-                        {transactionStatus()}
-                    </Typography>
-                </div>
-            </div>
-            {transaction.txn_status === "PERFORMED" && (
-                <div className={classes.transactionItemFooter}>
-                    <div className={classes.transactionItemFooterMobile}>
-                        <div className={classes.detailsFromTo}>
-                            <Typography
-                                classes={{ root: classes.detailsFromToLabel }}
-                            >
-                                {l("transactions.from")}&nbsp;
-                            </Typography>{" "}
-                            <Typography
-                                classes={{ root: classes.detailsFromToContent }}
-                                color="textPrimary"
-                            >
-                                {transaction.txn_from}
-                            </Typography>
-                        </div>
-                        <div className={classes.detailsFromTo}>
-                            <Typography
-                                classes={{ root: classes.detailsFromToLabel }}
-                            >
-                                {l("transactions.to")}&nbsp;
-                            </Typography>{" "}
-                            <Typography
-                                classes={{ root: classes.detailsFromToContent }}
-                                color="textPrimary"
-                            >
-                                {transaction.txn_to}
-                            </Typography>
-                        </div>
+        const transactionSubject = () => {
+            switch (transaction.txn_subject) {
+                case "REWARD":
+                    return "Memezator prize";
+                case "TRANSFER":
+                    return "P2P transaction";
+                default:
+                    return "";
+            }
+        };
+
+        return (
+            <div
+                className={[
+                    classes.transactionItem,
+                    transaction.txn_status === "FAILED"
+                        ? classes.transactionItemFailed
+                        : ""
+                ].join(" ")}
+                onClick={() => setOpenDetails(true, transaction)}
+            >
+                <div className={classes.transactionItemHeader}>
+                    <div className={classes.transactionArrow}>
+                        {transactionIcon()}
                     </div>
-                    <Typography
-                        classes={{ root: classes.transactionSmallText }}
-                        color="textPrimary"
-                    >
-                        {transactionSubject()}
-                    </Typography>
+                    <div style={{ width: "75%" }}>
+                        <Typography
+                            classes={{ root: classes.transactionHash }}
+                            color="textPrimary"
+                        >
+                            {transactionHash()}
+                        </Typography>
+                        <Typography
+                            classes={{ root: classes.transactionSmallText }}
+                            color="textSecondary"
+                        >
+                            {format(
+                                new Date(transaction.created_at),
+                                "dd.MM.yyyy, HH:mm:ss"
+                            )}
+                        </Typography>
+                    </div>
+                    <div style={{ width: "25%" }}>
+                        {transactionSum()}
+                        <Typography
+                            classes={{ root: classes.transactionSmallText }}
+                            color="textSecondary"
+                            align="right"
+                        >
+                            {transactionStatus()}
+                        </Typography>
+                    </div>
                 </div>
-            )}
-        </div>
-    );
-});
+                {transaction.txn_status === "PERFORMED" && (
+                    <div className={classes.transactionItemFooter}>
+                        <div className={classes.transactionItemFooterMobile}>
+                            <div className={classes.detailsFromTo}>
+                                <Typography
+                                    classes={{ root: classes.detailsFromToLabel }}
+                                >
+                                    {l("transactions.from")}&nbsp;
+                                </Typography>{" "}
+                                <Typography
+                                    classes={{ root: classes.detailsFromToContent }}
+                                    color="textPrimary"
+                                >
+                                    {transaction.txn_from}
+                                </Typography>
+                            </div>
+                            <div className={classes.detailsFromTo}>
+                                <Typography
+                                    classes={{ root: classes.detailsFromToLabel }}
+                                >
+                                    {l("transactions.to")}&nbsp;
+                                </Typography>{" "}
+                                <Typography
+                                    classes={{ root: classes.detailsFromToContent }}
+                                    color="textPrimary"
+                                >
+                                    {transaction.txn_to}
+                                </Typography>
+                            </div>
+                        </div>
+                        <Typography
+                            classes={{ root: classes.transactionSmallText }}
+                            color="textPrimary"
+                        >
+                            {transactionSubject()}
+                        </Typography>
+                    </div>
+                )}
+            </div>
+        );
+    }
+);

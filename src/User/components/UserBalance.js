@@ -57,46 +57,48 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export const UserBalance = observer(({ userBalance }) => {
-    const classes = useStyles();
-    const { l } = useLocalization();
-    const routerStore = useRouter();
+export const UserBalance = observer(
+    ({ overallBalance, blockchainBalance, pendingRewardsSum, updateBalance }) => {
+        const classes = useStyles();
+        const { l } = useLocalization();
+        const routerStore = useRouter();
 
-    return (
-        <div className={classes.balanceWrapper}>
-            <div className={classes.balanceInner}>
-                <Link
-                    className={classes.balanceButtonWrapper}
-                    store={routerStore}
-                    view={Routes.transactions}
-                >
-                    <Button color="primary" variant="text">
-                        {l("user.profile.your-balance")}:{" "}
-                        {Number(userBalance).toFixed(2)} PROM
-                    </Button>
-                </Link>
-                {/* <div className={classes.balanceRefreshWrapper}>
+        return (
+            <div className={classes.balanceWrapper}>
+                <div className={classes.balanceInner}>
+                    <Link
+                        className={classes.balanceButtonWrapper}
+                        store={routerStore}
+                        view={Routes.transactions}
+                    >
+                        <Button color="primary" variant="text">
+                            {l("user.profile.your-balance")}:{" "}
+                            {Number(overallBalance).toFixed(2)} PROM
+                        </Button>
+                    </Link>
+                    <div className={classes.balanceRefreshWrapper}>
+                        <Typography
+                            color="textPrimary"
+                            classes={{ root: classes.balanceText }}
+                        >
+                            Blockchain: {Number(blockchainBalance).toFixed(2)} PROM
+                        </Typography>
+                        <IconButton
+                            classes={{ root: classes.refreshIcon }}
+                            onClick={updateBalance}
+                        >
+                            <RefreshIcon />
+                        </IconButton>
+                    </div>
                     <Typography
-                        color="textPrimary"
                         classes={{ root: classes.balanceText }}
+                        color="textPrimary"
+                        align="center"
                     >
-                        Blockchain: 100.0 PROM
+                        Rewards: {Number(pendingRewardsSum).toFixed(2)} PROM
                     </Typography>
-                    <IconButton
-                        classes={{ root: classes.refreshIcon }}
-                        onClick={() => console.log("123")}
-                    >
-                        <RefreshIcon />
-                    </IconButton>
                 </div>
-                <Typography
-                    classes={{ root: classes.balanceText }}
-                    color="textPrimary"
-                    align="center"
-                >
-                    Rewards: 21.10 PROM
-                </Typography> */}
             </div>
-        </div>
-    );
-});
+        );
+    }
+);

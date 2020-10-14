@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const _TransactionsList = ({
+    currentUser,
     transactions,
     hasMore,
     pending,
@@ -49,6 +50,7 @@ const _TransactionsList = ({
                     >
                         {transactions.map(transaction => (
                             <TransactionItem
+                                currentUserId={currentUser && currentUser.id}
                                 transaction={transaction}
                                 setOpenDetails={setOpenDetails}
                             />
@@ -60,7 +62,8 @@ const _TransactionsList = ({
     );
 };
 
-const mapMobxToProps = ({ transactions }) => ({
+const mapMobxToProps = ({ authorization, transactions }) => ({
+    currentUser: authorization.currentUser,
     transactions: transactions.transactions,
     hasMore: transactions.hasMore,
     pending: transactions.pending,

@@ -28,7 +28,10 @@ const _UserProfileHeader = ({
     displayName,
     bio,
     externalUrl,
-    userBalance,
+    currentUserOverallBalance,
+    currentUserBlockchainBalance,
+    currentUserPendingRewardsSum,
+    updateBalance,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -182,7 +185,12 @@ const _UserProfileHeader = ({
                 </Typography>
             </div>
             {currentUser && currentUser.username === username && (
-                <UserBalance userBalance={userBalance} />
+                <UserBalance
+                    overallBalance={currentUserOverallBalance}
+                    blockchainBalance={currentUserBlockchainBalance}
+                    pendingRewardsSum={currentUserPendingRewardsSum}
+                    updateBalance={updateBalance}
+                />
             )}
             {profileButton}
         </Grid>

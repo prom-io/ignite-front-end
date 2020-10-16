@@ -158,8 +158,24 @@ const _TransactionDetailsDialog = ({
     };
 
     const transactionSum = () => {
-        switch (currentTransaction.txn_subject) {
-            case "REWARD":
+        if (currentTransaction.txn_from) {
+            if (
+                currentUser.id.toLowerCase() ===
+                currentTransaction.txn_from.toLowerCase()
+            ) {
+                return (
+                    <Typography
+                        className={classes.transactionBalance}
+                        classes={{
+                            root:
+                                currentTransaction.txn_status !== "FAILED" &&
+                                classes.transactionRed
+                        }}
+                    >
+                        - {Number(currentTransaction.txn_sum).toFixed(2)} PROM
+                    </Typography>
+                );
+            } else {
                 return (
                     <Typography
                         className={classes.transactionBalance}
@@ -172,44 +188,9 @@ const _TransactionDetailsDialog = ({
                         + {Number(currentTransaction.txn_sum).toFixed(2)} PROM
                     </Typography>
                 );
-            case "TRANSFER":
-                if (currentTransaction.txn_from) {
-                    if (
-                        currentUser.id.toLowerCase() ===
-                        currentTransaction.txn_from.toLowerCase()
-                    ) {
-                        return (
-                            <Typography
-                                className={classes.transactionBalance}
-                                classes={{
-                                    root:
-                                        currentTransaction.txn_status !== "FAILED" &&
-                                        classes.transactionRed
-                                }}
-                            >
-                                - {Number(currentTransaction.txn_sum).toFixed(2)}{" "}
-                                PROM
-                            </Typography>
-                        );
-                    } else {
-                        return (
-                            <Typography
-                                className={classes.transactionBalance}
-                                classes={{
-                                    root:
-                                        currentTransaction.txn_status !== "FAILED" &&
-                                        classes.transactionGreen
-                                }}
-                            >
-                                + {Number(currentTransaction.txn_sum).toFixed(2)}{" "}
-                                PROM
-                            </Typography>
-                        );
-                    }
-                }
-            default:
-                return null;
+            }
         }
+        return null;
     };
 
     const transactionSubject = () => {
@@ -219,7 +200,7 @@ const _TransactionDetailsDialog = ({
             case "TRANSFER":
                 return "P2P transaction";
             default:
-                return "";
+                return "P2P transaction";
         }
     };
 

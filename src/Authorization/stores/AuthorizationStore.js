@@ -62,18 +62,6 @@ export class AuthorizationStore {
     };
 
     @action
-    updateBalance = () => {
-        if (
-            localStorage.getItem("accessToken") ||
-            sessionStorage.getItem("accessToken")
-        ) {
-            axiosInstance.get("/api/v1/accounts/current").then(({ data }) => {
-                this.currentUser = data;
-            });
-        }
-    };
-
-    @action
     doLogout = () => {
         this.currentUser = undefined;
         this.accessToken = undefined;

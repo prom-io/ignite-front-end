@@ -199,8 +199,10 @@ const _TransactionDetailsDialog = ({
                 return "Memezator prize";
             case "TRANSFER":
                 return "P2P transaction";
+            case "VOTING_POWER_PURCHASE":
+                return "Power purchase";
             default:
-                return "P2P transaction";
+                return "";
         }
     };
 

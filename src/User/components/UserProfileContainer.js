@@ -40,7 +40,6 @@ const _UserProfileContainer = ({
     openUnfollowDialog,
     setOpenUnfollowDialog,
     setActiveTab,
-    updateBalance,
     currentUser
 }) => {
     const classes = useStyles();
@@ -102,7 +101,6 @@ const _UserProfileContainer = ({
                     currentUserPendingRewardsSum={
                         currentUser && currentUser.pending_rewards_sum
                     }
-                    updateBalance={updateBalance}
                     currentUser={currentUser}
                     currentUserFollowingCount={
                         currentUser && currentUser.follows_count
@@ -145,7 +143,6 @@ const mapMobxToProps = ({ userProfile, authorization }) => ({
     openUnfollowDialog: userProfile.openUnfollowDialog,
     setOpenUnfollowDialog: userProfile.setOpenUnfollowDialog,
     setActiveTab: userProfile.setActiveTab,
-    updateBalance: authorization.updateBalance,
     currentUser: authorization.currentUser
 });
 

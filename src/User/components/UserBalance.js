@@ -1,11 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Link } from "mobx-router";
-import { Button, Typography, IconButton, makeStyles } from "@material-ui/core";
+import { Button, Typography, makeStyles } from "@material-ui/core";
 
 import { Routes } from "../../routes";
 import { useLocalization, useRouter } from "../../store";
-import { RefreshIcon } from "../../icons/RefreshIcon";
 
 const useStyles = makeStyles(theme => ({
     balanceWrapper: {
@@ -41,24 +40,19 @@ const useStyles = makeStyles(theme => ({
             }
         }
     },
-    balanceRefreshWrapper: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        margin: "8px 0 4px"
-    },
-    refreshIcon: {
-        marginLeft: "8px",
-        padding: "6px"
-    },
     balanceText: {
         fontFamily: "Museo Sans Cyrl Bold",
-        fontSize: "12px"
+        fontSize: "12px",
+        margin: "8px 0 4px",
+
+        "&:last-child": {
+            marginBottom: 0
+        }
     }
 }));
 
 export const UserBalance = observer(
-    ({ overallBalance, blockchainBalance, pendingRewardsSum, updateBalance }) => {
+    ({ overallBalance, blockchainBalance, pendingRewardsSum }) => {
         const classes = useStyles();
         const { l } = useLocalization();
         const routerStore = useRouter();
@@ -76,20 +70,13 @@ export const UserBalance = observer(
                             {Number(overallBalance).toFixed(2)} PROM
                         </Button>
                     </Link>
-                    <div className={classes.balanceRefreshWrapper}>
-                        <Typography
-                            color="textPrimary"
-                            classes={{ root: classes.balanceText }}
-                        >
-                            Blockchain: {Number(blockchainBalance).toFixed(2)} PROM
-                        </Typography>
-                        <IconButton
-                            classes={{ root: classes.refreshIcon }}
-                            onClick={updateBalance}
-                        >
-                            <RefreshIcon />
-                        </IconButton>
-                    </div>
+                    <Typography
+                        color="textPrimary"
+                        classes={{ root: classes.balanceText }}
+                        align="center"
+                    >
+                        Blockchain: {Number(blockchainBalance).toFixed(2)} PROM
+                    </Typography>
                     <Typography
                         classes={{ root: classes.balanceText }}
                         color="textPrimary"

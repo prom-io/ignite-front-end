@@ -17,7 +17,7 @@ import { UserProfileTab } from "./UserProfileTab";
 import { localized } from "../../localization/components";
 import { Routes } from "../../routes";
 
-const _UserGlobalCard = ({ currentUser, updateBalance, routerStore, l }) => {
+const _UserGlobalCard = ({ currentUser, routerStore, l }) => {
     const theme = useTheme();
 
     return (
@@ -117,7 +117,6 @@ const _UserGlobalCard = ({ currentUser, updateBalance, routerStore, l }) => {
                 overallBalance={currentUser.overall_balance}
                 blockchainBalance={currentUser.blockchain_balance}
                 pendingRewardsSum={currentUser.pending_rewards_sum}
-                updateBalance={updateBalance}
             />
         </Grid>
     );
@@ -125,7 +124,6 @@ const _UserGlobalCard = ({ currentUser, updateBalance, routerStore, l }) => {
 
 const mapMobxToProps = ({ authorization, store }) => ({
     currentUser: authorization.currentUser,
-    updateBalance: authorization.updateBalance,
     routerStore: store
 });
 

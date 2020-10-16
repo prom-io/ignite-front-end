@@ -31,7 +31,6 @@ const _UserProfileHeader = ({
     currentUserOverallBalance,
     currentUserBlockchainBalance,
     currentUserPendingRewardsSum,
-    updateBalance,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -189,7 +188,6 @@ const _UserProfileHeader = ({
                     overallBalance={currentUserOverallBalance}
                     blockchainBalance={currentUserBlockchainBalance}
                     pendingRewardsSum={currentUserPendingRewardsSum}
-                    updateBalance={updateBalance}
                 />
             )}
             {profileButton}

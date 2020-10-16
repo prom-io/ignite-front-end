@@ -28,9 +28,6 @@ const _UserProfileHeader = ({
     displayName,
     bio,
     externalUrl,
-    currentUserOverallBalance,
-    currentUserBlockchainBalance,
-    currentUserPendingRewardsSum,
     createdAt,
     currentUser,
     currentUserFollowingCount,
@@ -185,9 +182,9 @@ const _UserProfileHeader = ({
             </div>
             {currentUser && currentUser.username === username && (
                 <UserBalance
-                    overallBalance={currentUserOverallBalance}
-                    blockchainBalance={currentUserBlockchainBalance}
-                    pendingRewardsSum={currentUserPendingRewardsSum}
+                    overallBalance={currentUser.overall_balance}
+                    blockchainBalance={currentUser.blockchain_balance}
+                    pendingRewardsSum={currentUser.pending_rewards_sum}
                 />
             )}
             {profileButton}

@@ -92,15 +92,6 @@ const _UserProfileContainer = ({
                     displayName={user.display_name}
                     bio={user.bio}
                     externalUrl={user.external_url}
-                    currentUserOverallBalance={
-                        currentUser && currentUser.overall_balance
-                    }
-                    currentUserBlockchainBalance={
-                        currentUser && currentUser.blockchain_balance
-                    }
-                    currentUserPendingRewardsSum={
-                        currentUser && currentUser.pending_rewards_sum
-                    }
                     currentUser={currentUser}
                     currentUserFollowingCount={
                         currentUser && currentUser.follows_count

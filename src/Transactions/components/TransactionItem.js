@@ -156,8 +156,25 @@ export const TransactionItem = observer(
         };
 
         const transactionSum = () => {
-            switch (transaction.txn_subject) {
-                case "REWARD":
+            if (transaction.txn_from) {
+                if (
+                    currentUserId.toLowerCase() ===
+                    transaction.txn_from.toLowerCase()
+                ) {
+                    return (
+                        <Typography
+                            className={classes.transactionBalance}
+                            classes={{
+                                root:
+                                    transaction.txn_status !== "FAILED" &&
+                                    classes.transactionRed
+                            }}
+                            align="right"
+                        >
+                            - {Number(transaction.txn_sum).toFixed(2)} PROM
+                        </Typography>
+                    );
+                } else {
                     return (
                         <Typography
                             className={classes.transactionBalance}
@@ -171,46 +188,9 @@ export const TransactionItem = observer(
                             + {Number(transaction.txn_sum).toFixed(2)} PROM
                         </Typography>
                     );
-                case "TRANSFER":
-                    if (transaction.txn_from) {
-                        if (
-                            currentUserId.toLowerCase() ===
-                            transaction.txn_from.toLowerCase()
-                        ) {
-                            return (
-                                <Typography
-                                    className={classes.transactionBalance}
-                                    classes={{
-                                        root:
-                                            transaction.txn_status !== "FAILED" &&
-                                            classes.transactionRed
-                                    }}
-                                    align="right"
-                                >
-                                    - {Number(transaction.txn_sum).toFixed(2)} PROM
-                                </Typography>
-                            );
-                        } else {
-                            return (
-                                <Typography
-                                    className={classes.transactionBalance}
-                                    classes={{
-                                        root:
-                                            transaction.txn_status !== "FAILED" &&
-                                            classes.transactionGreen
-                                    }}
-                                    align="right"
-                                >
-                                    + {Number(transaction.txn_sum).toFixed(2)} PROM
-                                </Typography>
-                            );
-                        }
-                    }
-
-                    return null;
-                default:
-                    return null;
+                }
             }
+            return null;
         };
 
         const transactionSubject = () => {
@@ -220,7 +200,7 @@ export const TransactionItem = observer(
                 case "TRANSFER":
                     return "P2P transaction";
                 default:
-                    return "";
+                    return "P2P transaction";
             }
         };
 

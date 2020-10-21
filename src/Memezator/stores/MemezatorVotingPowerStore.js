@@ -56,12 +56,12 @@ export class MemezatorVotingPowerStore {
     @action
     setFormValueTokens = tokens => {
         this.buyVotingPowerForm.tokens = tokens;
-        this.buyVotingPowerForm.quantity = parseFloat(tokens) * 200;
+        this.buyVotingPowerForm.quantity = parseFloat(tokens) * 500;
     };
 
     @action
     setFormValueQuantity = quantity => {
         this.buyVotingPowerForm.quantity = quantity;
-        this.buyVotingPowerForm.tokens = quantity / 200;
+        this.buyVotingPowerForm.tokens = quantity / 500;
     };
 }

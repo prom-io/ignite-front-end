@@ -158,7 +158,7 @@ const BuyVotingPowerForm = ({
             </div>
             <div className={classes.buyVotingPowerFormCaption}>
                 <Typography color="textSecondary">
-                    Current Price for voting power is 1 PROM for 1000 VP.
+                    Current Price for voting power is 1 PROM for 500 VP.
                 </Typography>
                 <Typography
                     classes={{

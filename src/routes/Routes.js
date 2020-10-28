@@ -280,19 +280,19 @@ export const Routes = {
         // component: <MemezatorNotFoundPage />,
         component: <MemezatorPage />,
         beforeEnter: () => {
-            store.topicsPopular.fetchTopicsPopular(5);
-            if (store.authorization.currentUser) {
-                store.memezatorActions.fetchAccessToMemezatorPosting();
-            }
-            store.memezatorStatuses.fetchMemezatorStatuses();
-            store.memezatorWinners.fetchRecentWinners();
+            // store.topicsPopular.fetchTopicsPopular(5);
+            // if (store.authorization.currentUser) {
+            //     store.memezatorActions.fetchAccessToMemezatorPosting();
+            // }
+            // store.memezatorStatuses.fetchMemezatorStatuses();
+            // store.memezatorWinners.fetchRecentWinners();
         },
         onExit: () => {
-            store.memezatorActions.reset();
-            store.memezatorStatuses.reset();
-            store.memezatorWinners.reset();
-            store.whoToFollow.reset();
-            store.topicsPopular.reset();
+            // store.memezatorActions.reset();
+            // store.memezatorStatuses.reset();
+            // store.memezatorWinners.reset();
+            // store.whoToFollow.reset();
+            // store.topicsPopular.reset();
         },
     }),
     communities: new Route({

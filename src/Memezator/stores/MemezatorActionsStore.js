@@ -15,16 +15,16 @@ export class MemezatorActionsStore {
         this.authorizationStore = authorizationStore;
         this.createStatusStore = createStatusStore;
 
-        reaction(
-            () => this.authorizationStore.currentUser,
-            currentUser => {
-                this.reset();
+        // reaction(
+        //     () => this.authorizationStore.currentUser,
+        //     currentUser => {
+        //         this.reset();
 
-                if (currentUser && window.location.pathname === "/memezator") {
-                    this.fetchAccessToMemezatorPosting();
-                }
-            }
-        );
+        //         if (currentUser && window.location.pathname === "/memezator") {
+        //             this.fetchAccessToMemezatorPosting();
+        //         }
+        //     }
+        // );
 
         reaction(
             () => this.createStatusStore.createdMemeStatus,

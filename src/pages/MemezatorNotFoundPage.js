@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     notFoundSecondaryText: {
         fontSize: "22px",
         maxWidth: "950px",
-        margin: "0 auto 40px",
+        margin: "0 auto 60px",
         padding: "0 15px",
         [theme.breakpoints.down("md")]: {
             fontSize: "20px"
@@ -107,19 +107,14 @@ export const _MemezatorNotFoundPage = () => {
                     variant="h1"
                     color="textPrimary"
                 >
-                    Memezator is going on planned maintenance before Memezator 2.0
-                    release
+                    Memezator is over
                 </Typography>
                 <Typography
                     className={classes.notFoundSecondaryText}
                     color="textPrimary"
                 >
-                    It will be unavailable until 8th of October.
-                    <br />
-                    We will publish a detailed article on Memezator 2.0 and FAQ later
-                    today.
-                    <br />
-                    Thank you for your patience and support!
+                    Thanks to everyone who took part in our contests. <br />
+                    Please stay tuned for further news!
                 </Typography>
                 <Button
                     classes={{ root: classes.notFoundButton }}

@@ -32,16 +32,16 @@ export class MemezatorStatusesStore {
         this.createStatusStore = createStatusStore;
         this.memezatorDialogStore = memezatorDialogStore;
 
-        reaction(
-            () => this.authorizationStore.currentUser,
-            () => {
-                this.reset();
+        // reaction(
+        //     () => this.authorizationStore.currentUser,
+        //     () => {
+        //         this.reset();
 
-                if (window.location.pathname === "/memezator") {
-                    this.fetchMemezatorStatuses();
-                }
-            }
-        );
+        //         if (window.location.pathname === "/memezator") {
+        //             this.fetchMemezatorStatuses();
+        //         }
+        //     }
+        // );
 
         reaction(
             () => this.createStatusStore.createdMemeStatus,

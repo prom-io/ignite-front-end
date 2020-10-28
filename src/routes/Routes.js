@@ -277,8 +277,8 @@ export const Routes = {
     }),
     memezator: new Route({
         path: '/memezator',
-        // component: <MemezatorNotFoundPage />,
-        component: <MemezatorPage />,
+        component: <MemezatorNotFoundPage />,
+        // component: <MemezatorPage />,
         beforeEnter: () => {
             // store.topicsPopular.fetchTopicsPopular(5);
             // if (store.authorization.currentUser) {

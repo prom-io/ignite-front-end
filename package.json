@@ -12,7 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/express": "^4.17.2",
     "@types/socket.io-client": "^1.4.33",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "customize-cra": "^0.9.1",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.10",
